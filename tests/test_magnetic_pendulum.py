@@ -8,8 +8,6 @@ constants, and several edge / failure cases.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID     = "67-magnetic-pendulum-matan-torah"
 PIECE_DIR    = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
