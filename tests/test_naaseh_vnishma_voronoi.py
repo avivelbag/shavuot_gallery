@@ -12,8 +12,6 @@ import os
 import re
 import unicodedata
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 PIECE_ID = "08-naaseh-vnishma-voronoi"
@@ -238,13 +236,21 @@ def test_piece_08_hebrew_naaseh_present():
 
 
 def test_piece_08_hebrew_nishma_present():
-    """The word וְנִשְׁמַע (or its stem) must appear in index.html."""
+    """The correctly-pointed word וְנִשְׁמַע must appear in the <script> block.
+
+    Checks the script block specifically so that a correct essay panel cannot
+    mask a mis-pointed HEBREW variable in the canvas artwork.  The full nikud
+    form including SHIN DOT (U+05C1) is required; bare consonants are
+    insufficient.
+    """
     html = read_html()
+    script_match = re.search(r'<script[^>]*>(.*?)</script>', html, re.DOTALL | re.IGNORECASE)
+    assert script_match, "index.html must contain a <script> block"
+    script_text = nfc(script_match.group(1))
     nishm_full = nfc("וְנִשְׁמַע")
-    nishm_stem = nfc("נִשְׁמ")
-    nishm_bare = nfc("נשמע")
-    assert nishm_full in html or nishm_stem in html or nishm_bare in html, (
-        "index.html must contain the Hebrew word וְנִשְׁמַע (v'nishma)"
+    assert nishm_full in script_text, (
+        "The HEBREW variable in <script> must contain the correctly-pointed "
+        "word וְנִשְׁמַע with SHIN DOT (U+05C1); got no match in script block"
     )
 
 
