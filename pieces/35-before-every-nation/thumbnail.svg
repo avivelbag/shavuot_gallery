@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <rect width="400" height="300" fill="#0f0c08"/>
+
+  <!-- Mondrian-style subdivision grid -->
+  <!-- Row 1 -->
+  <rect x="4" y="4" width="152" height="89" fill="#8B6F47"/>
+  <rect x="159" y="4" width="98" height="89" fill="#6B7B8D"/>
+  <rect x="260" y="4" width="60" height="89" fill="#5C6B42"/>
+  <rect x="323" y="4" width="73" height="89" fill="#7A5C3A"/>
+
+  <!-- Row 2 -->
+  <rect x="4" y="96" width="90" height="108" fill="#4A5E6A"/>
+  <rect x="97" y="96" width="115" height="108" fill="#8C4A3A"/>
+  <!-- Central/chosen rect glowing gold -->
+  <rect x="215" y="96" width="105" height="108" fill="#F5E6A3"/>
+  <rect x="323" y="96" width="73" height="108" fill="#4E5C38"/>
+
+  <!-- Row 3 -->
+  <rect x="4" y="207" width="152" height="89" fill="#6B7B8D"/>
+  <rect x="159" y="207" width="98" height="89" fill="#8B6F47"/>
+  <rect x="260" y="207" width="136" height="89" fill="#5C6B42"/>
+
+  <!-- Hebrew text in central rect -->
+  <text x="267" y="155" font-family="serif" font-size="18" fill="#1A2B5F" text-anchor="middle" direction="rtl">נַעֲשֶׂה וְנִשְׁמָע</text>
+</svg>

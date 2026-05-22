@@ -328,5 +328,16 @@
     "path": "pieces/34-consuming-fire/index.html",
     "thumbnail": "pieces/34-consuming-fire/thumbnail.svg",
     "essay": "pieces/34-consuming-fire/essay.md"
+  },
+  {
+    "id": "35-before-every-nation",
+    "title": "Before Every Nation",
+    "tagline": "each kingdom refused — one remained; recursive Mondrian subdivision of the Torah's offer",
+    "year": 2026,
+    "theme": "Matan Torah / The Torah Offered to All Nations",
+    "technique": "canvas 2D — recursive Mondrian subdivision, sequential dimming, color interpolation",
+    "path": "pieces/35-before-every-nation/index.html",
+    "thumbnail": "pieces/35-before-every-nation/thumbnail.svg",
+    "essay": "pieces/35-before-every-nation/essay.md"
   }
 ]
