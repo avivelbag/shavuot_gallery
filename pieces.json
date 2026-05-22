@@ -42,5 +42,16 @@
     "path": "pieces/06-luchot-engraved/index.html",
     "thumbnail": "pieces/06-luchot-engraved/thumbnail.svg",
     "essay": "pieces/06-luchot-engraved/essay.md"
+  },
+  {
+    "id": "07-milk-honey-reaction-diffusion",
+    "title": "A Land Flowing",
+    "tagline": "milk and honey — the promise made visible",
+    "year": 2026,
+    "theme": "Milk and Honey / Bikkurim",
+    "technique": "reaction-diffusion (Gray-Scott)",
+    "path": "pieces/07-milk-honey-reaction-diffusion/index.html",
+    "thumbnail": "pieces/07-milk-honey-reaction-diffusion/thumbnail.png",
+    "essay": "pieces/07-milk-honey-reaction-diffusion/essay.md"
   }
 ]
