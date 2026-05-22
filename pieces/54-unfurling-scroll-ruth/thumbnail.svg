@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+  <!-- Background -->
+  <rect width="200" height="120" fill="#1A0A00"/>
+  <!-- Left rod -->
+  <rect x="8" y="20" width="22" height="80" rx="11" ry="11" fill="#8B5E3C"/>
+  <rect x="10" y="20" width="8" height="80" rx="4" fill="#A87C5A" opacity="0.5"/>
+  <!-- Right rod -->
+  <rect x="170" y="20" width="22" height="80" rx="11" ry="11" fill="#8B5E3C"/>
+  <rect x="172" y="20" width="8" height="80" rx="4" fill="#A87C5A" opacity="0.5"/>
+  <!-- Parchment -->
+  <rect x="30" y="24" width="140" height="72" fill="#FFF8DC"/>
+  <rect x="30" y="24" width="140" height="72" fill="url(#parchTex)" opacity="0.15"/>
+  <!-- Gold shadow at scroll edges -->
+  <rect x="30" y="24" width="6" height="72" fill="#C9A84C" opacity="0.3"/>
+  <rect x="164" y="24" width="6" height="72" fill="#C9A84C" opacity="0.3"/>
+  <!-- Hebrew glyphs — simplified outlines of ayin-mem-kaf sequence -->
+  <!-- עַמֵּךְ - simplified ayin -->
+  <path d="M145,48 C143,44 138,44 137,48 C136,52 138,56 141,57 C138,58 135,62 136,66"
+        stroke="#1A0A00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- mem -->
+  <path d="M127,48 L127,60 C127,64 131,65 133,62 L133,48"
+        stroke="#1A0A00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- kaf -->
+  <path d="M118,48 L118,65 M118,48 C122,48 124,50 122,54 C120,57 118,57 118,57"
+        stroke="#1A0A00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- space then עַמִּי -->
+  <!-- ayin again -->
+  <path d="M105,48 C103,44 98,44 97,48 C96,52 98,56 101,57 C98,58 95,62 96,66"
+        stroke="#1A0A00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- mem sofit -->
+  <path d="M87,48 L87,63 C87,66 91,66 91,63 L91,48"
+        stroke="#1A0A00" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- yod -->
+  <path d="M80,52 C82,50 84,51 83,54"
+        stroke="#1A0A00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <defs>
+    <pattern id="parchTex" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#C9A84C" opacity="0.4"/>
+      <circle cx="6" cy="5" r="0.7" fill="#8B5E3C" opacity="0.3"/>
+    </pattern>
+  </defs>
+</svg>

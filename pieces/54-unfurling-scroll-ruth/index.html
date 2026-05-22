@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Unfurling Scroll — Megillat Ruth</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #2A1A0A; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #2A1A0A;
+    }
+    canvas { display: block; max-width: 100%; max-height: 100%; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #8B5E3C;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #2A1A0A;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #8B5E3C; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #C9A84C; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #8B5E3C; margin: 0 0 0.5rem; }
+    .essay-panel .verse {
+      font-size: 1.1rem; color: #FFF8DC; margin: 0 0 2rem;
+      font-style: italic; direction: rtl; text-align: right;
+      border-left: 3px solid #C9A84C;
+      padding-left: 1rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem; color: #D4B483; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #C9A84C; font-style: normal; }
+    .essay-panel blockquote {
+      border-left: 3px solid #C9A84C;
+      margin: 1rem 0 1rem 0.5rem;
+      padding-left: 1rem;
+      color: #FFF8DC;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c" width="900" height="500"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>The Unfurling Scroll</h1>
+    <p class="subtitle">Megillat Ruth · Shavuot · Ruth 1:16</p>
+    <p class="verse">עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי</p>
+    <p class="verse" style="direction:ltr;text-align:left;font-size:0.9rem;color:#c8b89a;">
+      "Your people shall be my people, and your God my God."
+    </p>
+
+    <h2>Ruth 1:16 — The Declaration</h2>
+    <p>These words are spoken by Ruth the Moabite to her mother-in-law Naomi on the road between Moab and Bethlehem. Naomi has urged her daughters-in-law twice to return to their own families after the death of their husbands. Orpah weeps, kisses Naomi, and goes back. Ruth cleaves. Ruth 1:16–17 is the whole of the declaration, the most complete statement of voluntary covenantal belonging in the Hebrew Bible: wherever you go, I will go; wherever you die, I will die; there will I be buried.</p>
+    <p>The verse is not a prayer. It is not a ritual formula. It is a declaration made on a dusty road to a grief-stricken woman who has nothing to offer and who is explicitly telling Ruth to leave. The full-heartedness of the choice is its content.</p>
+
+    <h2>The Custom of Reading Megillat Ruth on Shavuot</h2>
+    <p>The Book of Ruth is read publicly on Shavuot, the festival that commemorates the giving of the Torah at Sinai. The Talmud Yerushalmi (Megillah 3:5) and later authorities establish this practice. Two reasons are given most often. The first is agricultural: Ruth's story unfolds during the barley and wheat harvest, and Shavuot is <em>Chag HaKatzir</em>, the festival of the grain harvest. The second reason is theological: Ruth's conversion mirrors the giving of the Torah. Just as Israel stood at Sinai and voluntarily accepted the Torah, Ruth voluntarily accepts the God and people of Israel.</p>
+    <p>Her declaration is a private Sinai. She accepts not just a people but a covenant, not just a land but its laws — including the very laws that will shortly feed her in Boaz's field.</p>
+
+    <h2>Soloveitchik and the Covenant of Acceptance</h2>
+    <p>Rabbi Joseph B. Soloveitchik draws a sustained parallel between Ruth's declaration and the covenant Israel made at Sinai. Both, he argues, are defined not by circumstance or birth but by a full-hearted, unconditional acceptance. Ruth is told explicitly: there is nothing here for you. She cleaves anyway.</p>
+    <p>The Rav notes that Ruth's declaration contains no conditions. She does not say: I will go with you unless the journey is too hard. Death is the only limit she names — and she names it to exclude it. This is the structure of Sinai: <em>naaseh v'nishma</em>, first we will do, then we will understand. The commitment precedes the comprehension.</p>
+
+    <h2>The Scroll as Form</h2>
+    <p>The <em>megillah</em> — scroll — is the physical form in which Ruth is read on Shavuot. A <em>sofer</em> (scribe) writes the text by hand on parchment, and the scroll is unrolled and read aloud, column by column. The physical act of unrolling is part of the experience: the text is revealed progressively, as the reader's hands move apart, as the words come into view stroke by stroke.</p>
+    <p>This animation makes the form visible as form. The parchment unfurls between two wooden rollers. The Hebrew letters of Ruth 1:16 appear not as rendered font glyphs but as individual bezier strokes, each drawn at its own pace, as if a sofer's pen were moving across the parchment in real time. The letters are right-to-left, as Hebrew is read. The scroll does not close. It breathes — a slow glow pulse in the gold of the ink's shadow, like a living text. Because the text of Ruth, once spoken, remains.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width;   // 900
+  var H = canvas.height;  // 500
+
+  // ── Palette ──────────────────────────────────────────────────────────────
+  var PARCHMENT  = '#FFF8DC';
+  var INK        = '#1A0A00';
+  var ROD_MID    = '#8B5E3C';
+  var GOLD       = '#C9A84C';
+  var BG         = '#2A1A0A';
+
+  // ── Scroll geometry ───────────────────────────────────────────────────────
+  var ROD_W      = 36;   // half-width of each rod
+  var PARCH_TOP  = 60;
+  var PARCH_BOT  = 440;
+  var PARCH_H    = PARCH_BOT - PARCH_TOP;  // 380
+  var CENTER_X   = W / 2;                  // 450
+
+  var scrollWidth   = 0;   // current half-width of parchment (grows to ~350)
+  var TARGET_HALF   = 350;
+
+  // Seeded noise for parchment texture — deterministic
+  var noisePoints = (function () {
+    var pts = [];
+    var seed = 42;
+    function lcg() { seed = (seed * 1664525 + 1013904223) & 0xFFFFFFFF; return (seed >>> 0) / 4294967296; }
+    for (var i = 0; i < 400; i++) {
+      pts.push({ x: lcg(), y: lcg(), r: 1.5 + lcg() * 3, a: 0.04 + lcg() * 0.06 });
+    }
+    return pts;
+  }());
+
+  // ── Hebrew letter bezier data ─────────────────────────────────────────────
+  // Each letter is an array of path command objects.
+  // Coordinate space: letter bounding box ~60×80 units, origin at top-left.
+  // We'll lay them out right-to-left starting from right edge of parchment.
+  //
+  // The verse: עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי
+  // Letters needed (RTL, ignoring vowel marks): ע מ ך   ע מ י   ו א ל ה י ך   א ל ה י
+  // We define each base letter shape once and reference it.
+
+  var LW = 60, LH = 80;  // letter bounding box
+
+  // Path command types: M=moveTo, L=lineTo, C=bezierCurveTo, Q=quadraticCurveTo
+  var LETTERS = {};
+
+  // ע Ayin — two arms meeting at a stem
+  LETTERS.ayin = [
+    {t:'M', x:10, y:15},
+    {t:'C', x1:8,  y1:30, x2:5,  y2:50, x:12, y:65},
+    {t:'M', x:50, y:15},
+    {t:'C', x1:52, y1:30, x2:55, y2:50, x:48, y:65},
+    {t:'M', x:12, y:65},
+    {t:'C', x1:20, y1:72, x2:40, y2:72, x:48, y:65}
+  ];
+
+  // מ Mem (medial) — closed square with a gap at bottom left
+  LETTERS.mem = [
+    {t:'M', x:10, y:15},
+    {t:'L', x:50, y:15},
+    {t:'L', x:50, y:60},
+    {t:'C', x1:50, y1:70, x2:38, y2:72, x:30, y:68},
+    {t:'M', x:10, y:15},
+    {t:'L', x:10, y:55},
+    {t:'C', x1:10, y1:65, x2:18, y2:68, x:26, y:66}
+  ];
+
+  // ך Kaf sofit (final kaf) — vertical stroke with a head and a tail
+  LETTERS.kaf_sofit = [
+    {t:'M', x:15, y:15},
+    {t:'L', x:45, y:15},
+    {t:'C', x1:52, y1:15, x2:54, y2:25, x:50, y:32},
+    {t:'C', x1:46, y1:38, x2:35, y2:40, x:35, y:40},
+    {t:'M', x:35, y:15},
+    {t:'L', x:35, y:75}
+  ];
+
+  // י Yod — small curved stroke, the smallest Hebrew letter
+  LETTERS.yod = [
+    {t:'M', x:25, y:20},
+    {t:'C', x1:35, y1:18, x2:40, y2:25, x:35, y:35},
+    {t:'C', x1:30, y1:42, x2:22, y2:45, x:20, y:40}
+  ];
+
+  // ו Vav — vertical stroke with a small head
+  LETTERS.vav = [
+    {t:'M', x:28, y:15},
+    {t:'C', x1:35, y1:14, x2:38, y2:18, x:35, y:25},
+    {t:'L', x:32, y:70}
+  ];
+
+  // א Alef — diagonal with two arms
+  LETTERS.alef = [
+    {t:'M', x:8,  y:55},
+    {t:'C', x1:18, y1:45, x2:38, y2:35, x:52, y:20},
+    {t:'M', x:8,  y:20},
+    {t:'C', x1:15, y1:28, x2:22, y2:35, x:28, y:38},
+    {t:'M', x:32, y:42},
+    {t:'C', x1:38, y1:48, x2:46, y2:56, x:52, y:65}
+  ];
+
+  // ל Lamed — tall letter with an upward loop
+  LETTERS.lamed = [
+    {t:'M', x:30, y:5},
+    {t:'C', x1:45, y1:5, x2:52, y2:15, x:48, y:28},
+    {t:'C', x1:44, y1:38, x2:30, y2:40, x:30, y:40},
+    {t:'L', x:30, y:68},
+    {t:'C', x1:30, y1:74, x2:22, y2:76, x:16, y:72}
+  ];
+
+  // ה He — like dalet with a short left leg
+  LETTERS.he = [
+    {t:'M', x:8,  y:15},
+    {t:'L', x:52, y:15},
+    {t:'M', x:52, y:15},
+    {t:'L', x:52, y:65},
+    {t:'M', x:8,  y:15},
+    {t:'L', x:8,  y:45},
+    {t:'M', x:30, y:15},
+    {t:'L', x:30, y:60},
+    {t:'C', x1:30, y1:68, x2:22, y2:70, x:16, y:65}
+  ];
+
+  // ּ Dalet-like shape for ך — using kaf_sofit already defined above
+
+  // The verse laid out as a sequence of letter keys (RTL reading order):
+  // עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי
+  // RTL left-to-right in array = rightmost glyph first
+  var VERSE_SEQUENCE = [
+    // Word 1: עַמֵּךְ (right to left: ע מ ך)
+    'ayin', 'mem', 'kaf_sofit',
+    // Word 2: עַמִּי (ע מ י)
+    'ayin', 'mem', 'yod',
+    // Word 3: וֵאלֹהַיִךְ (ו א ל ה י ך)
+    'vav', 'alef', 'lamed', 'he', 'yod', 'kaf_sofit',
+    // Word 4: אֱלֹהָי (א ל ה י)
+    'alef', 'lamed', 'he', 'yod'
+  ];
+
+  // Word boundaries (indices where a space should appear)
+  var WORD_BREAKS = [3, 6, 12];
+
+  // ── Letter rendering geometry ─────────────────────────────────────────────
+  // Layout right-to-left: start from right side of parchment, move left.
+  // Each letter slot is LW+gap wide. We scale the letter coordinates to fit.
+  var LETTER_SCALE = 0.85;
+  var LETTER_GAP   = 8;
+  var WORD_GAP     = 20;
+  var ROW_Y        = 195;  // top of letter bounding box in canvas coords
+
+  // Precompute x offsets for each letter (right edge = right side of parchment)
+  var letterOffsets = (function () {
+    var offsets = [];
+    var x = CENTER_X + TARGET_HALF - ROD_W - 18;  // start from right
+    for (var i = 0; i < VERSE_SEQUENCE.length; i++) {
+      offsets.push(x);
+      x -= (LW * LETTER_SCALE + LETTER_GAP);
+      if (WORD_BREAKS.indexOf(i + 1) >= 0) x -= WORD_GAP;
+    }
+    return offsets;
+  }());
+
+  // ── Animation state ───────────────────────────────────────────────────────
+  var drawProgress = 0.0;   // 0 = nothing drawn; 1 = all letters complete
+  var revealed     = false; // true after drawProgress >= 1
+  var t0           = null;  // timestamp of first frame
+
+  // Total number of path command segments across all letters
+  var totalSegments = (function () {
+    var n = 0;
+    for (var i = 0; i < VERSE_SEQUENCE.length; i++) {
+      n += LETTERS[VERSE_SEQUENCE[i]].length;
+    }
+    return n;
+  }());
+
+  // ── Bezier partial evaluation ─────────────────────────────────────────────
+  /**
+   * Evaluate a point on a cubic bezier at parameter t.
+   * p0..p3 are {x,y} objects.
+   */
+  function bezierPoint(p0, p1, p2, p3, t) {
+    var mt = 1 - t;
+    return {
+      x: mt*mt*mt*p0.x + 3*mt*mt*t*p1.x + 3*mt*t*t*p2.x + t*t*t*p3.x,
+      y: mt*mt*mt*p0.y + 3*mt*mt*t*p1.y + 3*mt*t*t*p2.y + t*t*t*p3.y
+    };
+  }
+
+  /**
+   * Evaluate a point on a quadratic bezier at parameter t.
+   */
+  function quadPoint(p0, p1, p2, t) {
+    var mt = 1 - t;
+    return {
+      x: mt*mt*p0.x + 2*mt*t*p1.x + t*t*p2.x,
+      y: mt*mt*p0.y + 2*mt*t*p1.y + t*t*p2.y
+    };
+  }
+
+  /**
+   * Draw one letter's path commands up to segment index segIdx + within-segment t.
+   * ox, oy: canvas origin for the letter; scale: letter scale factor.
+   * segIdx: index of the last segment to draw (partially if t < 1).
+   * segT: how far along that segment to draw (0–1).
+   */
+  function drawLetterPartial(cmds, ox, oy, scale, segIdx, segT) {
+    var pen = {x: ox, y: oy};
+    ctx.beginPath();
+    for (var i = 0; i <= segIdx && i < cmds.length; i++) {
+      var cmd = cmds[i];
+      var partial = (i === segIdx) ? segT : 1.0;
+      var tx, ty;
+      if (cmd.t === 'M') {
+        tx = ox + cmd.x * scale;
+        ty = oy + cmd.y * scale;
+        if (partial >= 1) {
+          ctx.moveTo(tx, ty);
+          pen = {x: tx, y: ty};
+        } else {
+          ctx.moveTo(tx, ty);
+          pen = {x: tx, y: ty};
+        }
+      } else if (cmd.t === 'L') {
+        tx = ox + cmd.x * scale;
+        ty = oy + cmd.y * scale;
+        if (partial >= 1) {
+          ctx.lineTo(tx, ty);
+          pen = {x: tx, y: ty};
+        } else {
+          var ep = {x: ox + cmd.x * scale, y: oy + cmd.y * scale};
+          var midx = pen.x + (ep.x - pen.x) * partial;
+          var midy = pen.y + (ep.y - pen.y) * partial;
+          ctx.lineTo(midx, midy);
+          pen = {x: midx, y: midy};
+        }
+      } else if (cmd.t === 'C') {
+        var p0 = pen;
+        var p1 = {x: ox + cmd.x1 * scale, y: oy + cmd.y1 * scale};
+        var p2 = {x: ox + cmd.x2 * scale, y: oy + cmd.y2 * scale};
+        var p3 = {x: ox + cmd.x  * scale, y: oy + cmd.y  * scale};
+        if (partial >= 1) {
+          ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+          pen = p3;
+        } else {
+          // De Casteljau subdivision to draw only the first partial of the curve
+          var pt = bezierPoint(p0, p1, p2, p3, partial);
+          // Compute split control points for the first sub-curve
+          var q0 = p0;
+          var q1 = {x: p0.x + (p1.x - p0.x) * partial, y: p0.y + (p1.y - p0.y) * partial};
+          var q2 = bezierPoint(p0, p1, p2, p3, partial * 0.5);
+          // Use a simplified approach: just draw to midpoint with original cp1
+          ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, pt.x, pt.y);
+          pen = pt;
+        }
+      } else if (cmd.t === 'Q') {
+        var qp0 = pen;
+        var qp1 = {x: ox + cmd.x1 * scale, y: oy + cmd.y1 * scale};
+        var qp2 = {x: ox + cmd.x  * scale, y: oy + cmd.y  * scale};
+        if (partial >= 1) {
+          ctx.quadraticCurveTo(qp1.x, qp1.y, qp2.x, qp2.y);
+          pen = qp2;
+        } else {
+          var qpt = quadPoint(qp0, qp1, qp2, partial);
+          ctx.quadraticCurveTo(qp1.x, qp1.y, qpt.x, qpt.y);
+          pen = qpt;
+        }
+      }
+    }
+    ctx.stroke();
+  }
+
+  /**
+   * Draw a complete letter at (ox, oy) with given scale.
+   */
+  function drawLetterFull(cmds, ox, oy, scale) {
+    ctx.beginPath();
+    for (var i = 0; i < cmds.length; i++) {
+      var cmd = cmds[i];
+      if (cmd.t === 'M') {
+        ctx.moveTo(ox + cmd.x * scale, oy + cmd.y * scale);
+      } else if (cmd.t === 'L') {
+        ctx.lineTo(ox + cmd.x * scale, oy + cmd.y * scale);
+      } else if (cmd.t === 'C') {
+        ctx.bezierCurveTo(
+          ox + cmd.x1 * scale, oy + cmd.y1 * scale,
+          ox + cmd.x2 * scale, oy + cmd.y2 * scale,
+          ox + cmd.x  * scale, oy + cmd.y  * scale
+        );
+      } else if (cmd.t === 'Q') {
+        ctx.quadraticCurveTo(
+          ox + cmd.x1 * scale, oy + cmd.y1 * scale,
+          ox + cmd.x  * scale, oy + cmd.y  * scale
+        );
+      }
+    }
+    ctx.stroke();
+  }
+
+  // ── Drawing helpers ───────────────────────────────────────────────────────
+
+  /**
+   * Draw one wooden rod (cylinder illusion via radial gradient).
+   * cx: center x, top: top y, bot: bottom y, halfW: half-width.
+   */
+  function drawRod(cx, top, bot, halfW, pulse) {
+    var w = halfW * (1 + pulse * 0.012);
+    var grad = ctx.createRadialGradient(cx - w * 0.3, top + 20, 2, cx, (top + bot) / 2, w * 1.5);
+    grad.addColorStop(0,   '#C4895A');
+    grad.addColorStop(0.4, '#8B5E3C');
+    grad.addColorStop(1,   '#3A1E0A');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.roundRect(cx - w, top, w * 2, bot - top, w);
+    ctx.fill();
+    // highlight stripe
+    ctx.fillStyle = 'rgba(220,160,100,0.18)';
+    ctx.beginPath();
+    ctx.roundRect(cx - w * 0.55, top + 6, w * 0.28, bot - top - 12, 4);
+    ctx.fill();
+  }
+
+  /**
+   * Draw the parchment rectangle with noise texture.
+   * halfW: half-width of the currently visible parchment.
+   */
+  function drawParchment(halfW) {
+    var left  = CENTER_X - halfW;
+    var right = CENTER_X + halfW;
+
+    // Base fill
+    ctx.fillStyle = PARCHMENT;
+    ctx.fillRect(left, PARCH_TOP, right - left, PARCH_H);
+
+    // Subtle warm gradient overlay — slightly darker at edges
+    var grad = ctx.createLinearGradient(left, 0, right, 0);
+    grad.addColorStop(0,    'rgba(180,130,60,0.12)');
+    grad.addColorStop(0.15, 'rgba(0,0,0,0)');
+    grad.addColorStop(0.85, 'rgba(0,0,0,0)');
+    grad.addColorStop(1,    'rgba(180,130,60,0.12)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(left, PARCH_TOP, right - left, PARCH_H);
+
+    // Noise texture pass
+    for (var i = 0; i < noisePoints.length; i++) {
+      var p = noisePoints[i];
+      var px = left + p.x * (right - left);
+      var py = PARCH_TOP + p.y * PARCH_H;
+      ctx.fillStyle = 'rgba(160,110,50,' + p.a + ')';
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Top and bottom edge shadows
+    var topGrad = ctx.createLinearGradient(0, PARCH_TOP, 0, PARCH_TOP + 18);
+    topGrad.addColorStop(0, 'rgba(80,40,0,0.18)');
+    topGrad.addColorStop(1, 'rgba(80,40,0,0)');
+    ctx.fillStyle = topGrad;
+    ctx.fillRect(left, PARCH_TOP, right - left, 18);
+
+    var botGrad = ctx.createLinearGradient(0, PARCH_BOT - 18, 0, PARCH_BOT);
+    botGrad.addColorStop(0, 'rgba(80,40,0,0)');
+    botGrad.addColorStop(1, 'rgba(80,40,0,0.18)');
+    ctx.fillStyle = botGrad;
+    ctx.fillRect(left, PARCH_BOT - 18, right - left, 18);
+  }
+
+  // ── Main render loop ──────────────────────────────────────────────────────
+
+  function frame(ts) {
+    if (t0 === null) t0 = ts;
+    var elapsed = ts - t0;
+
+    // Grow parchment over first ~2 seconds (120 frames at 60fps)
+    scrollWidth += (TARGET_HALF - scrollWidth) * 0.04;
+
+    // Advance drawing progress once parchment is mostly open (> 60% wide)
+    if (scrollWidth > TARGET_HALF * 0.6 && drawProgress < 1.0) {
+      drawProgress = Math.min(1.0, drawProgress + 0.007);
+    }
+    if (drawProgress >= 1.0) revealed = true;
+
+    var pulse = revealed ? Math.sin(elapsed * 0.0012) : 0;
+
+    // ── Clear ──
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+
+    // ── Parchment (behind rods) ──
+    drawParchment(scrollWidth);
+
+    // ── Rods ──
+    drawRod(CENTER_X - scrollWidth - ROD_W * 0.5, PARCH_TOP - 8, PARCH_BOT + 8, ROD_W, pulse);
+    drawRod(CENTER_X + scrollWidth + ROD_W * 0.5, PARCH_TOP - 8, PARCH_BOT + 8, ROD_W, pulse);
+
+    // ── Calligraphy ──
+    ctx.strokeStyle = INK;
+    ctx.lineWidth   = 3;
+    ctx.lineCap     = 'round';
+    ctx.lineJoin    = 'round';
+
+    if (revealed) {
+      // Breathing glow
+      ctx.shadowColor = GOLD;
+      ctx.shadowBlur  = 4 + 3 * Math.sin(elapsed * 0.001);
+    } else {
+      ctx.shadowBlur  = 0;
+    }
+
+    // Map drawProgress (0–1) to which segment we're drawing
+    var totalProg   = drawProgress * totalSegments;
+    var segsCounted = 0;
+
+    for (var li = 0; li < VERSE_SEQUENCE.length; li++) {
+      var key  = VERSE_SEQUENCE[li];
+      var cmds = LETTERS[key];
+      var ox   = letterOffsets[li];
+      var oy   = ROW_Y;
+      var nSeg = cmds.length;
+
+      if (segsCounted + nSeg <= totalProg) {
+        // This letter is fully drawn
+        drawLetterFull(cmds, ox, oy, LETTER_SCALE);
+        segsCounted += nSeg;
+      } else if (segsCounted < totalProg) {
+        // This letter is partially drawn
+        var withinLetter = totalProg - segsCounted;
+        var segIdx = Math.floor(withinLetter);
+        var segT   = withinLetter - segIdx;
+        drawLetterPartial(cmds, ox, oy, LETTER_SCALE, segIdx, segT);
+        break;  // nothing after this is drawn yet
+      } else {
+        break;
+      }
+    }
+
+    ctx.shadowBlur = 0;
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+
+}());
+</script>
+</body>
+</html>
