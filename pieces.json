@@ -110,6 +110,17 @@
     "essay": "pieces/12-omer-spiral/essay.md"
   },
   {
+    "id": "14-ruth-naomi-truchet",
+    "title": "Wherever You Go",
+    "tagline": "Ruth and Naomi walking toward Bethlehem, in truchet tiles",
+    "year": 2026,
+    "theme": "The Book of Ruth / Loyalty and Harvest",
+    "technique": "truchet tiles, figure silhouette inlay",
+    "path": "pieces/14-ruth-naomi-truchet/index.html",
+    "thumbnail": "pieces/14-ruth-naomi-truchet/thumbnail.svg",
+    "essay": "pieces/14-ruth-naomi-truchet/essay.md"
+  },
+  {
     "id": "15-keter-torah-harmonograph",
     "title": "Keter Torah",
     "tagline": "the crown of Torah, written by pendulums in decay",
