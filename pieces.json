@@ -737,6 +737,17 @@
     "essay": "pieces/53-seventy-faces-poincare/essay.md"
   },
   {
+    "id": "54-forty-nine-gates-omer",
+    "title": "Forty-Nine Gates",
+    "tagline": "the 7×7 Sefirah matrix of the Omer made visible — each day a mandala, each week a colour, the fiftieth gate beyond all counting",
+    "year": 2026,
+    "theme": "Sefirat HaOmer",
+    "technique": "procedural grid / generative mandala",
+    "path": "pieces/54-forty-nine-gates-omer/index.html",
+    "thumbnail": "pieces/54-forty-nine-gates-omer/thumbnail.svg",
+    "essay": "pieces/54-forty-nine-gates-omer/essay.md"
+  },
+  {
     "id": "54-unfurling-scroll-ruth",
     "title": "The Unfurling Scroll",
     "tagline": "עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי — Ruth 1:16 appears stroke by stroke as the megillah unfurls on Shavuot",

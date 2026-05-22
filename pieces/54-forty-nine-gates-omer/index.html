@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forty-Nine Gates — Kabbalistic Omer Calendar</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0D0B14; height: 100%; }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+    canvas#grid {
+      display: block;
+      cursor: crosshair;
+    }
+    .essay-pane {
+      flex: 1;
+      overflow-y: auto;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1E1040;
+      color: #C8BAD8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080514;
+      min-width: 320px;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; }
+      .art-pane { position: relative; height: auto; padding: 1.5rem 1rem; }
+      canvas#grid { max-width: 100%; height: auto; }
+      .essay-pane { border-left: none; border-top: 1px solid #1E1040; padding: 2rem 1.5rem; }
+    }
+    .essay-pane h1 {
+      font-size: 1.5rem;
+      color: #D4A820;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+    }
+    .essay-pane .subtitle {
+      font-size: 0.88rem;
+      color: #5A4A7A;
+      margin: 0 0 2rem;
+      letter-spacing: 0.04em;
+    }
+    .essay-pane h2 {
+      font-size: 0.95rem;
+      color: #A070C0;
+      margin: 2rem 0 0.5rem;
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .essay-pane blockquote {
+      border-left: 2px solid #D4A820;
+      margin: 0 0 1.2rem 0;
+      padding: 0.4rem 0 0.4rem 1rem;
+      color: #D4A820;
+      font-style: italic;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+    .essay-pane p {
+      line-height: 1.82;
+      font-size: 0.93rem;
+      margin: 0 0 1rem;
+    }
+    .essay-pane em { color: #D4A820; font-style: italic; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #4A3A6A;
+      margin-top: 2rem;
+      line-height: 1.6;
+      border-top: 1px solid #1E1040;
+      padding-top: 1rem;
+    }
+    #tooltip {
+      position: fixed;
+      pointer-events: none;
+      background: rgba(13, 11, 20, 0.96);
+      border: 1px solid #3A2A5A;
+      border-radius: 4px;
+      padding: 8px 12px;
+      color: #C8BAD8;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      max-width: 210px;
+      display: none;
+      z-index: 100;
+    }
+    #tooltip .tip-heb {
+      font-size: 1rem;
+      color: #D4A820;
+      direction: rtl;
+      text-align: right;
+      margin-bottom: 2px;
+    }
+    #tooltip .tip-pair { color: #A070C0; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<div id="tooltip">
+  <div class="tip-heb" id="tip-heb"></div>
+  <div id="tip-eng"></div>
+  <div class="tip-pair" id="tip-pair"></div>
+</div>
+
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="grid"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>Forty-Nine Gates</h1>
+    <p class="subtitle">Sefirat HaOmer — The Omer as Curriculum of Self</p>
+
+    <blockquote>
+      "You shall count from the day after the Sabbath… seven complete Sabbaths shall there be…
+      even unto the day after the seventh Sabbath shall ye number fifty days."<br>
+      — Leviticus 23:15–16
+    </blockquote>
+
+    <h2>The Count</h2>
+    <p>The Mishnah specifies that the Omer must be counted each day, individually, deliberately —
+    not a monthly summary, but each evening, one day at a time, out loud. The Talmud debates what
+    happens if a single day is missed: whether the entire count is invalidated, or whether one
+    continues without the blessing. The disagreement reveals the underlying premise: the count is
+    not a number advancing toward a target but a practice that must be inhabited, day by day.</p>
+
+    <h2>A 7×7 Curriculum</h2>
+    <p>The kabbalistic tradition, developed by the Arizal (Rabbi Isaac Luria, 1534–1572) and
+    elaborated through Hasidic teaching, maps the seven weeks onto the seven lower Sefirot —
+    the divine attributes that structure all reality and mirror the human soul. Each <em>week</em>
+    is governed by one Sefirah; each <em>day within the week</em> by another. The result is
+    49 combinations: Chesed within Chesed, Gevurah within Chesed, through to Malkhut within
+    Malkhut.</p>
+    <p>This is not numerological coincidence but a curriculum. Rabbi Yehudah Aryeh Leib Alter
+    of Ger, the <em>Sfat Emet</em> (1847–1905), wrote repeatedly about the Omer as an opportunity
+    for <em>cheshbon hanefesh</em> — a reckoning of the soul. Each day's Sefirah pair names a
+    double lens through which to examine one's own character. <em>Chesed within Chesed</em> asks:
+    is my love expansive enough, grounded in itself? <em>Gevurah within Chesed</em> asks: where
+    does love need to be bounded, structured, protective? <em>Netzach within Hod</em>: where does
+    the drive for endurance miss the beauty of yielding?</p>
+    <p>The Torah specifies <em>שַׁבָּתוֹת תְּמִימֹת</em> — "complete Sabbaths." The word
+    <em>temimot</em> means whole, perfect, without blemish. The Sfat Emet reads this prescriptively:
+    these weeks are to be made complete through the work of self-examination. The count creates the
+    calendar; the daily practice fills the count with content.</p>
+
+    <h2>The Artwork</h2>
+    <p>Each cell of the 7×7 grid is a geometric mandala generated from its Sefirah pair. The
+    rotational symmetry order is determined by the daily Sefirah (the "inner" quality, yielding
+    2- to 8-fold symmetry); the color hue by the weekly Sefirah (the "outer" framework, drawn from
+    a harvest palette: white-silver for Chesed, rose-red for Gevurah, gold for Tiferet, deep green
+    for Netzach, orange-peach for Hod, indigo for Yesod, deep violet for Malkhut); the density of
+    concentric rings by the day's depth within its week. No two mandalas are identical.</p>
+    <p>The cells bloom together on load, then rotate continuously — each at a rate set by its
+    inner Sefirah, alternating clockwise and counter-clockwise by week — so the grid is never
+    static, never fully resolved. Hover any cell to see its Hebrew day number, its week and day in
+    English, and its Sefirah pair. The grid is meant to be held whole: forty-nine intersections of
+    quality and context, visible simultaneously, as they are usually only heard one evening at a
+    time.</p>
+
+    <h2>Shavuot Beyond the Grid</h2>
+    <p>The fiftieth day does not appear inside the grid. It cannot. The Omer count ends at
+    forty-nine; Shavuot is what the count was arranged <em>toward</em>, but cannot contain. The
+    Talmud (Rosh Hashanah 21b) records that Moses attained forty-nine of the fifty gates of
+    understanding (<em>שַׁעֲרֵי בִינָה</em>); the fiftieth was withheld — given, according to
+    some traditions, only at the moment of his death, outside the counting of days. Shavuot glows
+    beyond the matrix, in a space the 7×7 structure cannot reach: not the culmination of 49, but a
+    threshold beyond all counting.</p>
+
+    <p class="citations">Sources: Leviticus 23:15–16; Mishnah Menahot 10:9; Talmud Bavli Menahot
+    65b–66a; Talmud Bavli Rosh Hashanah 21b (fifty gates of Binah); Sefer HaKavanot (Arizal);
+    Sfat Emet, Shavuot 5637 (1877) and Pesah 5648 (1888).</p>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+var SEFIROT = ['Chesed', 'Gevurah', 'Tiferet', 'Netzach', 'Hod', 'Yesod', 'Malkhut'];
+var COLORS  = ['#C8D8E8', '#C04848', '#D4A820', '#4A8A4A', '#D4823A', '#4848A8', '#6A3A7A'];
+
+var HEB_DAYS = [
+  'יוֹם אֶחָד', 'יוֹם שְׁנַיִם', 'יוֹם שְׁלוֹשָׁה', 'יוֹם אַרְבָּעָה',
+  'יוֹם חֲמִשָּׁה', 'יוֹם שִׁשָּׁה', 'יוֹם שִׁבְעָה',
+  'יוֹם שְׁמוֹנָה', 'יוֹם תִּשְׁעָה', 'יוֹם עֲשָׂרָה',
+  'יוֹם אַחַד עָשָׂר', 'יוֹם שְׁנֵים עָשָׂר', 'יוֹם שְׁלוֹשָׁה עָשָׂר',
+  'יוֹם אַרְבָּעָה עָשָׂר', 'יוֹם חֲמִשָּׁה עָשָׂר', 'יוֹם שִׁשָּׁה עָשָׂר',
+  'יוֹם שִׁבְעָה עָשָׂר', 'יוֹם שְׁמוֹנָה עָשָׂר', 'יוֹם תִּשְׁעָה עָשָׂר',
+  'יוֹם עֶשְׂרִים', 'יוֹם עֶשְׂרִים וְאֶחָד', 'יוֹם עֶשְׂרִים וּשְׁנַיִם',
+  'יוֹם עֶשְׂרִים וּשְׁלוֹשָׁה', 'יוֹם עֶשְׂרִים וְאַרְבָּעָה',
+  'יוֹם עֶשְׂרִים וַחֲמִשָּׁה', 'יוֹם עֶשְׂרִים וְשִׁשָּׁה',
+  'יוֹם עֶשְׂרִים וְשִׁבְעָה', 'יוֹם עֶשְׂרִים וּשְׁמוֹנָה',
+  'יוֹם עֶשְׂרִים וְתִשְׁעָה', 'יוֹם שְׁלוֹשִׁים',
+  'יוֹם שְׁלוֹשִׁים וְאֶחָד', 'יוֹם שְׁלוֹשִׁים וּשְׁנַיִם',
+  'יוֹם שְׁלוֹשִׁים וּשְׁלוֹשָׁה', 'יוֹם שְׁלוֹשִׁים וְאַרְבָּעָה',
+  'יוֹם שְׁלוֹשִׁים וַחֲמִשָּׁה', 'יוֹם שְׁלוֹשִׁים וְשִׁשָּׁה',
+  'יוֹם שְׁלוֹשִׁים וְשִׁבְעָה', 'יוֹם שְׁלוֹשִׁים וּשְׁמוֹנָה',
+  'יוֹם שְׁלוֹשִׁים וְתִשְׁעָה', 'יוֹם אַרְבָּעִים',
+  'יוֹם אַרְבָּעִים וְאֶחָד', 'יוֹם אַרְבָּעִים וּשְׁנַיִם',
+  'יוֹם אַרְבָּעִים וּשְׁלוֹשָׁה', 'יוֹם אַרְבָּעִים וְאַרְבָּעָה',
+  'יוֹם אַרְבָּעִים וַחֲמִשָּׁה', 'יוֹם אַרְבָּעִים וְשִׁשָּׁה',
+  'יוֹם אַרְבָּעִים וְשִׁבְעָה', 'יוֹם אַרְבָּעִים וּשְׁמוֹנָה',
+  'יוֹם אַרְבָּעִים וְתִשְׁעָה'
+];
+
+var canvas = document.getElementById('grid');
+var ctx = canvas.getContext('2d');
+var dpr = window.devicePixelRatio || 1;
+
+var LOGICAL_W = 500;
+var CELL = 64;
+var GAP  = 4;
+var GRID_W = 7 * CELL + 6 * GAP;   // 472
+var GRID_X = (LOGICAL_W - GRID_W) / 2;  // 14
+var GRID_Y = 14;
+var GRID_H = GRID_W;                // 472 (square grid)
+var SHV_CX = LOGICAL_W / 2;
+var SHV_CY = GRID_Y + GRID_H + 52; // 538
+var LOGICAL_H = SHV_CY + 52;       // 590
+var MAND_R = 26;
+var SHV_R  = 30;
+var BLOOM_MS = 2000;
+var BASE_SPEED = 0.12; // rad/s reference
+
+canvas.style.width  = LOGICAL_W + 'px';
+canvas.style.height = LOGICAL_H + 'px';
+canvas.width  = Math.round(LOGICAL_W * dpr);
+canvas.height = Math.round(LOGICAL_H * dpr);
+ctx.scale(dpr, dpr);
+
+/**
+ * Convert a hex colour string to an rgba(...) string with given alpha.
+ * Needed because canvas globalAlpha applies to everything, including strokes,
+ * so per-shape opacity is set via fillStyle/strokeStyle rgba strings instead.
+ */
+function hexToRgba(hex, a) {
+  var r = parseInt(hex.slice(1, 3), 16);
+  var g = parseInt(hex.slice(3, 5), 16);
+  var b = parseInt(hex.slice(5, 7), 16);
+  return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+}
+
+/**
+ * Return Sefirah data for a given day (1–49).
+ * outer (week, 0–6) determines colour; inner (day-of-week, 0–6) determines
+ * mandala symmetry and concentric-ring density.
+ */
+function dayInfo(day) {
+  var outer = Math.floor((day - 1) / 7);
+  var inner = (day - 1) % 7;
+  return {
+    outer:      outer,
+    inner:      inner,
+    outerName:  SEFIROT[outer],
+    innerName:  SEFIROT[inner],
+    outerColor: COLORS[outer],
+    innerColor: COLORS[inner],
+    sym:        inner + 2,             // 2–8 fold rotational symmetry
+    density:    inner + 1,             // 1–7 concentric rings
+    speed:      BASE_SPEED * (0.3 + inner / 6 * 0.7) // Chesed slowest → Malkhut fastest
+  };
+}
+
+/** Return pixel centre of the grid cell at (col, row). */
+function cellCenter(col, row) {
+  return {
+    x: GRID_X + col * (CELL + GAP) + CELL / 2,
+    y: GRID_Y + row * (CELL + GAP) + CELL / 2
+  };
+}
+
+/**
+ * Draw a single petal-and-ring mandala at (cx, cy) with radius r.
+ * sym    — rotational symmetry order (petals equally spaced around 2π)
+ * density — number of concentric ring accents inside the petal field
+ * rotation — current rotation angle in radians (updated each frame)
+ * alpha  — overall opacity for the bloom-in phase (0→1)
+ */
+function drawMandala(cx, cy, r, info, rotation, alpha) {
+  if (alpha <= 0) return;
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(rotation);
+
+  var sym      = info.sym;
+  var density  = info.density;
+  var outerCol = info.outerColor;
+  var innerCol = info.innerColor;
+  var petalLen = r * 0.82;
+  var pW       = r * Math.sin(Math.PI / sym) * 0.55;
+
+  for (var i = 0; i < sym; i++) {
+    ctx.save();
+    ctx.rotate((2 * Math.PI * i) / sym);
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(
+      petalLen * 0.28, -pW * 0.7,
+      petalLen * 0.88, -pW * 0.38,
+      petalLen, 0
+    );
+    ctx.bezierCurveTo(
+      petalLen * 0.88,  pW * 0.38,
+      petalLen * 0.28,  pW * 0.7,
+      0, 0
+    );
+    ctx.closePath();
+    ctx.fillStyle   = hexToRgba(outerCol, alpha * 0.5);
+    ctx.fill();
+    ctx.strokeStyle = hexToRgba(innerCol, alpha);
+    ctx.lineWidth   = 0.7;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  for (var d = 1; d <= density; d++) {
+    var rr = r * (d / (density + 1)) * 0.52;
+    ctx.beginPath();
+    ctx.arc(0, 0, rr, 0, 2 * Math.PI);
+    ctx.strokeStyle = hexToRgba(innerCol, alpha * 0.4);
+    ctx.lineWidth   = 0.5;
+    ctx.stroke();
+  }
+
+  ctx.beginPath();
+  ctx.arc(0, 0, 2, 0, 2 * Math.PI);
+  ctx.fillStyle = 'rgba(255,255,255,' + alpha + ')';
+  ctx.fill();
+
+  ctx.restore();
+}
+
+/**
+ * Draw the Shavuot element below the grid — an 8-petalled golden mandala
+ * that pulses and slowly rotates, set apart from the 49 counted cells.
+ * t       — fade-in progress (0→1, begins after main bloom completes)
+ * elapsed — total seconds since page load, used for pulsing and rotation
+ */
+function drawShavuot(t, elapsed) {
+  if (t <= 0) return;
+  var pulse = 1 + 0.06 * Math.sin(elapsed * 2.5);
+  var r     = SHV_R * pulse;
+  var glow  = 10 * pulse;
+
+  ctx.save();
+
+  var grad = ctx.createRadialGradient(SHV_CX, SHV_CY, r * 0.15, SHV_CX, SHV_CY, r + glow);
+  grad.addColorStop(0,   'rgba(255,240,150,' + (t * 0.85) + ')');
+  grad.addColorStop(0.5, 'rgba(212,168,32,'  + (t * 0.35) + ')');
+  grad.addColorStop(1,   'rgba(212,168,32,0)');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.arc(SHV_CX, SHV_CY, r + glow, 0, 2 * Math.PI);
+  ctx.fill();
+
+  ctx.save();
+  ctx.translate(SHV_CX, SHV_CY);
+  ctx.rotate(elapsed * 0.04);
+  var petalL = r * 0.9;
+  var pW8    = petalL * Math.sin(Math.PI / 8) * 0.55;
+  for (var i = 0; i < 8; i++) {
+    ctx.save();
+    ctx.rotate((2 * Math.PI * i) / 8);
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(petalL * 0.28, -pW8 * 0.7, petalL * 0.88, -pW8 * 0.38, petalL, 0);
+    ctx.bezierCurveTo(petalL * 0.88,  pW8 * 0.38, petalL * 0.28,  pW8 * 0.7,  0, 0);
+    ctx.closePath();
+    ctx.fillStyle   = 'rgba(255,240,130,' + (t * 0.65) + ')';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,210,60,'  + t + ')';
+    ctx.lineWidth   = 0.9;
+    ctx.stroke();
+    ctx.restore();
+  }
+  ctx.beginPath();
+  ctx.arc(0, 0, 4, 0, 2 * Math.PI);
+  ctx.fillStyle = 'rgba(255,252,220,' + t + ')';
+  ctx.fill();
+  ctx.restore();
+
+  ctx.font         = '10px Georgia,serif';
+  ctx.textAlign    = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillStyle    = 'rgba(255,240,130,' + (t * 0.7) + ')';
+  ctx.fillText('שָׁבוּעוֹת', SHV_CX, SHV_CY + r + glow + 4);
+
+  ctx.restore();
+}
+
+function drawBackground() {
+  ctx.fillStyle = '#0D0B14';
+  ctx.fillRect(0, 0, LOGICAL_W, LOGICAL_H);
+
+  ctx.strokeStyle = 'rgba(90,50,110,0.22)';
+  ctx.lineWidth   = 1;
+  ctx.setLineDash([3, 6]);
+  ctx.beginPath();
+  ctx.moveTo(GRID_X,          GRID_Y + GRID_H + 12);
+  ctx.lineTo(GRID_X + GRID_W, GRID_Y + GRID_H + 12);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+var startTime  = null;
+var lastTime   = null;
+var rotations  = new Array(49).fill(0);
+
+function frame(now) {
+  if (!startTime) { startTime = now; }
+  var elapsed = (now - startTime) / 1000;
+  var dt      = lastTime ? (now - lastTime) / 1000 : 0;
+  lastTime    = now;
+
+  var bloomT = Math.min(elapsed * 1000 / BLOOM_MS, 1);
+
+  drawBackground();
+
+  for (var day = 1; day <= 49; day++) {
+    var info  = dayInfo(day);
+    var col   = (day - 1) % 7;
+    var row   = Math.floor((day - 1) / 7);
+    var ctr   = cellCenter(col, row);
+
+    // Alternate rotation direction by week (row): even weeks CW, odd CCW
+    var dir = (row % 2 === 0) ? 1 : -1;
+    rotations[day - 1] += dir * info.speed * dt;
+
+    ctx.fillStyle = 'rgba(18,13,30,0.85)';
+    ctx.fillRect(
+      GRID_X + col * (CELL + GAP),
+      GRID_Y + row * (CELL + GAP),
+      CELL, CELL
+    );
+
+    drawMandala(ctr.x, ctr.y, MAND_R, info, rotations[day - 1], bloomT);
+  }
+
+  // Shavuot fades in shortly after the 49 cells finish blooming
+  var shvT = Math.max(0, Math.min((elapsed - BLOOM_MS / 1000 - 0.4) * 1.8, 1));
+  drawShavuot(shvT, elapsed);
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+
+// ── Tooltip ──────────────────────────────────────────────────────────────────
+
+var tooltip = document.getElementById('tooltip');
+var tipHeb  = document.getElementById('tip-heb');
+var tipEng  = document.getElementById('tip-eng');
+var tipPair = document.getElementById('tip-pair');
+
+canvas.addEventListener('mousemove', function (e) {
+  var rect   = canvas.getBoundingClientRect();
+  var scaleX = LOGICAL_W / rect.width;
+  var scaleY = LOGICAL_H / rect.height;
+  var lx     = (e.clientX - rect.left)  * scaleX;
+  var ly     = (e.clientY - rect.top)   * scaleY;
+
+  var col = Math.floor((lx - GRID_X) / (CELL + GAP));
+  var row = Math.floor((ly - GRID_Y) / (CELL + GAP));
+
+  if (col >= 0 && col < 7 && row >= 0 && row < 7) {
+    var cellL = GRID_X + col * (CELL + GAP);
+    var cellT = GRID_Y + row * (CELL + GAP);
+    if (lx >= cellL && lx < cellL + CELL && ly >= cellT && ly < cellT + CELL) {
+      var day  = row * 7 + col + 1;
+      var info = dayInfo(day);
+      tipHeb.textContent  = HEB_DAYS[day - 1];
+      tipEng.textContent  = 'Week ' + (row + 1) + ', Day ' + (col + 1);
+      tipPair.textContent = info.innerName + ' within ' + info.outerName;
+      tooltip.style.display = 'block';
+      tooltip.style.left    = (e.clientX + 16) + 'px';
+      tooltip.style.top     = (e.clientY - 12) + 'px';
+      return;
+    }
+  }
+  tooltip.style.display = 'none';
+});
+
+canvas.addEventListener('mouseleave', function () {
+  tooltip.style.display = 'none';
+});
+</script>
+</body>
+</html>
