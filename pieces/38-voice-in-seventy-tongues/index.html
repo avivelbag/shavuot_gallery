@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Voice in Seventy Tongues — Penrose Tiling</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #1a0f00;
+      color: #d8c8a8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #c {
+      display: block;
+      width: 100%; height: 100%;
+    }
+    .essay {
+      flex: 0 0 40%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(12, 7, 2, 0.97);
+      border-left: 1px solid rgba(180, 140, 60, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.45rem;
+      font-weight: normal;
+      color: #d4a843;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: rgba(212, 168, 67, 0.55);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay h3 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: #c8a870;
+      margin: 1.4rem 0 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    .essay p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      color: #c0b090;
+    }
+    .essay p strong { color: #d4a843; }
+    .verse-block {
+      margin: 1rem 0 1rem;
+      padding: 0.8rem 1rem;
+      border-left: 2px solid rgba(212, 168, 67, 0.4);
+      background: rgba(212, 168, 67, 0.05);
+    }
+    .verse-hebrew {
+      font-size: 1.2rem;
+      direction: rtl;
+      color: #e8d4a0;
+      display: block;
+      margin-bottom: 0.3rem;
+      line-height: 1.6;
+    }
+    .verse-english {
+      font-size: 0.85rem;
+      color: rgba(200, 180, 130, 0.7);
+      font-style: italic;
+      display: block;
+    }
+    .essay .source {
+      font-size: 0.78rem;
+      color: rgba(212, 168, 67, 0.4);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(180, 140, 60, 0.12);
+      padding-top: 1rem;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .artwork { flex: 0 0 50vh; }
+      .essay { flex: 1 1 auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay">
+    <h1>The Voice in Seventy Tongues</h1>
+    <h2>Penrose aperiodic tiling — one source, infinite differentiation</h2>
+
+    <h3>The Midrash</h3>
+    <p>When the Torah was given at Sinai, the divine voice did not speak in one language alone.
+    <em>Shemot Rabbah</em> 5:9 records: "The voice went forth and was divided into seventy voices, in
+    seventy languages, so that all the nations might hear." The Jerusalem Talmud (<em>Shabbat</em> 1:3)
+    echoes this — every people heard the proclamation in its own tongue simultaneously. Not
+    sequentially, not through translation, but at once, in a single undivided moment that
+    somehow contained all difference within it.</p>
+
+    <p>The source verse is Exodus 20:1, the opening of the Ten Commandments:</p>
+
+    <div class="verse-block">
+      <span class="verse-hebrew">וַיְדַבֵּר אֱלֹהִים אֵת כָּל־הַדְּבָרִים הָאֵלֶּה לֵאמֹר</span>
+      <span class="verse-english">"And God spoke all these words, saying:" (Exodus 20:1)</span>
+    </div>
+
+    <p>One voice. Every word. All nations.</p>
+
+    <h3>What Each Nation Received</h3>
+    <p>The Babylonian Talmud (<em>Shabbat</em> 88b) adds a sobering counterpoint: each nation heard the
+    voice but understood only what it was prepared to receive. The nations that had built their
+    civilizations on violence heard a prohibition against killing. Those whose courts were
+    corrupt heard a word about justice. The word was one; the reception was fractured across
+    the world's moral readiness.</p>
+
+    <p>This is not a consolation — it is a diagnosis. Infinite truth enters a finite world and
+    is refracted by every vessel that receives it. The unity at the source does not guarantee
+    unity in the hearing.</p>
+
+    <h3>Penrose Tiling as Theology</h3>
+    <p>Penrose aperiodic tiling covers the infinite plane with only two tile shapes, yet the
+    pattern never exactly repeats. From a handful of local rules, infinite global variety
+    emerges. No patch of tiles can serve as a repeating unit for the whole; yet every patch
+    obeys the same underlying constraints, derived from the golden ratio φ = (1+√5)/2.</p>
+
+    <p>The paradox of Penrose tiling precisely mirrors the paradox of the midrash. From one
+    source — the <strong>aleph (א)</strong> at Sinai, the first letter God spoke — infinitely varied
+    structure radiates outward. No two regions are identical; yet all are governed by the same
+    originating proportion. Aperiodicity is the nature of genuine variety: it is not repetition
+    that spreads across the nations but differentiation, each tile unique in context.</p>
+
+    <h3>The Aleph at the Center</h3>
+    <p>The kabbalistic tradition holds that the entire Torah is contained in the first word
+    <em>Bereishit</em>, and that word in the <em>bet</em> (ב), and that letter in the silent aleph (א)
+    that precedes it — the breath before speech. At Sinai, some authorities say, only the aleph
+    was actually heard, and everything else was heard through interpretation.</p>
+
+    <p>The five script glyphs scattered through the field — Hebrew א, Greek α, Arabic ع,
+    Latin A, Aramaic א — are not decoration but archaeology. Each descends from the same
+    Phoenician ox-head, <em>aleph</em>, meaning the ox that pulls the plow of meaning through
+    the earth. Every nation's alphabet carries this hidden root outward from the same origin,
+    like tiles from the center of the sun.</p>
+
+    <h3>The Pulse</h3>
+    <p>The slow luminosity wave in this piece moves outward at the speed of the voice described
+    in the midrash — unhurried, unstoppable, one ring of brightness following another. The tiles
+    do not move. The voice moves through them.</p>
+
+    <div class="source">
+      <p>Sources: <em>Shemot Rabbah</em> 5:9 · Jerusalem Talmud <em>Shabbat</em> 1:3 ·
+      Babylonian Talmud <em>Shabbat</em> 88b · Exodus 20:1 ·
+      Roger Penrose, "The Role of Aesthetics in Pure and Applied Mathematical Research" (1974) ·
+      <em>Zohar</em> II:85b</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var canvas = document.getElementById("c");
+  var ctx = canvas.getContext("2d");
+  var panel = canvas.parentElement;
+
+  var W, H, CX, CY;
+  var tiles = [];
+  var distMap = [];
+
+  var PHI = (1 + Math.sqrt(5)) / 2;
+
+  // Penrose P3 rhombic tiling via triangle deflation.
+  // Represents triangles as {type: "thin"|"thick", a, b, c} where a/b/c are
+  // complex-number vertices (stored as {x, y}).
+
+  function cx(x, y) { return {x: x, y: y}; }
+  function cadd(p, q) { return {x: p.x + q.x, y: p.y + q.y}; }
+  function csub(p, q) { return {x: p.x - q.x, y: p.y - q.y}; }
+  function cmul(p, s) { return {x: p.x * s, y: p.y * s}; }
+  function cdiv(p, s) { return {x: p.x / s, y: p.y / s}; }
+  // Divide segment from p to q at ratio r from p
+  function lerp(p, q, r) { return cadd(p, cmul(csub(q, p), r)); }
+
+  /**
+   * Build initial "sun" of 10 thick golden triangles arranged with 5-fold
+   * symmetry. Each triangle shares apex at origin, base along the rim.
+   * Returns array of triangle objects {type, a, b, c}.
+   */
+  function sunTriangles(radius) {
+    var tris = [];
+    for (var i = 0; i < 10; i++) {
+      var angle1 = (2 * Math.PI * i) / 10;
+      var angle2 = (2 * Math.PI * (i + 1)) / 10;
+      var b = {x: radius * Math.cos(angle1), y: radius * Math.sin(angle1)};
+      var c = {x: radius * Math.cos(angle2), y: radius * Math.sin(angle2)};
+      // Alternate thick/thin by parity to produce sun configuration
+      var type = (i % 2 === 0) ? "thick" : "thin";
+      tris.push({type: type, a: cx(0, 0), b: b, c: c});
+    }
+    return tris;
+  }
+
+  /**
+   * One deflation step: each triangle splits into smaller triangles according
+   * to P3 rules. Thick triangle → 2 thick + 1 thin. Thin → 1 thick + 1 thin.
+   * Returns new array of triangles.
+   */
+  function deflate(tris) {
+    var result = [];
+    for (var i = 0; i < tris.length; i++) {
+      var t = tris[i];
+      var a = t.a, b = t.b, c = t.c;
+      if (t.type === "thick") {
+        // P is on AB, dividing it in ratio 1/PHI from A
+        var p = lerp(a, b, 1 / PHI);
+        // Q is on AC, dividing it in ratio 1/PHI from A
+        var q = lerp(a, c, 1 / PHI);
+        result.push({type: "thick", a: c,   b: q, c: b});
+        result.push({type: "thick", a: q,   b: p, c: b});
+        result.push({type: "thin",  a: p,   b: a, c: q});
+      } else {
+        // thin triangle
+        var p2 = lerp(b, a, 1 / PHI);
+        result.push({type: "thin",  a: c,  b: p2, c: a});
+        result.push({type: "thick", a: p2, b: c,  c: b});
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Convert triangles to rhombuses by pairing triangles that share an edge.
+   * For rendering we just draw each triangle individually as half-rhombuses;
+   * the visual effect is the same as drawing full rhombuses with midpoint seam.
+   * Returns array of {type, v0, v1, v2, cx, cy, dist} where cx/cy is centroid.
+   */
+  function trianglesToPolygons(tris) {
+    var polys = [];
+    for (var i = 0; i < tris.length; i++) {
+      var t = tris[i];
+      var cx_ = (t.a.x + t.b.x + t.c.x) / 3;
+      var cy_ = (t.a.y + t.b.y + t.c.y) / 3;
+      var dist = Math.sqrt(cx_ * cx_ + cy_ * cy_);
+      polys.push({
+        type: t.type,
+        v0: t.a, v1: t.b, v2: t.c,
+        cx: cx_, cy: cy_,
+        dist: dist
+      });
+    }
+    return polys;
+  }
+
+  /**
+   * Generate glyphs to scatter at tile centroids. Returns array of
+   * {glyph, tileIndex} picking tiles spread across the canvas.
+   */
+  function pickGlyphTiles(polys) {
+    // Five writing systems, all etymologically from Phoenician aleph
+    var glyphs = [
+      {g: "א", label: "Hebrew aleph"},
+      {g: "α", label: "Greek alpha"},
+      {g: "ع", label: "Arabic ayin"},
+      {g: "A",  label: "Latin A"},
+      {g: "𐤀", label: "Aramaic aleph"}
+    ];
+    // Pick tiles at specific angular positions spread around the field
+    var targets = [
+      {angle: Math.PI * 0.1,  rFrac: 0.35},
+      {angle: Math.PI * 0.55, rFrac: 0.42},
+      {angle: Math.PI * 1.1,  rFrac: 0.38},
+      {angle: Math.PI * 1.6,  rFrac: 0.45},
+      {angle: Math.PI * 0.9,  rFrac: 0.28}
+    ];
+    var maxDist = 0;
+    for (var i = 0; i < polys.length; i++) {
+      if (polys[i].dist > maxDist) maxDist = polys[i].dist;
+    }
+    var result = [];
+    for (var j = 0; j < glyphs.length; j++) {
+      var tgt = targets[j];
+      var tx = maxDist * tgt.rFrac * Math.cos(tgt.angle);
+      var ty = maxDist * tgt.rFrac * Math.sin(tgt.angle);
+      var best = 0, bestD = Infinity;
+      for (var k = 0; k < polys.length; k++) {
+        var dx = polys[k].cx - tx, dy = polys[k].cy - ty;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < bestD) { bestD = d2; best = k; }
+      }
+      result.push({glyph: glyphs[j].g, tileIndex: best});
+    }
+    return result;
+  }
+
+  function resize() {
+    W = canvas.width  = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+    CX = W / 2;
+    CY = H / 2;
+    buildTiling();
+  }
+
+  function buildTiling() {
+    var radius = Math.min(W, H) * 0.52;
+    var tris = sunTriangles(radius);
+    // 5 deflation iterations produces ~3000+ triangles
+    for (var i = 0; i < 5; i++) { tris = deflate(tris); }
+    tiles = trianglesToPolygons(tris);
+    // Normalize dist to 0..1 range
+    var maxD = 0;
+    for (var j = 0; j < tiles.length; j++) {
+      if (tiles[j].dist > maxD) maxD = tiles[j].dist;
+    }
+    for (var k = 0; k < tiles.length; k++) {
+      tiles[k].normDist = maxD > 0 ? tiles[k].dist / maxD : 0;
+    }
+  }
+
+  /**
+   * Parse a hex color to [r, g, b] integers.
+   */
+  function hexToRgb(hex) {
+    var n = parseInt(hex.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+
+  /**
+   * Lerp between two [r,g,b] triples.
+   */
+  function lerpRgb(a, b, t) {
+    return [
+      Math.round(a[0] + (b[0] - a[0]) * t),
+      Math.round(a[1] + (b[1] - a[1]) * t),
+      Math.round(a[2] + (b[2] - a[2]) * t)
+    ];
+  }
+
+  var THICK_BASE_A = hexToRgb("#F2E4C0");
+  var THICK_BASE_B = hexToRgb("#D4A843");
+  var THIN_BASE_A  = hexToRgb("#B8D4E8");
+  var THIN_BASE_B  = hexToRgb("#2B4F7A");
+
+  /**
+   * Compute tile color with brightness pulse propagating outward from center.
+   * brightness offset = sin(time * 0.5 - normDist * 12) * 0.15
+   */
+  function tileColor(tile, t) {
+    var base;
+    if (tile.type === "thick") {
+      base = lerpRgb(THICK_BASE_A, THICK_BASE_B, tile.normDist * 0.6);
+    } else {
+      base = lerpRgb(THIN_BASE_A, THIN_BASE_B, tile.normDist * 0.7);
+    }
+    // Radial pulse: phase depends on distance from center
+    var pulse = Math.sin(t * 0.5 - tile.normDist * 12) * 0.15;
+    var r = Math.min(255, Math.max(0, base[0] + Math.round(pulse * 80)));
+    var g = Math.min(255, Math.max(0, base[1] + Math.round(pulse * 65)));
+    var b = Math.min(255, Math.max(0, base[2] + Math.round(pulse * 40)));
+    return "rgb(" + r + "," + g + "," + b + ")";
+  }
+
+  function draw(timestamp) {
+    var t = timestamp / 1000;
+    ctx.clearRect(0, 0, W, H);
+    ctx.save();
+    ctx.translate(CX, CY);
+
+    for (var i = 0; i < tiles.length; i++) {
+      var tile = tiles[i];
+      ctx.beginPath();
+      ctx.moveTo(tile.v0.x, tile.v0.y);
+      ctx.lineTo(tile.v1.x, tile.v1.y);
+      ctx.lineTo(tile.v2.x, tile.v2.y);
+      ctx.closePath();
+      ctx.fillStyle = tileColor(tile, t);
+      ctx.fill();
+      ctx.strokeStyle = "rgba(10,5,0,0.35)";
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+
+    // Draw central aleph
+    var alephSize = Math.min(W, H) * 0.07;
+    ctx.font = "bold " + alephSize + "px serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    // Glow effect
+    ctx.shadowColor = "rgba(255, 240, 180, 0.8)";
+    ctx.shadowBlur = 18;
+    ctx.fillStyle = "rgba(255, 248, 220, 0.95)";
+    ctx.fillText("א", 0, 0);
+    ctx.shadowBlur = 0;
+
+    // Draw scattered script glyphs
+    if (tiles._glyphs) {
+      ctx.font = "12px serif";
+      ctx.fillStyle = "rgba(240, 225, 180, 0.65)";
+      ctx.shadowColor = "rgba(200, 170, 80, 0.4)";
+      ctx.shadowBlur = 4;
+      for (var j = 0; j < tiles._glyphs.length; j++) {
+        var g = tiles._glyphs[j];
+        var tile2 = tiles[g.tileIndex];
+        ctx.fillText(g.glyph, tile2.cx, tile2.cy);
+      }
+      ctx.shadowBlur = 0;
+    }
+
+    ctx.restore();
+    requestAnimationFrame(draw);
+  }
+
+  // Attach glyphs array to tiles after building
+  function buildAndAttachGlyphs() {
+    buildTiling();
+    tiles._glyphs = pickGlyphTiles(tiles);
+  }
+
+  function init() {
+    W = canvas.width  = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+    CX = W / 2;
+    CY = H / 2;
+    buildAndAttachGlyphs();
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize", function () {
+    W = canvas.width  = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+    CX = W / 2;
+    CY = H / 2;
+    buildAndAttachGlyphs();
+  });
+
+  init();
+}());
+</script>
+</body>
+</html>
