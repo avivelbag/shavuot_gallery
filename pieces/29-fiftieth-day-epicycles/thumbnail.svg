@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background: deep sapphire -->
+  <rect width="400" height="400" fill="#0B1A3D"/>
+
+  <!-- Outer epicycle ring -->
+  <circle cx="200" cy="200" r="140" fill="none" stroke="rgba(200,150,42,0.25)" stroke-width="1"/>
+  <!-- Second ring -->
+  <circle cx="200" cy="200" r="90" fill="none" stroke="rgba(200,150,42,0.20)" stroke-width="0.8"/>
+  <!-- Third ring -->
+  <circle cx="200" cy="200" r="48" fill="none" stroke="rgba(200,150,42,0.18)" stroke-width="0.7"/>
+
+  <!-- Spoke arm 1 (large) -->
+  <line x1="200" y1="200" x2="340" y2="200" stroke="rgba(200,150,42,0.55)" stroke-width="1.2"/>
+  <!-- Spoke arm 2 (medium) -->
+  <line x1="340" y1="200" x2="340" y2="110" stroke="rgba(200,150,42,0.50)" stroke-width="1.0"/>
+  <!-- Spoke arm 3 (small) -->
+  <line x1="340" y1="110" x2="292" y2="110" stroke="rgba(200,150,42,0.45)" stroke-width="0.8"/>
+
+  <!-- Traced path: partial letter outline in warm white -->
+  <path d="M 292,110 C 270,95 240,88 210,92 C 180,96 155,112 140,134
+           C 125,156 122,182 130,205 C 138,228 158,245 182,252
+           C 206,259 232,255 252,242 C 272,229 284,208 286,186
+           C 288,164 278,142 265,128 C 252,114 234,107 218,108"
+        fill="none" stroke="#F0ECD8" stroke-width="1.8" stroke-linecap="round"
+        stroke-linejoin="round" opacity="0.9" filter="url(#softglow)"/>
+
+  <!-- Bright tip dot -->
+  <circle cx="292" cy="110" r="4" fill="#C8962A" filter="url(#softglow)"/>
+
+  <!-- Hebrew word: שָׁבוּעוֹת -->
+  <text x="200" y="345"
+        text-anchor="middle"
+        font-family="'David', 'FrankRuehl', serif"
+        font-size="38"
+        fill="#C8962A"
+        opacity="0.85"
+        filter="url(#glow)">שָׁבוּעוֹת</text>
+
+  <!-- Small label -->
+  <text x="200" y="378"
+        text-anchor="middle"
+        font-family="Georgia, serif"
+        font-size="11"
+        fill="rgba(240,236,216,0.45)"
+        letter-spacing="2">THE FIFTIETH DAY</text>
+</svg>
