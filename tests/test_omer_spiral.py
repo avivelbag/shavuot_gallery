@@ -9,7 +9,6 @@ import math
 import os
 import re
 
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "12-omer-spiral"
