@@ -9,8 +9,6 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 PIECE_ID = "38-fiftieth-gate-ifs"
@@ -319,7 +317,7 @@ def test_piece_38_no_duplicate_in_pieces_json():
     )
 
 
-def test_piece_38_essay_different_from_another_piece(tmp_path):
+def test_piece_38_essay_different_from_another_piece():
     """Regression: the essay must not be an empty stub or copy of a known template."""
     essay = _essay()
     assert "Iterated Function" in essay or "IFS" in essay, (
@@ -334,7 +332,7 @@ def test_piece_38_essay_different_from_another_piece(tmp_path):
 # Explicit failure modes
 # ---------------------------------------------------------------------------
 
-def test_missing_nun_would_be_caught(tmp_path):
+def test_missing_nun_would_be_caught():
     """Confirm the nun check correctly identifies absence of the character."""
     fake_html = "<html><body><canvas></canvas></body></html>"
     assert "נ" not in fake_html  # absence detected correctly
@@ -347,7 +345,7 @@ def test_missing_transforms_would_be_caught():
     assert len(matches) < 3  # would correctly fail the ≥3 check
 
 
-def test_short_essay_would_be_caught(tmp_path):
+def test_short_essay_would_be_caught():
     """An essay with fewer than 400 words would be flagged."""
     short = "The harvest field. " * 15  # ~45 words
     count = len(short.split())

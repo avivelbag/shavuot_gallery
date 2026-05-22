@@ -214,6 +214,10 @@
     function resize() {
       canvas.width = artwork.clientWidth || 600;
       canvas.height = artwork.clientHeight || 700;
+      /* Resizing clears the canvas; restart growth so the field refills. */
+      for (const plant of plants) { plant.x = 0; plant.y = 0; }
+      growFrames = 0;
+      growthComplete = false;
     }
 
     /**
