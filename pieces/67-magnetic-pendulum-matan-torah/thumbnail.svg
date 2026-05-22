@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0a0808"/>
+
+  <!-- Gold basin (top, 12 o'clock magnet) -->
+  <path d="M 0,0 L 400,0 L 400,82
+           C 350,100 295,128 240,162
+           C 225,172 212,183 200,200
+           C 188,183 175,172 160,162
+           C 105,128 50,100 0,82 Z"
+        fill="#D4A020" opacity="0.88"/>
+
+  <!-- Blue basin (bottom-left, 8 o'clock magnet) -->
+  <path d="M 0,82
+           C 50,100 105,128 160,162
+           C 175,172 188,183 200,200
+           C 212,270 198,338 200,400
+           L 0,400 Z"
+        fill="#1A3080" opacity="0.88"/>
+
+  <!-- Cream basin (bottom-right, 4 o'clock magnet) -->
+  <path d="M 200,200
+           C 212,183 225,172 240,162
+           C 295,128 350,100 400,82
+           L 400,400 L 200,400
+           C 202,338 188,270 200,200 Z"
+        fill="#F0E8D0" opacity="0.88"/>
+
+  <!-- Fractal boundary darkening — radial gradient from center -->
+  <defs>
+    <radialGradient id="centerFade" cx="50%" cy="50%" r="35%">
+      <stop offset="0%"   stop-color="#030202" stop-opacity="0.85"/>
+      <stop offset="60%"  stop-color="#030202" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#030202" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="outerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="70%"  stop-color="#030202" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#030202" stop-opacity="0.4"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#centerFade)"/>
+  <rect width="400" height="400" fill="url(#outerGlow)"/>
+
+  <!-- Dark fractal crack lines along basin boundaries -->
+  <!-- Gold-blue boundary -->
+  <path d="M 200,200 C 175,172 105,128 0,82"
+        stroke="#030202" stroke-width="5" fill="none" opacity="0.7"/>
+  <path d="M 200,200 C 178,168 112,124 40,98"
+        stroke="#030202" stroke-width="2" fill="none" opacity="0.4"/>
+  <!-- Gold-cream boundary -->
+  <path d="M 200,200 C 225,172 295,128 400,82"
+        stroke="#030202" stroke-width="5" fill="none" opacity="0.7"/>
+  <path d="M 200,200 C 222,168 288,124 360,98"
+        stroke="#030202" stroke-width="2" fill="none" opacity="0.4"/>
+  <!-- Blue-cream boundary -->
+  <path d="M 200,200 C 212,270 198,338 200,400"
+        stroke="#030202" stroke-width="5" fill="none" opacity="0.7"/>
+  <path d="M 200,200 C 208,265 202,330 202,380"
+        stroke="#030202" stroke-width="2" fill="none" opacity="0.4"/>
+
+  <!-- Extra fractal wiggles suggesting basin detail -->
+  <path d="M 200,200 C 165,175 88,140 20,118"
+        stroke="#030202" stroke-width="1.5" fill="none" opacity="0.3"/>
+  <path d="M 200,200 C 235,175 312,140 380,118"
+        stroke="#030202" stroke-width="1.5" fill="none" opacity="0.3"/>
+  <path d="M 200,200 C 218,258 205,310 195,370"
+        stroke="#030202" stroke-width="1.5" fill="none" opacity="0.3"/>
+
+  <!-- Magnet position markers -->
+  <!-- Scale: 400px / 6 units = 66.7 px/unit; center at (200,200) -->
+  <!-- Gold magnet: simulation (0, 1.0) → SVG (200, 133) -->
+  <circle cx="200" cy="133" r="8" fill="#D4A020" stroke="#0a0808" stroke-width="2.5"/>
+  <!-- Blue magnet: simulation (-0.866, -0.5) → SVG (142, 233) -->
+  <circle cx="142" cy="233" r="8" fill="#1A3080" stroke="#0a0808" stroke-width="2.5"/>
+  <!-- Cream magnet: simulation (0.866, -0.5) → SVG (258, 233) -->
+  <circle cx="258" cy="233" r="8" fill="#F0E8D0" stroke="#0a0808" stroke-width="2.5"/>
+
+  <!-- Triangle connecting magnet positions -->
+  <polygon points="200,133 142,233 258,233"
+           fill="none" stroke="rgba(212,160,32,0.35)" stroke-width="1.2"/>
+
+  <!-- Pivot / origin marker -->
+  <circle cx="200" cy="200" r="3" fill="rgba(212,160,32,0.5)"/>
+</svg>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Na'aseh V'Nishma — The Magnetic Pendulum of Commitment</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #0a0808;
+      color: #e8dcc8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 55%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050404;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #fractalCanvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      image-rendering: pixelated;
+    }
+    .overlay-text {
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.9rem;
+      color: #F0E8D0;
+      opacity: 0;
+      transition: opacity 1.8s ease-in;
+      direction: rtl;
+      font-family: 'Times New Roman', serif;
+      text-shadow: 0 0 16px rgba(240, 232, 208, 0.45);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .overlay-text.visible { opacity: 1; }
+    .legend {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: rgba(10, 8, 8, 0.82);
+      border: 1px solid rgba(212, 160, 32, 0.18);
+      border-radius: 4px;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.72rem;
+      line-height: 1.9;
+    }
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #ddd0bc;
+    }
+    .swatch {
+      width: 11px; height: 11px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .essay {
+      flex: 0 0 45%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(10, 8, 8, 0.97);
+      border-left: 1px solid rgba(212, 160, 32, 0.14);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #d4a020;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(232, 220, 200, 0.65);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay h3 {
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: #d4a020;
+      margin: 1.5rem 0 0.6rem;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+      color: #ddd0bc;
+    }
+    .essay p strong { color: #d4a020; }
+    .scripture {
+      border-left: 2px solid rgba(212, 160, 32, 0.5);
+      padding: 0.8rem 1rem 0.8rem 1.2rem;
+      margin: 1.2rem 0;
+      background: rgba(212, 160, 32, 0.05);
+      border-radius: 0 3px 3px 0;
+    }
+    .scripture-he {
+      font-size: 1.15rem;
+      direction: rtl;
+      text-align: right;
+      color: #f0e8d0;
+      margin: 0 0 0.55rem;
+      font-family: 'Times New Roman', serif;
+      line-height: 1.85;
+      unicode-bidi: bidi-override;
+    }
+    .scripture-en {
+      font-size: 0.87rem;
+      font-style: italic;
+      color: rgba(232, 220, 200, 0.7);
+      margin: 0;
+    }
+    .source {
+      font-size: 0.78rem;
+      color: rgba(232, 220, 200, 0.45);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(212, 160, 32, 0.12);
+      padding-top: 0.8rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 80vw; min-height: 280px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(212,160,32,0.18); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <div class="artwork">
+    <canvas id="fractalCanvas" width="600" height="600"></canvas>
+    <div class="overlay-text" id="overlayText" aria-label="Naaseh V'Nishma">נַעֲשֶׂה וְנִשְׁמָע</div>
+    <div class="legend" aria-label="Magnet basin legend">
+      <div class="legend-row"><span class="swatch" style="background:#D4A020"></span><span>Gold — top magnet (12 o'clock)</span></div>
+      <div class="legend-row"><span class="swatch" style="background:#1A3080"></span><span>Blue — bottom-left magnet (8 o'clock)</span></div>
+      <div class="legend-row"><span class="swatch" style="background:#F0E8D0; border:1px solid #555;"></span><span>Cream — bottom-right magnet (4 o'clock)</span></div>
+    </div>
+  </div>
+
+  <div class="essay">
+    <h1>Na'aseh V'Nishma</h1>
+    <h2>The Magnetic Pendulum of Commitment — Exodus 24:7</h2>
+
+    <h3>We Will Do and We Will Hear</h3>
+
+    <p>Before the revelation at Sinai, Moses read the Book of the Covenant aloud to the assembled people, and they responded with words that have reverberated through Jewish consciousness for three thousand years:</p>
+
+    <div class="scripture">
+      <p class="scripture-he">כֹּ֛ל אֲשֶׁר-דִּבֶּ֥ר יְהֹוָ֖ה נַֽעֲשֶׂ֥ה וְנִשְׁמָֽע׃</p>
+      <p class="scripture-en">"All that the LORD has spoken we will do and we will hear." — Exodus 24:7</p>
+    </div>
+
+    <p>The order is startling. Why does <em>naaseh</em> — "we will do" — precede <em>nishma</em> — "we will hear"? How can one commit to doing something before hearing what it is?</p>
+
+    <p>The Talmud in Tractate Shabbat 88a records that this declaration so astonished the ministering angels that 600,000 of them descended and bound two crowns upon each Israelite — one for <em>naaseh</em> and one for <em>nishma</em>. A heavenly voice rang out: "Who revealed this secret to My children?" The angels recognized in this phrase a logic that belongs to a higher register. Normally, one hears, deliberates, and then acts. Israel had reversed the natural order.</p>
+
+    <h3>Commitment Before Comprehension</h3>
+
+    <p>The Maharal of Prague (<em>Derush al HaTorah</em>) explains that this reversal is not recklessness but profound wisdom. Full comprehension of Torah is impossible from outside Torah. It is not a set of propositions to be evaluated and accepted; it is a practice that transforms the one who lives it. The understanding that emerges from <em>nishma</em> — hearing, studying, comprehending — is available only to one who has first committed to <em>naaseh</em>, to the doing.</p>
+
+    <p>You cannot fully understand the Shabbat from outside the Shabbat. You cannot understand chesed without having extended yourself in lovingkindness, without having acted beyond calculation. The knowledge of Torah is participatory: it requires the body, the schedule, the community — not just the mind. <strong>Commitment must precede comprehension.</strong></p>
+
+    <p>This is the fractal's proof.</p>
+
+    <h3>The Basin of Attraction</h3>
+
+    <p>The magnetic pendulum is a physical system with three magnets placed at the vertices of an equilateral triangle. A bob swings above them, pulled simultaneously by all three, slowed by damping, drawn back toward center by gravity. It eventually settles near one magnet. This piece colors each starting position by which magnet captures it — gold, blue, or cream — with brightness proportional to speed of settling: fast convergence is bright, slow convergence is dark.</p>
+
+    <p>At the centers of each colored region, the outcome is entirely predictable. A pendulum starting directly above the gold magnet will settle there; the physics is smooth and the path obvious. But near the fractal boundaries — the dark cracks where three colors meet — the outcome is radically unpredictable. An infinitesimally small shift in starting position sends the pendulum to a completely different magnet.</p>
+
+    <p>Here, <em>nishma</em> fails completely. No amount of prior reasoning, no calculation of forces, no extrapolation from neighboring pixels determines which basin you occupy. You must run the simulation. You must act and then observe. <strong>The fractal boundary is where <em>naaseh</em> precedes <em>nishma</em> as a physical necessity, not merely as a faith commitment.</strong></p>
+
+    <h3>The Three Days of Preparation</h3>
+
+    <p>This impossibility was prefigured in the <em>shloshet yemei hagbalah</em> — the three preparatory days before Sinai. Exodus 19:10–15 records that Israel was commanded to sanctify themselves, wash their garments, and set boundaries around the mountain for three days before the revelation. No one yet knew the full content of the covenant. They prepared anyway. They acted before they could hear.</p>
+
+    <p>The three magnets are those three days — or the three commitments of the covenant: to do, to hear, to remember. The pendulum is the soul, swung by the gravity of conscience and pulled by sacred obligation toward the nearest center of meaning. The fractal that emerges — intricate, infinitely detailed, beautiful at every scale, yet locally unpredictable — is the landscape of commitment itself.</p>
+
+    <p>At the boundaries, understanding is impossible until you act. That is exactly where the tradition asks you to stand.</p>
+
+    <p class="source">
+      Exodus 24:7 — <em>Naaseh V'Nishma</em> at Sinai ·
+      Talmud Bavli, Shabbat 88a — two crowns for Israel's declaration ·
+      Maharal of Prague, Derush al HaTorah — commitment precedes comprehension ·
+      Exodus 19:10–15 — the three preparatory days before Sinai ·
+      magnetic pendulum fractal / basin of attraction · 2026
+    </p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const canvas = document.getElementById("fractalCanvas");
+  const ctx    = canvas.getContext("2d");
+  const W = 600, H = 600;
+
+  // Magnet positions: equilateral triangle, radius 1.0 from origin (y up in sim coords)
+  const magnets = [
+    { x:  0,      y:  1.0  },  // top — gold (#D4A020)
+    { x: -0.866,  y: -0.5  },  // bottom-left — deep blue (#1A3080)
+    { x:  0.866,  y: -0.5  },  // bottom-right — warm cream (#F0E8D0)
+  ];
+
+  // Base colors per magnet as [R, G, B] in 0–255
+  const magnetColors = [
+    [212, 160,  32],  // #D4A020 gold
+    [ 26,  48, 128],  // #1A3080 deep blue
+    [240, 232, 208],  // #F0E8D0 warm cream
+  ];
+
+  // Physics constants per acceptance criteria
+  const g       = 0.5;   // gravity restoring coefficient
+  const k       = 1.0;   // magnet attraction coefficient
+  const damping = 0.2;   // velocity damping coefficient
+  const dt      = 0.02;  // Euler time step
+  const maxSteps       = 3000;
+  const speedThresh2   = 1e-6;  // |v|² < 0.001² = 1e-6
+  const magDist2Thresh = 0.04;  // nearest magnet distance² < 0.2² = 0.04
+
+  /**
+   * Simulate a damped magnetic pendulum from rest at (x0, y0).
+   * Forces: gravity F = -g*(x,y), three magnets F = k/r² each,
+   * damping F = -damping*(vx,vy). Integration: forward Euler, dt = 0.02.
+   * Stops when |v| < 0.001 AND nearest magnet distance < 0.2, or at maxSteps.
+   * Returns {magnet: 0|1|2, steps: number} — magnet is always valid (never -1)
+   * because even on timeout we assign the nearest attractor.
+   */
+  function simulate(x0, y0) {
+    let x = x0, y = y0, vx = 0, vy = 0;
+
+    for (let step = 0; step < maxSteps; step++) {
+      // Gravity restoring toward pivot at origin
+      let fx = -g * x;
+      let fy = -g * y;
+
+      // Magnetic attraction from each magnet (inverse square, epsilon guard)
+      for (let m = 0; m < 3; m++) {
+        const dx = magnets[m].x - x;
+        const dy = magnets[m].y - y;
+        const r2 = dx * dx + dy * dy + 0.01;
+        const f  = k / r2;
+        fx += f * dx;
+        fy += f * dy;
+      }
+
+      // Damping
+      fx -= damping * vx;
+      fy -= damping * vy;
+
+      // Euler integration
+      vx += fx * dt;
+      vy += fy * dt;
+      x  += vx * dt;
+      y  += vy * dt;
+
+      // Convergence check: slow enough AND near a magnet
+      const speed2 = vx * vx + vy * vy;
+      if (speed2 < speedThresh2) {
+        let best = 0, bestD2 = Infinity;
+        for (let m = 0; m < 3; m++) {
+          const dx = magnets[m].x - x;
+          const dy = magnets[m].y - y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < bestD2) { bestD2 = d2; best = m; }
+        }
+        if (bestD2 < magDist2Thresh) {
+          return { magnet: best, steps: step };
+        }
+      }
+    }
+
+    // Timeout: assign nearest magnet at final position
+    let best = 0, bestD2 = Infinity;
+    for (let m = 0; m < 3; m++) {
+      const dx = magnets[m].x - x;
+      const dy = magnets[m].y - y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 < bestD2) { bestD2 = d2; best = m; }
+    }
+    return { magnet: best, steps: maxSteps };
+  }
+
+  // Simulation coordinate range: (-3, 3) × (-3, 3) centered at pivot
+  const xMin = -3, xMax = 3, yMin = -3, yMax = 3;
+
+  function pixelToCoord(px, py) {
+    return [
+      xMin + (px / W) * (xMax - xMin),
+      yMax - (py / H) * (yMax - yMin),  // screen y=0 is top; sim y=yMax at top
+    ];
+  }
+
+  // ImageData for direct pixel writing — initialized opaque black
+  const imageData = ctx.createImageData(W, H);
+  const pixels    = imageData.data;
+  for (let i = 3; i < pixels.length; i += 4) {
+    pixels[i] = 255;  // alpha = fully opaque for all pixels
+  }
+
+  // Seed canvas to near-black so uncomputed rows appear correctly
+  ctx.fillStyle = "#050404";
+  ctx.fillRect(0, 0, W, H);
+
+  let currentPixel = 0;
+  const totalPixels = W * H;
+  const batchSize   = 2000;  // ~2000 pixels per animation frame
+
+  const overlayText = document.getElementById("overlayText");
+
+  function renderBatch() {
+    const end = Math.min(currentPixel + batchSize, totalPixels);
+
+    for (let idx = currentPixel; idx < end; idx++) {
+      const px = idx % W;
+      const py = (idx / W) | 0;
+      const [x0, y0] = pixelToCoord(px, py);
+      const { magnet, steps } = simulate(x0, y0);
+
+      // Brightness: 1.0 for instant settling, near 0 at boundary (many steps)
+      const brightness = 1 - steps / maxSteps;
+      const [r, g_c, b] = magnetColors[magnet];
+      const i4 = idx * 4;
+      pixels[i4    ] = (r  * brightness) | 0;
+      pixels[i4 + 1] = (g_c * brightness) | 0;
+      pixels[i4 + 2] = (b  * brightness) | 0;
+      // pixels[i4 + 3] already 255 from initialization
+    }
+
+    currentPixel = end;
+
+    // Paint all computed rows to canvas
+    const completeRows = (currentPixel / W) | 0;
+    if (completeRows > 0) {
+      ctx.putImageData(imageData, 0, 0, 0, 0, W, completeRows);
+    }
+
+    if (currentPixel < totalPixels) {
+      // Draw thin gold progress indicator at current row
+      const progressY = Math.min(completeRows, H - 2);
+      ctx.fillStyle = "#D4A020";
+      ctx.fillRect(0, progressY, W, 2);
+
+      requestAnimationFrame(renderBatch);
+    } else {
+      // Full image: paint final frame without progress bar
+      ctx.putImageData(imageData, 0, 0);
+
+      // Reveal Hebrew text overlay
+      overlayText.classList.add("visible");
+    }
+  }
+
+  requestAnimationFrame(renderBatch);
+}());
+</script>
+</body>
+</html>
