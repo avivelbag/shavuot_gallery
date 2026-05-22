@@ -297,14 +297,14 @@
     "essay": "pieces/31-seven-weeks-spirograph/essay.md"
   },
   {
-    "id": "32-consuming-fire",
+    "id": "34-consuming-fire",
     "title": "A Consuming Fire",
     "tagline": "the glory of the LORD like a consuming fire on the top of the mountain — Exodus 24:17",
     "year": 2026,
     "theme": "Har Sinai / The Theophany",
     "technique": "WebGL fragment shader / domain-warped fBm plasma, mountain SDF",
-    "path": "pieces/32-consuming-fire/index.html",
-    "thumbnail": "pieces/32-consuming-fire/thumbnail.svg",
-    "essay": "pieces/32-consuming-fire/essay.md"
+    "path": "pieces/34-consuming-fire/index.html",
+    "thumbnail": "pieces/34-consuming-fire/thumbnail.svg",
+    "essay": "pieces/34-consuming-fire/essay.md"
   }
 ]

@@ -1,5 +1,5 @@
 """
-Tests for piece 32-consuming-fire — WebGL plasma fire at Sinai.
+Tests for piece 34-consuming-fire — WebGL plasma fire at Sinai.
 
 Verifies the piece directory layout, pieces.json registration, WebGL shader
 elements, HTML overlay, essay content, and acceptance-criteria specifics.
@@ -8,11 +8,9 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON  = os.path.join(GALLERY_ROOT, "pieces.json")
-PIECE_ID     = "32-consuming-fire"
+PIECE_ID     = "34-consuming-fire"
 PIECE_DIR    = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 INDEX_HTML   = os.path.join(PIECE_DIR, "index.html")
 ESSAY_MD     = os.path.join(PIECE_DIR, "essay.md")
@@ -31,7 +29,7 @@ def load_pieces():
 
 
 def get_piece():
-    """Return the pieces.json entry for 32-consuming-fire, or None."""
+    """Return the pieces.json entry for 34-consuming-fire, or None."""
     return next((p for p in load_pieces() if p["id"] == PIECE_ID), None)
 
 
