@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>And She Gleaned in the Field — Ruth 2</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 auto;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F5EDD8;
+      padding: 1rem;
+    }
+
+    canvas {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #d4c0a0;
+      overflow-y: auto;
+      color: #4a3820;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #fdf8f0;
+    }
+
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: auto; flex: none; width: 100%; padding: 1rem 0.5rem; }
+      canvas { width: 100%; height: auto; aspect-ratio: 1; }
+      .essay-panel { border-left: none; border-top: 1px solid #d4c0a0; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #8b5e10;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #a07840;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #9b6e20;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 3px solid #C8900A;
+      font-style: italic;
+      color: #7a5a20;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #8b5e10; font-style: italic; }
+    .essay-panel strong { color: #9b6e20; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #e0d0b0; margin: 2rem 0; }
+
+    .passage-block {
+      background: #fef9f0;
+      border: 1px solid #d4b870;
+      border-radius: 4px;
+      padding: 1.5rem;
+      margin: 0 0 2rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.3rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #7a4a10;
+      line-height: 2.2;
+      margin: 0 0 1rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.9rem;
+      color: #8a6840;
+      font-style: italic;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .passage-block .source {
+      font-size: 0.8rem;
+      color: #b09060;
+      margin: 0.5rem 0 0;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c" width="700" height="700"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>The Stranger Who Chose In</h1>
+    <p class="subtitle">Ruth on the Road from Moav — Voronoi stippling / Lloyd's algorithm</p>
+
+    <div class="passage-block">
+      <p class="hebrew-text">עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי׃</p>
+      <p class="english-text">"Your people shall be my people, and your God my God."</p>
+      <p class="source">— Ruth 1:16</p>
+    </div>
+
+    <p>The Book of Ruth begins with a journey in the wrong direction. Naomi, widowed and childless in Moab, turns her face toward Bethlehem. Her daughters-in-law walk with her along the road, and then she stops and tells them to go back. Orpah weeps and turns back. Ruth clings.</p>
+
+    <p>What follows is one of the strangest declarations in all of Scripture. Ruth is not an Israelite. She has no legal obligation to follow Naomi. She is walking toward a country she has never lived in, toward a people she was not born into, toward a God she encountered only through marriage into a foreign family. And yet she speaks: <em>your people shall be my people, and your God my God</em>.</p>
+
+    <p>This is a private Sinai. The entire people of Israel stood at the mountain and received the Torah together; Ruth stands on a road outside Moab and receives it alone, by choice, in grief, with no witnesses but Naomi. There is no burning mountain, no thunder, no cloud. There is only a woman who has lost everything choosing to enter a covenant she was never born into.</p>
+
+    <p>The rabbis treated this declaration as the model of genuine conversion — not legal absorption but radical choice. Ruth does not merely follow Naomi. She takes the covenant on herself. The Hebrew word she uses, <em>עַמִּי</em> — "my people" — is a possessive that works in both directions. She is claiming Israel as her own.</p>
+
+    <hr>
+
+    <h2>The Field as Test</h2>
+
+    <p>The field at Bethlehem is the first test of that claim. Ruth goes to glean, and Boaz notices her — a Moabite woman, an outsider twice over. He asks who she is. He is told: "She is the Moabite girl who came back with Naomi from Moab." Then he does something unexpected: he praises her.</p>
+
+    <div class="passage-block">
+      <p class="hebrew-text">וַיַּעַן בֹּעַז וַיֹּאמֶר לָהּ הֻגֵּד הֻגַּד לִי כֹּל אֲשֶׁר-עָשִׂית אֶת-חֲמוֹתֵךְ אַחֲרֵי מוֹת אִישֵׁךְ וַתַּעַזְבִי אָבִיךְ וְאִמֵּךְ וְאֶרֶץ מוֹלַדְתֵּךְ וַתֵּלְכִי אֶל-עַם אֲשֶׁר לֹא-יָדַעַתְּ תְּמוֹל שִׁלְשׁוֹם׃</p>
+      <p class="english-text">"All the work you have done for your mother-in-law after the death of your husband has been fully told to me — how you left your father and your mother and your native land and came to a people that you did not know before."</p>
+      <p class="source">— Ruth 2:11</p>
+    </div>
+
+    <p>What Boaz notices is not Ruth's gleaning technique. He notices her history: the road she walked, the country she left, the choice she made. The harvest field is charged with that prior decision. She has arrived here not by accident of birth but by an act of will that began on the road outside Moab.</p>
+
+    <p>The Hebrew word Boaz uses for Ruth is <em>חֶסֶד</em> — lovingkindness, steadfast loyalty, the quality the Torah calls Israel to embody toward others. Ruth, the outsider, is the one who exemplifies it. The stranger who chose in teaches the people she joined what their own covenant requires.</p>
+
+    <hr>
+
+    <h2>The Algorithm and the Silhouette</h2>
+
+    <p>The stippling of this piece renders that paradox visually. Three thousand dots are placed by a density function that draws them away from Ruth's silhouette and toward the surrounding field. The dots do not fill her. They cluster at her edges — drawn toward her without touching her, defining her outline through absence.</p>
+
+    <p>Each dot's position is refined through thirty iterations of Lloyd's algorithm: find the nearest-neighbor Voronoi cell for each dot, then move the dot to the weighted centroid of its cell, where the weight is the local density of the wheat-field function. After thirty iterations, the dots have settled. They are not random — they have found the natural resting positions implied by the density landscape, the way water finds its level.</p>
+
+    <p>She is present in the field not by filling space but by the way the field organizes itself around her presence. The algorithm does not know why it leaves that space. The Torah does.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const W = 700, H = 700;
+  const N_DOTS = 3000;
+  const N_ITER = 30;
+  const CELL_SIZE = 35;
+  const COLS = Math.ceil(W / CELL_SIZE);
+  const ROWS = Math.ceil(H / CELL_SIZE);
+
+  /**
+   * Returns a density value [0..1] for canvas coordinate (x, y).
+   * High density = wheat field (dots cluster here).
+   * Zero density = Ruth's silhouette and sky.
+   * Deterministic — no Math.random() so Lloyd iterations are stable.
+   */
+  function density(x, y) {
+    const ny = y / H;
+
+    // Sky: very sparse
+    if (ny < 0.38) {
+      return 0.04 + 0.06 * ((Math.sin(x * 0.05) + 1) * 0.5);
+    }
+
+    // Ruth silhouette: centered x=220, bottom y=520, 80px wide × 180px tall
+    // Rounded top: an ellipse cap over the upper 40px
+    const rx = x - 220;
+    const ry = y - 520;
+    const bodyTop = -180;
+    const bodyHalf = 40;
+    if (ry > bodyTop && ry < 0) {
+      // Straight body column
+      if (Math.abs(rx) < bodyHalf) return 0.01;
+      // Slight lean: shift silhouette left at the top
+      const lean = (ry / bodyTop) * 8;
+      if (Math.abs(rx - lean) < bodyHalf) return 0.01;
+    }
+    // Rounded head cap (ellipse)
+    const headCy = 520 + bodyTop - 24;
+    const headRx = 30, headRy = 28;
+    if (((x - 220) * (x - 220)) / (headRx * headRx) + ((y - headCy) * (y - headCy)) / (headRy * headRy) < 1) {
+      return 0.01;
+    }
+
+    // Horizon tree-line band: y in [265, 295] → slight bump
+    if (y >= 265 && y <= 295) {
+      const bandT = (y - 265) / 30;
+      return 0.15 + 0.12 * Math.sin(bandT * Math.PI) + 0.08 * Math.sin(x * 0.04);
+    }
+
+    // Wheat field: lower two-thirds with sine-row texture
+    const rowWave = 0.5 + 0.5 * Math.sin((y / H) * 28 * Math.PI);
+    const baseField = 0.38 + 0.52 * rowWave;
+
+    // Add subtle horizontal variation (stalks)
+    const colWave = 0.5 + 0.5 * Math.sin(x * 0.11 + y * 0.04);
+    return baseField * (0.85 + 0.15 * colWave);
+  }
+
+  /**
+   * Builds a spatial hash from dot positions.
+   * Returns an array of arrays (one per grid cell) containing dot indices.
+   */
+  function buildSpatialHash(dots) {
+    const grid = new Array(COLS * ROWS);
+    for (let i = 0; i < grid.length; i++) grid[i] = [];
+    for (let i = 0; i < dots.length; i++) {
+      const cx = Math.floor(dots[i][0] / CELL_SIZE);
+      const cy = Math.floor(dots[i][1] / CELL_SIZE);
+      if (cx >= 0 && cx < COLS && cy >= 0 && cy < ROWS) {
+        grid[cy * COLS + cx].push(i);
+      }
+    }
+    return grid;
+  }
+
+  /**
+   * Performs one Lloyd's algorithm iteration.
+   * For each pixel, finds the nearest dot via spatial hash (3×3 cell neighborhood),
+   * then moves each dot to the density-weighted centroid of its Voronoi cell.
+   * Returns the updated dot positions as a new array.
+   */
+  function lloydIteration(dots) {
+    const grid = buildSpatialHash(dots);
+
+    // Accumulators: sumX, sumY, sumW per dot
+    const sumX = new Float64Array(dots.length);
+    const sumY = new Float64Array(dots.length);
+    const sumW = new Float64Array(dots.length);
+
+    // Sample every 2nd pixel to keep runtime under budget
+    const STEP = 2;
+    for (let py = 0; py < H; py += STEP) {
+      for (let px = 0; px < W; px += STEP) {
+        const w = density(px, py);
+        if (w < 0.001) continue;
+
+        const cx = Math.floor(px / CELL_SIZE);
+        const cy = Math.floor(py / CELL_SIZE);
+
+        let bestIdx = -1;
+        let bestD2 = Infinity;
+
+        // Search 3×3 neighborhood
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            const nx = cx + dx, ny = cy + dy;
+            if (nx < 0 || nx >= COLS || ny < 0 || ny >= ROWS) continue;
+            const cell = grid[ny * COLS + nx];
+            for (let k = 0; k < cell.length; k++) {
+              const idx = cell[k];
+              const ddx = dots[idx][0] - px;
+              const ddy = dots[idx][1] - py;
+              const d2 = ddx * ddx + ddy * ddy;
+              if (d2 < bestD2) { bestD2 = d2; bestIdx = idx; }
+            }
+          }
+        }
+
+        if (bestIdx >= 0) {
+          sumX[bestIdx] += px * w;
+          sumY[bestIdx] += py * w;
+          sumW[bestIdx] += w;
+        }
+      }
+    }
+
+    const next = new Array(dots.length);
+    for (let i = 0; i < dots.length; i++) {
+      if (sumW[i] > 0) {
+        next[i] = [sumX[i] / sumW[i], sumY[i] / sumW[i]];
+      } else {
+        // Dot in empty region — resample at random position weighted by density
+        next[i] = dots[i].slice();
+      }
+    }
+    return next;
+  }
+
+  /**
+   * Maps local density to dot base radius [0.8, 3.5] px.
+   */
+  function baseRadius(d) {
+    return 0.8 + 2.7 * Math.min(d, 1.0);
+  }
+
+  // ---------- Initialization ----------
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  // Stratified jittered initialization for better initial coverage
+  let dots = [];
+  const gridN = Math.ceil(Math.sqrt(N_DOTS));
+  const cellW = W / gridN, cellH = H / gridN;
+
+  // Use a simple deterministic LCG so the layout is reproducible
+  let seed = 12345;
+  function lcg() {
+    seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+    return (seed >>> 0) / 0xffffffff;
+  }
+
+  for (let row = 0; row < gridN && dots.length < N_DOTS; row++) {
+    for (let col = 0; col < gridN && dots.length < N_DOTS; col++) {
+      const x = col * cellW + lcg() * cellW;
+      const y = row * cellH + lcg() * cellH;
+      dots.push([x, y]);
+    }
+  }
+
+  // Run Lloyd iterations synchronously (3000 dots × 30 iter ≈ 300ms typical)
+  for (let iter = 0; iter < N_ITER; iter++) {
+    dots = lloydIteration(dots);
+  }
+
+  // Compute base radii after convergence
+  const baseR = dots.map(([x, y]) => baseRadius(density(x, y)));
+
+  // Per-dot random phase for breath animation (deterministic via LCG)
+  const phases = dots.map(() => lcg() * Math.PI * 2);
+
+  // 60 fps cap
+  const FRAME_MS = 1000 / 60;
+  let lastFrame = 0;
+
+  /**
+   * Renders one animation frame. Oscillates each dot radius by ±15% of its
+   * base radius with a per-dot random phase, completing a full cycle every 4s.
+   */
+  function drawFrame(t) {
+    if (t - lastFrame < FRAME_MS) {
+      requestAnimationFrame(drawFrame);
+      return;
+    }
+    lastFrame = t;
+
+    ctx.fillStyle = '#F5EDD8';
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = '#C8900A';
+    for (let i = 0; i < dots.length; i++) {
+      const r = baseR[i] * (1 + 0.15 * Math.sin(t * 0.001571 + phases[i]));
+      ctx.beginPath();
+      ctx.arc(dots[i][0], dots[i][1], Math.max(0.5, r), 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(drawFrame);
+  }
+
+  requestAnimationFrame(drawFrame);
+})();
+</script>
+</body>
+</html>

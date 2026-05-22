@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Parchment background -->
+  <rect width="400" height="400" fill="#F5EDD8"/>
+
+  <!-- Horizon line -->
+  <line x1="0" y1="152" x2="400" y2="152" stroke="#C8900A" stroke-width="0.7" stroke-opacity="0.4"/>
+
+  <!-- Sky dots: sparse, small -->
+  <g fill="#C8900A" fill-opacity="0.55">
+    <circle cx="28" cy="30" r="1.4"/>
+    <circle cx="60" cy="18" r="1.2"/>
+    <circle cx="95" cy="38" r="1.3"/>
+    <circle cx="130" cy="22" r="1.4"/>
+    <circle cx="162" cy="44" r="1.2"/>
+    <circle cx="200" cy="28" r="1.3"/>
+    <circle cx="238" cy="48" r="1.2"/>
+    <circle cx="275" cy="16" r="1.4"/>
+    <circle cx="310" cy="36" r="1.3"/>
+    <circle cx="345" cy="24" r="1.2"/>
+    <circle cx="375" cy="44" r="1.3"/>
+    <circle cx="45" cy="62" r="1.2"/>
+    <circle cx="78" cy="78" r="1.3"/>
+    <circle cx="112" cy="60" r="1.2"/>
+    <circle cx="150" cy="82" r="1.4"/>
+    <circle cx="188" cy="68" r="1.2"/>
+    <circle cx="224" cy="90" r="1.3"/>
+    <circle cx="260" cy="70" r="1.2"/>
+    <circle cx="294" cy="88" r="1.4"/>
+    <circle cx="332" cy="64" r="1.3"/>
+    <circle cx="366" cy="84" r="1.2"/>
+    <circle cx="15" cy="110" r="1.3"/>
+    <circle cx="52" cy="126" r="1.2"/>
+    <circle cx="88" cy="108" r="1.4"/>
+    <circle cx="122" cy="130" r="1.3"/>
+    <circle cx="158" cy="114" r="1.2"/>
+    <circle cx="195" cy="132" r="1.3"/>
+    <circle cx="230" cy="118" r="1.2"/>
+    <circle cx="266" cy="136" r="1.4"/>
+    <circle cx="302" cy="112" r="1.3"/>
+    <circle cx="338" cy="130" r="1.2"/>
+    <circle cx="372" cy="116" r="1.3"/>
+  </g>
+
+  <!-- Field dots: dense wheat field, denser at bottom, with gap for silhouette -->
+  <g fill="#C8900A">
+    <!-- Row around y=165 -->
+    <circle cx="18" cy="165" r="2.0"/>
+    <circle cx="36" cy="168" r="2.2"/>
+    <circle cx="54" cy="162" r="2.1"/>
+    <circle cx="72" cy="167" r="2.3"/>
+    <circle cx="90" cy="163" r="2.0"/>
+    <circle cx="108" cy="169" r="2.2"/>
+    <!-- gap: silhouette at x≈105-145 -->
+    <circle cx="162" cy="164" r="2.0"/>
+    <circle cx="180" cy="168" r="2.2"/>
+    <circle cx="198" cy="162" r="2.1"/>
+    <circle cx="216" cy="167" r="2.3"/>
+    <circle cx="234" cy="164" r="2.0"/>
+    <circle cx="252" cy="169" r="2.2"/>
+    <circle cx="270" cy="163" r="2.1"/>
+    <circle cx="288" cy="167" r="2.0"/>
+    <circle cx="306" cy="165" r="2.3"/>
+    <circle cx="324" cy="168" r="2.2"/>
+    <circle cx="342" cy="163" r="2.0"/>
+    <circle cx="360" cy="169" r="2.1"/>
+    <circle cx="378" cy="165" r="2.2"/>
+    <!-- Row y=185 -->
+    <circle cx="10" cy="186" r="2.2"/>
+    <circle cx="28" cy="182" r="2.4"/>
+    <circle cx="46" cy="188" r="2.3"/>
+    <circle cx="64" cy="183" r="2.2"/>
+    <circle cx="82" cy="187" r="2.4"/>
+    <circle cx="100" cy="182" r="2.2"/>
+    <!-- gap for silhouette -->
+    <circle cx="152" cy="185" r="2.2"/>
+    <circle cx="170" cy="182" r="2.4"/>
+    <circle cx="188" cy="186" r="2.3"/>
+    <circle cx="206" cy="183" r="2.2"/>
+    <circle cx="224" cy="188" r="2.4"/>
+    <circle cx="242" cy="182" r="2.3"/>
+    <circle cx="260" cy="186" r="2.2"/>
+    <circle cx="278" cy="183" r="2.4"/>
+    <circle cx="296" cy="187" r="2.3"/>
+    <circle cx="314" cy="182" r="2.2"/>
+    <circle cx="332" cy="187" r="2.4"/>
+    <circle cx="350" cy="183" r="2.3"/>
+    <circle cx="368" cy="188" r="2.2"/>
+    <circle cx="386" cy="184" r="2.3"/>
+    <!-- Row y=204 -->
+    <circle cx="14" cy="204" r="2.4"/>
+    <circle cx="32" cy="200" r="2.5"/>
+    <circle cx="50" cy="206" r="2.4"/>
+    <circle cx="68" cy="201" r="2.5"/>
+    <circle cx="86" cy="205" r="2.4"/>
+    <circle cx="104" cy="200" r="2.5"/>
+    <!-- gap -->
+    <circle cx="158" cy="203" r="2.4"/>
+    <circle cx="176" cy="200" r="2.5"/>
+    <circle cx="194" cy="206" r="2.4"/>
+    <circle cx="212" cy="201" r="2.5"/>
+    <circle cx="230" cy="204" r="2.4"/>
+    <circle cx="248" cy="200" r="2.5"/>
+    <circle cx="266" cy="205" r="2.4"/>
+    <circle cx="284" cy="201" r="2.5"/>
+    <circle cx="302" cy="204" r="2.4"/>
+    <circle cx="320" cy="200" r="2.5"/>
+    <circle cx="338" cy="206" r="2.4"/>
+    <circle cx="356" cy="201" r="2.5"/>
+    <circle cx="374" cy="204" r="2.4"/>
+    <circle cx="392" cy="200" r="2.5"/>
+    <!-- Row y=224 -->
+    <circle cx="8" cy="224" r="2.5"/>
+    <circle cx="26" cy="220" r="2.6"/>
+    <circle cx="44" cy="226" r="2.5"/>
+    <circle cx="62" cy="221" r="2.6"/>
+    <circle cx="80" cy="224" r="2.5"/>
+    <circle cx="98" cy="221" r="2.6"/>
+    <!-- gap -->
+    <circle cx="162" cy="223" r="2.5"/>
+    <circle cx="180" cy="220" r="2.6"/>
+    <circle cx="198" cy="226" r="2.5"/>
+    <circle cx="216" cy="221" r="2.6"/>
+    <circle cx="234" cy="224" r="2.5"/>
+    <circle cx="252" cy="221" r="2.6"/>
+    <circle cx="270" cy="224" r="2.5"/>
+    <circle cx="288" cy="220" r="2.6"/>
+    <circle cx="306" cy="226" r="2.5"/>
+    <circle cx="324" cy="221" r="2.6"/>
+    <circle cx="342" cy="224" r="2.5"/>
+    <circle cx="360" cy="220" r="2.6"/>
+    <circle cx="378" cy="226" r="2.5"/>
+    <!-- Row y=246 -->
+    <circle cx="12" cy="246" r="2.6"/>
+    <circle cx="30" cy="242" r="2.7"/>
+    <circle cx="48" cy="248" r="2.6"/>
+    <circle cx="66" cy="243" r="2.7"/>
+    <circle cx="84" cy="246" r="2.6"/>
+    <circle cx="102" cy="242" r="2.7"/>
+    <!-- gap -->
+    <circle cx="156" cy="245" r="2.6"/>
+    <circle cx="174" cy="242" r="2.7"/>
+    <circle cx="192" cy="248" r="2.6"/>
+    <circle cx="210" cy="243" r="2.7"/>
+    <circle cx="228" cy="246" r="2.6"/>
+    <circle cx="246" cy="242" r="2.7"/>
+    <circle cx="264" cy="246" r="2.6"/>
+    <circle cx="282" cy="242" r="2.7"/>
+    <circle cx="300" cy="248" r="2.6"/>
+    <circle cx="318" cy="243" r="2.7"/>
+    <circle cx="336" cy="246" r="2.6"/>
+    <circle cx="354" cy="242" r="2.7"/>
+    <circle cx="372" cy="248" r="2.6"/>
+    <circle cx="390" cy="243" r="2.7"/>
+    <!-- Rows y=268..388: full dense, all columns -->
+    <circle cx="10" cy="268" r="2.7"/> <circle cx="28" cy="264" r="2.8"/>
+    <circle cx="46" cy="270" r="2.7"/> <circle cx="64" cy="265" r="2.8"/>
+    <circle cx="82" cy="268" r="2.7"/> <circle cx="100" cy="264" r="2.8"/>
+    <circle cx="118" cy="270" r="2.7"/> <circle cx="136" cy="265" r="2.8"/>
+    <circle cx="154" cy="268" r="2.7"/> <circle cx="172" cy="264" r="2.8"/>
+    <circle cx="190" cy="270" r="2.7"/> <circle cx="208" cy="265" r="2.8"/>
+    <circle cx="226" cy="268" r="2.7"/> <circle cx="244" cy="264" r="2.8"/>
+    <circle cx="262" cy="270" r="2.7"/> <circle cx="280" cy="265" r="2.8"/>
+    <circle cx="298" cy="268" r="2.7"/> <circle cx="316" cy="264" r="2.8"/>
+    <circle cx="334" cy="270" r="2.7"/> <circle cx="352" cy="265" r="2.8"/>
+    <circle cx="370" cy="268" r="2.7"/> <circle cx="388" cy="264" r="2.8"/>
+    <circle cx="8" cy="290" r="2.8"/> <circle cx="26" cy="286" r="2.9"/>
+    <circle cx="44" cy="292" r="2.8"/> <circle cx="62" cy="287" r="2.9"/>
+    <circle cx="80" cy="290" r="2.8"/> <circle cx="98" cy="286" r="2.9"/>
+    <circle cx="116" cy="292" r="2.8"/> <circle cx="134" cy="287" r="2.9"/>
+    <circle cx="152" cy="290" r="2.8"/> <circle cx="170" cy="286" r="2.9"/>
+    <circle cx="188" cy="292" r="2.8"/> <circle cx="206" cy="287" r="2.9"/>
+    <circle cx="224" cy="290" r="2.8"/> <circle cx="242" cy="286" r="2.9"/>
+    <circle cx="260" cy="292" r="2.8"/> <circle cx="278" cy="287" r="2.9"/>
+    <circle cx="296" cy="290" r="2.8"/> <circle cx="314" cy="286" r="2.9"/>
+    <circle cx="332" cy="292" r="2.8"/> <circle cx="350" cy="287" r="2.9"/>
+    <circle cx="368" cy="290" r="2.8"/> <circle cx="386" cy="286" r="2.9"/>
+    <circle cx="10" cy="315" r="2.9"/> <circle cx="30" cy="311" r="3.0"/>
+    <circle cx="50" cy="317" r="2.9"/> <circle cx="70" cy="312" r="3.0"/>
+    <circle cx="90" cy="315" r="2.9"/> <circle cx="110" cy="311" r="3.0"/>
+    <circle cx="130" cy="317" r="2.9"/> <circle cx="150" cy="312" r="3.0"/>
+    <circle cx="170" cy="315" r="2.9"/> <circle cx="190" cy="311" r="3.0"/>
+    <circle cx="210" cy="317" r="2.9"/> <circle cx="230" cy="312" r="3.0"/>
+    <circle cx="250" cy="315" r="2.9"/> <circle cx="270" cy="311" r="3.0"/>
+    <circle cx="290" cy="317" r="2.9"/> <circle cx="310" cy="312" r="3.0"/>
+    <circle cx="330" cy="315" r="2.9"/> <circle cx="350" cy="311" r="3.0"/>
+    <circle cx="370" cy="317" r="2.9"/> <circle cx="390" cy="312" r="3.0"/>
+    <circle cx="10" cy="342" r="3.0"/> <circle cx="30" cy="338" r="3.1"/>
+    <circle cx="50" cy="344" r="3.0"/> <circle cx="70" cy="339" r="3.1"/>
+    <circle cx="90" cy="342" r="3.0"/> <circle cx="110" cy="338" r="3.1"/>
+    <circle cx="130" cy="344" r="3.0"/> <circle cx="150" cy="339" r="3.1"/>
+    <circle cx="170" cy="342" r="3.0"/> <circle cx="190" cy="338" r="3.1"/>
+    <circle cx="210" cy="344" r="3.0"/> <circle cx="230" cy="339" r="3.1"/>
+    <circle cx="250" cy="342" r="3.0"/> <circle cx="270" cy="338" r="3.1"/>
+    <circle cx="290" cy="344" r="3.0"/> <circle cx="310" cy="339" r="3.1"/>
+    <circle cx="330" cy="342" r="3.0"/> <circle cx="350" cy="338" r="3.1"/>
+    <circle cx="370" cy="344" r="3.0"/> <circle cx="390" cy="339" r="3.1"/>
+    <circle cx="10" cy="370" r="3.1"/> <circle cx="30" cy="366" r="3.2"/>
+    <circle cx="50" cy="372" r="3.1"/> <circle cx="70" cy="367" r="3.2"/>
+    <circle cx="90" cy="370" r="3.1"/> <circle cx="110" cy="366" r="3.2"/>
+    <circle cx="130" cy="372" r="3.1"/> <circle cx="150" cy="367" r="3.2"/>
+    <circle cx="170" cy="370" r="3.1"/> <circle cx="190" cy="366" r="3.2"/>
+    <circle cx="210" cy="372" r="3.1"/> <circle cx="230" cy="367" r="3.2"/>
+    <circle cx="250" cy="370" r="3.1"/> <circle cx="270" cy="366" r="3.2"/>
+    <circle cx="290" cy="372" r="3.1"/> <circle cx="310" cy="367" r="3.2"/>
+    <circle cx="330" cy="370" r="3.1"/> <circle cx="350" cy="366" r="3.2"/>
+    <circle cx="370" cy="372" r="3.1"/> <circle cx="390" cy="367" r="3.2"/>
+  </g>
+
+  <!-- Ruth silhouette outline (lower-left region, x≈105-145) -->
+  <!-- Body outline stroke, not filled -->
+  <g fill="none" stroke="#9B6E20" stroke-width="1.5" stroke-opacity="0.75">
+    <!-- Body rectangle outline -->
+    <path d="M 107 380 L 107 222 Q 125 200 143 222 L 143 380 Z"/>
+    <!-- Head ellipse -->
+    <ellipse cx="125" cy="215" rx="18" ry="22"/>
+  </g>
+</svg>

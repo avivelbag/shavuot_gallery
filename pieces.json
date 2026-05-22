@@ -955,5 +955,16 @@
     "path": "pieces/65-hopf-fibration-binah/index.html",
     "thumbnail": "pieces/65-hopf-fibration-binah/thumbnail.svg",
     "essay": "pieces/65-hopf-fibration-binah/essay.md"
+  },
+  {
+    "id": "66-stipple-ruth-gleaning",
+    "title": "The Stranger Who Chose In",
+    "tagline": "Three thousand stipple dots settle into a wheat field via Lloyd’s algorithm, clustering at Ruth’s silhouette — the field organizes itself around the one who chose to be there",
+    "year": 2026,
+    "theme": "Bikkurim / harvest (Book of Ruth)",
+    "technique": "Voronoi stippling / Lloyd’s algorithm",
+    "path": "pieces/66-stipple-ruth-gleaning/index.html",
+    "thumbnail": "pieces/66-stipple-ruth-gleaning/thumbnail.svg",
+    "essay": "pieces/66-stipple-ruth-gleaning/essay.md"
   }
 ]
