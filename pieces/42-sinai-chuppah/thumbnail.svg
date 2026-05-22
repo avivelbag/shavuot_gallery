@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080818"/>
+      <stop offset="100%" stop-color="#0A0A20"/>
+    </linearGradient>
+    <linearGradient id="fabricTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B2F6E"/>
+      <stop offset="45%" stop-color="#F5F0E8"/>
+      <stop offset="100%" stop-color="#F5E6A0"/>
+    </linearGradient>
+    <linearGradient id="fabricLeft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B2F6E"/>
+      <stop offset="50%" stop-color="#C8D4F0"/>
+      <stop offset="100%" stop-color="#F0DFA0"/>
+    </linearGradient>
+    <linearGradient id="fabricRight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B2F6E"/>
+      <stop offset="50%" stop-color="#D4DDF5"/>
+      <stop offset="100%" stop-color="#F2E8B0"/>
+    </linearGradient>
+    <filter id="softblur">
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGrad)"/>
+
+  <!-- Pinned top bar -->
+  <rect x="30" y="28" width="340" height="4" fill="#1B2F6E" rx="2"/>
+  <!-- Pin dots -->
+  <circle cx="30" cy="30" r="4" fill="#3A5090"/>
+  <circle cx="116" cy="30" r="4" fill="#3A5090"/>
+  <circle cx="200" cy="30" r="4" fill="#3A5090"/>
+  <circle cx="284" cy="30" r="4" fill="#3A5090"/>
+  <circle cx="370" cy="30" r="4" fill="#3A5090"/>
+
+  <!-- Canopy fabric — main panel (hangs from top bar, billows gently) -->
+  <!-- Left section of hanging cloth -->
+  <path d="M30,30 C20,80 15,120 22,160 C28,195 38,215 48,240 L80,240 C72,215 66,195 68,160 C70,120 74,80 80,30 Z"
+        fill="url(#fabricLeft)" opacity="0.92"/>
+
+  <!-- Center-left panel -->
+  <path d="M80,30 C76,80 74,120 76,165 C78,200 84,220 92,248 L150,248 C142,220 138,200 140,165 C142,120 146,80 144,30 Z"
+        fill="url(#fabricTop)" opacity="0.95"/>
+
+  <!-- Center panel (deepest billow) -->
+  <path d="M144,30 C140,85 136,130 140,175 C144,210 152,232 162,258 L238,258 C248,232 256,210 260,175 C264,130 260,85 256,30 Z"
+        fill="url(#fabricTop)" opacity="0.97"/>
+
+  <!-- Center-right panel -->
+  <path d="M256,30 C258,80 262,120 260,165 C258,200 252,220 244,248 L306,248 C314,220 320,200 322,165 C324,120 326,80 320,30 Z"
+        fill="url(#fabricRight)" opacity="0.95"/>
+
+  <!-- Right section -->
+  <path d="M320,30 C328,80 334,120 332,160 C330,195 322,215 318,240 L352,240 C358,215 372,195 378,160 C382,120 382,80 370,30 Z"
+        fill="url(#fabricLeft)" opacity="0.92"/>
+
+  <!-- Subtle fold lines to suggest cloth texture -->
+  <line x1="115" y1="30" x2="108" y2="250" stroke="#C8CEDE" stroke-width="0.5" opacity="0.25"/>
+  <line x1="200" y1="30" x2="200" y2="258" stroke="#C8CEDE" stroke-width="0.5" opacity="0.20"/>
+  <line x1="285" y1="30" x2="292" y2="250" stroke="#C8CEDE" stroke-width="0.5" opacity="0.25"/>
+  <line x1="155" y1="30" x2="152" y2="255" stroke="#A0AABB" stroke-width="0.4" opacity="0.15"/>
+  <line x1="245" y1="30" x2="248" y2="255" stroke="#A0AABB" stroke-width="0.4" opacity="0.15"/>
+
+  <!-- Hebrew text at bottom -->
+  <text x="200" y="286" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="11" fill="#c0c8e0" opacity="0.85"
+        direction="rtl">אִם-תְּקַבְּלוּ הַתּוֹרָה</text>
+</svg>

@@ -449,5 +449,16 @@
     "path": "pieces/42-merkavah-kaleidoscope/index.html",
     "thumbnail": "pieces/42-merkavah-kaleidoscope/thumbnail.svg",
     "essay": "pieces/42-merkavah-kaleidoscope/essay.md"
+  },
+  {
+    "id": "42-sinai-chuppah",
+    "title": "The Mountain as Canopy",
+    "tagline": "the mountain suspended over Israel like a barrel — and like a wedding canopy",
+    "year": 2026,
+    "theme": "Matan Torah / Sinai Chuppah — Shabbat 88a",
+    "technique": "canvas 2D — Verlet-integration spring-mass cloth simulation, filled quadrilateral patch rendering",
+    "path": "pieces/42-sinai-chuppah/index.html",
+    "thumbnail": "pieces/42-sinai-chuppah/thumbnail.svg",
+    "essay": "pieces/42-sinai-chuppah/essay.md"
   }
 ]
