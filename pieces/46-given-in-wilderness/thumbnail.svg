@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EDD8A8"/>
+      <stop offset="62%" stop-color="#D4A860"/>
+      <stop offset="100%" stop-color="#6A3A10"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="400" height="300" fill="url(#sky)"/>
+
+  <!-- dune streamlines — upper sky zone (very faint pale sand) -->
+  <g stroke="#F0DFC0" stroke-width="0.5" fill="none" opacity="0.28">
+    <path d="M0,28 Q60,24 120,30 Q180,36 240,29 Q300,22 360,28 Q390,31 400,29"/>
+    <path d="M0,44 Q70,39 140,46 Q200,52 270,44 Q330,38 400,45"/>
+    <path d="M0,60 Q80,55 160,62 Q220,68 290,60 Q350,54 400,61"/>
+    <path d="M0,76 Q90,70 170,78 Q240,85 310,76 Q360,70 400,77"/>
+    <path d="M0,92 Q100,86 180,94 Q255,101 325,92 Q370,86 400,93"/>
+  </g>
+
+  <!-- dune streamlines — mid zone (amber) -->
+  <g stroke="#C8843A" stroke-width="0.6" fill="none" opacity="0.38">
+    <path d="M0,112 Q55,105 115,114 Q180,123 250,112 Q315,102 400,113"/>
+    <path d="M0,128 Q65,120 130,130 Q200,140 270,128 Q335,118 400,129"/>
+    <path d="M0,144 Q75,136 145,146 Q215,156 285,144 Q350,134 400,145"/>
+    <path d="M0,160 Q60,151 125,162 Q200,173 275,160 Q340,149 400,161"/>
+    <path d="M0,176 Q70,167 140,178 Q210,189 280,176 Q345,165 400,177"/>
+  </g>
+
+  <!-- horizon line -->
+  <line x1="0" y1="195" x2="400" y2="195" stroke="#A09070" stroke-width="1" opacity="0.6"/>
+
+  <!-- dune streamlines — lower zone (ochre to violet) -->
+  <g stroke="#7A4A18" stroke-width="0.7" fill="none" opacity="0.45">
+    <path d="M0,210 Q80,202 160,212 Q230,222 305,210 Q360,200 400,211"/>
+    <path d="M0,226 Q90,217 175,228 Q245,239 320,226 Q370,216 400,227"/>
+    <path d="M0,242 Q85,232 170,244 Q250,256 330,242 Q375,232 400,243"/>
+    <path d="M0,258 Q80,247 165,260 Q245,272 325,258 Q375,248 400,259"/>
+  </g>
+
+  <!-- deepest trough lines (violet shadow) -->
+  <g stroke="#3A2855" stroke-width="0.6" fill="none" opacity="0.40">
+    <path d="M0,274 Q100,263 200,276 Q290,288 400,274"/>
+    <path d="M0,288 Q110,277 215,290 Q305,302 400,288"/>
+  </g>
+
+  <!-- Hebrew word מִדְבָּר above horizon -->
+  <text x="378" y="182" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="200" fill="#C8A87A" opacity="0.72"
+        text-anchor="end" direction="rtl">מִדְבָר</text>
+</svg>

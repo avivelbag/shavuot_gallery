@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Given in the Wilderness — Curl Noise Sand</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #2A1E10; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #5A3A18;
+      overflow-y: auto;
+      color: #D4C4A0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #1E1408;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #5A3A18; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #E8C87A;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #6A5030;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #C8A060;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #5A3A18;
+      font-style: italic;
+      color: #B09060;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #D4B87A; font-style: italic; }
+    .essay-panel strong { color: #E8D0A0; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #3A2818; margin: 2rem 0; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Given in the Wilderness</h1>
+    <p class="subtitle">Curl Noise Sand — Bamidbar Rabbah 1:7</p>
+
+    <blockquote>"Why was the Torah given in the wilderness? Because it is <em>hefker</em> — ownerless — like the wilderness."</blockquote>
+
+    <p>The Torah opens not in Jerusalem, not at the Sea, not in Egypt — but in the desert. <em>Bamidbar Rabbah</em> 1:7 asks the obvious question: why was the Torah given specifically in the wilderness? The answer it gives is both radical and precise: <em>mipnei she-hefker hu la-kol</em>, because the wilderness is <em>hefker</em> — ownerless, public, belonging to no one — and therefore Torah, given in such a place, belongs to everyone. A gift can only be given to all when it is given in a place that belongs to none.</p>
+
+    <hr>
+
+    <h2>Hefker and the Structure of Universal Gift</h2>
+
+    <p><em>Hefker</em> is a precise legal category in rabbinic thought. Property becomes <em>hefker</em> when its owner formally and publicly renounces it; once declared ownerless, it may be claimed freely by anyone who takes it up. The wilderness is <em>hefker</em> by its nature: it has no title, keeps no register, owes nothing to any claimant. The Sinai desert, when Israel arrived at its foot, held nothing they had built, owed them nothing, and remembered nothing of those who had crossed it before.</p>
+
+    <p>This is not incidental geography. The rabbis are making a structural claim about the conditions of reception. For Torah to be received by all — by every soul present at Sinai, and by extension every soul in every generation — the place of giving could not be owned by any of them. Had the revelation come on tribal land, that tribe would have a proprietary claim. Had it come in Egypt, it would carry the residue of slavery. Had it come in Canaan, the settlers would have precedence. The ownerless place is the necessary precondition for the universal gift. <em>Hefker</em> is not a deficiency of the desert but its essential qualification.</p>
+
+    <hr>
+
+    <h2>The Forty-Eight Ways</h2>
+
+    <p><em>Pirkei Avot</em> 6:6 records that Torah is acquired by forty-eight qualities. The list begins with study and attentive listening, proceeds through reverence, awe, and humility, and includes — in a phrase that echoes the wilderness theology — accepting one's smallness without resentment, bearing one's place without complaint. The wilderness inward and the wilderness outward mirror each other. To receive Torah is to become, in some measure, <em>hefker</em> to it: to relinquish the ownership of one's prior conclusions, to stand in an open place where the teaching can arrive on equal terms to all who come.</p>
+
+    <p>The forty-eight qualities are not prerequisites that screen out the unworthy. They are descriptions of the posture of reception — of what it means to stand in the desert and let something be given.</p>
+
+    <hr>
+
+    <h2>Three Wilderness Revelations</h2>
+
+    <p>The three great moments of divine encounter in the Torah all happen outside settled land, in territory that belongs to no one.</p>
+
+    <p>At the burning bush (<em>Exodus</em> 3), Moses is tending flocks far out in the wilderness of Horeb when fire appears in a thornbush that does not consume itself. The ground beneath his feet becomes holy ground in that instant — not because anyone consecrated it or built a sanctuary there, but because something from entirely outside the human economy of property and possession descended into it. God says: <em>take your shoes off</em> — remove the boundary between your foot and this earth, stand bare on ground that is nobody's.</p>
+
+    <p>At Sinai (<em>Exodus</em> 19–20), the entire assembly camps in the desert before the mountain, which itself is declared off-limits by divine command — they may not even touch it. The revelation happens to the whole people at once, in a place none of them own, from a mountain none of them may ascend. And the voice, according to the <em>Mechilta d'Rabbi Ishmael</em> (Yitro 9), splits immediately into seventy languages so that every nation might have received it: it was given in a place so ownerless that it was simultaneously offered to all of humanity.</p>
+
+    <p>The <em>Mishkan</em>, the Tabernacle (<em>Exodus</em> 25–40), is built in the wilderness and travels through it for forty years. The dwelling-place of the Infinite does not sit on deeded land. It moves with the people through ownerless territory, carried on their shoulders, assembled and disassembled at each encampment. It is the portable architecture of <em>hefker</em> revelation.</p>
+
+    <hr>
+
+    <h2>Formlessness as Essential Ground</h2>
+
+    <p>The word <em>midbar</em> (wilderness) shares a root with <em>davar</em> (word, thing) and <em>dabar</em> (to speak). The desert, in Hebrew, is etymologically the place of the word — not the place of finished things, not the place of established ownership, but the open ground of utterance, the unpossessed field of speech.</p>
+
+    <p>The curl of wind over sand leaves no lasting mark: the dunes shift every night, rebuild in new forms each dawn, in configurations that belong to no one and are recognized by everyone. This is the medium through which the words arrived — not carved rock waiting to be claimed, but flowing sand that receives the wind's signature and does not hold it against any passer-by.</p>
+
+    <p>The animation renders a <strong>divergence-free curl noise flow field</strong> — a mathematical wind that, by construction, has no sources and no sinks, no point where the flow converges into a fixed claim. The field exists everywhere at once and belongs to every coordinate equally. The streamlines that emerge are the visible residue of that mathematics: elongated ridges and troughs shaped by a vector field that belongs equally to every point in the plane, as Torah belongs to every soul that comes to it with open hands.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------ */
+  /* 3D gradient (Perlin) noise                                          */
+  /* Classic implementation using a permutation table and gradient hash. */
+  /* ------------------------------------------------------------------ */
+
+  var PERM = (function () {
+    var p = new Array(256);
+    for (var i = 0; i < 256; i++) p[i] = i;
+    for (var i = 255; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = p[i]; p[i] = p[j]; p[j] = tmp;
+    }
+    var perm = new Uint8Array(512);
+    for (var i = 0; i < 512; i++) perm[i] = p[i & 255];
+    return perm;
+  }());
+
+  function fade(t) {
+    return t * t * t * (t * (t * 6 - 15) + 10);
+  }
+
+  function lerpN(a, b, t) {
+    return a + t * (b - a);
+  }
+
+  /** Gradient contribution from a corner hash and fractional offsets. */
+  function grad3(hash, x, y, z) {
+    var h = hash & 15;
+    var u = h < 8 ? x : y;
+    var v = h < 4 ? y : (h === 12 || h === 14 ? x : z);
+    return ((h & 1) ? -u : u) + ((h & 2) ? -v : v);
+  }
+
+  /**
+   * Classic 3-D Perlin noise, returns a value in approximately [-1, 1].
+   * Coordinates should be scaled before passing in; frequency ~0.003 gives
+   * wide, sweeping features across a ~1000 px canvas.
+   */
+  function noise3(x, y, z) {
+    var X = Math.floor(x) & 255;
+    var Y = Math.floor(y) & 255;
+    var Z = Math.floor(z) & 255;
+    var xf = x - Math.floor(x);
+    var yf = y - Math.floor(y);
+    var zf = z - Math.floor(z);
+    var u = fade(xf), v = fade(yf), w = fade(zf);
+    var A  = PERM[X]   + Y, AA = PERM[A]   + Z, AB = PERM[A + 1] + Z;
+    var B  = PERM[X+1] + Y, BA = PERM[B]   + Z, BB = PERM[B + 1] + Z;
+    return lerpN(
+      lerpN(
+        lerpN(grad3(PERM[AA],     xf,     yf,     zf    ),
+              grad3(PERM[BA],     xf - 1, yf,     zf    ), u),
+        lerpN(grad3(PERM[AB],     xf,     yf - 1, zf    ),
+              grad3(PERM[BB],     xf - 1, yf - 1, zf    ), u), v),
+      lerpN(
+        lerpN(grad3(PERM[AA + 1], xf,     yf,     zf - 1),
+              grad3(PERM[BA + 1], xf - 1, yf,     zf - 1), u),
+        lerpN(grad3(PERM[AB + 1], xf,     yf - 1, zf - 1),
+              grad3(PERM[BB + 1], xf - 1, yf - 1, zf - 1), u), v), w);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Curl noise field                                                     */
+  /* curl(F) of a scalar field F gives a divergence-free 2D vector:     */
+  /*   vx =  dF/dy                                                       */
+  /*   vy = -dF/dx                                                       */
+  /* Approximated by central finite differences in noise space.          */
+  /* ------------------------------------------------------------------ */
+
+  var FREQ = 0.0030;
+  var NEPS = 0.018; /* epsilon in noise space ≈ 6 px at FREQ */
+
+  /**
+   * Returns the unnormalised curl vector at canvas coordinates (x, y)
+   * for the given time slice t.
+   */
+  function curlAt(x, y, t) {
+    var nx = x * FREQ;
+    var ny = y * FREQ;
+    var vx =  (noise3(nx, ny + NEPS, t) - noise3(nx, ny - NEPS, t));
+    var vy = -(noise3(nx + NEPS, ny, t) - noise3(nx - NEPS, ny, t));
+    return [vx, vy];
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Canvas setup                                                         */
+  /* ------------------------------------------------------------------ */
+
+  var canvas = document.getElementById('c');
+  var ctx    = canvas.getContext('2d');
+  var panel  = document.getElementById('art-panel');
+  var W, H;
+
+  /* ------------------------------------------------------------------ */
+  /* Colour helpers                                                       */
+  /* Palette: #F5E6C8 (pale sand), #C8843A (amber), #7A4A18 (ochre),   */
+  /*          #3A2855 (violet shadow).  No black, no white.              */
+  /* ------------------------------------------------------------------ */
+
+  var PALETTE = [
+    [245, 230, 200],  /* 0: pale sand   — sky / upper dunes  */
+    [200, 132,  58],  /* 1: tawny amber — mid dune            */
+    [122,  74,  24],  /* 2: deep ochre  — lower dune          */
+    [ 58,  40,  85],  /* 3: violet shadow — deepest troughs   */
+  ];
+
+  function mixRGB(a, b, t) {
+    return [
+      Math.round(a[0] + (b[0] - a[0]) * t),
+      Math.round(a[1] + (b[1] - a[1]) * t),
+      Math.round(a[2] + (b[2] - a[2]) * t),
+    ];
+  }
+
+  /**
+   * Returns an rgba CSS string for a streamline segment at normalised
+   * canvas depth t ∈ [0, 1] (0 = top, 1 = bottom).
+   */
+  function duneColor(t, alpha) {
+    var rgb;
+    if (t < 0.3) {
+      rgb = mixRGB(PALETTE[0], PALETTE[1], t / 0.3);
+    } else if (t < 0.65) {
+      rgb = mixRGB(PALETTE[1], PALETTE[2], (t - 0.3) / 0.35);
+    } else if (t < 0.85) {
+      rgb = mixRGB(PALETTE[2], PALETTE[3], (t - 0.65) / 0.2);
+    } else {
+      rgb = PALETTE[3];
+    }
+    return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + alpha + ')';
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Background gradient                                                  */
+  /* ------------------------------------------------------------------ */
+
+  function drawBackground() {
+    var grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0,    '#EDD8A8'); /* warm pale sky             */
+    grad.addColorStop(0.62, '#D4A860'); /* warm horizon glow          */
+    grad.addColorStop(1,    '#6A3A10'); /* dark ochre at canvas base  */
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Seed grid                                                            */
+  /* ------------------------------------------------------------------ */
+
+  var seeds = [];
+
+  function buildSeeds() {
+    seeds = [];
+    var cols = 50, rows = 35;
+    for (var r = 0; r <= rows; r++) {
+      for (var c = 0; c <= cols; c++) {
+        seeds.push([
+          (c / cols) * W + (Math.random() - 0.5) * 8,
+          (r / rows) * H + (Math.random() - 0.5) * 8,
+        ]);
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Streamline drawing                                                   */
+  /* ------------------------------------------------------------------ */
+
+  var STEPS     = 160;  /* integration steps per streamline             */
+  var STEP_LEN  = 2.4;  /* px per integration step                      */
+  var LINE_W    = 0.6;
+  var LINE_ALPHA = 0.33;
+
+  /**
+   * Integrates one streamline from seed (sx, sy) along the curl field
+   * at the given time offset, drawing it as a series of coloured line
+   * segments onto ctx.
+   */
+  function drawStreamline(sx, sy, t) {
+    var x = sx, y = sy;
+    var prevColor = null;
+
+    ctx.lineWidth = LINE_W;
+
+    for (var s = 0; s < STEPS; s++) {
+      var v  = curlAt(x, y, t);
+      var vx = v[0], vy = v[1];
+      var len = Math.sqrt(vx * vx + vy * vy);
+      if (len < 0.0001) break;
+      vx = (vx / len) * STEP_LEN;
+      vy = (vy / len) * STEP_LEN;
+
+      var nx = x + vx;
+      var ny = y + vy;
+
+      /* colour by y of current segment midpoint */
+      var midY = (y + ny) * 0.5;
+      var depth = Math.max(0, Math.min(1, midY / H));
+      var col = duneColor(depth, LINE_ALPHA);
+
+      if (col !== prevColor) {
+        if (prevColor !== null) ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.strokeStyle = col;
+        prevColor = col;
+      }
+      ctx.lineTo(nx, ny);
+
+      x = nx;
+      y = ny;
+    }
+    if (prevColor !== null) ctx.stroke();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Horizon and Hebrew text overlay                                      */
+  /* ------------------------------------------------------------------ */
+
+  function drawOverlay() {
+    var horizonY = H * 0.65;
+
+    ctx.save();
+    ctx.globalAlpha = 0.55;
+    ctx.beginPath();
+    ctx.moveTo(0, horizonY);
+    ctx.lineTo(W, horizonY);
+    ctx.strokeStyle = '#A09070';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.restore();
+
+    /* מִדְבָּר — midbar, wilderness — above the horizon, right-aligned */
+    var fontSize = Math.max(18, Math.min(32, W * 0.034));
+    ctx.save();
+    ctx.globalAlpha = 0.68;
+    ctx.font = '200 ' + fontSize + 'px "Helvetica Neue", Helvetica, Arial, sans-serif';
+    ctx.direction = 'rtl';
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#C8A87A';
+    ctx.fillText('מִדְבָר', W - 22, horizonY - 14);
+    ctx.restore();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Animation state                                                      */
+  /* ------------------------------------------------------------------ */
+
+  var timeOffset = 0;
+  var seedIdx    = 0;
+  var BATCH      = 60;  /* streamlines drawn per frame */
+
+  function frame() {
+    timeOffset += 0.0003;
+
+    /* Slowly fade the canvas toward the background to let new streamlines */
+    /* replace old ones without a hard clear.                              */
+    ctx.globalAlpha = 0.022;
+    drawBackground();
+    ctx.globalAlpha = 1.0;
+
+    /* Draw one rolling batch of streamlines at the current time slice. */
+    var end = Math.min(seedIdx + BATCH, seeds.length);
+    for (var i = seedIdx; i < end; i++) {
+      drawStreamline(seeds[i][0], seeds[i][1], timeOffset);
+    }
+    seedIdx = end >= seeds.length ? 0 : end;
+
+    drawOverlay();
+    requestAnimationFrame(frame);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Resize handler — rebuilds seeds and redraws from scratch.           */
+  /* ------------------------------------------------------------------ */
+
+  function resize() {
+    W = canvas.width  = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+    buildSeeds();
+    drawBackground();
+    /* Draw all seeds once for instant visual on first load. */
+    for (var i = 0; i < seeds.length; i++) {
+      drawStreamline(seeds[i][0], seeds[i][1], timeOffset);
+    }
+    drawOverlay();
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

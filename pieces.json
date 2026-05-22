@@ -504,5 +504,16 @@
     "path": "pieces/45-they-saw-the-voices/index.html",
     "thumbnail": "pieces/45-they-saw-the-voices/thumbnail.svg",
     "essay": "pieces/45-they-saw-the-voices/essay.md"
+  },
+  {
+    "id": "46-given-in-wilderness",
+    "title": "Given in the Wilderness",
+    "tagline": "Torah given in the desert because the wilderness is hefker — ownerless — like Torah itself",
+    "year": 2026,
+    "theme": "Matan Torah / Given in the Wilderness — Bamidbar Rabbah 1:7; Avot 6:6",
+    "technique": "canvas 2D — curl noise divergence-free flow field, streamline integration, rolling batch animation",
+    "path": "pieces/46-given-in-wilderness/index.html",
+    "thumbnail": "pieces/46-given-in-wilderness/thumbnail.svg",
+    "essay": "pieces/46-given-in-wilderness/essay.md"
   }
 ]
