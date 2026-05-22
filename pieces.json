@@ -229,5 +229,16 @@
     "path": "pieces/25-sinai-bloom/index.html",
     "thumbnail": "pieces/25-sinai-bloom/thumbnail.svg",
     "essay": "pieces/25-sinai-bloom/essay.md"
+  },
+  {
+    "id": "29-fiftieth-day-epicycles",
+    "title": "The Fiftieth Day",
+    "tagline": "שָׁבוּעוֹת traced by Fourier epicycles — the word as a sum of rotating circles",
+    "year": 2026,
+    "theme": "Shavuot — the Fiftieth Day / Counting the Omer",
+    "technique": "canvas 2D Fourier epicycles / DFT-driven animation",
+    "path": "pieces/29-fiftieth-day-epicycles/index.html",
+    "thumbnail": "pieces/29-fiftieth-day-epicycles/thumbnail.svg",
+    "essay": "pieces/29-fiftieth-day-epicycles/essay.md"
   }
 ]
