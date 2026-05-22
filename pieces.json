@@ -108,5 +108,16 @@
     "path": "pieces/12-omer-spiral/index.html",
     "thumbnail": "pieces/12-omer-spiral/thumbnail.svg",
     "essay": "pieces/12-omer-spiral/essay.md"
+  },
+  {
+    "id": "15-keter-torah-harmonograph",
+    "title": "Keter Torah",
+    "tagline": "the crown of Torah, written by pendulums in decay",
+    "year": 2026,
+    "theme": "Keter Torah / Crown of Torah",
+    "technique": "harmonograph, dual-pendulum Lissajous decay curves",
+    "path": "pieces/15-keter-torah-harmonograph/index.html",
+    "thumbnail": "pieces/15-keter-torah-harmonograph/thumbnail.svg",
+    "essay": "pieces/15-keter-torah-harmonograph/essay.md"
   }
 ]
