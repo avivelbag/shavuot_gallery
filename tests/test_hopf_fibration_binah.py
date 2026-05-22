@@ -9,8 +9,6 @@ import json
 import math
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "65-hopf-fibration-binah"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)

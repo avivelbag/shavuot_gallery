@@ -416,14 +416,15 @@ gl.blendFunc(gl.ONE, gl.ONE);
 /* ---- Animation ---- */
 let rotY = 0;
 let lastTime = 0;
-let frameTime = 0;
 const TARGET_DT = 1000 / 60;
 
 function frame(now) {
   const rawDt = now - lastTime;
+  /* Skip huge initial dt on first frame. */
+  if (rawDt > 200) { lastTime = now; requestAnimationFrame(frame); return; }
+  /* Cap render rate at 60 fps; request next tick without updating lastTime. */
+  if (rawDt < TARGET_DT) { requestAnimationFrame(frame); return; }
   lastTime = now;
-  /* Skip first frame to avoid huge initial dt. */
-  if (rawDt > 200) { requestAnimationFrame(frame); return; }
 
   rotY += 0.25 * (rawDt / 1000);
 
