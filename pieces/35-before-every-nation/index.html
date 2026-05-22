@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before Every Nation — Mondrian Recursive Subdivision</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #1a1510;
+      color: #e8dcc8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      background: #0f0c08;
+    }
+    #mondrian {
+      display: block;
+      width: 100%; height: 100%;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(15, 12, 8, 0.97);
+      border-left: 1px solid rgba(180, 140, 60, 0.2);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #c8a84a;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(232, 220, 200, 0.6);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+      color: #ddd0bc;
+    }
+    .essay p strong { color: #c8a84a; }
+    .essay p em { color: #e8d89a; font-style: italic; }
+    .essay .source {
+      font-size: 0.78rem;
+      color: rgba(232, 220, 200, 0.45);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(180, 140, 60, 0.15);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 65vw; min-height: 300px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(180,140,60,0.2); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="mondrian"></canvas>
+  </div>
+
+  <div class="essay">
+    <h1>Before Every Nation</h1>
+    <h2>The Torah Offered — and Refused — at the Gates of Each Kingdom</h2>
+
+    <p>Long before Israel stood at the foot of Sinai, the Torah was offered
+    elsewhere. This is not a marginal tradition. It is recorded in two major
+    midrashic collections — <strong>Sifre Devarim, Piska 343</strong> and
+    <strong>Mechilta d'Rabbi Ishmael, Yitro, chapter 5</strong> — and cited
+    across rabbinic literature as the essential context for understanding what
+    Israel's acceptance at Sinai truly meant.</p>
+
+    <p>The midrash unfolds in a precise sequence. God went first to the children
+    of Esau, who asked: <em>What is written in it?</em> God replied:
+    <strong>לֹא תִרְצָח</strong> — <em>You shall not murder</em> (Exodus 20:13).
+    They refused: their founding ancestor Esau was characterised by the sword.
+    Their whole identity was structured around violence, and the Torah's
+    prohibition of murder struck at the core of who they were.</p>
+
+    <p>Next God went to the children of Ammon and Moab. They too asked what was
+    written. God said: <strong>לֹא תִנְאָף</strong> — <em>You shall not commit
+    adultery</em> (Exodus 20:13). They refused: their very origins were bound up
+    with transgression. Then God went to the children of Ishmael. They asked
+    their question and received the answer: <strong>לֹא תִגְנֹב</strong> —
+    <em>You shall not steal</em> (Exodus 20:13). They refused: their ancestor
+    was described as <em>pera adam</em> — a wild man whose hand would be against
+    everyone. One by one, every nation was approached, and every nation found a
+    commandment that cut too close.</p>
+
+    <p>Then God came to Israel. And Israel's answer was entirely different:
+    <strong>נַעֲשֶׂה וְנִשְׁמָע</strong> — <em>we will do and we will hear</em>
+    (Exodus 24:7). They did not ask <em>what is written in it?</em> They
+    committed before knowing the terms.</p>
+
+    <p>The Talmud (<strong>Shabbat 88a</strong>) is thunderstruck by this
+    response. When Israel said <em>naaseh v'nishma</em> — we will do and then
+    we will understand — 600,000 angels descended and placed two crowns on each
+    person's head, one for each word. A philosopher at court told Rav Ashi: <em>you
+    are a rash people, who put your mouths before your ears.</em> Rav Ashi
+    replied: we walked in perfect trust.</p>
+
+    <p>There is a deep tension here that the midrash does not resolve. The
+    nations were not simply evil — they were honest. They saw what the Torah
+    would require and knew they could not accept. Israel, by contrast, agreed
+    without conditions: either extraordinary faith or reckless impulsiveness,
+    depending on how you read it. But the midrash implies something heavier:
+    Israel accepted the Torah on behalf of all the nations who refused. The
+    obligation does not shrink; it expands. To be chosen is not to be
+    privileged but to be held to a standard that every other people declined.</p>
+
+    <p>The rectangles that fill this canvas are those kingdoms. Each is sealed
+    in its own colour — ochre, slate, terracotta, olive. One by one they dim,
+    withdrawn into darkness, not destroyed but sealed off. What remains is a
+    single glowing rectangle, which blooms into warm gold and holds the words
+    <em>naaseh v'nishma</em>. Then the canvas resets and the question asks
+    itself again.</p>
+
+    <p class="source">
+      Sources: Sifre Devarim, Piska 343; Mechilta d'Rabbi Ishmael, Yitro 5;
+      Talmud Bavli, Shabbat 88a–88b; Exodus 24:7.
+    </p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const canvas = document.getElementById("mondrian");
+  const ctx = canvas.getContext("2d");
+
+  const GAP = 3;
+  const PHI = 0.618;
+  const TARGET_RECTS = 48;
+  const SUBDIVIDE_INTERVAL = 130;
+  const DIM_INTERVAL = 220;
+  const BLOOM_DURATION = 1500;
+  const HOLD_DURATION = 2200;
+  const FADE_DURATION = 1000;
+
+  const PALETTE = [
+    "#8B6F47", // ochre
+    "#6B7B8D", // slate
+    "#A05C45", // terracotta
+    "#5C6B42", // olive
+    "#7A5C3A", // dark ochre
+    "#4A5E6A", // dark slate
+    "#8C4A3A", // deep terracotta
+    "#4E5C38", // deep olive
+  ];
+
+  const GOLD_COLOR = "#F5E6A3";
+  const TEXT_COLOR = "#1A2B5F";
+  const DARK_COLOR = "#161008";
+  const HEBREW_TEXT = "נַעֲשֶׂה וְנִשְׁמָע";
+
+  let W, H;
+  let rects = [];
+  let chosenIdx = 0;
+  let phase = "idle";
+  let phaseStart = 0;
+  let dimQueue = [];
+  let dimProgress = {};
+  let bloomProgress = 0;
+  let fadeAlpha = 0;
+  let lastTick = 0;
+  let subdivideCount = 0;
+  let nextSubdivide = 0;
+
+  function resize() {
+    const parent = canvas.parentElement;
+    W = parent.clientWidth;
+    H = parent.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+  }
+
+  function randomFrom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function biasedSplit(lo, hi) {
+    const span = hi - lo;
+    const center = lo + span * 0.5;
+    const bias = lo + span * PHI;
+    const t = Math.random() < 0.5 ? center : bias;
+    const jitter = span * 0.08 * (Math.random() - 0.5);
+    return Math.round(Math.max(lo + span * 0.3, Math.min(hi - span * 0.3, t + jitter)));
+  }
+
+  function buildInitialRects() {
+    rects = [{
+      x: GAP, y: GAP,
+      w: W - 2 * GAP, h: H - 2 * GAP,
+      color: randomFrom(PALETTE),
+      dimmed: false,
+      dimAlpha: 1.0,
+    }];
+    chosenIdx = 0;
+    dimQueue = [];
+    dimProgress = {};
+    bloomProgress = 0;
+    subdivideCount = 0;
+    nextSubdivide = 0;
+  }
+
+  function pickLargest() {
+    let best = 0;
+    let bestArea = rects[0].w * rects[0].h;
+    for (let i = 1; i < rects.length; i++) {
+      const a = rects[i].w * rects[i].h;
+      if (a > bestArea) { bestArea = a; best = i; }
+    }
+    return best;
+  }
+
+  function subdivideOne() {
+    if (rects.length >= TARGET_RECTS) return false;
+    const idx = pickLargest();
+    const r = rects[idx];
+    const splitH = r.w > r.h;
+
+    let newA, newB;
+    if (splitH) {
+      const cut = biasedSplit(r.x, r.x + r.w);
+      newA = { x: r.x, y: r.y, w: cut - r.x - GAP, h: r.h, color: r.color, dimmed: false, dimAlpha: 1.0 };
+      newB = { x: cut, y: r.y, w: r.x + r.w - cut, h: r.h, color: randomFrom(PALETTE), dimmed: false, dimAlpha: 1.0 };
+    } else {
+      const cut = biasedSplit(r.y, r.y + r.h);
+      newA = { x: r.x, y: r.y, w: r.w, h: cut - r.y - GAP, color: r.color, dimmed: false, dimAlpha: 1.0 };
+      newB = { x: r.x, y: cut, w: r.w, h: r.y + r.h - cut, color: randomFrom(PALETTE), dimmed: false, dimAlpha: 1.0 };
+    }
+
+    if (newA.w < 20 || newA.h < 20 || newB.w < 20 || newB.h < 20) return false;
+
+    rects.splice(idx, 1, newA, newB);
+    if (chosenIdx === idx) chosenIdx = rects.indexOf(newA);
+    else if (chosenIdx > idx) chosenIdx += 1;
+    return true;
+  }
+
+  function pickChosenRect() {
+    let bestDist = Infinity;
+    let best = 0;
+    const cx = W / 2, cy = H / 2;
+    for (let i = 0; i < rects.length; i++) {
+      const r = rects[i];
+      const rx = r.x + r.w / 2;
+      const ry = r.y + r.h / 2;
+      const d = (rx - cx) ** 2 + (ry - cy) ** 2;
+      if (d < bestDist) { bestDist = d; best = i; }
+    }
+    return best;
+  }
+
+  function buildDimQueue() {
+    dimQueue = [];
+    for (let i = 0; i < rects.length; i++) {
+      if (i !== chosenIdx) dimQueue.push(i);
+    }
+    dimQueue.sort(() => Math.random() - 0.5);
+    dimProgress = {};
+    for (const i of dimQueue) dimProgress[i] = 1.0;
+  }
+
+  function easeInOut(t) {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  }
+
+  function drawRects(overlayAlpha) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = "#0f0c08";
+    ctx.fillRect(0, 0, W, H);
+
+    for (let i = 0; i < rects.length; i++) {
+      const r = rects[i];
+      if (r.w <= 0 || r.h <= 0) continue;
+
+      let fillColor;
+      if (i === chosenIdx && phase === "bloom") {
+        const t = easeInOut(Math.min(1, bloomProgress));
+        fillColor = lerpColor(r.color, GOLD_COLOR, t);
+      } else if (i === chosenIdx) {
+        fillColor = r.color;
+      } else {
+        const alpha = dimProgress[i] !== undefined ? dimProgress[i] : 1.0;
+        fillColor = lerpColor(DARK_COLOR, r.color, alpha);
+      }
+
+      ctx.fillStyle = fillColor;
+      ctx.fillRect(r.x, r.y, r.w, r.h);
+    }
+
+    if (phase === "bloom" && bloomProgress >= 1.0) {
+      const r = rects[chosenIdx];
+      const fontSize = Math.min(r.w * 0.28, r.h * 0.42, 64);
+      if (fontSize >= 12) {
+        ctx.save();
+        ctx.font = `${fontSize}px 'Noto Serif Hebrew', serif`;
+        ctx.fillStyle = TEXT_COLOR;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.direction = "rtl";
+        const alpha = easeInOut(Math.min(1, (bloomProgress - 1.0) * 2));
+        ctx.globalAlpha = alpha;
+        ctx.fillText(HEBREW_TEXT, r.x + r.w / 2, r.y + r.h / 2);
+        ctx.restore();
+      }
+    }
+
+    if (overlayAlpha > 0) {
+      ctx.fillStyle = `rgba(15,12,8,${overlayAlpha})`;
+      ctx.fillRect(0, 0, W, H);
+    }
+  }
+
+  function lerpColor(a, b, t) {
+    const ra = parseInt(a.slice(1, 3), 16);
+    const ga = parseInt(a.slice(3, 5), 16);
+    const ba = parseInt(a.slice(5, 7), 16);
+    const rb = parseInt(b.slice(1, 3), 16);
+    const gb = parseInt(b.slice(3, 5), 16);
+    const bb = parseInt(b.slice(5, 7), 16);
+    const r = Math.round(ra + (rb - ra) * t);
+    const g = Math.round(ga + (gb - ga) * t);
+    const bl = Math.round(ba + (bb - ba) * t);
+    return `rgb(${r},${g},${bl})`;
+  }
+
+  function startPhase(name, now) {
+    phase = name;
+    phaseStart = now;
+  }
+
+  function loop(now) {
+    requestAnimationFrame(loop);
+    const dt = now - lastTick;
+    lastTick = now;
+
+    if (phase === "idle") {
+      buildInitialRects();
+      startPhase("subdivide", now);
+      return;
+    }
+
+    if (phase === "subdivide") {
+      if (now >= nextSubdivide) {
+        const ok = subdivideOne();
+        if (!ok || rects.length >= TARGET_RECTS) {
+          chosenIdx = pickChosenRect();
+          buildDimQueue();
+          startPhase("dim", now);
+        } else {
+          nextSubdivide = now + SUBDIVIDE_INTERVAL;
+        }
+      }
+      drawRects(0);
+      return;
+    }
+
+    if (phase === "dim") {
+      const elapsed = now - phaseStart;
+      const dimIdx = Math.floor(elapsed / DIM_INTERVAL);
+      for (let i = 0; i < dimQueue.length && i <= dimIdx; i++) {
+        const ri = dimQueue[i];
+        const segStart = i * DIM_INTERVAL;
+        const segEnd = segStart + DIM_INTERVAL;
+        const t = Math.min(1, Math.max(0, (elapsed - segStart) / DIM_INTERVAL));
+        dimProgress[ri] = 1.0 - easeInOut(t);
+      }
+      if (dimIdx >= dimQueue.length) {
+        startPhase("bloom", now);
+        bloomProgress = 0;
+      }
+      drawRects(0);
+      return;
+    }
+
+    if (phase === "bloom") {
+      const elapsed = now - phaseStart;
+      bloomProgress = elapsed / BLOOM_DURATION;
+      drawRects(0);
+      if (bloomProgress >= 2.0) {
+        startPhase("hold", now);
+      }
+      return;
+    }
+
+    if (phase === "hold") {
+      drawRects(0);
+      const elapsed = now - phaseStart;
+      if (elapsed >= HOLD_DURATION) {
+        startPhase("fadeout", now);
+        fadeAlpha = 0;
+      }
+      return;
+    }
+
+    if (phase === "fadeout") {
+      const elapsed = now - phaseStart;
+      fadeAlpha = easeInOut(Math.min(1, elapsed / FADE_DURATION));
+      drawRects(fadeAlpha);
+      if (fadeAlpha >= 1.0) {
+        startPhase("idle", now);
+      }
+      return;
+    }
+  }
+
+  resize();
+  window.addEventListener("resize", () => {
+    resize();
+    if (phase !== "idle") startPhase("idle", performance.now());
+  });
+
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
