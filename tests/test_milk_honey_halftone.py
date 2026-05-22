@@ -7,7 +7,6 @@ canvas 2D halftone technique with the correct palette and animation.
 """
 import json
 import os
-import re
 
 import pytest
 
