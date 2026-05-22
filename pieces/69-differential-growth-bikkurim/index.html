@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First of All Your Yield — Differential Growth / Bikkurim</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #0A2010; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0A2010;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a3018;
+      overflow-y: auto;
+      color: #b8c0a0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #060a06;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a3018; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #C8A020;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #3a4a20;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #C8A020;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+    }
+    .essay-panel em { color: #d4c090; font-style: italic; }
+    .essay-panel strong { color: #C8A020; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #12200a; margin: 2rem 0; }
+
+    .passage-block {
+      background: #040804;
+      border: 1px solid #2a3a04;
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 0 0 1.8rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.2rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #C8A020;
+      line-height: 2.1;
+      margin: 0 0 0.9rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.88rem;
+      color: #708040;
+      font-style: italic;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .passage-block .source {
+      font-size: 0.78rem;
+      color: #3a4010;
+      margin: 0.5rem 0 0;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>First of All Your Yield</h1>
+    <p class="subtitle">differential growth / spring-repulsion curve simulation — Deuteronomy 26:1–11; Mishnah Bikkurim 3:1–4</p>
+
+    <h2>The Declaration</h2>
+
+    <p>Deuteronomy 26 opens with one of the Torah's most intimate legal ceremonies. When you enter
+    the land that God is giving you, you are commanded to take the first ripened fruit of the ground,
+    place it in a basket, and bring it to the Temple. There, before the priest and altar, you recite
+    a declaration known as the <em>Viduy Bikkurim</em> — the first-fruits confession. The
+    declaration begins: "I profess today to the Lord your God that I have come into the land which
+    the Lord swore to our ancestors to give us." What follows is a seven-verse compressed history:
+    the wandering Aramean ancestor, the descent into Egypt, the affliction and the cry, the mighty
+    hand and outstretched arm that brought Israel out, the land of milk and honey.</p>
+
+    <div class="passage-block">
+      <p class="hebrew-text">וְהִנַּחְתּוֹ לִפְנֵי יְיָ אֱלֹהֶיךָ, וְהִשְׁתַּחֲוִיתָ לִפְנֵי יְיָ אֱלֹהֶיךָ. וְשָׂמַחְתָּ בְכָל-הַטּוֹב אֲשֶׁר נָתַן-לְךָ יְיָ אֱלֹהֶיךָ, וּלְבֵיתֶךָ.</p>
+      <p class="english-text">"And you shall set it down before the Lord your God, and bow down before the Lord your God. And you shall rejoice in all the good which the Lord your God has given to you and to your household."</p>
+      <p class="source">— Deuteronomy 26:10–11</p>
+    </div>
+
+    <p>A basket of pomegranates held in trembling hands becomes the occasion for reciting the entire
+    Exodus. The ceremony enacts the double meaning of the word <em>bikkurim</em>: first fruits
+    are both the first of the harvest season and the first time the land's promise has been
+    personally, bodily fulfilled.</p>
+
+    <h2>The Seven Species</h2>
+
+    <p>The ceremony concerns the <em>shivat haminim</em> — the seven species enumerated in
+    Deuteronomy 8:8 as the fruits of the Promised Land: wheat, barley, grapes, figs, pomegranates,
+    olives, and dates. These are not merely agricultural categories; they are the land's
+    biological signature, the proof of divine promise made visible in seed and skin and sweetness.
+    When the farmer brings the first ripened specimen of each species to the Temple, he completes
+    a transaction begun at Sinai: the land produces, the farmer offers, God receives.</p>
+
+    <h2>The Procession</h2>
+
+    <p>The Mishnah in tractate Bikkurim (3:1–4) describes the procession to Jerusalem in
+    remarkable detail. Villages throughout the region gathered into one column at the district
+    capital. An ox with gilded horns and an olive-wreath crown led the way. Before the pilgrims,
+    a flute played. As the procession drew near Jerusalem, word was sent ahead and the
+    first-fruits were freshly adorned. The governors, officers, and treasurers came out to greet
+    them. When the column reached the Temple Mount, Levites sang Psalm 30. The Mishnah records
+    that <em>hachalil makkeh lifneihem</em> — "the flute plays before them" — until they drew near
+    Jerusalem. Merchants and craftsmen rose from their benches to honor the pilgrims as they passed.</p>
+
+    <p>This was not a private offering slipped quietly to a priest. It was a public spectacle, a
+    communal declaration that the land's fertility was a divine gift. The entire city turned out.
+    Shavuot's agricultural dimension — <em>Chag HaKatzir</em>, the Harvest Festival — preceded
+    and grounded its historical dimension, the commemoration of Sinai and the giving of Torah.
+    You bring the first fruit before you can claim the teaching.</p>
+
+    <h2>Differential Growth as Ripening</h2>
+
+    <p>This simulation begins as a seed-circle — twelve nodes, a small promise. Through the
+    repeated application of two simple rules — cohesion toward immediate neighbors, repulsion
+    from all distant nodes — the curve unfolds, folds back on itself, and blooms into something
+    that resembles a ripening fruit: the irregular, abundant silhouette of a pomegranate or fig.
+    No explicit shape is drawn. The form emerges from the tension between wanting to stay
+    together and wanting to expand.</p>
+
+    <p>This is the biological logic of lettuce leaves and brain corals and figs: surfaces that
+    grow faster at their edges than at their centers must fold. The folds are not decorative;
+    they are the only way to accommodate growth within a bounded space. When the curve reaches
+    full maturity — a thousand nodes pressed against each other in layered folds — the simulation
+    fades and the seed appears again, and the process begins once more.</p>
+
+    <p>The farmer who walks the first pomegranate up to Jerusalem does not design the fruit. He
+    plants, he tends, and then he witnesses something become gloriously complex through the laws
+    of biology. Both processes — differential growth and the ripening of the first fruits — are
+    self-organizing systems that produce wonder from simple origins. The offering acknowledges
+    this: the abundance did not come from the farmer's cleverness alone.</p>
+
+    <hr>
+
+    <p style="font-size: 0.82rem; color: #2a3a10;">
+    Sources: Deuteronomy 26:1–11; Deuteronomy 8:8; Mishnah Bikkurim 3:1–4; Numbers 28:26.
+    </p>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const W = 700;
+const H = 700;
+canvas.width = W;
+canvas.height = H;
+
+const REPULSION_RADIUS = 30;
+const REPULSION_STRENGTH = 0.4;
+const SPRING_K = 0.4;
+const DAMPING = 0.4;
+const DT = 1.0;
+const MARGIN = 20;
+const BOUNDARY_STRENGTH = 0.3;
+const RESTART_THRESHOLD = 1100;
+const FADE_FRAMES = 60;
+
+let nodes = [];
+let fadeFrame = 0;
+let fading = false;
+
+/** Initialize a circle of N_INIT nodes at radius R centered at canvas center. */
+function initNodes() {
+  nodes = [];
+  const N_INIT = 12;
+  const R = 40;
+  const CX = W / 2;
+  const CY = H / 2;
+  for (let i = 0; i < N_INIT; i++) {
+    const t = (2 * Math.PI * i) / N_INIT;
+    nodes.push({ x: CX + R * Math.cos(t), y: CY + R * Math.sin(t), vx: 0, vy: 0 });
+  }
+}
+
+/**
+ * Maximum edge length before subdivision. Ramps down from 18px to 8px
+ * as the curve grows toward RESTART_THRESHOLD nodes, allowing fine-grained
+ * detail to accumulate over time.
+ */
+function getMaxEdge() {
+  return Math.max(8, 18 - (10 * nodes.length) / RESTART_THRESHOLD);
+}
+
+/**
+ * Fill color lerped from harvest gold #C8A020 to ripe amber #D4600A
+ * as the node count increases toward 1000, simulating the color shift
+ * of ripening fruit.
+ */
+function getFillColor() {
+  const t = Math.min(1, nodes.length / 1000);
+  const r = Math.round(200 + 12 * t);
+  const g = Math.round(160 - 64 * t);
+  const b = Math.round(32 - 22 * t);
+  return `rgb(${r},${g},${b})`;
+}
+
+/**
+ * One simulation step: repulsion, cohesion, boundary, node insertion.
+ *
+ * Repulsion: O(n²) over all non-neighbor pairs within REPULSION_RADIUS.
+ * Cohesion: discrete Laplacian spring toward the two neighbors.
+ * Boundary: linear push back from canvas edges within MARGIN.
+ * Insertion: split any edge longer than getMaxEdge(), backwards to avoid
+ *            index shifting affecting unprocessed nodes.
+ */
+function growthStep() {
+  const N = nodes.length;
+  const RR = REPULSION_RADIUS * REPULSION_RADIUS;
+
+  /* Repulsion — iterate all (i,j) pairs where j >= i+2,
+     skipping the wrap-around neighbor pair (0, N-1). */
+  for (let i = 0; i < N; i++) {
+    const jLimit = i === 0 ? N - 1 : N;
+    for (let j = i + 2; j < jLimit; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 < RR && d2 > 0.01) {
+        const f = REPULSION_STRENGTH / d2;
+        nodes[i].vx += dx * f;
+        nodes[i].vy += dy * f;
+        nodes[j].vx -= dx * f;
+        nodes[j].vy -= dy * f;
+      }
+    }
+  }
+
+  /* Cohesion — discrete Laplacian: pull each node toward the midpoint
+     of its two circular neighbors. */
+  for (let i = 0; i < N; i++) {
+    const prev = nodes[(i - 1 + N) % N];
+    const next = nodes[(i + 1) % N];
+    nodes[i].vx += (prev.x + next.x - 2 * nodes[i].x) * SPRING_K;
+    nodes[i].vy += (prev.y + next.y - 2 * nodes[i].y) * SPRING_K;
+  }
+
+  /* Integrate + damping + boundary repulsion. */
+  for (const n of nodes) {
+    n.x += n.vx * DT;
+    n.y += n.vy * DT;
+    n.vx *= DAMPING;
+    n.vy *= DAMPING;
+    if (n.x < MARGIN) n.vx += BOUNDARY_STRENGTH;
+    else if (n.x > W - MARGIN) n.vx -= BOUNDARY_STRENGTH;
+    if (n.y < MARGIN) n.vy += BOUNDARY_STRENGTH;
+    else if (n.y > H - MARGIN) n.vy -= BOUNDARY_STRENGTH;
+  }
+
+  /* Insert midpoint nodes at any edge exceeding MAX_EDGE.
+     Iterate backwards so insertions at i+1 don't shift unprocessed indices. */
+  const maxEdge2 = getMaxEdge() ** 2;
+  for (let i = nodes.length - 1; i >= 0; i--) {
+    const next = nodes[(i + 1) % nodes.length];
+    const dx = next.x - nodes[i].x;
+    const dy = next.y - nodes[i].y;
+    if (dx * dx + dy * dy > maxEdge2) {
+      nodes.splice(i + 1, 0, {
+        x: (nodes[i].x + next.x) / 2,
+        y: (nodes[i].y + next.y) / 2,
+        vx: 0,
+        vy: 0,
+      });
+    }
+  }
+}
+
+/** Render the filled closed polygon and the Hebrew caption. */
+function drawFrame() {
+  ctx.fillStyle = '#0A2010';
+  ctx.fillRect(0, 0, W, H);
+
+  if (nodes.length >= 2) {
+    ctx.beginPath();
+    ctx.moveTo(nodes[0].x, nodes[0].y);
+    for (let i = 1; i < nodes.length; i++) {
+      ctx.lineTo(nodes[i].x, nodes[i].y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = getFillColor();
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(240,232,208,0.6)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  ctx.save();
+  ctx.font = '14px "Times New Roman", Georgia, serif';
+  ctx.fillStyle = 'rgba(200,160,32,0.7)';
+  ctx.textAlign = 'center';
+  ctx.direction = 'rtl';
+  ctx.fillText('רֵאשִׁית כָּל בִּכּוּרֵי אַדְמָתְךָ', W / 2, H - 14);
+  ctx.restore();
+}
+
+initNodes();
+
+let last = 0;
+const FRAME_MS = 1000 / 60;
+
+function loop(ts) {
+  if (ts - last >= FRAME_MS) {
+    last = ts;
+
+    if (fading) {
+      /* Gradually paint over with the background color to fade out. */
+      ctx.fillStyle = `rgba(10,32,16,${4 / FADE_FRAMES})`;
+      ctx.fillRect(0, 0, W, H);
+      fadeFrame++;
+      if (fadeFrame >= FADE_FRAMES) {
+        fading = false;
+        fadeFrame = 0;
+        initNodes();
+      }
+    } else {
+      growthStep();
+      drawFrame();
+      if (nodes.length >= RESTART_THRESHOLD) {
+        fading = true;
+      }
+    }
+  }
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

@@ -999,5 +999,27 @@
     "path": "pieces/67-particle-life-bikkurim-procession/index.html",
     "thumbnail": "pieces/67-particle-life-bikkurim-procession/thumbnail.svg",
     "essay": "pieces/67-particle-life-bikkurim-procession/essay.md"
+  },
+  {
+    "id": "68-particle-life-bikkurim-procession",
+    "title": "The Flute Plays Before Them",
+    "tagline": "three species — pilgrims, musicians, escort — self-organize into a rightward procession through pairwise attraction rules alone",
+    "year": 2026,
+    "theme": "Bikkurim",
+    "technique": "particle life / multi-species attraction-repulsion",
+    "path": "pieces/68-particle-life-bikkurim-procession/index.html",
+    "thumbnail": "pieces/68-particle-life-bikkurim-procession/thumbnail.svg",
+    "essay": "pieces/68-particle-life-bikkurim-procession/essay.md"
+  },
+  {
+    "id": "69-differential-growth-bikkurim",
+    "title": "First of All Your Yield",
+    "tagline": "a seed-circle blooms into a fruit-like folded shape through differential growth — the ripening of the first fruits enacted as self-organizing biology",
+    "year": 2026,
+    "theme": "Bikkurim / First Fruits and Harvest",
+    "technique": "differential growth / spring-repulsion curve simulation",
+    "path": "pieces/69-differential-growth-bikkurim/index.html",
+    "thumbnail": "pieces/69-differential-growth-bikkurim/thumbnail.svg",
+    "essay": "pieces/69-differential-growth-bikkurim/essay.md"
   }
 ]
