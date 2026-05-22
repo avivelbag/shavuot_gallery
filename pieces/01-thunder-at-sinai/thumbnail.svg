@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Sky background -->
+  <rect width="400" height="400" fill="#0a0a12"/>
+
+  <!-- Stars -->
+  <circle cx="40" cy="30" r="1" fill="#d0e8ff" opacity="0.6"/>
+  <circle cx="90" cy="15" r="1.2" fill="#d0e8ff" opacity="0.5"/>
+  <circle cx="150" cy="40" r="0.8" fill="#d0e8ff" opacity="0.7"/>
+  <circle cx="220" cy="20" r="1" fill="#d0e8ff" opacity="0.5"/>
+  <circle cx="300" cy="35" r="1.2" fill="#d0e8ff" opacity="0.6"/>
+  <circle cx="360" cy="18" r="0.9" fill="#d0e8ff" opacity="0.4"/>
+  <circle cx="70" cy="70" r="0.7" fill="#d0e8ff" opacity="0.5"/>
+  <circle cx="340" cy="60" r="1" fill="#d0e8ff" opacity="0.6"/>
+  <circle cx="180" cy="10" r="0.8" fill="#d0e8ff" opacity="0.4"/>
+
+  <!-- Mountain silhouette -->
+  <polygon
+    points="0,400 60,400 80,340 110,280 130,240 160,200 200,150 240,200 270,240 295,280 320,340 340,400 400,400"
+    fill="#1a1a2e"
+  />
+  <!-- Inner mountain peak shadows -->
+  <polygon
+    points="160,200 200,150 240,200 220,210 200,170 180,210"
+    fill="#0f0f1e"
+  />
+
+  <!-- Fire glow at peak -->
+  <radialGradient id="fireGlow" cx="50%" cy="100%" r="60%">
+    <stop offset="0%" stop-color="#ffd700" stop-opacity="0.9"/>
+    <stop offset="40%" stop-color="#ff6a00" stop-opacity="0.6"/>
+    <stop offset="100%" stop-color="#ff6a00" stop-opacity="0"/>
+  </radialGradient>
+  <ellipse cx="200" cy="150" rx="40" ry="25" fill="url(#fireGlow)"/>
+
+  <!-- Fire flames -->
+  <path d="M192,150 Q188,135 196,128 Q192,120 200,115 Q208,120 204,128 Q212,135 208,150 Z"
+        fill="#ffd700" opacity="0.9"/>
+  <path d="M196,150 Q193,140 198,133 Q196,126 202,122 Q207,127 204,134 Q209,140 206,150 Z"
+        fill="#ff6a00" opacity="0.7"/>
+
+  <!-- Smoke wisps -->
+  <ellipse cx="195" cy="108" rx="6" ry="4" fill="rgba(160,140,120,0.3)" transform="rotate(-10,195,108)"/>
+  <ellipse cx="205" cy="100" rx="5" ry="3.5" fill="rgba(160,140,120,0.25)" transform="rotate(8,205,100)"/>
+  <ellipse cx="198" cy="92" rx="7" ry="4" fill="rgba(160,140,120,0.2)" transform="rotate(-5,198,92)"/>
+
+  <!-- Lightning bolt - main trunk -->
+  <polyline
+    points="200,30 188,80 202,90 185,145 200,150"
+    stroke="#d0e8ff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.95"
+  />
+  <!-- Lightning glow -->
+  <polyline
+    points="200,30 188,80 202,90 185,145 200,150"
+    stroke="#a0c8ff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.3"
+  />
+
+  <!-- Branch 1 -->
+  <polyline
+    points="188,80 170,100 160,115"
+    stroke="#d0e8ff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.8"
+  />
+  <!-- Branch 2 -->
+  <polyline
+    points="202,90 220,108 230,120"
+    stroke="#d0e8ff" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.75"
+  />
+  <!-- Sub-branch -->
+  <polyline
+    points="170,100 155,108 148,118"
+    stroke="#d0e8ff" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.6"
+  />
+</svg>
