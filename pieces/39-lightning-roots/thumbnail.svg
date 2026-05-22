@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <radialGradient id="glow1" cx="50%" cy="10%" r="55%">
+      <stop offset="0%" stop-color="#1133AA" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#080810" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080810"/>
+      <stop offset="100%" stop-color="#0A0A18"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGrad)"/>
+  <!-- Ambient glow from top -->
+  <rect width="400" height="300" fill="url(#glow1)"/>
+
+  <!-- Mountain silhouette -->
+  <polygon points="200,255 50,300 350,300" fill="#1A1A2A"/>
+  <!-- Mountain secondary ridge -->
+  <polygon points="200,255 100,300 300,300" fill="#151525"/>
+
+  <!-- Main trunk -->
+  <line x1="200" y1="5" x2="200" y2="255" stroke="#EEEEFF" stroke-width="1.5"
+        opacity="0.9" filter="url(#glow)"/>
+
+  <!-- Level 1 branches -->
+  <line x1="200" y1="60" x2="155" y2="115" stroke="#CCCCFF" stroke-width="1.2" opacity="0.85" filter="url(#softglow)"/>
+  <line x1="200" y1="60" x2="245" y2="120" stroke="#CCCCFF" stroke-width="1.2" opacity="0.85" filter="url(#softglow)"/>
+  <line x1="200" y1="100" x2="170" y2="145" stroke="#BBBBFF" stroke-width="1.0" opacity="0.80"/>
+  <line x1="200" y1="100" x2="228" y2="148" stroke="#BBBBFF" stroke-width="1.0" opacity="0.80"/>
+  <line x1="200" y1="140" x2="178" y2="178" stroke="#AAAAFF" stroke-width="0.9" opacity="0.75"/>
+  <line x1="200" y1="140" x2="218" y2="180" stroke="#AAAAFF" stroke-width="0.9" opacity="0.75"/>
+
+  <!-- Level 2 sub-branches left -->
+  <line x1="155" y1="115" x2="128" y2="150" stroke="#9988EE" stroke-width="0.9" opacity="0.75" filter="url(#softglow)"/>
+  <line x1="155" y1="115" x2="168" y2="148" stroke="#9988EE" stroke-width="0.9" opacity="0.70"/>
+  <line x1="128" y1="150" x2="108" y2="178" stroke="#8866DD" stroke-width="0.8" opacity="0.65"/>
+  <line x1="128" y1="150" x2="138" y2="180" stroke="#8866DD" stroke-width="0.7" opacity="0.60"/>
+  <line x1="108" y1="178" x2="95"  y2="200" stroke="#7755CC" stroke-width="0.7" opacity="0.58"/>
+  <line x1="108" y1="178" x2="116" y2="202" stroke="#7755CC" stroke-width="0.6" opacity="0.52"/>
+
+  <!-- Level 2 sub-branches right -->
+  <line x1="245" y1="120" x2="270" y2="155" stroke="#9988EE" stroke-width="0.9" opacity="0.75" filter="url(#softglow)"/>
+  <line x1="245" y1="120" x2="232" y2="150" stroke="#9988EE" stroke-width="0.9" opacity="0.70"/>
+  <line x1="270" y1="155" x2="288" y2="182" stroke="#8866DD" stroke-width="0.8" opacity="0.65"/>
+  <line x1="270" y1="155" x2="260" y2="183" stroke="#8866DD" stroke-width="0.7" opacity="0.60"/>
+  <line x1="288" y1="182" x2="300" y2="205" stroke="#7755CC" stroke-width="0.7" opacity="0.58"/>
+  <line x1="288" y1="182" x2="278" y2="206" stroke="#7755CC" stroke-width="0.6" opacity="0.52"/>
+
+  <!-- Level 3 fine tips (violet toward roots) -->
+  <line x1="95"  y1="200" x2="82"  y2="218" stroke="#6644BB" stroke-width="0.6" opacity="0.50"/>
+  <line x1="95"  y1="200" x2="100" y2="220" stroke="#6644BB" stroke-width="0.6" opacity="0.45"/>
+  <line x1="116" y1="202" x2="112" y2="222" stroke="#6644BB" stroke-width="0.5" opacity="0.42"/>
+  <line x1="300" y1="205" x2="308" y2="222" stroke="#6644BB" stroke-width="0.6" opacity="0.50"/>
+  <line x1="300" y1="205" x2="295" y2="224" stroke="#6644BB" stroke-width="0.6" opacity="0.45"/>
+  <line x1="278" y1="206" x2="274" y2="225" stroke="#6644BB" stroke-width="0.5" opacity="0.42"/>
+
+  <!-- Mid-level extras -->
+  <line x1="170" y1="148" x2="158" y2="172" stroke="#9977EE" stroke-width="0.7" opacity="0.55"/>
+  <line x1="170" y1="148" x2="176" y2="175" stroke="#9977EE" stroke-width="0.6" opacity="0.50"/>
+  <line x1="232" y1="150" x2="220" y2="175" stroke="#9977EE" stroke-width="0.7" opacity="0.55"/>
+  <line x1="232" y1="150" x2="238" y2="177" stroke="#9977EE" stroke-width="0.6" opacity="0.50"/>
+
+  <!-- Faint blue-purple ambient glow dots around branches -->
+  <circle cx="155" cy="115" r="3.5" fill="#1133AA" opacity="0.18"/>
+  <circle cx="245" cy="120" r="3"   fill="#1133AA" opacity="0.15"/>
+  <circle cx="128" cy="150" r="2.5" fill="#2244BB" opacity="0.14"/>
+  <circle cx="270" cy="155" r="2.5" fill="#2244BB" opacity="0.14"/>
+  <circle cx="108" cy="178" r="2"   fill="#3355CC" opacity="0.12"/>
+  <circle cx="288" cy="182" r="2"   fill="#3355CC" opacity="0.12"/>
+</svg>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lightning Roots — Lichtenberg at Sinai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #080810;
+      color: #c8c8e8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      background: #080810;
+    }
+    #dbmCanvas {
+      display: block;
+      width: 100%; height: 100%;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2rem 1.8rem 2rem 1.6rem;
+      background: #080810;
+      border-left: 1px solid rgba(136, 85, 255, 0.2);
+    }
+    .essay h1 {
+      font-size: 1.1rem;
+      color: #AAAAFF;
+      margin: 0 0 1.2rem 0;
+      font-weight: normal;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+    .essay h2 {
+      font-size: 0.95rem;
+      color: #8855FF;
+      margin: 1.4rem 0 0.7rem 0;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+    }
+    .essay p {
+      font-size: 0.86rem;
+      line-height: 1.80;
+      margin: 0 0 0.9rem 0;
+      color: #a8a8cc;
+    }
+    .essay blockquote {
+      margin: 0.3rem 0 0.9rem 1rem;
+      padding-left: 0.9rem;
+      border-left: 2px solid rgba(136, 85, 255, 0.4);
+    }
+    .essay blockquote p {
+      font-style: italic;
+      color: #8888bb;
+      margin: 0 0 0.4rem 0;
+    }
+    .essay .citation {
+      font-size: 0.97rem;
+      color: #AAAAFF;
+      direction: rtl;
+      text-align: right;
+      margin: 0.1rem 0 0.15rem 0;
+      line-height: 1.7;
+    }
+    .essay strong { color: #AAAAFF; }
+    .essay em { color: #9999cc; }
+    .essay hr {
+      border: none;
+      border-top: 1px solid rgba(136,85,255,0.15);
+      margin: 1.2rem 0;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; }
+      .artwork { flex: none; height: 70vw; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(136,85,255,0.2); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="artwork">
+      <canvas id="dbmCanvas"></canvas>
+    </div>
+    <div class="essay">
+      <h1>Lightning Roots — Lichtenberg at Sinai</h1>
+
+      <p><strong>Exodus 19:16–19</strong></p>
+      <p class="citation">וַיְהִי בַיּוֹם הַשְּׁלִישִׁי בִּהְיֹת הַבֹּקֶר וַיְהִי קֹלֹת וּבְרָקִים וְעָנָן כָּבֵד עַל הָהָר וְקֹל שֹׁפָר חָזָק מְאֹד</p>
+      <p>"And it came to pass on the third day, when it was morning, that there were thunders and lightnings and a thick cloud upon the mount, and the voice of the shofar exceeding loud."</p>
+      <p class="citation">וְקוֹל הַשֹּׁפָר הוֹלֵךְ וְחָזֵק מְאֹד</p>
+      <p>"And the voice of the shofar grew louder and louder exceedingly."</p>
+
+      <p>On the morning of the third day, the mountain was wrapped in cloud and fire and the sound of a shofar growing, impossibly, louder with each passing moment. Natural thunder begins with a crack and fades. The shofar at Sinai inverted this law: it grew. Rashi, commenting on <em>הוֹלֵךְ וְחָזֵק</em>, notes that this was one of the signs distinguishing the revelation from every earthly phenomenon — the sound increased where it should have diminished, announcing that its source was not physical resonance but divine speech.</p>
+
+      <p>The Mechilta de-Rabbi Ishmael on this verse counts the voices — <em>kolot</em> — not as overlapping noise but as distinct utterances, each one a separate divine communication. "Every single commandment that issued from the mouth of the Holy One split into seventy voices, and each voice went out to seventy nations in their languages." The single overwhelming sound at Sinai was simultaneously seventy communications, infinitely branched. What the Israelites experienced as thunder was structured: a tree of voice, each branch a complete message.</p>
+
+      <hr>
+
+      <h2>The Branching Geometry of Revelation</h2>
+
+      <p>The Dielectric Breakdown Model simulates the growth of electric discharge through an insulating medium. The algorithm maintains a grid of potential values — high at one pole, low at another — and models lightning as a tree that grows probabilistically. At each step, a candidate cell on the boundary of the existing discharge tree is selected with probability proportional to its local electric potential raised to a power η. The resulting forms — Lichtenberg figures — are the exact shapes of real lightning, and of the dendritic growths found in snowflakes, river deltas, and lung bronchi.</p>
+
+      <p>The Lichtenberg figure is a fractal: zoom into any branch and the same pattern of subdivision repeats. The Maharal of Prague, in <em>Tiferet Yisrael</em> (chapter 25), describes Torah as a tree of life in which every root law contains all its derivative applications already present in seed form. The tree of Torah law branches by the same self-similar logic as the electric discharge.</p>
+
+      <p class="citation">עֵץ חַיִּים הִיא לַמַּחֲזִיקִים בָּהּ</p>
+      <p>"It is a tree of life to those who hold fast to it." (Proverbs 3:18)</p>
+
+      <h2>Sinai and the Lichtenberg Figure</h2>
+
+      <p>The lightning in this piece grows downward, rooting into the mountain rather than striking from a cloud. The revelation at Sinai was a discharge from above into the ground — divine speech entering the material world through a mountain, through stone tablets, through letters engraved into rock. The tree grows from heaven downward and roots itself in the peak of Sinai.</p>
+
+      <p>Each growth cycle is seeded fresh. The DBM algorithm is stochastic: the same parameters produce a different tree each time, because the probabilistic branching at each step accumulates differently. In the same way, the Mechilta teaches that though the Torah was given once, each Jew at Sinai heard it according to the capacity of their soul — the same revelation branching differently into every individual. The randomness in the branching is the point: the revelation was both single and infinitely individuated.</p>
+
+      <p>When the tree completes — when it roots into the mountain — the image holds briefly, then fades. A new cycle begins. There is no final Lichtenberg figure. There is only the act of branching.</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('dbmCanvas');
+    const ctx = canvas.getContext('2d');
+    const artwork = canvas.parentElement;
+
+    /* DBM grid dimensions in logical pixels. Canvas is rendered at SCALE× */
+    const W = 240;
+    const H = 320;
+    const SCALE = 3;
+    const ETA = 1.7;  /* potential exponent — controls branching width */
+
+    /* Potential grid: Float32Array indexed [y * W + x]. Values in [0, 1]. */
+    let potential = new Float32Array(W * H);
+
+    /* Discharge grid: Uint8Array — 1 if this cell is part of the tree. */
+    let discharge = new Uint8Array(W * H);
+
+    /* Candidate frontier: cells adjacent to discharge but not discharged. */
+    let frontier = new Set();
+
+    /* DBM root x-coordinate (top-center) */
+    const ROOT_X = Math.floor(W / 2);
+    const ROOT_Y = 0;
+
+    /* Mountain apex in logical coords (bottom 15% of grid) */
+    const MTN_APEX_X = Math.floor(W / 2);
+    const MTN_APEX_Y = Math.floor(H * 0.85);
+
+    /* Cells grown per animation frame */
+    const STEPS_PER_FRAME = 6;
+
+    /* Gauss-Seidel relaxation sweeps after each discharge step */
+    const RELAX_SWEEPS = 6;
+
+    /* Phase state */
+    let phase = 'growing';   /* 'growing' | 'fading' */
+    let fadeAlpha = 1.0;
+    let treeReachedBottom = false;
+
+    /* Offscreen ImageData for the DBM grid */
+    let imgData = null;
+
+    function initGrid() {
+      potential.fill(0);
+      discharge.fill(0);
+      frontier.clear();
+      treeReachedBottom = false;
+      phase = 'growing';
+      fadeAlpha = 1.0;
+
+      /* Top row: high potential (source) */
+      for (let x = 0; x < W; x++) potential[0 * W + x] = 1.0;
+
+      /* Bottom row: low potential (sink) — already 0 */
+
+      /* Seed discharge at top-center */
+      discharge[ROOT_Y * W + ROOT_X] = 1;
+      potential[ROOT_Y * W + ROOT_X] = 0;
+
+      addNeighborsToFrontier(ROOT_X, ROOT_Y);
+
+      /* Run many relaxation sweeps to establish initial potential field */
+      for (let s = 0; s < 40; s++) relaxSweep();
+
+      imgData = ctx.createImageData(W, H);
+    }
+
+    function addNeighborsToFrontier(x, y) {
+      const neighbors = [[x-1,y],[x+1,y],[x,y-1],[x,y+1]];
+      for (const [nx, ny] of neighbors) {
+        if (nx < 0 || nx >= W || ny < 0 || ny >= H) continue;
+        const idx = ny * W + nx;
+        if (!discharge[idx]) frontier.add(idx);
+      }
+    }
+
+    /* One Gauss-Seidel sweep over interior cells (not discharge, not boundary). */
+    function relaxSweep() {
+      for (let y = 1; y < H - 1; y++) {
+        for (let x = 1; x < W - 1; x++) {
+          const idx = y * W + x;
+          if (discharge[idx]) continue;
+          potential[idx] = 0.25 * (
+            potential[idx - 1] +
+            potential[idx + 1] +
+            potential[idx - W] +
+            potential[idx + W]
+          );
+        }
+      }
+      /* Restore boundary conditions after sweep */
+      for (let x = 0; x < W; x++) potential[0 * W + x] = 1.0;
+    }
+
+    /* Pick one frontier cell by weighted random draw: p(cell) ∝ V(cell)^ETA. */
+    function pickFrontierCell() {
+      let total = 0;
+      const cells = Array.from(frontier);
+      const weights = new Float64Array(cells.length);
+      for (let i = 0; i < cells.length; i++) {
+        const v = potential[cells[i]];
+        weights[i] = Math.pow(Math.max(v, 1e-9), ETA);
+        total += weights[i];
+      }
+      let r = Math.random() * total;
+      for (let i = 0; i < cells.length; i++) {
+        r -= weights[i];
+        if (r <= 0) return cells[i];
+      }
+      return cells[cells.length - 1];
+    }
+
+    /* Grow one discharge step: pick a cell, mark it, relax. */
+    function growStep() {
+      if (frontier.size === 0) return;
+      const idx = pickFrontierCell();
+      frontier.delete(idx);
+      discharge[idx] = 1;
+      potential[idx] = 0;
+
+      const x = idx % W;
+      const y = Math.floor(idx / W);
+      addNeighborsToFrontier(x, y);
+
+      for (let s = 0; s < RELAX_SWEEPS; s++) relaxSweep();
+
+      if (y >= MTN_APEX_Y) treeReachedBottom = true;
+    }
+
+    /* Map a discharge cell's depth (y / H) to an RGBA color.
+       Top (y=0): electric white (#EEEEFF)
+       Mid:       violet (#8855FF)
+       Bottom:    deep violet near roots */
+    function dischargeColor(ynorm, out) {
+      /* ynorm: 0 = top (tip), 1 = bottom (root near mountain) */
+      const t = Math.max(0, Math.min(1, ynorm));
+      /* white → violet → deep violet */
+      if (t < 0.5) {
+        const f = t * 2;
+        out[0] = Math.round(0xEE + f * (0x88 - 0xEE));
+        out[1] = Math.round(0xEE + f * (0x55 - 0xEE));
+        out[2] = Math.round(0xFF + f * (0xFF - 0xFF));
+      } else {
+        const f = (t - 0.5) * 2;
+        out[0] = Math.round(0x88 + f * (0x44 - 0x88));
+        out[1] = Math.round(0x55 + f * (0x22 - 0x55));
+        out[2] = 0xFF;
+      }
+    }
+
+    /* Render discharge and mountain silhouette into the offscreen ImageData,
+       then blit it to the canvas scaled up by SCALE. */
+    function render(alpha) {
+      const d = imgData.data;
+      /* Clear to background */
+      for (let i = 0; i < d.length; i += 4) {
+        d[i] = 0x08; d[i+1] = 0x08; d[i+2] = 0x10; d[i+3] = 255;
+      }
+
+      const color = new Uint8Array(3);
+
+      /* Draw discharge cells */
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const idx = y * W + x;
+          if (!discharge[idx]) continue;
+          const ynorm = y / H;
+          dischargeColor(ynorm, color);
+          const pi = (y * W + x) * 4;
+          d[pi]   = color[0];
+          d[pi+1] = color[1];
+          d[pi+2] = color[2];
+          d[pi+3] = Math.round(255 * alpha);
+          /* Glow: spread one pixel in each direction with lower alpha */
+          const glowA = Math.round(80 * alpha);
+          const neighbors = [[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[1,-1],[-1,1],[1,1]];
+          for (const [dx, dy] of neighbors) {
+            const gx = x + dx, gy = y + dy;
+            if (gx < 0 || gx >= W || gy < 0 || gy >= H) continue;
+            const gi = (gy * W + gx) * 4;
+            if (!discharge[gy * W + gx]) {
+              d[gi]   = Math.min(255, d[gi]   + Math.round(0x11 * alpha));
+              d[gi+1] = Math.min(255, d[gi+1] + Math.round(0x11 * alpha));
+              d[gi+2] = Math.min(255, d[gi+2] + Math.round(0x44 * alpha));
+              d[gi+3] = 255;
+            }
+          }
+        }
+      }
+
+      /* Draw mountain silhouette at bottom 15% */
+      const mtnTop = MTN_APEX_Y;
+      const mtnBase = H;
+      const mtnLeft = 0;
+      const mtnRight = W - 1;
+      /* Simple triangle: apex at center, base at bottom */
+      for (let y = mtnTop; y < mtnBase; y++) {
+        const frac = (y - mtnTop) / (mtnBase - mtnTop);
+        /* Width grows linearly from 0 at apex to full at base */
+        const halfWidth = Math.round(frac * (W / 2));
+        const xLeft = MTN_APEX_X - halfWidth;
+        const xRight = MTN_APEX_X + halfWidth;
+        for (let x = xLeft; x <= xRight; x++) {
+          if (x < 0 || x >= W) continue;
+          const pi = (y * W + x) * 4;
+          /* Mountain color: dark slate #1A1A2A */
+          d[pi]   = 0x1A;
+          d[pi+1] = 0x1A;
+          d[pi+2] = 0x2A;
+          d[pi+3] = 255;
+        }
+      }
+
+      ctx.putImageData(imgData, 0, 0);
+    }
+
+    function resize() {
+      canvas.width = W;
+      canvas.height = H;
+      canvas.style.width = artwork.clientWidth + 'px';
+      canvas.style.height = artwork.clientHeight + 'px';
+    }
+
+    let lastTime = 0;
+    const FADE_DURATION = 3000;
+    let fadeStartTime = 0;
+
+    /* Hold time after tree completes before fading (ms) */
+    const HOLD_MS = 800;
+    let holdStart = 0;
+    let inHold = false;
+
+    function animate(ts) {
+      requestAnimationFrame(animate);
+
+      if (phase === 'growing') {
+        if (!treeReachedBottom) {
+          for (let s = 0; s < STEPS_PER_FRAME; s++) growStep();
+          render(1.0);
+        } else if (!inHold) {
+          render(1.0);
+          inHold = true;
+          holdStart = ts;
+        } else if (ts - holdStart >= HOLD_MS) {
+          phase = 'fading';
+          fadeStartTime = ts;
+          inHold = false;
+        }
+      } else if (phase === 'fading') {
+        const elapsed = ts - fadeStartTime;
+        const alpha = Math.max(0, 1 - elapsed / FADE_DURATION);
+        render(alpha);
+        if (alpha <= 0) {
+          initGrid();
+        }
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      resize();
+      imgData = ctx.createImageData(W, H);
+    });
+
+    resize();
+    initGrid();
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

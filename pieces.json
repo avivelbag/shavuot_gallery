@@ -416,5 +416,16 @@
     "path": "pieces/39-voice-in-seventy-tongues/index.html",
     "thumbnail": "pieces/39-voice-in-seventy-tongues/thumbnail.svg",
     "essay": "pieces/39-voice-in-seventy-tongues/essay.md"
+  },
+  {
+    "id": "39-lightning-roots",
+    "title": "Lightning Roots",
+    "tagline": "Lichtenberg figures root into Sinai — the branching geometry of revelation",
+    "year": 2026,
+    "theme": "Har Sinai / The Theophany — Exodus 19:16–19",
+    "technique": "canvas 2D — Dielectric Breakdown Model (DBM), Lichtenberg figure simulation, ImageData pixel painting",
+    "path": "pieces/39-lightning-roots/index.html",
+    "thumbnail": "pieces/39-lightning-roots/thumbnail.svg",
+    "essay": "pieces/39-lightning-roots/essay.md"
   }
 ]
