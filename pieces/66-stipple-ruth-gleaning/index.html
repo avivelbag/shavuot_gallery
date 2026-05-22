@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>And She Gleaned in the Field — Ruth 2</title>
+  <title>The Stranger Who Chose In</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; height: 100%; }
@@ -300,7 +300,7 @@
       if (sumW[i] > 0) {
         next[i] = [sumX[i] / sumW[i], sumY[i] / sumW[i]];
       } else {
-        // Dot in empty region — resample at random position weighted by density
+        // Dot in a zero-weight region — keep it in place rather than resampling
         next[i] = dots[i].slice();
       }
     }
