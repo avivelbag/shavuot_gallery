@@ -647,5 +647,16 @@
     "path": "pieces/51-luchot-hashevurim/index.html",
     "thumbnail": "pieces/51-luchot-hashevurim/thumbnail.svg",
     "essay": "pieces/51-luchot-hashevurim/essay.md"
+  },
+  {
+    "id": "51-torah-like-rain",
+    "title": "Let My Teaching Fall Like Rain",
+    "tagline": "Torah rains down as Hebrew letters, each impact rippling outward like teaching spreading beyond the learner",
+    "year": 2026,
+    "theme": "Torah as Water",
+    "technique": "raindrop particle simulation with ripple waves",
+    "path": "pieces/51-torah-like-rain/index.html",
+    "thumbnail": "pieces/51-torah-like-rain/thumbnail.svg",
+    "essay": "pieces/51-torah-like-rain/essay.md"
   }
 ]

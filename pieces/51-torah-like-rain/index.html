@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let My Teaching Fall Like Rain</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #050A12; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #0e1a2a;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #040810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #0e1a2a; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #d0e8ff;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #405060;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #a0b8c8;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em {
+      color: #b0c8d8;
+      font-style: italic;
+    }
+    .essay-panel strong {
+      color: #d4a848;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Let My Teaching Fall Like Rain</h1>
+    <p class="subtitle">Torah as Water — Deuteronomy 32:2 / Isaiah 55:10–11</p>
+
+    <p><em>Deuteronomy 32:2 — יַעֲרֹף כַּמָּטָר לִקְחִי — "May my teaching drip like rain."</em><br>
+    <em>Isaiah 55:10–11 — "As the rain and snow come down from heaven and do not return there until they have watered the earth... so shall my word be that goes out from my mouth."</em></p>
+
+    <p>Moses opens Ha'azinu — his final poem, spoken to all of Israel on the last day of his life — with a meteorological image: let my teaching fall like rain. The rabbis refused to read this as mere decoration. Rain is not a gentle thing. Rain comes down without asking permission. It saturates. It floods. It is the force of nature that changes the landscape rather than the force that accommodates whatever it finds.</p>
+
+    <p>This is explicitly not dew. The dew metaphor — which Moses also employs in the same verse — has its own rich tradition: dew falls silently, unannounced, without force, available to all vessels (Eruvin 54b). But rain is different. Rain is the overwhelming event. When the rabbis in <strong>Taanit 7a</strong> say "a day of rain is as great as the day of the giving of Torah," they are not making a casual comparison. They are saying that both events — Sinai and rain — share a quality of irresistibility. You cannot stand outside and refuse rain. You are simply caught in it or you are not.</p>
+
+    <p><strong>Bava Kamma 17a</strong> presses the comparison further: "Words of Torah are compared to water, as it says, 'Whoever is thirsty, come to the water' (Isaiah 55:1)." The image is deliberately physical. Torah is not an abstract system of knowledge to be acquired through intellectual effort alone. It is water. It falls. It moves toward the lowest place. The Talmud notes that just as water always flows downhill — never up — Torah finds its natural resting place in the humble, those who make themselves low enough to receive it. The arrogant cannot catch rain in a vessel held above their heads.</p>
+
+    <p><strong>Isaiah 55:10–11</strong> adds the crucial quality of purpose: the rain that comes down from heaven does not return empty. It accomplishes what it was sent to do. This is the theology of Torah-as-rain: the teaching of Sinai was not a transaction, not a negotiation, not an offer that could be declined. It was sent. It fell. It soaked into the people who stood at the base of the mountain — and into all who came after, who receive by inheritance the same downpour through texts and tradition.</p>
+
+    <p><strong>Kiddushin 30b</strong> extends the metaphor into the obligation of transmission: just as water becomes part of the earth it enters, Torah becomes part of whoever it touches. The father who teaches his child Torah passes on not information but saturation. The letters do not sit on the surface. They sink in, alter the composition of the ground, and eventually re-emerge as springs — new teaching from a source that was once only rain.</p>
+
+    <p>In this piece, each falling Hebrew letter is a drop of rain. Each drop carries one of the twenty-two letters of the Aleph-Bet — the full alphabet from which all Torah is woven — and falls freely, pulled by gravity, without a predetermined destination. On impact, each drop spawns a circular ripple: a wave that spreads outward and fades, as a teaching spreads beyond the moment of contact and the person first touched. Along the ground, a pool of settled letters accumulates, faint but permanent: the letters that have already fallen remain, suggesting the accumulation of generations. Rain that fell a thousand years ago is still here, in the composition of the soil.</p>
+
+    <p>The difference between this piece and its companion on dew is the quality of force. Dew forms in the night without announcement. Rain falls from the sky in full sight, insistent and audible. At Sinai, the Torah came down like rain.</p>
+  </div>
+</div>
+
+<script>
+const ALEPHBET = ['א','ב','ג','ד','ה','ו','ז','ח','ט','י','כ','ל','מ','נ','ס','ע','פ','צ','ק','ר','ש','ת'];
+const GROUND_RATIO = 0.85;
+const MAX_DROPS = 20;
+const MAX_RIPPLES = 50;
+const MAX_POOL = 40;
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+let drops = [];
+let ripples = [];
+let pool = [];
+let lastSpawn = 0;
+let nextSpawnDelay = 400 + Math.random() * 300;
+let W, H, GROUND_Y;
+
+function resize() {
+  const panel = document.getElementById('art-panel');
+  W = panel.clientWidth;
+  H = panel.clientHeight;
+  canvas.width = W;
+  canvas.height = H;
+  GROUND_Y = H * GROUND_RATIO;
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+class Drop {
+  constructor() {
+    this.letter = ALEPHBET[Math.floor(Math.random() * 22)];
+    this.x = Math.random() * W;
+    this.y = -40;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = 1.5 + Math.random() * 1.5;
+    this.ay = 0.04;
+    this.size = 18 + Math.random() * 14;
+  }
+
+  update() {
+    this.vy += this.ay;
+    this.y += this.vy;
+    this.x += this.vx;
+  }
+
+  /** Returns true when the drop has reached or passed the ground line. */
+  done() {
+    return this.y > GROUND_Y;
+  }
+
+  draw() {
+    ctx.save();
+    ctx.font = `${this.size}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = '#FFF8E7';
+    ctx.shadowBlur = 6;
+    ctx.fillStyle = '#FFF8E7';
+    ctx.fillText(this.letter, this.x, this.y);
+    ctx.restore();
+  }
+}
+
+class Ripple {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.r = 0;
+    this.life = 1.0;
+  }
+
+  update() {
+    this.r += 1.2;
+    this.life -= 1 / 90;
+  }
+
+  /** Returns true when the ripple has fully faded. */
+  done() {
+    return this.life <= 0;
+  }
+
+  draw() {
+    ctx.save();
+    ctx.strokeStyle = `rgba(212,168,48,${this.life * 0.5})`;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+
+function spawnDrop() {
+  if (drops.length >= MAX_DROPS) drops.shift();
+  drops.push(new Drop());
+}
+
+function landDrop(drop) {
+  if (ripples.length >= MAX_RIPPLES) ripples.shift();
+  ripples.push(new Ripple(drop.x, GROUND_Y));
+
+  if (pool.length >= MAX_POOL) pool.shift();
+  pool.push({ x: drop.x, y: GROUND_Y, letter: drop.letter });
+}
+
+function drawPool() {
+  ctx.save();
+  ctx.font = '14px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = 'rgba(255,248,231,0.25)';
+  for (const g of pool) {
+    ctx.fillText(g.letter, g.x, g.y + 12);
+  }
+  ctx.restore();
+}
+
+let lastFrame = 0;
+
+function frame(ts) {
+  requestAnimationFrame(frame);
+
+  const dt = ts - lastFrame;
+  if (dt < 16) return;
+  lastFrame = ts;
+
+  ctx.fillStyle = '#050A12';
+  ctx.fillRect(0, 0, W, H);
+
+  const now = Date.now();
+  if (now - lastSpawn > nextSpawnDelay) {
+    spawnDrop();
+    lastSpawn = now;
+    nextSpawnDelay = 400 + Math.random() * 300;
+  }
+
+  for (let i = drops.length - 1; i >= 0; i--) {
+    drops[i].update();
+    if (drops[i].done()) {
+      landDrop(drops[i]);
+      drops.splice(i, 1);
+    } else {
+      drops[i].draw();
+    }
+  }
+
+  ripples = ripples.filter(r => !r.done());
+  for (const r of ripples) {
+    r.update();
+    r.draw();
+  }
+
+  drawPool();
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

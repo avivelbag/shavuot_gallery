@@ -1,0 +1,18 @@
+# Let My Teaching Fall Like Rain
+
+*Deuteronomy 32:2 — יַעֲרֹף כַּמָּטָר לִקְחִי — "May my teaching drip like rain."*
+*Isaiah 55:10–11 — "As the rain and snow come down from heaven and do not return there until they have watered the earth... so shall my word be that goes out from my mouth."*
+
+Moses opens Ha'azinu — his final poem, spoken to all of Israel on the last day of his life — with a meteorological image: let my teaching fall like rain. The rabbis refused to read this as mere decoration. Rain is not a gentle thing. Rain comes down without asking permission. It saturates. It floods. It is the force of nature that changes the landscape rather than the force that accommodates whatever it finds.
+
+This is explicitly not dew. The dew metaphor — which Moses also employs in the same verse — has its own rich tradition: dew falls silently, unannounced, without force, available to all vessels (Eruvin 54b). But rain is different. Rain is the overwhelming event. When the rabbis in **Taanit 7a** say "a day of rain is as great as the day of the giving of Torah," they are not making a casual comparison. They are saying that both events — Sinai and rain — share a quality of irresistibility. You cannot stand outside and refuse rain. You are simply caught in it or you are not.
+
+**Bava Kamma 17a** presses the comparison further: "Words of Torah are compared to water, as it says, 'Whoever is thirsty, come to the water' (Isaiah 55:1)." The image is deliberately physical. Torah is not an abstract system of knowledge to be acquired through intellectual effort alone. It is water. It falls. It moves toward the lowest place. The Talmud notes that just as water always flows downhill — never up — Torah finds its natural resting place in the humble, those who make themselves low enough to receive it. The arrogant cannot catch rain in a vessel held above their heads.
+
+**Isaiah 55:10–11** adds the crucial quality of purpose: the rain that comes down from heaven does not return empty. It accomplishes what it was sent to do. This is the theology of Torah-as-rain: the teaching of Sinai was not a transaction, not a negotiation, not an offer that could be declined. It was sent. It fell. It soaked into the people who stood at the base of the mountain — and into all who came after, who receive by inheritance the same downpour through texts and tradition.
+
+**Kiddushin 30b** extends the metaphor into the obligation of transmission: just as water becomes part of the earth it enters, Torah becomes part of whoever it touches. The father who teaches his child Torah passes on not information but saturation. The letters do not sit on the surface. They sink in, alter the composition of the ground, and eventually re-emerge as springs — new teaching from a source that was once only rain.
+
+In this piece, each falling Hebrew letter is a drop of rain. Each drop carries one of the twenty-two letters of the Aleph-Bet — the full alphabet from which all Torah is woven — and falls freely, pulled by gravity, without a predetermined destination. On impact, each drop spawns a circular ripple: a wave that spreads outward and fades, as a teaching spreads beyond the moment of contact and the person first touched. Along the ground, a pool of settled letters accumulates, faint but permanent: the letters that have already fallen remain, suggesting the accumulation of generations. Rain that fell a thousand years ago is still here, in the composition of the soil.
+
+The difference between this piece and its companion on dew is the quality of force. Dew forms in the night without announcement. Rain falls from the sky in full sight, insistent and audible. At Sinai, the Torah came down like rain.
