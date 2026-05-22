@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <rect width="200" height="240" fill="#0D1B2A"/>
+
+  <!-- 7x7 grid of cells with luminance graduating from dark (day 1) to gold (day 49) -->
+  <!-- Cell size: 20x20, gap: 2, grid left: 24, grid top: 10 -->
+  <!-- Color lerps from #0D1B2A (bg) to #E8C96A (gold) based on day/49 -->
+
+  <!-- Row 0 (days 1-7) -->
+  <rect x="24"  y="10" width="20" height="20" fill="#111f2d"/>
+  <rect x="46"  y="10" width="20" height="20" fill="#1a2a39"/>
+  <rect x="68"  y="10" width="20" height="20" fill="#233544"/>
+  <rect x="90"  y="10" width="20" height="20" fill="#2c3f50"/>
+  <rect x="112" y="10" width="20" height="20" fill="#354a5c"/>
+  <rect x="134" y="10" width="20" height="20" fill="#3e5567"/>
+  <rect x="156" y="10" width="20" height="20" fill="#476073"/>
+
+  <!-- Row 1 (days 8-14) -->
+  <rect x="24"  y="32" width="20" height="20" fill="#506b7f"/>
+  <rect x="46"  y="32" width="20" height="20" fill="#59758a"/>
+  <rect x="68"  y="32" width="20" height="20" fill="#628096"/>
+  <rect x="90"  y="32" width="20" height="20" fill="#6b8ba2"/>
+  <rect x="112" y="32" width="20" height="20" fill="#7496ad"/>
+  <rect x="134" y="32" width="20" height="20" fill="#7da0b9"/>
+  <rect x="156" y="32" width="20" height="20" fill="#86abc5"/>
+
+  <!-- Row 2 (days 15-21) -->
+  <rect x="24"  y="54" width="20" height="20" fill="#8cb0c6"/>
+  <rect x="46"  y="54" width="20" height="20" fill="#93b5c9"/>
+  <rect x="68"  y="54" width="20" height="20" fill="#9bbacc"/>
+  <rect x="90"  y="54" width="20" height="20" fill="#a2becd"/>
+  <rect x="112" y="54" width="20" height="20" fill="#a9c2ce"/>
+  <rect x="134" y="54" width="20" height="20" fill="#b0c6cf"/>
+  <rect x="156" y="54" width="20" height="20" fill="#b7cad0"/>
+
+  <!-- Row 3 (days 22-28) -->
+  <rect x="24"  y="76" width="20" height="20" fill="#becdcf"/>
+  <rect x="46"  y="76" width="20" height="20" fill="#c1cbca"/>
+  <rect x="68"  y="76" width="20" height="20" fill="#c4c9c4"/>
+  <rect x="90"  y="76" width="20" height="20" fill="#c7c7be"/>
+  <rect x="112" y="76" width="20" height="20" fill="#cac5b9"/>
+  <rect x="134" y="76" width="20" height="20" fill="#ccc3b3"/>
+  <rect x="156" y="76" width="20" height="20" fill="#cfc1ad"/>
+
+  <!-- Row 4 (days 29-35) -->
+  <rect x="24"  y="98" width="20" height="20" fill="#d2bfa7"/>
+  <rect x="46"  y="98" width="20" height="20" fill="#d5bca1"/>
+  <rect x="68"  y="98" width="20" height="20" fill="#d7ba9b"/>
+  <rect x="90"  y="98" width="20" height="20" fill="#dab895"/>
+  <rect x="112" y="98" width="20" height="20" fill="#dcb68f"/>
+  <rect x="134" y="98" width="20" height="20" fill="#dfb389"/>
+  <rect x="156" y="98" width="20" height="20" fill="#e1b183"/>
+
+  <!-- Row 5 (days 36-42) -->
+  <rect x="24"  y="120" width="20" height="20" fill="#e3ae7d"/>
+  <rect x="46"  y="120" width="20" height="20" fill="#e4ac77"/>
+  <rect x="68"  y="120" width="20" height="20" fill="#e5aa71"/>
+  <rect x="90"  y="120" width="20" height="20" fill="#e6a86b"/>
+  <rect x="112" y="120" width="20" height="20" fill="#e7a665"/>
+  <rect x="134" y="120" width="20" height="20" fill="#e8c470"/>
+  <rect x="156" y="120" width="20" height="20" fill="#e8c56f"/>
+
+  <!-- Row 6 (days 43-49) -->
+  <rect x="24"  y="142" width="20" height="20" fill="#e8c66e"/>
+  <rect x="46"  y="142" width="20" height="20" fill="#e8c76d"/>
+  <rect x="68"  y="142" width="20" height="20" fill="#e8c86c"/>
+  <rect x="90"  y="142" width="20" height="20" fill="#e8c96b"/>
+  <rect x="112" y="142" width="20" height="20" fill="#e8c96a"/>
+  <rect x="134" y="142" width="20" height="20" fill="#e8c96a"/>
+  <rect x="156" y="142" width="20" height="20" fill="#e8c96a"/>
+
+  <!-- 50th panel: solid gold, centered, larger -->
+  <rect x="80" y="174" width="40" height="40" fill="#F5C842" rx="2"/>
+
+  <!-- Glow effect on 50th panel -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#F5C842" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#F5C842" stop-opacity="0"/>
+  </radialGradient>
+  <ellipse cx="100" cy="194" rx="30" ry="30" fill="url(#glow)"/>
+
+  <!-- Hebrew nun (נ) on the 50th panel -->
+  <text x="100" y="200" text-anchor="middle" dominant-baseline="middle"
+        font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#0D1B2A">נ</text>
+
+  <!-- Shavuot label below panel -->
+  <text x="100" y="226" text-anchor="middle"
+        font-family="Georgia, serif" font-size="9" fill="#F5C842">שבועות</text>
+</svg>
