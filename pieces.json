@@ -933,5 +933,16 @@
     "path": "pieces/63-ray-march-sinai-peak/index.html",
     "thumbnail": "pieces/63-ray-march-sinai-peak/thumbnail.svg",
     "essay": "pieces/63-ray-march-sinai-peak/essay.md"
+  },
+  {
+    "id": "64-clifford-attractor-tikkun-leil",
+    "title": "Until the Morning Light",
+    "tagline": "eight million points trace a figure-of-eight through the night — the long exposure of Tikkun Leil Shavuot",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot",
+    "technique": "Clifford attractor / density histogram",
+    "path": "pieces/64-clifford-attractor-tikkun-leil/index.html",
+    "thumbnail": "pieces/64-clifford-attractor-tikkun-leil/thumbnail.svg",
+    "essay": "pieces/64-clifford-attractor-tikkun-leil/essay.md"
   }
 ]

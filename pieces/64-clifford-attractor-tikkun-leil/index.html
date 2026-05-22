@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Until the Morning Light — Clifford Attractor</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: #030510;
+      color: #c0b8a8;
+      font-family: Georgia, 'Times New Roman', serif;
+      height: 100%;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #030510;
+      overflow: hidden;
+    }
+    #c {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .dawn-label {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      color: #FFF8E0;
+      font-family: Georgia, 'Times New Roman', serif;
+      direction: rtl;
+      white-space: nowrap;
+      pointer-events: none;
+      text-shadow: 0 0 14px rgba(212, 168, 32, 0.6);
+      opacity: 0;
+      transition: opacity 2s ease-in;
+    }
+    .dawn-label.visible { opacity: 0.9; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #0e0c20;
+      overflow-y: auto;
+      background: #05040e;
+    }
+    .essay-panel h1 {
+      font-size: 1.55rem;
+      color: #D4A820;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #4040a0;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.92rem;
+      color: #8080c0;
+      margin: 2rem 0 0.5rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      font-size: 0.92rem;
+      line-height: 1.82;
+      margin: 0 0 1rem;
+      color: #b0a898;
+    }
+    .essay-panel blockquote {
+      margin: 1.2rem 0;
+      padding: 0.7rem 1.1rem;
+      border-left: 2px solid rgba(212, 168, 32, 0.4);
+      background: rgba(26, 16, 80, 0.25);
+    }
+    .essay-panel blockquote p {
+      margin: 0 0 0.5rem;
+      color: #c8bca8;
+      font-size: 0.9rem;
+    }
+    .essay-panel blockquote p:last-child { margin-bottom: 0; }
+    .essay-panel blockquote .he {
+      font-size: 1.1rem;
+      direction: rtl;
+      text-align: right;
+      color: #FFF8E0;
+      line-height: 2;
+      display: block;
+    }
+    .essay-panel .source {
+      font-size: 0.76rem;
+      color: #302860;
+      margin-top: 2rem;
+      border-top: 1px solid #0e0c20;
+      padding-top: 0.8rem;
+      font-style: italic;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 70vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #0e0c20; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c" width="700" height="700"></canvas>
+    <div class="dawn-label" id="dawn-label">עַד אוֹר הַבֹּקֶר</div>
+  </div>
+
+  <div class="essay-panel">
+    <h1>Until the Morning Light</h1>
+    <p class="subtitle">Clifford Attractor — Tikkun Leil Shavuot</p>
+
+    <p>Every year on the eve of Shavuot, communities across the Jewish world stay awake through the entire night, studying Torah from nightfall until dawn. This practice — Tikkun Leil Shavuot, "the repair of the night of Shavuot" — is first codified in the Zohar, Parashat Emor (III, 98a), where it declares that the pious ones of old would not sleep on this night, occupying themselves instead with the words of Torah, Prophets, and Writings.</p>
+
+    <p>The specific reason given by the Magen Avraham (Orach Chaim 494) is rooted in a Midrashic tradition: on the morning when God descended upon Sinai to give the Torah, the Israelites were asleep. Moses was forced to wake them for the appointed moment of revelation. The Song of Songs preserves an echo of this failure in a verse the rabbis read as Israel's voice on that morning:</p>
+
+    <blockquote>
+      <span class="he">אֲנִי יְשֵׁנָה וְלִבִּי עֵר קוֹל דּוֹדִי דוֹפֵק פִּתְחִי-לִי אֲחֹתִי רַעְיָתִי יוֹנָתִי תַמָּתִי</span>
+      <p>"I sleep, but my heart is awake: it is the voice of my beloved who knocks: Open to me, my sister, my love, my dove, my undefiled." (Song of Songs 5:2)</p>
+    </blockquote>
+
+    <p>The "beloved" is the divine call; the sleeper is Israel, not ready at the threshold. Tikkun Leil Shavuot is the annual repair of that unreadiness — a vow never to sleep through the arrival of dawn again.</p>
+
+    <p>But a deeper kabbalistic reason underlies the practice. In the Pri Etz Chaim (Shaar Chag HaShavuot, ch. 1), Rabbi Chayyim Vital records the teaching of the Ari (Rabbi Isaac Luria of Safed, 16th century) that the night of Shavuot is the wedding night between Israel and the Torah. The Tikkun anthology — a fixed selection of passages spanning every book of the Torah and Tanakh — is recited to "adorn the bride," to prepare the divine union with the full garment of Israel's sacred texts. Those who complete the Tikkun are said to become the groomsmen of the bride.</p>
+
+    <h2>This Piece</h2>
+
+    <p>The Clifford attractor plots millions of points, each step determined by four parameters and two sinusoidal equations: <em>x' = sin(a·y) + c·cos(a·x), y' = sin(b·x) + d·cos(b·y)</em>. No single point predicts where the cloud will form. But over eight million iterations — the approximate number of letters in a complete Torah scroll — the attractor reveals a luminous figure-of-eight: two lobes of concentrated light suggesting the two tablets, emerging from deep navy darkness like a long-exposure photograph of a turning night sky.</p>
+
+    <p>The piece builds the way a Tikkun Leil Shavuot unfolds: one step after another through the night, each iteration invisible in isolation, until the full form appears with the light of dawn. The Hebrew label at the bottom — <strong>עַד אוֹר הַבֹּקֶר</strong> — fades in only when all eight million points have been placed.</p>
+
+    <p class="source">שיר השירים ה׳:ב׳ · זוהר, אמור, ח״ג צ״ח ע״א · מגן אברהם או״ח תצ״ד · פרי עץ חיים, שער חג השבועות · Clifford attractor / density histogram · 2026</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var W = 700, H = 700;
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var label = document.getElementById('dawn-label');
+
+  var density = new Float32Array(W * H);
+
+  var TOTAL_POINTS = 8000000;
+  var BATCH_SIZE = 40000;
+  var TOTAL_FRAMES = TOTAL_POINTS / BATCH_SIZE; // 200
+  var RENDER_EVERY = 5;
+
+  /* Primary parameters: a=−1.4, b=1.6, c=1.0, d=0.7 */
+  var a = -1.4, b = 1.6, c = 1.0, d = 0.7;
+  var x = 0.1, y = 0.1;
+
+  /**
+   * Validate that the first 1000 points of the attractor remain within (−2.5, 2.5)².
+   * If any point escapes, fall back to the secondary parameter set.
+   */
+  function validateParams() {
+    var tx = 0.1, ty = 0.1;
+    for (var i = 0; i < 1000; i++) {
+      var nx = Math.sin(a * ty) + c * Math.cos(a * tx);
+      var ny = Math.sin(b * tx) + d * Math.cos(b * ty);
+      tx = nx; ty = ny;
+      if (tx < -2.5 || tx > 2.5 || ty < -2.5 || ty > 2.5) {
+        a = -1.7; b = 1.8; c = -0.9; d = -0.4;
+        return;
+      }
+    }
+  }
+
+  validateParams();
+
+  var scale = W / 5.5;
+  var frameCount = 0;
+  var done = false;
+
+  /**
+   * Advance the Clifford attractor by n steps, accumulating hit counts into
+   * the Float32Array density buffer. The attractor spans roughly ±2.75 in both
+   * axes; offset by 2.75 before scaling so the cloud is centred on the canvas.
+   */
+  function batch(n) {
+    for (var i = 0; i < n; i++) {
+      var nx = Math.sin(a * y) + c * Math.cos(a * x);
+      var ny = Math.sin(b * x) + d * Math.cos(b * y);
+      x = nx;
+      y = ny;
+      var px = Math.floor((x + 2.75) * scale);
+      var py = Math.floor((y + 2.75) * scale);
+      if (px >= 0 && px < W && py >= 0 && py < H) {
+        density[py * W + px] += 1;
+      }
+    }
+  }
+
+  /**
+   * Interpolate linearly between two RGB triples.
+   * @param {number[]} c0 - [r, g, b] start colour
+   * @param {number[]} c1 - [r, g, b] end colour
+   * @param {number} t   - interpolation factor in [0, 1]
+   * @returns {number[]} interpolated [r, g, b]
+   */
+  function lerpRGB(c0, c1, t) {
+    return [
+      (c0[0] + (c1[0] - c0[0]) * t) | 0,
+      (c0[1] + (c1[1] - c0[1]) * t) | 0,
+      (c0[2] + (c1[2] - c0[2]) * t) | 0
+    ];
+  }
+
+  /*
+   * Five-stop palette:
+   *   t=0.00  #030510  background navy        [3,  5,  16]
+   *   t=0.25  #1A1050  deep indigo            [26, 16, 80]
+   *   t=0.50  #4060D0  electric blue          [64, 96, 208]
+   *   t=0.75  #D4A820  warm gold              [212,168,32]
+   *   t=1.00  #FFF8E0  near-white cream       [255,248,224]
+   */
+  var STOPS = [
+    [3,   5,   16],
+    [26,  16,  80],
+    [64,  96,  208],
+    [212, 168, 32],
+    [255, 248, 224]
+  ];
+
+  /**
+   * Map a normalised log-density value t ∈ [0,1] to an RGB colour using the
+   * five-stop navy→indigo→blue→gold→cream palette.
+   */
+  function paletteInterp(t) {
+    var seg = t * 4;
+    var i = Math.min(3, seg | 0);
+    var f = seg - i;
+    return lerpRGB(STOPS[i], STOPS[i + 1], f);
+  }
+
+  /**
+   * Tone-map the density buffer to canvas pixels using a logarithmic scale so
+   * both sparse outer tendrils and the dense figure-of-eight core are visible.
+   */
+  function render() {
+    var img = ctx.createImageData(W, H);
+    var maxD = 0;
+    for (var i = 0; i < W * H; i++) {
+      if (density[i] > maxD) maxD = density[i];
+    }
+    if (maxD < 1) maxD = 1;
+    var logMax = Math.log1p(maxD);
+
+    for (var j = 0; j < W * H; j++) {
+      var t = Math.log1p(density[j]) / logMax;
+      var col = paletteInterp(t);
+      var base = j * 4;
+      img.data[base]     = col[0];
+      img.data[base + 1] = col[1];
+      img.data[base + 2] = col[2];
+      img.data[base + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  function frame() {
+    if (done) return;
+
+    batch(BATCH_SIZE);
+    frameCount++;
+
+    if (frameCount % RENDER_EVERY === 0) {
+      render();
+    }
+
+    if (frameCount >= TOTAL_FRAMES) {
+      render();
+      done = true;
+      label.classList.add('visible');
+      return;
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>
