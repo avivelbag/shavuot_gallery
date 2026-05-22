@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width="200" height="300">
+  <defs>
+    <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0D3BB"/>
+      <stop offset="100%" stop-color="#C4B49A"/>
+    </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2A2018"/>
+      <stop offset="100%" stop-color="#1A1510"/>
+    </radialGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="200" height="300" fill="url(#bg)"/>
+
+  <!-- Tablet silhouette (two fragments, slightly separated) -->
+  <!-- Left shard -->
+  <polygon points="38,80 98,72 102,200 36,204" fill="url(#stone)" opacity="0.92"/>
+  <!-- Right shard -->
+  <polygon points="102,72 162,80 164,204 98,200" fill="url(#stone)" opacity="0.92"/>
+  <!-- Top arch left -->
+  <path d="M38,80 Q38,44 68,44 Q98,44 98,72 Z" fill="url(#stone)" opacity="0.92"/>
+  <!-- Top arch right (shifted slightly) -->
+  <path d="M102,72 Q102,44 132,44 Q162,44 162,80 Z" fill="url(#stone)" opacity="0.92"/>
+
+  <!-- Crack glow lines -->
+  <line x1="100" y1="44" x2="100" y2="208" stroke="#FF8C00" stroke-width="1.5" stroke-opacity="0.45"/>
+  <line x1="38" y1="130" x2="162" y2="140" stroke="#FF8C00" stroke-width="0.9" stroke-opacity="0.3"/>
+  <line x1="55" y1="160" x2="145" y2="155" stroke="#FF8C00" stroke-width="0.7" stroke-opacity="0.22"/>
+
+  <!-- Hebrew text fragment suggestion -->
+  <text x="69" y="110" font-family="Georgia, serif" font-size="13" fill="#2A2520" opacity="0.8" text-anchor="middle" direction="rtl">אָנֹכִי</text>
+  <text x="131" y="110" font-family="Georgia, serif" font-size="13" fill="#2A2520" opacity="0.8" text-anchor="middle" direction="rtl">אָנֹכִי</text>
+  <text x="69" y="140" font-family="Georgia, serif" font-size="13" fill="#2A2520" opacity="0.75" text-anchor="middle" direction="rtl">יְהוָה</text>
+  <text x="131" y="140" font-family="Georgia, serif" font-size="13" fill="#2A2520" opacity="0.75" text-anchor="middle" direction="rtl">יְהוָה</text>
+
+  <!-- Tablet edge outlines -->
+  <polygon points="38,80 98,72 102,200 36,204" fill="none" stroke="#2A2520" stroke-width="0.8" stroke-opacity="0.5"/>
+  <polygon points="102,72 162,80 164,204 98,200" fill="none" stroke="#2A2520" stroke-width="0.8" stroke-opacity="0.5"/>
+
+  <!-- Subtle vignette -->
+  <radialGradient id="vig" cx="50%" cy="50%" r="50%">
+    <stop offset="55%" stop-color="#1A1510" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#1A1510" stop-opacity="0.7"/>
+  </radialGradient>
+  <rect width="200" height="300" fill="url(#vig)"/>
+</svg>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Both the Tablets and the Fragments — Luchot HaShevurim</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #1A1510; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 55%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #1A1510;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: min(90%, calc(90vh - 48px));
+      height: auto;
+      aspect-ratio: 2 / 3;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 2.5rem 2.8rem 3rem 2rem;
+      overflow-y: auto;
+      background: #1A1510;
+      color: #C8B99A;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 680px;
+    }
+
+    .essay-panel h1 {
+      font-size: 1.45rem;
+      color: #E8D9C0;
+      margin: 0 0 0.3rem 0;
+      font-weight: normal;
+      letter-spacing: 0.01em;
+    }
+
+    .essay-panel .subtitle {
+      color: #8A7A65;
+      font-size: 0.88rem;
+      margin: 0 0 1.8rem 0;
+      font-style: italic;
+    }
+
+    .essay-panel h2 {
+      font-size: 1.05rem;
+      color: #D4B896;
+      margin: 2rem 0 0.6rem 0;
+      font-weight: normal;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    .essay-panel p { margin: 0 0 1.1rem 0; }
+
+    .essay-panel blockquote {
+      margin: 1.2rem 0 1.2rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #4A3E30;
+      color: #A89078;
+      font-style: italic;
+    }
+
+    .essay-panel .hebrew {
+      font-size: 1.15rem;
+      direction: rtl;
+      line-height: 2;
+      color: #E8D9C0;
+    }
+
+    .essay-panel .source {
+      font-size: 0.82rem;
+      color: #6A5A45;
+      margin-top: 0.3rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid #2A2016;
+      margin: 1.8rem 0;
+    }
+
+    @media (max-width: 720px) {
+      .layout { flex-direction: column; }
+      .art-panel { flex: none; height: 55vw; min-height: 260px; position: relative; }
+      canvas { width: min(60vw, 240px); aspect-ratio: 2/3; }
+      .essay-panel { padding: 1.5rem 1.2rem; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c" width="400" height="600"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>Both the Tablets and the Fragments</h1>
+    <p class="subtitle">Luchot HaShevurim — גַּם שִׁבְרֵי לוּחוֹת מוּנָחִין בָּאָרוֹן</p>
+
+    <p class="hebrew">וַיִּחַר-אַף מֹשֶׁה וַיַּשְׁלֵךְ מִיָּדָו אֶת-הַלֻּחֹת וַיְשַׁבֵּר אֹתָם תַּחַת הָהָר׃</p>
+    <blockquote>
+      <p>"And Moses' anger waxed hot, and he cast the tablets out of his hands, and broke them beneath the mountain."</p>
+      <p class="source">— Exodus 32:19</p>
+    </blockquote>
+
+    <hr class="divider">
+
+    <h2>The Shattering</h2>
+    <p>Moses descended Sinai with the first tablets of the covenant — hewn by God, inscribed by God, the most sacred objects in Israel's history — and he shattered them. He did not set them down carefully. He did not entrust them to the elders. He saw the golden calf and he threw them, and they broke at the foot of the mountain.</p>
+    <p>Every serious reader of the Torah has had to reckon with this act. Was it permitted? Was it righteous? Was it even sane? The rabbis of the Talmud did not flinch. They ruled, strikingly, that Moses did the right thing — even that God ratified the breaking. The Midrash records God saying to Moses: <em>Yishar kochacha she-shivarta</em> — "May your strength be upright, that you broke them." An acknowledgment that some moments call for shattering, not preservation.</p>
+    <p>But the story does not end at the foot of the mountain.</p>
+
+    <hr class="divider">
+
+    <h2>Both Sets in the Ark</h2>
+    <p>Forty days later, God instructed Moses to carve a second set of tablets — this time hewn by Moses himself, not by God (Exodus 34:1). The text shifts register here: the first tablets were entirely divine; the second tablets were a collaboration. Moses cut the stone; God wrote on it. Human hands and divine inscription together. The covenant, reconstituted.</p>
+    <p>What happened to the fragments of the first tablets? They were not discarded. The Talmud in Bava Batra 14b records the ruling that has reverberated through Jewish thought ever since:</p>
+    <blockquote>
+      <p class="hebrew">גַּם שִׁבְרֵי לוּחוֹת מוּנָחִין בָּאָרוֹן</p>
+      <p>"Both the fragments of the tablets rest in the ark."</p>
+    </blockquote>
+    <p>Yerushalmi Shekalim 6:1 elaborates the same teaching. Both the whole second tablets and the shards of the first were carried together in the Ark of the Covenant — through the wilderness, into the Tabernacle, eventually into the First Temple. Israel carried its own brokenness at the center of its holy of holies, beside its wholeness.</p>
+    <p>From this ruling the rabbis of Berakhot 8b derive a practical halakha: a Torah scholar who has forgotten his learning due to illness does not lose his sacred status. The scholar who once knew and then forgot is still to be treated with honor, just as the broken tablets were treated with honor. Brokenness does not cancel sanctity.</p>
+
+    <hr class="divider">
+
+    <h2>Shavuot and the Shadow of the Calf</h2>
+    <p>Shavuot commemorates Matan Torah — the giving of the Torah — and yet the Torah was given twice. The first giving ended in shattering. The second giving was quieter, more human, less spectacular, and it is the set we actually received. The festival's joy carries this shadow: that Israel could not hold the first gift, that Moses had to go back up the mountain, that the covenant had to be remade.</p>
+    <p>This is not a blemish on the holiday. It is the holiday's depth. The continuous recommitment that Shavuot demands — <em>each year the Torah is given again, and each year we receive it again</em> — is grounded in the knowledge that the first reception failed. Every year's acceptance of Torah is made against the memory of the calf, which is precisely why it is meaningful.</p>
+    <p>The Talmud Yerushalmi (Ta'anit 4:5) adds one more layer: the second tablets, unlike the first, were carved by Moses. The covenant remade by human hands is different in kind from the covenant originally given by God alone. It is a partnership covenant — one in which human initiative and human craft are woven into the sacred object itself. The broken tablets, divine and perfect, shattered at the foot of Sinai. The whole tablets, humanly shaped, carried Israel through the wilderness. Both rest in the ark. Both are necessary.</p>
+
+    <hr class="divider">
+
+    <h2>The Artwork</h2>
+    <p>The simulation begins with a whole stone tablet, limestone-colored, inscribed with the first words of the first commandment: <em>אָנֹכִי יְהוָה אֱלֹהֶיךָ</em> — "I am the Lord your God." The tablet holds for four seconds — the moment before.</p>
+    <p>Then it shatters. Cracks race along pre-computed Voronoi boundaries — ten to fourteen shards, each carrying a fragment of the inscription. The shards fly apart with individual velocities and angular spin. The crack lines glow briefly in amber, the color of fire, then cool.</p>
+    <p>The shards rest scattered for three seconds. Then, slowly, they drift back together. They reassemble into the original shape — but the crack lines do not disappear. They remain, softly visible, dark slate against the warm limestone. The tablet is whole again, but marked. The fracture is part of its form now.</p>
+    <p>This is the teaching: the ark held both. The fracture lines are not a flaw to be hidden. They are the record of what happened, preserved at the center of the covenant, carried through every wilderness.</p>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+// Palette
+const C_BG        = '#1A1510';
+const C_LIMESTONE = '#D4C5A9';
+const C_SLATE     = '#2A2520';
+const C_AMBER     = '#FF8C00';
+const C_TEXT      = '#1A1208';
+const C_CRACK     = '#2A2520';
+const C_SHADOW    = 'rgba(10,8,4,0.55)';
+
+// Tablet geometry (in canvas units, canvas = 400×600)
+const CW = 400, CH = 600;
+const TW = 240, TH = 360;           // tablet 2:3 ratio
+const TX = (CW - TW) / 2;          // left x
+const TY = (CH - TH) / 2;          // top y
+
+// --- Sutherland-Hodgman polygon clipping ---
+/**
+ * Clip polygon pts against the half-plane defined by edge (ax,ay)->(bx,by).
+ * Points on the left of the directed edge are "inside".
+ */
+function clipPolygonByHalfPlane(pts, ax, ay, bx, by) {
+  if (pts.length === 0) return [];
+  const out = [];
+  const edgeX = bx - ax, edgeY = by - ay;
+  function inside(px, py) {
+    return edgeX * (py - ay) - edgeY * (px - ax) >= 0;
+  }
+  function intersect(x0, y0, x1, y1) {
+    const dx = x1 - x0, dy = y1 - y0;
+    const t = (edgeX * (y0 - ay) - edgeY * (x0 - ax)) /
+              (edgeY * dx - edgeX * dy);
+    return [x0 + t * dx, y0 + t * dy];
+  }
+  for (let i = 0; i < pts.length; i++) {
+    const cur = pts[i], prv = pts[(i + pts.length - 1) % pts.length];
+    const curIn = inside(cur[0], cur[1]);
+    const prvIn = inside(prv[0], prv[1]);
+    if (curIn) {
+      if (!prvIn) out.push(intersect(prv[0], prv[1], cur[0], cur[1]));
+      out.push(cur);
+    } else if (prvIn) {
+      out.push(intersect(prv[0], prv[1], cur[0], cur[1]));
+    }
+  }
+  return out;
+}
+
+/**
+ * Compute Voronoi shards for the tablet rectangle using Sutherland-Hodgman
+ * clipping. Returns array of {verts, cx, cy, restX, restY, restAngle}.
+ * Each shard's verts are relative to its centroid so translation+rotation
+ * suffice for rigid-body rendering.
+ */
+function computeShards(seeds) {
+  const tabRect = [
+    [TX, TY], [TX + TW, TY], [TX + TW, TY + TH], [TX, TY + TH]
+  ];
+
+  const shards = [];
+  for (let i = 0; i < seeds.length; i++) {
+    let cell = tabRect.slice();
+    for (let j = 0; j < seeds.length; j++) {
+      if (i === j) continue;
+      // Perpendicular bisector between seeds[i] and seeds[j]:
+      // midpoint M, normal pointing from j to i.
+      const mx = (seeds[i][0] + seeds[j][0]) / 2;
+      const my = (seeds[i][1] + seeds[j][1]) / 2;
+      const nx = seeds[i][0] - seeds[j][0];
+      const ny = seeds[i][1] - seeds[j][1];
+      // Half-plane: points P where (P-M)·n >= 0 (same side as seeds[i]).
+      // Represent as line through M in direction perpendicular to n.
+      const px = -ny, py = nx;
+      cell = clipPolygonByHalfPlane(cell, mx, my, mx + px, my + py);
+      if (cell.length === 0) break;
+    }
+    if (cell.length < 3) continue;
+
+    // Centroid of cell polygon
+    let cx = 0, cy = 0;
+    for (const v of cell) { cx += v[0]; cy += v[1]; }
+    cx /= cell.length; cy /= cell.length;
+
+    // Verts relative to centroid
+    const verts = cell.map(v => [v[0] - cx, v[1] - cy]);
+
+    shards.push({
+      verts,
+      cx, cy,
+      restX: cx, restY: cy, restAngle: 0
+    });
+  }
+  return shards;
+}
+
+// Seeded PRNG (xorshift32) for deterministic layout
+function makePRNG(seed) {
+  let s = seed >>> 0 || 1;
+  return () => {
+    s ^= s << 13; s ^= s >>> 17; s ^= s << 5;
+    return (s >>> 0) / 4294967296;
+  };
+}
+
+const rng = makePRNG(0x5A1A1510);
+
+// Generate 12 seed points inside the tablet
+const NUM_SEEDS = 12;
+const seeds = [];
+for (let i = 0; i < NUM_SEEDS; i++) {
+  seeds.push([
+    TX + rng() * TW,
+    TY + rng() * TH
+  ]);
+}
+
+const shards = computeShards(seeds);
+
+// Per-shard physics state (set on shatter)
+function initPhysics() {
+  const rng2 = makePRNG(0xABCD1234);
+  for (const s of shards) {
+    // Direction away from impact point (impact near lower-center of tablet)
+    const impX = TX + TW * 0.5, impY = TY + TH * 0.82;
+    const dx = s.restX - impX, dy = s.restY - impY;
+    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+    const speed = 60 + rng2() * 140;
+    s.vx = (dx / dist) * speed * (0.7 + rng2() * 0.6);
+    s.vy = (dy / dist) * speed * (0.7 + rng2() * 0.6) - 20;
+    s.va = (rng2() - 0.5) * 3.5;
+    // current position (reset at shatter start)
+    s.px = s.restX;
+    s.py = s.restY;
+    s.pa = 0;
+  }
+}
+initPhysics();
+
+// Animation state machine
+const PHASE = { WHOLE: 0, SHATTERING: 1, SCATTERED: 2, REASSEMBLING: 3 };
+let phase = PHASE.WHOLE, t = 0, lastTime = null;
+
+// Easing: smooth step
+function smoothstep(x) { return x * x * (3 - 2 * x); }
+function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+
+function lerp(a, b, u) { return a + (b - a) * u; }
+
+function startShatter() {
+  initPhysics();
+}
+
+function updateShards(dt) {
+  if (phase === PHASE.SHATTERING) {
+    for (const s of shards) {
+      s.px += s.vx * dt;
+      s.py += s.vy * dt;
+      s.pa += s.va * dt;
+      // Slow down slightly (air resistance feel)
+      s.vx *= Math.pow(0.92, dt * 60);
+      s.vy *= Math.pow(0.92, dt * 60);
+      s.va *= Math.pow(0.94, dt * 60);
+    }
+  } else if (phase === PHASE.REASSEMBLING) {
+    const u = smoothstep(clamp01(t / 4.0));
+    for (const s of shards) {
+      s.px = lerp(s.px, s.restX, u * 0.12);
+      s.py = lerp(s.py, s.restY, u * 0.12);
+      s.pa = lerp(s.pa, s.restAngle, u * 0.12);
+    }
+  }
+}
+
+/**
+ * Draw a single shard at its current position/angle.
+ * fillStyle should already be set by caller.
+ */
+function drawShard(s, alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.translate(s.px, s.py);
+  ctx.rotate(s.pa);
+  ctx.beginPath();
+  ctx.moveTo(s.verts[0][0], s.verts[0][1]);
+  for (let i = 1; i < s.verts.length; i++) ctx.lineTo(s.verts[i][0], s.verts[i][1]);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+/**
+ * Draw the tablet text ("אָנֹכִי יְהוָה אֱלֹהֶיךָ") clipped to shard polygon.
+ */
+function drawShardWithText(s, alpha, textAlpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.translate(s.px, s.py);
+  ctx.rotate(s.pa);
+
+  ctx.beginPath();
+  ctx.moveTo(s.verts[0][0], s.verts[0][1]);
+  for (let i = 1; i < s.verts.length; i++) ctx.lineTo(s.verts[i][0], s.verts[i][1]);
+  ctx.closePath();
+  ctx.clip();
+
+  // Stone fill
+  ctx.fillStyle = C_LIMESTONE;
+  ctx.fill();
+
+  // Subtle stone grain (overlaid semi-transparent rects)
+  ctx.fillStyle = 'rgba(180,160,130,0.07)';
+  for (let g = 0; g < 4; g++) {
+    const gx = -60 + g * 30, gy = -80 + g * 20;
+    ctx.fillRect(gx, gy, 120, 8);
+  }
+  ctx.fillStyle = 'rgba(255,245,220,0.04)';
+  ctx.fillRect(-80, -60, 160, 120);
+
+  // Hebrew text (inverse transform to draw in canvas coords, then re-clip)
+  if (textAlpha > 0) {
+    ctx.globalAlpha = textAlpha * alpha;
+    ctx.rotate(-s.pa);
+    ctx.translate(-s.px, -s.py);
+    drawTabletText();
+  }
+
+  ctx.restore();
+}
+
+/**
+ * Render the Hebrew inscription in its resting position (engraved relief style).
+ * Called inside a clipped context.
+ */
+function drawTabletText() {
+  const lineH = 46;
+  const lines = ['אָנֹכִי', 'יְהוָה', 'אֱלֹהֶיךָ'];
+  const baseY = TY + TH * 0.28;
+  ctx.textAlign = 'center';
+  ctx.direction = 'rtl';
+
+  // Shadow (inset engraving illusion)
+  ctx.fillStyle = 'rgba(30,20,10,0.35)';
+  ctx.font = 'bold 38px Georgia, "Times New Roman", serif';
+  for (let i = 0; i < lines.length; i++) {
+    ctx.fillText(lines[i], TX + TW / 2 + 1.5, baseY + i * lineH + 1.5);
+  }
+  // Main text
+  ctx.fillStyle = C_TEXT;
+  for (let i = 0; i < lines.length; i++) {
+    ctx.fillText(lines[i], TX + TW / 2, baseY + i * lineH);
+  }
+}
+
+/**
+ * Draw crack glow: draw shared cell edges in amber before placing shards on top.
+ * The glow fades as shards separate.
+ */
+function drawCrackGlow(glowAlpha) {
+  if (glowAlpha <= 0) return;
+  ctx.save();
+  ctx.strokeStyle = C_AMBER;
+  ctx.lineWidth = 2.5;
+  ctx.globalAlpha = glowAlpha * 0.55;
+  // Draw shard outlines at rest position in amber
+  for (const s of shards) {
+    ctx.beginPath();
+    ctx.moveTo(s.verts[0][0] + s.restX, s.verts[0][1] + s.restY);
+    for (let i = 1; i < s.verts.length; i++) {
+      ctx.lineTo(s.verts[i][0] + s.restX, s.verts[i][1] + s.restY);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+/**
+ * Draw residual crack lines after reassembly — soft dark lines at rest positions.
+ */
+function drawCrackLines(alpha) {
+  ctx.save();
+  ctx.strokeStyle = C_CRACK;
+  ctx.lineWidth = 1.0;
+  ctx.globalAlpha = alpha * 0.4;
+  for (const s of shards) {
+    ctx.beginPath();
+    ctx.moveTo(s.verts[0][0] + s.restX, s.verts[0][1] + s.restY);
+    for (let i = 1; i < s.verts.length; i++) {
+      ctx.lineTo(s.verts[i][0] + s.restX, s.verts[i][1] + s.restY);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function render() {
+  ctx.clearRect(0, 0, CW, CH);
+
+  // Background
+  ctx.fillStyle = C_BG;
+  ctx.fillRect(0, 0, CW, CH);
+
+  if (phase === PHASE.WHOLE) {
+    // Draw intact tablet
+    ctx.save();
+    ctx.fillStyle = C_LIMESTONE;
+    ctx.strokeStyle = C_SLATE;
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = 1;
+
+    // Stone grain
+    ctx.fillRect(TX, TY, TW, TH);
+    ctx.fillStyle = 'rgba(180,160,130,0.07)';
+    for (let g = 0; g < 6; g++) ctx.fillRect(TX, TY + g * 60, TW, 8);
+    ctx.fillStyle = 'rgba(255,245,220,0.04)';
+    ctx.fillRect(TX, TY, TW, TH);
+
+    // Rounded arch top (classic tablet shape)
+    ctx.beginPath();
+    ctx.moveTo(TX, TY + TW / 2);
+    ctx.lineTo(TX, TY + TH);
+    ctx.lineTo(TX + TW, TY + TH);
+    ctx.lineTo(TX + TW, TY + TW / 2);
+    ctx.arc(TX + TW / 2, TY + TW / 2, TW / 2, 0, Math.PI, true);
+    ctx.strokeStyle = 'rgba(42,37,32,0.6)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.restore();
+
+    drawTabletText();
+
+  } else if (phase === PHASE.SHATTERING) {
+    // Crack glow fades from 1 to 0 over 2s
+    const glowAlpha = Math.max(0, 1 - t / 2.0);
+    drawCrackGlow(glowAlpha);
+
+    // Shards fly apart, fading slightly
+    const shardAlpha = 0.88 + 0.12 * Math.max(0, 1 - t / 2.0);
+    for (const s of shards) {
+      ctx.fillStyle = C_LIMESTONE;
+      drawShardWithText(s, shardAlpha, 1.0);
+    }
+
+  } else if (phase === PHASE.SCATTERED) {
+    // Shards at rest, warm ambient glow
+    for (const s of shards) {
+      ctx.fillStyle = C_LIMESTONE;
+      drawShardWithText(s, 1.0, 1.0);
+    }
+
+    // Soft warm halo under scattered shards
+    ctx.save();
+    ctx.globalAlpha = 0.06;
+    const grd = ctx.createRadialGradient(TX + TW / 2, TY + TH / 2, 20, TX + TW / 2, TY + TH / 2, TW);
+    grd.addColorStop(0, '#FF8C00');
+    grd.addColorStop(1, 'transparent');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, CW, CH);
+    ctx.restore();
+
+  } else if (phase === PHASE.REASSEMBLING) {
+    const u = clamp01(t / 4.0);
+    // As they reassemble, crack lines appear (fade in from 0 to u)
+    if (u > 0.7) drawCrackLines((u - 0.7) / 0.3);
+
+    for (const s of shards) {
+      ctx.fillStyle = C_LIMESTONE;
+      drawShardWithText(s, 1.0, 1.0);
+    }
+  }
+}
+
+function loop(timestamp) {
+  if (lastTime === null) lastTime = timestamp;
+  const dt = Math.min((timestamp - lastTime) / 1000, 0.1);
+  lastTime = timestamp;
+
+  t += dt;
+  updateShards(dt);
+
+  if (phase === PHASE.WHOLE && t > 4.0) {
+    startShatter();
+    phase = PHASE.SHATTERING;
+    t = 0;
+  } else if (phase === PHASE.SHATTERING && t > 2.0) {
+    // Snap scattered positions for clean rest
+    for (const s of shards) {
+      s.px = s.px; s.py = s.py; s.pa = s.pa;
+    }
+    phase = PHASE.SCATTERED;
+    t = 0;
+  } else if (phase === PHASE.SCATTERED && t > 3.0) {
+    phase = PHASE.REASSEMBLING;
+    t = 0;
+  } else if (phase === PHASE.REASSEMBLING && t > 4.5) {
+    // Snap back exactly to rest
+    for (const s of shards) { s.px = s.restX; s.py = s.restY; s.pa = s.restAngle; }
+    phase = PHASE.WHOLE;
+    t = 0;
+  }
+
+  render();
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

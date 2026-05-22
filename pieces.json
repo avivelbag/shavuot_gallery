@@ -636,5 +636,16 @@
     "path": "pieces/51-am-segulah-boids/index.html",
     "thumbnail": "pieces/51-am-segulah-boids/thumbnail.svg",
     "essay": "pieces/51-am-segulah-boids/essay.md"
+  },
+  {
+    "id": "51-luchot-hashevurim",
+    "title": "Both the Tablets and the Fragments",
+    "tagline": "גַּם שִׁבְרֵי לוּחוֹת מוּנָחִין בָּאָרוֹן — Voronoi shard physics: the tablet shatters and reassembles, fracture lines intact",
+    "year": 2026,
+    "theme": "Luchot / Ten Commandments",
+    "technique": "canvas 2D Voronoi fragment physics",
+    "path": "pieces/51-luchot-hashevurim/index.html",
+    "thumbnail": "pieces/51-luchot-hashevurim/thumbnail.svg",
+    "essay": "pieces/51-luchot-hashevurim/essay.md"
   }
 ]
