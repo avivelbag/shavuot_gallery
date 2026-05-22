@@ -42,5 +42,16 @@
     "path": "pieces/06-luchot-engraved/index.html",
     "thumbnail": "pieces/06-luchot-engraved/thumbnail.svg",
     "essay": "pieces/06-luchot-engraved/essay.md"
+  },
+  {
+    "id": "08-naaseh-vnishma-voronoi",
+    "title": "We Will Do and We Will Hear",
+    "tagline": "the two words of Israel's covenant, shattered into light",
+    "year": 2026,
+    "theme": "Naaseh V'Nishma / Matan Torah",
+    "technique": "Voronoi diagram with Hebrew typography",
+    "path": "pieces/08-naaseh-vnishma-voronoi/index.html",
+    "thumbnail": "pieces/08-naaseh-vnishma-voronoi/thumbnail.svg",
+    "essay": "pieces/08-naaseh-vnishma-voronoi/essay.md"
   }
 ]

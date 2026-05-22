@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Will Do and We Will Hear — Naaseh V'Nishma</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0a0618; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0d0820;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e1a3e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080612;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e1a3e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #f5e642;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #504858;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #e8c84a;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #fdf6b2; font-style: italic; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>We Will Do and We Will Hear</h1>
+    <p class="subtitle">נַעֲשֶׂה וְנִשְׁמַע · Naaseh V'Nishma / Matan Torah</p>
+
+    <h2>The Unconditional Acceptance</h2>
+    <p>"And Moses took the book of the covenant and read it in the hearing of the people; and they said: All that the Lord has spoken we will do and we will hear." (Exodus 24:7)</p>
+    <p>The sequence is strange. In ordinary human reasoning, one hears before one obeys. You listen to the terms; you understand them; only then do you agree. But at the moment of the covenant's sealing, Israel reversed the order. They said <em>naaseh</em> — we will do — before <em>v'nishma</em> — and we will hear. They committed to obedience before they knew what it would require.</p>
+    <p>The Talmud (Shabbat 88a) takes this reversal with full seriousness. When Israel pronounced those six syllables, sixty thousand ministering angels descended and placed two crowns — <em>tagin</em> — on each Israelite: one crown for each of the two words, naaseh and nishma. Acting before understanding. Commitment before comprehension. The Sages read this not as recklessness but as the highest form of trust — a relationship so foundational that Israel could receive its obligations without first auditing them.</p>
+
+    <h2>The Tagin</h2>
+    <p>The word <em>tag</em> (plural: <em>tagin</em>) refers to the small flourishes — decorative "crowns" — that scribes traditionally add to certain letters in a Torah scroll. They appear as tiny upward strokes above the letterforms. In kabbalistic tradition these markings are not decorative: each <em>tag</em> carries layers of meaning that the basic consonant alone cannot hold. The letters of Torah already contain infinite depth; the tagin encode depths beyond that.</p>
+    <p>When the Talmud imagines Israel wearing these crowns as a result of saying naaseh v'nishma, the imagery is dense. The people become like the letters themselves, bearing meaning they have not yet fully deciphered — ornamented with knowledge not yet understood, resonating with dimensions not yet heard.</p>
+    <p>The sin of the golden calf took those crowns away. But the declaration that earned them was not erased.</p>
+
+    <h2>The Shatter of Meaning</h2>
+    <p>This piece renders the two words as they appear in a Torah: with their full nikud — the vowel points and cantillation markers that scribes have carried across millennia — נַעֲשֶׂה וְנִשְׁמַע. But instead of displaying them as intact, bounded letterforms, the piece shatters each word into a Voronoi diagram: a partition of the plane into cells, each cell belonging to the seed point nearest to it. Every cell is a facet. Every facet catches the light at a slightly different angle.</p>
+    <p>The seeds inside the letter-shapes glow with warm gold and parchment — the tones of illuminated manuscripts, the color of fire on the mountain. The seeds outside recede into deep indigo, the color of the night sky above Sinai. At the boundary between inside and outside, a thin white line marks where the letter ends and the world begins — or where the word breaks open into its meaning.</p>
+    <p>A slow pulse of brightness moves outward from the center, as if the utterance is still resonating through the plane. The rabbis suggest that the moment of naaseh v'nishma has never quite stopped. The crowns were taken, but the act of placing commitment before comprehension remains embedded in Jewish memory as the defining gesture of the covenant. Something broke open at that moment. The Voronoi cells show the pieces — each one still warm.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  /* Internal render resolution — CSS scaling handles the display upscale. */
+  var V_W = 400;
+  var V_H = 250;
+
+  /* Seed counts: dense inside letterforms, sparse outside. */
+  var N_IN = 200;
+  var N_OUT = 100;
+
+  /* The two Hebrew words with full nikud (combining marks). */
+  var HEBREW = 'נַעֲשֶׂה וְנִשְמַע';
+
+  /* Gold/parchment palette hex strings for letter-interior seeds. */
+  var GOLD_HEX   = ['f5e642', 'e8c84a', 'fdf6b2'];
+
+  /* Deep indigo/violet palette hex strings for exterior seeds. */
+  var INDIGO_HEX = ['1a0a4e', '2d1b7a', '3d2d8e'];
+
+  function hexToRgb(h) {
+    return [
+      parseInt(h.slice(0, 2), 16),
+      parseInt(h.slice(2, 4), 16),
+      parseInt(h.slice(4, 6), 16)
+    ];
+  }
+
+  /* Gold/parchment palette for letter-interior seeds. */
+  var GOLD = GOLD_HEX.map(hexToRgb);
+
+  /* Deep indigo/violet palette for exterior seeds. */
+  var INDIGO = INDIGO_HEX.map(hexToRgb);
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  canvas.width = V_W;
+  canvas.height = V_H;
+
+  /**
+   * Draw the Hebrew text onto an offscreen canvas and return the flat RGBA
+   * pixel array.  Pixels with alpha > 128 are inside a letterform.
+   */
+  function buildAlphaMask() {
+    var off = document.createElement('canvas');
+    off.width = V_W;
+    off.height = V_H;
+    var oc = off.getContext('2d');
+    oc.clearRect(0, 0, V_W, V_H);
+    oc.fillStyle = '#ffffff';
+
+    /* Scale font size so the text fits within 90% of V_W. */
+    var fontSize = 80;
+    oc.font = 'bold ' + fontSize + 'px serif';
+    oc.direction = 'rtl';
+    oc.textAlign = 'center';
+    oc.textBaseline = 'middle';
+    var measured = oc.measureText(HEBREW);
+    if (measured.width > V_W * 0.88) {
+      fontSize = Math.floor(fontSize * V_W * 0.88 / measured.width);
+      oc.font = 'bold ' + fontSize + 'px serif';
+    }
+    oc.fillText(HEBREW, V_W / 2, V_H / 2);
+    return oc.getImageData(0, 0, V_W, V_H).data;
+  }
+
+  /** Return a random element from arr. */
+  function pick(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  /**
+   * Generate seed points.  Repeatedly samples random positions and keeps
+   * N_IN inside the letterforms (alpha > 128) and N_OUT outside them.
+   * Returns array of {x, y, color} objects where color is an [r,g,b] triple.
+   */
+  function makeSeeds(mask) {
+    var seeds = [];
+    var inCount = 0;
+    var outCount = 0;
+    var tries = 0;
+    var MAX_TRIES = (N_IN + N_OUT) * 40;
+
+    while ((inCount < N_IN || outCount < N_OUT) && tries < MAX_TRIES) {
+      tries++;
+      var x = Math.floor(Math.random() * V_W);
+      var y = Math.floor(Math.random() * V_H);
+      var alpha = mask[(y * V_W + x) * 4 + 3];
+      if (alpha > 128 && inCount < N_IN) {
+        seeds.push({ x: x, y: y, color: pick(GOLD) });
+        inCount++;
+      } else if (alpha <= 128 && outCount < N_OUT) {
+        seeds.push({ x: x, y: y, color: pick(INDIGO) });
+        outCount++;
+      }
+    }
+    return seeds;
+  }
+
+  /**
+   * Brute-force nearest-seed Voronoi.  For each pixel (x,y) finds the index
+   * of the closest seed by squared Euclidean distance.
+   * Returns an Int16Array of length V_W * V_H.
+   */
+  function computeVoronoi(seeds) {
+    var vi = new Int16Array(V_W * V_H);
+    var n = seeds.length;
+    for (var y = 0; y < V_H; y++) {
+      for (var x = 0; x < V_W; x++) {
+        var minD = 2147483647;
+        var minI = 0;
+        for (var i = 0; i < n; i++) {
+          var dx = x - seeds[i].x;
+          var dy = y - seeds[i].y;
+          var d = dx * dx + dy * dy;
+          if (d < minD) { minD = d; minI = i; }
+        }
+        vi[y * V_W + x] = minI;
+      }
+    }
+    return vi;
+  }
+
+  /**
+   * Build edge map: a pixel is an edge if any of its 4 neighbours belongs to
+   * a different seed region.  Boundary pixels (first/last row/col) are never
+   * marked as edges to avoid array overrun.
+   */
+  function computeEdges(vi) {
+    var e = new Uint8Array(V_W * V_H);
+    for (var y = 1; y < V_H - 1; y++) {
+      for (var x = 1; x < V_W - 1; x++) {
+        var c = vi[y * V_W + x];
+        if (vi[y * V_W + x - 1] !== c ||
+            vi[y * V_W + x + 1] !== c ||
+            vi[(y - 1) * V_W + x] !== c ||
+            vi[(y + 1) * V_W + x] !== c) {
+          e[y * V_W + x] = 1;
+        }
+      }
+    }
+    return e;
+  }
+
+  /* Pre-computed constants for the brightness wave. */
+  var CX = V_W / 2;
+  var CY = V_H / 2;
+  var MAX_DIST = Math.sqrt(CX * CX + CY * CY);
+
+  /* Pre-allocated reusable buffers. */
+  var voronoiIdx;
+  var edgeMap;
+  var seeds;
+  var imgData;
+  var brightness;
+  var t = 0;
+
+  function init() {
+    var mask = buildAlphaMask();
+    seeds = makeSeeds(mask);
+    voronoiIdx = computeVoronoi(seeds);
+    edgeMap = computeEdges(voronoiIdx);
+    imgData = ctx.createImageData(V_W, V_H);
+    brightness = new Float32Array(seeds.length);
+  }
+
+  /**
+   * Render one animation frame.
+   *
+   * For each seed, brightness is modulated by a slow sine wave that travels
+   * outward from the canvas centre — seeds far from the centre lag behind
+   * seeds near it, creating a ripple effect.
+   *
+   * Edge pixels are drawn in near-white; all other pixels take their seed's
+   * base colour multiplied by the seed's current brightness.
+   */
+  function frame() {
+    t += 0.018;
+
+    /* Update per-seed brightness. */
+    var n = seeds.length;
+    for (var i = 0; i < n; i++) {
+      var dx = seeds[i].x - CX;
+      var dy = seeds[i].y - CY;
+      var dist = Math.sqrt(dx * dx + dy * dy) / MAX_DIST;
+      /* Wave travels outward: farther seeds have a lagging phase. */
+      brightness[i] = 0.82 + 0.18 * Math.sin(t * 0.9 - dist * 5.0);
+    }
+
+    /* Fill pixel data. */
+    var d = imgData.data;
+    var total = V_W * V_H;
+    for (var p = 0; p < total; p++) {
+      var o = p * 4;
+      if (edgeMap[p]) {
+        d[o] = 255; d[o + 1] = 255; d[o + 2] = 255; d[o + 3] = 200;
+      } else {
+        var si = voronoiIdx[p];
+        var c = seeds[si].color;
+        var b = brightness[si];
+        d[o]     = (c[0] * b + 0.5) | 0;
+        d[o + 1] = (c[1] * b + 0.5) | 0;
+        d[o + 2] = (c[2] * b + 0.5) | 0;
+        d[o + 3] = 255;
+      }
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+    requestAnimationFrame(frame);
+  }
+
+  init();
+  frame();
+})();
+</script>
+</body>
+</html>
