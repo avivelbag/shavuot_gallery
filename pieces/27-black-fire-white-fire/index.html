@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black Fire on White Fire</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0a0a12; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0a0a12;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e1e2e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e1e2e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #d0e8ff;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #505060;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #a0b8d8;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #e8d8b0; font-style: italic; }
+    .essay-panel .sources {
+      font-size: 0.8rem;
+      color: #404050;
+      margin-top: 2rem;
+      border-top: 1px solid #1e1e2e;
+      padding-top: 1rem;
+    }
+    .letter-display {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1rem;
+      color: #606080;
+      font-family: serif;
+      letter-spacing: 0.1em;
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+    <div class="letter-display" id="letter-label"></div>
+  </div>
+  <div class="essay-panel">
+    <h1>Black Fire on White Fire</h1>
+    <p class="subtitle">Eish Shechorah al Gabbe Eish Levanah / Matan Torah</p>
+
+    <h2>The Primordial Script</h2>
+    <p>The Midrash in Devarim Rabbah (3:12) preserves a teaching that undermines every assumption we carry when we open a Torah scroll. The teaching is terse, as the best midrashic teachings are: the Torah was written as <em>eish shechorah al gabbe eish levanah</em> — black fire upon white fire. Yerushalmi Shekalim (6:1) records the same tradition. The original Torah, the Sages insist, was not ink on parchment. It was fire on fire.</p>
+    <p>This image is deliberately paradoxical. Fire does not ordinarily sit still. Fire does not form letters. And black fire — fire that burns dark rather than bright — is not a phenomenon of the ordinary world. The Midrash is not describing a natural object. It is describing something prior to nature.</p>
+
+    <h2>The Blueprint of Reality</h2>
+    <p>The opening midrash in Bereishit Rabbah (1:1) makes the mechanism explicit. Rabbi Hoshaya teaches: the Torah was the <em>amon</em> — the master craftsman's blueprint — through which the Holy One, blessed be He, created the world. Just as an architect builds a palace by consulting a plan, the Creator looked into the Torah and built the world from it. The Torah therefore predates creation. It is not a historical record or legislation produced after the fact. It is the template from which everything else was drawn. The primordial Torah must be made of primordial matter — which means fire, the only substance that predates even the ordering of chaos.</p>
+    <p>The Talmud (Sanhedrin 21b) extends this logic into the tablets themselves. There is a tradition that the letters of the commandments were carved entirely through the stone tablets, penetrating the full width and readable from both sides. No ink at all. Only form, only fire, only absence. The Torah does not need a medium. It is its own medium.</p>
+
+    <h2>This Piece</h2>
+    <p>Each of the twenty-two Hebrew letters is seeded onto the grid as a living cell structure, then evolved under a probabilistic cellular automaton. The letter does not appear on a static surface: it ignites, spreads, flickers, and ultimately dissolves back into undifferentiated fire. The dark background is the white fire — the luminous void from which form emerges. The bright cellular growth is the black fire — the legible form momentarily visible against it.</p>
+    <p>After each letter burns through its cycle, the next emerges from the residue of its predecessor. The alphabet rotates: Aleph through Tav, then Aleph again. The fire never entirely dies. The Torah was not given once and then archived. It is continuously being revealed, continuously burning, continuously legible to those who can read fire.</p>
+
+    <p class="sources"><em>Sources: Devarim Rabbah 3:12; Yerushalmi Shekalim 6:1; Bereishit Rabbah 1:1; Talmud Bavli Sanhedrin 21b.</em></p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var COLS = 200;
+  var ROWS = 150;
+
+  var LETTERS = ['א','ב','ג','ד','ה','ו','ז','ח','ט','י','כ','ל','מ','נ','ס','ע','פ','צ','ק','ר','ש','ת'];
+
+  var LETTER_NAMES = [
+    'Aleph','Bet','Gimel','Dalet','He','Vav','Zayin','Het','Tet','Yod',
+    'Kaf','Lamed','Mem','Nun','Samech','Ayin','Pe','Tzadi','Qof','Resh','Shin','Tav'
+  ];
+
+  // Probabilistic fire CA parameters
+  var P_SURVIVE = 0.88;  // probability a live cell survives each step
+  var P_SPREAD  = 0.12;  // probability a dead cell ignites per live neighbor
+
+  // Timing (milliseconds per letter cycle)
+  var SEED_MS  = 600;   // hold initial seeded letter before CA runs
+  var BURN_MS  = 3400;  // CA evolution phase
+  var DECAY_MS = 1000;  // damped decay (P_SURVIVE ramps to 0)
+  var LETTER_MS = SEED_MS + BURN_MS + DECAY_MS; // 5000 ms per letter
+
+  // 60 fps cap: skip frame if delta < ~16ms
+  var FRAME_MIN_MS = 1000 / 60;
+
+  var canvas   = document.getElementById('c');
+  var ctx      = canvas.getContext('2d');
+  var panel    = document.getElementById('art-panel');
+  var label    = document.getElementById('letter-label');
+
+  // Offscreen canvas at grid resolution — blitted scaled to main canvas each frame
+  var off      = document.createElement('canvas');
+  off.width    = COLS;
+  off.height   = ROWS;
+  var offCtx   = off.getContext('2d');
+
+  var grid     = new Uint8Array(COLS * ROWS);
+  var nextGrid = new Uint8Array(COLS * ROWS);
+  var heat     = new Float32Array(COLS * ROWS);
+
+  var letterIdx  = 0;
+  var phaseStart = 0;
+  var lastTick   = 0;
+  var W = 0, H = 0;
+
+  function resize() {
+    W = canvas.width  = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+  }
+
+  /**
+   * Rasterize a Hebrew letter onto a temporary COLS×ROWS canvas, read pixel data,
+   * and seed the CA grid — bright pixels become live cells.
+   */
+  function seedLetter(letter) {
+    var tmp    = document.createElement('canvas');
+    tmp.width  = COLS;
+    tmp.height = ROWS;
+    var tctx   = tmp.getContext('2d');
+
+    tctx.fillStyle = '#000';
+    tctx.fillRect(0, 0, COLS, ROWS);
+
+    var fontSize = Math.floor(ROWS * 0.68);
+    tctx.fillStyle    = '#fff';
+    tctx.font         = 'bold ' + fontSize + 'px serif';
+    tctx.textAlign    = 'center';
+    tctx.textBaseline = 'middle';
+    tctx.fillText(letter, COLS / 2, ROWS / 2);
+
+    var pixels = tctx.getImageData(0, 0, COLS, ROWS).data;
+    grid.fill(0);
+    heat.fill(0);
+
+    for (var i = 0; i < COLS * ROWS; i++) {
+      if (pixels[i * 4] > 100) {
+        grid[i] = 1;
+        heat[i] = 1.0;
+      }
+    }
+  }
+
+  /** Count 8-connected live neighbors of cell at (x, y). */
+  function countNeighbors(x, y) {
+    var n   = 0;
+    var xm  = x > 0;
+    var xp  = x < COLS - 1;
+    var ym  = y > 0;
+    var yp  = y < ROWS - 1;
+    var row = y * COLS;
+    var rowU = (y - 1) * COLS;
+    var rowD = (y + 1) * COLS;
+    if (xm && ym) n += grid[rowU + x - 1];
+    if (ym)       n += grid[rowU + x    ];
+    if (xp && ym) n += grid[rowU + x + 1];
+    if (xm)       n += grid[row  + x - 1];
+    if (xp)       n += grid[row  + x + 1];
+    if (xm && yp) n += grid[rowD + x - 1];
+    if (yp)       n += grid[rowD + x    ];
+    if (xp && yp) n += grid[rowD + x + 1];
+    return n;
+  }
+
+  /**
+   * One probabilistic CA step.
+   * Live cell: survives with probability pSurvive.
+   * Dead cell: ignites if it has >= 1 live neighbor AND random() < pSpread * neighborCount.
+   */
+  function stepCA(pSurvive, pSpread) {
+    for (var y = 0; y < ROWS; y++) {
+      for (var x = 0; x < COLS; x++) {
+        var i = y * COLS + x;
+        if (grid[i]) {
+          nextGrid[i] = Math.random() < pSurvive ? 1 : 0;
+        } else {
+          var n = countNeighbors(x, y);
+          nextGrid[i] = (n > 0 && Math.random() < pSpread * n) ? 1 : 0;
+        }
+      }
+    }
+    // Swap buffers
+    var tmp = grid;
+    grid = nextGrid;
+    nextGrid = tmp;
+  }
+
+  /** Advance heat values: live cells warm up, dead cells cool down. */
+  function tickHeat() {
+    for (var i = 0; i < COLS * ROWS; i++) {
+      if (grid[i]) {
+        heat[i] = heat[i] + 0.15 < 1.0 ? heat[i] + 0.15 : 1.0;
+      } else {
+        heat[i] = heat[i] - 0.04 > 0 ? heat[i] - 0.04 : 0;
+      }
+    }
+  }
+
+  /**
+   * Render: build pixel data from heat values in offscreen canvas,
+   * then blit scaled to main canvas.
+   * Palette: dead = #0A0A12 (rgb 10,10,18), live = #E8E8FF (rgb 232,232,255).
+   */
+  function render() {
+    var imgData = offCtx.createImageData(COLS, ROWS);
+    var pix     = imgData.data;
+
+    for (var i = 0; i < COLS * ROWS; i++) {
+      var h = heat[i];
+      var p = i * 4;
+      if (h < 0.005) {
+        pix[p]     = 10;
+        pix[p + 1] = 10;
+        pix[p + 2] = 18;
+      } else {
+        // Gamma-curve for brighter core: t = h^1.5
+        var t = h * Math.sqrt(h);
+        pix[p]     = (10 + 222 * t + 0.5) | 0;  // R: 10 → 232
+        pix[p + 1] = (10 + 222 * t + 0.5) | 0;  // G: 10 → 232
+        pix[p + 2] = (18 + 237 * t + 0.5) | 0;  // B: 18 → 255
+      }
+      pix[p + 3] = 255;
+    }
+
+    offCtx.putImageData(imgData, 0, 0);
+
+    ctx.fillStyle = '#0a0a12';
+    ctx.fillRect(0, 0, W, H);
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(off, 0, 0, W, H);
+  }
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+
+    if (now - lastTick < FRAME_MIN_MS) return;
+    lastTick = now;
+
+    var elapsed = now - phaseStart;
+
+    if (elapsed >= LETTER_MS) {
+      letterIdx  = (letterIdx + 1) % LETTERS.length;
+      label.textContent = LETTERS[letterIdx] + ' — ' + LETTER_NAMES[letterIdx];
+      seedLetter(LETTERS[letterIdx]);
+      phaseStart = now;
+    } else if (elapsed >= SEED_MS) {
+      var pSurvive = P_SURVIVE;
+      if (elapsed >= SEED_MS + BURN_MS) {
+        // Linearly ramp P_SURVIVE down to 0 during decay phase
+        var decayT = (elapsed - SEED_MS - BURN_MS) / DECAY_MS;
+        pSurvive = P_SURVIVE * (1 - decayT);
+      }
+      stepCA(pSurvive, P_SPREAD);
+    }
+
+    tickHeat();
+    render();
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  seedLetter(LETTERS[0]);
+  label.textContent = LETTERS[0] + ' — ' + LETTER_NAMES[0];
+  phaseStart = performance.now();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
