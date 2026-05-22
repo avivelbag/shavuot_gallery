@@ -4,7 +4,13 @@
 
 ---
 
-The Omer count is a pilgrimage in time. Leviticus 23:15–16 commands: "You shall count for yourselves from the day after the Sabbath, from the day when you bring the wave-offering sheaf — seven complete weeks they shall be; until the day after the seventh Sabbath you shall count fifty days." The destination is Shavuot, the fiftieth day, the giving of Torah at Sinai.
+The Omer count is a pilgrimage in time. Leviticus 23:15–16 commands:
+
+> וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת עֹמֶר הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה׃ עַד מִמָּחֳרַת הַשַּׁבָּת הַשְּׁבִיעִת תִּסְפְּרוּ חֲמִשִּׁים יוֹם וְהִקְרַבְתֶּם מִנְחָה חֲדָשָׁה לַיהוָה׃
+>
+> "You shall count for yourselves from the day after the Sabbath, from the day when you bring the wave-offering sheaf — seven complete weeks they shall be; until the day after the seventh Sabbath you shall count fifty days." (Leviticus 23:15–16)
+
+The destination is Shavuot, the fiftieth day, the giving of Torah at Sinai.
 
 Shavuot is unique among the major festivals in one striking way: it has no fixed date in the Torah. Passover falls on the fifteenth of Nisan. Sukkot on the fifteenth of Tishrei. Rosh HaShanah on the first of Tishrei. But Shavuot is identified only as "the day after seven weeks" — it is defined entirely by counting, not by the calendar. The rabbis noticed this and drew a theological conclusion: the fiftieth day cannot be fixed in advance. It can only be arrived at by counting. The festival is not a point on a map; it is the end of a journey. You cannot mark it on the calendar and simply arrive. You must count your way to it, day by day.
 

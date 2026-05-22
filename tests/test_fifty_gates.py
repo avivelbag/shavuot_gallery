@@ -6,11 +6,7 @@ requirements (citations, Hebrew characters, key colors), and algorithmic
 correctness of the Bayer 4×4 ordered dithering logic.
 """
 import json
-import math
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "32-fifty-gates"
@@ -297,7 +293,7 @@ def test_pieces_json_no_duplicate_ids_after_addition():
     with open(PIECES_JSON, encoding="utf-8") as fh:
         data = json.load(fh)
     ids = [p["id"] for p in data]
-    assert len(ids) == len(set(ids)), f"Duplicate piece IDs found after adding piece 32"
+    assert len(ids) == len(set(ids)), "Duplicate piece IDs found after adding piece 32"
 
 
 def test_piece_32_path_format():
