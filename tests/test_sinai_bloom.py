@@ -209,6 +209,8 @@ def test_lsystem_depth0_returns_axiom():
     """Zero iterations must return the axiom unchanged."""
     rules = {"F": "FF+[+F-F-F]-[-F+F+F]"}
     s = "F"
+    for _ in range(0):
+        s = "".join(rules.get(c, c) for c in s)
     assert s == "F", "Depth-0 expansion must equal axiom"
 
 

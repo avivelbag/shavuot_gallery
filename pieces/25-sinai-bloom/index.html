@@ -180,8 +180,6 @@ function computeSegments(string, x0, y0, heading, segLen, rng) {
       if (depth >= 3 && rng() < 0.10) {
         const ci = Math.floor(rng() * 3) % 3;
         flower = { color: FLOWER_COLORS[ci], r: 3 + rng() * 2 };
-      } else if (depth >= 3) {
-        rng(); // keep rng state aligned whether or not a flower was drawn
       }
 
       segs.push({ x1: x, y1: y, x2: nx, y2: ny, thick, color, flower });
