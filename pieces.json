@@ -471,5 +471,16 @@
     "path": "pieces/43-rose-of-sharon/index.html",
     "thumbnail": "pieces/43-rose-of-sharon/thumbnail.svg",
     "essay": "pieces/43-rose-of-sharon/essay.md"
+  },
+  {
+    "id": "43-second-tablets",
+    "title": "The Second Tablets — A Celtic Knot of Renewal",
+    "tagline": "the covenant of repair — interlaced in lapis and gold, the strand that loops back through rupture",
+    "year": 2026,
+    "theme": "Matan Torah / The Second Tablets — Exodus 34, Covenant of Repair",
+    "technique": "canvas 2D — grid-based Celtic knotwork generation, over/under interlace, 3D ribbon rendering",
+    "path": "pieces/43-second-tablets/index.html",
+    "thumbnail": "pieces/43-second-tablets/thumbnail.svg",
+    "essay": "pieces/43-second-tablets/essay.md"
   }
 ]

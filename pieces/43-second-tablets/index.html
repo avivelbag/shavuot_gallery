@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Second Tablets — A Celtic Knot of Renewal</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #1a1208;
+  color: #c8b078;
+  font-family: Georgia, 'Times New Roman', serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+.layout {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  max-width: 1100px;
+  width: 100%;
+  align-items: flex-start;
+}
+.art-pane { flex: 0 0 auto; }
+canvas { display: block; }
+.essay-pane {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+.essay-pane h1 {
+  font-size: 1.25rem;
+  color: #c8a000;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.essay-pane .source-quote {
+  font-style: italic;
+  font-size: 0.88rem;
+  color: #8a7a50;
+  margin-bottom: 1rem;
+  border-left: 3px solid #3a2a10;
+  padding-left: 0.7rem;
+  line-height: 1.55;
+}
+.essay-pane h2 {
+  font-size: 0.95rem;
+  color: #a8902a;
+  margin: 1.1rem 0 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.essay-pane p {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: #b8a068;
+  margin-bottom: 0.75rem;
+}
+.essay-pane p strong { color: #c8b078; }
+@media (max-width: 700px) {
+  .layout { flex-direction: column; }
+  .art-pane { width: 100%; display: flex; justify-content: center; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="c" width="400" height="510"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>The Second Tablets — A Celtic Knot of Renewal</h1>
+    <div class="source-quote">כִּי עַל-פִּי הַדְּבָרִים הָאֵלֶּה כָּרַתִּי אִתְּךָ בְּרִית<br>
+    "For upon the terms of these words I have made a covenant with you."<br>— Exodus 34:27</div>
+
+    <h2>Shavuot and the First Tablets</h2>
+    <p>Every year on Shavuot we celebrate the giving of the Torah at Sinai — the moment when Moshe ascended the mountain and received the first tablets. The date is the sixth of Sivan. The covenant was given in innocence, in the first flush of the relationship between Israel and the Holy One.</p>
+    <p>Forty days later, on the seventeenth of Tammuz, Moshe descended and found Israel dancing around a golden calf. He shattered the tablets at the foot of the mountain.</p>
+
+    <h2>The Timeline of Repair</h2>
+    <p>Here is what the sources record: Moshe ascended again on the first of Elul, spent another forty days on the mountain, and came back down on the tenth of Tishrei — Yom Kippur — carrying the second tablets. <strong>Ta'anit 26b</strong> and <strong>Pirkei DeRabbi Eliezer 46</strong> are clear: the second tablets arrived on Yom Kippur, the day of atonement and repair. Shavuot is the festival of the first tablets, the covenant given in innocence. Yom Kippur is the festival of the second tablets, the covenant given after rupture.</p>
+
+    <h2>The Covenant of Repair</h2>
+    <p>The Sages did not regard the second tablets as inferior. The first tablets were given before an undivided people, in pristine innocence. The second were given after betrayal, after grief, after an incomplete people made their way back. The covenant of the second tablets was sealed not with pristine innocence but with the harder, more earned knowledge that repair is possible.</p>
+    <p><strong>Eruvin 54a</strong>: "The tablets were the work of God, and the writing was the writing of God" — this covers both sets, the first and the second alike. The Ark held both: the intact second tablets and the fragments of the first. Broken law is still law, and the covenant does not erase its own history.</p>
+
+    <h2>The Celtic Knot</h2>
+    <p>Celtic knotwork is built from a single strand that interweaves with itself, over and under, without beginning and without end. The strand is continuous. It cannot be cut at any crossing, because at every crossing it passes both over and under.</p>
+    <p>This is the image for the covenant of the second tablets. The strand was not severed on the seventeenth of Tammuz. The golden calf created a crossing — a moment of descent, of crisis. But the strand kept going. Moshe went back up. The covenant was rewoven, the over and under switching roles, the same continuous thread now running through the knot in a different configuration.</p>
+    <p>Shavuot gives us the opportunity to re-enter the weave — to find our place in the continuous strand, to recognize that wherever we are in it, the knot holds.</p>
+
+    <h2>This Piece</h2>
+    <p>The artwork uses a grid-based Celtic knotwork algorithm: a 5×9 crossing grid per tablet, with over/under determined by position parity at each crossing. The strand is drawn as a ribbon — lapis base, gold highlight, near-black shadow — on a parchment background. The width breathes on a five-second cycle, ±4%, as if the cord is alive. Below: <em>כָּרַתִּי אִתְּךָ בְּרִית</em> — "I have made a covenant with you" (Exodus 34:27).</p>
+  </div>
+</div>
+<script>
+"use strict";
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+const W = canvas.width;
+const H = canvas.height;
+
+/* Palette */
+const BG       = '#F2E8D0';
+const STONE1   = '#d4c8a8';
+const STONE2   = '#b8ac88';
+const LAPIS    = '#1A3A6B';
+const GOLD     = '#C8A000';
+const SHD      = '#0A0A18';
+
+/* Tablet geometry */
+const S      = 32;   /* cell size in pixels */
+const COLS   = 5;    /* crossings per row per tablet */
+const ROWS   = 9;    /* crossings per column */
+const TAB_W  = COLS * S;          /* 160px */
+const BODY_H = ROWS * S;          /* 288px */
+const ARCH_R = TAB_W / 2;         /* 80px — arch radius = half tablet width */
+const PAD    = 20;
+const HGAP   = 40;                /* gap between tablets */
+
+const T1X = PAD;
+const T2X = PAD + TAB_W + HGAP;
+/* body_top_y: the arch center is at this y; the arch dome rises ARCH_R above */
+const BODY_TOP = PAD + ARCH_R;    /* 100 */
+const BODY_BOT = BODY_TOP + BODY_H; /* 388 */
+
+/* crossing node pixel coords */
+function nx(c, tx) { return tx + (c + 0.5) * S; }
+function ny(r)      { return BODY_TOP + (r + 0.5) * S; }
+
+/* at crossing (c,r): horizontal strand is over if (c+r) is even */
+function hOver(c, r) { return (c + r) % 2 === 0; }
+
+/* ------------------------------------------------------------------ */
+/* Ribbon drawing primitives                                            */
+/* ------------------------------------------------------------------ */
+
+function ribbonH(x1, x2, y, bw, hlw, perp) {
+  ctx.lineCap = 'round';
+  ctx.globalAlpha = 0.38;
+  ctx.strokeStyle = SHD; ctx.lineWidth = bw;
+  ctx.beginPath(); ctx.moveTo(x1, y + perp); ctx.lineTo(x2, y + perp); ctx.stroke();
+  ctx.globalAlpha = 1;
+  ctx.strokeStyle = LAPIS; ctx.lineWidth = bw;
+  ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y); ctx.stroke();
+  ctx.globalAlpha = 0.62;
+  ctx.strokeStyle = GOLD; ctx.lineWidth = hlw;
+  ctx.beginPath(); ctx.moveTo(x1, y - perp); ctx.lineTo(x2, y - perp); ctx.stroke();
+  ctx.globalAlpha = 1;
+}
+
+function ribbonV(x, y1, y2, bw, hlw, perp) {
+  ctx.lineCap = 'round';
+  ctx.globalAlpha = 0.38;
+  ctx.strokeStyle = SHD; ctx.lineWidth = bw;
+  ctx.beginPath(); ctx.moveTo(x + perp, y1); ctx.lineTo(x + perp, y2); ctx.stroke();
+  ctx.globalAlpha = 1;
+  ctx.strokeStyle = LAPIS; ctx.lineWidth = bw;
+  ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x, y2); ctx.stroke();
+  ctx.globalAlpha = 0.62;
+  ctx.strokeStyle = GOLD; ctx.lineWidth = hlw;
+  ctx.beginPath(); ctx.moveTo(x - perp, y1); ctx.lineTo(x - perp, y2); ctx.stroke();
+  ctx.globalAlpha = 1;
+}
+
+/*
+ * Draw a bezier ribbon curve connecting two points (ax,ay) → (bx,by).
+ * cp1/cp2 are the cubic bezier control points.
+ * isHoriz: true when the strand was travelling horizontally into this curve
+ * (determines perpendicular offset direction for the 3D effect).
+ */
+function ribbonCurve(ax, ay, bx, by, cp1x, cp1y, cp2x, cp2y, bw, hlw, perp) {
+  ctx.lineCap = 'round';
+  function bez(dx, dy) {
+    ctx.beginPath();
+    ctx.moveTo(ax + dx, ay + dy);
+    ctx.bezierCurveTo(cp1x + dx, cp1y + dy, cp2x + dx, cp2y + dy, bx + dx, by + dy);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 0.38;
+  ctx.strokeStyle = SHD; ctx.lineWidth = bw; bez(perp * 0.7, perp * 0.7);
+  ctx.globalAlpha = 1;
+  ctx.strokeStyle = LAPIS; ctx.lineWidth = bw; bez(0, 0);
+  ctx.globalAlpha = 0.62;
+  ctx.strokeStyle = GOLD; ctx.lineWidth = hlw; bez(-perp * 0.7, -perp * 0.7);
+  ctx.globalAlpha = 1;
+}
+
+/* ------------------------------------------------------------------ */
+/* Tablet clip path                                                     */
+/* ------------------------------------------------------------------ */
+
+function tabletPath(tx) {
+  ctx.beginPath();
+  /* arch: semicircle, left end to right end at BODY_TOP, dome up to BODY_TOP - ARCH_R */
+  ctx.arc(tx + TAB_W / 2, BODY_TOP, ARCH_R, Math.PI, 0);
+  /* right side down */
+  ctx.lineTo(tx + TAB_W, BODY_BOT);
+  /* bottom */
+  ctx.lineTo(tx, BODY_BOT);
+  /* close (left side) */
+  ctx.closePath();
+}
+
+/* ------------------------------------------------------------------ */
+/* Draw one tablet's stone background                                   */
+/* ------------------------------------------------------------------ */
+
+function drawTabletBase(tx) {
+  tabletPath(tx);
+  const grad = ctx.createLinearGradient(tx, BODY_TOP - ARCH_R, tx + TAB_W, BODY_BOT);
+  grad.addColorStop(0, STONE1);
+  grad.addColorStop(1, STONE2);
+  ctx.fillStyle = grad;
+  ctx.fill();
+  ctx.strokeStyle = '#8a7a5a';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+}
+
+/* ------------------------------------------------------------------ */
+/* Draw Celtic knotwork for one tablet                                  */
+/* ------------------------------------------------------------------ */
+
+function drawKnot(tx, bw, hlw, perp, gapR) {
+  const half = S / 2;
+
+  ctx.save();
+  tabletPath(tx);
+  ctx.clip();
+
+  /* inner crossings: draw under strand first (with gap), then over strand */
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const x = nx(c, tx);
+      const y = ny(r);
+      const ho = hOver(c, r);
+
+      if (ho) {
+        /* H over V: V is under → draw V with gap at center */
+        if (half > gapR) {
+          ribbonV(x, y - half, y - gapR, bw, hlw, perp);
+          ribbonV(x, y + gapR, y + half, bw, hlw, perp);
+        }
+        ribbonH(x - half, x + half, y, bw, hlw, perp);
+      } else {
+        /* V over H: H is under → draw H with gap */
+        if (half > gapR) {
+          ribbonH(x - half, x - gapR, y, bw, hlw, perp);
+          ribbonH(x + gapR, x + half, y, bw, hlw, perp);
+        }
+        ribbonV(x, y - half, y + half, bw, hlw, perp);
+      }
+    }
+  }
+
+  /*
+   * Boundary connection curves.
+   * For a 5×9 grid (gcd=1 → single loop), pairs are:
+   *   Right edge:  rows (0,1), (2,3), (4,5), (6,7)
+   *   Left edge:   rows (1,2), (3,4), (5,6), (7,8)
+   *   Bottom edge: cols (0,1), (2,3)
+   *   Top edge:    cols (1,2), (3,4)
+   *   Corners:     top-left (col0-top ↔ row0-left), bottom-right (col4-bot ↔ row8-right)
+   */
+  const ctrl = half * 1.6;
+
+  /* right-edge pairs */
+  for (let r = 0; r <= ROWS - 2; r += 2) {
+    const ex = tx + COLS * S;
+    const y1 = ny(r); const y2 = ny(r + 1);
+    ribbonCurve(ex, y1, ex, y2, ex + ctrl, y1, ex + ctrl, y2, bw, hlw, perp);
+  }
+
+  /* left-edge pairs */
+  for (let r = 1; r <= ROWS - 2; r += 2) {
+    const ex = tx;
+    const y1 = ny(r); const y2 = ny(r + 1);
+    ribbonCurve(ex, y1, ex, y2, ex - ctrl, y1, ex - ctrl, y2, bw, hlw, perp);
+  }
+
+  /* bottom-edge pairs */
+  for (let c = 0; c <= COLS - 2; c += 2) {
+    const ey = BODY_BOT;
+    const x1 = nx(c, tx); const x2 = nx(c + 1, tx);
+    ribbonCurve(x1, ey, x2, ey, x1, ey + ctrl, x2, ey + ctrl, bw, hlw, perp);
+  }
+
+  /* top-edge pairs (curves into the arch area) */
+  for (let c = 1; c <= COLS - 2; c += 2) {
+    const ey = BODY_TOP;
+    const x1 = nx(c, tx); const x2 = nx(c + 1, tx);
+    ribbonCurve(x1, ey, x2, ey, x1, ey - ctrl, x2, ey - ctrl, bw, hlw, perp);
+  }
+
+  /* top-left corner: col 0 top ↔ row 0 left */
+  {
+    const cx0 = nx(0, tx); const ry0 = ny(0);
+    const ex  = tx;        const et  = BODY_TOP;
+    ribbonCurve(cx0, et, ex, ry0, cx0, et - ctrl * 0.5, ex - ctrl * 0.5, ry0, bw, hlw, perp);
+  }
+
+  /* bottom-right corner: col 4 bottom ↔ row 8 right */
+  {
+    const cx4 = nx(COLS - 1, tx); const ry8 = ny(ROWS - 1);
+    const ex  = tx + COLS * S;   const eb  = BODY_BOT;
+    ribbonCurve(cx4, eb, ex, ry8, cx4, eb + ctrl * 0.5, ex + ctrl * 0.5, ry8, bw, hlw, perp);
+  }
+
+  ctx.restore();
+}
+
+/* ------------------------------------------------------------------ */
+/* Main render loop                                                     */
+/* ------------------------------------------------------------------ */
+
+function render(ts) {
+  const t = ts / 1000;
+  /* breathing: ±4 % on a 5 s sinusoidal cycle */
+  const wf = 1 + 0.04 * Math.sin(t * (2 * Math.PI / 5));
+
+  const BASE_W = 10 * wf;
+  const HL_W   = 2.8 * wf;
+  const PERP   = 2.5;
+  const GAP_R  = BASE_W / 2 + 1.5;
+
+  /* background */
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+
+  /* tablet stones */
+  drawTabletBase(T1X);
+  drawTabletBase(T2X);
+
+  /* knotwork */
+  drawKnot(T1X, BASE_W, HL_W, PERP, GAP_R);
+  drawKnot(T2X, BASE_W, HL_W, PERP, GAP_R);
+
+  /* Hebrew text below tablets */
+  const textY = BODY_BOT + 46;
+  ctx.save();
+  ctx.font = 'bold 26px Georgia, "Times New Roman", serif';
+  ctx.textAlign = 'center';
+  ctx.direction = 'rtl';
+  ctx.fillStyle = LAPIS;
+  ctx.globalAlpha = 0.85 + 0.15 * Math.sin(t * (2 * Math.PI / 5));
+  ctx.fillText('כָּרַתִּי אִתְּךָ בְּרִית', W / 2, textY);
+  ctx.globalAlpha = 1;
+  ctx.font = '12px Georgia, "Times New Roman", serif';
+  ctx.fillStyle = '#8a7a5a';
+  ctx.fillText('Exodus 34:27', W / 2, textY + 20);
+  ctx.restore();
+
+  requestAnimationFrame(render);
+}
+
+requestAnimationFrame(render);
+</script>
+</body>
+</html>
