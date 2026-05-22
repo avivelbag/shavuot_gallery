@@ -374,17 +374,6 @@
     "essay": "pieces/38-fiftieth-gate-ifs/essay.md"
   },
   {
-    "id": "38-voice-in-seventy-tongues",
-    "title": "The Voice in Seventy Tongues",
-    "tagline": "one aleph at Sinai — seventy languages, infinite aperiodic variety",
-    "year": 2026,
-    "theme": "Matan Torah / Shemot Rabbah 5:9 — the Voice at Sinai",
-    "technique": "canvas 2D — Penrose P3 rhombic tiling via triangle deflation, radial luminosity pulse",
-    "path": "pieces/38-voice-in-seventy-tongues/index.html",
-    "thumbnail": "pieces/38-voice-in-seventy-tongues/thumbnail.svg",
-    "essay": "pieces/38-voice-in-seventy-tongues/essay.md"
-  },
-  {
     "id": "38-seven-heavens",
     "title": "Through Seven Heavens",
     "tagline": "mouse-driven parallax descent through the seven firmaments to Har Sinai",
@@ -394,6 +383,17 @@
     "path": "pieces/38-seven-heavens/index.html",
     "thumbnail": "pieces/38-seven-heavens/thumbnail.svg",
     "essay": "pieces/38-seven-heavens/essay.md"
+  },
+  {
+    "id": "38-voice-in-seventy-tongues",
+    "title": "The Voice in Seventy Tongues",
+    "tagline": "one aleph at Sinai — seventy languages, infinite aperiodic variety",
+    "year": 2026,
+    "theme": "Matan Torah / Shemot Rabbah 5:9 — the Voice at Sinai",
+    "technique": "canvas 2D — Penrose P3 rhombic tiling via triangle deflation, radial luminosity pulse",
+    "path": "pieces/38-voice-in-seventy-tongues/index.html",
+    "thumbnail": "pieces/38-voice-in-seventy-tongues/thumbnail.svg",
+    "essay": "pieces/38-voice-in-seventy-tongues/essay.md"
   },
   {
     "id": "39-chesed-like-water",
@@ -427,5 +427,16 @@
     "path": "pieces/41-lightning-roots/index.html",
     "thumbnail": "pieces/41-lightning-roots/thumbnail.svg",
     "essay": "pieces/41-lightning-roots/essay.md"
+  },
+  {
+    "id": "42-finger-of-god",
+    "title": "Written by the Finger of God",
+    "tagline": "Apollonian circle packing inscribes meaning into every void — as the Oral Torah fills every interstice of the Written",
+    "year": 2026,
+    "theme": "Matan Torah / The Tablets — Exodus 31:18, Torah Shebichtav and Torah Sheba'al Peh",
+    "technique": "canvas 2D — Apollonian gasket via Descartes' Circle Theorem, recursive Soddy-circle BFS, complex-number center arithmetic",
+    "path": "pieces/42-finger-of-god/index.html",
+    "thumbnail": "pieces/42-finger-of-god/thumbnail.svg",
+    "essay": "pieces/42-finger-of-god/essay.md"
   }
 ]

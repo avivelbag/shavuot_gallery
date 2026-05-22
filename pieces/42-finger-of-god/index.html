@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Written by the Finger of God — Apollonian Stone</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #1A1A2E;
+      color: #c8b87a;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      background: #1A1A2E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #apolloCanvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2rem 1.8rem 2rem 1.6rem;
+      background: #12121f;
+      border-left: 1px solid rgba(245, 216, 122, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.1rem;
+      color: #F5D87A;
+      margin: 0 0 1.2rem 0;
+      font-weight: normal;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+    .essay h2 {
+      font-size: 0.95rem;
+      color: #C4992A;
+      margin: 1.4rem 0 0.7rem 0;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+    }
+    .essay p {
+      font-size: 0.86rem;
+      line-height: 1.80;
+      margin: 0 0 0.9rem 0;
+      color: #a89860;
+    }
+    .essay blockquote {
+      margin: 0.3rem 0 0.9rem 1rem;
+      padding-left: 0.9rem;
+      border-left: 2px solid rgba(245, 216, 122, 0.3);
+    }
+    .essay blockquote p {
+      font-style: italic;
+      color: #9a8850;
+      margin: 0 0 0.4rem 0;
+    }
+    .essay .citation {
+      font-size: 0.97rem;
+      color: #F5D87A;
+      direction: rtl;
+      text-align: right;
+      margin: 0.1rem 0 0.15rem 0;
+      line-height: 1.7;
+    }
+    .essay strong { color: #F5D87A; }
+    .essay em { color: #b8a060; }
+    .essay hr {
+      border: none;
+      border-top: 1px solid rgba(245, 216, 122, 0.12);
+      margin: 1.2rem 0;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; }
+      .artwork { flex: none; height: 80vw; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(245,216,122,0.18); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="artwork">
+      <canvas id="apolloCanvas"></canvas>
+    </div>
+    <div class="essay">
+      <h1>Written by the Finger of God — Apollonian Stone</h1>
+
+      <p><strong>Exodus 31:18</strong></p>
+      <p class="citation">וַיִּתֵּן אֶל מֹשֶׁה כְּכַלֹּתוֹ לְדַבֵּר אִתּוֹ בְּהַר סִינַי שְׁנֵי לֻחֹת הָעֵדֻת לֻחֹת אֶבֶן כְּתֻבִים בְּאֶצְבַּע אֱלֹהִים</p>
+      <p>"And He gave to Moses, when He had finished speaking with him upon Mount Sinai, the two tablets of testimony, tablets of stone, written by the finger of God."</p>
+
+      <p>The phrase is almost impossibly compressed. Everything the rabbis will spend centuries unpacking is folded into four words: <em>כְּתֻבִים בְּאֶצְבַּע אֱלֹהִים</em> — written by the finger of God. Not dictated. Not engraved by human hands under divine instruction. Written directly, stone bearing the immediate impression of divine action. Rashi notes that the tablets were fashioned from sapphire, hewn from beneath the divine throne, and that the letters pierced through the stone completely — readable from both sides simultaneously, by a miracle, since letters like mem and samech have enclosed interiors that should have fallen out. The writing itself was supernatural, and the medium — stone, <em>even</em> — was chosen because stone endures. What is written in stone does not fade.</p>
+
+      <p>But the Written Torah is only half the gift.</p>
+
+      <hr>
+
+      <h2>Two Torahs, One Sinai</h2>
+
+      <p>The rabbis teach that at Sinai, two Torahs were given simultaneously: the <em>Torah Shebichtav</em>, the Written Torah — the text inscribed on the tablets and later the scroll — and the <em>Torah Sheba'al Peh</em>, the Oral Torah — the vast tradition of interpretation, commentary, and application that was transmitted mouth to ear from Moses to Joshua, from Joshua to the Elders, and from the Elders down through the generations. Both were given at Sinai. Neither is complete without the other.</p>
+
+      <p>The Talmud in <em>Shabbat 31a</em> recounts the famous story of the prospective convert who came to Shammai and Hillel demanding to be taught the entire Torah while standing on one foot. Hillel's answer — "What is hateful to you, do not do to your fellow; this is the entire Torah, and the rest is commentary — go and learn" — is deceptively simple. "The rest is commentary" does not mean the rest is optional or peripheral. It means the rest is the explication without which the core cannot be applied. The Oral Torah is not an addition to the Written Torah; it is the Written Torah's necessary completion.</p>
+
+      <p><em>Avot</em> 1:1 traces the chain of transmission: "Moses received the Torah from Sinai and transmitted it to Joshua; Joshua to the Elders; the Elders to the Prophets; and the Prophets transmitted it to the Men of the Great Assembly." This chain — the <em>mesorah</em> — is the Oral Torah's skeleton. Each link added exposition, clarified disputes, resolved new situations by analogy to established principles. The chain has never broken.</p>
+
+      <hr>
+
+      <h2>The Apollonian Gasket as Commentary</h2>
+
+      <p>The Apollonian gasket is a fractal generated by Descartes' Circle Theorem. Begin with three mutually tangent circles. Into the curvilinear triangle formed by their gaps, fit the largest possible circle — the <em>Soddy circle</em>. Now treat each new tangent triple as a seed and repeat, forever. Every gap is filled by a circle. Every newly created gap is itself filled. The process is infinite and total: no gap ever truly empty.</p>
+
+      <p>Descartes stated the governing relation in 1643. For four mutually tangent circles with curvatures k₁, k₂, k₃, k₄:</p>
+
+      <blockquote><p>(k₁ + k₂ + k₃ + k₄)² = 2(k₁² + k₂² + k₃² + k₄²)</p></blockquote>
+
+      <p>This single equation contains all Apollonian gaskets. Every subsequent circle is determined by the three that precede it — a finite rule generating infinite structure. The parallel to commentary is not decorative. Rashi wrote his commentary on the Torah in the eleventh century. Tosafot — the school of Rashi's grandsons and students — then wrote commentary in the margins of Rashi's commentary. Later authorities wrote commentary on Tosafot. The physical layout of the classic Vilna Shas encodes this graphically: Gemara in the center, Rashi on the inner margin, Tosafot on the outer margin, later glosses filling every remaining space. The page is an Apollonian gasket. Every interstitial space is inhabited.</p>
+
+      <p class="citation">הֲפָךְ בָּהּ וַהֲפָךְ בָּהּ דְּכֹלָּא בָהּ</p>
+      <p>"Turn it over and turn it over again, for everything is in it." (Avot 5:22)</p>
+
+      <p>The Torah is not exhausted by reading. Every turning reveals a new surface. The gasket enacts this: every level of recursion discloses structure invisible at the previous level, yet generated entirely by the same theorem applied to what was already there.</p>
+
+      <hr>
+
+      <h2>Inscription in Stone</h2>
+
+      <p>The aleph (א) that centers this piece is the first letter of the first word of the Ten Commandments: <em>Anochi</em> — "I am." The Talmud in <em>Makkot</em> 23b–24a records that at Sinai the Israelites heard two commandments directly from God. Rashi adds, following the Mechilta, that even these two the people heard directly only in their first utterance — the aleph of <em>Anochi</em>, which is a silent letter. The entire Sinai revelation, in one tradition, is compressed into a breath, a pure opening of the mouth, a letter that makes no sound but initiates all speech. Every subsequent letter flows from that first silent aleph.</p>
+
+      <p>The stone tablets were the Written Torah's first form. They were broken and replaced; the second set accompanied Israel through the wilderness in the Ark of the Covenant. What endured was not the specific stones but the text — and the chain of oral tradition that made the text intelligible. Stone is the metaphor for permanence: the Oral Torah, though transmitted by voice, is equally permanent. The gasket is permanent in the same sense: any finite approximation is incomplete, but the underlying theorem generates a unique, determinate structure that has always already been there, waiting to be inscribed.</p>
+
+      <p>The palette — deep slate, pale gold, deep amber, pure white — evokes the tablets themselves: stone, fire, and the light of divine inscription. The animation does not add anything to the gasket; it reveals what was always there, generation by generation, as commentary has always revealed what was always present in the text.</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('apolloCanvas');
+    const ctx = canvas.getContext('2d');
+    const artwork = canvas.parentElement;
+
+    /* Canvas logical size — square so the gasket fits cleanly */
+    const SIZE = 600;
+
+    /* Minimum radius in logical pixels — circles smaller than this are skipped */
+    const MIN_R = 2.0;
+
+    /* Maximum total circles to avoid performance issues */
+    const MAX_CIRCLES = 2000;
+
+    /* Milliseconds per generation reveal step */
+    const GEN_INTERVAL_MS = 800;
+
+    /* Circles sorted by generation for the reveal animation */
+    let circlesByGen = [];   /* Array of arrays: circlesByGen[gen] = [{x,y,r}, ...] */
+    let maxGen = 0;
+    let currentGen = 0;
+    let lastGenTime = 0;
+
+    /* -------------------------------------------------------------------------
+       Descartes / Apollonian math using complex-number center representation.
+       All circles stored as {k, z} where k = curvature (1/r), z = complex center.
+       The enclosing outer circle has negative curvature.
+    ------------------------------------------------------------------------- */
+
+    /**
+     * Solve Descartes' theorem for the fourth curvature given three tangent curvatures.
+     * Returns [k4a, k4b] — two solutions (Soddy circles), one on each "side".
+     * Formula: k4 = k1+k2+k3 ± 2*sqrt(k1*k2 + k2*k3 + k3*k1)
+     */
+    function descartesK(k1, k2, k3) {
+      const sum = k1 + k2 + k3;
+      const disc = Math.sqrt(Math.max(0, k1 * k2 + k2 * k3 + k3 * k1));
+      return [sum + 2 * disc, sum - 2 * disc];
+    }
+
+    /**
+     * Compute the complex center of the fourth tangent circle given three circles
+     * and the target curvature k4.
+     * Formula: z4 = (k1*z1 + k2*z2 + k3*z3 ± 2*sqrt(k1*k2*z1*z2 + k2*k3*z2*z3 + k3*k1*z3*z1)) / k4
+     * Complex arithmetic done with {re, im} objects.
+     */
+    function descartesZ(c1, c2, c3, k4) {
+      const { k: k1, z: z1 } = c1;
+      const { k: k2, z: z2 } = c2;
+      const { k: k3, z: z3 } = c3;
+
+      /* numerator base: k1*z1 + k2*z2 + k3*z3 */
+      const baseRe = k1 * z1.re + k2 * z2.re + k3 * z3.re;
+      const baseIm = k1 * z1.im + k2 * z2.im + k3 * z3.im;
+
+      /* cross terms under sqrt: k1*k2*z1*z2 + k2*k3*z2*z3 + k3*k1*z3*z1 */
+      function cmul(a, b) { return { re: a.re * b.re - a.im * b.im, im: a.re * b.im + a.im * b.re }; }
+
+      const t1 = cmul(z1, z2);
+      const t2 = cmul(z2, z3);
+      const t3 = cmul(z3, z1);
+
+      const crossRe = k1 * k2 * t1.re + k2 * k3 * t2.re + k3 * k1 * t3.re;
+      const crossIm = k1 * k2 * t1.im + k2 * k3 * t2.im + k3 * k1 * t3.im;
+
+      /* sqrt of complex number: sqrt(a + bi) */
+      const mag = Math.sqrt(crossRe * crossRe + crossIm * crossIm);
+      const sqrtMag = Math.sqrt(mag);
+      const angle = Math.atan2(crossIm, crossRe) / 2;
+      const sqrtRe = sqrtMag * Math.cos(angle);
+      const sqrtIm = sqrtMag * Math.sin(angle);
+
+      /* Two candidate centers */
+      const z4a = { re: (baseRe + 2 * sqrtRe) / k4, im: (baseIm + 2 * sqrtIm) / k4 };
+      const z4b = { re: (baseRe - 2 * sqrtRe) / k4, im: (baseIm - 2 * sqrtIm) / k4 };
+
+      return [z4a, z4b];
+    }
+
+    /**
+     * Check whether a candidate circle {k, z} is already present in the set,
+     * using approximate equality to avoid duplicates.
+     */
+    function circleKey(k, z) {
+      return `${Math.round(k * 100)},${Math.round(z.re * 100)},${Math.round(z.im * 100)}`;
+    }
+
+    /**
+     * Generate all Apollonian gasket circles via BFS starting from three seed circles.
+     * Returns circles grouped by generation: [{x, y, r, gen}, ...] sorted by gen.
+     */
+    function buildGasket(cx, cy, R) {
+      /* Outer enclosing circle: center cx,cy, radius R, negative curvature */
+      const outer = { k: -1 / R, z: { re: cx, im: cy } };
+
+      /* Two inner seed circles sitting side by side, each of radius R/2 */
+      const r1 = R / 2;
+      const c1 = { k: 1 / r1, z: { re: cx - r1, im: cy } };
+      const c2 = { k: 1 / r1, z: { re: cx + r1, im: cy } };
+
+      /* Third seed circle: tangent to both inner circles and the outer circle.
+         By Descartes with k_outer=-1/R, k1=k2=1/r1 → k3 via descartesK */
+      const [k3a, k3b] = descartesK(outer.k, c1.k, c2.k);
+      const k3 = Math.max(k3a, k3b);  /* positive solution = inner circle */
+      const [z3a, z3b] = descartesZ(outer, c1, c2, k3);
+      /* Pick the center closer to cy (the one inside the outer circle) */
+      const z3 = Math.abs(z3a.im - cy) < Math.abs(z3b.im - cy) ? z3a : z3b;
+      const c3 = { k: k3, z: z3 };
+
+      const seen = new Set();
+      seen.add(circleKey(outer.k, outer.z));
+      seen.add(circleKey(c1.k, c1.z));
+      seen.add(circleKey(c2.k, c2.z));
+      seen.add(circleKey(c3.k, c3.z));
+
+      /* Result circles (excluding the outer enclosing circle) */
+      const result = [
+        { x: c1.z.re, y: c1.z.im, r: 1 / c1.k, gen: 0 },
+        { x: c2.z.re, y: c2.z.im, r: 1 / c2.k, gen: 0 },
+        { x: c3.z.re, y: c3.z.im, r: 1 / c3.k, gen: 0 },
+      ];
+
+      /* BFS queue: each entry is [circle_a, circle_b, circle_c, generation, excluded_key]
+         We seek the Soddy circle inside the triple that is NOT the excluded circle. */
+      const queue = [
+        [outer, c1, c2, 1, circleKey(c3.k, c3.z)],
+        [outer, c1, c3, 1, circleKey(c2.k, c2.z)],
+        [outer, c2, c3, 1, circleKey(c1.k, c1.z)],
+        [c1,    c2, c3, 1, circleKey(outer.k, outer.z)],
+      ];
+
+      let totalCircles = result.length;
+
+      while (queue.length > 0 && totalCircles < MAX_CIRCLES) {
+        const [ca, cb, cc, gen, excludeKey] = queue.shift();
+
+        const [k4a, k4b] = descartesK(ca.k, cb.k, cc.k);
+
+        for (const k4 of [k4a, k4b]) {
+          if (!isFinite(k4) || k4 < 0) continue;
+          const r4 = 1 / k4;
+          if (r4 < MIN_R) continue;
+
+          const [z4a, z4b] = descartesZ(ca, cb, cc, k4);
+
+          for (const z4 of [z4a, z4b]) {
+            if (!isFinite(z4.re) || !isFinite(z4.im)) continue;
+
+            const key = circleKey(k4, z4);
+            if (key === excludeKey) continue;
+            if (seen.has(key)) continue;
+
+            /* Verify it's inside the outer circle */
+            const dx = z4.re - cx;
+            const dy = z4.im - cy;
+            const distFromCenter = Math.sqrt(dx * dx + dy * dy);
+            if (distFromCenter + r4 > R + 1) continue;
+
+            seen.add(key);
+            const newCircle = { k: k4, z: z4 };
+            result.push({ x: z4.re, y: z4.im, r: r4, gen });
+            totalCircles++;
+
+            if (totalCircles >= MAX_CIRCLES) break;
+
+            queue.push([ca, cb, newCircle, gen + 1, circleKey(ca.k, ca.z)]);
+            queue.push([ca, cc, newCircle, gen + 1, circleKey(cc.k, cc.z)]);
+            queue.push([cb, cc, newCircle, gen + 1, circleKey(cb.k, cb.z)]);
+          }
+          if (totalCircles >= MAX_CIRCLES) break;
+        }
+      }
+
+      return result;
+    }
+
+    /**
+     * Group circles by generation level.
+     */
+    function groupByGen(circles) {
+      const byGen = [];
+      for (const c of circles) {
+        while (byGen.length <= c.gen) byGen.push([]);
+        byGen[c.gen].push(c);
+      }
+      return byGen;
+    }
+
+    /**
+     * Draw a single circle with the stone-and-fire palette.
+     * Large circles (r > 60): gold-to-amber gradient.
+     * Small circles (r < 8): pure white.
+     * Medium: interpolated gradient.
+     */
+    function drawCircle(circle) {
+      const { x, y, r } = circle;
+
+      if (r < 8) {
+        /* Smallest circles: white mosaic fragments */
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fill();
+        return;
+      }
+
+      /* Radial gradient: pale gold (#F5D87A) at rim → deep amber (#8B5A00) at center */
+      const grad = ctx.createRadialGradient(x, y, r * 0.1, x, y, r);
+      grad.addColorStop(0, '#8B5A00');   /* center: deep amber */
+      grad.addColorStop(0.6, '#C4922A'); /* mid: warm amber */
+      grad.addColorStop(1.0, '#F5D87A'); /* rim: pale gold */
+
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      /* Thin slate border to separate adjacent circles */
+      ctx.strokeStyle = 'rgba(26, 26, 46, 0.7)';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+
+    /**
+     * Render all generations up to (and including) targetGen with full opacity,
+     * then clear the canvas and redraw.
+     */
+    function render(targetGen) {
+      ctx.clearRect(0, 0, SIZE, SIZE);
+
+      /* Background */
+      ctx.fillStyle = '#1A1A2E';
+      ctx.fillRect(0, 0, SIZE, SIZE);
+
+      /* Draw outer enclosing circle border */
+      const cx = SIZE / 2;
+      const cy = SIZE / 2;
+      const R = SIZE / 2 - 4;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.strokeStyle = '#F5D87A';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      /* Draw revealed generations */
+      for (let g = 0; g <= Math.min(targetGen, circlesByGen.length - 1); g++) {
+        for (const c of circlesByGen[g]) {
+          drawCircle(c);
+        }
+      }
+
+      /* Aleph centered in the largest seed circle (gen 0, largest r) */
+      if (targetGen >= 0 && circlesByGen[0] && circlesByGen[0].length > 0) {
+        const largest = circlesByGen[0].reduce((a, b) => a.r > b.r ? a : b);
+        const fontSize = Math.round(largest.r * 1.3);
+        ctx.save();
+        ctx.globalAlpha = 0.70;
+        ctx.fillStyle = '#F5E6C8';
+        ctx.font = `bold ${fontSize}px serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.direction = 'rtl';
+        ctx.fillText('א', largest.x, largest.y + fontSize * 0.05);
+        ctx.restore();
+      }
+    }
+
+    function resize() {
+      const dim = Math.min(artwork.clientWidth, artwork.clientHeight);
+      canvas.width = SIZE;
+      canvas.height = SIZE;
+      canvas.style.width = dim + 'px';
+      canvas.style.height = dim + 'px';
+    }
+
+    function init() {
+      resize();
+
+      const cx = SIZE / 2;
+      const cy = SIZE / 2;
+      const R = SIZE / 2 - 4;
+
+      const allCircles = buildGasket(cx, cy, R);
+      circlesByGen = groupByGen(allCircles);
+      maxGen = circlesByGen.length - 1;
+      currentGen = 0;
+      lastGenTime = performance.now();
+
+      render(currentGen);
+    }
+
+    function animate(ts) {
+      requestAnimationFrame(animate);
+
+      if (ts - lastGenTime >= GEN_INTERVAL_MS) {
+        currentGen++;
+        if (currentGen > maxGen) {
+          /* Loop: pause one extra interval at the end, then restart */
+          currentGen = -1;
+        }
+        lastGenTime = ts;
+        render(currentGen);
+      }
+    }
+
+    window.addEventListener('resize', () => { resize(); render(currentGen); });
+
+    init();
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>
