@@ -18,6 +18,7 @@ PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 INDEX_HTML = os.path.join(PIECE_DIR, "index.html")
 THUMBNAIL_SVG = os.path.join(PIECE_DIR, "thumbnail.svg")
 README_MD = os.path.join(PIECE_DIR, "README.md")
+ESSAY_MD = os.path.join(PIECE_DIR, "essay.md")
 
 
 def _load_pieces():
@@ -44,6 +45,10 @@ def _readme():
     return open(README_MD, encoding="utf-8").read()
 
 
+def _essay():
+    return open(ESSAY_MD, encoding="utf-8").read()
+
+
 # ─── File layout ────────────────────────────────────────────────────────────
 
 def test_index_html_exists():
@@ -56,6 +61,10 @@ def test_thumbnail_svg_exists():
 
 def test_readme_exists():
     assert os.path.isfile(README_MD), "pieces/05-ruth-wheat-field/README.md missing"
+
+
+def test_essay_md_exists():
+    assert os.path.isfile(ESSAY_MD), "pieces/05-ruth-wheat-field/essay.md missing"
 
 
 # ─── pieces.json entry ───────────────────────────────────────────────────────
@@ -287,3 +296,68 @@ def test_pieces_json_no_duplicate_ids():
     pieces = _load_pieces()
     ids = [p["id"] for p in pieces]
     assert len(ids) == len(set(ids)), f"Duplicate piece IDs: {ids}"
+
+
+# ─── Essay ───────────────────────────────────────────────────────────────────
+
+def test_essay_field_in_json():
+    """pieces.json entry must have a non-empty 'essay' field."""
+    p = _get_piece()
+    assert p is not None
+    essay_val = p.get("essay", "")
+    assert essay_val and essay_val.strip(), "pieces.json 'essay' field is empty or missing"
+
+
+def test_essay_json_path_matches_disk():
+    """The path in pieces.json 'essay' field must point to an existing file."""
+    p = _get_piece()
+    assert p is not None
+    essay_path = p.get("essay", "")
+    full_path = os.path.join(GALLERY_ROOT, essay_path)
+    assert os.path.isfile(full_path), f"essay file '{essay_path}' not found on disk"
+
+
+def test_essay_substantial():
+    """essay.md must be at least 200 words (proves genuine content, not a stub)."""
+    text = _essay()
+    word_count = len(text.split())
+    assert word_count >= 200, f"essay.md has only {word_count} words (minimum 200)"
+
+
+def test_essay_names_source():
+    """Essay must cite a real source (Book of Ruth, Ruth 1:16, or similar)."""
+    text = _essay().lower()
+    assert "ruth" in text, "essay.md must mention the Book of Ruth"
+    assert "1:16" in text or "source" in text, \
+        "essay.md must name a source (e.g. Ruth 1:16)"
+
+
+def test_essay_mentions_shavuot():
+    """Essay must connect the piece to Shavuot."""
+    text = _essay().lower()
+    assert "shavuot" in text, "essay.md must explain the Shavuot connection"
+
+
+def test_essay_embedded_in_html():
+    """The on-page essay text must be readable in index.html (not just canvas overlay)."""
+    html = _html()
+    assert "essay-pane" in html or "essay" in html.lower(), \
+        "index.html must embed the essay as readable HTML text"
+    assert "Ruth 1:16" in html or "1:16" in html, \
+        "index.html must name the source verse (Ruth 1:16)"
+
+
+def test_essay_empty_file_detection(tmp_path):
+    """An essay.md with zero words should be caught by the word-count check."""
+    empty = tmp_path / "essay.md"
+    empty.write_text("", encoding="utf-8")
+    text = empty.read_text(encoding="utf-8")
+    assert len(text.split()) == 0
+
+
+def test_essay_short_stub_detection(tmp_path):
+    """A stub essay with fewer than 200 words should fail the word-count check."""
+    stub = tmp_path / "essay.md"
+    stub.write_text("This is Ruth." * 10, encoding="utf-8")
+    text = stub.read_text(encoding="utf-8")
+    assert len(text.split()) < 200

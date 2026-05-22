@@ -14,7 +14,7 @@ import pytest
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 
-REQUIRED_FIELDS = ("id", "title", "tagline", "year", "theme", "technique", "path", "thumbnail")
+REQUIRED_FIELDS = ("id", "title", "tagline", "year", "theme", "technique", "path", "thumbnail", "essay")
 
 
 # ---------------------------------------------------------------------------
@@ -118,6 +118,42 @@ def test_readme_exists():
         readme = os.path.join(piece_dir, "README.md")
         assert os.path.isfile(readme), (
             f"Piece '{piece['id']}': README.md is missing from {piece_dir}"
+        )
+
+
+def test_essay_field_non_empty():
+    """Every piece must have a non-empty 'essay' field in pieces.json."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay_val = piece.get("essay")
+        assert essay_val and essay_val.strip(), (
+            f"Piece '{piece.get('id', '?')}' has empty or missing 'essay' field in pieces.json"
+        )
+
+
+def test_essay_md_exists():
+    """The essay.md file referenced in the 'essay' field must exist on disk."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay_path = piece.get("essay", "")
+        full_path = os.path.join(GALLERY_ROOT, essay_path)
+        assert os.path.isfile(full_path), (
+            f"Piece '{piece['id']}': essay file '{essay_path}' does not exist on disk"
+        )
+
+
+def test_essay_md_substantial():
+    """Each essay.md must be substantial — at least 200 words."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay_path = piece.get("essay", "")
+        full_path = os.path.join(GALLERY_ROOT, essay_path)
+        if not os.path.isfile(full_path):
+            pytest.fail(f"Piece '{piece['id']}': essay file missing, cannot check word count")
+        text = open(full_path, encoding="utf-8").read()
+        word_count = len(text.split())
+        assert word_count >= 200, (
+            f"Piece '{piece['id']}': essay.md has only {word_count} words (minimum 200)"
         )
 
 
