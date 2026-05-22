@@ -196,5 +196,16 @@
     "path": "pieces/20-sinai-ketubah/index.html",
     "thumbnail": "pieces/20-sinai-ketubah/thumbnail.svg",
     "essay": "pieces/20-sinai-ketubah/essay.md"
+  },
+  {
+    "id": "21-peah-open-corner",
+    "title": "The Open Corner",
+    "tagline": "pe'ah — the field corner left unharvested for the poor and the stranger",
+    "year": 2026,
+    "theme": "Bikkurim / Harvest and Social Justice",
+    "technique": "canvas 2D flow-field animation, Perlin noise, wheat stalk rendering",
+    "path": "pieces/21-peah-open-corner/index.html",
+    "thumbnail": "pieces/21-peah-open-corner/thumbnail.svg",
+    "essay": "pieces/21-peah-open-corner/essay.md"
   }
 ]

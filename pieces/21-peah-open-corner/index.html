@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Open Corner — Pe'ah</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #2a1a08;
+      color: #f5e6c8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas { display: block; max-width: 100%; }
+    .essay-pane { flex: 1 1 320px; min-width: 0; }
+    .essay-pane h1 { font-size: 1.4rem; color: #e8c850; margin-bottom: 0.5rem; line-height: 1.3; }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #c8a96e;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #d4a017;
+      padding-left: 0.75rem;
+    }
+    .essay-pane p { font-size: 0.95rem; line-height: 1.75; color: #e8d8b8; margin-bottom: 1rem; }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>The Open Corner — Pe'ah and the Geometry of Generosity</h1>
+    <p class="source">Source: Leviticus 23:22 — immediately following the Shavuot/Omer legislation,
+    God commands leaving the pe'ah (corner), leket (fallen grain), and shikchah (forgotten sheaf)
+    for the poor and the stranger. See also Ruth 2:2–3; Mishnah Pe'ah 1:1.</p>
+
+    <p>Tucked inside the Shavuot legislation of Leviticus 23 — between the counting of the Omer
+    and the proclamation of the festival — is a single, startling verse: "When you reap the harvest
+    of your land, you shall not reap the corner of your field to its edge, nor shall you gather the
+    gleanings of your harvest; you shall leave them for the poor and the stranger" (Leviticus 23:22).
+    This is not the obvious place for a welfare statute. It sits directly after the instructions for
+    Shavuot as if the Torah is insisting, before it lets you celebrate, that abundance carries
+    obligation.</p>
+
+    <p>The law names three gifts: <em>pe'ah</em> (the corner of the field, left unharvested),
+    <em>leket</em> (individual stalks dropped by the reaper — forbidden to retrieve), and
+    <em>shikchah</em> (a forgotten sheaf — if you leave it and return for it, you have violated the
+    law, because forgetting is now a form of giving). Mishnah Pe'ah 1:1 opens with a remarkable
+    declaration: "Pe'ah has no fixed measure" — unlike tithes, the corner cannot be calculated to
+    the minimum. Generosity, the Mishnah implies, is not a tax with a floor; it is an orientation.</p>
+
+    <p>The narrative illustration of these laws is the Book of Ruth. In Ruth 2:2–3, Ruth asks
+    Naomi's permission to glean and sets out to walk behind the reapers. This is precisely the
+    system working as designed: a Moabite widow, a stranger twice over, exercising the legal right
+    to eat from the corners of a field owned by a man named Boaz. She does not beg; the structure
+    of the harvest has already guaranteed her access. Boaz goes further — he instructs his workers
+    to leave extra stalks deliberately (Ruth 2:16), adding personal generosity on top of legal
+    obligation.</p>
+
+    <p>The connection to Shavuot runs deeper than calendar proximity. Shavuot is simultaneously
+    the festival of receiving the Torah and the festival that encodes within that very Torah the
+    obligation to give. Receiving and giving are not separate events: the same chapter that announces
+    God's gift also commands generosity structural — architectural, built into the shape of the
+    field itself. The open corner is not charity; it is law. Boaz's field has gaps in it not
+    because Boaz is kind, but because God said the field must have gaps.</p>
+
+    <p>This piece renders that agricultural law as a living field: wheat stalks swaying in a
+    Perlin-noise wind, planted densely everywhere except at the four corners of the canvas —
+    empty triangles of turned earth, the pe'ah made visible. The background is deep loam brown;
+    the corners are lighter, hinting at exposed soil where nothing grows by command. The Hebrew
+    label <span dir="rtl">פֵּאָה</span> fades in below — the word for "corner," which became the
+    word for a whole tractate of the Mishnah, which became a principle of Jewish social ethics:
+    that the shape of plenty is not a solid, but a field with open corners.</p>
+  </div>
+</div>
+<script>
+// ─── Perlin noise — standard 256-permutation table, ~50 lines ────────────────
+const _p = new Uint8Array(256);
+for (let i = 0; i < 256; i++) _p[i] = i;
+for (let i = 255; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  const tmp = _p[i]; _p[i] = _p[j]; _p[j] = tmp;
+}
+const perm = new Uint8Array(512);
+for (let i = 0; i < 512; i++) perm[i] = _p[i & 255];
+
+function _grad(h, x, y) {
+  const u = (h & 1) ? -x : x;
+  const v = (h & 2) ? -y : y;
+  return u + v;
+}
+function _fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+function _lerp(a, b, t) { return a + t * (b - a); }
+
+function noise2d(x, y) {
+  const xi = Math.floor(x) & 255, yi = Math.floor(y) & 255;
+  const xf = x - Math.floor(x), yf = y - Math.floor(y);
+  const u = _fade(xf), v = _fade(yf);
+  const aa = perm[perm[xi]     + yi],     ab = perm[perm[xi]     + yi + 1];
+  const ba = perm[perm[xi + 1] + yi],     bb = perm[perm[xi + 1] + yi + 1];
+  return _lerp(
+    _lerp(_grad(aa, xf,     yf    ), _grad(ba, xf - 1, yf    ), u),
+    _lerp(_grad(ab, xf,     yf - 1), _grad(bb, xf - 1, yf - 1), u),
+    v
+  );
+}
+// ──────────────────────────────────────────────────────────────────────────────
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = 800, H = 700;
+canvas.width = W;
+canvas.height = H;
+
+// Triangular corner exclusion zones: top-left corner = x < CX AND y < CY
+const CX = W * 0.15, CY = H * 0.15;
+
+function inCorner(x, y) {
+  if (x < CX && y < CY)         return true;
+  if (x > W - CX && y < CY)     return true;
+  if (x < CX && y > H - CY)     return true;
+  if (x > W - CX && y > H - CY) return true;
+  return false;
+}
+
+// Build stalk grid: 40 cols × 30 rows = 1200 positions; skip corner zones
+const COLS = 40, ROWS = 30;
+const jX = (W / COLS) * 0.4, jY = (H / ROWS) * 0.4;
+const stalksGold = [], stalksLight = [];
+
+for (let r = 0; r < ROWS; r++) {
+  for (let c = 0; c < COLS; c++) {
+    const bx = (c + 0.5) / COLS * W + (Math.random() - 0.5) * jX;
+    const by = (r + 0.5) / ROWS * H + (Math.random() - 0.5) * jY;
+    if (inCorner(bx, by)) continue;
+    const h = (H * 0.072) * (0.8 + Math.random() * 0.4);
+    (Math.random() < 0.5 ? stalksGold : stalksLight).push({ bx, by, h });
+  }
+}
+
+function drawBackground() {
+  ctx.fillStyle = '#2a1a08';
+  ctx.fillRect(0, 0, W, H);
+  // Lighter ground tone in corner pe'ah zones
+  ctx.fillStyle = '#3a2510';
+  ctx.fillRect(0,       0,       CX, CY);
+  ctx.fillRect(W - CX,  0,       CX, CY);
+  ctx.fillRect(0,       H - CY,  CX, CY);
+  ctx.fillRect(W - CX,  H - CY,  CX, CY);
+}
+
+// Batch all stalks of one color into a single path for performance
+function drawStalkBatch(stalks, color, t) {
+  const swayAmt = 20;
+  ctx.beginPath();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.2;
+  for (const s of stalks) {
+    const angle = noise2d(s.bx * 0.015, s.by * 0.015 + t * 0.0003) * Math.PI * 2;
+    const dx = Math.cos(angle) * swayAmt;
+    const dy = Math.sin(angle) * swayAmt * 0.25;
+    const tx = s.bx + dx, ty = s.by - s.h + dy;
+    const cpx = s.bx + dx * 0.5, cpy = s.by - s.h * 0.55;
+    ctx.moveTo(s.bx, s.by);
+    ctx.quadraticCurveTo(cpx, cpy, tx, ty);
+  }
+  ctx.stroke();
+}
+
+function drawLabel(elapsed) {
+  const opacity = Math.min(1, elapsed / 3000);
+  if (opacity <= 0) return;
+  ctx.save();
+  ctx.globalAlpha = opacity;
+  ctx.font = 'bold 26px serif';
+  ctx.fillStyle = '#f5e6c8';
+  ctx.direction = 'rtl';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('פֵּאָה', W / 2, H - 20);
+  ctx.restore();
+}
+
+let startTime = null;
+
+function frame(ts) {
+  if (!startTime) startTime = ts;
+  const elapsed = ts - startTime;
+
+  drawBackground();
+  drawStalkBatch(stalksGold,  '#d4a017', elapsed);
+  drawStalkBatch(stalksLight, '#e8c850', elapsed);
+  drawLabel(elapsed);
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
