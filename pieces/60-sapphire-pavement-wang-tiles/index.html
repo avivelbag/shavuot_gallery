@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livnat HaSapir — The Pavement of Sapphire</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; min-height: 100vh;
+      background: #03060f;
+      color: #c8d8f0;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas { display: block; }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.35rem;
+      color: #D4A820;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #8faad0;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #1a2e6e;
+      padding-left: 0.75rem;
+      line-height: 1.7;
+    }
+    .essay-pane .source .hebrew {
+      display: block;
+      direction: rtl;
+      font-size: 1.05rem;
+      color: #C8E6FA;
+      margin-bottom: 0.4rem;
+      font-style: normal;
+    }
+    .essay-pane p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: #b0c8e8;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #D4A820; font-style: normal; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #5a7aaa;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #1a2e6e;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100% !important; height: auto !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="700" height="700"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>לִבְנַת הַסַּפִּיר — The Pavement of Sapphire</h1>
+    <div class="source">
+      <span class="hebrew">וַיִּרְאוּ אֵת אֱלֹהֵי יִשְׂרָאֵל וְתַחַת רַגְלָיו כְּמַעֲשֵׂה לִבְנַת הַסַּפִּיר וּכְעֶצֶם הַשָּׁמַיִם לָטֹהַר</span>
+      "They saw the God of Israel, and under His feet was something like a pavement made of sapphire, clear as the very sky." — Exodus 24:10
+    </div>
+
+    <p>The ascent to Sinai described in Exodus 24:9–11 is one of the Torah's most extraordinary passages. Moses, Aaron, Nadab, Abihu, and seventy elders of Israel climb the mountain together to ratify the covenant. They see the God of Israel. And then — with breathtaking ordinariness — the text reports: <em>va-yochlu va-yishtu</em>, "they ate and they drank" (Exodus 24:11). No one was struck down. No one fell in terror. They saw the divine and had lunch. The vision of the sapphire pavement is embedded in this remarkable domesticity: the most transcendent moment in the Torah ends with a meal.</p>
+
+    <p>The pavement itself — <em>livnat ha-sapir</em> — is described only by what it was like: something like sapphire tiles, clear as the sky itself. The Torah names no architect, gives no dimensions, offers no further description. It is a floor, not a ceiling. The divine is not above, but below; not distant but underfoot.</p>
+
+    <p>Rashi, citing the Midrash, connects the pavement to the memory of Egyptian slavery. During the bondage, Israelite women had given birth on the bricks, and those bricks were bound up in the image of oppression. God kept the sapphire-like image before Him during the plagues as a reminder of Israel's suffering — and now, at the moment of covenant, that memory was transformed into radiance. The pavement of sapphire is the sublimation of clay.</p>
+
+    <p>Nachmanides reads differently. For him, the sapphire represents the pure revealed light of the divine intellect — the luminosity of pure being, which the elders perceived directly in that moment of covenant. The floor is not a reminder of slavery but an emanation of the infinite, grounded in the visible world.</p>
+
+    <p>Both readings point to the same paradox: this is a floor, something walked upon, yet it is made of the sky. Wang tiles enact this quality. Each tile is a small square with colored edges that must match its neighbors — structured by law, yet producing patterns that never quite repeat. The mosaic is legible but inexhaustible, rule-governed but endlessly surprising. This is what the Torah describes: not chaos but an ordered radiance whose regularity is the regularity of law, and whose beauty is always new.</p>
+
+    <p>The empty center — <em>תַּחַת רַגְלָיו</em>, "under His feet" — holds the place of the vision without depicting what stood above it. That is left, deliberately, without image.</p>
+
+    <p class="citations">Exodus 24:9–11 · Rashi on 24:10 (citing Midrash Tanchuma) · Nachmanides on 24:10 · va-yochlu va-yishtu, Exodus 24:11</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const GRID = 20;
+  const TILE = 35;
+  const W = GRID * TILE;
+  const H = GRID * TILE;
+
+  // Wang tile set: each tile is [north, east, south, west] edge color index (0-3)
+  // 4 colors, 16 tiles covering all combinations needed for greedy matching
+  const TILES = [
+    [0,0,0,0], [1,1,1,1], [2,2,2,2], [3,3,3,3],
+    [0,1,1,0], [1,2,2,1], [2,3,3,2], [3,0,0,3],
+    [0,2,1,3], [1,3,2,0], [2,0,3,1], [3,1,0,2],
+    [0,1,2,3], [1,2,3,0], [2,3,0,1], [3,0,1,2]
+  ];
+
+  // Sapphire palette: deep sapphire, sky blue, pale ice, gold
+  const COLORS = ['#0A1F6E', '#3A7BD5', '#C8E6FA', '#D4A820'];
+  // Slightly brighter variants for interior glyphs
+  const BRIGHT  = ['#1A3FA0', '#5AA0F0', '#E8F8FF', '#F0C840'];
+
+  const VOID_COLOR = '#060810';
+  const GROUT = '#04060e';
+
+  // Central 3x3 void region (indices 8-10 inclusive for a 20-grid)
+  const VOID_START = Math.floor((GRID - 3) / 2); // = 8
+  const VOID_END   = VOID_START + 3;              // = 11 (exclusive)
+
+  /**
+   * Returns true if cell (col, row) is in the central void.
+   */
+  function isVoid(col, row) {
+    return col >= VOID_START && col < VOID_END &&
+           row >= VOID_START && row < VOID_END;
+  }
+
+  /**
+   * Parse a hex color "#rrggbb" into [r, g, b].
+   */
+  function hexToRGB(hex) {
+    return [
+      parseInt(hex.slice(1, 3), 16),
+      parseInt(hex.slice(3, 5), 16),
+      parseInt(hex.slice(5, 7), 16)
+    ];
+  }
+
+  /**
+   * Blend four edge colors (by index) into a single CSS rgb() string.
+   * Used to fill the tile interior with the average hue of its four edges.
+   */
+  function blendEdges(n, e, s, w) {
+    const cols = [n, e, s, w].map(i => hexToRGB(COLORS[i]));
+    const r = Math.round(cols.reduce((a, c) => a + c[0], 0) / 4);
+    const g = Math.round(cols.reduce((a, c) => a + c[1], 0) / 4);
+    const b = Math.round(cols.reduce((a, c) => a + c[2], 0) / 4);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  /**
+   * Build a seeded pseudo-random number generator (mulberry32).
+   * Deterministic for a given seed so each loop cycle is reproducible
+   * within a single fill pass but varies across reseeds.
+   */
+  function makeRNG(seed) {
+    let s = seed >>> 0;
+    return function () {
+      s += 0x6D2B79F5;
+      let t = Math.imul(s ^ (s >>> 15), 1 | s);
+      t ^= t + Math.imul(t ^ (t >>> 7), 61 | t);
+      return ((t ^ (t >>> 14)) >>> 0) / 0xFFFFFFFF;
+    };
+  }
+
+  /**
+   * Build a 20x20 grid of tile indices using greedy left-to-right,
+   * top-to-bottom matching. Each cell picks a random tile from those
+   * whose north edge matches the south of the cell above and whose
+   * west edge matches the east of the cell to the left. Falls back
+   * to any tile with matching north or west if no perfect match exists.
+   *
+   * @param {function} rng - A () => [0,1) random source.
+   * @returns {number[][]} grid[row][col] — index into TILES.
+   */
+  function buildGrid(rng) {
+    const grid = Array.from({length: GRID}, () => new Array(GRID).fill(-1));
+    for (let row = 0; row < GRID; row++) {
+      for (let col = 0; col < GRID; col++) {
+        if (isVoid(col, row)) { grid[row][col] = -1; continue; }
+
+        const needN = row > 0 && !isVoid(col, row - 1)
+          ? TILES[grid[row - 1][col]][2]  // south of cell above
+          : -1;
+        const needW = col > 0 && !isVoid(col - 1, row)
+          ? TILES[grid[row][col - 1]][1]  // east of cell to left
+          : -1;
+
+        let candidates = TILES.map((t, i) => i).filter(i => {
+          const t = TILES[i];
+          const okN = needN === -1 || t[0] === needN;
+          const okW = needW === -1 || t[3] === needW;
+          return okN && okW;
+        });
+
+        if (candidates.length === 0) {
+          // Relax: match at least one constraint
+          candidates = TILES.map((_, i) => i).filter(i => {
+            const t = TILES[i];
+            return (needN === -1 || t[0] === needN) ||
+                   (needW === -1 || t[3] === needW);
+          });
+        }
+        if (candidates.length === 0) candidates = [0];
+
+        grid[row][col] = candidates[Math.floor(rng() * candidates.length)];
+      }
+    }
+    return grid;
+  }
+
+  /**
+   * Draw one Wang tile at pixel position (px, py).
+   * Fills the interior with the blended edge color, draws a glyph
+   * (diamond, cross, or dot) determined by the sum of edge indices,
+   * and strokes a grout line around the perimeter.
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} px   - Left pixel of tile.
+   * @param {number} py   - Top pixel of tile.
+   * @param {number[]} t  - [north, east, south, west] edge color indices.
+   * @param {number} alpha - Opacity 0..1.
+   */
+  function drawTile(ctx, px, py, t, alpha) {
+    const [tn, te, ts, tw] = t;
+    const T = TILE;
+    const cx = px + T / 2;
+    const cy = py + T / 2;
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    // Interior fill
+    ctx.fillStyle = blendEdges(tn, te, ts, tw);
+    ctx.fillRect(px, py, T, T);
+
+    // Edge color bars (thin strips along each edge)
+    const BAR = 4;
+    ctx.fillStyle = COLORS[tn]; ctx.fillRect(px, py, T, BAR);           // north
+    ctx.fillStyle = COLORS[te]; ctx.fillRect(px + T - BAR, py, BAR, T); // east
+    ctx.fillStyle = COLORS[ts]; ctx.fillRect(px, py + T - BAR, T, BAR); // south
+    ctx.fillStyle = COLORS[tw]; ctx.fillRect(px, py, BAR, T);            // west
+
+    // Interior glyph — type depends on edge sum mod 3
+    const glyphType = (tn + te + ts + tw) % 3;
+    const glyphColor = BRIGHT[(tn + te) % 4];
+    const R = T * 0.18;
+    ctx.strokeStyle = glyphColor;
+    ctx.lineWidth = 1.2;
+
+    if (glyphType === 0) {
+      // Diamond
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - R);
+      ctx.lineTo(cx + R, cy);
+      ctx.lineTo(cx, cy + R);
+      ctx.lineTo(cx - R, cy);
+      ctx.closePath();
+      ctx.stroke();
+    } else if (glyphType === 1) {
+      // Cross
+      ctx.beginPath();
+      ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy);
+      ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R);
+      ctx.stroke();
+    } else {
+      // Dot
+      ctx.beginPath();
+      ctx.arc(cx, cy, R * 0.7, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // Grout line
+    ctx.strokeStyle = GROUT;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(px + 0.5, py + 0.5, T - 1, T - 1);
+
+    ctx.restore();
+  }
+
+  /**
+   * Draw the central void: a dark rectangle with the Hebrew phrase
+   * "תַּחַת רַגְלָיו" in gold text.
+   */
+  function drawVoid(ctx) {
+    const x = VOID_START * TILE;
+    const y = VOID_START * TILE;
+    const sz = 3 * TILE;
+
+    ctx.fillStyle = VOID_COLOR;
+    ctx.fillRect(x, y, sz, sz);
+
+    ctx.strokeStyle = '#1a2e6e';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x + 0.5, y + 0.5, sz - 1, sz - 1);
+
+    ctx.save();
+    ctx.fillStyle = '#D4A820';
+    ctx.font = `${TILE * 0.52}px Georgia, serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.direction = 'rtl';
+    ctx.fillText('תַּחַת רַגְלָיו', x + sz / 2, y + sz / 2);
+    ctx.restore();
+  }
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  // State machine for the fill-and-loop animation
+  const FILL_TOTAL_MS = 8000; // 8 seconds to fill all 400 - 9 = 391 tiles
+  const NON_VOID = GRID * GRID - 9;
+  const MS_PER_TILE = FILL_TOTAL_MS / NON_VOID;
+
+  const FADE_OUT_MS = 1200;
+  const PAUSE_MS    = 600;
+
+  let state = 'filling'; // 'filling' | 'fading' | 'pausing'
+  let seed = Math.floor(Math.random() * 0xFFFFFFFF);
+  let rng = makeRNG(seed);
+  let grid = buildGrid(rng);
+
+  // BFS order: spiral from center outward
+  /**
+   * Generate cell visit order expanding from the center of the grid,
+   * skipping void cells. Cells are sorted by Chebyshev distance from
+   * center so the fill visually radiates outward.
+   *
+   * @returns {Array<[number,number]>} Ordered [col, row] pairs.
+   */
+  function fillOrder() {
+    const cx = Math.floor(GRID / 2);
+    const cy = Math.floor(GRID / 2);
+    const cells = [];
+    for (let r = 0; r < GRID; r++) {
+      for (let c = 0; c < GRID; c++) {
+        if (!isVoid(c, r)) cells.push([c, r]);
+      }
+    }
+    cells.sort((a, b) => {
+      const da = Math.max(Math.abs(a[0] - cx), Math.abs(a[1] - cy));
+      const db = Math.max(Math.abs(b[0] - cx), Math.abs(b[1] - cy));
+      return da - db;
+    });
+    return cells;
+  }
+
+  let order = fillOrder();
+  let fillStart = performance.now();
+  let fadeStart = 0;
+  let pauseStart = 0;
+
+  /**
+   * Main animation loop. Three states:
+   * - 'filling': reveal tiles one per frame expanding from center outward
+   * - 'fading': fade the entire mosaic to black over FADE_OUT_MS
+   * - 'pausing': brief black pause before restarting with a new seed
+   */
+  function frame(now) {
+    requestAnimationFrame(frame);
+
+    ctx.fillStyle = '#03060f';
+    ctx.fillRect(0, 0, W, H);
+
+    if (state === 'filling') {
+      const elapsed = now - fillStart;
+      const revealed = Math.min(Math.floor(elapsed / MS_PER_TILE), order.length);
+
+      for (let i = 0; i < revealed; i++) {
+        const [col, row] = order[i];
+        const px = col * TILE;
+        const py = row * TILE;
+        drawTile(ctx, px, py, TILES[grid[row][col]], 1.0);
+      }
+
+      drawVoid(ctx);
+
+      if (revealed >= order.length) {
+        state = 'fading';
+        fadeStart = now;
+      }
+
+    } else if (state === 'fading') {
+      // Draw all tiles at decreasing alpha
+      const t = Math.min(1, (now - fadeStart) / FADE_OUT_MS);
+      const alpha = 1 - t;
+
+      for (let i = 0; i < order.length; i++) {
+        const [col, row] = order[i];
+        drawTile(ctx, col * TILE, row * TILE, TILES[grid[row][col]], alpha);
+      }
+      drawVoid(ctx);
+      // Fade void text too
+      ctx.save();
+      ctx.globalAlpha = alpha * 0.9;
+      drawVoid(ctx);
+      ctx.restore();
+
+      if (t >= 1) {
+        state = 'pausing';
+        pauseStart = now;
+      }
+
+    } else if (state === 'pausing') {
+      if (now - pauseStart >= PAUSE_MS) {
+        // New seed, new grid, restart fill
+        seed = Math.floor(Math.random() * 0xFFFFFFFF);
+        rng = makeRNG(seed);
+        grid = buildGrid(rng);
+        order = fillOrder();
+        fillStart = now;
+        state = 'filling';
+      }
+    }
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

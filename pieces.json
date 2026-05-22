@@ -845,5 +845,16 @@
     "path": "pieces/59-ten-roots-newton-fractal/index.html",
     "thumbnail": "pieces/59-ten-roots-newton-fractal/thumbnail.svg",
     "essay": "pieces/59-ten-roots-newton-fractal/essay.md"
+  },
+  {
+    "id": "60-sapphire-pavement-wang-tiles",
+    "title": "Livnat HaSapir — The Pavement of Sapphire",
+    "tagline": "לִבְנַת הַסַּפִּיר — when Moses and the seventy elders saw the God of Israel, under His feet was a pavement of sapphire clear as sky; Wang tiles enact that rule-governed yet inexhaustible radiance",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "Wang tiles / aperiodic mosaic",
+    "path": "pieces/60-sapphire-pavement-wang-tiles/index.html",
+    "thumbnail": "pieces/60-sapphire-pavement-wang-tiles/thumbnail.svg",
+    "essay": "pieces/60-sapphire-pavement-wang-tiles/essay.md"
   }
 ]
