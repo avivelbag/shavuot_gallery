@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mountain in Bloom — Sinai's Flowering at Revelation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #04021a;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas { display: block; max-width: 100%; }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+      color: #c8bca8;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #e8d8b0;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #907868;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #3a2a18;
+      padding-left: 0.75rem;
+    }
+    .essay-pane p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #c8bca8;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #e8d8a0; font-style: italic; }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>The Mountain in Bloom</h1>
+    <p class="source">Sources: Exodus 19:18–19; Shir HaShirim Rabbah 1:12; Pirkei DeRabbi Eliezer ch. 41; Shulchan Aruch Orach Chaim 494:3.</p>
+
+    <p>Exodus 19:18–19 gives us the canonical theophany: the mountain wrapped in smoke, the Lord descending in fire, the whole mountain trembling greatly. The shofar blast grew louder and louder without ceasing. Thunder, lightning, thick cloud pressing down. This is the Sinai of collective memory — overwhelming, terrifying, magnificent.</p>
+
+    <p>But there is another Sinai preserved in Midrash that most readers never encounter.</p>
+
+    <p>Midrash Tehillim on Psalm 68:17 preserves a remarkable tradition: the mountains competed to host the revelation. Tabor came from the west. Carmel arrived from the coast. The Holy One, blessed be He, rejected them all. Sinai was chosen — Pirkei DeRabbi Eliezer (ch. 41) explains why: precisely because Sinai did not trumpet its own greatness. Its humility made it worthy.</p>
+
+    <p>And then there is <em>Shir HaShirim Rabbah</em> 1:12. At the very moment of revelation — not before, not after, but <em>at</em> the moment the covenant was given — Mount Sinai burst into flower. The fire came down not onto bare desert rock but onto a living, flowering field.</p>
+
+    <p>This juxtaposition is deliberate. Torah is both terrible and life-giving. The moment that contains fire and unendurable sound also contains wild plants reaching toward the sky. To receive Torah is to be changed the way soil is changed by rain.</p>
+
+    <p>The Shulchan Aruch (Orach Chaim 494:3, Rama) codifies the custom of decorating homes and synagogues with greenery on Shavuot. The midrashic grounding is clear: the decoration enacts the mountain's flowering. We bring the bloom indoors so we do not forget that Torah came to a blooming mountain, not a barren one.</p>
+
+    <p>This animation renders both truths simultaneously. L-system branching rules — the same recursive logic governing plant morphogenesis — unfold from a single axiom into full botanical form, rising incrementally from the dark mountain slopes. Then, as the blooms crown the peak, the fire comes: lightning jagged and electric above all that green life.</p>
+
+    <p>הַר סִינַי. The mountain that bloomed.</p>
+  </div>
+</div>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = 800, H = 600;
+canvas.width = W;
+canvas.height = H;
+
+// Palette — intentionally dark and dramatic, distinct from piece 09's bright greens
+const SKY_TOP = '#0a0520';
+const SKY_BOT = '#0d2b1a';
+const MTN_FILL = '#1a1008';
+const STEM_R0 = 26, STEM_G0 = 92,  STEM_B0 = 42;   // #1a5c2a
+const STEM_R1 = 42, STEM_G1 = 128, STEM_B1 = 64;   // #2a8040
+const FLOWER_COLORS = ['#f5f5e8', '#c8a8e8', '#e8c850'];
+const LIGHTNING_COLOR = '#e8f0ff';  // bright white-blue
+const TEXT_COLOR = '#f5f0e0';
+
+// Mountain silhouette — lower third of canvas
+const MTN_PTS = [
+  [0,       H * 0.75],
+  [W * 0.5, H * 0.35],
+  [W,       H * 0.75],
+  [W,       H],
+  [0,       H],
+];
+const PEAK_X = W * 0.5;
+const PEAK_Y = H * 0.35;
+
+// ─── Seeded PRNG (mulberry32) ─────────────────────────────────────────────────
+/**
+ * Returns a deterministic pseudo-random function seeded with the given integer.
+ * Used so plant segment layouts are identical across frames.
+ */
+function makeRng(seed) {
+  let s = seed >>> 0;
+  return function () {
+    s += 0x6D2B79F5;
+    let t = Math.imul(s ^ (s >>> 15), s | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// ─── L-system ─────────────────────────────────────────────────────────────────
+const RULES = { 'F': 'FF+[+F-F-F]-[-F+F+F]' };
+const BASE_ANGLE = 25 * Math.PI / 180;
+const ANGLE_VAR  =  5 * Math.PI / 180;
+const MAX_ITERS  = 4;
+
+/**
+ * Expand an L-system string by applying production rules for `depth` iterations.
+ */
+function expandLsystem(axiom, rules, depth) {
+  let s = axiom;
+  for (let i = 0; i < depth; i++) {
+    let next = '';
+    for (const ch of s) next += rules[ch] !== undefined ? rules[ch] : ch;
+    s = next;
+  }
+  return s;
+}
+
+/**
+ * Walk the L-system string with turtle graphics, building a pre-computed array of
+ * segment objects.  Each segment stores geometry, stroke thickness, stem colour,
+ * and an optional flower dot at its tip.  The seeded rng provides the per-branch
+ * angle jitter so the layout is identical between frames.
+ *
+ * Returns Array<{x1,y1,x2,y2,thick,color,flower:{color,r}|null}>.
+ */
+function computeSegments(string, x0, y0, heading, segLen, rng) {
+  const segs = [];
+  let x = x0, y = y0, th = heading;
+  const stack = [];
+  let depth = 0;
+
+  for (const sym of string) {
+    if (sym === 'F') {
+      const scale = Math.pow(0.70, depth);
+      const len   = segLen * scale;
+      const nx    = x + Math.cos(th) * len;
+      const ny    = y + Math.sin(th) * len;
+      const thick = Math.max(0.5, 3.0 * Math.pow(0.55, depth));
+
+      // Interpolate stem hue darker at root, lighter at tips
+      const t = Math.min(depth / 4, 1);
+      const r = Math.round(STEM_R0 + (STEM_R1 - STEM_R0) * t);
+      const g = Math.round(STEM_G0 + (STEM_G1 - STEM_G0) * t);
+      const b = Math.round(STEM_B0 + (STEM_B1 - STEM_B0) * t);
+      const color = `rgb(${r},${g},${b})`;
+
+      // ~10 % of deep segments get a small flower dot
+      let flower = null;
+      if (depth >= 3 && rng() < 0.10) {
+        const ci = Math.floor(rng() * 3) % 3;
+        flower = { color: FLOWER_COLORS[ci], r: 3 + rng() * 2 };
+      }
+
+      segs.push({ x1: x, y1: y, x2: nx, y2: ny, thick, color, flower });
+      x = nx; y = ny;
+    } else if (sym === '+') {
+      th += BASE_ANGLE + (rng() - 0.5) * ANGLE_VAR * 2;
+    } else if (sym === '-') {
+      th -= BASE_ANGLE + (rng() - 0.5) * ANGLE_VAR * 2;
+    } else if (sym === '[') {
+      stack.push({ x, y, th, depth });
+      depth++;
+    } else if (sym === ']') {
+      if (stack.length > 0) {
+        const st = stack.pop();
+        x = st.x; y = st.y; th = st.th; depth = st.depth;
+      }
+    }
+  }
+  return segs;
+}
+
+// ─── Plant seeding ────────────────────────────────────────────────────────────
+/**
+ * Build the 10-plant configuration by distributing seeds along both slopes at
+ * evenly spaced t-values.  Each plant has its own seed so the random jitter
+ * differs between plants, giving organic variety.
+ */
+function buildPlants() {
+  const plants = [];
+  const lp1 = [0,       H * 0.75];
+  const lp2 = [W * 0.5, H * 0.35];
+  const rp1 = [W * 0.5, H * 0.35];
+  const rp2 = [W,       H * 0.75];
+
+  const leftTs  = [0.12, 0.26, 0.42, 0.58, 0.76];
+  const rightTs = [0.24, 0.40, 0.56, 0.72, 0.86];
+
+  function addPlant(p1, p2, t, seed, baseHeading, segLen) {
+    const px = p1[0] + (p2[0] - p1[0]) * t;
+    const py = p1[1] + (p2[1] - p1[1]) * t;
+    const rng = makeRng(seed);
+    // Per-plant heading variation ±0.25 rad around base
+    const heading = baseHeading + (rng() - 0.5) * 0.5;
+    const str  = expandLsystem('F', RULES, MAX_ITERS);
+    const segs = computeSegments(str, px, py, heading, segLen, makeRng(seed + 100));
+    plants.push({ segs });
+  }
+
+  // Left slope — slight leftward lean, away from centre
+  for (let i = 0; i < leftTs.length; i++) {
+    addPlant(lp1, lp2, leftTs[i], 7919 * i + 13337, -Math.PI / 2 - 0.12, 2.8 + i * 0.1);
+  }
+  // Right slope — slight rightward lean
+  for (let i = 0; i < rightTs.length; i++) {
+    addPlant(rp1, rp2, rightTs[i], 5381 * i + 29191, -Math.PI / 2 + 0.12, 2.8 + i * 0.1);
+  }
+  return plants;
+}
+
+const PLANTS = buildPlants();
+
+// ─── Lightning ────────────────────────────────────────────────────────────────
+/**
+ * Recursively displace the midpoint of a line segment to generate a jagged bolt.
+ * `spread` decreases by factor 0.55 at each level, producing naturalistic taper.
+ */
+function displace(x1, y1, x2, y2, depth, spread) {
+  if (depth === 0) return [{ x: x1, y: y1 }, { x: x2, y: y2 }];
+  const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * 2 * spread;
+  const my = (y1 + y2) / 2;
+  return displace(x1, y1, mx, my, depth - 1, spread * 0.55)
+    .concat(displace(mx, my, x2, y2, depth - 1, spread * 0.55).slice(1));
+}
+
+function makeLightning() {
+  const bolts = [];
+  const count = 2 + Math.floor(Math.random() * 2);
+  for (let i = 0; i < count; i++) {
+    const sx = PEAK_X + (Math.random() - 0.5) * W * 0.15;
+    const ex = PEAK_X + (Math.random() - 0.5) * W * 0.06;
+    bolts.push(displace(sx, 0, ex, PEAK_Y, 4, 30));
+  }
+  return bolts;
+}
+
+// ─── Draw helpers ─────────────────────────────────────────────────────────────
+
+function drawSky() {
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, SKY_TOP);
+  grad.addColorStop(1, SKY_BOT);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawMountain() {
+  ctx.beginPath();
+  ctx.moveTo(MTN_PTS[0][0], MTN_PTS[0][1]);
+  for (let i = 1; i < MTN_PTS.length; i++) ctx.lineTo(MTN_PTS[i][0], MTN_PTS[i][1]);
+  ctx.closePath();
+  ctx.fillStyle = MTN_FILL;
+  ctx.fill();
+}
+
+/**
+ * Draw all plant segments up to `progress` (0–1) fraction of each plant's total.
+ * Plants are drawn BEFORE the mountain so the mountain silhouette hides the
+ * roots, creating the illusion of growth from the slope.
+ */
+function drawPlants(progress) {
+  ctx.lineCap = 'round';
+  for (const plant of PLANTS) {
+    const limit = Math.floor(progress * plant.segs.length);
+    for (let i = 0; i < limit; i++) {
+      const s = plant.segs[i];
+      ctx.beginPath();
+      ctx.moveTo(s.x1, s.y1);
+      ctx.lineTo(s.x2, s.y2);
+      ctx.lineWidth   = s.thick;
+      ctx.strokeStyle = s.color;
+      ctx.stroke();
+      if (s.flower) {
+        ctx.beginPath();
+        ctx.arc(s.x2, s.y2, s.flower.r, 0, Math.PI * 2);
+        ctx.fillStyle = s.flower.color;
+        ctx.fill();
+      }
+    }
+  }
+}
+
+function drawLightningBolts(bolts) {
+  ctx.save();
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  for (const bolt of bolts) {
+    const opacity = 0.3 + Math.random() * 0.7;
+    ctx.shadowBlur  = 12;
+    ctx.shadowColor = 'rgba(200,220,255,0.6)';
+    ctx.beginPath();
+    ctx.moveTo(bolt[0].x, bolt[0].y);
+    for (let i = 1; i < bolt.length; i++) ctx.lineTo(bolt[i].x, bolt[i].y);
+    ctx.lineWidth   = 1.5;
+    ctx.strokeStyle = `rgba(232,240,255,${opacity})`;  // LIGHTNING_COLOR #e8f0ff
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawHarSinai(alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.font        = '24px Georgia, serif';
+  ctx.fillStyle   = TEXT_COLOR;
+  ctx.textAlign   = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('הַר סִינַי', W / 2, H * 0.88);
+  ctx.restore();
+}
+
+// ─── Animation ────────────────────────────────────────────────────────────────
+const GROW_DURATION      = 7.0;  // seconds for plants to reach full growth
+const LIGHTNING_DURATION = 3.0;  // seconds of lightning flicker after full growth
+const HOLD_DURATION      = 1.5;  // seconds to hold before cycle reset
+const CYCLE = GROW_DURATION + LIGHTNING_DURATION + HOLD_DURATION;
+
+const TEXT_FADE_OFFSET = 1.5;  // seconds into lightning phase when text starts fading in
+
+let lightningBolts = [];
+let lightningTick  = 0;
+const REGEN_FRAMES = 8;  // regenerate bolts every 8 frames for flicker effect
+
+let startTime = null;
+
+function frame(ts) {
+  if (!startTime) startTime = ts;
+  const elapsed = (ts - startTime) * 0.001;
+  const cycleT  = elapsed % CYCLE;
+
+  drawSky();
+
+  if (cycleT < GROW_DURATION) {
+    const progress = cycleT / GROW_DURATION;
+    drawPlants(progress);
+    drawMountain();
+  } else {
+    drawPlants(1.0);
+    const lightT = cycleT - GROW_DURATION;
+
+    if (lightT < LIGHTNING_DURATION) {
+      lightningTick++;
+      if (lightningBolts.length === 0 || lightningTick % REGEN_FRAMES === 0) {
+        lightningBolts = makeLightning();
+      }
+      drawMountain();
+      drawLightningBolts(lightningBolts);
+
+      if (lightT > TEXT_FADE_OFFSET) {
+        const textAlpha = Math.min((lightT - TEXT_FADE_OFFSET) / 1.0, 1.0);
+        drawHarSinai(textAlpha);
+      }
+    } else {
+      drawMountain();
+      drawHarSinai(1.0);
+    }
+  }
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

@@ -207,5 +207,16 @@
     "path": "pieces/22-akdamut/index.html",
     "thumbnail": "pieces/22-akdamut/thumbnail.svg",
     "essay": "pieces/22-akdamut/essay.md"
+  },
+  {
+    "id": "25-sinai-bloom",
+    "title": "The Mountain in Bloom",
+    "tagline": "the mountain that burst into flower at the moment of revelation",
+    "year": 2026,
+    "theme": "Har Sinai / The Flowering Mountain",
+    "technique": "canvas 2D L-system plant growth, turtle-graphics branching, lightning animation",
+    "path": "pieces/25-sinai-bloom/index.html",
+    "thumbnail": "pieces/25-sinai-bloom/thumbnail.svg",
+    "essay": "pieces/25-sinai-bloom/essay.md"
   }
 ]
