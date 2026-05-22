@@ -154,6 +154,17 @@
     "essay": "pieces/16-bikkurim-procession/essay.md"
   },
   {
+    "id": "17-aseret-hadibrot",
+    "title": "The Ten Words",
+    "tagline": "Aseret HaDibrot — engraved in stone, burning with living fire",
+    "year": 2026,
+    "theme": "Matan Torah / The Ten Commandments",
+    "technique": "canvas 2D SDF-style glyph glow, Hebrew typography",
+    "path": "pieces/17-aseret-hadibrot/index.html",
+    "thumbnail": "pieces/17-aseret-hadibrot/thumbnail.svg",
+    "essay": "pieces/17-aseret-hadibrot/essay.md"
+  },
+  {
     "id": "18-shofar-sinai",
     "title": "Growing Louder",
     "tagline": "the shofar at Sinai — a voice that grew louder and louder",

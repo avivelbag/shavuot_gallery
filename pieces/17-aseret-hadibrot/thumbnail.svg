@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/>
+      <feFlood flood-color="#ff9900" flood-opacity="0.85" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="tablet-shadow" x="-10%" y="-5%" width="130%" height="130%">
+      <feDropShadow dx="4" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+    <linearGradient id="stoneGradL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8c8ae"/>
+      <stop offset="100%" stop-color="#b09a7a"/>
+    </linearGradient>
+    <linearGradient id="stoneGradR" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d2c2a8"/>
+      <stop offset="100%" stop-color="#a89070"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="400" height="400" fill="#1c1612"/>
+
+  <!-- Left tablet -->
+  <rect x="18" y="35" width="172" height="330" rx="18" ry="18"
+        fill="url(#stoneGradL)" filter="url(#tablet-shadow)"/>
+  <!-- Left tablet overlay grain -->
+  <rect x="18" y="35" width="172" height="330" rx="18" ry="18"
+        fill="#c8b89a" fill-opacity="0.55"/>
+  <rect x="18" y="35" width="172" height="330" rx="18" ry="18"
+        fill="none" stroke="#a89880" stroke-width="2.5"/>
+
+  <!-- Right tablet -->
+  <rect x="210" y="35" width="172" height="330" rx="18" ry="18"
+        fill="url(#stoneGradR)" filter="url(#tablet-shadow)"/>
+  <rect x="210" y="35" width="172" height="330" rx="18" ry="18"
+        fill="#c8b89a" fill-opacity="0.55"/>
+  <rect x="210" y="35" width="172" height="330" rx="18" ry="18"
+        fill="none" stroke="#a89880" stroke-width="2.5"/>
+
+  <!-- Left tablet commandments 1-5 with glow -->
+  <text x="104" y="82"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">אָנֹכִי יְהוָה אֱלֹהֶיךָ</text>
+
+  <text x="104" y="142"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">לֹא יִהְיֶה לְךָ</text>
+
+  <text x="104" y="202"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">לֹא תִשָּׂא</text>
+
+  <text x="104" y="262"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">זָכוֹר אֶת-יוֹם הַשַּׁבָּת</text>
+
+  <text x="104" y="322"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">כַּבֵּד אֶת-אָבִיךָ</text>
+
+  <!-- Right tablet commandments 6-10 with glow -->
+  <text x="296" y="82"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">לֹא תִרְצָח</text>
+
+  <text x="296" y="142"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">לֹא תִנְאָף</text>
+
+  <text x="296" y="202"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">לֹא תִגְנֹב</text>
+
+  <text x="296" y="262"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">לֹא תַעֲנֶה</text>
+
+  <text x="296" y="322"
+        font-family="'SBL Hebrew', 'David', serif" font-size="13.5"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#f5eed8" filter="url(#glow)">לֹא תַחְמֹד</text>
+
+  <!-- Title at bottom -->
+  <text x="200" y="383"
+        font-family="'SBL Hebrew', 'David', serif" font-size="15"
+        text-anchor="middle" direction="rtl" unicode-bidi="bidi-override"
+        fill="#ffcc66" filter="url(#glow)">עֲשֶׂרֶת הַדִּבְּרוֹת</text>
+</svg>
