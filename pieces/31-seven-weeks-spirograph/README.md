@@ -1,6 +1,6 @@
 # Seven Weeks of Seven — Spirograph Omer Rose
 
-**Piece 30** | 2026
+**Piece 31** | 2026
 
 **Technique:** canvas 2D — hypotrochoid spirograph (roulette curve)
 

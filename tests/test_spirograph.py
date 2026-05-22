@@ -1,5 +1,5 @@
 """
-Tests for piece 30-seven-weeks-spirograph.
+Tests for piece 31-seven-weeks-spirograph.
 
 Validates that the hypotrochoid spirograph piece is correctly registered in
 pieces.json, ships all required files, and that index.html contains the
@@ -8,11 +8,9 @@ expected animation technique, palette, and embedded essay text.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
-PIECE_ID = "30-seven-weeks-spirograph"
+PIECE_ID = "31-seven-weeks-spirograph"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 
 
@@ -45,7 +43,7 @@ def _read_essay():
 # ---------------------------------------------------------------------------
 
 def test_piece_registered_in_pieces_json():
-    """Piece 30 must appear in pieces.json with the correct id."""
+    """Piece 31 must appear in pieces.json with the correct id."""
     piece = _get_piece()
     assert piece is not None, f"Piece '{PIECE_ID}' not found in pieces.json"
 
@@ -69,7 +67,7 @@ def test_pieces_json_entry_has_all_required_fields():
 
 
 def test_pieces_json_no_duplicate_ids():
-    """Adding piece 30 must not create a duplicate id."""
+    """Adding piece 31 must not create a duplicate id."""
     ids = [p["id"] for p in _load_pieces()]
     assert len(ids) == len(set(ids)), f"Duplicate piece IDs found: {ids}"
 
@@ -204,7 +202,7 @@ def test_wrong_piece_id_not_found(tmp_path):
 
 
 def test_thumbnail_extension_is_svg():
-    """Thumbnail for piece 30 must use the .svg extension."""
+    """Thumbnail for piece 31 must use the .svg extension."""
     piece = _get_piece()
     assert piece is not None
     ext = os.path.splitext(piece["thumbnail"])[1].lower()
