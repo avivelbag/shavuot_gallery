@@ -102,9 +102,12 @@ def _in_circumcircle(
 
     Works for both CW and CCW triangles: uses orientation-aware sign flip.
     """
-    d = ax - px; e = ay - py
-    f = bx - px; g = by - py
-    h = cx - px; k = cy - py
+    d = ax - px
+    e = ay - py
+    f = bx - px
+    g = by - py
+    h = cx - px
+    k = cy - py
     det = (d * d + e * e) * (f * k - h * g) \
         - (f * f + g * g) * (d * k - h * e) \
         + (h * h + k * k) * (d * g - f * e)

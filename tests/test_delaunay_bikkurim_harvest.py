@@ -11,8 +11,6 @@ import os
 import re
 import sys
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "61-delaunay-bikkurim-harvest"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
@@ -394,9 +392,12 @@ def test_thumbnail_dimensions_400():
 
 def _in_circumcircle(ax, ay, bx, by, cx, cy, px, py):
     """Python port of the orientation-independent circumcircle test from index.html."""
-    d = ax - px; e = ay - py
-    f = bx - px; g = by - py
-    h = cx - px; k = cy - py
+    d = ax - px
+    e = ay - py
+    f = bx - px
+    g = by - py
+    h = cx - px
+    k = cy - py
     det = (d*d + e*e)*(f*k - h*g) - (f*f + g*g)*(d*k - h*e) + (h*h + k*k)*(d*g - f*e)
     cross = (bx - ax)*(cy - ay) - (cx - ax)*(by - ay)
     return cross * det > 0
@@ -512,12 +513,9 @@ def test_bowyer_watson_no_super_triangle_vertices():
 def test_gen_thumbnail_generates_valid_svg(tmp_path, monkeypatch):
     """Running gen_thumbnail.py must produce a valid SVG file."""
     sys.path.insert(0, os.path.join(PIECE_DIR, "tools"))
-    import importlib
     import gen_thumbnail as gt
 
     out_file = tmp_path / "thumbnail.svg"
-    # Patch the output path
-    orig_main = gt.main
 
     def patched_main():
         pts = gt.generate_points(gt.SEED)
