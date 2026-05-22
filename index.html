@@ -12,6 +12,7 @@
     <p>Visual meditations on Matan Torah</p>
   </header>
   <main>
+    <div id="filter-row" class="filter-row"></div>
     <div class="gallery-grid" id="gallery-grid"></div>
   </main>
 
@@ -25,9 +26,11 @@
   <script>
     (function () {
       const grid = document.getElementById('gallery-grid');
+      const filterRow = document.getElementById('filter-row');
       const dialog = document.getElementById('piece-dialog');
       const frame = document.getElementById('piece-frame');
       const closeBtn = document.getElementById('modal-close');
+      let pieceCards = [];
 
       function openPiece(path) {
         frame.src = path;
@@ -45,14 +48,44 @@
         if (e.key === 'Escape') closePiece();
       });
 
-      // Close on backdrop click
       dialog.addEventListener('click', function (e) {
         if (e.target === dialog) closePiece();
       });
 
+      function applyFilter(theme) {
+        pieceCards.forEach(function (card) {
+          card.style.display = (!theme || card.dataset.theme.toLowerCase().includes(theme.toLowerCase())) ? '' : 'none';
+        });
+      }
+
+      function setActiveChip(theme) {
+        filterRow.querySelectorAll('.filter-chip').forEach(function (chip) {
+          chip.classList.toggle('active', chip.dataset.theme === theme);
+        });
+      }
+
+      function selectTheme(theme) {
+        setActiveChip(theme);
+        applyFilter(theme === 'All' ? '' : theme);
+        location.hash = theme === 'All' ? '' : 'theme=' + encodeURIComponent(theme);
+      }
+
+      function buildChips(pieces) {
+        var themes = ['All'].concat([...new Set(pieces.map(function (p) { return p.theme; }))].sort());
+        themes.forEach(function (theme) {
+          var btn = document.createElement('button');
+          btn.className = 'filter-chip';
+          btn.dataset.theme = theme;
+          btn.textContent = theme;
+          btn.addEventListener('click', function () { selectTheme(theme); });
+          filterRow.appendChild(btn);
+        });
+      }
+
       function buildCard(piece) {
         const card = document.createElement('article');
         card.className = 'piece-card';
+        card.dataset.theme = piece.theme || '';
         card.tabIndex = 0;
         card.setAttribute('role', 'button');
         card.setAttribute('aria-label', piece.title);
@@ -99,6 +132,11 @@
           pieces.forEach(function (piece) {
             grid.appendChild(buildCard(piece));
           });
+          pieceCards = Array.from(grid.querySelectorAll('.piece-card'));
+          buildChips(pieces);
+          var raw = location.hash.startsWith('#theme=') ? location.hash.slice(7) : '';
+          var initial = raw ? decodeURIComponent(raw) : 'All';
+          selectTheme(initial);
         })
         .catch(function (err) {
           const msg = document.createElement('p');

@@ -1,3 +1,7 @@
+:root {
+  --accent: #c8860a;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -156,4 +160,39 @@ dialog::backdrop {
   padding: 2rem;
   color: #c00;
   font-style: italic;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-chip {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 16px;
+  padding: 4px 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.88rem;
+  min-height: 36px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.filter-chip.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.filter-chip:hover:not(.active) {
+  background: rgba(200, 134, 10, 0.1);
+}
+
+@media (max-width: 600px) {
+  .filter-row {
+    gap: 0.4rem;
+  }
 }
