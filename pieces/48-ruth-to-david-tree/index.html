@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Ruth to David — The Living Branch</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #F5EDD6; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 55%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #F5EDD6;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #C8A060;
+      overflow-y: auto;
+      color: #3A2010;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #FDFAF0;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: relative; height: 60vw; min-height: 260px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #C8A060; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #7B3F00;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #8A6040;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #7B3F00;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #C8A060;
+      font-style: italic;
+      color: #6A4020;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #5A3010; font-style: italic; }
+    .essay-panel strong { color: #7B3F00; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #E0C890; margin: 2rem 0; }
+    .essay-panel .hebrew {
+      font-size: 1.4rem;
+      direction: rtl;
+      unicode-bidi: embed;
+      color: #7B3F00;
+      margin: 0 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>From Ruth to David — The Living Branch</h1>
+    <p class="subtitle">Ruth 4:18–22 · Yerushalmi Chagigah 2:3 · animated botanical genealogy</p>
+
+    <p class="hebrew">וְאֵלֶּה תּוֹלְדוֹת פֶּרֶץ</p>
+    <blockquote>"These are the generations of Peretz: Peretz begat Hezron, and Hezron begat Ram, and Ram begat Amminadab, and Amminadab begat Nahshon, and Nahshon begat Salmon, and Salmon begat Boaz, and Boaz begat Obed, and Obed begat Jesse, and Jesse begat David." — Ruth 4:18–22</blockquote>
+
+    <p>The Book of Ruth ends not with Ruth herself but with a genealogy — ten names, ten generations, from Peretz to David. This is not a bureaucratic appendix. It is the theological punchline. The entire story of Ruth's loyalty, Naomi's bitterness and consolation, and Boaz's redemptive act was the necessary preparation for a royal line. One woman's act of <em>hesed</em> — loving-kindness — crossed centuries.</p>
+
+    <p>The genealogy recapitulates the structure of the whole book. Ruth is barely mentioned — she is present only implicitly, as the one through whom Boaz begat Obed. And yet without her, the chain does not exist. The genealogy encodes what the narrative dramatizes: that the hidden acts of faithfulness are the ones that make history.</p>
+
+    <hr>
+
+    <h2>Why Ruth on Shavuot</h2>
+
+    <p>The Book of Ruth is read on Shavuot for reasons that are multiple and interlocking. At one level it is a harvest story: Ruth gleans barley in the fields of Bethlehem, and the barley harvest in ancient Israel culminated at Shavuot, the Feast of Weeks. The connection is agricultural and immediate.</p>
+
+    <p>But the rabbis discerned a deeper pattern. The Yerushalmi Talmud (Chagigah 2:3) preserves the tradition that King David was born and died on Shavuot — Shavuot was his festival in a personal sense. Since the Book of Ruth ends by disclosing that Ruth is David's great-great-grandmother, reading Ruth on Shavuot becomes an act of tracing roots: we read the story of how David came to be, on the very day he entered and departed the world.</p>
+
+    <p>This is not mere coincidence arranged by rabbinic ingenuity. The rabbis understood it as structure: that the Torah given at Sinai required a recipient of total loyalty, and that Ruth — a Moabite woman who chose the God of Israel with her whole self — was the human archetype of the one who receives Torah without reservation. Her declaration <em>amech ami ve'elohayich elohai</em> — "your people are my people and your God is my God" — echoes the structure of the Sinaitic covenant itself. Ruth's conversion is the story of Matan Torah played out in miniature, a single person at a time.</p>
+
+    <hr>
+
+    <h2>The Go'el and the Torah in Action</h2>
+
+    <p>The kinship-redeemer laws that Boaz invokes — the institution of the <em>go'el</em>, the kinsman redeemer — are drawn from Leviticus 25, the Jubilee chapter given at Sinai. When Boaz stands in the town gate and conducts the legal transaction that releases Ruth from poverty and gives her a place in Israel, he is performing the Torah. Not performing it as ritual, but as lived reality: the Torah's statutes of social protection, enacted on behalf of a foreign widow who threw in her lot with a people not her own.</p>
+
+    <p>This is the non-obvious connection that makes the Book of Ruth the perfect Shavuot reading. Shavuot is the festival of the harvest, yes — but it is also, and more fundamentally, the festival of the giving of Torah at Sinai. The Book of Ruth shows what happens when Torah is actually applied: a stranger becomes a daughter of Israel, a widow is redeemed, and from that act of legal and moral faithfulness, enacted under the exact statutes of Leviticus 25, a king is born.</p>
+
+    <p>Ruth is not merely a harvest tale read by coincidence on the harvest festival. It is the demonstration, in human drama, that the statutes given at Sinai were not dead letters but living structures capable of generating new life across generations. The <em>go'el</em> institution is the Torah breathing. When Boaz invokes the kinship obligation, he is performing Sinai.</p>
+
+    <hr>
+
+    <h2>Hesed as Living Structure</h2>
+
+    <p>The branching tree in this piece is a visualization of what the genealogy encodes. A genealogy is not merely a list of names. It is a record of connections — of who came from whom, of what acts made possible what futures. Ruth's single act of <em>hesed</em> — remaining with Naomi when she could have returned to Moab — set in motion a chain of consequences that the text traces all the way to David. The tree makes visible what the linear list conceals: that hesed is not a single event but a branching structure, a form of faithfulness that keeps generating new branches long after the original act.</p>
+
+    <p>Boaz shows hesed to Ruth. Ruth showed hesed to Naomi. Naomi showed hesed to her daughters-in-law by releasing them from obligation. Each node in this tree is a person who continued the chain, who did not let it terminate. The trunk of Peretz runs all the way upward to David because at every generation someone chose continuation over rupture.</p>
+
+    <p>The tree grows slowly — one branch at a time, over eight seconds — because that is how this kind of inheritance works. It is not instantaneous. Each generation takes its full time. When David's node finally arrives at the crown, it glows with gold: the tradition preserved in Yerushalmi Chagigah that on Shavuot, David — the sweet singer of Israel, the author of the Psalms — was born and died. The golden pulse is the tradition's signal that the chain has arrived at its destination. The hesed that began with one Moabite woman's decision to cross a border arrived, ten generations later, at a king whose songs still echo.</p>
+
+    <hr>
+
+    <h2>The Animation</h2>
+
+    <p>A botanical tree grows upward from the base of the canvas on a parchment field (<strong>#F5EDD6</strong>). The trunk and branches are warm sienna (<strong>#7B3F00</strong>), drawn as smooth quadratic Bézier curves that taper as they climb. Ten nodes represent the ten generations of Ruth 4:18–22: Peretz, Hezron, Ram, Amminadab, Nahshon, Salmon, Boaz, Obed, Jesse, and David. Each appears as a cream circle (<strong>#FFF5DC</strong>) with its Hebrew name centered inside in right-to-left serif text. Below Peretz, a simple silhouetted female figure suggests Ruth, the root from which the whole lineage grew. Above David, a small crown marks the royal destination. When the tree reaches full growth, David's node pulses with a soft gold glow (<strong>#D4A017</strong>) — the gold of kingship and of Shavuot.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+  var W, H;
+
+  var nodes = [
+    { label: 'פֶּרֶץ',        xf: 0.50, yf: 0.85 },
+    { label: 'חֶצְרוֹן',       xf: 0.50, yf: 0.76 },
+    { label: 'רָם',             xf: 0.50, yf: 0.68 },
+    { label: 'עַמִּינָדָב',     xf: 0.50, yf: 0.59 },
+    { label: 'נַחְשׁוֹן',      xf: 0.50, yf: 0.50 },
+    { label: 'שַׂלְמוֹן',       xf: 0.50, yf: 0.41 },
+    { label: 'בֹּעַז',          xf: 0.50, yf: 0.33 },
+    { label: 'עוֹבֵד',          xf: 0.50, yf: 0.24 },
+    { label: 'יִשַׁי',          xf: 0.50, yf: 0.16 },
+    { label: 'דָּוִד',          xf: 0.50, yf: 0.08 },
+  ];
+
+  /* Horizontal wobble for each bezier control point (fraction of W). */
+  var WOBBLE = [0.030, -0.030, 0.025, -0.025, 0.030, -0.030, 0.025, -0.025, 0.020];
+
+  var INITIAL_DELAY = 0.5;
+  var EDGE_DURATION = 0.78;
+  var startTime = null;
+  var allDone = false;
+  var edgeT = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  function resize() {
+    W = canvas.width = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+  }
+
+  function px(n) { return n.xf * W; }
+  function py(n) { return n.yf * H; }
+  function nodeRadius() { return Math.min(W, H) * 0.038; }
+
+  function bezierAt(x0, y0, cx, cy, x1, y1, t) {
+    var m = 1 - t;
+    return {
+      x: m * m * x0 + 2 * m * t * cx + t * t * x1,
+      y: m * m * y0 + 2 * m * t * cy + t * t * y1
+    };
+  }
+
+  /* Draws the quadratic bezier from (x0,y0) to (x1,y1) up to parameter t. */
+  function drawPartialCurve(x0, y0, cx, cy, x1, y1, t) {
+    if (t <= 0) return;
+    var steps = Math.max(2, Math.ceil(t * 48));
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    for (var i = 1; i <= steps; i++) {
+      var p = bezierAt(x0, y0, cx, cy, x1, y1, (i / steps) * t);
+      ctx.lineTo(p.x, p.y);
+    }
+    ctx.stroke();
+  }
+
+  /* Minimal female silhouette suggesting Ruth below Peretz. */
+  function drawRuth(alpha) {
+    if (alpha <= 0) return;
+    var r = nodeRadius();
+    var ox = px(nodes[0]);
+    var oy = py(nodes[0]) + r + 6;
+    var s = r * 0.65;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = '#3A1A00';
+    /* Head */
+    ctx.beginPath();
+    ctx.arc(ox, oy + s * 0.45, s * 0.32, 0, Math.PI * 2);
+    ctx.fill();
+    /* Veil/head covering */
+    ctx.beginPath();
+    ctx.ellipse(ox, oy + s * 0.25, s * 0.42, s * 0.22, 0, 0, Math.PI * 2);
+    ctx.fill();
+    /* Robe */
+    ctx.beginPath();
+    ctx.moveTo(ox - s * 0.10, oy + s * 0.75);
+    ctx.lineTo(ox - s * 0.65, oy + s * 2.40);
+    ctx.lineTo(ox + s * 0.65, oy + s * 2.40);
+    ctx.lineTo(ox + s * 0.10, oy + s * 0.75);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  /* Three-peaked crown above David. */
+  function drawCrown(alpha) {
+    if (alpha <= 0) return;
+    var r = nodeRadius();
+    var dx = px(nodes[9]);
+    var dy = py(nodes[9]);
+    var top = dy - r - 4;
+    var cw = r * 0.75;
+    var ch = r * 0.55;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = '#D4A017';
+    ctx.strokeStyle = '#8B6010';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(dx - cw,        top + ch * 0.60);
+    ctx.lineTo(dx - cw,        top - ch * 0.20);
+    ctx.lineTo(dx - cw * 0.28, top + ch * 0.15);
+    ctx.lineTo(dx,             top - ch);
+    ctx.lineTo(dx + cw * 0.28, top + ch * 0.15);
+    ctx.lineTo(dx + cw,        top - ch * 0.20);
+    ctx.lineTo(dx + cw,        top + ch * 0.60);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillRect(dx - cw, top + ch * 0.50, cw * 2, ch * 0.45);
+    ctx.restore();
+  }
+
+  /* Node circle with Hebrew label; adapts font size to fit inside radius. */
+  function drawNode(n, alpha) {
+    if (alpha <= 0) return;
+    var x = px(n);
+    var y = py(n);
+    var r = nodeRadius();
+    ctx.save();
+    /* Drop shadow */
+    ctx.globalAlpha = alpha * 0.25;
+    ctx.beginPath();
+    ctx.arc(x + 2, y + 2, r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(90, 40, 0, 0.5)';
+    ctx.fill();
+    /* Circle body */
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFF5DC';
+    ctx.fill();
+    ctx.strokeStyle = '#7B3F00';
+    ctx.lineWidth = 1.8;
+    ctx.stroke();
+    /* Hebrew label — shrink font until it fits inside the circle */
+    var fs = Math.max(8, Math.floor(r * 0.58));
+    ctx.font = fs + 'px Georgia, serif';
+    while (ctx.measureText(n.label).width > r * 1.75 && fs > 7) {
+      fs -= 1;
+      ctx.font = fs + 'px Georgia, serif';
+    }
+    ctx.fillStyle = '#3A1A00';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(n.label, x, y);
+    ctx.restore();
+  }
+
+  function frame(ts) {
+    if (!startTime) startTime = ts;
+    var elapsed = (ts - startTime) / 1000;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#F5EDD6';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Advance each edge's draw progress sequentially. */
+    var done = true;
+    for (var i = 0; i < 9; i++) {
+      edgeT[i] = Math.min(1, Math.max(0, (elapsed - INITIAL_DELAY - i * EDGE_DURATION) / EDGE_DURATION));
+      if (edgeT[i] < 1) done = false;
+    }
+    allDone = done;
+
+    /* Draw branches — trunk is thicker at the base, tapers upward. */
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#7B3F00';
+    for (var i = 0; i < 9; i++) {
+      if (edgeT[i] <= 0) continue;
+      var n0 = nodes[i];
+      var n1 = nodes[i + 1];
+      var x0 = px(n0), y0 = py(n0);
+      var x1 = px(n1), y1 = py(n1);
+      var ctrlX = (x0 + x1) / 2 + WOBBLE[i] * W;
+      var ctrlY = (y0 + y1) / 2;
+      ctx.lineWidth = Math.max(1.5, 3.8 - i * 0.22);
+      drawPartialCurve(x0, y0, ctrlX, ctrlY, x1, y1, edgeT[i]);
+    }
+
+    /* Pulsing gold glow on David once fully grown. */
+    if (allDone) {
+      var pulse = 0.50 + 0.30 * Math.sin(Date.now() / 800);
+      var r = nodeRadius();
+      var dp = { x: px(nodes[9]), y: py(nodes[9]) };
+      var grad = ctx.createRadialGradient(dp.x, dp.y, r * 0.4, dp.x, dp.y, r * 3.2);
+      grad.addColorStop(0,   'rgba(212,160,23,' + pulse + ')');
+      grad.addColorStop(0.5, 'rgba(212,160,23,' + (pulse * 0.35) + ')');
+      grad.addColorStop(1,   'rgba(212,160,23,0)');
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(dp.x, dp.y, r * 3.2, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    /* Draw nodes — each fades in once its incoming edge arrives. */
+    for (var i = 0; i < 10; i++) {
+      var arrivalTime = (i === 0)
+        ? INITIAL_DELAY
+        : INITIAL_DELAY + i * EDGE_DURATION;
+      var nodeAlpha = Math.min(1, Math.max(0, (elapsed - arrivalTime) / 0.40));
+      drawNode(nodes[i], nodeAlpha);
+    }
+
+    /* Ruth appears at canvas start. */
+    var ruthAlpha = Math.min(1, Math.max(0, (elapsed - 0.10) / 0.50));
+    drawRuth(ruthAlpha);
+
+    /* Crown appears once David is drawn. */
+    var davidArrival = INITIAL_DELAY + 9 * EDGE_DURATION;
+    var crownAlpha = Math.min(1, Math.max(0, (elapsed - davidArrival) / 0.50));
+    drawCrown(crownAlpha);
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

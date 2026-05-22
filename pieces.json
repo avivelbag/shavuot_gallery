@@ -548,5 +548,16 @@
     "path": "pieces/47-lo-bashamayim-hi/index.html",
     "thumbnail": "pieces/47-lo-bashamayim-hi/thumbnail.svg",
     "essay": "pieces/47-lo-bashamayim-hi/essay.md"
+  },
+  {
+    "id": "48-ruth-to-david-tree",
+    "title": "From Ruth to David — The Living Branch",
+    "tagline": "ten generations of hesed — the genealogy of Ruth 4:18–22 grows as a botanical tree",
+    "year": 2026,
+    "theme": "The Book of Ruth",
+    "technique": "animated botanical bezier tree",
+    "path": "pieces/48-ruth-to-david-tree/index.html",
+    "thumbnail": "pieces/48-ruth-to-david-tree/thumbnail.svg",
+    "essay": "pieces/48-ruth-to-david-tree/essay.md"
   }
 ]

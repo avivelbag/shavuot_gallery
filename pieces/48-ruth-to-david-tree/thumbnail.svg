@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Parchment background -->
+  <rect width="400" height="400" fill="#F5EDD6"/>
+
+  <!-- Branches: quadratic bezier curves, tapered from base to top -->
+  <!-- Edge 0: Peretz → Hezron -->
+  <path d="M200,340 Q209,323 200,306" stroke="#7B3F00" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+  <!-- Edge 1: Hezron → Ram -->
+  <path d="M200,306 Q191,290 200,273" stroke="#7B3F00" stroke-width="3.0" fill="none" stroke-linecap="round"/>
+  <!-- Edge 2: Ram → Amminadab -->
+  <path d="M200,273 Q208,256 200,240" stroke="#7B3F00" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <!-- Edge 3: Amminadab → Nahshon -->
+  <path d="M200,240 Q192,223 200,207" stroke="#7B3F00" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <!-- Edge 4: Nahshon → Salmon -->
+  <path d="M200,207 Q209,190 200,173" stroke="#7B3F00" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <!-- Edge 5: Salmon → Boaz -->
+  <path d="M200,173 Q191,157 200,140" stroke="#7B3F00" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <!-- Edge 6: Boaz → Obed -->
+  <path d="M200,140 Q207,123 200,107" stroke="#7B3F00" stroke-width="2.0" fill="none" stroke-linecap="round"/>
+  <!-- Edge 7: Obed → Jesse -->
+  <path d="M200,107 Q193,90 200,74" stroke="#7B3F00" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Edge 8: Jesse → David -->
+  <path d="M200,74 Q206,57 200,40" stroke="#7B3F00" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+
+  <!-- Gold glow behind David -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#D4A017" stop-opacity="0.6"/>
+    <stop offset="60%" stop-color="#D4A017" stop-opacity="0.2"/>
+    <stop offset="100%" stop-color="#D4A017" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="200" cy="40" r="28" fill="url(#glow)"/>
+
+  <!-- Node circles with Hebrew names -->
+  <!-- 0: Peretz -->
+  <circle cx="200" cy="340" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="344" font-family="Georgia, serif" font-size="9" fill="#3A1A00" text-anchor="middle">פֶּרֶץ</text>
+
+  <!-- 1: Hezron -->
+  <circle cx="200" cy="306" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="310" font-family="Georgia, serif" font-size="8" fill="#3A1A00" text-anchor="middle">חֶצְרוֹן</text>
+
+  <!-- 2: Ram -->
+  <circle cx="200" cy="273" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="277" font-family="Georgia, serif" font-size="10" fill="#3A1A00" text-anchor="middle">רָם</text>
+
+  <!-- 3: Amminadab -->
+  <circle cx="200" cy="240" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="244" font-family="Georgia, serif" font-size="7" fill="#3A1A00" text-anchor="middle">עַמִּינָדָב</text>
+
+  <!-- 4: Nahshon -->
+  <circle cx="200" cy="207" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="211" font-family="Georgia, serif" font-size="8" fill="#3A1A00" text-anchor="middle">נַחְשׁוֹן</text>
+
+  <!-- 5: Salmon -->
+  <circle cx="200" cy="173" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="177" font-family="Georgia, serif" font-size="8" fill="#3A1A00" text-anchor="middle">שַׂלְמוֹן</text>
+
+  <!-- 6: Boaz -->
+  <circle cx="200" cy="140" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="144" font-family="Georgia, serif" font-size="9" fill="#3A1A00" text-anchor="middle">בֹּעַז</text>
+
+  <!-- 7: Obed -->
+  <circle cx="200" cy="107" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="111" font-family="Georgia, serif" font-size="9" fill="#3A1A00" text-anchor="middle">עוֹבֵד</text>
+
+  <!-- 8: Jesse -->
+  <circle cx="200" cy="74" r="14" fill="#FFF5DC" stroke="#7B3F00" stroke-width="1.5"/>
+  <text x="200" y="78" font-family="Georgia, serif" font-size="9" fill="#3A1A00" text-anchor="middle">יִשַׁי</text>
+
+  <!-- 9: David (gold-ringed) -->
+  <circle cx="200" cy="40" r="14" fill="#FFF5DC" stroke="#D4A017" stroke-width="2"/>
+  <text x="200" y="44" font-family="Georgia, serif" font-size="9" fill="#3A1A00" text-anchor="middle">דָּוִד</text>
+
+  <!-- Crown above David -->
+  <g fill="#D4A017" stroke="#8B6010" stroke-width="0.8">
+    <polygon points="190,23 192,16 196,21 200,13 204,21 208,16 210,23" />
+    <rect x="190" y="22" width="20" height="5"/>
+  </g>
+
+  <!-- Ruth silhouette below Peretz (small figure) -->
+  <g fill="#3A1A00">
+    <!-- Head -->
+    <circle cx="200" cy="363" r="4.5"/>
+    <!-- Veil -->
+    <ellipse cx="200" cy="360" rx="6" ry="3.5"/>
+    <!-- Robe -->
+    <polygon points="198.5,368 190,382 210,382 201.5,368"/>
+  </g>
+
+  <!-- Title bar -->
+  <rect x="0" y="390" width="400" height="10" fill="#F5EDD6"/>
+  <text x="200" y="395" font-family="Georgia, serif" font-size="9" fill="#7B3F00" text-anchor="middle">Ruth to David · Ruth 4:18–22</text>
+</svg>
