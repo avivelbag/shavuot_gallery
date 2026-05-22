@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <clipPath id="disk-clip">
+      <circle cx="100" cy="100" r="92"/>
+    </clipPath>
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2A1A6A"/>
+      <stop offset="100%" stop-color="#0E0820"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="200" height="200" fill="#0E0820"/>
+
+  <!-- disk background -->
+  <circle cx="100" cy="100" r="92" fill="url(#bg-grad)"/>
+
+  <!-- Simplified hyperbolic tile approximation as SVG paths -->
+  <g clip-path="url(#disk-clip)">
+    <!-- Central large tile (gold) -->
+    <path d="M100,100 m-28,-28 a40,40 0 0,1 56,0 a40,40 0 0,1 0,56 a40,40 0 0,1 -56,0 a40,40 0 0,1 0,-56 Z" fill="#C9A84C" opacity="0.85"/>
+
+    <!-- Ring 1 tiles — 4 tiles around center -->
+    <path d="M100,55 L128,72 L128,100 L100,100 L72,100 L72,72 Z" fill="#1A1040" opacity="0.9"/>
+    <path d="M145,100 L128,128 L100,128 L100,100 L128,100 Z" fill="#6B8C5A" opacity="0.9"/>
+    <path d="M100,145 L72,128 L72,100 L100,100 L100,128 Z" fill="#B87B6A" opacity="0.9"/>
+    <path d="M55,100 L72,72 L100,72 L100,100 L72,100 Z" fill="#7AAFC2" opacity="0.9"/>
+
+    <!-- Ring 2 — smaller tiles toward boundary -->
+    <path d="M100,35 L118,50 L128,72 L100,55 L72,72 L82,50 Z" fill="#F5EDD6" opacity="0.85"/>
+    <path d="M165,100 L150,118 L128,128 L145,100 L128,72 L150,82 Z" fill="#EDE8DC" opacity="0.85"/>
+    <path d="M100,165 L82,150 L72,128 L100,145 L128,128 L118,150 Z" fill="#C9A84C" opacity="0.85"/>
+    <path d="M35,100 L50,82 L72,72 L55,100 L72,128 L50,118 Z" fill="#6B8C5A" opacity="0.85"/>
+
+    <!-- Diagonal tiles ring 2 -->
+    <path d="M118,50 L140,60 L150,82 L128,72 Z" fill="#B87B6A" opacity="0.8"/>
+    <path d="M150,118 L140,140 L118,150 L128,128 Z" fill="#7AAFC2" opacity="0.8"/>
+    <path d="M82,150 L60,140 L50,118 L72,128 Z" fill="#1A1040" opacity="0.8"/>
+    <path d="M50,82 L60,60 L82,50 L72,72 Z" fill="#F5EDD6" opacity="0.8"/>
+
+    <!-- Outer ring — very small tiles near boundary -->
+    <path d="M100,20 L112,32 L118,50 L100,35 L82,50 L88,32 Z" fill="#EDE8DC" opacity="0.7"/>
+    <path d="M180,100 L168,112 L150,118 L165,100 L150,82 L168,88 Z" fill="#C9A84C" opacity="0.7"/>
+    <path d="M100,180 L88,168 L82,150 L100,165 L118,150 L112,168 Z" fill="#6B8C5A" opacity="0.7"/>
+    <path d="M20,100 L32,88 L50,82 L35,100 L50,118 L32,112 Z" fill="#B87B6A" opacity="0.7"/>
+
+    <!-- Even smaller tiles in diagonals -->
+    <path d="M140,60 L154,70 L158,88 L150,82 Z" fill="#7AAFC2" opacity="0.65"/>
+    <path d="M154,130 L140,140 L130,154 L128,128 L150,118 Z" fill="#1A1040" opacity="0.65"/>
+    <path d="M60,140 L46,130 L42,112 L50,118 L72,128 Z" fill="#F5EDD6" opacity="0.65"/>
+    <path d="M46,70 L60,60 L70,46 L72,72 L50,82 Z" fill="#EDE8DC" opacity="0.65"/>
+
+    <!-- Geodesic edge lines -->
+    <g stroke="rgba(201,168,76,0.3)" stroke-width="0.5" fill="none">
+      <circle cx="100" cy="100" r="28"/>
+      <line x1="100" y1="72" x2="100" y2="0"/>
+      <line x1="128" y1="100" x2="200" y2="100"/>
+      <line x1="100" y1="128" x2="100" y2="200"/>
+      <line x1="72" y1="100" x2="0" y2="100"/>
+      <line x1="128" y1="72" x2="180" y2="20"/>
+      <line x1="128" y1="128" x2="180" y2="180"/>
+      <line x1="72" y1="128" x2="20" y2="180"/>
+      <line x1="72" y1="72" x2="20" y2="20"/>
+    </g>
+
+    <!-- Geodesic arcs (curved lines) -->
+    <g stroke="rgba(201,168,76,0.25)" stroke-width="0.5" fill="none">
+      <path d="M72,35 Q100,20 128,35"/>
+      <path d="M165,72 Q180,100 165,128"/>
+      <path d="M128,165 Q100,180 72,165"/>
+      <path d="M35,128 Q20,100 35,72"/>
+    </g>
+  </g>
+
+  <!-- Disk border -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(201,168,76,0.6)" stroke-width="1.5"/>
+
+  <!-- Central Hebrew letter ת -->
+  <text x="100" y="107" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#1A1040" font-weight="bold">ת</text>
+
+  <!-- Outer label -->
+  <text x="100" y="195" text-anchor="middle" font-family="Georgia, serif" font-size="6" fill="rgba(201,168,76,0.5)" letter-spacing="1">שבעים פנים לתורה</text>
+</svg>

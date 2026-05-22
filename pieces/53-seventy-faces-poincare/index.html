@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seventy Faces — Poincaré Disk Tiling</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #1A1040;
+      color: #F5EDD6;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0E0820;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #poincareCanvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .essay {
+      flex: 0 0 40%;
+      overflow-y: auto;
+      padding: 2rem 1.8rem 2rem 1.6rem;
+      background: #110D2A;
+      border-left: 1px solid rgba(201, 168, 76, 0.2);
+    }
+    .essay h1 {
+      font-size: 1.15rem;
+      color: #C9A84C;
+      margin: 0 0 1.2rem 0;
+      font-weight: normal;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+    .essay h2 {
+      font-size: 0.95rem;
+      color: #C9A84C;
+      margin: 1.5rem 0 0.6rem 0;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay p {
+      font-size: 0.87rem;
+      line-height: 1.7;
+      color: #EDE8DC;
+      margin: 0 0 0.9rem 0;
+    }
+    .essay blockquote {
+      border-left: 2px solid #C9A84C;
+      margin: 0.8rem 0;
+      padding: 0 0 0 1rem;
+      color: #C9A84C;
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+    .essay em {
+      color: #C9A84C;
+      font-style: italic;
+    }
+    .essay strong {
+      color: #F5EDD6;
+      font-weight: bold;
+    }
+    .essay hr {
+      border: none;
+      border-top: 1px solid rgba(201, 168, 76, 0.25);
+      margin: 1.2rem 0;
+    }
+    .title-bar {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(201, 168, 76, 0.55);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; }
+      .artwork { flex: 0 0 50vh; }
+      .essay { flex: 1 1 auto; border-left: none; border-top: 1px solid rgba(201,168,76,0.2); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="poincareCanvas"></canvas>
+    <div class="title-bar">שבעים פנים לתורה &nbsp;·&nbsp; Seventy Faces of Torah</div>
+  </div>
+  <div class="essay">
+    <h1>Seventy Faces — The Poincaré Disk as Living Torah</h1>
+
+    <blockquote>"The Torah has seventy faces."<br>— BaMidbar Rabbah 13:15 (שבעים פנים לתורה)</blockquote>
+
+    <h2>The Teaching</h2>
+    <p>There is a principle so central to rabbinic thought that it appears almost as an axiom: every text of Torah simultaneously holds multiple valid meanings. The Sages counted seventy. The Zohar teaches that the Torah was given in fire — black fire written on white fire — and that each letter contains worlds within worlds. Rashi reads a word one way; Ibn Ezra reads it another; both are correct, and neither cancels the other.</p>
+    <p>This is not a failure of precision. It is the designed nature of divine speech.</p>
+    <p>The medieval commentators systematized this plurality into four levels known by the acronym <strong>PaRDeS</strong> — an orchard, a garden, a paradise:</p>
+    <p><em>Peshat</em> — the plain, contextual meaning of the text. <em>Remez</em> — the allegorical or philosophical dimension hinted below the surface. <em>Derash</em> — the homiletical layer, the rabbinic imagination spinning out narrative. <em>Sod</em> — the secret, mystical reading that dissolves language back into mystery.</p>
+    <p>But the Rabbis were careful: these four are a floor, not a ceiling. The seventy faces remain open. A word that was read one way in Alexandria is read differently in Babylon, differently again in Troyes, differently again in Bnei Brak today — and all those readings are simultaneously alive in the text, waiting to be drawn out by the right question at the right moment.</p>
+    <p>Shavuot is the festival of receiving this text. Not merely a book. An inexhaustible tradition.</p>
+
+    <hr>
+
+    <h2>The Geometry</h2>
+    <p>The hyperbolic plane is a mathematical space where the usual rules of Euclidean geometry fail in a beautiful way. In the hyperbolic plane, you can do something Euclidean space forbids: tile a bounded disk with infinitely many congruent tiles that pack more and more densely as they approach the boundary, shrinking toward zero while remaining — in the internal geometry of the disk — exactly the same size as the tiles at the center.</p>
+    <p>The Poincaré disk model represents this strange space. A circle on a screen becomes an infinite world. Near the center, tiles appear large; near the boundary, they appear tiny; but a creature living inside this geometry would measure them as equal. What looks like "the edge" of the disk is actually infinitely far away — a horizon that can never be reached.</p>
+    <p>This is the mathematical metaphor for Torah.</p>
+    <p>The text of the Written Torah is finite: 304,805 letters. A child can copy it out by hand in a year. And yet the tradition insists that this bounded object contains infinite meaning — that every generation finds interpretations no previous generation had, that the conversation never concludes, that the commentary tradition is not a supplement to the Torah but its natural unfolding, its own form of revelation.</p>
+    <p>The Poincaré disk says: you can contain infinity in a finite circle. The tiles near the center are legible and obvious — the plain meaning, the peshat. But as you move outward, the tiles multiply and become finer, holding more and more meaning in less and less apparent space. The boundary of the disk is a horizon: always approached, never reached, always receding.</p>
+
+    <hr>
+
+    <h2>The Tessellation</h2>
+    <p>The tiling shown here is generated by the hyperbolic reflection group acting on the Poincaré disk. A fundamental domain is reflected across its edges to fill the disk. Each reflection is a Möbius transformation, a conformal map that preserves angles while distorting distances.</p>
+    <p>The seven colors correspond to the seven weeks of Sefirat HaOmer — the forty-nine day count from Pesach to Shavuot — and also to the seven species of the Land of Israel: wheat, barley, grapes, figs, pomegranates, olives, dates. Color assignment ensures that no two adjacent tiles share a color, a proper hyperbolic coloring, reflecting how the seventy faces of Torah do not contradict each other: adjacent interpretations are distinct.</p>
+    <p>At the center of the disk sits the letter <strong>ת</strong> (Tav), the final letter of the Torah. The tradition teaches that when Moses finished writing the Torah, the last letter he wrote was the Tav. It is also the last letter of the Hebrew alphabet: it marks both conclusion and the threshold of a new beginning.</p>
+
+    <hr>
+
+    <h2>Shavuot and the Open Text</h2>
+    <p>The Talmud records that when Israel stood at Sinai and said <em>naaseh v'nishma</em> — "we will do and we will hear" — they placed action before understanding. They accepted a text they had not yet read. They committed to a tradition that would continue to generate meaning long after any individual reading.</p>
+    <p>This is the peculiar gift of Shavuot: not a law delivered complete, closed, final — but an open system, a fractal structure in which every generation has to interpret for itself, receiving the Torah newly each time.</p>
+    <blockquote>"Her ways are ways of pleasantness, and all her paths are peace. She is a tree of life to those who grasp her, and those who hold her fast are made happy."<br>— Proverbs 3:17–18</blockquote>
+    <p>The Poincaré disk rotates slowly. This is a Möbius transformation: a rotation around the hyperbolic origin that carries every tile through every position, cycling through the structure without ever repeating. The mathematics guarantees that every tile will be visited. The animation is not decorative: it is the motion of interpretation itself — each reading bringing the whole structure into focus, each new angle revealing tiles that were invisible before.</p>
+
+    <hr>
+
+    <h2>On the Plurality of Meaning</h2>
+    <p>Rabbi Akiva, the tradition teaches, could derive new teachings from the decorative crowns (tagin) atop each letter of the Torah — marks that were understood to be purely ornamental. Nothing in the Torah is ornamental. Every stroke participates in the seventy faces.</p>
+    <p>The heresy the Rabbis guarded against was not multiple interpretation. It was the arrogance of insisting there is only one. To claim that the plain meaning exhausts the text is, in this tradition, a kind of idolatry — to reduce the infinite to the finite, the divine voice to a single fixed meaning.</p>
+    <p>And so the Poincaré disk: infinitely many tiles, all congruent, all valid, all simultaneously present — contained within a single circle that you can hold in your hand and call small.</p>
+    <p><em>שבעים פנים לתורה. Seventy faces. And more.</em></p>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ─── Palette ─────────────────────────────────────────────────────────────
+  const COLORS = [
+    '#1A1040', // deep indigo
+    '#C9A84C', // gold
+    '#F5EDD6', // cream
+    '#6B8C5A', // sage green
+    '#B87B6A', // dusty rose
+    '#7AAFC2', // sky blue
+    '#EDE8DC'  // soft white
+  ];
+
+  const STROKE_COLOR = 'rgba(201, 168, 76, 0.35)';
+  const DISK_BG = '#0E0820';
+  const BORDER_COLOR = 'rgba(201, 168, 76, 0.6)';
+
+  // Hebrew letters for tiles, starting with Torah (תורה) spread outward
+  const HEBREW_LETTERS = 'תורהאבגדהוזחטיכלמנסעפצקרש';
+
+  // ─── Complex number helpers ───────────────────────────────────────────────
+
+  /** @param {number} re @param {number} im */
+  function C(re, im) { return { re, im }; }
+
+  function cadd(a, b) { return C(a.re + b.re, a.im + b.im); }
+  function csub(a, b) { return C(a.re - b.re, a.im - b.im); }
+  function cmul(a, b) { return C(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re); }
+  function cdiv(a, b) {
+    const d = b.re * b.re + b.im * b.im;
+    return C((a.re * b.re + a.im * b.im) / d, (a.im * b.re - a.re * b.im) / d);
+  }
+  function cconj(a) { return C(a.re, -a.im); }
+  function cabs2(a) { return a.re * a.re + a.im * a.im; }
+  function cabs(a) { return Math.sqrt(cabs2(a)); }
+  function cscale(a, s) { return C(a.re * s, a.im * s); }
+
+  /**
+   * Möbius transformation: f(z) = e^(iθ) * (z - a) / (1 - conj(a)*z)
+   * This is an isometry of the hyperbolic disk mapping a→0 with rotation θ.
+   * @param {object} z - complex point
+   * @param {object} a - center to map to origin
+   * @param {number} theta - rotation angle
+   */
+  function mobius(z, a, theta) {
+    const num = csub(z, a);
+    const den = csub(C(1, 0), cmul(cconj(a), z));
+    const rot = C(Math.cos(theta), Math.sin(theta));
+    return cmul(rot, cdiv(num, den));
+  }
+
+  /**
+   * Pure rotation Möbius: z → e^(iθ) * z
+   * This rotates the entire hyperbolic disk around the origin.
+   */
+  function mobiusRotate(z, theta) {
+    return C(
+      z.re * Math.cos(theta) - z.im * Math.sin(theta),
+      z.re * Math.sin(theta) + z.im * Math.cos(theta)
+    );
+  }
+
+  /**
+   * Reflect complex point p in the hyperbolic geodesic passing through
+   * points a and b on the Poincaré disk. The geodesic is either:
+   *   - a diameter (if a and -a are antipodal through origin), or
+   *   - a circular arc orthogonal to the unit circle.
+   * We find the arc's Euclidean center and radius, then invert p through that circle.
+   */
+  function hyperbolicReflect(p, a, b) {
+    // Check if geodesic is a diameter: a and b both on unit circle and b = -a,
+    // or more generally if |a|² = |b|² = 1 and a = -b.
+    // In practice we use the general formula for inversion.
+
+    // Euclidean circle through a, b orthogonal to unit circle:
+    // center c = ((|b|²+1)*a - (|a|²+1)*b) / (2 * Im(conj(a)*b))
+    // But if a and b are not on the unit circle, we use the geodesic between them.
+
+    // Simpler: use the fact that hyperbolic reflection across geodesic through
+    // the origin (a diameter) is just ordinary Euclidean reflection across that line.
+    // For general geodesic: inversion in the orthogonal circle.
+
+    const denom = 2 * (a.re * b.im - a.im * b.re); // 2 * Im(conj(a) * b)... wait
+
+    // Actually Im(conj(a) * b) = a.re * b.im - a.im * b.re
+    // Let's compute it:
+    const imConj = a.re * b.im - a.im * b.re;
+
+    if (Math.abs(imConj) < 1e-10) {
+      // Geodesic passes through the origin (diameter): reflect across the line
+      // The line direction is along a (assuming a != 0).
+      // Reflection of p across line through origin with direction (a.re, a.im):
+      const len2 = cabs2(a);
+      if (len2 < 1e-14) return p;
+      const dot = (p.re * a.re + p.im * a.im) / len2;
+      return C(2 * dot * a.re - p.re, 2 * dot * a.im - p.im);
+    }
+
+    // General case: find center of orthogonal circle
+    // Circle through a,b orthogonal to unit circle has center:
+    // c = ((|b|²+1)*a - (|a|²+1)*b) / (2i * conj(cross))
+    // Simpler formula: c.re and c.im from solving the system.
+    // Using the formula: c = (a*|b|² - b*|a|² + a - b) / (2i*(a × b))
+    // where a × b = Im(conj(a)*b) = a.re*b.im - a.im*b.re
+
+    const ab2 = cabs2(b);
+    const aa2 = cabs2(a);
+
+    // cx = ((ab2 + 1)*a.re - (aa2 + 1)*b.re) / (2 * imConj)  ... wait, sign
+    // Let me use the standard derivation:
+    // Circle center satisfies |c - a|² = |c - b|² and |c|² - r² = 1
+    // From first: c is on perpendicular bisector of a,b
+    // From second: r² = |c|² - 1
+    // Perpendicular bisector of a,b: c.(a-b) = (|a|² - |b|²)/2
+    // Also: |c-a|² = |c|²-1 => c.a = (|a|²+1)/2... no wait:
+    // |c-a|² = |c|²-1 means r²=|c-a|², so |c|²-2c.a+|a|²=|c|²-1 => c.a=(|a|²+1)/2
+    // Similarly c.b=(|b|²+1)/2
+    // So: c.re * a.re + c.im * a.im = (aa2+1)/2
+    //     c.re * b.re + c.im * b.im = (ab2+1)/2
+    // Solve 2x2 linear system:
+    const rhs1 = (aa2 + 1) / 2;
+    const rhs2 = (ab2 + 1) / 2;
+    // Determinant = a.re*b.im - a.im*b.re = imConj
+    const cx = (rhs1 * b.im - rhs2 * a.im) / imConj;
+    const cy = (a.re * rhs2 - b.re * rhs1) / imConj;
+    const c = C(cx, cy);
+    const r2 = cabs2(csub(c, a)); // = |c|²-1
+
+    // Invert p through this circle: p' = c + r² * (p - c)* / |p - c|²
+    const pc = csub(p, c);
+    const pc2 = cabs2(pc);
+    if (pc2 < 1e-14) return p;
+    return cadd(c, cscale(cconj(pc), r2 / pc2));
+  }
+
+  // ─── Hyperbolic tessellation generation ──────────────────────────────────
+
+  /**
+   * Generate a (p,q) regular hyperbolic tessellation on the Poincaré disk.
+   * We use (4,5) which gives pentagons meeting 5 at each vertex.
+   * Returns array of tiles, each tile is array of complex vertices.
+   */
+  function buildTessellation(p, q, maxDepth) {
+    // Compute circumradius of regular p-gon in hyperbolic plane with angle sum = 2π/q
+    // Each internal angle = 2π/(2q) = π/q
+    // Circumradius r satisfies: cos(π/p) = sin(π/q) * cosh(r)  (from hyperbolic trig)
+    // => cosh(r) = cos(π/p) / sin(π/q)
+    const coshR = Math.cos(Math.PI / p) / Math.sin(Math.PI / q);
+    if (coshR <= 1) {
+      // Euclidean or spherical — shouldn't happen for valid hyperbolic (p,q)
+      console.warn('Not a hyperbolic tessellation');
+    }
+    const hypR = Math.acosh(coshR); // hyperbolic radius
+    // Poincaré disk radius (Euclidean) for this circumradius:
+    const diskR = Math.tanh(hypR / 2);
+
+    // Generate the fundamental polygon (regular p-gon centered at origin)
+    const polygon = [];
+    for (let k = 0; k < p; k++) {
+      const angle = (2 * Math.PI * k) / p;
+      polygon.push(C(diskR * Math.cos(angle), diskR * Math.sin(angle)));
+    }
+
+    // BFS: store tiles with their parent and color
+    // Each tile: { verts: [C, ...], depth, colorIdx, id }
+    // We use a unique key based on sorted vertex positions (rounded) to avoid duplication.
+    const tiles = [];
+    const seen = new Set();
+
+    function polyKey(verts) {
+      return verts
+        .map(v => `${v.re.toFixed(5)},${v.im.toFixed(5)}`)
+        .sort()
+        .join('|');
+    }
+
+    // Center of a polygon (average of vertices)
+    function polyCenter(verts) {
+      let re = 0, im = 0;
+      for (const v of verts) { re += v.re; im += v.im; }
+      return C(re / verts.length, im / verts.length);
+    }
+
+    const rootKey = polyKey(polygon);
+    seen.add(rootKey);
+    tiles.push({ verts: polygon, depth: 0, colorIdx: 0 });
+
+    const queue = [{ verts: polygon, depth: 0, colorIdx: 0 }];
+
+    while (queue.length > 0) {
+      const { verts, depth, colorIdx } = queue.shift();
+      if (depth >= maxDepth) continue;
+
+      for (let i = 0; i < p; i++) {
+        const a = verts[i];
+        const b = verts[(i + 1) % p];
+
+        // Reflect each vertex of the polygon across edge (a,b)
+        const reflected = verts.map(v => hyperbolicReflect(v, a, b));
+
+        // Skip tiles that land outside the visible disk (all vertices near boundary)
+        const center = polyCenter(reflected);
+        if (cabs2(center) > 0.9999) continue;
+
+        // Skip tiles that are too small to see (center too close to boundary)
+        const minVertDist = Math.min(...reflected.map(v => cabs(v)));
+        if (minVertDist > 0.999) continue;
+
+        const key = polyKey(reflected);
+        if (seen.has(key)) continue;
+        seen.add(key);
+
+        // Color: different from neighbors. Simple assignment by depth + edge index.
+        const newColorIdx = (colorIdx + i + 1) % COLORS.length;
+
+        const tile = { verts: reflected, depth: depth + 1, colorIdx: newColorIdx };
+        tiles.push(tile);
+        queue.push(tile);
+      }
+    }
+
+    return tiles;
+  }
+
+  // ─── Canvas rendering ─────────────────────────────────────────────────────
+
+  const canvas = document.getElementById('poincareCanvas');
+  const ctx = canvas.getContext('2d');
+
+  let tiles = [];
+  let diskRadius = 0;
+  let cx = 0, cy = 0;
+  let rotationAngle = 0;
+  let lastTime = null;
+
+  const ROT_SPEED = (0.2 * Math.PI) / 180; // 0.2° per frame at 60fps → radians/frame
+  const ROT_PER_SEC = ROT_SPEED * 60;       // radians per second
+
+  function resize() {
+    const side = Math.min(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight) * 0.92;
+    canvas.width = Math.round(side);
+    canvas.height = Math.round(side);
+    diskRadius = side * 0.47;
+    cx = side / 2;
+    cy = side / 2;
+  }
+
+  /** Convert normalized Poincaré disk coordinate to canvas pixel. */
+  function diskToCanvas(z) {
+    return [cx + z.re * diskRadius, cy - z.im * diskRadius];
+  }
+
+  /**
+   * Draw a geodesic arc from point a to point b (both in Poincaré disk coords).
+   * A geodesic in the Poincaré disk is either a diameter or a circular arc
+   * orthogonal to the unit circle.
+   */
+  function arcTo(a, b) {
+    // Check if it's approximately a diameter (passes through origin)
+    // i.e. Im(conj(a)*b) ≈ 0 and a ≈ -b*k for some k>0
+    const cross = a.re * b.im - a.im * b.re;
+    if (Math.abs(cross) < 1e-6) {
+      // Draw straight line
+      const [ax, ay] = diskToCanvas(a);
+      const [bx, by] = diskToCanvas(b);
+      ctx.lineTo(bx, by);
+      return;
+    }
+
+    // Find Euclidean circle through a, b orthogonal to unit circle
+    const aa2 = cabs2(a), ab2 = cabs2(b);
+    const imConj = cross; // a.re*b.im - a.im*b.re
+    const rhs1 = (aa2 + 1) / 2;
+    const rhs2 = (ab2 + 1) / 2;
+    const cxc = (rhs1 * b.im - rhs2 * a.im) / imConj;
+    const cyc = (a.re * rhs2 - b.re * rhs1) / imConj;
+
+    const r = Math.sqrt((a.re - cxc) ** 2 + (a.im - cyc) ** 2);
+
+    // Convert center to canvas coords
+    const [pcx, pcy] = diskToCanvas(C(cxc, cyc));
+    const pr = r * diskRadius;
+
+    // Angles from arc center to a and b
+    const [ax, ay] = diskToCanvas(a);
+    const [bx, by] = diskToCanvas(b);
+
+    const angleA = Math.atan2(ay - pcy, ax - pcx);
+    const angleB = Math.atan2(by - pcy, bx - pcx);
+
+    // Determine arc direction: the shorter arc (cross product tells us)
+    // cross > 0 means a→b is counterclockwise around the geodesic center
+    // We want counterclockwise if cross < 0 in screen coords (y flipped)
+    ctx.arc(pcx, pcy, pr, angleA, angleB, cross > 0);
+  }
+
+  /** Draw a hyperbolic polygon with geodesic edges. */
+  function drawTile(verts, fillColor) {
+    ctx.beginPath();
+    const [x0, y0] = diskToCanvas(verts[0]);
+    ctx.moveTo(x0, y0);
+    for (let i = 0; i < verts.length; i++) {
+      const a = verts[i];
+      const b = verts[(i + 1) % verts.length];
+      arcTo(a, b);
+    }
+    ctx.closePath();
+    ctx.fillStyle = fillColor;
+    ctx.fill();
+    ctx.strokeStyle = STROKE_COLOR;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+
+  /** Apply rotation to all tile vertices. */
+  function rotateTiles(tiles, angle) {
+    return tiles.map(tile => ({
+      ...tile,
+      verts: tile.verts.map(v => mobiusRotate(v, angle))
+    }));
+  }
+
+  /** Draw the bounding disk circle. */
+  function drawDiskBorder() {
+    ctx.beginPath();
+    ctx.arc(cx, cy, diskRadius, 0, 2 * Math.PI);
+    ctx.fillStyle = DISK_BG;
+    ctx.fill();
+    ctx.strokeStyle = BORDER_COLOR;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  /** Clip drawing to the disk. */
+  function clipToDisk() {
+    ctx.beginPath();
+    ctx.arc(cx, cy, diskRadius - 1, 0, 2 * Math.PI);
+    ctx.clip();
+  }
+
+  /** Draw Hebrew letter on the central tile. */
+  function drawCentralLetter(tile) {
+    const verts = tile.verts;
+    // Find bounding box of central tile to size the font
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const v of verts) {
+      const [px, py] = diskToCanvas(v);
+      if (px < minX) minX = px;
+      if (px > maxX) maxX = px;
+      if (py < minY) minY = py;
+      if (py > maxY) maxY = py;
+    }
+    const tileSize = Math.min(maxX - minX, maxY - minY);
+    const fontSize = Math.max(14, tileSize * 0.55);
+
+    ctx.save();
+    // Clip to the tile shape first
+    ctx.beginPath();
+    const [x0, y0] = diskToCanvas(verts[0]);
+    ctx.moveTo(x0, y0);
+    for (let i = 0; i < verts.length; i++) {
+      arcTo(verts[i], verts[(i + 1) % verts.length]);
+    }
+    ctx.closePath();
+    ctx.clip();
+
+    ctx.font = `${fontSize}px Georgia, serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#C9A84C';
+    ctx.fillText('ת', cx, cy);
+    ctx.restore();
+  }
+
+  /** Draw Hebrew letters on nearby tiles. */
+  function drawSurroundingLetters(tiles) {
+    // Sort by distance from origin, skip the first (central)
+    const sorted = [...tiles]
+      .filter(t => {
+        const center = t.verts.reduce((acc, v) => ({ re: acc.re + v.re, im: acc.im + v.im }), C(0, 0));
+        const c = C(center.re / t.verts.length, center.im / t.verts.length);
+        return cabs(c) > 0.01;
+      })
+      .sort((a, b) => {
+        const ca = a.verts.reduce((acc, v) => ({ re: acc.re + v.re, im: acc.im + v.im }), C(0, 0));
+        const cb = b.verts.reduce((acc, v) => ({ re: acc.re + v.re, im: acc.im + v.im }), C(0, 0));
+        return cabs2(C(ca.re / a.verts.length, ca.im / a.verts.length)) -
+               cabs2(C(cb.re / b.verts.length, cb.im / b.verts.length));
+      })
+      .slice(0, HEBREW_LETTERS.length - 1);
+
+    for (let i = 0; i < sorted.length; i++) {
+      const tile = sorted[i];
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      for (const v of tile.verts) {
+        const [px, py] = diskToCanvas(v);
+        if (px < minX) minX = px;
+        if (px > maxX) maxX = px;
+        if (py < minY) minY = py;
+        if (py > maxY) maxY = py;
+      }
+      const tileSize = Math.min(maxX - minX, maxY - minY);
+      if (tileSize < 8) continue; // too small to render legibly
+
+      const fontSize = Math.max(8, tileSize * 0.45);
+      const tileCx = (minX + maxX) / 2;
+      const tileCy = (minY + maxY) / 2;
+      const letter = HEBREW_LETTERS[i + 1] || '';
+      if (!letter) continue;
+
+      ctx.save();
+      ctx.font = `${fontSize}px Georgia, serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = 'rgba(245, 237, 214, 0.7)';
+      ctx.fillText(letter, tileCx, tileCy);
+      ctx.restore();
+    }
+  }
+
+  function render(timestamp) {
+    if (lastTime === null) lastTime = timestamp;
+    const dt = (timestamp - lastTime) / 1000;
+    lastTime = timestamp;
+
+    rotationAngle += ROT_PER_SEC * dt;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+
+    drawDiskBorder();
+    clipToDisk();
+
+    const rotated = rotateTiles(tiles, rotationAngle);
+
+    // Draw tiles back-to-front (deeper tiles first, closer to boundary)
+    const sorted = [...rotated].sort((a, b) => b.depth - a.depth);
+    for (const tile of sorted) {
+      drawTile(tile.verts, COLORS[tile.colorIdx]);
+    }
+
+    // Draw central tile letter
+    if (rotated.length > 0) {
+      // Central tile is the one with smallest center distance
+      const centralTile = rotated.reduce((best, t) => {
+        const c = t.verts.reduce((acc, v) => ({ re: acc.re + v.re, im: acc.im + v.im }), C(0, 0));
+        const dist = cabs2(C(c.re / t.verts.length, c.im / t.verts.length));
+        const bc = best.verts.reduce((acc, v) => ({ re: acc.re + v.re, im: acc.im + v.im }), C(0, 0));
+        const bdist = cabs2(C(bc.re / best.verts.length, bc.im / best.verts.length));
+        return dist < bdist ? t : best;
+      });
+      drawCentralLetter(centralTile);
+      drawSurroundingLetters(rotated);
+    }
+
+    ctx.restore();
+
+    requestAnimationFrame(render);
+  }
+
+  function init() {
+    resize();
+    // (4,5): squares meeting 5 at each vertex — valid hyperbolic, p*q > 2*(p+q)
+    // 4*5=20 > 2*(4+5)=18 ✓
+    // Using p=4 (square tiles), q=5
+    tiles = buildTessellation(4, 5, 6);
+    requestAnimationFrame(render);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+    tiles = buildTessellation(4, 5, 6);
+  });
+
+  init();
+})();
+</script>
+</body>
+</html>

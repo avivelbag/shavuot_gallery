@@ -713,5 +713,16 @@
     "path": "pieces/53-gleaning-ruth/index.html",
     "thumbnail": "pieces/53-gleaning-ruth/thumbnail.svg",
     "essay": "pieces/53-gleaning-ruth/essay.md"
+  },
+  {
+    "id": "53-seventy-faces-poincare",
+    "title": "Seventy Faces",
+    "tagline": "שבעים פנים לתורה — the infinite interpretations of Torah tiled as a hyperbolic Poincaré disk",
+    "year": 2026,
+    "theme": "Crown of Torah / naaseh v'nishma",
+    "technique": "hyperbolic tiling",
+    "path": "pieces/53-seventy-faces-poincare/index.html",
+    "thumbnail": "pieces/53-seventy-faces-poincare/thumbnail.svg",
+    "essay": "pieces/53-seventy-faces-poincare/essay.md"
   }
 ]
