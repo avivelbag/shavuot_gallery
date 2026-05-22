@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080704"/>
+      <stop offset="100%" stop-color="#1c1408"/>
+    </linearGradient>
+    <linearGradient id="stone-l" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%"   stop-color="#8a8a8a"/>
+      <stop offset="100%" stop-color="#c8c0b0"/>
+    </linearGradient>
+    <linearGradient id="stone-r" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%"   stop-color="#888080"/>
+      <stop offset="100%" stop-color="#c4bca8"/>
+    </linearGradient>
+
+    <!-- Stone texture: feTurbulence + feDisplacementMap (scale reduced for thumbnail) -->
+    <filter id="stone-tex" x="-5%" y="-5%" width="110%" height="110%"
+            color-interpolation-filters="linearRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3"
+                    seed="9" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"
+                         xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- Carved letter filter for thumbnail (same technique, tighter offsets) -->
+    <filter id="carved" x="-15%" y="-15%" width="130%" height="130%"
+            color-interpolation-filters="linearRGB">
+      <feOffset in="SourceAlpha" dx="1" dy="1.5" result="sa"/>
+      <feFlood  flood-color="#180e04" flood-opacity="0.90" result="sc"/>
+      <feComposite in="sc" in2="sa" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+
+  <!-- Ground fire glow (Sinai motif) -->
+  <ellipse cx="200" cy="400" rx="185" ry="42" fill="#b05010" opacity="0.13"/>
+
+  <!-- Left tablet: x=20–160, cx=90, arch radius=70, arch centre y=88, bottom y=382 -->
+  <path d="M 20,382 L 20,88 A 70,70,0,0,1,160,88 L 160,382 Z"
+        fill="url(#stone-l)" filter="url(#stone-tex)"/>
+  <!-- Glow overlay at mid-pulse opacity (static snapshot of animation mid-point) -->
+  <path d="M 20,382 L 20,88 A 70,70,0,0,1,160,88 L 160,382 Z"
+        fill="#c87820" opacity="0.12"/>
+
+  <!-- Dividing line below arch (left) -->
+  <line x1="38" y1="99" x2="142" y2="99"
+        stroke="#908070" stroke-width="0.8" opacity="0.45"/>
+
+  <!-- Commandments I–V -->
+  <g font-family="'David','Frank Ruehl','FrankRuehlCLM','Noto Serif Hebrew','Times New Roman',serif"
+     font-size="14" fill="#f0ece0" text-anchor="middle"
+     direction="rtl" unicode-bidi="bidi-override"
+     filter="url(#carved)">
+    <text x="90" y="123">אָנֹכִי</text>
+    <text x="90" y="175">לֹא יִהְיֶה</text>
+    <text x="90" y="227">לֹא תִשָּׂא</text>
+    <text x="90" y="279">זָכוֹר</text>
+    <text x="90" y="331">כַּבֵּד</text>
+  </g>
+
+  <!-- Right tablet: x=240–380, cx=310, arch radius=70 -->
+  <path d="M 240,382 L 240,88 A 70,70,0,0,1,380,88 L 380,382 Z"
+        fill="url(#stone-r)" filter="url(#stone-tex)"/>
+  <path d="M 240,382 L 240,88 A 70,70,0,0,1,380,88 L 380,382 Z"
+        fill="#c87820" opacity="0.12"/>
+
+  <!-- Dividing line below arch (right) -->
+  <line x1="258" y1="99" x2="362" y2="99"
+        stroke="#908070" stroke-width="0.8" opacity="0.45"/>
+
+  <!-- Commandments VI–X -->
+  <g font-family="'David','Frank Ruehl','FrankRuehlCLM','Noto Serif Hebrew','Times New Roman',serif"
+     font-size="14" fill="#f0ece0" text-anchor="middle"
+     direction="rtl" unicode-bidi="bidi-override"
+     filter="url(#carved)">
+    <text x="310" y="123">לֹא תִרְצָח</text>
+    <text x="310" y="175">לֹא תִנְאָף</text>
+    <text x="310" y="227">לֹא תִגְנֹב</text>
+    <text x="310" y="279">לֹא-תַעֲנֶה</text>
+    <text x="310" y="331">לֹא תַחְמֹד</text>
+  </g>
+</svg>
