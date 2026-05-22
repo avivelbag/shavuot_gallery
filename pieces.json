@@ -141,5 +141,16 @@
     "path": "pieces/15-keter-torah-harmonograph/index.html",
     "thumbnail": "pieces/15-keter-torah-harmonograph/thumbnail.svg",
     "essay": "pieces/15-keter-torah-harmonograph/essay.md"
+  },
+  {
+    "id": "16-bikkurim-procession",
+    "title": "I Declare",
+    "tagline": "the Bikkurim procession — first fruits offered at the Temple on Shavuot",
+    "year": 2026,
+    "theme": "Bikkurim / First Fruits",
+    "technique": "canvas 2D recursive subdivision, quadtree mosaic",
+    "path": "pieces/16-bikkurim-procession/index.html",
+    "thumbnail": "pieces/16-bikkurim-procession/thumbnail.svg",
+    "essay": "pieces/16-bikkurim-procession/essay.md"
   }
 ]
