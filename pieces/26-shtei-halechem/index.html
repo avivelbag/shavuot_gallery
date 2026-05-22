@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shtei HaLechem — Two Loaves as Wave Interference</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #2C1810;
+      color: #F5E6C8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas { display: block; max-width: 100%; }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+      color: #F5E6C8;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #D4A843;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #A0622A;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #A0622A;
+      padding-left: 0.75rem;
+    }
+    .essay-pane p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #F5E6C8;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #D4A843; font-style: italic; }
+    .essay-pane .hebrew {
+      font-size: 1.1rem;
+      color: #D4A843;
+      direction: rtl;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>Shtei HaLechem — Two Loaves at the Harvest</h1>
+    <p class="source">Source: Leviticus 23:15–17.</p>
+
+    <p>Leviticus 23:17 instructs: "You shall bring from your settlements two loaves of bread as a wave offering, made of two-tenths of an ephah; they shall be of choice flour, they shall be baked with leaven; they are first fruits to the Lord." These two loaves — the shtei halechem — are the distinctive Temple offering of Shavuot, the festival that arrives exactly fifty days after Passover.</p>
+
+    <p>The word that demands attention is "leavened." Chametz, leaven, is ordinarily barred from the altar. Leviticus 2:11 states the principle plainly: "You shall not burn any leaven or any honey as an offering by fire to the Lord." Among all the Shavuot offerings, the shtei halechem are the only ones that contain leaven — but they are not brought near the altar fire. They are offered as a wave offering, waved before the Lord, then eaten by the priests. Their leavened character cannot cross the boundary of fire; it belongs to a different register of the sacred.</p>
+
+    <p>Why leavened? Because Shavuot is the wheat harvest festival. Barley ripens first, in the weeks around Passover; the omer offering is barley — rough grain of an early season. Wheat takes longer. Shavuot, fifty days after Passover, marks the moment the wheat harvest is complete. The leavened loaf is wheat at its fullest expression: processed, transformed, raised by fermentation and time.</p>
+
+    <p>Bringing these risen loaves into the Temple on Shavuot is a statement about what the day means. It celebrates human partnership with the earth's abundance, wheat fully worked and offered in its most complete form. The same tradition identifies Shavuot as the anniversary of the giving of Torah at Sinai: the meeting of human readiness and divine revelation.</p>
+
+    <p>The two loaves carry the number that defines the festival. Two tablets at Sinai. Two dimensions of Torah: written and oral. In this visualization, two point-sources emit concentric wave-rings at the same frequency. Where the rings arrive in phase — crests meeting crests — the interference is constructive: bright wheat-gold. Where they arrive out of phase, the interference is destructive: deep shadow.</p>
+
+    <p class="hebrew">לֶחֶם הַתְּנוּפָה — bread of the waving.</p>
+  </div>
+</div>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = 800, H = 600;
+canvas.width = W;
+canvas.height = H;
+
+const SRC1_X = W * 0.35;  // 280
+const SRC1_Y = H * 0.5;   // 300
+const SRC2_X = W * 0.65;  // 520
+const SRC2_Y = H * 0.5;   // 300
+
+const K = 0.07;    // wavenumber — wavelength ≈ 90 px
+const OMEGA = 2.5; // angular frequency — one animation cycle ≈ 2.5 s
+
+// Precompute pixel distances from each source to avoid sqrt per frame.
+const dist1 = new Float32Array(W * H);
+const dist2 = new Float32Array(W * H);
+for (let y = 0; y < H; y++) {
+  for (let x = 0; x < W; x++) {
+    const i = y * W + x;
+    dist1[i] = Math.sqrt((x - SRC1_X) ** 2 + (y - SRC1_Y) ** 2);
+    dist2[i] = Math.sqrt((x - SRC2_X) ** 2 + (y - SRC2_Y) ** 2);
+  }
+}
+
+const imgData = ctx.createImageData(W, H);
+const pixels = imgData.data;
+
+// 4-stop palette: deep linen → warm amber → wheat gold → parchment
+// Stop 0 (v=0):     #2C1810 = rgb(44,  24,  16)  — destructive minimum
+// Stop 1 (v=0.333): #A0622A = rgb(160, 98,  42)  — warm amber
+// Stop 2 (v=0.667): #D4A843 = rgb(212, 168, 67)  — wheat gold
+// Stop 3 (v=1):     #F5E6C8 = rgb(245, 230, 200) — parchment (constructive maximum)
+function applyPalette(v, idx) {
+  let r, g, b;
+  if (v < 0.333) {
+    const t = v * 3.003;
+    r = (44  + 116 * t) | 0;
+    g = (24  + 74  * t) | 0;
+    b = (16  + 26  * t) | 0;
+  } else if (v < 0.667) {
+    const t = (v - 0.333) * 3.003;
+    r = (160 + 52  * t) | 0;
+    g = (98  + 70  * t) | 0;
+    b = (42  + 25  * t) | 0;
+  } else {
+    const t = (v - 0.667) * 3.0;
+    r = (212 + 33  * t) | 0;
+    g = (168 + 62  * t) | 0;
+    b = (67  + 133 * t) | 0;
+  }
+  pixels[idx]     = r;
+  pixels[idx + 1] = g;
+  pixels[idx + 2] = b;
+  pixels[idx + 3] = 255;
+}
+
+// Draw a bread-loaf shape at (cx, cy) on the canvas after putImageData.
+function drawLoaf(cx, cy) {
+  ctx.save();
+  ctx.translate(cx, cy);
+
+  // Soft glow halo around each loaf
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 32, 22, 0, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(212, 168, 67, 0.18)';
+  ctx.fill();
+
+  // Loaf body — rounded oval
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 22, 14, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#D4A843';
+  ctx.fill();
+  ctx.strokeStyle = '#2C1810';
+  ctx.lineWidth = 1.8;
+  ctx.stroke();
+
+  // Score marks suggesting the texture of a real loaf
+  ctx.beginPath();
+  ctx.moveTo(-8, -9);  ctx.lineTo(-8,  9);
+  ctx.moveTo(0,  -12); ctx.lineTo(0,   12);
+  ctx.moveTo(8,  -9);  ctx.lineTo(8,   9);
+  ctx.strokeStyle = 'rgba(44, 24, 16, 0.55)';
+  ctx.lineWidth = 0.9;
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+function drawLoaves() {
+  drawLoaf(SRC1_X, SRC1_Y);
+  drawLoaf(SRC2_X, SRC2_Y);
+}
+
+let startTime = null;
+
+function frame(ts) {
+  if (!startTime) startTime = ts;
+  const time = (ts - startTime) * 0.001;
+
+  // Compute wave superposition per pixel: val = sin(k·r1 − ωt) + sin(k·r2 − ωt)
+  // val ∈ [−2, 2]; normalize to v ∈ [0, 1] via (val + 2) / 4.
+  for (let i = 0; i < W * H; i++) {
+    const val = Math.sin(K * dist1[i] - OMEGA * time)
+              + Math.sin(K * dist2[i] - OMEGA * time);
+    const v = (val + 2) * 0.25;
+    applyPalette(v, i << 2);
+  }
+
+  ctx.putImageData(imgData, 0, 0);
+  drawLoaves();
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

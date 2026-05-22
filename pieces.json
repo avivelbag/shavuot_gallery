@@ -229,5 +229,16 @@
     "path": "pieces/25-sinai-bloom/index.html",
     "thumbnail": "pieces/25-sinai-bloom/thumbnail.svg",
     "essay": "pieces/25-sinai-bloom/essay.md"
+  },
+  {
+    "id": "26-shtei-halechem",
+    "title": "Two Loaves",
+    "tagline": "the wave offering of Shavuot — two leavened loaves as wave interference",
+    "year": 2026,
+    "theme": "Shtei HaLechem / Wheat Harvest",
+    "technique": "canvas 2D wave superposition, ImageData pixel manipulation, Moiré interference",
+    "path": "pieces/26-shtei-halechem/index.html",
+    "thumbnail": "pieces/26-shtei-halechem/thumbnail.svg",
+    "essay": "pieces/26-shtei-halechem/essay.md"
   }
 ]
