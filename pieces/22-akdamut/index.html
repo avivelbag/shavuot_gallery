@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before the Words — Akdamut Particle Typography</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #080d1a;
+      color: #c0c0e8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    canvas {
+      display: block;
+      border: 1px solid #1a2050;
+      background: #080d1a;
+    }
+    .hebrew-subtitle {
+      font-size: 1.5rem;
+      color: #e8c060;
+      direction: rtl;
+      margin-top: 0.75rem;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 14px rgba(232,192,96,0.5);
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.35rem;
+      color: #e8c060;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #7878b8;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #1a2050;
+      padding-left: 0.75rem;
+      line-height: 1.5;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #c0c0e8;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #e8c060; font-style: normal; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #5a5a90;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #1a2050;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <div class="hebrew-subtitle">אַקְדָּמוּת מִלִּין</div>
+  </div>
+
+  <div class="essay-pane">
+    <h1>Before the Words — Akdamut Millin</h1>
+    <p class="source">"Before I speak, words I shall arrange; before God who created all, I seek permission and consent." — Akdamut Millin, opening couplet (trans.)</p>
+
+    <p><em>Akdamut Millin</em> — "Before the Words" — is a 90-line Aramaic acrostic piyyut (liturgical poem) composed by Rabbi Meir ben Isaac Nehorai of Worms around 1096 CE. In Ashkenazic synagogues it is chanted before the Torah reading on Shavuot morning, immediately before the public recitation of the Ten Commandments — a prelude, an act of preparation, a moment of massing language before the infinite words are heard.</p>
+
+    <p>The structure of the poem is itself a declaration. It is a double acrostic: each stanza begins with successive letters of the Aramaic alphabet, from <em>alef</em> to <em>tav</em>, twice through — 44 lines of alphabetic praise. Then the poet appends his own name in acrostic: <em>Meir bar Yitzchak</em> ("Meir son of Isaac, may he flourish and grow"). The full alphabet enrolled twice, then the author inscribed within it: language is committed completely, letter by letter, in service of praise.</p>
+
+    <p>The poem moves in three sweeping arcs. It opens with a confession of inadequacy: even if all the oceans were ink, all the skies parchment, all the reeds quills, it would still be impossible to speak God's praise fully. Yet the poem proceeds — because the attempt is the devotion. It then turns to creation and sovereignty, describing the angelic hierarchies and the grandeur of the heavens that declare their Maker's glory. Then it pivots to Israel: a people who have suffered, been offered release from their covenant, and have refused, generation after generation, to abandon Torah under any duress. The poem ends with a vision of the future reward — the messianic banquet, the leviathan and the behemoth prepared for the righteous.</p>
+
+    <p>Why is Akdamut recited in Aramaic? The Talmud (BT Shabbat 12b) provides the key: the ministering angels do not understand Aramaic. When a person prays in Hebrew, the angels intercept, comprehend, and carry the prayer upward through the celestial hierarchy. But Aramaic bypasses the angelic intermediaries entirely — it travels directly to God, unmediated, as if whispered between two parties who wish not to be overheard. To recite Akdamut in Aramaic before God and the assembled congregation is to address the Holy One face to face, as Israel once stood at the foot of Sinai without an angel between them.</p>
+
+    <p>What makes this historically extraordinary is its timing. Rabbi Meir ben Isaac of Worms composed this poem in 1096 CE — the very year of the First Crusade. The Rhineland massacres of that year annihilated the Jewish communities of Speyer, Worms, and Mainz. Rabbi Meir survived, or composed the poem in the immediate shadow of the destruction. And what he wrote was not lamentation. It was defiance. The poem's description of Israel refusing every offer of release from the covenant — enduring persecution rather than abandon Torah — was no abstraction. It was the community's self-description, offered up in the year it was most literally and most desperately true.</p>
+
+    <p>Akdamut is an act of standing before the Torah scroll and declaring: <em>we are still here, we still accept this</em>. The particle animation here enacts that structure. Each of the 22 Hebrew letters assembles from scattered fragments, holds its form for a breath, then dissolves back into scattered light to reform as the next. Language does not persist on its own. It must be gathered, letter by letter, every generation assembling its alphabet from whatever remains.</p>
+
+    <p class="citations">Sources: Akdamut Millin (Rabbi Meir ben Isaac Nehorai, c. 1096); Talmud Bavli Shabbat 12b; Sefer Arugat HaBosem; Machzor Vitry; The Piyyut Database (Hebrew University / National Library of Israel).</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = 600, H = 600;
+
+  const BG = '#080d1a';
+  const GLOW_COLOR = '#ffdd44';
+  const NUM_PARTICLES = 300;
+
+  const LETTERS = ['א','ב','ג','ד','ה','ו','ז','ח','ט','י','כ','ל','מ','נ','ס','ע','פ','צ','ק','ר','ש','ת'];
+  const AKDAMUT_TEXT = 'אַקְדָּמוּת מִלִּין';
+  const TOTAL_STEPS = LETTERS.length + 1;
+
+  const ASSEMBLE_DURATION = 1500;
+  const HOLD_DURATION = 800;
+  const AKDAMUT_HOLD = 3000;
+  const SCATTER_DURATION = 600;
+
+  const TARGET_FPS = 60;
+  const FRAME_INTERVAL = 1000 / TARGET_FPS;
+
+  let particles = [];
+  let letterIdx = 0;
+  let phase = 'assembling';
+  let phaseStart = null;
+  let lastFrameTime = 0;
+
+  function initParticles() {
+    particles = Array.from({ length: NUM_PARTICLES }, function () {
+      const opacity = 0.6 + Math.random() * 0.4;
+      const a = opacity.toFixed(2);
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        tx: W / 2,
+        ty: H / 2,
+        vx: (Math.random() - 0.5) * 6,
+        vy: (Math.random() - 0.5) * 6,
+        r: 1.2 + Math.random() * 0.8,
+        fill: 'rgba(232,192,96,' + a + ')'
+      };
+    });
+  }
+
+  /**
+   * Renders text onto an offscreen canvas, reads pixel alpha data,
+   * collects all opaque pixel coordinates, and returns NUM_PARTICLES
+   * randomly sampled targets scaled and centered on the display canvas.
+   *
+   * @param {string} text - The glyph or phrase to rasterize.
+   * @param {boolean} isPhrase - True for the two-word Akdamut phrase (wider canvas).
+   * @returns {Array<[number,number]>} Array of [tx, ty] target positions.
+   */
+  function computeTargets(text, isPhrase) {
+    const offW = isPhrase ? 580 : 360;
+    const offH = isPhrase ? 200 : 360;
+    const fontSize = isPhrase ? 92 : 260;
+
+    const off = document.createElement('canvas');
+    off.width = offW;
+    off.height = offH;
+    const offCtx = off.getContext('2d');
+
+    offCtx.clearRect(0, 0, offW, offH);
+    offCtx.font = fontSize + 'px "David", serif';
+    offCtx.textBaseline = 'alphabetic';
+    offCtx.textAlign = 'center';
+    offCtx.fillStyle = '#ffffff';
+    offCtx.fillText(text, offW / 2, offH * 0.78);
+
+    const imgData = offCtx.getImageData(0, 0, offW, offH);
+    const d = imgData.data;
+
+    var coords = [];
+    for (var py = 0; py < offH; py++) {
+      for (var px = 0; px < offW; px++) {
+        if (d[(py * offW + px) * 4 + 3] > 128) {
+          coords.push([px, py]);
+        }
+      }
+    }
+
+    if (coords.length === 0) {
+      var fallback = [];
+      for (var i = 0; i < NUM_PARTICLES; i++) {
+        fallback.push([W / 2 + (Math.random() - 0.5) * 100, H / 2 + (Math.random() - 0.5) * 100]);
+      }
+      return fallback;
+    }
+
+    var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (var ci = 0; ci < coords.length; ci++) {
+      var cpx = coords[ci][0], cpy = coords[ci][1];
+      if (cpx < minX) minX = cpx;
+      if (cpx > maxX) maxX = cpx;
+      if (cpy < minY) minY = cpy;
+      if (cpy > maxY) maxY = cpy;
+    }
+
+    var bboxW = maxX - minX + 1;
+    var bboxH = maxY - minY + 1;
+
+    var pad = isPhrase ? 70 : 90;
+    var scale = Math.min((W - pad * 2) / bboxW, (H - pad * 2) / bboxH);
+    var ox = (W - bboxW * scale) / 2;
+    var oy = (H - bboxH * scale) / 2;
+
+    var targets = [];
+    for (var ti = 0; ti < NUM_PARTICLES; ti++) {
+      var c = coords[Math.floor(Math.random() * coords.length)];
+      targets.push([(c[0] - minX) * scale + ox, (c[1] - minY) * scale + oy]);
+    }
+    return targets;
+  }
+
+  function setTargets(idx) {
+    var text = idx < LETTERS.length ? LETTERS[idx] : AKDAMUT_TEXT;
+    var isPhrase = idx >= LETTERS.length;
+    var tgts = computeTargets(text, isPhrase);
+    for (var i = 0; i < particles.length; i++) {
+      particles[i].tx = tgts[i][0];
+      particles[i].ty = tgts[i][1];
+    }
+  }
+
+  /**
+   * Gives each particle an outward random impulse to begin the scatter phase.
+   */
+  function startScatter() {
+    for (var i = 0; i < particles.length; i++) {
+      var angle = Math.random() * Math.PI * 2;
+      var speed = 5 + Math.random() * 12;
+      particles[i].vx = Math.cos(angle) * speed;
+      particles[i].vy = Math.sin(angle) * speed;
+    }
+  }
+
+  /**
+   * Updates a single particle's position.
+   * During assembling/holding: spring-damper toward target (technique-notes formula).
+   * During scattering: random impulse with friction, no spring force.
+   *
+   * @param {Object} p - Particle object with x, y, tx, ty, vx, vy.
+   */
+  function updateParticle(p) {
+    if (phase === 'scattering') {
+      p.vx += (Math.random() - 0.5) * 0.8;
+      p.vy += (Math.random() - 0.5) * 0.8;
+      p.vx *= 0.94;
+      p.vy *= 0.94;
+      p.x += p.vx;
+      p.y += p.vy;
+    } else {
+      p.x += (p.tx - p.x) * 0.07 + p.vx;
+      p.vx *= 0.85;
+      p.y += (p.ty - p.y) * 0.07 + p.vy;
+      p.vy *= 0.85;
+    }
+
+    if (p.x < 0)  { p.x = 0;  p.vx =  Math.abs(p.vx) * 0.4; }
+    if (p.x > W)  { p.x = W;  p.vx = -Math.abs(p.vx) * 0.4; }
+    if (p.y < 0)  { p.y = 0;  p.vy =  Math.abs(p.vy) * 0.4; }
+    if (p.y > H)  { p.y = H;  p.vy = -Math.abs(p.vy) * 0.4; }
+  }
+
+  function draw(ts) {
+    if (ts - lastFrameTime < FRAME_INTERVAL) {
+      requestAnimationFrame(draw);
+      return;
+    }
+    lastFrameTime = ts;
+
+    if (phaseStart === null) phaseStart = ts;
+    var elapsed = ts - phaseStart;
+
+    if (phase === 'assembling' && elapsed >= ASSEMBLE_DURATION) {
+      phase = 'holding';
+      phaseStart = ts;
+      elapsed = 0;
+    } else if (phase === 'holding') {
+      var holdTime = (letterIdx >= LETTERS.length) ? AKDAMUT_HOLD : HOLD_DURATION;
+      if (elapsed >= holdTime) {
+        letterIdx = (letterIdx + 1) % TOTAL_STEPS;
+        setTargets(letterIdx);
+        phase = 'scattering';
+        phaseStart = ts;
+        elapsed = 0;
+        startScatter();
+      }
+    } else if (phase === 'scattering' && elapsed >= SCATTER_DURATION) {
+      phase = 'assembling';
+      phaseStart = ts;
+      elapsed = 0;
+    }
+
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+
+    var glowAmount = 0;
+    if (phase === 'holding') {
+      glowAmount = 16;
+    } else if (phase === 'assembling') {
+      glowAmount = Math.min(elapsed / ASSEMBLE_DURATION, 1) * 12;
+    }
+    ctx.shadowBlur = glowAmount;
+    ctx.shadowColor = GLOW_COLOR;
+
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      updateParticle(p);
+      ctx.fillStyle = p.fill;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.shadowBlur = 0;
+
+    requestAnimationFrame(draw);
+  }
+
+  initParticles();
+  setTargets(0);
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
