@@ -394,5 +394,16 @@
     "path": "pieces/38-seven-heavens/index.html",
     "thumbnail": "pieces/38-seven-heavens/thumbnail.svg",
     "essay": "pieces/38-seven-heavens/essay.md"
+  },
+  {
+    "id": "39-chesed-like-water",
+    "title": "Chesed Like Water",
+    "tagline": "Ruth, Naomi, and Boaz — lovingkindness as slime-mold network finding the most connected paths",
+    "year": 2026,
+    "theme": "Book of Ruth / Chesed — Lovingkindness",
+    "technique": "canvas 2D — Physarum polycephalum slime-mold simulation, ImageData pixel rendering",
+    "path": "pieces/39-chesed-like-water/index.html",
+    "thumbnail": "pieces/39-chesed-like-water/thumbnail.svg",
+    "essay": "pieces/39-chesed-like-water/essay.md"
   }
 ]
