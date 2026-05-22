@@ -6,8 +6,7 @@ satisfy the acceptance criteria for the Sinai Chuppah suggestion.
 """
 import json
 import os
-
-import pytest
+import re
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
@@ -106,7 +105,6 @@ def test_piece_42_contains_hebrew_ultimatum():
 def test_piece_42_cloth_grid_is_large_enough():
     """The cloth grid must be at least 20×20 particles as required by the spec."""
     html = open(INDEX_HTML, encoding="utf-8").read()
-    import re
     rows_match = re.search(r'ROWS\s*=\s*(\d+)', html)
     cols_match = re.search(r'COLS\s*=\s*(\d+)', html)
     assert rows_match and cols_match, "ROWS and COLS constants must be defined in index.html"
@@ -127,7 +125,6 @@ def test_piece_42_uses_verlet_integration():
 def test_piece_42_constraint_iterations():
     """The simulation must use multiple constraint-satisfaction iterations per frame."""
     html = open(INDEX_HTML, encoding="utf-8").read()
-    import re
     iters_match = re.search(r'ITERS\s*=\s*(\d+)', html)
     assert iters_match, "ITERS constant must be defined in index.html"
     iters = int(iters_match.group(1))
@@ -225,24 +222,25 @@ def test_piece_42_path_format_correct():
 # Failure modes
 # ---------------------------------------------------------------------------
 
-def test_missing_piece_42_detected(tmp_path):
-    """A pieces.json without piece 42 should fail the existence check."""
+def test_missing_piece_42_detected():
+    """Lookup helper returns None when pieces.json does not contain piece 42."""
     fake_pieces = [{"id": "01-thunder-at-sinai", "title": "Thunder"}]
-    ids = [p["id"] for p in fake_pieces]
-    assert PIECE_ID not in ids, "Fixture confirms piece 42 would be absent"
+    result = next((p for p in fake_pieces if p["id"] == PIECE_ID), None)
+    assert result is None
 
 
 def test_essay_below_minimum_words_detected(tmp_path):
-    """An essay with fewer than 200 words should be caught by the word count check."""
+    """A stub essay with 50 words is detected as below the 200-word minimum."""
     stub = tmp_path / "essay.md"
-    stub.write_text("short " * 50, encoding="utf-8")
-    text = stub.read_text(encoding="utf-8")
-    assert len(text.split()) < 200, "Fixture confirms stub essay is too short"
+    stub.write_text("word " * 50, encoding="utf-8")
+    word_count = len(stub.read_text(encoding="utf-8").split())
+    assert word_count < 200, f"Expected stub to have <200 words; got {word_count}"
 
 
 def test_cloth_grid_too_small_detected():
-    """A cloth grid smaller than 20×20 must not satisfy the spec requirement."""
-    small_rows, small_cols = 10, 10
-    assert small_rows < 20 or small_cols < 20, (
-        "Fixture confirms a 10×10 grid is below the 20×20 minimum"
-    )
+    """Regex extraction of ROWS/COLS from fake HTML catches a grid below 20×20."""
+    fake_html = "const ROWS = 10;\nconst COLS = 10;"
+    rows_match = re.search(r'ROWS\s*=\s*(\d+)', fake_html)
+    cols_match = re.search(r'COLS\s*=\s*(\d+)', fake_html)
+    assert rows_match and cols_match, "Regex must find ROWS and COLS in fake HTML"
+    assert int(rows_match.group(1)) < 20 or int(cols_match.group(1)) < 20
