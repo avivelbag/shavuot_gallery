@@ -64,5 +64,16 @@
     "path": "pieces/08-naaseh-vnishma-voronoi/index.html",
     "thumbnail": "pieces/08-naaseh-vnishma-voronoi/thumbnail.svg",
     "essay": "pieces/08-naaseh-vnishma-voronoi/essay.md"
+  },
+  {
+    "id": "09-greenery-lsystem",
+    "title": "The Greening of the House",
+    "tagline": "plants growing from seed at the foot of the mountain",
+    "year": 2026,
+    "theme": "Greenery and Flowers / Chag Shavuot",
+    "technique": "L-system turtle graphics",
+    "path": "pieces/09-greenery-lsystem/index.html",
+    "thumbnail": "pieces/09-greenery-lsystem/thumbnail.svg",
+    "essay": "pieces/09-greenery-lsystem/essay.md"
   }
 ]
