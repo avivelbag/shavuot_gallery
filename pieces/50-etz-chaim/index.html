@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etz Chaim — A Tree of Life to Those Who Hold Her</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0A1A0D;
+      color: #FFFBF0;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas {
+      display: block;
+      max-width: 100%;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+      color: #FFFBF0;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #D4A017;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .blockquote {
+      border-left: 3px solid #D4A017;
+      padding-left: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    .hebrew {
+      direction: rtl;
+      font-size: 1.15rem;
+      color: #D4A017;
+      display: block;
+      margin-bottom: 0.3rem;
+      line-height: 1.9;
+    }
+    .english {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #c8b88a;
+      display: block;
+      line-height: 1.6;
+    }
+    .essay-pane h2 {
+      font-size: 1rem;
+      color: #D4A017;
+      margin-top: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .essay-pane p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: #FFFBF0;
+      margin-bottom: 0.95rem;
+    }
+    .essay-pane em { color: #D4A017; font-style: italic; }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>עֵץ חַיִּים — A Tree of Life to Those Who Hold Her</h1>
+
+    <div class="blockquote">
+      <span class="hebrew">עֵץ חַיִּים הִיא לַמַּחֲזִיקִים בָּהּ וְתֹמְכֶיהָ מְאֻשָּׁר</span>
+      <span class="english">She is a tree of life to those who hold fast to her, and those who cling to her are happy. — Proverbs 3:18</span>
+    </div>
+
+    <p>Every Shabbat, every festival — every time a Torah scroll is lifted, carried, and returned to the ark — a congregation rises and sings this verse. The melody is ancient and modal, hovering somewhere between longing and arrival. Children know it before they can read the words. The verse does not comment on the Torah from outside: it <em>is</em> the moment of return, spoken as the tree is placed back in its dwelling.</p>
+
+    <p>But to call Torah "a tree of life" is not metaphor in the ornamental sense. In biblical Hebrew, <em>etz chaim</em> names the tree at the center of Eden — not a decoration, but the axis of the world, the one fruit withheld that would have made Adam and Eve immortal (Genesis 3:22–24). When Proverbs appropriates this phrase for Torah, the claim is cosmic: Torah now stands where the Eden tree once stood. The tradition does not reach for a pretty image. It reaches for the most freighted image in the entire canon.</p>
+
+    <p>What does this mean for Shavuot? The standard picture of Sinai emphasizes <em>the moment</em>: lightning, thunder, the mountain smoking, the voice splitting into seventy languages. But Proverbs 3:18 does not speak of a moment. It speaks of an ongoing condition — "to those who <em>hold fast</em>," present participle, continuous action. Torah is alive precisely because someone is always gripping the branches.</p>
+
+    <p>The Talmud in Shabbat 88b describes Israel at Sinai coerced into acceptance, a mountain held over their heads like a barrel. And yet the same tradition records their willing cry of <em>na'aseh v'nishmah</em> — "we will do and we will hear" — a declaration that reverses the normal order, committing to practice before understanding. Whatever the negotiation at the mountain, what was transmitted was not a sealed archive. It was a root system. The Written Torah arrived with the Oral Torah simultaneous and coextensive — not as a supplement but as its living underground, the part of a tree you cannot see.</p>
+
+    <h2>פִּרְקֵי אָבוֹת ו:ז — Pirkei Avot 6:7</h2>
+    <div class="blockquote">
+      <span class="hebrew">גְּדוֹלָה תוֹרָה יוֹתֵר מִן הַכְּהֻנָּה וּמִן הַמַּלְכוּת</span>
+      <span class="english">Torah is greater than priesthood and kingship. — Pirkei Avot 6:7</span>
+    </div>
+
+    <p>Avot 6:7 is making a claim about the <em>kind</em> of authority Torah possesses. Priesthood is inherited; it passes through biology. Kingship is conferred; it requires installation by other humans. Torah's authority is organic — it grows through being engaged, contested, and held. The verse in Proverbs uses the participle <em>ha-machzikim</em>: not "those who held" in the past, but "those who are holding" right now. A tradition that no one holds becomes a fossil, not a tree.</p>
+
+    <p>The tension the tree metaphor holds — and must hold — is this: every tree has exactly one root. You can trace any branch back through every junction to the single origin at ground level. And yet every branch follows a unique trajectory, bending toward a different light, shaped by what competed with it and what fell away. No two branches are the same. The rabbinic tradition works exactly this way: every responsum, every legal argument, every homily must show its connection to prior sources, which connect to earlier ones, all the way back to Sinai. The root is singular. The canopy is infinite.</p>
+
+    <p>The space colonization algorithm — published by Runions in 2007 to model vascular plant growth — has no blueprint for what the tree will look like. You seed it with a root and scatter a cloud of attractor points representing the light the tree is trying to reach. Each growing tip senses the attractors in its neighborhood, extends one step in their averaged direction, and consumes them on arrival. The shape that emerges is not stored anywhere in the code. It arises from the encounter between a fixed origin and the particular arrangement of the attractors — the needs, the questions, the pull of each generation's light. Run the same algorithm twice: different trees, same root.</p>
+
+    <p>This is the specific claim of <em>etz chaim</em> that the other Sinai images cannot make. Lightning radiates equally in all directions. The tablets are fixed and closed. But a tree is a record of growth — every branch an archive of the decisions made at each fork, every ring of the trunk a year's response to weather. When the tree in the animation reaches its last attractor and the canvas fades to winter black, the algorithm does not remember what shape it grew. The next cycle begins from the same root, reaches toward a new scattering of light, and becomes a different tree. The root never changes. The commentary never ends.</p>
+  </div>
+</div>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = 640, H = 680;
+canvas.width = W;
+canvas.height = H;
+
+const BG = '#0A1A0D';
+const GOLD_R = 212, GOLD_G = 160, GOLD_B = 23;
+const IVORY_R = 255, IVORY_G = 251, IVORY_B = 240;
+
+const PERCEPTION_RADIUS = 80;
+const KILL_RADIUS = 12;
+const SEGMENT_LENGTH = 6;
+const NUM_ATTRACTORS = 300;
+const UPWARD_BIAS = 0.35;
+const STEPS_PER_FRAME = 4;
+
+let attractors = [];
+let nodes = [];
+let tips = [];
+let growthDone = false;
+let phase = 'growing';
+let holdStart = 0;
+let fadeStart = 0;
+let fadeAlpha = 0;
+
+/**
+ * Squared Euclidean distance between two points.
+ */
+function dist2(ax, ay, bx, by) {
+  const dx = ax - bx, dy = ay - by;
+  return dx * dx + dy * dy;
+}
+
+/**
+ * Normalize a 2D vector. Returns [0, -1] for near-zero inputs (default upward).
+ */
+function normalize(x, y) {
+  const len = Math.sqrt(x * x + y * y);
+  if (len < 1e-9) return [0, -1];
+  return [x / len, y / len];
+}
+
+/**
+ * Scatter NUM_ATTRACTORS points in an elliptical canopy occupying the upper
+ * two-thirds of the canvas, with slight random scatter for a natural silhouette.
+ */
+function seedAttractors() {
+  attractors = [];
+  const cx = W / 2;
+  const cy = H * 0.28;
+  const rx = W * 0.42;
+  const ry = H * 0.30;
+  let attempts = 0;
+  while (attractors.length < NUM_ATTRACTORS && attempts < NUM_ATTRACTORS * 15) {
+    attempts++;
+    const angle = Math.random() * Math.PI * 2;
+    // sqrt for uniform area distribution inside the ellipse
+    const r = Math.sqrt(Math.random());
+    const x = cx + r * rx * Math.cos(angle) + (Math.random() - 0.5) * 24;
+    const y = cy + r * ry * Math.sin(angle) + (Math.random() - 0.5) * 24;
+    if (x > 8 && x < W - 8 && y > 8 && y < H * 0.66) {
+      attractors.push({ x, y, active: true });
+    }
+  }
+}
+
+/**
+ * Initialize the tree with a single root node at the bottom center.
+ */
+function seedTree() {
+  const rootX = W / 2;
+  const rootY = H * 0.90;
+  nodes = [{ x: rootX, y: rootY, parentIdx: -1, depth: 0 }];
+  tips = [0];
+}
+
+function init() {
+  seedAttractors();
+  seedTree();
+  growthDone = false;
+  phase = 'growing';
+  holdStart = 0;
+  fadeStart = 0;
+  fadeAlpha = 0;
+}
+
+/**
+ * Execute one step of the space colonization algorithm (Runions 2007).
+ *
+ * For each active tip:
+ *   1. Collect attractors within PERCEPTION_RADIUS.
+ *   2. Average the unit direction vectors toward them; add upward bias.
+ *   3. Extend the tip by SEGMENT_LENGTH to create a new child node.
+ * Then remove any attractor within KILL_RADIUS of any node.
+ */
+function stepGrowth() {
+  if (growthDone) return;
+
+  const activeCount = attractors.reduce((n, a) => n + (a.active ? 1 : 0), 0);
+  if (activeCount === 0) {
+    growthDone = true;
+    return;
+  }
+
+  const pr2 = PERCEPTION_RADIUS * PERCEPTION_RADIUS;
+  const kr2 = KILL_RADIUS * KILL_RADIUS;
+  const newNodes = [];
+  const deadTips = new Set();
+
+  for (let ti = 0; ti < tips.length; ti++) {
+    const tipIdx = tips[ti];
+    const tip = nodes[tipIdx];
+    let sumX = 0, sumY = 0, count = 0;
+
+    for (let ai = 0; ai < attractors.length; ai++) {
+      const a = attractors[ai];
+      if (!a.active) continue;
+      const d2 = dist2(tip.x, tip.y, a.x, a.y);
+      if (d2 < pr2) {
+        const d = Math.sqrt(d2);
+        sumX += (a.x - tip.x) / d;
+        sumY += (a.y - tip.y) / d;
+        count++;
+      }
+    }
+
+    if (count === 0) {
+      deadTips.add(tipIdx);
+      continue;
+    }
+
+    sumY -= UPWARD_BIAS * count;
+    const [nx, ny] = normalize(sumX, sumY);
+    const newX = tip.x + nx * SEGMENT_LENGTH;
+    const newY = tip.y + ny * SEGMENT_LENGTH;
+
+    if (newX < 2 || newX > W - 2 || newY < 2 || newY > H - 2) {
+      deadTips.add(tipIdx);
+      continue;
+    }
+
+    newNodes.push({ x: newX, y: newY, parentIdx: tipIdx, depth: tip.depth + 1 });
+    deadTips.add(tipIdx);
+  }
+
+  for (const n of newNodes) {
+    const idx = nodes.length;
+    nodes.push(n);
+    tips.push(idx);
+  }
+  tips = tips.filter(ti => !deadTips.has(ti));
+
+  // Kill attractors within kill radius of any node
+  for (let ai = 0; ai < attractors.length; ai++) {
+    const a = attractors[ai];
+    if (!a.active) continue;
+    for (let ni = 0; ni < nodes.length; ni++) {
+      const n = nodes[ni];
+      if (dist2(a.x, a.y, n.x, n.y) < kr2) {
+        a.active = false;
+        break;
+      }
+    }
+  }
+
+  if (tips.length === 0) {
+    growthDone = true;
+  }
+}
+
+/**
+ * Interpolate between harvest gold and ivory based on normalized depth t ∈ [0,1].
+ * Returns an rgb() string: deeper nodes are gold, newer tips are ivory.
+ */
+function branchColor(t) {
+  const r = Math.round(GOLD_R + t * (IVORY_R - GOLD_R));
+  const g = Math.round(GOLD_G + t * (IVORY_G - GOLD_G));
+  const b = Math.round(GOLD_B + t * (IVORY_B - GOLD_B));
+  return `rgb(${r},${g},${b})`;
+}
+
+/**
+ * Map normalized depth t ∈ [0,1] to line width: 6px at root, 1px at tips.
+ */
+function branchWidth(t) {
+  return 6 - t * 5;
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+
+  // Faint attractor cloud
+  ctx.fillStyle = 'rgba(180, 215, 80, 0.18)';
+  for (let ai = 0; ai < attractors.length; ai++) {
+    const a = attractors[ai];
+    if (!a.active) continue;
+    ctx.beginPath();
+    ctx.arc(a.x, a.y, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Branch segments
+  const maxDepth = nodes.reduce((m, n) => Math.max(m, n.depth), 1);
+  ctx.lineCap = 'round';
+  for (let i = 1; i < nodes.length; i++) {
+    const node = nodes[i];
+    const parent = nodes[node.parentIdx];
+    const t = node.depth / maxDepth;
+    ctx.beginPath();
+    ctx.moveTo(parent.x, parent.y);
+    ctx.lineTo(node.x, node.y);
+    ctx.strokeStyle = branchColor(t);
+    ctx.lineWidth = branchWidth(t);
+    ctx.stroke();
+  }
+
+  // Hebrew inscription glowing at the root
+  const root = nodes[0];
+  ctx.save();
+  ctx.shadowColor = '#D4A017';
+  ctx.shadowBlur = 10;
+  ctx.fillStyle = 'rgba(212, 160, 23, 0.65)';
+  ctx.font = 'bold 16px serif';
+  ctx.textAlign = 'center';
+  ctx.direction = 'rtl';
+  ctx.fillText('עֵץ חַיִּים', root.x, root.y + 22);
+  ctx.restore();
+
+  if (phase === 'fading') {
+    ctx.fillStyle = `rgba(0,0,0,${fadeAlpha})`;
+    ctx.fillRect(0, 0, W, H);
+  }
+}
+
+function animate(ts) {
+  requestAnimationFrame(animate);
+
+  if (phase === 'growing') {
+    for (let s = 0; s < STEPS_PER_FRAME; s++) stepGrowth();
+    draw();
+    if (growthDone) {
+      phase = 'holding';
+      holdStart = ts;
+    }
+  } else if (phase === 'holding') {
+    draw();
+    if (ts - holdStart >= 3000) {
+      phase = 'fading';
+      fadeStart = ts;
+      fadeAlpha = 0;
+    }
+  } else if (phase === 'fading') {
+    fadeAlpha = Math.min((ts - fadeStart) / 2000, 1);
+    draw();
+    if (fadeAlpha >= 1) {
+      init();
+    }
+  }
+}
+
+init();
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>

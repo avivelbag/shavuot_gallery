@@ -603,5 +603,16 @@
     "path": "pieces/49-sefirot-omer-hex/index.html",
     "thumbnail": "pieces/49-sefirot-omer-hex/thumbnail.svg",
     "essay": "pieces/49-sefirot-omer-hex/essay.md"
+  },
+  {
+    "id": "50-etz-chaim",
+    "title": "A Tree of Life to Those Who Hold Her",
+    "tagline": "עֵץ חַיִּים — the space colonization algorithm grows Torah as a living tree reaching toward light",
+    "year": 2026,
+    "theme": "Crown of Torah / Etz Chaim — Torah as Living Tradition",
+    "technique": "canvas 2D — space colonization algorithm (Runions 2007), vascular tree growth",
+    "path": "pieces/50-etz-chaim/index.html",
+    "thumbnail": "pieces/50-etz-chaim/thumbnail.svg",
+    "essay": "pieces/50-etz-chaim/essay.md"
   }
 ]

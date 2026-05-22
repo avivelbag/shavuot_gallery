@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background: deep forest green -->
+  <rect width="400" height="400" fill="#0A1A0D"/>
+
+  <!-- Faint attractor cloud: scattered green-gold dots in upper canopy region -->
+  <g opacity="0.25" fill="#B8D050">
+    <circle cx="200" cy="60" r="2"/><circle cx="220" cy="45" r="1.5"/>
+    <circle cx="185" cy="72" r="1.5"/><circle cx="240" cy="58" r="2"/>
+    <circle cx="160" cy="65" r="1.5"/><circle cx="175" cy="50" r="2"/>
+    <circle cx="255" cy="70" r="1.5"/><circle cx="130" cy="80" r="2"/>
+    <circle cx="270" cy="55" r="1.5"/><circle cx="145" cy="90" r="2"/>
+    <circle cx="210" cy="85" r="2"/><circle cx="230" cy="100" r="1.5"/>
+    <circle cx="155" cy="105" r="2"/><circle cx="280" cy="90" r="1.5"/>
+    <circle cx="120" cy="100" r="2"/><circle cx="300" cy="75" r="1.5"/>
+    <circle cx="195" cy="115" r="2"/><circle cx="250" cy="115" r="1.5"/>
+    <circle cx="170" cy="125" r="2"/><circle cx="310" cy="100" r="1.5"/>
+    <circle cx="110" cy="115" r="2"/><circle cx="325" cy="85" r="1.5"/>
+    <circle cx="215" cy="130" r="2"/><circle cx="138" cy="130" r="1.5"/>
+    <circle cx="265" cy="130" r="2"/><circle cx="290" cy="118" r="1.5"/>
+    <circle cx="95" cy="130" r="2"/><circle cx="340" cy="110" r="1.5"/>
+  </g>
+
+  <!-- Main trunk -->
+  <line x1="200" y1="370" x2="200" y2="270" stroke="#D4A017" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Primary branches -->
+  <line x1="200" y1="290" x2="150" y2="230" stroke="#C49520" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="200" y1="290" x2="252" y2="228" stroke="#C49520" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="200" y1="310" x2="242" y2="265" stroke="#C49520" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="200" y1="310" x2="158" y2="263" stroke="#C49520" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Secondary branches left -->
+  <line x1="150" y1="230" x2="115" y2="180" stroke="#D8B840" stroke-width="3" stroke-linecap="round"/>
+  <line x1="150" y1="230" x2="168" y2="175" stroke="#D8B840" stroke-width="3" stroke-linecap="round"/>
+  <line x1="150" y1="248" x2="105" y2="215" stroke="#D8B840" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Secondary branches right -->
+  <line x1="252" y1="228" x2="290" y2="178" stroke="#D8B840" stroke-width="3" stroke-linecap="round"/>
+  <line x1="252" y1="228" x2="235" y2="175" stroke="#D8B840" stroke-width="3" stroke-linecap="round"/>
+  <line x1="252" y1="246" x2="298" y2="215" stroke="#D8B840" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Tertiary branches — ivory at tips -->
+  <line x1="115" y1="180" x2="95" y2="145" stroke="#E8D090" stroke-width="2" stroke-linecap="round"/>
+  <line x1="115" y1="180" x2="128" y2="142" stroke="#E8D090" stroke-width="2" stroke-linecap="round"/>
+  <line x1="168" y1="175" x2="155" y2="138" stroke="#E8D090" stroke-width="2" stroke-linecap="round"/>
+  <line x1="168" y1="175" x2="182" y2="135" stroke="#E8D090" stroke-width="2" stroke-linecap="round"/>
+  <line x1="235" y1="175" x2="220" y2="138" stroke="#E8D090" stroke-width="2" stroke-linecap="round"/>
+  <line x1="235" y1="175" x2="248" y2="135" stroke="#E8D090" stroke-width="2" stroke-linecap="round"/>
+  <line x1="290" y1="178" x2="278" y2="142" stroke="#E8D090" stroke-width="2" stroke-linecap="round"/>
+  <line x1="290" y1="178" x2="308" y2="145" stroke="#E8D090" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Finest tips — pale ivory -->
+  <line x1="95" y1="145" x2="82" y2="118" stroke="#FFFBF0" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="128" y1="142" x2="138" y2="112" stroke="#FFFBF0" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="155" y1="138" x2="145" y2="108" stroke="#FFFBF0" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="182" y1="135" x2="195" y2="105" stroke="#FFFBF0" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="220" y1="138" x2="208" y2="108" stroke="#FFFBF0" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="248" y1="135" x2="260" y2="105" stroke="#FFFBF0" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="278" y1="142" x2="265" y2="112" stroke="#FFFBF0" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="308" y1="145" x2="322" y2="115" stroke="#FFFBF0" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Hebrew inscription at root -->
+  <text x="200" y="392" font-family="serif" font-size="13" fill="#D4A017" text-anchor="middle" opacity="0.8">עֵץ חַיִּים</text>
+
+  <!-- Title bar -->
+  <rect x="0" y="355" width="400" height="42" fill="rgba(10,26,13,0.82)"/>
+  <text x="200" y="381" font-family="Georgia, serif" font-size="13" fill="#D4A017" text-anchor="middle">Etz Chaim — Space Colonization</text>
+</svg>
