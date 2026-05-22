@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mountain That Burned With Fire — Ray March Sinai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #050415;
+      color: #e0d8c8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #glCanvas {
+      display: block;
+      width: 100%; height: 100%;
+    }
+    .essay {
+      flex: 0 0 40%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(5, 4, 21, 0.97);
+      border-left: 1px solid rgba(192, 64, 16, 0.22);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #f0a040;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.03em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(240, 220, 180, 0.6);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.91rem;
+      line-height: 1.78;
+      margin: 0 0 1rem;
+      color: #d8ccbc;
+    }
+    .essay p strong { color: #f0a040; }
+    .scripture {
+      margin: 1.2rem 0;
+      padding: 0.9rem 1.1rem;
+      background: rgba(192, 64, 16, 0.08);
+      border-left: 3px solid rgba(240, 160, 64, 0.4);
+      border-radius: 2px;
+    }
+    .scripture .hebrew {
+      display: block;
+      direction: rtl;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #f8e8c0;
+      margin-bottom: 0.5rem;
+    }
+    .scripture .translation {
+      display: block;
+      font-style: italic;
+      font-size: 0.86rem;
+      color: rgba(220, 200, 160, 0.75);
+      line-height: 1.6;
+    }
+    .essay .source {
+      font-size: 0.77rem;
+      color: rgba(220, 200, 160, 0.45);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(192, 64, 16, 0.15);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 60vw; min-height: 300px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(192,64,16,0.22); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="glCanvas"></canvas>
+  </div>
+
+  <div class="essay">
+    <h1>The Mountain That Burned With Fire</h1>
+    <h2>Har Sinai — Deuteronomy 4:11 / Exodus 19:18</h2>
+
+    <p>The Torah gives us one of the most vivid descriptions of landscape in
+    all of ancient literature, but it is not a description of beauty. It is
+    a description of terror:</p>
+
+    <div class="scripture">
+      <span class="hebrew">וְהָהָר בֹּעֵר בָּאֵשׁ עַד לֵב הַשָּׁמַיִם חֹשֶׁךְ עָנָן וַעֲרָפֶל</span>
+      <span class="translation">"And the mountain burned with fire unto the heart of heaven,
+      with darkness, cloud, and thick darkness." (Deuteronomy 4:11)</span>
+    </div>
+
+    <p>The grammar is striking. The mountain does not merely <em>have</em> fire upon
+    it — it <em>is burning</em>. The fire reaches to the heart of heaven. And it is
+    surrounded not by light but by its opposite: darkness, cloud, and a deeper
+    darkness still. The revelation is luminous at its core and impenetrable at its
+    boundary. The fire is hidden inside the darkness.</p>
+
+    <p>Exodus 19:18 adds the olfactory and seismic dimension:</p>
+
+    <div class="scripture">
+      <span class="hebrew">וְהַר סִינַי עָשַׁן כֻּלּוֹ מִפְּנֵי אֲשֶׁר יָרַד עָלָיו יְהֹוָה בָּאֵשׁ וַיַּעַל עֲשָׁנוֹ כְּעֶשֶׁן הַכִּבְשָׁן וַיֶּחֱרַד כָּל-הָהָר מְאֹד</span>
+      <span class="translation">"And Mount Sinai was all in smoke, because the LORD descended
+      upon it in fire; and the smoke thereof ascended as the smoke of a furnace,
+      and the whole mountain quaked greatly." (Exodus 19:18)</span>
+    </div>
+
+    <p>The <strong>Mechilta d'Rabbi Yishmael</strong> (Yitro 9) records a startling
+    elaboration: the fire at Sinai burned downward as well as upward — unlike any
+    natural fire. And it was written in two simultaneous registers: <em>black fire
+    on white fire</em>. The letters of the Torah were inscribed in black flame upon
+    a ground of white flame. This is the primordial Torah — not ink on parchment,
+    but fire on fire.</p>
+
+    <p>The <strong>Talmud</strong> (Shabbat 88b) asks: why did God reveal the Torah
+    specifically at a mountain in the desert wilderness, in a place belonging to no
+    nation? The Midrash answers: precisely because it belongs to no one. Har Sinai
+    lies in the <em>hefker</em> — the ownerless wilderness — so that Torah could
+    belong to all. Every nation was offered it; only Israel accepted. But the place
+    of the offering was chosen to be universal, unclaimed, open.</p>
+
+    <p>The two ideas meet in this visual: the mountain is simultaneously
+    overwhelming and intimate. Its fire reaches the heart of heaven, yet you can
+    orbit it, watch the slow drift of the flame. The darkness surrounding the fire
+    is not hostile — it is the necessary frame for light to be visible at all.</p>
+
+    <p>Ray marching casts a ray through each pixel and steps forward until it
+    strikes a surface defined by a signed-distance function. The mountain is a
+    rounded cone SDF blended smoothly with the ground plane. The fire is a
+    <em>volume</em> — sampled at every march step by a domain-warped fractional
+    Brownian motion, accumulating density and emission with exponential attenuation
+    that mirrors the physics of participating media. The camera orbits once every
+    120 seconds; every four seconds a Lichtenberg bolt flashes from the cloud
+    above the peak, computed in JavaScript and drawn in the shader as a glowing
+    white polyline.</p>
+
+    <p class="source">
+      Deuteronomy 4:11 · Exodus 19:18 · Mechilta d'Rabbi Yishmael, Yitro 9 ·
+      Talmud Bavli Shabbat 88b · ray marching / GLSL SDF · 2026
+    </p>
+  </div>
+</div>
+
+<!-- Vertex shader: full-screen quad -->
+<script type="x-shader/x-vertex" id="vert">
+attribute vec2 a_pos;
+void main() {
+  gl_Position = vec4(a_pos, 0.0, 1.0);
+}
+</script>
+
+<!-- Fragment shader: ray-march Sinai -->
+<script type="x-shader/x-fragment" id="frag">
+precision highp float;
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+/* Lightning bolt: up to 64 NDC segments uploaded from JS */
+uniform int u_boltCount;
+uniform vec2 u_bolts[64];
+uniform float u_boltFlash;
+
+/* ---- noise / fbm ---- */
+float hash(vec2 p) {
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+float vnoise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash(i + vec2(0,0)), hash(i + vec2(1,0)), u.x),
+    mix(hash(i + vec2(0,1)), hash(i + vec2(1,1)), u.x),
+    u.y);
+}
+
+float vnoise3(vec3 p) {
+  /* Hash a 3D point by folding into 2D */
+  return vnoise(p.xy + p.z * vec2(17.3, 31.7));
+}
+
+/* 4-octave fBm in 3D */
+float fbm(vec3 p) {
+  float v = 0.0, a = 0.5;
+  for (int i = 0; i < 4; i++) {
+    v += a * vnoise3(p);
+    p  = p * 2.1 + vec3(1.7, 9.3, 3.1);
+    a *= 0.5;
+  }
+  return v;
+}
+
+/* Domain-warped fBm (Inigo Quilez style) */
+float wfbm(vec3 p) {
+  vec3 q = vec3(fbm(p),
+                fbm(p + vec3(5.2, 1.3, 2.8)),
+                fbm(p + vec3(1.7, 9.2, 4.1)));
+  return fbm(p + 1.5 * q);
+}
+
+/* ---- SDF scene ---- */
+float smin(float a, float b, float k) {
+  float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+  return mix(b, a, h) - k * h * (1.0 - h);
+}
+
+float sceneSDF(vec3 p) {
+  float ground   = p.y + 0.5;
+  /* rounded cone: radial distance scaled, offset in y */
+  float mountain = length(vec2(length(p.xz) * 0.6, p.y - 0.8)) - 1.2;
+  return smin(ground, mountain, 0.3);
+}
+
+/* Approximate normal by central differences */
+vec3 calcNormal(vec3 p) {
+  const float e = 0.002;
+  return normalize(vec3(
+    sceneSDF(p + vec3(e,0,0)) - sceneSDF(p - vec3(e,0,0)),
+    sceneSDF(p + vec3(0,e,0)) - sceneSDF(p - vec3(0,e,0)),
+    sceneSDF(p + vec3(0,0,e)) - sceneSDF(p - vec3(0,0,e))
+  ));
+}
+
+/* ---- fire palette ---- */
+vec3 fireHue(float h) {
+  /* h: 0 = base (deep orange), 1 = crown (near-white) */
+  vec3 base  = vec3(0.753, 0.251, 0.063); /* #C04010 */
+  vec3 gold  = vec3(0.941, 0.753, 0.126); /* #F0C020 */
+  vec3 crown = vec3(1.000, 0.973, 0.878); /* #FFF8E0 */
+  if (h < 0.5) return mix(base, gold, h * 2.0);
+  return mix(gold, crown, (h - 0.5) * 2.0);
+}
+
+/* ---- camera ---- */
+mat3 lookAt(vec3 ro, vec3 ta, vec3 up) {
+  vec3 f = normalize(ta - ro);
+  vec3 r = normalize(cross(f, up));
+  vec3 u = cross(r, f);
+  return mat3(r, u, -f);
+}
+
+/* ---- distance from point to segment (2D NDC space) ---- */
+float segDist(vec2 a, vec2 b, vec2 p) {
+  vec2 ab = b - a;
+  float t = clamp(dot(p - a, ab) / dot(ab, ab), 0.0, 1.0);
+  return length(p - a - t * ab);
+}
+
+/* ---- sky gradient ---- */
+vec3 skyColor(vec3 rd) {
+  float t = clamp(rd.y * 0.5 + 0.5, 0.0, 1.0);
+  vec3 top  = vec3(0.020, 0.016, 0.082); /* #050415 midnight blue */
+  vec3 horiz= vec3(0.165, 0.094, 0.251); /* #2A1840 smoky violet  */
+  return mix(horiz, top, t * t);
+}
+
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution) / min(u_resolution.x, u_resolution.y);
+
+  /* Camera orbit: one full rotation per 120 seconds */
+  float angle = u_time * (6.28318530718 / 120.0);
+  vec3 ro = vec3(sin(angle) * 5.0, 1.8, cos(angle) * 5.0);
+  vec3 ta = vec3(0.0, 0.5, 0.0);
+  mat3 cam = lookAt(ro, ta, vec3(0,1,0));
+  vec3 rd  = normalize(cam * vec3(uv, 1.8));
+
+  /* ---- ray march ---- */
+  float t   = 0.1;
+  bool  hit = false;
+  vec3  p;
+  for (int i = 0; i < 96; i++) {
+    p = ro + t * rd;
+    float d = sceneSDF(p);
+    if (d < 0.001) { hit = true; break; }
+    t += d * 0.8;
+    if (t > 40.0) break;
+  }
+
+  /* ---- volumetric fire accumulation (march through fire zone) ---- */
+  vec3  fireColor  = vec3(0.0);
+  float absorption = 0.0;
+
+  /* Fire zone: above the mountain peak, domain-warped density */
+  float tFire = 0.1;
+  for (int j = 0; j < 48; j++) {
+    vec3 fp = ro + tFire * rd;
+
+    /* Only sample fire in a loose cone around the peak */
+    float xzDist = length(fp.xz);
+    bool  inZone = fp.y > 0.6 && fp.y < 3.5 && xzDist < 1.8;
+
+    if (inZone && absorption < 5.0) {
+      /* Drift upward over time, slow warp offset */
+      vec3 noiseP = fp * 2.8 + vec3(0.0, -u_time * 0.4, 0.0)
+                              + vec3(sin(u_time * 0.15) * 0.3, 0.0, cos(u_time * 0.15) * 0.3);
+      float density = max(0.0, wfbm(noiseP) - 0.28);
+
+      /* Attenuate by distance from mountain axis */
+      density *= max(0.0, 1.0 - xzDist * 0.9);
+
+      /* Fade fire out above peak */
+      float heightFade = 1.0 - clamp((fp.y - 0.6) / 2.8, 0.0, 1.0);
+      density *= heightFade * heightFade;
+
+      if (density > 0.0) {
+        float hue   = clamp((fp.y - 0.6) / 2.2, 0.0, 1.0);
+        float atten = exp(-absorption);
+        fireColor  += density * 0.18 * fireHue(hue) * atten;
+        absorption += density * 0.15;
+      }
+    }
+
+    tFire += 0.08;
+    if (tFire > t || tFire > 18.0) break;
+  }
+
+  /* ---- surface shading ---- */
+  vec3 color;
+  if (hit) {
+    vec3  nrm     = calcNormal(p);
+    vec3  lightDir= normalize(vec3(0.5, 1.2, 0.3));
+    float diff    = clamp(dot(nrm, lightDir), 0.0, 1.0);
+
+    /* Basalt: dark gray-brown */
+    vec3 basalt = vec3(0.227, 0.180, 0.125); /* #3A2E20 */
+    color = basalt * (0.08 + 0.35 * diff);
+
+    /* Exponential fog: deep blue-violet haze #0A0820 thickens toward base */
+    vec3 fogColor = vec3(0.039, 0.031, 0.125);
+    float fogDist = t;
+    float fogAmt  = 1.0 - exp(-fogDist * 0.055);
+    color = mix(color, fogColor, fogAmt);
+  } else {
+    color = skyColor(rd);
+  }
+
+  /* Blend fire on top */
+  color = color * exp(-absorption * 0.5) + fireColor;
+
+  /* ---- lightning bolt ---- */
+  if (u_boltFlash > 0.0 && u_boltCount >= 2) {
+    /* Convert fragment to NDC [-1,1] */
+    vec2 ndcFrag = (gl_FragCoord.xy / u_resolution) * 2.0 - 1.0;
+    ndcFrag.x   *= u_resolution.x / u_resolution.y;
+
+    float boltGlow = 0.0;
+    for (int k = 0; k < 63; k++) {
+      if (k >= u_boltCount - 1) break;
+      float d = segDist(u_bolts[k], u_bolts[k + 1], ndcFrag);
+      boltGlow += u_boltFlash * 0.004 / (d * d + 0.0003);
+    }
+    color += vec3(1.0) * min(boltGlow, 2.0);
+  }
+
+  /* Tone map and gamma */
+  color = color / (1.0 + color);
+  color = pow(max(color, 0.0), vec3(0.4545));
+
+  gl_FragColor = vec4(color, 1.0);
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('glCanvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) { canvas.style.background = '#050415'; return; }
+
+  /* ---- compile shader ---- */
+  function compile(src, type) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS))
+      console.error('Shader error:', gl.getShaderInfoLog(s));
+    return s;
+  }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(document.getElementById('vert').textContent, gl.VERTEX_SHADER));
+  gl.attachShader(prog, compile(document.getElementById('frag').textContent, gl.FRAGMENT_SHADER));
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS))
+    console.error('Link error:', gl.getProgramInfoLog(prog));
+  gl.useProgram(prog);
+
+  /* Full-screen quad */
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const aPos = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+  /* Uniform locations */
+  const uRes   = gl.getUniformLocation(prog, 'u_resolution');
+  const uTime  = gl.getUniformLocation(prog, 'u_time');
+  const uBolts = gl.getUniformLocation(prog, 'u_bolts');
+  const uBoltN = gl.getUniformLocation(prog, 'u_boltCount');
+  const uFlash = gl.getUniformLocation(prog, 'u_boltFlash');
+
+  /* ---- lightning generation ---- */
+  /* Recursive branching Lichtenberg-style bolt.
+     Returns flat array of NDC vec2 segment endpoints (may share vertices). */
+  function genBolt(x0, y0, x1, y1, depth, jitter, pts) {
+    if (depth === 0 || pts.length >= 120) {
+      pts.push(x0, y0, x1, y1);
+      return;
+    }
+    const mx = (x0 + x1) * 0.5 + (Math.random() - 0.5) * jitter;
+    const my = (y0 + y1) * 0.5 + (Math.random() - 0.5) * jitter;
+    genBolt(x0, y0, mx, my, depth - 1, jitter * 0.55, pts);
+    genBolt(mx, my, x1, y1, depth - 1, jitter * 0.55, pts);
+    /* Branch at the midpoint */
+    if (depth >= 2 && pts.length < 110) {
+      const bx = mx + (Math.random() - 0.5) * 0.3;
+      const by = my - Math.random() * 0.35;
+      genBolt(mx, my, bx, by, depth - 2, jitter * 0.4, pts);
+    }
+  }
+
+  /* Build one bolt: origin above peak, descends into cloud */
+  function buildBolt() {
+    const pts = [];
+    /* Start near top, end near peak — in NDC-ish coords (aspect-corrected x) */
+    const aspect = canvas.width / canvas.height;
+    /* Peak is at center-ish on screen; offset by current camera angle not available
+       in JS, so we fix a plausible screen position for the bolt origin */
+    const x0 = (Math.random() - 0.5) * 0.4 * aspect;
+    const y0 = 0.55 + Math.random() * 0.2;
+    const x1 = x0 + (Math.random() - 0.5) * 0.15 * aspect;
+    const y1 = 0.05 + Math.random() * 0.25;
+    genBolt(x0, y0, x1, y1, 3, 0.25, pts);
+    return pts;
+  }
+
+  /* Lightning state */
+  let boltPts   = [];
+  let boltFlash = 0.0;
+  let lastBolt  = -4.0;
+  const BOLT_INTERVAL = 4.0; /* seconds between bolts */
+  const BOLT_FADE_FRAMES = 3;
+  let   boltFrames = 0;
+
+  /* ---- resize ---- */
+  function resize() {
+    canvas.width  = canvas.clientWidth  * (window.devicePixelRatio || 1) | 0;
+    canvas.height = canvas.clientHeight * (window.devicePixelRatio || 1) | 0;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  /* ---- render loop ---- */
+  let startTime = null;
+  let lastTime  = 0;
+  let fpsTarget = 1000 / 60;
+  let lastFPS   = 0;
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+
+    /* Cap at 60fps */
+    if (ts - lastFPS < fpsTarget) return;
+    lastFPS = ts;
+
+    if (startTime === null) startTime = ts;
+    const t = (ts - startTime) * 0.001;
+    lastTime = t;
+
+    /* Lightning trigger */
+    if (t - lastBolt >= BOLT_INTERVAL) {
+      boltPts   = buildBolt();
+      boltFlash = 1.0;
+      boltFrames = 0;
+      lastBolt  = t;
+    }
+
+    /* Bolt fade */
+    if (boltFlash > 0) {
+      boltFrames++;
+      if (boltFrames > BOLT_FADE_FRAMES) boltFlash = 0.0;
+    }
+
+    /* Upload uniforms */
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, t);
+
+    /* Upload bolt vertices as pairs of NDC points */
+    const boltCount = Math.min(boltPts.length / 2, 64);
+    const boltArr   = new Float32Array(128); /* 64 vec2 */
+    for (let i = 0; i < boltCount * 2; i++) boltArr[i] = boltPts[i] || 0;
+    gl.uniform2fv(uBolts, boltArr);
+    gl.uniform1i(uBoltN, boltCount);
+    gl.uniform1f(uFlash, boltFlash);
+
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

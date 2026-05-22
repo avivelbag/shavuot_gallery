@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Night sky gradient -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#050415"/>
+      <stop offset="65%" stop-color="#0A0820"/>
+      <stop offset="100%" stop-color="#2A1840"/>
+    </linearGradient>
+    <!-- Fire glow at peak (radial) -->
+    <radialGradient id="fireGlow" cx="200" cy="120" r="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#FFF8E0" stop-opacity="0.95"/>
+      <stop offset="18%"  stop-color="#F0C020" stop-opacity="0.85"/>
+      <stop offset="45%"  stop-color="#C04010" stop-opacity="0.60"/>
+      <stop offset="75%"  stop-color="#C04010" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#C04010" stop-opacity="0.00"/>
+    </radialGradient>
+    <!-- Secondary wider glow -->
+    <radialGradient id="fireGlow2" cx="200" cy="140" r="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#F0C020" stop-opacity="0.30"/>
+      <stop offset="50%"  stop-color="#C04010" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C04010" stop-opacity="0.00"/>
+    </radialGradient>
+    <!-- Ground fog gradient -->
+    <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0A0820" stop-opacity="0.0"/>
+      <stop offset="100%" stop-color="#0A0820" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="400" height="400" fill="url(#sky)"/>
+
+  <!-- Wide fire halo -->
+  <ellipse cx="200" cy="155" rx="155" ry="100" fill="url(#fireGlow2)"/>
+
+  <!-- Mountain silhouette -->
+  <polygon points="200,55 310,285 90,285" fill="#1e1710"/>
+  <!-- Inner mountain highlight (slightly lighter face) -->
+  <polygon points="200,55 270,285 200,285" fill="#251c13"/>
+
+  <!-- Fire glow overlay on peak -->
+  <ellipse cx="200" cy="120" rx="105" ry="95" fill="url(#fireGlow)"/>
+
+  <!-- Flame tongues at crown -->
+  <ellipse cx="200" cy="90"  rx="14" ry="40" fill="#FFF8E0" opacity="0.7"/>
+  <ellipse cx="185" cy="100" rx="10" ry="30" fill="#F0C020" opacity="0.65"/>
+  <ellipse cx="215" cy="95"  rx="11" ry="33" fill="#F0C020" opacity="0.60"/>
+  <ellipse cx="172" cy="112" rx="8"  ry="22" fill="#C04010" opacity="0.50"/>
+  <ellipse cx="228" cy="108" rx="8"  ry="24" fill="#C04010" opacity="0.50"/>
+
+  <!-- Lightning bolt descending from cloud above peak -->
+  <polyline points="220,25 210,65 225,68 200,120" stroke="#FFFFFF" stroke-width="1.8"
+            fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92"/>
+  <!-- Branch 1 -->
+  <polyline points="225,68 245,95" stroke="#FFFFFF" stroke-width="1.0"
+            fill="none" stroke-linecap="round" opacity="0.70"/>
+  <!-- Branch 2 -->
+  <polyline points="210,65 195,88" stroke="#FFFFFF" stroke-width="0.9"
+            fill="none" stroke-linecap="round" opacity="0.65"/>
+  <!-- Lightning glow -->
+  <polyline points="220,25 210,65 225,68 200,120" stroke="#FFFFFF" stroke-width="4.0"
+            fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.18"/>
+
+  <!-- Ground / base fog -->
+  <rect x="0" y="260" width="400" height="140" fill="url(#fog)"/>
+  <rect x="0" y="280" width="400" height="120" fill="#0A0820" opacity="0.55"/>
+</svg>

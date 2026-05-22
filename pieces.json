@@ -911,5 +911,27 @@
     "path": "pieces/61-forty-nine-folds-dragon-curve/index.html",
     "thumbnail": "pieces/61-forty-nine-folds-dragon-curve/thumbnail.svg",
     "essay": "pieces/61-forty-nine-folds-dragon-curve/essay.md"
+  },
+  {
+    "id": "62-delaunay-bikkurim-harvest",
+    "title": "First Fruits — Delaunay Harvest",
+    "tagline": "the fields of Israel as a Delaunay patchwork of seven species, each triangle a promise fulfilled",
+    "year": 2026,
+    "theme": "Bikkurim",
+    "technique": "Delaunay triangulation / weighted Poisson-disk sampling",
+    "path": "pieces/62-delaunay-bikkurim-harvest/index.html",
+    "thumbnail": "pieces/62-delaunay-bikkurim-harvest/thumbnail.svg",
+    "essay": "pieces/62-delaunay-bikkurim-harvest/essay.md"
+  },
+  {
+    "id": "63-ray-march-sinai-peak",
+    "title": "The Mountain That Burned With Fire",
+    "tagline": "Har Sinai ray-marched in 3D — a rounded cone SDF, a volumetric fire crown, and Lichtenberg lightning above the peak",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "ray marching / GLSL SDF",
+    "path": "pieces/63-ray-march-sinai-peak/index.html",
+    "thumbnail": "pieces/63-ray-march-sinai-peak/thumbnail.svg",
+    "essay": "pieces/63-ray-march-sinai-peak/essay.md"
   }
 ]
