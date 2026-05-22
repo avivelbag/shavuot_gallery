@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#0a0808"/>
+  <!-- 10 pie sectors, each 36°, starting at top (-90°), clockwise -->
+  <!-- Sector 0 (0°/360° root): white flame #FFFEF0 — -90° to -54° -->
+  <path d="M 200 200 L 200.00 20.00 A 180 180 0 0 1 305.80 54.38 Z"
+        fill="#FFFEF0" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 1 (36° root): wheat gold #D4A020 — -54° to -18° -->
+  <path d="M 200 200 L 305.80 54.38 A 180 180 0 0 1 371.19 144.38 Z"
+        fill="#D4A020" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 2 (72° root): warm amber #C07010 — -18° to 18° -->
+  <path d="M 200 200 L 371.19 144.38 A 180 180 0 0 1 371.19 255.62 Z"
+        fill="#C07010" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 3 (108° root): harvest orange #B84010 — 18° to 54° -->
+  <path d="M 200 200 L 371.19 255.62 A 180 180 0 0 1 305.80 345.62 Z"
+        fill="#B84010" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 4 (144° root): deep rose #8B2050 — 54° to 90° -->
+  <path d="M 200 200 L 305.80 345.62 A 180 180 0 0 1 200.00 380.00 Z"
+        fill="#8B2050" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 5 (180° root): dark violet #3A1060 — 90° to 126° -->
+  <path d="M 200 200 L 200.00 380.00 A 180 180 0 0 1 94.20 345.62 Z"
+        fill="#3A1060" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 6 (216° root): midnight indigo #1A1050 — 126° to 162° -->
+  <path d="M 200 200 L 94.20 345.62 A 180 180 0 0 1 28.81 255.62 Z"
+        fill="#1A1050" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 7 (252° root): deep teal #0A3850 — 162° to 198° -->
+  <path d="M 200 200 L 28.81 255.62 A 180 180 0 0 1 28.81 144.38 Z"
+        fill="#0A3850" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 8 (288° root): forest green #1A4820 — 198° to 234° -->
+  <path d="M 200 200 L 28.81 144.38 A 180 180 0 0 1 94.20 54.38 Z"
+        fill="#1A4820" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Sector 9 (324° root): olive gold #6A5010 — 234° to 270° -->
+  <path d="M 200 200 L 94.20 54.38 A 180 180 0 0 1 200.00 20.00 Z"
+        fill="#6A5010" stroke="#0a0808" stroke-width="1.5"/>
+  <!-- Center circle suggesting the fractal singularity at origin -->
+  <circle cx="200" cy="200" r="7" fill="#0a0808" stroke="#FFFEF0" stroke-width="0.8" opacity="0.6"/>
+</svg>

@@ -823,5 +823,16 @@
     "path": "pieces/57-sinai-bloom-eden-growth/index.html",
     "thumbnail": "pieces/57-sinai-bloom-eden-growth/thumbnail.svg",
     "essay": "pieces/57-sinai-bloom-eden-growth/essay.md"
+  },
+  {
+    "id": "57-ten-roots-newton-fractal",
+    "title": "Ten Roots",
+    "tagline": "עֲשֶׂרֶת הַדִּבְּרוֹת — Newton's fractal of z¹⁰ − 1 colors the complex plane by which of the ten commandments each point converges toward, revealing fractal boundaries where ethical complexity lives",
+    "year": 2026,
+    "theme": "Matan Torah / Aseret HaDibrot",
+    "technique": "Newton fractal / complex root convergence",
+    "path": "pieces/57-ten-roots-newton-fractal/index.html",
+    "thumbnail": "pieces/57-ten-roots-newton-fractal/thumbnail.svg",
+    "essay": "pieces/57-ten-roots-newton-fractal/essay.md"
   }
 ]
