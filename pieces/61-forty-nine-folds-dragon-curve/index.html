@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forty-Nine Folds — The Dragon of the Omer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0D0B14;
+      color: #c8c0e8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1220px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; position: relative; }
+    canvas {
+      display: block;
+      border: 1px solid #2a1e4a;
+      background: #0D0B14;
+    }
+    #counter {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      font-size: 1rem;
+      font-family: serif;
+      direction: rtl;
+      line-height: 1.4;
+      text-align: right;
+      pointer-events: none;
+      text-shadow: 0 0 8px currentColor;
+      transition: color 0.6s ease;
+    }
+    .essay-pane {
+      flex: 1 1 340px;
+      min-width: 0;
+      max-height: 700px;
+      overflow-y: auto;
+    }
+    .essay-pane h1 {
+      font-size: 1.3rem;
+      color: #D4A020;
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+    .scripture-block {
+      direction: rtl;
+      font-family: serif;
+      font-size: 1.05em;
+      line-height: 2.1;
+      text-align: right;
+      margin: 1em 0;
+      padding: 0.7em 1em;
+      border-right: 4px solid #D4A020;
+      color: #e8dfc0;
+      background: rgba(212,160,32,0.06);
+    }
+    .translation {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #a090c0;
+      margin: 0 0 1rem 0;
+      line-height: 1.6;
+      border-left: 3px solid #3a2a6a;
+      padding-left: 0.75rem;
+    }
+    .essay-pane p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: #c0b8e0;
+      margin-bottom: 0.9rem;
+    }
+    .essay-pane strong { color: #D4A020; font-style: normal; }
+    .essay-pane em { color: #b8b0d8; }
+    .citations {
+      font-size: 0.8rem;
+      color: #6a6090;
+      font-style: italic;
+      margin-top: 1.2rem;
+      border-top: 1px solid #2a1e4a;
+      padding-top: 0.7rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      .essay-pane { max-height: none; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="700" height="700"></canvas>
+    <div id="counter"></div>
+  </div>
+  <div class="essay-pane">
+    <h1>Forty-Nine Folds — The Dragon of the Omer</h1>
+
+    <p><strong>Scripture:</strong> Leviticus 23:15–16 (ויקרא כג:טו–טז)</p>
+
+    <div class="scripture-block">
+      וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת־עֹמֶר הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה׃<br>
+      עַד מִמָּחֳרַת הַשַּׁבָּת הַשְּׁבִיעִת תִּסְפְּרוּ חֲמִשִּׁים יוֹם וְהִקְרַבְתֶּם מִנְחָה חֲדָשָׁה לַיהֹוָה׃
+    </div>
+
+    <p class="translation">"And you shall count for yourselves from the day after the Sabbath, from the day you brought the sheaf of the wave-offering — seven complete weeks there shall be; until the day after the seventh Sabbath you shall count fifty days, and you shall offer a new grain-offering to the LORD."</p>
+
+    <p>Take a strip of paper. Fold it in half, right over left. Fold again. Again. After forty-nine folds the paper is thicker than the observable universe; but in the mathematical ideal, you unfold it flat and examine what you find: the dragon curve — a fractal border so complex it nearly fills a two-dimensional plane, built from nothing but the accumulated memory of every fold that came before.</p>
+
+    <p>This is not metaphor. It is the literal structure of the Sefirat HaOmer.</p>
+
+    <p><strong>The fold as irreversible act.</strong> The Sefer ha-Chinuch (R. Aaron HaLevi of Barcelona, c. 1300 CE, Mitzvah 306) asks why the Torah requires that we <em>count</em> the days rather than simply <em>observe</em> them. His answer is psychological: counting is an act of attention that constitutes the act of waiting. But there is a structural fact beneath his answer. Each counted day is a fold. You cannot unfold without destroying the shape. Day 2 of the Omer incorporates Day 1; Day 48 contains all forty-seven predecessors compressed inside it. The count does not accumulate like a pile of stones — it accumulates like a folded paper, where each new layer bends around all previous layers and cannot be separated from them.</p>
+
+    <p><strong>The sefirot as nested scales.</strong> The kabbalistic reading of the Omer (codified in the liturgy of the Arizal, R. Isaac Luria, Safed, 16th c.) maps the forty-nine days onto a 7×7 grid: seven weeks, each week embodying one of the seven lower sefirot (<em>chesed, gevurah, tiferet, netzach, hod, yesod, malkhut</em>), and each day within a week embodying all seven in miniature. Day 8 is <em>chesed she-b'gevurah</em> — lovingkindness within the week of strength. Day 36 is <em>chesed she-b'hod</em> — lovingkindness within the week of gratitude.</p>
+
+    <p>The dragon curve encodes exactly this structure. Its self-similarity is not approximate but exact: at every scale, you find the same recursive turns. The portion of the curve added in generation 3 has the same angular relationships as the entire generation-2 curve — it is the curve <em>within</em> the curve, <em>chesed within gevurah</em>. The Omer's grid of seven sevens and the dragon curve's recursive self-embedding are the same mathematical object expressed in two different languages.</p>
+
+    <p><strong>The seven colors, the seven weeks.</strong> This animation renders fourteen generations — each generation approximates 3.5 days of the 49-day count. Segments added in each pair of generations are colored by the sefirah of that week: <em>Chesed</em> in gold, <em>Gevurah</em> in deep crimson, <em>Tiferet</em> in teal, <em>Netzach</em> in grass green, <em>Hod</em> in amber, <em>Yesod</em> in violet, <em>Malkhut</em> in royal blue. As the animation advances, the new color appears against the woven fabric of all prior colors — each week adding its character to a shape already made complex by every preceding week.</p>
+
+    <p><strong>The fiftieth day.</strong> Fifty is not part of the seven-times-seven grid. The Talmud (Rosh Hashanah 21b) teaches that Moses was given forty-nine of the fifty gates of understanding; the fiftieth belongs to God alone. The dragon curve at forty-nine folds would contain 2<sup>49</sup> ≈ 562 trillion segments — a structure too large for any computer to render. It remains perpetually beyond reach, approached but never arrived at, the way the fiftieth day is approached through forty-nine days of counting but cannot itself be counted. Shavuot does not arrive through accumulation; it breaks in like light.</p>
+
+    <p class="citations">Sources: Leviticus 23:15–16; Sefer ha-Chinuch, Mitzvah 306 (R. Aaron HaLevi of Barcelona, c. 1300); Talmud Bavli, Rosh Hashanah 21b; Sha'ar HaKavanot, Derushei Sefirat ha-Omer (R. Chaim Vital, citing the Arizal, c. 1600); Heighway, J. (1966), "Dragon Curve," as described in Martin Gardner, Scientific American, March 1967.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const counterEl = document.getElementById('counter');
+  const W = 700, H = 700;
+  const MAX_GEN = 14;
+  const GEN_PAUSE_MS = 1100;
+  const FINAL_PAUSE_MS = 3500;
+  const PAD = 45;
+
+  const COLORS = [
+    '#D4A020', // Chesed   — gold
+    '#8B0000', // Gevurah  — deep red
+    '#1A8070', // Tiferet  — teal
+    '#4A8020', // Netzach  — grass green
+    '#C06010', // Hod      — warm orange
+    '#5A20A0', // Yesod    — violet
+    '#1040A0'  // Malkhut  — royal blue
+  ];
+
+  const SEFIROT_HEB = ['חֶסֶד','גְּבוּרָה','תִּפְאֶרֶת','נֶצַח','הוֹד','יְסוֹד','מַלְכוּת'];
+
+  /* Sefirah boundary in terms of cumulative segment count.
+     Two generations per sefirah: gen 1-2 → Chesed, gen 3-4 → Gevurah, …
+     Cumulative segment count at end of each pair: 4, 16, 64, 256, 1024, 4096, 16384. */
+  const SEF_BOUNDS = [4, 16, 64, 256, 1024, 4096, 16384];
+
+  /* Return +1 (right) or -1 (left) for the nth turn of the dragon curve (1-indexed).
+     Uses the analytical formula: the nth turn is determined by the parity of
+     floor(n / lsb(n)) >> 1, where lsb(n) = n & -n is the lowest set bit of n. */
+  function dragonTurn(n) {
+    const lsb = n & -n;
+    return ((Math.floor(n / lsb) >> 1) & 1) === 0 ? 1 : -1;
+  }
+
+  /* Pre-compute all 2^MAX_GEN + 1 points of the dragon curve in raw grid coords.
+     Only 16,385 points; each computed in O(1). */
+  function computePoints() {
+    const total = 1 << MAX_GEN; // 16384
+    const px = new Float32Array(total + 1);
+    const py = new Float32Array(total + 1);
+    const ddx = [1, 0, -1, 0];
+    const ddy = [0, 1, 0, -1];
+    let x = 0, y = 0, dir = 0;
+    px[0] = 0; py[0] = 0;
+    for (let i = 1; i <= total; i++) {
+      x += ddx[dir];
+      y += ddy[dir];
+      px[i] = x;
+      py[i] = y;
+      if (i < total) {
+        const t = dragonTurn(i);
+        dir = (dir + (t > 0 ? 1 : 3)) & 3;
+      }
+    }
+    return { px, py };
+  }
+
+  /* For each generation 1..MAX_GEN, compute the canvas transform (scale, ox, oy)
+     such that the curve fits within the padded canvas. */
+  function computeTransforms(px, py) {
+    const transforms = [];
+    for (let g = 1; g <= MAX_GEN; g++) {
+      const n = 1 << g;
+      let minX = px[0], maxX = px[0], minY = py[0], maxY = py[0];
+      for (let i = 1; i <= n; i++) {
+        if (px[i] < minX) minX = px[i];
+        if (px[i] > maxX) maxX = px[i];
+        if (py[i] < minY) minY = py[i];
+        if (py[i] > maxY) maxY = py[i];
+      }
+      const avail = W - 2 * PAD;
+      const w = maxX - minX || 1;
+      const h = maxY - minY || 1;
+      const scale = avail / Math.max(w, h);
+      transforms.push({
+        scale,
+        ox: PAD + (avail - w * scale) / 2 - minX * scale,
+        oy: PAD + (avail - h * scale) / 2 - minY * scale
+      });
+    }
+    return transforms;
+  }
+
+  /* Draw the dragon curve at generation g using precomputed points and transform.
+     Colors segments by sefirah band (two generations per sefirah, seven sefirot). */
+  function drawGen(g, px, py, tf) {
+    const totalSegs = 1 << g;
+    const { scale, ox, oy } = tf;
+    const toX = (v) => ox + v * scale;
+    const toY = (v) => oy + v * scale;
+    const lw = g <= 1 ? 3 : 1;
+
+    let prevBound = 0;
+    for (let s = 0; s < 7; s++) {
+      const bound = Math.min(SEF_BOUNDS[s], totalSegs);
+      if (prevBound >= totalSegs) break;
+
+      ctx.beginPath();
+      ctx.strokeStyle = COLORS[s];
+      ctx.lineWidth = lw;
+      ctx.lineCap = 'square';
+      ctx.lineJoin = 'miter';
+      ctx.moveTo(toX(px[prevBound]), toY(py[prevBound]));
+      for (let i = prevBound + 1; i <= bound; i++) {
+        ctx.lineTo(toX(px[i]), toY(py[i]));
+      }
+      ctx.stroke();
+
+      prevBound = bound;
+      if (prevBound >= totalSegs) break;
+    }
+  }
+
+  /* Map generation g (1..14) to Omer day (1..49) for the counter label. */
+  function dayForGen(g) {
+    return Math.round(g * 49 / MAX_GEN);
+  }
+
+  /* Map generation g to its sefirah index (0..6). Two gens per sefirah. */
+  function sefirahForGen(g) {
+    return Math.min(6, Math.floor((g - 1) / 2));
+  }
+
+  function updateCounter(g) {
+    const day = dayForGen(g);
+    const sIdx = sefirahForGen(g);
+    counterEl.style.color = COLORS[sIdx];
+    counterEl.innerHTML = `<span>יום ${day}</span><br><span style="font-size:0.82em; direction:rtl;">${SEFIROT_HEB[sIdx]}</span><br><span style="font-size:0.75em; direction:ltr; font-family:sans-serif;">Day ${day}</span>`;
+  }
+
+  const { px, py } = computePoints();
+  const transforms = computeTransforms(px, py);
+
+  let currentGen = 1;
+  let genStart = null;
+
+  updateCounter(1);
+
+  function frame(ts) {
+    if (genStart === null) genStart = ts;
+    const elapsed = ts - genStart;
+
+    const pauseMs = currentGen === MAX_GEN ? FINAL_PAUSE_MS : GEN_PAUSE_MS;
+    if (elapsed >= pauseMs) {
+      currentGen = currentGen < MAX_GEN ? currentGen + 1 : 1;
+      genStart = ts;
+      updateCounter(currentGen);
+    }
+
+    ctx.fillStyle = '#0D0B14';
+    ctx.fillRect(0, 0, W, H);
+    drawGen(currentGen, px, py, transforms[currentGen - 1]);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

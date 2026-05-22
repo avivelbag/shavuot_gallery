@@ -900,5 +900,16 @@
     "path": "pieces/61-delaunay-bikkurim-harvest/index.html",
     "thumbnail": "pieces/61-delaunay-bikkurim-harvest/thumbnail.svg",
     "essay": "pieces/61-delaunay-bikkurim-harvest/essay.md"
+  },
+  {
+    "id": "61-forty-nine-folds-dragon-curve",
+    "title": "Forty-Nine Folds — The Dragon of the Omer",
+    "tagline": "fold a strip of paper 49 times: the dragon curve that unfolds is the structure of Sefirat HaOmer",
+    "year": 2026,
+    "theme": "Sefirat HaOmer",
+    "technique": "dragon curve / recursive fold sequence",
+    "path": "pieces/61-forty-nine-folds-dragon-curve/index.html",
+    "thumbnail": "pieces/61-forty-nine-folds-dragon-curve/thumbnail.svg",
+    "essay": "pieces/61-forty-nine-folds-dragon-curve/essay.md"
   }
 ]
