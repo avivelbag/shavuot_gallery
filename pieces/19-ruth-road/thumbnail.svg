@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <!-- Background: dark earth -->
+  <rect width="400" height="400" fill="#1a1208"/>
+  <!-- Midline band suggesting the road/border -->
+  <rect x="198" y="45" width="4" height="345" fill="#100b04" opacity="0.8"/>
+  <!-- Hebrew text: עַמֵּךְ עַמִּי -->
+  <text x="200" y="32" text-anchor="middle" font-family="'SBL Hebrew', David, Georgia, serif" font-size="22" fill="#f5eed8" direction="rtl">&#x05E2;&#x05B7;&#x05DE;&#x05BC;&#x05B5;&#x05DA;&#x05B0; &#x05E2;&#x05B7;&#x05DE;&#x05B4;&#x05BC;&#x05D9;</text>
+  <!-- Order-3 Hilbert curve, left half (Moab, ochre #b8864e) -->
+  <!-- Q0 (d=0..15) + Q1 (d=16..31): grid points transformed to pixels -->
+  <!-- px = 36 + 47x, py = 369 - 43y (y flipped for SVG) -->
+  <polyline
+    points="36,369 36,326 83,326 83,369 130,369 177,369 177,326 130,326 130,283 177,283 177,240 130,240 83,240 83,283 36,283 36,240 36,197 83,197 83,154 36,154 36,111 36,68 83,68 83,111 130,111 130,68 177,68 177,111 177,154 130,154 130,197 177,197"
+    stroke="#b8864e" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Order-3 Hilbert curve, right half (Bethlehem, gold #d4a017) -->
+  <!-- connector (177,197)→(224,197) then Q2 (d=32..47) then Q3 (d=48..63) -->
+  <polyline
+    points="177,197 224,197 271,197 271,154 224,154 224,111 224,68 271,68 271,111 318,111 318,68 365,68 365,111 365,154 318,154 318,197 365,197 365,240 365,283 318,283 318,240 271,240 224,240 224,283 271,283 271,326 224,326 224,369 271,369 318,369 318,326 365,326 365,369"
+    stroke="#d4a017" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
