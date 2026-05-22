@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Through Seven Heavens — Parallax Descent</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #07030F;
+      color: #c8c0e0;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .scene {
+      position: relative;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 85%, #3A1800 0%, #0D0518 45%, #07030F 100%);
+      cursor: crosshair;
+    }
+    /* 15% bleed on all sides so parallax shift never exposes an edge */
+    .layer {
+      position: absolute;
+      top: -15%; left: -15%;
+      width: 130%; height: 130%;
+      will-change: transform;
+      pointer-events: none;
+    }
+    .layer svg {
+      width: 100%; height: 100%;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(6, 3, 15, 0.97);
+      border-left: 1px solid rgba(120, 80, 200, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #9a80d0;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 0.98rem;
+      font-weight: normal;
+      color: rgba(180, 160, 255, 0.52);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.78;
+      margin: 0 0 1rem;
+      color: #b0a8c8;
+    }
+    .essay p strong { color: #9a80d0; }
+    .source-block {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: rgba(190, 170, 255, 0.7);
+      margin-bottom: 1.4rem;
+      border-left: 2px solid rgba(120, 80, 200, 0.35);
+      padding-left: 0.9rem;
+    }
+    .source-block .heb {
+      direction: rtl;
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+      font-style: normal;
+    }
+    .essay blockquote {
+      margin: 0.5rem 0 1rem 0;
+      padding-left: 0.9rem;
+      border-left: 2px solid rgba(120, 80, 200, 0.3);
+      color: rgba(190, 170, 255, 0.7);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+    .essay blockquote .heb {
+      direction: rtl;
+      display: block;
+      font-style: normal;
+      margin-bottom: 0.2rem;
+    }
+    .essay .source {
+      font-size: 0.76rem;
+      color: rgba(180, 160, 255, 0.38);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(120, 80, 200, 0.12);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 65vw; min-height: 300px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(120, 80, 200, 0.18); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <div class="artwork">
+    <div class="scene" id="scene">
+
+      <!-- Layer 1 (back): Vilon (וִילוֹן) — the curtain, lowest heaven — depth 0.02 -->
+      <div class="layer" id="layer-vilon" data-depth="0.02">
+        <svg viewBox="0 0 780 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="vilon-sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#160820" stop-opacity="0.85"/>
+              <stop offset="65%" stop-color="#2A0E04" stop-opacity="0.65"/>
+              <stop offset="100%" stop-color="#0E0400" stop-opacity="0.4"/>
+            </linearGradient>
+            <radialGradient id="sinai-glow" cx="50%" cy="22%" r="22%">
+              <stop offset="0%" stop-color="#FFD060" stop-opacity="0.95"/>
+              <stop offset="35%" stop-color="#FF8820" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#FF4400" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- Sky wash -->
+          <rect width="780" height="600" fill="url(#vilon-sky)"/>
+          <!-- Har Sinai golden peak glow -->
+          <ellipse cx="390" cy="135" rx="95" ry="65" fill="url(#sinai-glow)"/>
+          <!-- Har Sinai mountain silhouette -->
+          <path d="M 0,600 L 0,490 L 140,390 L 230,260 L 320,160 L 390,130 L 460,160 L 550,260 L 640,390 L 780,490 L 780,600 Z"
+                fill="#0D0518" fill-opacity="0.96"/>
+          <!-- Subtle ridge detail -->
+          <path d="M 140,390 L 230,260 L 320,160 L 390,130 L 460,160 L 550,260 L 640,390"
+                fill="none" stroke="#3A1400" stroke-width="1.5" stroke-opacity="0.5"/>
+          <!-- Curtain — wavy horizontal lines (Vilon = curtain of heaven) -->
+          <g stroke="#C8A8E0" stroke-width="1.1" fill="none" opacity="0.22">
+            <path d="M -10,55 Q 95,45 195,57 Q 295,69 390,55 Q 490,41 590,57 Q 690,73 790,55"/>
+            <path d="M -10,95 Q 95,85 195,97 Q 295,109 390,95 Q 490,81 590,97 Q 690,113 790,95"/>
+            <path d="M -10,138 Q 95,128 195,140 Q 295,152 390,138 Q 490,124 590,140 Q 690,156 790,138"/>
+            <path d="M -10,180 Q 95,170 195,182 Q 295,194 390,180 Q 490,166 590,182 Q 690,198 790,180"/>
+            <path d="M -10,222 Q 95,212 195,224 Q 295,236 390,222 Q 490,208 590,224 Q 690,240 790,222"/>
+            <path d="M -10,264 Q 95,254 195,266 Q 295,278 390,264 Q 490,250 590,266 Q 690,282 790,264"/>
+            <path d="M -10,306 Q 95,296 195,308 Q 295,320 390,306 Q 490,292 590,308 Q 690,324 790,306"/>
+            <path d="M -10,348 Q 95,338 195,350 Q 295,362 390,348 Q 490,334 590,350 Q 690,366 790,348"/>
+            <path d="M -10,390 Q 95,380 195,392 Q 295,404 390,390 Q 490,376 590,392 Q 690,408 790,390"/>
+          </g>
+          <!-- Layer label -->
+          <text x="740" y="38" font-family="Georgia, serif" font-size="12"
+                fill="#C8A8E0" fill-opacity="0.38" text-anchor="end">Vilon</text>
+          <text x="740" y="55" font-family="Georgia, serif" font-size="13"
+                fill="#C8A8E0" fill-opacity="0.32" text-anchor="end">וִילוֹן</text>
+        </svg>
+      </div>
+
+      <!-- Layer 2: Rakia (רָקִיעַ) — firmament of stars — depth 0.05 -->
+      <div class="layer" id="layer-rakia" data-depth="0.05">
+        <svg viewBox="0 0 780 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="rakia-bg" cx="50%" cy="40%" r="65%">
+              <stop offset="0%" stop-color="#0A1A3A" stop-opacity="0.65"/>
+              <stop offset="100%" stop-color="#05101E" stop-opacity="0.3"/>
+            </radialGradient>
+          </defs>
+          <rect width="780" height="600" fill="url(#rakia-bg)"/>
+          <!-- Stars fixed in the firmament -->
+          <g fill="#E8F0FF" opacity="0.82">
+            <circle cx="75"  cy="58"  r="1.5"/><circle cx="148" cy="38"  r="2.0"/>
+            <circle cx="228" cy="78"  r="1.0"/><circle cx="312" cy="52"  r="1.8"/>
+            <circle cx="398" cy="28"  r="1.2"/><circle cx="488" cy="72"  r="2.2"/>
+            <circle cx="568" cy="44"  r="1.5"/><circle cx="648" cy="86"  r="1.0"/>
+            <circle cx="722" cy="33"  r="1.8"/><circle cx="58"  cy="118" r="1.0"/>
+            <circle cx="178" cy="148" r="1.5"/><circle cx="278" cy="128" r="2.0"/>
+            <circle cx="358" cy="162" r="1.0"/><circle cx="448" cy="118" r="1.5"/>
+            <circle cx="538" cy="152" r="2.2"/><circle cx="618" cy="124" r="1.2"/>
+            <circle cx="698" cy="144" r="1.8"/><circle cx="108" cy="198" r="1.8"/>
+            <circle cx="198" cy="218" r="1.0"/><circle cx="328" cy="192" r="1.5"/>
+            <circle cx="478" cy="208" r="2.0"/><circle cx="598" cy="184" r="1.2"/>
+            <circle cx="738" cy="212" r="1.5"/><circle cx="48"  cy="258" r="1.0"/>
+            <circle cx="168" cy="278" r="1.5"/><circle cx="288" cy="252" r="2.0"/>
+            <circle cx="418" cy="268" r="1.0"/><circle cx="548" cy="248" r="1.8"/>
+            <circle cx="668" cy="272" r="1.2"/><circle cx="745" cy="295" r="1.4"/>
+          </g>
+          <!-- Moon crescent -->
+          <path d="M 672,72 A 28,28 0 1 1 672,128 A 20,20 0 1 0 672,72"
+                fill="#FFF8C0" fill-opacity="0.55"/>
+          <!-- Hebrew כּוֹכָבִים — "stars" — in corner -->
+          <text x="52" y="305" font-family="Georgia, serif" font-size="16"
+                fill="#B8C8F8" fill-opacity="0.38">כּוֹכָבִים</text>
+          <text x="740" y="38" font-family="Georgia, serif" font-size="12"
+                fill="#8A9AC8" fill-opacity="0.35" text-anchor="end">Raki'a</text>
+          <text x="740" y="55" font-family="Georgia, serif" font-size="13"
+                fill="#8A9AC8" fill-opacity="0.3" text-anchor="end">רָקִיעַ</text>
+        </svg>
+      </div>
+
+      <!-- Layer 3: Shehavim (שְׁחָקִים) — millstones grinding manna — depth 0.1 -->
+      <div class="layer" id="layer-shehavim" data-depth="0.1">
+        <svg viewBox="0 0 780 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="shehavim-bg" cx="45%" cy="45%" r="68%">
+              <stop offset="0%" stop-color="#3A4A6A" stop-opacity="0.32"/>
+              <stop offset="100%" stop-color="#1A2030" stop-opacity="0.1"/>
+            </radialGradient>
+          </defs>
+          <rect width="780" height="600" fill="url(#shehavim-bg)"/>
+          <!-- Millstone motifs: concentric circles with radial divisions -->
+          <g opacity="0.52">
+            <g transform="translate(195, 185)">
+              <circle cx="0" cy="0" r="62" fill="none" stroke="#7A8AAC" stroke-width="2"/>
+              <circle cx="0" cy="0" r="42" fill="none" stroke="#7A8AAC" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="22" fill="none" stroke="#7A8AAC" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="7" fill="#7A8AAC" fill-opacity="0.55"/>
+              <line x1="0" y1="-62" x2="0" y2="62" stroke="#7A8AAC" stroke-width="0.9" opacity="0.4"/>
+              <line x1="-62" y1="0" x2="62" y2="0" stroke="#7A8AAC" stroke-width="0.9" opacity="0.4"/>
+              <line x1="-44" y1="-44" x2="44" y2="44" stroke="#7A8AAC" stroke-width="0.9" opacity="0.3"/>
+              <line x1="44" y1="-44" x2="-44" y2="44" stroke="#7A8AAC" stroke-width="0.9" opacity="0.3"/>
+            </g>
+            <g transform="translate(580, 238)">
+              <circle cx="0" cy="0" r="48" fill="none" stroke="#8A9ABE" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="30" fill="none" stroke="#8A9ABE" stroke-width="1.2"/>
+              <circle cx="0" cy="0" r="12" fill="none" stroke="#8A9ABE" stroke-width="1.2"/>
+              <circle cx="0" cy="0" r="5" fill="#8A9ABE" fill-opacity="0.5"/>
+              <line x1="0" y1="-48" x2="0" y2="48" stroke="#8A9ABE" stroke-width="0.9" opacity="0.35"/>
+              <line x1="-48" y1="0" x2="48" y2="0" stroke="#8A9ABE" stroke-width="0.9" opacity="0.35"/>
+              <line x1="-34" y1="-34" x2="34" y2="34" stroke="#8A9ABE" stroke-width="0.8" opacity="0.25"/>
+              <line x1="34" y1="-34" x2="-34" y2="34" stroke="#8A9ABE" stroke-width="0.8" opacity="0.25"/>
+            </g>
+            <g transform="translate(385, 345)">
+              <circle cx="0" cy="0" r="32" fill="none" stroke="#6A7A9C" stroke-width="1.2"/>
+              <circle cx="0" cy="0" r="19" fill="none" stroke="#6A7A9C" stroke-width="1"/>
+              <circle cx="0" cy="0" r="7" fill="none" stroke="#6A7A9C" stroke-width="1"/>
+              <circle cx="0" cy="0" r="3" fill="#6A7A9C" fill-opacity="0.5"/>
+              <line x1="0" y1="-32" x2="0" y2="32" stroke="#6A7A9C" stroke-width="0.8" opacity="0.3"/>
+              <line x1="-32" y1="0" x2="32" y2="0" stroke="#6A7A9C" stroke-width="0.8" opacity="0.3"/>
+            </g>
+          </g>
+          <text x="740" y="38" font-family="Georgia, serif" font-size="12"
+                fill="#8A9ABE" fill-opacity="0.32" text-anchor="end">Sheḥakim</text>
+          <text x="740" y="55" font-family="Georgia, serif" font-size="13"
+                fill="#8A9ABE" fill-opacity="0.28" text-anchor="end">שְׁחָקִים</text>
+        </svg>
+      </div>
+
+      <!-- Layer 4: Zevul (זְבוּל) — heavenly Temple and Jerusalem — depth 0.18 -->
+      <div class="layer" id="layer-zevul" data-depth="0.18">
+        <svg viewBox="0 0 780 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="zevul-glow" cx="50%" cy="50%" r="52%">
+              <stop offset="0%" stop-color="#C89010" stop-opacity="0.28"/>
+              <stop offset="100%" stop-color="#7A4800" stop-opacity="0.04"/>
+            </radialGradient>
+          </defs>
+          <rect width="780" height="600" fill="url(#zevul-glow)"/>
+          <!-- Heavenly Temple outline — warm gold -->
+          <g transform="translate(390, 295)" fill="none" stroke="#C89438" stroke-width="1.8" opacity="0.52">
+            <!-- Main hall -->
+            <rect x="-88" y="-58" width="176" height="116"/>
+            <!-- Roof pediment -->
+            <polygon points="-100,-58 0,-118 100,-58"/>
+            <!-- Pillars -->
+            <line x1="-58" y1="-58" x2="-58" y2="58"/>
+            <line x1="-28" y1="-58" x2="-28" y2="58"/>
+            <line x1="28" y1="-58" x2="28" y2="58"/>
+            <line x1="58" y1="-58" x2="58" y2="58"/>
+            <!-- Altar block in front -->
+            <rect x="-24" y="58" width="48" height="28"/>
+            <!-- Altar steps -->
+            <line x1="-34" y1="86" x2="34" y2="86"/>
+            <line x1="-44" y1="93" x2="44" y2="93"/>
+            <!-- Lintel detail -->
+            <line x1="-88" y1="-42" x2="88" y2="-42"/>
+          </g>
+          <!-- Scattered gold sparks -->
+          <g fill="#D4A032" opacity="0.38">
+            <circle cx="205" cy="148" r="1.5"/><circle cx="575" cy="198" r="2.0"/>
+            <circle cx="118" cy="402" r="1.0"/><circle cx="658" cy="378" r="1.5"/>
+            <circle cx="298" cy="98"  r="1.0"/><circle cx="475" cy="128" r="2.0"/>
+            <circle cx="148" cy="478" r="1.2"/><circle cx="638" cy="458" r="1.0"/>
+          </g>
+          <text x="740" y="38" font-family="Georgia, serif" font-size="12"
+                fill="#C89438" fill-opacity="0.38" text-anchor="end">Zevul</text>
+          <text x="740" y="55" font-family="Georgia, serif" font-size="13"
+                fill="#C89438" fill-opacity="0.33" text-anchor="end">זְבוּל</text>
+        </svg>
+      </div>
+
+      <!-- Layer 5: Ma'on (מָעוֹן) — angels' dwelling, song — depth 0.28 -->
+      <div class="layer" id="layer-maon" data-depth="0.28">
+        <svg viewBox="0 0 780 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="maon-bg" cx="50%" cy="38%" r="62%">
+              <stop offset="0%" stop-color="#0A4840" stop-opacity="0.28"/>
+              <stop offset="100%" stop-color="#051C18" stop-opacity="0.08"/>
+            </radialGradient>
+          </defs>
+          <rect width="780" height="600" fill="url(#maon-bg)"/>
+          <!-- Harp silhouettes (angels sing at night) -->
+          <g opacity="0.48" fill="none" stroke="#48A090" stroke-width="1.5">
+            <g transform="translate(175, 215)">
+              <!-- Harp body curve -->
+              <path d="M 0,78 L 0,-72 Q 12,-98 50,-88 Q 72,-78 72,-48 L 72,78 Z"
+                    fill="#1A4840" fill-opacity="0.25"/>
+              <!-- Strings -->
+              <line x1="10" y1="78" x2="14" y2="-62"/>
+              <line x1="22" y1="78" x2="26" y2="-72"/>
+              <line x1="34" y1="78" x2="38" y2="-80"/>
+              <line x1="46" y1="78" x2="50" y2="-84"/>
+              <line x1="58" y1="78" x2="62" y2="-80"/>
+              <line x1="70" y1="78" x2="72" y2="-60"/>
+            </g>
+            <g transform="translate(555, 158)" opacity="0.65">
+              <path d="M 0,58 L 0,-54 Q 9,-74 38,-66 Q 54,-58 54,-36 L 54,58 Z"
+                    fill="#1A4840" fill-opacity="0.2"/>
+              <line x1="8" y1="58" x2="10" y2="-46"/>
+              <line x1="18" y1="58" x2="20" y2="-54"/>
+              <line x1="28" y1="58" x2="30" y2="-60"/>
+              <line x1="38" y1="58" x2="40" y2="-62"/>
+              <line x1="48" y1="58" x2="50" y2="-50"/>
+            </g>
+          </g>
+          <!-- Beamed eighth-note group -->
+          <g fill="#3A8880" fill-opacity="0.42">
+            <circle cx="398" cy="148" r="6.5"/>
+            <rect x="402" y="110" width="2.5" height="38"/>
+            <circle cx="428" cy="168" r="6.5"/>
+            <rect x="432" y="130" width="2.5" height="38"/>
+            <circle cx="458" cy="152" r="6.5"/>
+            <rect x="462" y="114" width="2.5" height="38"/>
+            <!-- Beam -->
+            <rect x="402" y="110" width="62" height="2.5"/>
+          </g>
+          <text x="740" y="38" font-family="Georgia, serif" font-size="12"
+                fill="#48A090" fill-opacity="0.32" text-anchor="end">Ma'on</text>
+          <text x="740" y="55" font-family="Georgia, serif" font-size="13"
+                fill="#48A090" fill-opacity="0.28" text-anchor="end">מָעוֹן</text>
+        </svg>
+      </div>
+
+      <!-- Layer 6: Machon (מָכוֹן) — storehouses of snow/hail/dew — depth 0.42 -->
+      <div class="layer" id="layer-machon" data-depth="0.42">
+        <svg viewBox="0 0 780 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="machon-bg" cx="50%" cy="28%" r="58%">
+              <stop offset="0%" stop-color="#252538" stop-opacity="0.38"/>
+              <stop offset="100%" stop-color="#0E0E18" stop-opacity="0.08"/>
+            </radialGradient>
+          </defs>
+          <rect width="780" height="600" fill="url(#machon-bg)"/>
+          <!-- Isometric storage cube shapes -->
+          <g opacity="0.5" fill="none" stroke="#6A6A8C" stroke-width="1.2">
+            <g transform="translate(158, 195)">
+              <polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21"
+                       fill="#222234" fill-opacity="0.42"/>
+              <polygon points="0,-42 36,-21 0,0 -36,-21"
+                       fill="#343448" fill-opacity="0.42"/>
+              <polygon points="36,-21 36,21 0,42 0,0"
+                       fill="#161620" fill-opacity="0.5"/>
+              <line x1="0" y1="-42" x2="0" y2="0"/>
+              <line x1="36" y1="-21" x2="0" y2="0"/>
+              <line x1="-36" y1="-21" x2="0" y2="0"/>
+            </g>
+            <g transform="translate(345, 158)">
+              <polygon points="0,-32 28,-16 28,16 0,32 -28,16 -28,-16"
+                       fill="#222234" fill-opacity="0.35"/>
+              <polygon points="0,-32 28,-16 0,0 -28,-16"
+                       fill="#343448" fill-opacity="0.35"/>
+              <polygon points="28,-16 28,16 0,32 0,0"
+                       fill="#161620" fill-opacity="0.42"/>
+              <line x1="0" y1="-32" x2="0" y2="0"/>
+              <line x1="28" y1="-16" x2="0" y2="0"/>
+              <line x1="-28" y1="-16" x2="0" y2="0"/>
+            </g>
+            <g transform="translate(585, 222)">
+              <polygon points="0,-38 32,-19 32,19 0,38 -32,19 -32,-19"
+                       fill="#222234" fill-opacity="0.38"/>
+              <polygon points="0,-38 32,-19 0,0 -32,-19"
+                       fill="#343448" fill-opacity="0.38"/>
+              <polygon points="32,-19 32,19 0,38 0,0"
+                       fill="#161620" fill-opacity="0.46"/>
+              <line x1="0" y1="-38" x2="0" y2="0"/>
+              <line x1="32" y1="-19" x2="0" y2="0"/>
+              <line x1="-32" y1="-19" x2="0" y2="0"/>
+            </g>
+          </g>
+          <!-- Snowflake motifs — treasury of snow and hail -->
+          <g stroke="#8888AC" stroke-width="0.9" opacity="0.32">
+            <g transform="translate(462, 118)">
+              <line x1="-13" y1="0" x2="13" y2="0"/>
+              <line x1="0" y1="-13" x2="0" y2="13"/>
+              <line x1="-9" y1="-9" x2="9" y2="9"/>
+              <line x1="9" y1="-9" x2="-9" y2="9"/>
+            </g>
+            <g transform="translate(108, 302)">
+              <line x1="-10" y1="0" x2="10" y2="0"/>
+              <line x1="0" y1="-10" x2="0" y2="10"/>
+              <line x1="-7" y1="-7" x2="7" y2="7"/>
+              <line x1="7" y1="-7" x2="-7" y2="7"/>
+            </g>
+            <g transform="translate(658, 348)">
+              <line x1="-11" y1="0" x2="11" y2="0"/>
+              <line x1="0" y1="-11" x2="0" y2="11"/>
+              <line x1="-8" y1="-8" x2="8" y2="8"/>
+              <line x1="8" y1="-8" x2="-8" y2="8"/>
+            </g>
+            <g transform="translate(240, 428)">
+              <line x1="-9" y1="0" x2="9" y2="0"/>
+              <line x1="0" y1="-9" x2="0" y2="9"/>
+              <line x1="-6" y1="-6" x2="6" y2="6"/>
+              <line x1="6" y1="-6" x2="-6" y2="6"/>
+            </g>
+          </g>
+          <text x="740" y="38" font-family="Georgia, serif" font-size="12"
+                fill="#6A6A8C" fill-opacity="0.32" text-anchor="end">Makhon</text>
+          <text x="740" y="55" font-family="Georgia, serif" font-size="13"
+                fill="#6A6A8C" fill-opacity="0.28" text-anchor="end">מָכוֹן</text>
+        </svg>
+      </div>
+
+      <!-- Layer 7 (front): Aravot (עֲרָבוֹת) — divine throne, souls, righteousness — depth 0.6 -->
+      <div class="layer" id="layer-aravot" data-depth="0.6">
+        <svg viewBox="0 0 780 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="aravot-wash" cx="50%" cy="33%" r="55%">
+              <stop offset="0%" stop-color="#7828A0" stop-opacity="0.42"/>
+              <stop offset="58%" stop-color="#361558" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#180828" stop-opacity="0.04"/>
+            </radialGradient>
+            <radialGradient id="throne-glow" cx="50%" cy="33%" r="18%">
+              <stop offset="0%" stop-color="#D0A0FF" stop-opacity="0.52"/>
+              <stop offset="100%" stop-color="#7828A0" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="780" height="600" fill="url(#aravot-wash)"/>
+          <!-- Faint central glow — the throne -->
+          <ellipse cx="390" cy="198" rx="115" ry="75" fill="url(#throne-glow)"/>
+          <!-- Souls as white dots scattered across the highest heaven -->
+          <g fill="white">
+            <circle cx="58"  cy="52"  r="1.5" opacity="0.72"/>
+            <circle cx="138" cy="33"  r="1.0" opacity="0.88"/>
+            <circle cx="218" cy="68"  r="2.0" opacity="0.62"/>
+            <circle cx="308" cy="43"  r="1.5" opacity="0.78"/>
+            <circle cx="398" cy="24"  r="1.0" opacity="0.70"/>
+            <circle cx="478" cy="63"  r="2.5" opacity="0.52"/>
+            <circle cx="558" cy="38"  r="1.5" opacity="0.80"/>
+            <circle cx="638" cy="76"  r="1.0" opacity="0.68"/>
+            <circle cx="700" cy="28"  r="2.0" opacity="0.58"/>
+            <circle cx="98"  cy="108" r="1.0" opacity="0.80"/>
+            <circle cx="188" cy="128" r="1.8" opacity="0.68"/>
+            <circle cx="278" cy="103" r="1.2" opacity="0.88"/>
+            <circle cx="358" cy="138" r="1.0" opacity="0.62"/>
+            <circle cx="448" cy="112" r="2.0" opacity="0.74"/>
+            <circle cx="528" cy="148" r="1.5" opacity="0.78"/>
+            <circle cx="608" cy="112" r="1.0" opacity="0.70"/>
+            <circle cx="688" cy="133" r="1.8" opacity="0.60"/>
+            <circle cx="48"  cy="178" r="2.0" opacity="0.64"/>
+            <circle cx="158" cy="198" r="1.0" opacity="0.78"/>
+            <circle cx="248" cy="172" r="1.5" opacity="0.68"/>
+            <circle cx="338" cy="192" r="2.0" opacity="0.58"/>
+            <circle cx="428" cy="167" r="1.0" opacity="0.88"/>
+            <circle cx="518" cy="192" r="1.8" opacity="0.68"/>
+            <circle cx="598" cy="178" r="1.2" opacity="0.78"/>
+            <circle cx="718" cy="197" r="1.5" opacity="0.62"/>
+            <circle cx="78"  cy="248" r="1.2" opacity="0.68"/>
+            <circle cx="168" cy="262" r="1.8" opacity="0.58"/>
+            <circle cx="288" cy="243" r="1.0" opacity="0.78"/>
+            <circle cx="418" cy="253" r="1.5" opacity="0.68"/>
+            <circle cx="548" cy="238" r="2.0" opacity="0.58"/>
+            <circle cx="668" cy="258" r="1.0" opacity="0.72"/>
+            <circle cx="748" cy="275" r="1.5" opacity="0.54"/>
+          </g>
+          <!-- Tetragrammaton — small, tasteful, at the faint glow center -->
+          <text x="390" y="208"
+                font-family="Georgia, serif"
+                font-size="19"
+                fill="white" fill-opacity="0.20"
+                text-anchor="middle"
+                letter-spacing="5">יהוה</text>
+          <text x="740" y="38" font-family="Georgia, serif" font-size="12"
+                fill="#C078E0" fill-opacity="0.38" text-anchor="end">Aravot</text>
+          <text x="740" y="55" font-family="Georgia, serif" font-size="13"
+                fill="#C078E0" fill-opacity="0.33" text-anchor="end">עֲרָבוֹת</text>
+        </svg>
+      </div>
+
+    </div><!-- /scene -->
+  </div><!-- /artwork -->
+
+  <div class="essay">
+    <h1>Through Seven Heavens</h1>
+    <h2>The descent of Torah from Aravot to Sinai — Talmud Bavli, Ḥagigah 12b</h2>
+
+    <div class="source-block">
+      <span class="heb">אָמַר רֵישׁ לָקִישׁ: שִׁבְעָה רְקִיעִים הֵן, וְאֵלּוּ הֵן: וִילוֹן, רָקִיעַ, שְׁחָקִים, זְבוּל, מָעוֹן, מָכוֹן, עֲרָבוֹת.</span>
+      "Reish Lakish said: There are seven firmaments, and they are: Vilon, Rakia, Sheḥakim, Zevul, Ma'on, Makhon, and Aravot." — Talmud Bavli, Ḥagigah 12b
+    </div>
+
+    <p>The rabbis of the Talmud were not mystics in the modern sense. They were lawyers and storytellers, and when they mapped the sky into seven named chambers they were doing something characteristically rabbinic: making the ineffable legible. Each of the seven firmaments has a name, a location, and a function. <strong>Vilon</strong> — the curtain — does nothing, says the Talmud, except open in the morning to let in the light and close at evening to bring on the dark. <strong>Rakia</strong> is where the sun, moon, and stars are fixed into their courses. <strong>Sheḥakim</strong>, "grinding stones," is where millstones grind the manna stored for the righteous. <strong>Zevul</strong> houses a heavenly Jerusalem and an altar where the angel Michael brings offerings each day. <strong>Ma'on</strong> is the choir loft: ministering angels reside there and sing at night, though the Talmud notes they fall silent during the day — a small, charming detail that insists even angels observe decorum. <strong>Makhon</strong> is the storehouse of natural forces: snow, hail, dew, rain, and winds are held there. And <strong>Aravot</strong>, the highest, is where righteousness, judgment, and charity dwell alongside the treasuries of life and peace, the souls of the not-yet-born, and the dew of resurrection. The divine throne and divine presence are in Aravot.</p>
+
+    <p>This cosmology distributes divine immanence across seven grades. Each heaven is more abstract and more remote than the one below it. Vilon is nearly mundane — it opens and closes. Rakia is already cosmological, holding the celestial bodies. By the time you reach Aravot, you are in the domain of pure attribute: righteousness, judgment, the very treasury of souls. The cosmology is a gradient from near-earth to near-God, an architecture that encodes transcendence as altitude.</p>
+
+    <p>Against this structure, the Sinai narrative performs a radical paradox. Exodus 19:20 states:</p>
+
+    <blockquote>
+      <span class="heb">וַיֵּרֶד יְהוָה עַל-הַר סִינַי אֶל-רֹאשׁ הָהָר</span>
+      "And the LORD descended upon Mount Sinai, to the top of the mountain." — Exodus 19:20
+    </blockquote>
+
+    <p>God does not call Israel upward. God descends. The midrash (Shemot Rabbah 12:3) elaborates: God passed through each of the seven heavens on the way down to Sinai. The entire vertical cosmological structure — the layered architecture of increasing holiness — was traversed not by human beings ascending toward divinity, but by divinity descending toward human beings.</p>
+
+    <p>This is the irreversible theological claim of Sinai, and it stands in contrast to every religion that locates its central act in human ascent — the mystic climbing the ladder, the philosopher ascending from the cave, the initiate admitted to higher degrees of knowledge. The revelation at Sinai is not an ascent. Moses does not achieve proximity to God through purification or technique. The mountain is not a ladder. It is a landing site. God comes to where the people are: in the desert, at the foot of a mountain they will not be allowed to touch.</p>
+
+    <p>The rabbis understood that the descent carried a message about what Torah is. The Talmud (Shabbat 88b–89a) recounts that when Moses ascended to receive the Torah, the ministering angels protested: "What is a mortal doing among us?" Moses answered by enumerating the commandments: "Was it to you that God said 'Honor your father and mother'? You have no parents. 'Do not murder'? There is no death among you. 'Do not commit adultery'? There is no forbidden desire among you." Torah addresses conditions that only humans face. The angels were silenced. The Torah was designed for a destination that angels cannot inhabit — which means it had to descend through every heaven to reach it.</p>
+
+    <p>The seven-heaven cosmology maps divine transcendence and immanence onto spatial depth in an unusual way. The further up, the more abstract and holy. And yet the entire structure converges on the single mountain below. Aravot, the most remote and most sacred, is not the destination — Sinai is. The descent does not dilute the holiness; the Torah carried from Aravot to earth retains its full charge. What it gains is a context in which it can be lived.</p>
+
+    <p>In this piece, seven SVG layers move at different rates in response to your mouse. Each layer carries the visual motif of its heaven — the curtain-lines of Vilon, the stars and moon of Rakia, the millstone circles of Sheḥakim, the Temple outline of Zevul, the harps of Ma'on, the storage cubes and snowflakes of Makhon, the souls-as-white-dots and the Tetragrammaton of Aravot. When your mouse is still, a slow Lissajous drift keeps the heavens in gentle motion — the universe persists, unbidden. When you move your mouse, the depth separates and you see through the layers. At the back, always visible through all seven heavens, stands the mountain. It does not move. All seven firmaments were traversed to reach it.</p>
+
+    <p class="source">Sources: Talmud Bavli, Ḥagigah 12b (seven heavens named and described) — Exodus 19:20 (the descent: וַיֵּרֶד יְהוָה עַל-הַר סִינַי) — Talmud Bavli, Shabbat 88b–89a (Moses and the angels) — Shemot Rabbah 12:3 (God's descent through the firmaments)</p>
+  </div><!-- /essay -->
+</div><!-- /layout -->
+
+<script>
+  /**
+   * Mouse-driven parallax: each .layer shifts by (mx * depth, my * depth).
+   * When the mouse is idle for 2 s, a Lissajous drift takes over so the piece
+   * is always in motion even without interaction.
+   */
+  const scene = document.getElementById('scene');
+  const layers = document.querySelectorAll('.layer');
+
+  let lastMouseMove = 0;
+  let targetMx = 0, targetMy = 0;
+  let currentMx = 0, currentMy = 0;
+
+  scene.addEventListener('mousemove', (e) => {
+    const rect = scene.getBoundingClientRect();
+    // Normalize to ±80 / ±60 px so the 15% bleed is never exhausted
+    targetMx = ((e.clientX - rect.left  - rect.width  * 0.5) / (rect.width  * 0.5)) * 80;
+    targetMy = ((e.clientY - rect.top   - rect.height * 0.5) / (rect.height * 0.5)) * 60;
+    lastMouseMove = Date.now();
+  });
+
+  function tick(ts) {
+    const t = ts * 0.001;
+
+    if (Date.now() - lastMouseMove > 2000) {
+      // Slow Lissajous drift — gentle enough not to distract
+      targetMx = 20 * Math.sin(t * 0.3);
+      targetMy = 12 * Math.sin(t * 0.2);
+    }
+
+    // Ease toward target for a fluid feel
+    currentMx += (targetMx - currentMx) * 0.08;
+    currentMy += (targetMy - currentMy) * 0.08;
+
+    layers.forEach((layer) => {
+      const depth = parseFloat(layer.dataset.depth);
+      layer.style.transform =
+        `translate(${(currentMx * depth).toFixed(2)}px, ${(currentMy * depth).toFixed(2)}px)`;
+    });
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+</script>
+</body>
+</html>

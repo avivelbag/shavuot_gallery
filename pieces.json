@@ -383,5 +383,16 @@
     "path": "pieces/38-voice-in-seventy-tongues/index.html",
     "thumbnail": "pieces/38-voice-in-seventy-tongues/thumbnail.svg",
     "essay": "pieces/38-voice-in-seventy-tongues/essay.md"
+  },
+  {
+    "id": "38-seven-heavens",
+    "title": "Through Seven Heavens",
+    "tagline": "mouse-driven parallax descent through the seven firmaments to Har Sinai",
+    "year": 2026,
+    "theme": "Matan Torah / Seven Heavens — Ḥagigah 12b Cosmology",
+    "technique": "CSS/JS mouse-driven parallax with seven layered inline SVGs",
+    "path": "pieces/38-seven-heavens/index.html",
+    "thumbnail": "pieces/38-seven-heavens/thumbnail.svg",
+    "essay": "pieces/38-seven-heavens/essay.md"
   }
 ]
