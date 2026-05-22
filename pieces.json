@@ -262,5 +262,16 @@
     "path": "pieces/29-fiftieth-day-epicycles/index.html",
     "thumbnail": "pieces/29-fiftieth-day-epicycles/thumbnail.svg",
     "essay": "pieces/29-fiftieth-day-epicycles/essay.md"
+  },
+  {
+    "id": "30-tikkun-leil-star-trails",
+    "title": "The Night Turns Toward Morning",
+    "tagline": "star trails rotate through Tikkun Leil Shavuot from midnight to dawn",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot / Night Vigil and Dawn",
+    "technique": "WebGL fragment shader / procedural star field, GLSL star trails, 2D canvas overlay",
+    "path": "pieces/30-tikkun-leil-star-trails/index.html",
+    "thumbnail": "pieces/30-tikkun-leil-star-trails/thumbnail.svg",
+    "essay": "pieces/30-tikkun-leil-star-trails/essay.md"
   }
 ]

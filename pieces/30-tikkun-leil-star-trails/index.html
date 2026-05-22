@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Night Turns Toward Morning — Tikkun Leil Star Trails</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #080c1a;
+      color: #e8dcc8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #glCanvas {
+      display: block;
+      width: 100%; height: 100%;
+    }
+    #overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .phrase {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      color: rgba(232, 210, 130, 0.7);
+      pointer-events: none;
+      white-space: nowrap;
+      direction: rtl;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(8, 12, 26, 0.97);
+      border-left: 1px solid rgba(200, 160, 60, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #e8a830;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(232, 220, 200, 0.65);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+      color: #ddd0bc;
+    }
+    .essay p strong { color: #e8a830; }
+    .essay .source {
+      font-size: 0.78rem;
+      color: rgba(232, 220, 200, 0.5);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(200, 160, 60, 0.12);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 55vw; min-height: 280px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(200,160,60,0.18); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="glCanvas"></canvas>
+    <canvas id="overlay"></canvas>
+    <div class="phrase">עַד-עֲלוֹת הַשַּׁחַר</div>
+  </div>
+
+  <div class="essay">
+    <h1>The Night Turns Toward Morning</h1>
+    <h2>Tikkun Leil Shavuot</h2>
+
+    <p>The custom of staying awake all night on the eve of Shavuot, immersed in
+    Torah study until dawn, is known as <em>Tikkun Leil Shavuot</em> — the
+    repair, or preparation, of Shavuot night. It is among the most distinctive
+    practices the kabbalists bequeathed to Jewish life, and its authority rests on
+    a single luminous passage in the Zohar.</p>
+
+    <p>The Zohar, that foundational text of Jewish mysticism, speaks in
+    <strong>Parashat Emor</strong> of the night before the giving of the Torah.
+    The ancient <em>chasidim</em> — the pious ones — it says, would not sleep on
+    that night, staying awake to "adorn the bride." In Kabbalistic language, the
+    Shekhinah is the Bride; Israel and the Torah constitute the groom; and the
+    night of Shavuot is the wedding night in which the celestial marriage is
+    consummated at Sinai. To stay awake and study is to act as an usher preparing
+    the bridal canopy of the divine union.</p>
+
+    <p>The kabbalists of sixteenth-century <strong>Safed</strong> formalized this
+    midnight vigil into a structured curriculum — the <em>Tikkun</em> — drawing
+    passages from every book of the Hebrew Bible, every tractate of the Mishnah,
+    and selections from the Zohar itself. Among those who observed it most
+    famously was <strong>Rabbi Joseph Karo</strong>, the great legal codifier and
+    author of the <em>Shulchan Aruch</em>. Karo's private mystical diary, the
+    <em>Maggid Meisharim</em>, records that during one Tikkun Leil vigil a
+    heavenly voice — attributed to the Mishnah personified as the Shekhinah —
+    spoke through him, praising the circle's all-night study and confirming the
+    practice's cosmic efficacy.</p>
+
+    <p>Tikkun Leil turns time itself into a spiritual act. The forty-nine days of
+    the Omer count reach their culmination not at dawn on the fiftieth day, but in
+    the night that precedes it. All those days collapse into a single dark span
+    between sunset and sunrise, and study becomes the labor of a night-worker
+    transforming darkness into the light it is waiting for.</p>
+
+    <p>There is, embedded in the tradition, a note of self-reproach. The
+    <strong>Magen Avraham</strong> in <strong>Orach Chayyim 494</strong> records
+    that when the Israelites camped at Sinai on the night before the giving of the
+    Torah, they overslept. Moses had to rouse them in the morning. This is the
+    original failing of Shavuot: the nation for whom creation itself waited slept
+    through the alarm. Tikkun Leil is the annual corrective — the communal
+    determination never again to be asleep when dawn comes.</p>
+
+    <p>In this piece the sky performs that arc. From deep midnight blue through
+    the violet of astronomical twilight, the rose of nautical dawn, and finally
+    to amber and gold sunrise — the sixty-second loop traces one Tikkun night in
+    compressed time. The stars rotate around the pole star, each leaving a short
+    luminous trail: these arcs are time made visible, the quiet turning of the
+    night sky as the students below keep watch. The phrase inscribed at the lower
+    edge — <strong>עַד-עֲלוֹת הַשַּׁחַר</strong>, <em>until the rise of the
+    dawn</em> — is taken from the Zohar's own description of the vigil.</p>
+
+    <p class="source">WebGL fragment shader / procedural star field · 2026</p>
+  </div>
+</div>
+
+<!-- Vertex shader: full-screen quad pass-through -->
+<script type="x-shader/x-vertex" id="vert">
+attribute vec2 a_pos;
+void main() {
+  gl_Position = vec4(a_pos, 0.0, 1.0);
+}
+</script>
+
+<!-- Fragment shader: star trails + sky gradient -->
+<script type="x-shader/x-fragment" id="frag">
+precision highp float;
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+/* Sky cycle: 60 seconds per full night-to-dawn loop */
+const float CYCLE = 60.0;
+const float TWO_PI = 6.28318530718;
+
+/* Star rotation: one full turn per 90 seconds around the pole */
+const float ROT_PERIOD = 90.0;
+
+/* Trail: how many seconds of arc each star leaves behind */
+const float TRAIL_SEC = 4.0;
+const int   TRAIL_STEPS = 12;
+
+/* Star grid: GRID_N x GRID_N cells, one star per cell */
+const int   GRID_N = 20;
+const float GRID_F = 20.0;
+
+/* Pole star position in UV [0,1] space — upper-center of canvas */
+const float POLE_X = 0.45;
+const float POLE_Y = 0.78;
+
+float hash(vec2 p) {
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+mat2 rot2(float a) {
+  float c = cos(a), s = sin(a);
+  return mat2(c, -s, s, c);
+}
+
+/* Sky keyframe interpolation over one cycle [0,1].
+   Midnight (#080c1a) -> deep indigo -> violet -> violet-rose -> amber -> gold.
+   Colors stored as float triples: (0.031,0.047,0.102) = midnight, etc. */
+vec3 skyColor(float t) {
+  vec3 c0 = vec3(0.031, 0.047, 0.102); /* midnight   #080c1a */
+  vec3 c1 = vec3(0.051, 0.059, 0.200); /* deep indigo */
+  vec3 c2 = vec3(0.102, 0.055, 0.271); /* violet      #1a0e45 */
+  vec3 c3 = vec3(0.353, 0.118, 0.329); /* violet-rose */
+  vec3 c4 = vec3(0.784, 0.314, 0.125); /* amber       #c85020 */
+  vec3 c5 = vec3(0.910, 0.659, 0.188); /* gold        #e8a830 */
+
+  if (t < 0.20) return mix(c0, c1, t * 5.0);
+  if (t < 0.40) return mix(c1, c2, (t - 0.20) * 5.0);
+  if (t < 0.60) return mix(c2, c3, (t - 0.40) * 5.0);
+  if (t < 0.75) return mix(c3, c4, (t - 0.60) / 0.15);
+  if (t < 0.90) return mix(c4, c5, (t - 0.75) / 0.15);
+  return mix(c5, c0, (t - 0.90) / 0.10); /* dawn fades back to midnight */
+}
+
+/* Brightness contributed by the star in grid cell cellId.
+   uvUnrot is the fragment's inverse-rotated position (in base/unrotated space).
+   trailFade is 1.0 for the current tip, decreasing for older trail positions. */
+float cellBright(vec2 uvUnrot, vec2 cellId, float trailFade) {
+  vec2 seed = cellId;
+  float h1   = hash(seed);
+  float h2   = hash(seed + vec2(1.7,  2.3));
+  float hBr  = hash(seed + vec2(4.1,  6.7));
+  float hSz  = hash(seed + vec2(8.3,  1.9));
+
+  /* Star's base position in UV space, fixed in the unrotated frame */
+  vec2 starPos = (cellId + vec2(h1, h2)) / GRID_F;
+
+  float brightness = 0.35 + hBr * 0.65;
+  /* Glow sigma in UV units: 0.005 to 0.009 */
+  float sz = 0.005 + hSz * 0.004;
+
+  vec2 diff = uvUnrot - starPos;
+  float dist2 = dot(diff, diff);
+  return brightness * trailFade * exp(-dist2 / (sz * sz));
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution;
+
+  float cycleT = fract(u_time / CYCLE);
+  vec3 sky = skyColor(cycleT);
+
+  /* Stars fade from full brightness to invisible as dawn arrives */
+  float starVis = 1.0 - smoothstep(0.50, 0.80, cycleT);
+  /* Brief re-brightening at end of cycle as night returns */
+  starVis = max(starVis, smoothstep(0.95, 1.0, cycleT) * 0.6);
+
+  float stars = 0.0;
+
+  /* Skip computation below the horizon band */
+  if (uv.y > 0.17) {
+    for (int step = 0; step < TRAIL_STEPS; step++) {
+      /* dt: how far in the past this trail sample is */
+      float dt = float(step) / float(TRAIL_STEPS - 1) * TRAIL_SEC;
+
+      /* Inverse-rotate fragment into the unrotated star frame at time (now-dt).
+         Stars whose base position is near uvUnrot contributed to this fragment
+         at time (u_time - dt), forming the visible trail arc. */
+      float angle = (u_time - dt) * TWO_PI / ROT_PERIOD;
+      vec2 pole = vec2(POLE_X, POLE_Y);
+      vec2 uvUnrot = pole + rot2(-angle) * (uv - pole);
+
+      if (uvUnrot.x >= 0.0 && uvUnrot.x <= 1.0 &&
+          uvUnrot.y >= 0.0 && uvUnrot.y <= 1.0) {
+
+        vec2 gridPos = uvUnrot * GRID_F;
+        int cx = int(gridPos.x);
+        int cy = int(gridPos.y);
+
+        /* Trail tip (step=0) is full brightness; tail fades toward zero */
+        float fade = 1.0 - float(step) / float(TRAIL_STEPS);
+
+        for (int di = -1; di <= 1; di++) {
+          for (int dj = -1; dj <= 1; dj++) {
+            int nx = cx + di;
+            int ny = cy + dj;
+            if (nx >= 0 && nx < GRID_N && ny >= 0 && ny < GRID_N) {
+              stars += cellBright(uvUnrot, vec2(float(nx), float(ny)), fade);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Pole star: fixed bright glow at rotation center */
+  vec2 pole = vec2(POLE_X, POLE_Y);
+  float poleDist = length(uv - pole);
+  stars += 2.8 * exp(-poleDist * poleDist / (0.004 * 0.004)) * starVis;
+
+  vec3 starColor = vec3(0.80, 0.86, 1.00) * stars * starVis;
+  vec3 color = sky + starColor;
+
+  /* Darken the horizon band so the overlay silhouette blends naturally */
+  float horizFade = smoothstep(0.0, 0.18, uv.y);
+  color = mix(color * 0.06, color, horizFade);
+
+  gl_FragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
+}
+</script>
+
+<script>
+(function () {
+  const glCanvas = document.getElementById('glCanvas');
+  const overlay  = document.getElementById('overlay');
+
+  const gl = glCanvas.getContext('webgl') ||
+             glCanvas.getContext('experimental-webgl');
+
+  if (!gl) {
+    glCanvas.style.background = '#080c1a';
+    console.warn('WebGL not supported — static fallback');
+    return;
+  }
+
+  /* ---- shader helpers ---- */
+  function compileShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.error('Shader error:', gl.getShaderInfoLog(s));
+      gl.deleteShader(s);
+      return null;
+    }
+    return s;
+  }
+
+  function buildProgram(vertSrc, fragSrc) {
+    const vert = compileShader(gl.VERTEX_SHADER,   vertSrc);
+    const frag = compileShader(gl.FRAGMENT_SHADER, fragSrc);
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vert);
+    gl.attachShader(prog, frag);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.error('Link error:', gl.getProgramInfoLog(prog));
+      return null;
+    }
+    return prog;
+  }
+
+  const vertSrc = document.getElementById('vert').textContent.trim();
+  const fragSrc = document.getElementById('frag').textContent.trim();
+  const prog = buildProgram(vertSrc, fragSrc);
+  if (!prog) return;
+
+  /* ---- full-screen quad (triangle strip) ---- */
+  const quad = new Float32Array([-1, -1,  1, -1,  -1, 1,  1, 1]);
+  const buf  = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, quad, gl.STATIC_DRAW);
+
+  gl.useProgram(prog);
+  const aPosLoc = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(aPosLoc);
+  gl.vertexAttribPointer(aPosLoc, 2, gl.FLOAT, false, 0, 0);
+
+  const uTimeLoc = gl.getUniformLocation(prog, 'u_time');
+  const uResLoc  = gl.getUniformLocation(prog, 'u_resolution');
+
+  /* ---- 2D overlay: rolling hills silhouette + lit windows ---- */
+  function drawOverlay() {
+    const ctx = overlay.getContext('2d');
+    const w = overlay.width, h = overlay.height;
+    ctx.clearRect(0, 0, w, h);
+
+    const hy = h * 0.82;
+
+    /* Hill silhouette */
+    ctx.fillStyle = '#04070e';
+    ctx.beginPath();
+    ctx.moveTo(0, h);
+    ctx.lineTo(0, hy + h * 0.04);
+    ctx.bezierCurveTo(w * 0.08, hy - h * 0.01, w * 0.18, hy + h * 0.05, w * 0.28, hy + h * 0.01);
+    ctx.bezierCurveTo(w * 0.36, hy - h * 0.06, w * 0.46, hy + h * 0.02, w * 0.55, hy - h * 0.01);
+    ctx.bezierCurveTo(w * 0.65, hy - h * 0.05, w * 0.76, hy + h * 0.03, w * 0.88, hy + h * 0.01);
+    ctx.bezierCurveTo(w * 0.94, hy - h * 0.01, w * 0.98, hy + h * 0.02, w, hy + h * 0.01);
+    ctx.lineTo(w, h);
+    ctx.closePath();
+    ctx.fill();
+
+    /* Lit windows with warm glow */
+    function window_(cx, cy, ww, wh) {
+      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, ww * 4);
+      g.addColorStop(0, 'rgba(255, 190, 60, 0.28)');
+      g.addColorStop(1, 'rgba(255, 190, 60, 0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(cx - ww * 4, cy - wh * 3, ww * 8, wh * 6);
+      ctx.fillStyle = 'rgba(255, 200, 80, 0.82)';
+      ctx.fillRect(cx - ww / 2, cy - wh / 2, ww, wh);
+    }
+
+    window_(w * 0.145, hy + h * 0.028, w * 0.013, h * 0.024);
+    window_(w * 0.170, hy + h * 0.028, w * 0.013, h * 0.024);
+    window_(w * 0.555, hy + h * 0.016, w * 0.011, h * 0.020);
+    window_(w * 0.780, hy + h * 0.022, w * 0.012, h * 0.022);
+    window_(w * 0.803, hy + h * 0.022, w * 0.012, h * 0.022);
+  }
+
+  /* ---- resize handler ---- */
+  let lastW = 0, lastH = 0;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.round(glCanvas.clientWidth  * dpr);
+    const h = Math.round(glCanvas.clientHeight * dpr);
+    if (w === lastW && h === lastH) return;
+    lastW = w; lastH = h;
+
+    glCanvas.width  = w; glCanvas.height  = h;
+    overlay.width   = w; overlay.height   = h;
+    gl.viewport(0, 0, w, h);
+    drawOverlay();
+  }
+
+  /* ---- animation loop ---- */
+  const t0 = performance.now();
+
+  function render() {
+    resize();
+    const t = (performance.now() - t0) / 1000.0;
+    gl.uniform1f(uTimeLoc, t);
+    gl.uniform2f(uResLoc, glCanvas.width, glCanvas.height);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+
+  render();
+}());
+</script>
+</body>
+</html>
