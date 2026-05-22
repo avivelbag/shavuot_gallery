@@ -7,9 +7,6 @@ the existing 37-dew-of-torah piece.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
