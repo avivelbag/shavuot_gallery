@@ -238,7 +238,9 @@
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, W, H);
 
-    const terms = fourierTerms.slice(0, NUM_TERMS);
+    // Exclude freq=0 (DC offset): including it would shift the entire arm chain
+    // by the centroid offset, placing the trace at ~(2*cx, 2*cy) off-canvas.
+    const terms = fourierTerms.filter(t => t.freq !== 0).slice(0, NUM_TERMS);
     const cx = W / 2, cy = H / 2;
 
     let x = cx, y = cy;

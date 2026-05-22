@@ -260,3 +260,17 @@ def test_piece_29_not_before_piece_25_in_json():
     idx_29 = next((i for i, pid in enumerate(ids) if pid.startswith("29-")), None)
     if idx_25 is not None and idx_29 is not None:
         assert idx_29 > idx_25, "Piece 29 should appear after piece 25 in pieces.json"
+
+
+def test_piece_29_html_excludes_dc_from_arms():
+    """index.html must exclude the freq=0 (DC) term from the epicycle arm chain.
+
+    Including the DC term would double-count the centroid offset, shifting the
+    traced letterform ~(2*cx, 2*cy) off-canvas and clipping it entirely.
+    The fix filters out freq===0 before slicing the arm terms.
+    """
+    html = open(os.path.join(PIECE_DIR, "index.html"), encoding="utf-8").read()
+    assert "freq !== 0" in html or "freq != 0" in html, (
+        "index.html must filter out the freq=0 DC term from the epicycle arm chain "
+        "(including DC double-counts the centroid offset, clipping the trace off-canvas)"
+    )
