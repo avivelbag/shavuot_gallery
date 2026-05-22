@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <radialGradient id="cenGlow" cx="50%" cy="50%" r="12%">
+      <stop offset="0%" stop-color="#FFFBE6" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#FFD700" stop-opacity="0.60"/>
+      <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="seedGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#E8C050"/>
+      <stop offset="60%" stop-color="#D4A017"/>
+      <stop offset="100%" stop-color="#B88010"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background — deep indigo-black -->
+  <rect width="400" height="300" fill="#07060F"/>
+
+  <!-- Wheat stalk silhouettes around the perimeter (simplified) -->
+  <g stroke="rgba(200,169,80,0.13)" stroke-width="0.8" fill="none">
+    <line x1="200" y1="18"  x2="200" y2="2"/>
+    <line x1="200" y1="282" x2="200" y2="298"/>
+    <line x1="20"  y1="150" x2="4"   y2="150"/>
+    <line x1="380" y1="150" x2="396" y2="150"/>
+    <line x1="55"  y1="47"  x2="44"  y2="36"/>
+    <line x1="345" y1="47"  x2="356" y2="36"/>
+    <line x1="55"  y1="253" x2="44"  y2="264"/>
+    <line x1="345" y1="253" x2="356" y2="264"/>
+  </g>
+
+  <!-- Phyllotaxis seed discs — precomputed positions at golden angle 137.508° -->
+  <!-- i=1..49: angle = i*2.39996, r = 26*sqrt(i), center (200,150) -->
+  <g fill="url(#seedGrad)">
+    <circle cx="194" cy="124" r="5.2"/>
+    <circle cx="220" cy="155" r="5.2"/>
+    <circle cx="184" cy="171" r="5.2"/>
+    <circle cx="175" cy="135" r="5.2"/>
+    <circle cx="213" cy="116" r="5.2"/>
+    <circle cx="237" cy="143" r="5.2"/>
+    <circle cx="214" cy="176" r="5.2"/>
+    <circle cx="179" cy="186" r="5.2"/>
+    <circle cx="163" cy="152" r="5.2"/>
+    <circle cx="177" cy="117" r="5.2"/>
+    <circle cx="206" cy="101" r="5.2"/>
+    <circle cx="235" cy="116" r="5.2"/>
+    <circle cx="247" cy="148" r="5.2"/>
+    <circle cx="236" cy="178" r="5.2"/>
+    <circle cx="208" cy="194" r="5.2"/>
+    <circle cx="176" cy="196" r="5.2"/>
+    <circle cx="152" cy="175" r="5.2"/>
+    <circle cx="148" cy="143" r="5.2"/>
+    <circle cx="160" cy="112" r="5.2"/>
+    <circle cx="185" cy="95"  r="5.2"/>
+    <circle cx="216" cy="91"  r="5.2"/>
+    <circle cx="241" cy="104" r="5.2"/>
+    <circle cx="256" cy="128" r="5.2"/>
+    <circle cx="257" cy="158" r="5.2"/>
+    <circle cx="244" cy="183" r="5.2"/>
+    <circle cx="219" cy="200" r="5.2"/>
+    <circle cx="189" cy="208" r="5.2"/>
+    <circle cx="161" cy="202" r="5.2"/>
+    <circle cx="139" cy="183" r="5.2"/>
+    <circle cx="130" cy="155" r="5.2"/>
+    <circle cx="134" cy="124" r="5.2"/>
+    <circle cx="150" cy="98"  r="5.2"/>
+    <circle cx="174" cy="83"  r="5.2"/>
+    <circle cx="202" cy="78"  r="5.2"/>
+    <circle cx="228" cy="83"  r="5.2"/>
+    <circle cx="249" cy="97"  r="5.2"/>
+    <circle cx="262" cy="120" r="5.2"/>
+    <circle cx="265" cy="148" r="5.2"/>
+    <circle cx="257" cy="174" r="5.2"/>
+    <circle cx="241" cy="195" r="5.2"/>
+    <circle cx="217" cy="208" r="5.2"/>
+    <circle cx="190" cy="213" r="5.2"/>
+    <circle cx="163" cy="209" r="5.2"/>
+    <circle cx="140" cy="196" r="5.2"/>
+    <circle cx="123" cy="175" r="5.2"/>
+    <circle cx="116" cy="148" r="5.2"/>
+    <circle cx="121" cy="121" r="5.2"/>
+    <circle cx="135" cy="97"  r="5.2"/>
+    <circle cx="157" cy="80"  r="5.2"/>
+  </g>
+
+  <!-- Central glow aura -->
+  <circle cx="200" cy="150" r="32" fill="url(#cenGlow)"/>
+
+  <!-- Central disc (50th — nun) -->
+  <circle cx="200" cy="150" r="10" fill="#FFFBE6" opacity="0.95"/>
+  <text x="200" y="154" font-family="Georgia,'Times New Roman',serif" font-size="9"
+        fill="#5A3A00" text-anchor="middle" dominant-baseline="middle">נ</text>
+
+  <!-- A few visible Hebrew labels on outer seeds for flavour -->
+  <text x="194" y="128" font-family="Georgia,serif" font-size="5.5"
+        fill="rgba(30,18,0,0.80)" text-anchor="middle" dominant-baseline="middle">א</text>
+  <text x="220" y="159" font-family="Georgia,serif" font-size="5.5"
+        fill="rgba(30,18,0,0.80)" text-anchor="middle" dominant-baseline="middle">ב</text>
+  <text x="157" y="84" font-family="Georgia,serif" font-size="5.5"
+        fill="rgba(30,18,0,0.80)" text-anchor="middle" dominant-baseline="middle">מט</text>
+</svg>

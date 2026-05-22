@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Harvest Spiral — Sefirat HaOmer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #07060F; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .art-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2A1E0A;
+      overflow-y: auto;
+      color: #C8B89A;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #050308;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: relative; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2A1E0A; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #D4A017;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4A3A1A;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #C89A50;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #3A2A0A;
+      font-style: italic;
+      color: #9A8060;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #E8D0A0; font-style: italic; }
+    .essay-panel strong { color: #D4A017; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #1A1008; margin: 2rem 0; }
+    .essay-panel .hebrew {
+      font-size: 1.4rem;
+      direction: rtl;
+      unicode-bidi: embed;
+      color: #D4A017;
+      margin: 0 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <div class="art-inner" id="art-inner">
+      <canvas id="c"></canvas>
+    </div>
+  </div>
+  <div class="essay-panel">
+    <h1>The Harvest Spiral</h1>
+    <p class="subtitle">Sefirat HaOmer — phyllotaxis golden-angle spiral — Leviticus 23:15–16</p>
+
+    <p class="hebrew">וּסְפַרְתֶּם לָכֶם</p>
+    <blockquote>"You shall count seven complete weeks from the day after the sabbath, from the day that you brought the sheaf of the wave offering. You shall count fifty days to the day after the seventh week." — Leviticus 23:15–16</blockquote>
+
+    <p>The Omer is a grain offering. The word itself — <em>omer</em> — is a dry measure, specifically the measure of barley that a working man could reap in a single day. The Torah does not merely command an abstract count; it commands counting from the day the sheaf is <em>brought</em>. The forty-nine days are rooted in a harvest. Their content is grain.</p>
+
+    <hr>
+
+    <h2>Phyllotaxis — The Pattern in the Grain</h2>
+
+    <p>The word <em>phyllotaxis</em> means, literally, leaf arrangement. It describes the systematic pattern by which plants pack seeds, florets, scales, and leaves along a spiral trajectory. The most famous instance is the sunflower head: count the spirals that curve clockwise and you find a Fibonacci number; count those curving counterclockwise and you find the adjacent Fibonacci number. Twenty-one and thirty-four. Thirty-four and fifty-five. These numbers sit in ratio φ — the golden ratio, approximately 1.618 — whose decimal expansion never terminates and never repeats.</p>
+
+    <p>This same pattern appears in wheat. A wheat head's florets are packed in two interleaved spirals, both Fibonacci-numbered, both governed by the golden angle: 137.508 degrees, or 360° × (1 − 1/φ²). Each successive floret or seed is placed at this angle from the previous, and at a distance from the center proportional to the square root of its index. The result is maximum packing density: no two seeds overlap, no space is wasted, and the pattern scales indefinitely as the plant grows.</p>
+
+    <p>Barley — the other crop of the Omer offering, the grain of the first sheaf waved before God at the start of the count — shows the same arrangement. The two grains that bracket the Omer season share this golden-angle architecture. The very crops that give the count its name, the grain offerings brought in waves before God, grow according to the spiral drawn in this animation.</p>
+
+    <hr>
+
+    <h2>Counting and Growing</h2>
+
+    <p>The mathematical principle that organizes the Omer grain is the golden angle, derived from the golden ratio φ = (1 + √5) / 2. The golden ratio appears when growth follows the Fibonacci sequence — each new term is the sum of the two before it — and the ratio of consecutive Fibonacci numbers converges on φ. Plants use the golden angle because φ is the <em>most irrational</em> number — the number least well approximated by any simple fraction. Placing seeds at the golden angle guarantees that no two seeds ever fall on exactly the same radial line, no matter how many are added. The packing is perpetually efficient, perpetually novel, and self-similar across all scales.</p>
+
+    <p>The forty-nine days of the Omer have a comparable quality. Counted from the first barley harvest to the wheat harvest, they span exactly the grain-harvest season in the ancient Levantine calendar. The number 49 is seven times seven — a number whose factor is itself complete — and then the fiftieth day stands apart: not folded back into the weekly cycle, not derivable from the pattern, arriving as something wholly new. Just as the golden angle is the one angle that resists rational approximation and therefore keeps each new seed genuinely fresh in its placement, the fiftieth day resists being contained within the forty-nine.</p>
+
+    <hr>
+
+    <h2>Structure in Creation</h2>
+
+    <p>The Midrash records that the Torah was given in the wilderness because the wilderness belongs to no one — <em>hefker</em>, ownerless — so that the Torah could belong to everyone (Bamidbar Rabbah 1:7). Something similar can be said of the golden ratio: it belongs to no particular plant. It is a number, a ratio, a proportion that wheat and barley and pine cones and nautiluses all independently arrive at because it is built into the logic of growth itself. When the Torah commands counting fifty days from the barley sheaf to the wheat harvest, it is commanding attention to a period whose very subject — grain — is structured by the most universal proportion in organic mathematics.</p>
+
+    <p>To count the Omer is to stand daily in relation to the harvest. And the harvest, grain by grain, is a realization of the golden spiral.</p>
+
+    <hr>
+
+    <h2>The Animation</h2>
+
+    <p>Forty-nine discs are placed on a phyllotaxis spiral: each disc <em>i</em> at angle <em>i</em> × 137.508° from the previous, at distance proportional to √<em>i</em> from the center. This is the identical algorithm that wheat and barley use to pack their grain. The fiftieth disc sits at the center — logically prior to all the seeds, the still point around which the spiral grows — and pulses between pale gold (<strong>#FFFBE6</strong>) and warm gold (<strong>#FFD700</strong>) on a slow three-second breath.</p>
+
+    <p>Each disc is labelled with its day number in Hebrew letters. The cluster rotates at half a degree per second, a nod to the daily turning of the count. Individual discs shimmer with staggered opacity cycles. Faint wheat-stalk silhouettes frame the outer ring. The technique — <strong>phyllotaxis golden-angle spiral</strong> — has not been used elsewhere in this gallery. Every seed's position follows the same rule that governs the grain in the sheaf.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx    = canvas.getContext('2d');
+  var panel  = document.getElementById('art-inner');
+  var W, H, cx, cy, scale, discR;
+
+  var GOLDEN_ANGLE = 2.399963229; // 137.508° in radians
+  var N_SEEDS      = 49;
+  var ROT_SPEED    = 0.5 * Math.PI / 180 / 60; // 0.5°/sec at 60fps
+  var theta        = 0;
+
+  /* Hebrew numeral lookup table, 1–50. */
+  var HEBREW = {
+     1: 'א',   2: 'ב',   3: 'ג',   4: 'ד',   5: 'ה',
+     6: 'ו',   7: 'ז',   8: 'ח',   9: 'ט',  10: 'י',
+    11: 'יא', 12: 'יב', 13: 'יג', 14: 'יד', 15: 'טו',
+    16: 'טז', 17: 'יז', 18: 'יח', 19: 'יט', 20: 'כ',
+    21: 'כא', 22: 'כב', 23: 'כג', 24: 'כד', 25: 'כה',
+    26: 'כו', 27: 'כז', 28: 'כח', 29: 'כט', 30: 'ל',
+    31: 'לא', 32: 'לב', 33: 'לג', 34: 'לד', 35: 'לה',
+    36: 'לו', 37: 'לז', 38: 'לח', 39: 'לט', 40: 'מ',
+    41: 'מא', 42: 'מב', 43: 'מג', 44: 'מד', 45: 'מה',
+    46: 'מו', 47: 'מז', 48: 'מח', 49: 'מט', 50: 'נ'
+  };
+
+  /**
+   * Return screen-space (x, y) for phyllotaxis seed index i (1-based).
+   * Angle includes the current global rotation theta.
+   */
+  function seedPos(i) {
+    var angle = i * GOLDEN_ANGLE + theta;
+    var r     = scale * Math.sqrt(i);
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  }
+
+  /**
+   * Draw a single wheat-stalk silhouette at position (x, y) pointing radially
+   * outward at the given outAngle.  Drawn in faint warm beige.
+   */
+  function drawWheatStalk(x, y, outAngle) {
+    var s = discR * 2.8;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(outAngle - Math.PI / 2);
+    ctx.strokeStyle = 'rgba(200, 169, 80, 0.13)';
+    ctx.lineWidth   = 0.8;
+
+    /* Main stem */
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, s);
+    ctx.stroke();
+
+    /* Grain husks — 4 pairs fanning outward along the stem */
+    for (var j = 0; j < 4; j++) {
+      var yj = s * 0.22 + j * s * 0.20;
+      var aw = s * 0.28 * (1 - j * 0.12);
+      ctx.beginPath();
+      ctx.moveTo(0, yj);
+      ctx.lineTo(-aw, yj + s * 0.08);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0, yj);
+      ctx.lineTo( aw, yj + s * 0.08);
+      ctx.stroke();
+    }
+
+    /* Tip awn */
+    ctx.beginPath();
+    ctx.moveTo(0, s * 0.95);
+    ctx.lineTo(0, s * 1.18);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  /**
+   * Draw a harvest-gold disc at (x, y) with radius r.
+   * opacity: base render opacity (shimmer baked in by caller).
+   * isCenter: if true, use pulsing white-gold palette with glow.
+   */
+  function drawDisc(x, y, r, opacity, isCenter, pulseVal) {
+    ctx.save();
+    ctx.globalAlpha = opacity;
+
+    if (isCenter) {
+      /* Pulsing glow aura */
+      var glowR = r * 2.4;
+      var aura  = ctx.createRadialGradient(x, y, 0, x, y, glowR);
+      aura.addColorStop(0,   'rgba(255, 240, 160, 0.55)');
+      aura.addColorStop(0.4, 'rgba(255, 215,   0, 0.18)');
+      aura.addColorStop(1,   'rgba(255, 215,   0, 0)');
+      ctx.globalAlpha = opacity * (0.5 + 0.5 * pulseVal);
+      ctx.fillStyle   = aura;
+      ctx.beginPath();
+      ctx.arc(x, y, glowR, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = opacity;
+
+      /* Disc body — interpolate #FFFBE6 → #FFD700 with pulse */
+      var rv = Math.round(255);
+      var gv = Math.round(251 + (215 - 251) * pulseVal);
+      var bv = Math.round(230 + (  0 - 230) * pulseVal);
+      var grad = ctx.createRadialGradient(x - r * 0.25, y - r * 0.25, 0, x, y, r);
+      grad.addColorStop(0,   'rgba(' + rv + ',' + (gv + 20 > 255 ? 255 : gv + 20) + ',' + bv + ',1)');
+      grad.addColorStop(1,   'rgba(' + rv + ',' + gv + ',' + bv + ',1)');
+      ctx.fillStyle   = grad;
+      ctx.shadowColor = 'rgba(255, 220, 80, 0.7)';
+      ctx.shadowBlur  = r * 1.8;
+    } else {
+      /* Outer seed disc — warm harvest gold radial gradient */
+      var dg = ctx.createRadialGradient(x - r * 0.25, y - r * 0.25, 0, x, y, r);
+      dg.addColorStop(0,   '#E8C050');
+      dg.addColorStop(0.6, '#D4A017');
+      dg.addColorStop(1,   '#B88010');
+      ctx.fillStyle  = dg;
+      ctx.shadowColor = 'rgba(212, 160, 23, 0.4)';
+      ctx.shadowBlur  = r * 0.8;
+    }
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  /**
+   * Draw the Hebrew day-label centred inside a disc at (x, y).
+   * twoChar: if true, reduce font size by 30% for two-glyph values.
+   */
+  function drawLabel(x, y, r, label, isCenter) {
+    var twoChar  = label.length > 1;
+    var basePx   = isCenter ? r * 1.1 : r * 0.80;
+    var fontPx   = twoChar ? basePx * 0.70 : basePx;
+    ctx.save();
+    ctx.font         = fontPx + 'px Georgia, serif';
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle    = isCenter ? '#5A3A00' : 'rgba(30, 18, 0, 0.85)';
+    ctx.fillText(label, x, y);
+    ctx.restore();
+  }
+
+  /* Resize the canvas to match its CSS layout size. */
+  function resize() {
+    W  = panel.clientWidth;
+    H  = panel.clientHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    cx = W / 2;
+    cy = H / 2;
+    /* Scale so seed i=49 lands at 60% of the shorter half-dimension. */
+    scale = Math.min(W, H) * 0.60 / 2 / Math.sqrt(N_SEEDS);
+    discR = scale * 0.45;
+  }
+
+  /* Main animation loop. */
+  function frame() {
+    requestAnimationFrame(frame);
+
+    var now = Date.now();
+
+    /* Advance global rotation. */
+    theta += ROT_SPEED;
+
+    ctx.clearRect(0, 0, W, H);
+
+    /* Background */
+    ctx.fillStyle = '#07060F';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Wheat ring — 14 stalks placed at outer radius. */
+    var wheatR = Math.min(W, H) * 0.47;
+    for (var w = 0; w < 14; w++) {
+      var wa = (w / 14) * Math.PI * 2;
+      var wx = cx + wheatR * Math.cos(wa);
+      var wy = cy + wheatR * Math.sin(wa);
+      drawWheatStalk(wx, wy, wa);
+    }
+
+    /* Outer seeds (i = 1..49). */
+    for (var i = 1; i <= N_SEEDS; i++) {
+      var pos     = seedPos(i);
+      var shimmer = 0.85 + 0.10 * Math.sin(now / 2000 + i * 0.4);
+      drawDisc(pos.x, pos.y, discR, shimmer, false, 0);
+      drawLabel(pos.x, pos.y, discR, HEBREW[i], false);
+    }
+
+    /* Central disc (the 50th, נ). */
+    var pulse   = 0.5 + 0.5 * Math.sin(now / 1500);
+    var centerR = discR * 1.75;
+    drawDisc(cx, cy, centerR, 1.0, true, pulse);
+    drawLabel(cx, cy, centerR, HEBREW[50], true);
+  }
+
+  window.addEventListener('resize', function () { resize(); });
+  resize();
+  frame();
+}());
+</script>
+</body>
+</html>
