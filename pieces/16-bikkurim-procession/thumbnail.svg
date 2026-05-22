@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<rect width="400" height="400" fill="#f7f0e0"/>
+<!-- Band 1: y=0 to 90 -->
+<rect x="0"   y="0"  width="90"  height="90"  fill="#d4a017"/>
+<rect x="90"  y="0"  width="65"  height="90"  fill="#4a7c3f"/>
+<rect x="155" y="0"  width="45"  height="90"  fill="#d4a017"/>
+<rect x="200" y="0"  width="80"  height="40"  fill="#c8a96e"/>
+<rect x="200" y="40" width="40"  height="50"  fill="#d4a017"/>
+<rect x="240" y="40" width="40"  height="50"  fill="#4a7c3f"/>
+<rect x="280" y="0"  width="120" height="45"  fill="#4a7c3f"/>
+<rect x="280" y="45" width="120" height="45"  fill="#d4850a"/>
+<!-- Band 2: y=90 to 190 -->
+<rect x="0"   y="90" width="70"  height="100" fill="#4a7c3f"/>
+<rect x="70"  y="90" width="70"  height="100" fill="#d4a017"/>
+<rect x="140" y="90" width="60"  height="100" fill="#c0392b"/>
+<rect x="200" y="90" width="100" height="50"  fill="#4a7c3f"/>
+<rect x="200" y="140" width="100" height="50" fill="#d4a017"/>
+<rect x="300" y="90" width="100" height="50"  fill="#5b2d8e"/>
+<rect x="300" y="140" width="100" height="50" fill="#d4a017"/>
+<!-- Band 3: y=190 to 300 -->
+<rect x="0"   y="190" width="80" height="110" fill="#d4a017"/>
+<rect x="80"  y="190" width="80" height="60"  fill="#4a7c3f"/>
+<rect x="80"  y="250" width="80" height="50"  fill="#c8a96e"/>
+<rect x="160" y="190" width="80" height="60"  fill="#d4a017"/>
+<rect x="160" y="250" width="80" height="50"  fill="#c0392b"/>
+<rect x="240" y="190" width="80" height="60"  fill="#4a7c3f"/>
+<rect x="240" y="250" width="80" height="50"  fill="#d4850a"/>
+<rect x="320" y="190" width="80" height="110" fill="#d4a017"/>
+<!-- Band 4: y=300 to 360 -->
+<rect x="0"   y="300" width="100" height="60" fill="#4a7c3f"/>
+<rect x="100" y="300" width="80"  height="60" fill="#d4a017"/>
+<rect x="180" y="300" width="80"  height="60" fill="#7d4a2f"/>
+<rect x="260" y="300" width="80"  height="60" fill="#d4a017"/>
+<rect x="340" y="300" width="60"  height="60" fill="#4a7c3f"/>
+<!-- Band 5: y=360 to 400 -->
+<rect x="0"   y="360" width="80" height="40" fill="#4a7c3f"/>
+<rect x="80"  y="360" width="80" height="40" fill="#d4a017"/>
+<rect x="160" y="360" width="80" height="40" fill="#c8a96e"/>
+<rect x="240" y="360" width="80" height="40" fill="#d4a017"/>
+<rect x="320" y="360" width="80" height="40" fill="#4a7c3f"/>
+<!-- Mosaic cell borders -->
+<g stroke="rgba(0,0,0,0.12)" stroke-width="1" fill="none">
+  <rect x="0.5"   y="0.5"   width="89"  height="89"/>
+  <rect x="90.5"  y="0.5"   width="64"  height="89"/>
+  <rect x="155.5" y="0.5"   width="44"  height="89"/>
+  <rect x="200.5" y="0.5"   width="79"  height="39"/>
+  <rect x="200.5" y="40.5"  width="39"  height="49"/>
+  <rect x="240.5" y="40.5"  width="39"  height="49"/>
+  <rect x="280.5" y="0.5"   width="119" height="44"/>
+  <rect x="280.5" y="45.5"  width="119" height="44"/>
+  <rect x="0.5"   y="90.5"  width="69"  height="99"/>
+  <rect x="70.5"  y="90.5"  width="69"  height="99"/>
+  <rect x="140.5" y="90.5"  width="59"  height="99"/>
+  <rect x="200.5" y="90.5"  width="99"  height="49"/>
+  <rect x="200.5" y="140.5" width="99"  height="49"/>
+  <rect x="300.5" y="90.5"  width="99"  height="49"/>
+  <rect x="300.5" y="140.5" width="99"  height="49"/>
+</g>
+<!-- Hebrew text: אֲנִי מוֹדֶה -->
+<text x="200" y="210" font-family="serif" font-size="44" fill="rgba(255,250,240,0.88)" text-anchor="middle" dominant-baseline="middle">אֲנִי מוֹדֶה</text>
+</svg>
