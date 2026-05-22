@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>They Saw God and Ate — Geodesic Crown of the 70 Elders</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #080D24; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a1f3a;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #07091e;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a1f3a; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #d4c8a0;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #505570;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #8898c8;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.93rem;
+    }
+    .essay-panel blockquote {
+      margin: 0.5rem 0 1rem 0;
+      padding: 0.8rem 1.2rem;
+      border-left: 2px solid #3a4060;
+      background: rgba(112, 144, 192, 0.06);
+      border-radius: 0 4px 4px 0;
+    }
+    .essay-panel blockquote p {
+      margin: 0 0 0.4rem;
+      font-size: 0.9rem;
+    }
+    .hebrew-source {
+      font-size: 1.2rem;
+      direction: rtl;
+      text-align: right;
+      color: #d4b888;
+      line-height: 2;
+      font-family: 'Times New Roman', serif;
+      margin: 0 0 0.5rem;
+    }
+    .translation {
+      font-style: italic;
+      color: #a0a8b8;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+    .verse-ref {
+      font-size: 0.8rem;
+      color: #606878;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>They Saw God and Ate</h1>
+    <p class="subtitle">Matan Torah / Covenant at Sinai · Exodus 24:9–11</p>
+
+    <h2>The Source</h2>
+    <blockquote>
+      <p class="hebrew-source">
+        וַיַּעַל מֹשֶׁה וְאַהֲרֹן נָדָב וַאֲבִיהוּא וְשִׁבְעִים מִזִּקְנֵי יִשְׂרָאֵל׃<br>
+        וַיִּרְאוּ אֵת אֱלֹהֵי יִשְׂרָאֵל וְתַחַת רַגְלָיו כְּמַעֲשֵׂה לִבְנַת הַסַּפִּיר<br>
+        וּכְעֶצֶם הַשָּׁמַיִם לָטֹהַר׃ וְאֶל אֲצִילֵי בְנֵי יִשְׂרָאֵל לֹא שָׁלַח יָדוֹ<br>
+        וַיֶּחֱזוּ אֶת הָאֱלֹהִים וַיֹּאכְלוּ וַיִּשְׁתּוּ׃
+      </p>
+      <p class="translation">"And Moses went up, and Aaron, Nadab and Abihu, and seventy of the elders of Israel. And they saw the God of Israel; and under His feet was like a paved work of sapphire stone, and like the very heaven in its clearness. And upon the nobles of the children of Israel He laid not His hand; and they beheld God, and they ate and drank."</p>
+      <p class="verse-ref">Exodus 24:9–11</p>
+    </blockquote>
+
+    <h2>The Most Startling Sentence in the Torah</h2>
+    <p>This passage does not announce itself as remarkable. It is tucked between the blood-rite of verse 8 (Moses dashing sacrificial blood on the people: "Behold the blood of the covenant") and Moses's subsequent forty-day ascent into the cloud. Yet Exodus 24:11 contains what may be the most theologically compressed sentence in the entire Hebrew Bible: <em>vayechezu et haElohim vayochlu vayishtu</em> — "and they beheld God and they ate and drank."</p>
+    <p>Seventy-four people ascended Sinai. They saw the God of Israel. Under the divine feet was something like a pavement of lapis lazuli, as clear as the sky itself — an aesthetic description of surpassing strangeness, as though the narrator wants us to understand that what they encountered was not a voice or a presence but a <em>place</em>, a specific visual scene. And then they sat down to a meal. The eating has troubled every reader since. It looks either like scandalous casualness in the face of the absolute, or like the most natural thing in the world.</p>
+
+    <h2>Three Readings</h2>
+    <p><strong>Rashi</strong> (Rabbi Shlomo Yitzchaki, 11th century, France) reads the eating as incrimination. In his comment on verse 11, he explains that "He laid not His hand upon the nobles" implies they <em>should</em> have been struck down — that their gaze upon the divine was impudent and careless. Rashi cites the later fate of Nadab and Abihu (Leviticus 10), consumed by fire for bringing "strange fire" before God, as delayed punishment for their disrespect on Sinai. They ate and drank when they should have prostrated themselves in fear. God's restraint was a mercy extended only because the joy of Sinai's covenant was too great to shatter with immediate punishment.</p>
+    <p><strong>Nachmanides</strong> (Rabbi Moshe ben Nachman, 13th century, Catalonia) offers a different escape: the entire encounter was prophetic vision, not physical proximity. Following his reading of <em>vayiru</em> and <em>vayechezu</em> as terms of prophetic apprehension rather than literal sight, he argues that the elders entered a state of elevated consciousness — a <em>machazeh</em>, a prophetic trance — in which they apprehended something about the divine nature. The sapphire pavement is clearly symbolic, a vision of cosmic clarity. When the vision ended, they ate as ordinary bodies recovering from prophetic suspension. Nobody literally saw what cannot be seen.</p>
+    <p><strong>The plain-text reading</strong> refuses both escapes. The syntax is relentlessly physical: they <em>went up</em>, they <em>saw</em>, the pavement is described with the eye of someone who noticed its color and texture. Modern biblical scholarship, following Umberto Cassuto and others who read Exodus in the context of ancient Near Eastern literature, notes the precise parallel to suzerain-vassal treaty ratification ceremonies documented throughout the ancient Levant. A covenant was not concluded until it was sealed at table with the suzerain. After the blood rite, after the recitation of terms, after the people's acceptance, the covenant must be ratified by a shared meal. The elders eat because the form requires it. The meal <em>is</em> the signature.</p>
+
+    <h2>The Communal Meal as Sacred Form</h2>
+    <p>If the plain-text reading is correct, it transforms everything. The eating is not a scandal or an anticlimax; it is the culminating liturgical act. The 70 elders — who represent the full community of Israel, seventy being the traditional number of the nations and of Israel's foundational families — sit <em>before</em> God at the top of the mountain and share a meal that closes the covenant. The physical act of eating together is itself holy, itself revelatory, itself part of what happened at Sinai.</p>
+    <p>This reading carries an implication for Shavuot. The institution of <em>Tikkun Leil Shavuot</em> — the all-night vigil of Torah study — reenacts in its texture the ancient communal gathering: a community assembled through the night, sustained by learning and by food, keeping faith with the covenant by sitting together under one canopy. The dairy meal of Shavuot is not incidental. The dome of students bent over the Talmud <em>is</em> the dome of elders ascending Sinai. The meal has never ended.</p>
+
+    <h2>This Piece</h2>
+    <p>The animation renders the mountain as a geodesic icosphere — eighty triangular faces formed by one subdivision of a regular icosahedron, all vertices normalized to a unit sphere, slowly rotating at 4 rpm around the Y axis with a gentle forward tilt. Seventy amber nodes pulse at face-centers like cooking fires: the 70 elders, each rendered as a warm glowing disc with a radial-gradient halo. Ten brighter white nodes at the apex mark Moses, Aaron, Nadab, and Abihu — those named in the text. Wireframe edges are depth-shaded; closer edges glow brighter, distant edges dim toward the horizon. A ground circle of wheat gold traces the base of the mountain below.</p>
+    <p>The Hebrew phrase in the corner — <span dir="rtl" lang="he">וַיֶּחֱזוּ אֶת הָאֱלֹהִים</span> — is the exact pivot of the passage: "and they beheld God." Not "and they saw a vision." They beheld. And then they ate. The dome turns. The fires hold.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var TAU = Math.PI * 2;
+  var PUSH = 2.5;        // sphere center pushed this far from camera
+  var X_TILT = 0.32;     // ~18° forward tilt, shows the dome crown
+  var Y_SPEED = (4 * TAU) / 60; // 4 rpm in rad/s
+
+  // ── Geometry ──────────────────────────────────────────────────────────────
+
+  function normalize(v) {
+    var len = Math.sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
+    return [v[0]/len, v[1]/len, v[2]/len];
+  }
+
+  function buildGeodesic() {
+    var t = (1 + Math.sqrt(5)) / 2;
+    // Standard icosahedron vertices (Three.js convention)
+    var baseVerts = [
+      [-1, t, 0], [1, t, 0], [-1, -t, 0], [1, -t, 0],
+      [0, -1, t], [0, 1, t], [0, -1, -t], [0, 1, -t],
+      [t, 0, -1], [t, 0, 1], [-t, 0, -1], [-t, 0, 1]
+    ].map(normalize);
+
+    // 20 icosahedron faces
+    var baseFaces = [
+      [0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],
+      [1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],
+      [3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],
+      [4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]
+    ];
+
+    // Subdivide each face into 4 (frequency-2) → 80 faces, 42 vertices
+    var verts = baseVerts.slice();
+    var cache = {};
+
+    function getMid(i, j) {
+      var key = Math.min(i,j) + ',' + Math.max(i,j);
+      if (cache[key] !== undefined) return cache[key];
+      var idx = verts.length;
+      verts.push(normalize([
+        (verts[i][0]+verts[j][0])/2,
+        (verts[i][1]+verts[j][1])/2,
+        (verts[i][2]+verts[j][2])/2
+      ]));
+      cache[key] = idx;
+      return idx;
+    }
+
+    var faces = [];
+    for (var f = 0; f < baseFaces.length; f++) {
+      var a = baseFaces[f][0], b = baseFaces[f][1], c = baseFaces[f][2];
+      var ab = getMid(a, b), bc = getMid(b, c), ca = getMid(c, a);
+      faces.push([a, ab, ca]);
+      faces.push([ab, b, bc]);
+      faces.push([ca, bc, c]);
+      faces.push([ab, bc, ca]);
+    }
+
+    return { verts: verts, faces: faces };
+  }
+
+  // Compute face centroids and assign roles by latitude (y value)
+  function categorizeFaces(verts, faces) {
+    var centroids = faces.map(function(f) {
+      return [
+        (verts[f[0]][0]+verts[f[1]][0]+verts[f[2]][0])/3,
+        (verts[f[0]][1]+verts[f[1]][1]+verts[f[2]][1])/3,
+        (verts[f[0]][2]+verts[f[1]][2]+verts[f[2]][2])/3
+      ];
+    });
+
+    var sorted = centroids.map(function(_, i) { return i; })
+      .sort(function(a, b) { return centroids[b][1] - centroids[a][1]; });
+
+    var named = {};   // top 10 by y → Moses, Aaron, Nadab, Abihu + associates
+    var elders = {};  // next 70 → the 70 elders
+    for (var k = 0; k < sorted.length; k++) {
+      if (k < 10)       named[sorted[k]] = true;
+      else if (k < 80)  elders[sorted[k]] = true;
+    }
+
+    return { centroids: centroids, named: named, elders: elders };
+  }
+
+  // ── Rotation + Projection ─────────────────────────────────────────────────
+
+  function rotateVec(v, yAngle, xTilt) {
+    // X rotation (tilt forward)
+    var cx = Math.cos(xTilt), sx = Math.sin(xTilt);
+    var y1 = v[1]*cx - v[2]*sx;
+    var z1 = v[1]*sx + v[2]*cx;
+    // Y rotation (spin)
+    var cy = Math.cos(yAngle), sy = Math.sin(yAngle);
+    return [v[0]*cy + z1*sy, y1, -v[0]*sy + z1*cy];
+  }
+
+  function project(v, focal, cx, cy) {
+    var z = v[2] + PUSH;
+    return [cx + focal*v[0]/z, cy - focal*v[1]/z, z];
+  }
+
+  // ── Drawing ───────────────────────────────────────────────────────────────
+
+  function drawGlowNode(ctx, x, y, r, isNamed) {
+    var glowR = r * 3.8;
+    var grad = ctx.createRadialGradient(x, y, 0, x, y, glowR);
+    if (isNamed) {
+      grad.addColorStop(0,   'rgba(255,255,255,0.95)');
+      grad.addColorStop(0.2, 'rgba(255,240,200,0.55)');
+      grad.addColorStop(1,   'rgba(0,0,0,0)');
+    } else {
+      grad.addColorStop(0,   'rgba(245,200,66,0.95)');
+      grad.addColorStop(0.25,'rgba(240,160,40,0.35)');
+      grad.addColorStop(1,   'rgba(0,0,0,0)');
+    }
+    ctx.beginPath();
+    ctx.arc(x, y, glowR, 0, TAU);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    // Solid core
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, TAU);
+    ctx.fillStyle = isNamed ? '#FFFFFF' : '#F5C842';
+    ctx.fill();
+  }
+
+  // ── Main loop ─────────────────────────────────────────────────────────────
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+
+  var geo = buildGeodesic();
+  var cat = categorizeFaces(geo.verts, geo.faces);
+
+  var W, H, focal, CX, CY;
+
+  function resize() {
+    W = canvas.width  = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+    // Focal length so sphere fills ~40% of shorter dimension
+    focal = Math.min(W, H) * 0.7;
+    CX = W / 2;
+    CY = H * 0.5;
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  var startTime = null;
+
+  function draw(ts) {
+    if (!startTime) startTime = ts;
+    var elapsed = (ts - startTime) / 1000;
+    var yAngle = elapsed * Y_SPEED;
+
+    // Background
+    ctx.fillStyle = '#080D24';
+    ctx.fillRect(0, 0, W, H);
+
+    // Rotate all vertices and centroids
+    var rv = geo.verts.map(function(v) { return rotateVec(v, yAngle, X_TILT); });
+    var pv = rv.map(function(v) { return project(v, focal, CX, CY); });
+
+    var rc = cat.centroids.map(function(v) { return rotateVec(v, yAngle, X_TILT); });
+    var pc = rc.map(function(v) { return project(v, focal, CX, CY); });
+
+    // Sort faces back-to-front (painter's algorithm)
+    var order = geo.faces.map(function(f, i) {
+      return { i: i, z: (pv[f[0]][2] + pv[f[1]][2] + pv[f[2]][2]) / 3 };
+    }).sort(function(a, b) { return b.z - a.z; });
+
+    // Ground circle (ring at y = -1.1, radius 0.9 on ground plane)
+    ctx.beginPath();
+    var gSteps = 48;
+    for (var gi = 0; gi <= gSteps; gi++) {
+      var gTheta = (gi / gSteps) * TAU;
+      var gp = rotateVec([0.9*Math.cos(gTheta), -1.1, 0.9*Math.sin(gTheta)], yAngle, X_TILT);
+      var gpp = project(gp, focal, CX, CY);
+      if (gi === 0) ctx.moveTo(gpp[0], gpp[1]);
+      else ctx.lineTo(gpp[0], gpp[1]);
+    }
+    ctx.strokeStyle = 'rgba(212,168,32,0.35)';
+    ctx.lineWidth = 1.4;
+    ctx.stroke();
+
+    // Draw wireframe edges
+    var sphereR = focal / PUSH; // reference scale
+    for (var oi = 0; oi < order.length; oi++) {
+      var fi = order[oi].i;
+      var avgZ = order[oi].z;
+      var face = geo.faces[fi];
+      var pa = pv[face[0]], pb = pv[face[1]], pc2 = pv[face[2]];
+
+      // Depth-keyed opacity: closer = brighter
+      var t = 1 - (avgZ - (PUSH - 1)) / 2.0; // 0..1
+      var opacity = Math.max(0.08, Math.min(0.82, 0.1 + 0.72 * t));
+      ctx.strokeStyle = 'rgba(112,144,192,' + opacity.toFixed(2) + ')';
+      ctx.lineWidth = 0.75;
+
+      ctx.beginPath();
+      ctx.moveTo(pa[0], pa[1]);
+      ctx.lineTo(pb[0], pb[1]);
+      ctx.lineTo(pc2[0], pc2[1]);
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    // Draw glow nodes front-to-back (draw on top of edges)
+    // Reverse order (front first) so front nodes paint over back edges
+    for (var oi2 = order.length - 1; oi2 >= 0; oi2--) {
+      var fi2 = order[oi2].i;
+      var cProj = pc[fi2];
+      var nodeZ = cProj[2];
+      // Radius scales with depth
+      var baseR = sphereR * 0.022 * (PUSH / nodeZ);
+
+      if (cat.named[fi2]) {
+        drawGlowNode(ctx, cProj[0], cProj[1], baseR * 1.5, true);
+      } else if (cat.elders[fi2]) {
+        drawGlowNode(ctx, cProj[0], cProj[1], baseR, false);
+      }
+    }
+
+    // Hebrew overlay — top-left corner
+    ctx.save();
+    ctx.font = 'bold 17px Georgia, "Times New Roman", serif';
+    ctx.fillStyle = 'rgba(220,185,100,0.88)';
+    ctx.fillText('וַיֶחֱזוּ אֶת הָאֱלֹהִים', 22, 38);
+    ctx.font = '11px Georgia, serif';
+    ctx.fillStyle = 'rgba(220,185,100,0.48)';
+    ctx.fillText('Exodus 24:11', 22, 56);
+    ctx.restore();
+
+    requestAnimationFrame(draw);
+  }
+
+  requestAnimationFrame(draw);
+}());
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" width="240" height="160">
+  <rect width="240" height="160" fill="#080D24"/>
+  <!-- Dome wireframe arcs -->
+  <path d="M 20 140 Q 120 15 220 140" stroke="#7090C0" stroke-width="2" fill="none" opacity="0.65"/>
+  <path d="M 40 140 Q 120 35 200 140" stroke="#7090C0" stroke-width="1.2" fill="none" opacity="0.4"/>
+  <path d="M 60 140 Q 120 55 180 140" stroke="#7090C0" stroke-width="0.8" fill="none" opacity="0.25"/>
+  <!-- Vertical ribs -->
+  <line x1="120" y1="15" x2="120" y2="140" stroke="#7090C0" stroke-width="0.7" opacity="0.3"/>
+  <line x1="70" y1="38" x2="95" y2="140" stroke="#7090C0" stroke-width="0.6" opacity="0.2"/>
+  <line x1="170" y1="38" x2="145" y2="140" stroke="#7090C0" stroke-width="0.6" opacity="0.2"/>
+  <!-- Ground ellipse -->
+  <ellipse cx="120" cy="140" rx="100" ry="10" stroke="#D4A820" stroke-width="1.2" fill="none" opacity="0.35"/>
+  <!-- 7 amber elder glow dots along main arc -->
+  <!-- Arc Q(20,140)(120,15)(220,140) sampled at t=1/8..7/8 -->
+  <circle cx="45" cy="113" r="5" fill="#F5C842" opacity="0.85"/>
+  <circle cx="70" cy="93" r="5" fill="#F5C842" opacity="0.85"/>
+  <circle cx="95" cy="81" r="5" fill="#F5C842" opacity="0.85"/>
+  <circle cx="120" cy="78" r="5" fill="#F5C842" opacity="0.85"/>
+  <circle cx="145" cy="81" r="5" fill="#F5C842" opacity="0.85"/>
+  <circle cx="170" cy="93" r="5" fill="#F5C842" opacity="0.85"/>
+  <circle cx="195" cy="113" r="5" fill="#F5C842" opacity="0.85"/>
+  <!-- Glow halos -->
+  <circle cx="45" cy="113" r="12" fill="#F5C842" opacity="0.12"/>
+  <circle cx="70" cy="93" r="12" fill="#F5C842" opacity="0.12"/>
+  <circle cx="95" cy="81" r="12" fill="#F5C842" opacity="0.12"/>
+  <circle cx="120" cy="78" r="12" fill="#F5C842" opacity="0.12"/>
+  <circle cx="145" cy="81" r="12" fill="#F5C842" opacity="0.12"/>
+  <circle cx="170" cy="93" r="12" fill="#F5C842" opacity="0.12"/>
+  <circle cx="195" cy="113" r="12" fill="#F5C842" opacity="0.12"/>
+  <!-- White apex dot (named figures) -->
+  <circle cx="120" cy="78" r="4" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="120" cy="78" r="9" fill="#FFFFFF" opacity="0.15"/>
+</svg>

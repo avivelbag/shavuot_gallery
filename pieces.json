@@ -770,6 +770,17 @@
     "essay": "pieces/55-unfurling-scroll-ruth/essay.md"
   },
   {
+    "id": "56-seventy-elders-geodesic",
+    "title": "They Saw God and Ate",
+    "tagline": "the 70 elders on Sinai — a geodesic dome of glowing elder-fires under a cosmic canopy",
+    "year": 2026,
+    "theme": "Matan Torah / Covenant at Sinai",
+    "technique": "3D geodesic wireframe (pure JS projection)",
+    "path": "pieces/56-seventy-elders-geodesic/index.html",
+    "thumbnail": "pieces/56-seventy-elders-geodesic/thumbnail.svg",
+    "essay": "pieces/56-seventy-elders-geodesic/essay.md"
+  },
+  {
     "id": "56-sofer-marbling-parchment",
     "title": "Before the Letters",
     "tagline": "ink spreads on water before it becomes Torah — Ebru marbling of sacred parchment",
