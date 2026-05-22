@@ -253,6 +253,17 @@
     "essay": "pieces/27-black-fire-white-fire/essay.md"
   },
   {
+    "id": "28-all-souls-at-sinai",
+    "title": "All Souls Were Present",
+    "tagline": "every Jewish soul across all generations gathered at Sinai — diffusion-limited aggregation",
+    "year": 2026,
+    "theme": "Matan Torah / The Covenant Across All Generations",
+    "technique": "canvas 2D diffusion-limited aggregation (DLA), on-lattice Brownian motion",
+    "path": "pieces/28-all-souls-at-sinai/index.html",
+    "thumbnail": "pieces/28-all-souls-at-sinai/thumbnail.svg",
+    "essay": "pieces/28-all-souls-at-sinai/essay.md"
+  },
+  {
     "id": "29-fiftieth-day-epicycles",
     "title": "The Fiftieth Day",
     "tagline": "שָׁבוּעוֹת traced by Fourier epicycles — the word as a sum of rotating circles",
