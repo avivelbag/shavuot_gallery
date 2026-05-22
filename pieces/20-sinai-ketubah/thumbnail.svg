@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="100 130 400 400"
+     width="400" height="400">
+
+  <!-- Parchment background -->
+  <rect x="100" y="130" width="400" height="400" fill="#f5ead8"/>
+
+  <!-- Inner frame lines (visible portion of the piece border) -->
+  <rect x="60" y="60" width="480" height="720" fill="none" stroke="#b8860b" stroke-width="0.8" stroke-dasharray="5,3"/>
+  <rect x="52" y="52" width="496" height="736" fill="none" stroke="#2c2060" stroke-width="1.2"/>
+
+  <!-- Static vine / pomegranate border segment (top portion visible in crop) -->
+  <!-- Top inner-border strip sampler: a row of alternating motifs -->
+  <g>
+    <!-- vine at 130,19 -->
+    <path d="M 139,19 C 139,26 151,26 151,34 C 151,42 139,42 139,49"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 139,28 C 131,24 130,34 139,33 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 151,35 C 159,34 160,44 151,40 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <!-- pome at 160,19 -->
+    <circle cx="175" cy="40" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 175,32 L 175,26 M 171,33 L 168,27 M 179,33 L 182,27 M 169,35 L 165,31 M 181,35 L 185,31"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <!-- vine at 190 -->
+    <path d="M 199,19 C 199,26 211,26 211,34 C 211,42 199,42 199,49"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 199,28 C 191,24 190,34 199,33 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 211,35 C 219,34 220,44 211,40 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <!-- pome at 220 -->
+    <circle cx="235" cy="40" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 235,32 L 235,26 M 231,33 L 228,27 M 239,33 L 242,27 M 229,35 L 225,31 M 241,35 L 245,31"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <!-- vine at 250 -->
+    <path d="M 259,19 C 259,26 271,26 271,34 C 271,42 259,42 259,49"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 259,28 C 251,24 250,34 259,33 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 271,35 C 279,34 280,44 271,40 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <!-- pome at 280 -->
+    <circle cx="295" cy="40" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 295,32 L 295,26 M 291,33 L 288,27 M 299,33 L 302,27 M 289,35 L 285,31 M 301,35 L 305,31"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <!-- vine at 310 -->
+    <path d="M 319,19 C 319,26 331,26 331,34 C 331,42 319,42 319,49"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 319,28 C 311,24 310,34 319,33 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 331,35 C 339,34 340,44 331,40 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <!-- pome at 340 -->
+    <circle cx="355" cy="40" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 355,32 L 355,26 M 351,33 L 348,27 M 359,33 L 362,27 M 349,35 L 345,31 M 361,35 L 365,31"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <!-- vine at 370 -->
+    <path d="M 379,19 C 379,26 391,26 391,34 C 391,42 379,42 379,49"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 379,28 C 371,24 370,34 379,33 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 391,35 C 399,34 400,44 391,40 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <!-- pome at 400 -->
+    <circle cx="415" cy="40" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 415,32 L 415,26 M 411,33 L 408,27 M 419,33 L 422,27 M 409,35 L 405,31 M 421,35 L 425,31"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <!-- vine at 430 -->
+    <path d="M 439,19 C 439,26 451,26 451,34 C 451,42 439,42 439,49"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 439,28 C 431,24 430,34 439,33 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 451,35 C 459,34 460,44 451,40 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+  </g>
+
+  <!-- Left-side border strip sampler -->
+  <g>
+    <path d="M 19,139 C 26,139 26,151 34,151 C 42,151 42,139 49,139"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 28,139 C 24,131 34,130 33,139 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 35,151 C 34,159 44,160 40,151 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <circle cx="40" cy="175" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 32,175 L 26,175 M 33,171 L 27,168 M 33,179 L 27,182 M 35,169 L 31,165 M 35,181 L 31,185"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M 19,199 C 26,199 26,211 34,211 C 42,211 42,199 49,199"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 28,199 C 24,191 34,190 33,199 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 35,211 C 34,219 44,220 40,211 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <circle cx="40" cy="235" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 32,235 L 26,235 M 33,231 L 27,228 M 33,239 L 27,242 M 35,229 L 31,225 M 35,241 L 31,245"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M 19,259 C 26,259 26,271 34,271 C 42,271 42,259 49,259"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 28,259 C 24,251 34,250 33,259 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 35,271 C 34,279 44,280 40,271 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <circle cx="40" cy="295" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 32,295 L 26,295 M 33,291 L 27,288 M 33,299 L 27,302 M 35,289 L 31,285 M 35,301 L 31,305"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M 19,319 C 26,319 26,331 34,331 C 42,331 42,319 49,319"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 28,319 C 24,311 34,310 33,319 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 35,331 C 34,339 44,340 40,331 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <circle cx="40" cy="355" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 32,355 L 26,355 M 33,351 L 27,348 M 33,359 L 27,362 M 35,349 L 31,345 M 35,361 L 31,365"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M 19,379 C 26,379 26,391 34,391 C 42,391 42,379 49,379"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 28,379 C 24,371 34,370 33,379 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 35,391 C 34,399 44,400 40,391 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <circle cx="40" cy="415" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+    <path d="M 32,415 L 26,415 M 33,411 L 27,408 M 33,419 L 27,422 M 35,409 L 31,405 M 35,421 L 31,425"
+          fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M 19,439 C 26,439 26,451 34,451 C 42,451 42,439 49,439"
+          fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 28,439 C 24,431 34,430 33,439 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+    <path d="M 35,451 C 34,459 44,460 40,451 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+  </g>
+
+  <!-- Outer border lines (partial view) -->
+  <rect x="12" y="12" width="576" height="816" fill="none" stroke="#2c2060" stroke-width="2.5"/>
+  <rect x="17" y="17" width="566" height="806" fill="none" stroke="#2c2060" stroke-width="0.8"/>
+
+  <!-- Hebrew text content (centered) -->
+  <text x="300" y="200"
+        text-anchor="middle"
+        font-family="'David', 'SBL Hebrew', 'FreeSerif', Georgia, serif"
+        font-size="28" fill="#2c2060"
+        direction="rtl" unicode-bidi="bidi-override">בְּמָקוֹם חֻפָּה עָמַד הָר סִינַי</text>
+
+  <text x="300" y="228"
+        text-anchor="middle"
+        font-family="'Palatino Linotype', Palatino, Georgia, serif"
+        font-size="12" fill="#2c2060" font-style="italic">"In the place of a canopy stood Mount Sinai"</text>
+
+  <!-- Wavy gold divider -->
+  <path d="M 200,252 C 220,246 240,258 260,252 C 280,246 300,258 320,252 C 340,246 360,258 380,252 C 400,246 400,258 400,252"
+        fill="none" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="300" cy="252" r="3" fill="#b8860b"/>
+
+  <!-- Star separators -->
+  <text x="300" y="285" text-anchor="middle"
+        font-family="Georgia, serif" font-size="14" fill="#b8860b">✦  ✦  ✦</text>
+
+  <!-- Main verse -->
+  <text x="300" y="370"
+        text-anchor="middle"
+        font-family="'David', 'SBL Hebrew', 'FreeSerif', Georgia, serif"
+        font-size="52" fill="#2c2060"
+        direction="rtl" unicode-bidi="bidi-override">נַעֲשֶׂה וְנִשְׁמָע</text>
+
+  <text x="300" y="402"
+        text-anchor="middle"
+        font-family="'Palatino Linotype', Palatino, Georgia, serif"
+        font-size="13" fill="#2c2060" font-style="italic">"We will do and we will hear"</text>
+
+  <text x="300" y="424"
+        text-anchor="middle"
+        font-family="'Palatino Linotype', Palatino, Georgia, serif"
+        font-size="10" fill="#2c2060" letter-spacing="1" opacity="0.8">Exodus 24:7  ·  שמות כד:ז</text>
+
+  <!-- Bottom divider -->
+  <path d="M 200,440 C 220,434 240,446 260,440 C 280,434 300,446 320,440 C 340,434 360,446 380,440 C 400,434 400,446 400,440"
+        fill="none" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="300" cy="440" r="3" fill="#b8860b"/>
+
+  <text x="300" y="480"
+        text-anchor="middle"
+        font-family="'David', 'SBL Hebrew', 'FreeSerif', Georgia, serif"
+        font-size="22" fill="#2c2060"
+        direction="rtl" unicode-bidi="bidi-override">קִיְּמוּ וְקִבְּלוּ</text>
+
+  <text x="300" y="503"
+        text-anchor="middle"
+        font-family="'Palatino Linotype', Palatino, Georgia, serif"
+        font-size="11" fill="#2c2060" font-style="italic">"They confirmed and they accepted"</text>
+
+  <text x="300" y="522"
+        text-anchor="middle"
+        font-family="'Palatino Linotype', Palatino, Georgia, serif"
+        font-size="10" fill="#2c2060" letter-spacing="1" opacity="0.8">Esther 9:27  ·  אסתר ט:כז</text>
+</svg>

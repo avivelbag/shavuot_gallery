@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mountain as Canopy — Sinai as Ketubah</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1a1208; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 54%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1208;
+      overflow: hidden;
+      padding: 1.5rem;
+    }
+
+    .art-panel svg {
+      max-width: 100%;
+      max-height: calc(100vh - 3rem);
+      display: block;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem 3rem 2rem;
+      border-left: 1px solid #3a2a14;
+      overflow-y: auto;
+      color: #ccc0a4;
+      font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+      background: #130e06;
+      line-height: 1.8;
+    }
+
+    .essay-panel h1 {
+      font-size: 1.55rem;
+      color: #e8d098;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+      line-height: 1.3;
+    }
+
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #7a6040;
+      margin: 0 0 2rem;
+    }
+
+    .essay-panel h2 {
+      font-size: 1.05rem;
+      color: #d4a840;
+      margin: 2rem 0 0.5rem;
+      font-weight: normal;
+      letter-spacing: 0.03em;
+    }
+
+    .essay-panel p {
+      font-size: 0.95rem;
+      color: #ccc0a4;
+      margin: 0 0 1rem;
+    }
+
+    .source-block {
+      margin: 1.2rem 0;
+      padding: 0.9rem 1rem 0.9rem 1.2rem;
+      border-left: 3px solid #b8860b;
+      background: rgba(184,134,11,0.07);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .source-block .hebrew {
+      direction: rtl;
+      font-family: 'David', 'SBL Hebrew', 'FreeSerif', Georgia, serif;
+      font-size: 1.2rem;
+      color: #e8d098;
+      display: block;
+      margin-bottom: 0.4rem;
+      line-height: 1.9;
+    }
+
+    .source-block .translation {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #a89060;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .source-block .citation {
+      font-size: 0.8rem;
+      color: #7a6040;
+      letter-spacing: 0.05em;
+    }
+
+    .talmud-block {
+      margin: 1.2rem 0;
+      padding: 0.9rem 1rem 0.9rem 1.2rem;
+      border-left: 3px solid #6050a0;
+      background: rgba(44,32,96,0.18);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .talmud-block .hebrew {
+      direction: rtl;
+      font-family: 'David', 'SBL Hebrew', 'FreeSerif', Georgia, serif;
+      font-size: 1.05rem;
+      color: #c0b8e0;
+      display: block;
+      margin-bottom: 0.4rem;
+      line-height: 1.9;
+    }
+
+    .talmud-block .translation {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #9088b8;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .talmud-block .citation {
+      font-size: 0.8rem;
+      color: #604860;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; }
+      .art-panel {
+        position: static; height: auto; flex: none;
+        padding: 1rem; min-height: 55vw;
+      }
+      .art-panel svg { max-height: 85vw; }
+      .essay-panel { border-left: none; border-top: 1px solid #3a2a14; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ====== Artwork panel (inline SVG) ====== -->
+  <div class="art-panel">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         id="ketubah-svg"
+         viewBox="0 0 600 840"
+         width="600" height="840"
+         role="img"
+         aria-label="Ketubah-style illuminated document: Mount Sinai as a wedding canopy">
+
+      <defs>
+        <symbol id="vine" viewBox="0 0 30 30">
+          <path d="M 9,0 C 9,7 21,7 21,15 C 21,23 9,23 9,30"
+                fill="none" stroke="#2c2060" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 9,9 C 1,5 0,15 9,14 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+          <path d="M 21,16 C 29,15 30,25 21,21 Z" fill="#b8860b" stroke="#2c2060" stroke-width="0.7"/>
+        </symbol>
+
+        <symbol id="pomegranate" viewBox="0 0 30 30">
+          <circle cx="15" cy="21" r="8" fill="#b8860b" stroke="#2c2060" stroke-width="1.2"/>
+          <path d="M 15,13 L 15,7 M 11,14 L 8,8 M 19,14 L 22,8 M 9,16 L 5,12 M 21,16 L 25,12"
+                fill="none" stroke="#2c2060" stroke-width="1.1" stroke-linecap="round"/>
+          <circle cx="15" cy="13" r="1.8" fill="#2c2060"/>
+        </symbol>
+
+        <symbol id="corner" viewBox="0 0 40 40">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="#2c2060" stroke-width="1.2"/>
+          <circle cx="20" cy="20" r="11" fill="#b8860b" stroke="#2c2060" stroke-width="1"/>
+          <circle cx="20" cy="20" r="4" fill="#2c2060"/>
+          <ellipse cx="20" cy="6"    rx="2.5" ry="5"  fill="#b8860b" stroke="#2c2060" stroke-width="0.8"/>
+          <ellipse cx="34" cy="20"   rx="5"   ry="2.5" fill="#b8860b" stroke="#2c2060" stroke-width="0.8"/>
+          <ellipse cx="20" cy="34"   rx="2.5" ry="5"  fill="#b8860b" stroke="#2c2060" stroke-width="0.8"/>
+          <ellipse cx="6"  cy="20"   rx="5"   ry="2.5" fill="#b8860b" stroke="#2c2060" stroke-width="0.8"/>
+          <ellipse cx="29.2" cy="10.8" rx="2.5" ry="5" fill="#b8860b" stroke="#2c2060" stroke-width="0.8" transform="rotate(45,29.2,10.8)"/>
+          <ellipse cx="29.2" cy="29.2" rx="2.5" ry="5" fill="#b8860b" stroke="#2c2060" stroke-width="0.8" transform="rotate(-45,29.2,29.2)"/>
+          <ellipse cx="10.8" cy="29.2" rx="2.5" ry="5" fill="#b8860b" stroke="#2c2060" stroke-width="0.8" transform="rotate(45,10.8,29.2)"/>
+          <ellipse cx="10.8" cy="10.8" rx="2.5" ry="5" fill="#b8860b" stroke="#2c2060" stroke-width="0.8" transform="rotate(-45,10.8,10.8)"/>
+        </symbol>
+
+        <symbol id="divider" viewBox="0 0 200 16">
+          <path d="M 0,8 C 20,2 40,14 60,8 C 80,2 100,14 120,8 C 140,2 160,14 180,8 L 200,8"
+                fill="none" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="100" cy="8" r="3" fill="#b8860b"/>
+          <circle cx="60"  cy="8" r="2" fill="#b8860b"/>
+          <circle cx="140" cy="8" r="2" fill="#b8860b"/>
+        </symbol>
+      </defs>
+
+      <!-- Parchment background -->
+      <rect width="600" height="840" fill="#f5ead8"/>
+
+      <!-- Outer double border -->
+      <rect x="12" y="12" width="576" height="816" fill="none" stroke="#2c2060" stroke-width="2.5"/>
+      <rect x="17" y="17" width="566" height="806" fill="none" stroke="#2c2060" stroke-width="0.8"/>
+
+      <!-- Inner frame -->
+      <rect x="52" y="52" width="496" height="736" fill="none" stroke="#2c2060" stroke-width="1.2"/>
+
+      <!-- Gold dashed inset -->
+      <rect x="60" y="60" width="480" height="720" fill="none" stroke="#b8860b" stroke-width="0.8" stroke-dasharray="5,3"/>
+
+      <!-- Border units layer (script-generated) -->
+      <g id="border-layer"/>
+
+      <!-- Header label -->
+      <text x="300" y="108"
+            text-anchor="middle"
+            font-family="'Palatino Linotype',Palatino,Georgia,serif"
+            font-size="11" letter-spacing="3" fill="#2c2060" opacity="0.7">SHAVUOT  ·  MATAN TORAH</text>
+
+      <!-- Main Hebrew heading -->
+      <text x="300" y="200"
+            text-anchor="middle"
+            font-family="'David','SBL Hebrew','FreeSerif',Georgia,serif"
+            font-size="28" fill="#2c2060"
+            direction="rtl" unicode-bidi="bidi-override">בְּמָקוֹם חֻפָּה עָמַד הָר סִינַי</text>
+
+      <!-- English gloss -->
+      <text x="300" y="228"
+            text-anchor="middle"
+            font-family="'Palatino Linotype',Palatino,Georgia,serif"
+            font-size="12" fill="#2c2060" font-style="italic">"In the place of a canopy stood Mount Sinai"</text>
+
+      <!-- Divider -->
+      <use href="#divider" x="200" y="244" width="200" height="16"/>
+
+      <!-- Source line -->
+      <text x="300" y="278"
+            text-anchor="middle"
+            font-family="'Palatino Linotype',Palatino,Georgia,serif"
+            font-size="10" fill="#2c2060" letter-spacing="1" opacity="0.8">Shabbat 88a  ·  Exodus Rabbah 41:1</text>
+
+      <!-- Star separators -->
+      <text x="300" y="310" text-anchor="middle"
+            font-family="Georgia,serif" font-size="14" fill="#b8860b">&#x2736;  &#x2736;  &#x2736;</text>
+
+      <!-- Main verse: na'aseh v'nishma -->
+      <text x="300" y="390"
+            text-anchor="middle"
+            font-family="'David','SBL Hebrew','FreeSerif',Georgia,serif"
+            font-size="52" fill="#2c2060"
+            direction="rtl" unicode-bidi="bidi-override">נַעֲשֶׂה וְנִשְׁמָע</text>
+
+      <text x="300" y="422"
+            text-anchor="middle"
+            font-family="'Palatino Linotype',Palatino,Georgia,serif"
+            font-size="13" fill="#2c2060" font-style="italic">"We will do and we will hear"</text>
+
+      <text x="300" y="444"
+            text-anchor="middle"
+            font-family="'Palatino Linotype',Palatino,Georgia,serif"
+            font-size="10" fill="#2c2060" letter-spacing="1" opacity="0.8">Exodus 24:7  ·  שמות כד:ז</text>
+
+      <!-- Divider -->
+      <use href="#divider" x="200" y="462" width="200" height="16"/>
+
+      <!-- Confirmation phrase: kiym'u v'kibl'u -->
+      <text x="300" y="510"
+            text-anchor="middle"
+            font-family="'David','SBL Hebrew','FreeSerif',Georgia,serif"
+            font-size="22" fill="#2c2060"
+            direction="rtl" unicode-bidi="bidi-override">קִיְּמוּ וְקִבְּלוּ</text>
+
+      <text x="300" y="533"
+            text-anchor="middle"
+            font-family="'Palatino Linotype',Palatino,Georgia,serif"
+            font-size="11" fill="#2c2060" font-style="italic">"They confirmed and they accepted"</text>
+
+      <text x="300" y="552"
+            text-anchor="middle"
+            font-family="'Palatino Linotype',Palatino,Georgia,serif"
+            font-size="10" fill="#2c2060" letter-spacing="1" opacity="0.8">Esther 9:27  ·  אסתר ט:כז</text>
+
+      <!-- Stylised menorah in gold -->
+      <g transform="translate(270,585)" fill="none" stroke="#b8860b" stroke-width="1.2">
+        <line x1="30" y1="0" x2="30" y2="50"/>
+        <path d="M 10,50 L 50,50"/>
+        <path d="M 30,15 C 20,15 15,10 15,5"/>
+        <path d="M 30,25 C 15,25 8,18 8,10"/>
+        <path d="M 30,15 C 40,15 45,10 45,5"/>
+        <path d="M 30,25 C 45,25 52,18 52,10"/>
+        <circle cx="30" cy="0"  r="2.5" fill="#b8860b" stroke="none"/>
+        <circle cx="15" cy="5"  r="2"   fill="#b8860b" stroke="none"/>
+        <circle cx="45" cy="5"  r="2"   fill="#b8860b" stroke="none"/>
+        <circle cx="8"  cy="10" r="1.8" fill="#b8860b" stroke="none"/>
+        <circle cx="52" cy="10" r="1.8" fill="#b8860b" stroke="none"/>
+      </g>
+
+      <!-- Bottom label -->
+      <text x="300" y="680"
+            text-anchor="middle"
+            font-family="'Palatino Linotype',Palatino,Georgia,serif"
+            font-size="10" fill="#2c2060" letter-spacing="2" opacity="0.6">SHAVUOT  5786</text>
+
+      <line x1="150" y1="692" x2="450" y2="692" stroke="#b8860b" stroke-width="0.8"/>
+
+      <script type="text/javascript">
+      /* <![CDATA[ */
+      (function () {
+        var ns = 'http://www.w3.org/2000/svg';
+        var layer = document.getElementById('border-layer');
+        if (!layer) { return; }
+
+        /**
+         * Place a <use> element referencing a border symbol.
+         * tx/ty translate the unit's top-left corner to (tx, ty).
+         * angleDeg optionally rotates the unit around its own centre.
+         */
+        function placeUnit(symbolId, tx, ty, w, h, angleDeg) {
+          var use = document.createElementNS(ns, 'use');
+          use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#' + symbolId);
+          use.setAttribute('href', '#' + symbolId);
+          use.setAttribute('width', String(w));
+          use.setAttribute('height', String(h));
+          var t = 'translate(' + tx + ',' + ty + ')';
+          if (angleDeg) {
+            t += ' rotate(' + angleDeg + ',' + (w / 2) + ',' + (h / 2) + ')';
+          }
+          use.setAttribute('transform', t);
+          layer.appendChild(use);
+        }
+
+        /*
+         * Border zone between the outer lines (x=17/y=17) and the inner frame (x=52/y=52).
+         * Unit size: vine/pomegranate = 30x30, corner rosette = 40x40.
+         *
+         * Corners placed at the four outer corners (x=12, y=12 etc.).
+         *
+         * Top/bottom strips (between outer rect and inner frame, centered in 35px zone):
+         *   ty = 17 + (35-30)/2 = 19   (top)
+         *   ty = 788 + (35-30)/2 = 790 (bottom, inner frame bottom at y=788)
+         *   Units span x=52+40=92 to x=548-40=508, width=416.
+         *   count = 13 units (13*30=390, pad = (416-390)/2 = 13).
+         *   firstX = 92 + 13 = 105.
+         *
+         * Left/right strips:
+         *   tx = 17 + (35-30)/2 = 19   (left)
+         *   tx = 553 + (35-30)/2 = 550 (right, inner right at 548, outer right at 583)
+         *   Units span y=52+40=92 to y=788-40=748, height=656.
+         *   count = 21 units (21*30=630, pad = (656-630)/2 = 13).
+         *   firstY = 92 + 13 = 105.
+         */
+        var unitW = 30, unitH = 30, cW = 40, cH = 40;
+
+        placeUnit('corner', 12,  12,  cW, cH, 0);
+        placeUnit('corner', 548, 12,  cW, cH, 90);
+        placeUnit('corner', 12,  788, cW, cH, 270);
+        placeUnit('corner', 548, 788, cW, cH, 180);
+
+        var topTY = 19, botTY = 790;
+        var hFirstX = 105, hStep = 30, hCount = 13;
+        for (var i = 0; i < hCount; i++) {
+          var hx = hFirstX + i * hStep;
+          placeUnit(i % 2 === 0 ? 'vine' : 'pomegranate', hx, topTY, unitW, unitH, 0);
+          placeUnit(i % 2 === 0 ? 'vine' : 'pomegranate', hx, botTY, unitW, unitH, 180);
+        }
+
+        var leftTX = 19, rightTX = 550;
+        var vFirstY = 105, vStep = 30, vCount = 21;
+        for (var i = 0; i < vCount; i++) {
+          var vy = vFirstY + i * vStep;
+          placeUnit(i % 2 === 0 ? 'vine' : 'pomegranate', leftTX,  vy, unitW, unitH, 90);
+          placeUnit(i % 2 === 0 ? 'vine' : 'pomegranate', rightTX, vy, unitW, unitH, 270);
+        }
+      }());
+      /* ]]> */
+      </script>
+    </svg>
+  </div><!-- /art-panel -->
+
+  <!-- ====== Essay panel ====== -->
+  <div class="essay-panel">
+    <h1>The Mountain as Canopy</h1>
+    <p class="subtitle">Sinai as Ketubah — Coercion, Consent, and the Covenant</p>
+
+    <h2>The Verse</h2>
+    <p>
+      At the foot of Sinai, on the morning of revelation, Moses brought the entire people out of
+      the camp to stand before God. The verse describes their position with a phrase that the
+      rabbis found impossible to read innocently.
+    </p>
+
+    <div class="source-block">
+      <span class="hebrew">וַיּוֹצֵא מֹשֶׁה אֶת-הָעָם לִקְרַאת הָאֱלֹהִים, מִן-הַמַּחֲנֶה;
+        וַיִּתְיַצְּבוּ, בְּתַחְתִּית הָהָר</span>
+      <span class="translation">"And Moses brought forth the people out of the camp to meet God;
+        and they stationed themselves at the foot of the mountain."</span>
+      <span class="citation">Exodus 19:17 · שמות יט:יז</span>
+    </div>
+
+    <p>
+      <em>B'tachtit ha-har</em> — "at the foot of the mountain" — is the obvious plain reading.
+      But the Talmud (Shabbat 88a) presses the grammar. The word <em>tachtit</em>, meaning
+      "beneath" or "at the bottom of," is read as meaning <em>under</em> the mountain — below it,
+      beneath it, with the mountain lifted above them.
+    </p>
+
+    <h2>The Midrash: A Mountain Held Like a Barrel</h2>
+
+    <div class="talmud-block">
+      <span class="hebrew">מלמד שכפה עליהם הקדוש ברוך הוא את ההר כגיגית ואמר להם: אם אתם מקבלים
+        התורה — מוטב, ואם לאו — שם תהא קבורתכם</span>
+      <span class="translation">"This teaches that the Holy One, blessed be He, overturned
+        the mountain above them like a barrel and said to them: If you accept the Torah — good.
+        If not — there will be your burial."</span>
+      <span class="citation">Talmud Bavli, Shabbat 88a</span>
+    </div>
+
+    <p>
+      The word <em>gigit</em> is a large vat or barrel. The mountain is not a backdrop; it is a
+      lid. The voice is unambiguous: accept, or be buried here. This is not a vision. It is not
+      a metaphor. The Talmud presents this as the literal mechanism of the Sinai covenant.
+    </p>
+
+    <h2>The Legal Problem: Was the Covenant Coerced?</h2>
+    <p>
+      The Talmud immediately follows the midrash with a stark legal observation: if the covenant
+      at Sinai was obtained under the threat of death, it constitutes <em>modaah rabbah
+      l'Oraita</em> — a formal legal objection to the binding force of the Torah itself. Under
+      the very contract law the rabbis derived from Torah, an agreement made under duress is
+      voidable. Three million people under a suspended mountain is duress. The covenant,
+      on this reading, might not be binding.
+    </p>
+    <p>
+      This is one of the most breathtaking moments in the entire Talmud: the rabbis raise a
+      genuine legal challenge to the authority of the document from which all their law derives.
+      They do not brush it away. They sit with the discomfort and look for a resolution.
+    </p>
+
+    <h2>The Resolution: Esther 9:27</h2>
+    <p>
+      The answer arrives from an unexpected direction — the Book of Esther. After the miracle of
+      Purim, the Jewish people spontaneously agreed to observe the new festival. The verse
+      that records this agreement contains a word the rabbis read very carefully.
+    </p>
+
+    <div class="source-block">
+      <span class="hebrew">קִיְּמוּ וְקִבְּלוּ הַיְּהוּדִים עֲלֵיהֶם, וְעַל-זַרְעָם,
+        וְעַל כָּל-הַנִּלְוִים עֲלֵיהֶם</span>
+      <span class="translation">"The Jews confirmed and accepted upon themselves, and upon
+        their descendants, and upon all who joined them."</span>
+      <span class="citation">Esther 9:27 · אסתר ט:כז</span>
+    </div>
+
+    <p>
+      <em>Kiym'u</em> — "they confirmed." The Talmud reads this as: they confirmed
+      <em>what they had already received</em>. At Purim, centuries after Sinai, with no mountain
+      overhead and no threat of death, Israel freely and joyfully re-accepted the entire Torah.
+      The duress was retroactively healed. The word <em>kiym'u</em> made the prior acceptance
+      firm — not just for Purim, but for everything. The mountain was no longer the reason.
+    </p>
+
+    <h2>The Ketubah Metaphor</h2>
+    <p>
+      A <em>ketubah</em> is a Jewish marriage contract — a document read aloud under the
+      <em>chuppah</em> (the wedding canopy), spelling out the groom's obligations to the bride.
+      The ceremony is freely entered. The contract enshrines the bond.
+    </p>
+    <p>
+      What the Sinai midrash does, by reading the mountain as a <em>chuppah</em>, is cast the
+      entire Sinai theophany as a wedding. God is the groom. Israel is the bride. The Torah is
+      the ketubah. The mountain held over the people echoes the fabric canopy under which every
+      Jewish wedding takes place. But a real wedding cannot be conducted at knifepoint.
+    </p>
+    <p>
+      The resolution from Esther — the later, free re-acceptance — is what transforms the
+      coerced moment into a genuine marriage. The mountain-canopy, looking back from Purim and
+      looking forward to every Shavuot, turns out to have been a canopy after all. Israel's
+      own words at Sinai — <em>na'aseh v'nishma</em>, "we will do and we will hear," spoken
+      before the terms were even read out — are the rabbis' chief proof that the willingness
+      was always there. The mountain was not coercion. It was ceremony.
+    </p>
+
+    <div class="source-block">
+      <span class="hebrew">נַעֲשֶׂה וְנִשְׁמָע</span>
+      <span class="translation">"We will do and we will hear" — Israel's declaration of consent,
+        spoken before receiving the terms of the Torah.</span>
+      <span class="citation">Exodus 24:7 · שמות כד:ז</span>
+    </div>
+
+    <h2>This Piece</h2>
+    <p>
+      The artwork renders this reading as an actual <em>ketubah</em> — an illuminated marriage
+      contract. The ornate border of vine-scrolls and pomegranate motifs, generated
+      programmatically from a small script, evokes the handcrafted borders of historical
+      ketubot from medieval Spain and early-modern Italy. The parchment ground, the deep indigo
+      ink, and the gold fill are the visual language of a legal-sacred document.
+    </p>
+    <p>
+      Centered in the document: the midrashic paraphrase <span dir="rtl">בְּמָקוֹם חֻפָּה
+      עָמַד הָר סִינַי</span> — "in the place of a canopy stood Mount Sinai." Below it, in
+      the large script reserved for the most important text in a ketubah, the words Israel
+      spoke: <span dir="rtl">נַעֲשֶׂה וְנִשְׁמָע</span>. And below that, the two words from
+      Esther that close the argument: <span dir="rtl">קִיְּמוּ וְקִבְּלוּ</span> — "they
+      confirmed and they accepted." Three moments, three phrases, one document. Coercion
+      resolved into covenant, forced acceptance healed into love.
+    </p>
+  </div><!-- /essay-panel -->
+
+</div><!-- /layout -->
+</body>
+</html>
