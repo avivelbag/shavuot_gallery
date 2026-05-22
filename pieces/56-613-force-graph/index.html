@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>613 Paths — Force-Directed Network of the Mitzvot</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #080510; height: 100%; }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+    canvas#graph {
+      display: block;
+      cursor: crosshair;
+    }
+    .legend {
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      direction: rtl;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 0.85rem;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .legend-text-gold { color: #D4A820; }
+    .legend-text-violet { color: #8860D0; }
+    .tooltip {
+      position: fixed;
+      background: rgba(12, 6, 28, 0.92);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #E0D4F8;
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 0.8rem;
+      pointer-events: none;
+      display: none;
+      direction: rtl;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .essay-pane {
+      flex: 1;
+      overflow-y: auto;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1A0E30;
+      color: #C0B4D8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #060410;
+      min-width: 320px;
+    }
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; }
+      .art-pane { position: relative; height: auto; padding: 1.5rem 1rem; }
+      canvas#graph { max-width: 100%; height: auto; }
+      .essay-pane { border-left: none; border-top: 1px solid #1A0E30; padding: 2rem 1.5rem; }
+    }
+    .essay-pane h1 {
+      font-size: 1.5rem;
+      color: #D4A820;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+    }
+    .essay-pane .tagline {
+      font-size: 1rem;
+      color: #8860D0;
+      margin: 0 0 1.5rem;
+      font-style: italic;
+    }
+    .essay-pane h2 {
+      font-size: 1.1rem;
+      color: #A890C8;
+      margin: 1.5rem 0 0.5rem;
+      font-weight: normal;
+      border-bottom: 1px solid #1A0E30;
+      padding-bottom: 0.2rem;
+    }
+    .essay-pane p { line-height: 1.7; margin: 0 0 1rem; }
+    .essay-pane blockquote {
+      border-left: 3px solid #4A1E8A;
+      margin: 1.2rem 0;
+      padding: 0.5rem 1rem;
+      color: #A890C8;
+      font-style: italic;
+    }
+    .essay-pane .hebrew-block {
+      font-size: 1.1rem;
+      direction: rtl;
+      text-align: right;
+      color: #D4C080;
+      margin-bottom: 0.3rem;
+    }
+    .essay-pane .sources {
+      font-size: 0.8rem;
+      color: #6A5888;
+      border-top: 1px solid #1A0E30;
+      padding-top: 0.8rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="graph" width="680" height="560"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#D4A820;"></div>
+        <span class="legend-text-gold">רמ״ח מצוות עשה</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#6B30C8;"></div>
+        <span class="legend-text-violet">שס״ה מצוות לא תעשה</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="tooltip" class="tooltip"></div>
+
+  <div class="essay-pane">
+    <h1>613 Paths</h1>
+    <p class="tagline">Force-Directed Network of the Mitzvot</p>
+
+    <blockquote>
+      <p class="hebrew-block">דָּרַשׁ רַבִּי שִׂמְלַאי: שֵׁשׁ מֵאוֹת וּשְׁלֹשׁ עֶשְׂרֵה מִצְווֹת נֶאֶמְרוּ לְמֹשֶׁה בְּסִינַי</p>
+      <p>"Rabbi Simlai expounded: Six hundred and thirteen commandments were declared to Moses at Sinai."</p>
+      <p>— Talmud Bavli, Makkot 23b</p>
+    </blockquote>
+
+    <h2>The Number That the Torah Itself Never States</h2>
+    <p>The figure 613 is among the most-quoted facts about the Torah. Every bar mitzvah speech repeats it; the opening letters of "TaRYaG" (ת״רי״ג) are stamped on rabbinic memory. And yet the Torah never once says "613." The number is entirely a rabbinic construction — a retrospective enumeration, first explicitly stated by Rabbi Simlai in a homiletical context in the Babylonian Talmud, probably no earlier than the third century CE.</p>
+    <p>This is not a scandal but a feature. The tradition is here reading itself back to its own source, counting up what it has received and finding a number charged with meaning. Rabbi Simlai immediately continues: "365 negative commandments, corresponding to the days of the solar year; and 248 positive commandments, corresponding to the limbs of the human body." The number 613 is therefore not merely a count — it is a cosmological claim. The law fits the world exactly. The human body is shaped by what it is commanded to do; the calendar is structured by what it is commanded to avoid. Torah and creation are commensurate.</p>
+    <p>The Talmud credits the 248 <em>evarim</em> (limbs) to a received anatomical tradition — Oholot 1:8 lists them in detail — and the 365 days to the solar calendar which the Jewish year does not formally use but which represents the rhythms of the created world. The midrashic effect is profound: even if you count neither the limbs correctly nor the commandments correctly, the structural rhyme insists that the moral law and the physical world share a grammar.</p>
+
+    <h2>The Debate Over Which 613</h2>
+    <p>Once Rabbi Simlai's number was accepted, a new problem arose: which 613? The Torah contains many hundreds of verses with imperative or prohibitive force, and the question of which verses constitute discrete commandments — and which are specifications, repetitions, or applications of broader principles — is itself a major legal-philosophical enterprise.</p>
+    <p>Maimonides (Rabbi Moshe ben Maimon, 1138–1204) dedicated his <em>Sefer HaMitzvot</em> specifically to this question, establishing fourteen root-principles (<em>shorashim</em>) for what counts as a commandment. He excluded rabbinic ordinances, excluded commandments whose observance was only possible while the Temple stood (unless they were generative of ongoing obligations), and excluded narrative passages even when they carried normative force. The result was a list organized by polarity (positive / negative) and then, in his great legal code the <em>Mishneh Torah</em>, by subject-matter, across fourteen books.</p>
+    <p>Rabbi Moshe of Coucy (the <em>Semag</em>, 13th c.) disagreed on several items. Nachmanides (Rabbi Moshe ben Nachman, 1194–1270) wrote an extensive critique of Maimonides' root-principles. The anonymous 13th-century <em>Sefer HaChinuch</em> — attributed to a rabbi of Barcelona — gave each of Maimonides' 613 a systematic treatment: definition, rationale, relevant laws, who is obligated, and when it applies. The debate never closed. The 613 is a <em>commitment</em> of the tradition to a particular way of reading — one that insists on totality, on system, on the coextension of law with life and world.</p>
+
+    <h2>Force-Directed Layout as Midrash</h2>
+    <p>The artwork renders all 613 commandments as glowing nodes on a dark field — 248 warm harvest-gold points for the <em>mitzvot aseh</em> (positive commandments), 365 deep violet points for the <em>mitzvot lo ta'aseh</em> (negative commandments). Within each group, nodes are connected by thin edges whenever they share the same of Maimonides' fourteen books in the <em>Mishneh Torah</em>.</p>
+    <p>The force-directed layout runs a spring simulation: intra-book edges attract, global repulsion pushes nodes apart until forces balance. No external authority assigns the final positions — the clustering emerges from the structure of the relationships alone. This is, deliberately, a way of reading the tradition back at itself. The grouping of commandments into books, into categories, into families — the project of Maimonides, of the Chinuch, of all systematic halakhic literature — was itself an organic process. The force-directed layout shows what happens when the commandments are given only each other to push and pull against: they cohere into clusters without a single hand imposing the grouping. Law as a self-organizing field.</p>
+
+    <h2>Shavuot as the Moment of Receiving</h2>
+    <p>Shavuot commemorates the <em>Matan Torah</em>, the Giving of the Torah at Sinai. But what exactly was given? The two tablets of the Decalogue, certainly. According to the Talmud (Berakhot 5a), the entire Written Torah was given, and the Oral Torah as well — every rabbinic interpretation that would ever be offered, already latent in the transmission. The 613, then, were given at Sinai in the sense that they were <em>implicit</em> in what was given, waiting to be articulated by Rabbi Simlai, elaborated by Maimonides, arranged by the Chinuch, debated by every posek since.</p>
+    <p>The force-directed network is an image of that latency: 613 points of light, their final arrangement not set in advance, emergent from the bonds between them. At frame 0 they scatter at random. By frame 120 the clusters have formed. Then the ambient drift sets in — each node receiving a tiny random nudge each frame, a slow breathing quality, the network resting but never fully still. The law lives.</p>
+
+    <p class="sources"><strong>Sources:</strong> Talmud Bavli Makkot 23b; Mishnah Oholot 1:8; Maimonides, Sefer HaMitzvot (introduction and shorashim); Sefer HaChinuch (introduction); Talmud Bavli Berakhot 5a; Nachmanides' Hasagot on Sefer HaMitzvot.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+
+  // Seeded PRNG for deterministic initial node layout (Mulberry32 algorithm).
+  function mulberry32(seed) {
+    return function () {
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  // Maimonides' 14-book Mishneh Torah structure with commandment counts.
+  // Distribution: 248 positive (aseh) + 365 negative (lo taaseh) = 613 total.
+  // Per-book counts are proportionally allocated from reasonable book sizes
+  // to sum exactly to the Talmudic figures (Makkot 23b).
+  // Each entry: [bookNum, bookName, posCount, negCount]
+  const BOOKS = [
+    [1,  "Mada (Knowledge)",          16, 24],
+    [2,  "Ahavah (Love)",             14, 21],
+    [3,  "Zmanim (Times)",            20, 28],
+    [4,  "Nashim (Women)",            17, 25],
+    [5,  "Kedushah (Holiness)",       23, 32],
+    [6,  "Haflaah (Vows)",             8, 11],
+    [7,  "Zeraim (Seeds)",            14, 21],
+    [8,  "Avodah (Temple Service)",   22, 33],
+    [9,  "Korbanot (Offerings)",      17, 26],
+    [10, "Tahara (Purity)",           18, 26],
+    [11, "Nezikin (Damages)",         15, 22],
+    [12, "Kinyan (Acquisition)",      10, 15],
+    [13, "Mishpatim (Laws)",          20, 30],
+    [14, "Shoftim (Judges)",          34, 51]
+  ];
+
+  // Build node array: 613 nodes with id, polarity, book
+  const nodes = [];
+  let id = 0;
+  for (const [bookNum, , posCount, negCount] of BOOKS) {
+    for (let i = 0; i < posCount; i++) {
+      nodes.push({ id: id++, polarity: 'pos', book: bookNum, x: 0, y: 0, vx: 0, vy: 0 });
+    }
+    for (let i = 0; i < negCount; i++) {
+      nodes.push({ id: id++, polarity: 'neg', book: bookNum, x: 0, y: 0, vx: 0, vy: 0 });
+    }
+  }
+
+  // Sub-tint colors for books within each polarity group
+  // Positive: warm gold tints
+  const POS_BOOK_TINTS = [
+    '#D4A820', '#DFB830', '#C89010', '#E8C840', '#D0A015',
+    '#F0D050', '#B88010', '#E0B828', '#CCA018', '#D8AE24',
+    '#E4C030', '#C09018', '#DCA020', '#D4A820'
+  ];
+  // Negative: violet tints
+  const NEG_BOOK_TINTS = [
+    '#4A1E8A', '#5C28A0', '#6B30C8', '#3A1670', '#7A40D8',
+    '#4E2090', '#5828A4', '#6030BC', '#4420880', '#6828B8',
+    '#5020988', '#4818800', '#6632C0', '#5022940'
+  ];
+
+  // Build book color map (index by bookNum)
+  const posBookColor = {};
+  const negBookColor = {};
+  for (let i = 0; i < 14; i++) {
+    posBookColor[i + 1] = POS_BOOK_TINTS[i];
+    negBookColor[i + 1] = NEG_BOOK_TINTS[i] || (i % 2 === 0 ? '#5C28A0' : '#6B30C8');
+  }
+
+  function nodeColor(n) {
+    return n.polarity === 'pos' ? (posBookColor[n.book] || '#D4A820') : (negBookColor[n.book] || '#4A1E8A');
+  }
+
+  const canvas = document.getElementById('graph');
+  const W = canvas.width;
+  const H = canvas.height;
+
+  // Initialize node positions in a scattered layout, separated by polarity
+  const rng = mulberry32(42);
+  for (const n of nodes) {
+    // Positive nodes: left half; negative: right half (initial hint for readability)
+    if (n.polarity === 'pos') {
+      n.x = rng() * W * 0.48 + W * 0.02;
+      n.y = rng() * H * 0.88 + H * 0.06;
+    } else {
+      n.x = rng() * W * 0.48 + W * 0.50;
+      n.y = rng() * H * 0.88 + H * 0.06;
+    }
+  }
+
+  // Build intra-book edges: each node connects to up to 3 nearest same-book neighbors
+  // (by initial Euclidean proximity)
+  const edges = [];
+  const byBook = {};
+  for (const n of nodes) {
+    if (!byBook[n.book]) byBook[n.book] = [];
+    byBook[n.book].push(n);
+  }
+  for (const bookNodes of Object.values(byBook)) {
+    for (let i = 0; i < bookNodes.length; i++) {
+      const a = bookNodes[i];
+      // Compute distances to all other nodes in same book
+      const dists = [];
+      for (let j = 0; j < bookNodes.length; j++) {
+        if (i === j) continue;
+        const b = bookNodes[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        dists.push({ node: b, d });
+      }
+      dists.sort((x, y) => x.d - y.d);
+      // Connect to up to 3 nearest
+      for (let k = 0; k < Math.min(3, dists.length); k++) {
+        const b = dists[k].node;
+        // Avoid duplicate edges: only add if a.id < b.id
+        if (a.id < b.id) {
+          edges.push([a, b]);
+        }
+      }
+    }
+  }
+
+  // Spatial grid for repulsion
+  const GRID_COLS = 20;
+  const GRID_ROWS = 20;
+  const cellW = W / GRID_COLS;
+  const cellH = H / GRID_ROWS;
+  const grid = new Array(GRID_COLS * GRID_ROWS);
+
+  function buildGrid() {
+    for (let i = 0; i < grid.length; i++) grid[i] = [];
+    for (const n of nodes) {
+      const ci = Math.max(0, Math.min(GRID_COLS - 1, Math.floor(n.x / cellW)));
+      const ri = Math.max(0, Math.min(GRID_ROWS - 1, Math.floor(n.y / cellH)));
+      grid[ri * GRID_COLS + ci].push(n);
+    }
+  }
+
+  function nearbyNodes(n) {
+    const ci = Math.max(0, Math.min(GRID_COLS - 1, Math.floor(n.x / cellW)));
+    const ri = Math.max(0, Math.min(GRID_ROWS - 1, Math.floor(n.y / cellH)));
+    const result = [];
+    for (let dr = -1; dr <= 1; dr++) {
+      for (let dc = -1; dc <= 1; dc++) {
+        const nr = ri + dr;
+        const nc = ci + dc;
+        if (nr < 0 || nr >= GRID_ROWS || nc < 0 || nc >= GRID_COLS) continue;
+        const cell = grid[nr * GRID_COLS + nc];
+        for (const m of cell) {
+          if (m !== n) result.push(m);
+        }
+      }
+    }
+    return result;
+  }
+
+  const REPULSION_STRENGTH = 180;
+  const ATTRACTION_STRENGTH = 0.006;
+  const REST_LENGTH = 45;
+  const DAMPING = 0.85;
+  const CENTER_GRAVITY = 0.0015;
+
+  let frame = 0;
+  const STABILIZE_FRAMES = 120;
+  let stabilized = false;
+
+  function tick() {
+    buildGrid();
+
+    // Repulsion
+    for (const n of nodes) {
+      const nearby = nearbyNodes(n);
+      let fx = 0, fy = 0;
+      for (const m of nearby) {
+        const dx = n.x - m.x;
+        const dy = n.y - m.y;
+        const d2 = dx * dx + dy * dy + 0.01;
+        const d = Math.sqrt(d2);
+        const f = REPULSION_STRENGTH / d2;
+        fx += f * (dx / d);
+        fy += f * (dy / d);
+      }
+      n.vx += fx;
+      n.vy += fy;
+    }
+
+    // Attraction along edges
+    for (const [a, b] of edges) {
+      const dx = b.x - a.x;
+      const dy = b.y - a.y;
+      const d = Math.sqrt(dx * dx + dy * dy) + 0.001;
+      const stretch = d - REST_LENGTH;
+      const f = ATTRACTION_STRENGTH * stretch;
+      const fx = f * (dx / d);
+      const fy = f * (dy / d);
+      a.vx += fx; a.vy += fy;
+      b.vx -= fx; b.vy -= fy;
+    }
+
+    // Weak center gravity
+    for (const n of nodes) {
+      n.vx += (W / 2 - n.x) * CENTER_GRAVITY;
+      n.vy += (H / 2 - n.y) * CENTER_GRAVITY;
+    }
+
+    // Integrate, damp, clamp
+    for (const n of nodes) {
+      n.vx *= DAMPING;
+      n.vy *= DAMPING;
+      if (stabilized) {
+        // ambient drift: tiny random perturbation
+        n.vx += (Math.random() - 0.5) * 0.05;
+        n.vy += (Math.random() - 0.5) * 0.05;
+      }
+      n.x = Math.max(4, Math.min(W - 4, n.x + n.vx));
+      n.y = Math.max(4, Math.min(H - 4, n.y + n.vy));
+    }
+
+    frame++;
+    if (!stabilized && frame >= STABILIZE_FRAMES) {
+      stabilized = true;
+      // Zero velocities for clean transition to drift
+      for (const n of nodes) { n.vx = 0; n.vy = 0; }
+    }
+  }
+
+  const ctx = canvas.getContext('2d');
+  let hoveredNode = null;
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Draw edges
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 0.6;
+    ctx.beginPath();
+    for (const [a, b] of edges) {
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+    }
+    ctx.stroke();
+    ctx.restore();
+
+    // Draw nodes
+    for (const n of nodes) {
+      const color = nodeColor(n);
+      const isHovered = n === hoveredNode;
+      const r = isHovered ? 5 : 2.5;
+
+      ctx.save();
+      if (isHovered) {
+        ctx.shadowColor = n.polarity === 'pos' ? '#FFD700' : '#A060FF';
+        ctx.shadowBlur = 18;
+      } else {
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 4;
+      }
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function loop() {
+    tick();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  // Hover detection
+  const tooltip = document.getElementById('tooltip');
+  const BOOK_NAMES = {
+    1: 'מדע (Mada)', 2: 'אהבה (Ahavah)', 3: 'זמנים (Zmanim)',
+    4: 'נשים (Nashim)', 5: 'קדושה (Kedushah)', 6: 'הפלאה (Haflaah)',
+    7: 'זרעים (Zeraim)', 8: 'עבודה (Avodah)', 9: 'קרבנות (Korbanot)',
+    10: 'טהרה (Tahara)', 11: 'נזיקין (Nezikin)', 12: 'קניין (Kinyan)',
+    13: 'משפטים (Mishpatim)', 14: 'שופטים (Shoftim)'
+  };
+
+  canvas.addEventListener('mousemove', function (e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    const scaleY = H / rect.height;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top) * scaleY;
+
+    let nearest = null;
+    let minD = 12 * scaleX; // 12px threshold
+    for (const n of nodes) {
+      const d = Math.hypot(n.x - mx, n.y - my);
+      if (d < minD) { minD = d; nearest = n; }
+    }
+
+    hoveredNode = nearest;
+    if (nearest) {
+      const label = nearest.polarity === 'pos' ? 'מ״ע (מצות עשה)' : 'מ״ל (מצות לא תעשה)';
+      tooltip.innerHTML = `<strong>${label}</strong><br>ספר ${nearest.book}: ${BOOK_NAMES[nearest.book]}`;
+      tooltip.style.display = 'block';
+      tooltip.style.left = (e.clientX + 12) + 'px';
+      tooltip.style.top = (e.clientY - 10) + 'px';
+    } else {
+      tooltip.style.display = 'none';
+    }
+  });
+
+  canvas.addEventListener('mouseleave', function () {
+    hoveredNode = null;
+    tooltip.style.display = 'none';
+  });
+
+  loop();
+})();
+</script>
+</body>
+</html>

@@ -770,6 +770,17 @@
     "essay": "pieces/55-unfurling-scroll-ruth/essay.md"
   },
   {
+    "id": "56-613-force-graph",
+    "title": "613 Paths",
+    "tagline": "שֵׁשׁ מֵאוֹת וּשְׁלֹשׁ עֶשְׂרֵה מִצְווֹת — all 613 commandments of the Torah rendered as a force-directed network of glowing nodes, clustering by Maimonidean book through spring simulation alone",
+    "year": 2026,
+    "theme": "Matan Torah / Torah and mitzvot",
+    "technique": "force-directed graph (spring simulation)",
+    "path": "pieces/56-613-force-graph/index.html",
+    "thumbnail": "pieces/56-613-force-graph/thumbnail.svg",
+    "essay": "pieces/56-613-force-graph/essay.md"
+  },
+  {
     "id": "56-seventy-elders-geodesic",
     "title": "They Saw God and Ate",
     "tagline": "the 70 elders on Sinai — a geodesic dome of glowing elder-fires under a cosmic canopy",
