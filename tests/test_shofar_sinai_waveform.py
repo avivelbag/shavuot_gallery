@@ -444,7 +444,6 @@ def test_composite_uses_all_harmonics():
     t = 5.0
     x = CANVAS_W // 4
 
-    amp = envelope(t)
     full = sum(
         HARMONIC_WEIGHTS[i] * math.sin(
             2 * math.pi * (i + 1) * BASE_FREQ * (x / CANVAS_W) + PHASES[i] + t * SPEEDS[i]
