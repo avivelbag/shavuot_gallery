@@ -5,37 +5,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thunder at Sinai</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #0a0a12;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0a0a12; height: 100%; }
+
+    .layout {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: row;
+      min-height: 100vh;
     }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
     canvas {
       display: block;
-      max-width: 100vw;
-      max-height: 100vh;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e1e2e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e1e2e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #d0e8ff;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #505060;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #a0b8d8;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
-<canvas id="c"></canvas>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Thunder at Sinai</h1>
+    <p class="subtitle">Har Sinai / Matan Torah</p>
+
+    <h2>The Sound Before the Words</h2>
+    <p>"And all the people perceived the thunderings and the lightnings and the voice of the shofar and the mountain smoking; and when the people saw it, they trembled and stood afar off." (Exodus 20:15)</p>
+    <p>The giving of the Torah was not a quiet transfer of information. The text insists on overwhelming sensory detail: thunder that can be <em>seen</em>, lightning that can be <em>heard</em>, a mountain wrapped in smoke and fire, a shofar growing louder with no one blowing it. Rashi notes that the people perceived the thunders as visible — an act of synesthesia, as if the senses themselves could not hold what was happening and began to exchange their functions. The experience exceeded what ordinary perception could organize.</p>
+
+    <h2>The Mountain They Could Not Touch</h2>
+    <p>"And you shall set bounds for the people round about, saying: Take heed to yourselves, that you go not up into the mount, or touch the border of it." (Exodus 19:12)</p>
+    <p>The mountain had to be cordoned off and made untouchable, because holiness of this intensity was dangerous. The Talmud (Shabbat 88a) pictures the mountain held suspended above the heads of Israel as a kind of cosmic ultimatum: accept the Torah, or be buried beneath it. The covenant was not offered gently. What Israel received that day was not a set of propositions but an encounter — and the encounter left its mark. Forty years later, Deuteronomy still describes the mountain burning "to the very heart of heaven" (Deuteronomy 4:11), as if the fire has never entirely gone out.</p>
+
+    <h2>This Piece</h2>
+    <p>The animation renders the theophany as the Torah describes it: lightning recursive and branching, fire and smoke rising from the peak, the mountain dark and immovable below. Every bolt is generated procedurally through midpoint displacement — not pre-drawn, not repeated, never identical — because revelation, the Rabbis suggest, addresses each person differently. The mountain burns on regardless. It does not wait for an audience.</p>
+  </div>
+</div>
 <script>
 (function () {
   'use strict';
 
   var canvas = document.getElementById('c');
   var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
 
   var W, H;
 
-  // Mountain polygon vertices — expressed as fractions of W/H so they scale.
-  // Peak is at (0.5, 0.38). Slopes reach bottom corners.
   var MOUNTAIN_FRAC = [
     [0.0,  1.0],
     [0.15, 1.0],
@@ -52,12 +117,10 @@
     [1.0,  1.0],
   ];
 
-  // ---- Particle pool ----
   var PARTICLE_COUNT = 45;
   var particles = [];
 
   function resetParticle(p) {
-    // Spawn near the mountain peak.
     var peakX = W * 0.5;
     var peakY = H * 0.38;
     p.x = peakX + (Math.random() - 0.5) * W * 0.06;
@@ -66,29 +129,24 @@
     p.vy = -(0.4 + Math.random() * 0.8);
     p.life = 0;
     p.maxLife = 60 + Math.random() * 60;
-    // Fire vs smoke: lower-spawning particles are fire.
     p.isFire = Math.random() < 0.55;
-    p.size = p.isFire
-      ? (3 + Math.random() * 5)
-      : (6 + Math.random() * 10);
+    p.size = p.isFire ? (3 + Math.random() * 5) : (6 + Math.random() * 10);
   }
 
   function initParticles() {
     for (var i = 0; i < PARTICLE_COUNT; i++) {
       var p = {};
       resetParticle(p);
-      // Stagger initial lifetimes so they don't all die at once.
       p.life = Math.random() * p.maxLife;
       particles.push(p);
     }
   }
 
   function drawParticle(p) {
-    var t = p.life / p.maxLife; // 0 → 1
+    var t = p.life / p.maxLife;
     if (p.isFire) {
-      // Fire: orange → gold → transparent
       var r = 255;
-      var g = Math.round(106 + (215 - 106) * t);  // 106→215
+      var g = Math.round(106 + (215 - 106) * t);
       var b = 0;
       var alpha = (1 - t) * 0.85;
       ctx.beginPath();
@@ -96,7 +154,6 @@
       ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
       ctx.fill();
     } else {
-      // Smoke: grey, fading out slowly
       var alpha2 = (1 - t) * 0.28;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size * (1 + t * 0.8), 0, Math.PI * 2);
@@ -110,35 +167,20 @@
       var p = particles[i];
       p.x += p.vx;
       p.y += p.vy;
-      // Smoke drifts more sideways over time.
       if (!p.isFire) p.vx += (Math.random() - 0.5) * 0.08;
       p.life++;
       if (p.life >= p.maxLife) resetParticle(p);
     }
   }
 
-  // ---- Lightning ----
   var bolts = [];
   var boltTimer = 0;
-  var boltInterval = 10; // frames between bolt regeneration
+  var boltInterval = 10;
 
-  /**
-   * Recursively subdivide a line segment with midpoint displacement to produce
-   * a jagged lightning path. Returns an array of {x,y} points.
-   *
-   * @param {number} x1
-   * @param {number} y1
-   * @param {number} x2
-   * @param {number} y2
-   * @param {number} depth   - remaining recursion levels
-   * @param {number} spread  - pixels of perpendicular displacement
-   */
   function displace(x1, y1, x2, y2, depth, spread) {
     if (depth === 0) return [{x: x1, y: y1}, {x: x2, y: y2}];
-
     var mx = (x1 + x2) / 2;
     var my = (y1 + y2) / 2;
-    // Perpendicular offset
     var dx = x2 - x1;
     var dy = y2 - y1;
     var len = Math.sqrt(dx * dx + dy * dy);
@@ -147,27 +189,18 @@
     var offset = (Math.random() - 0.5) * 2 * spread;
     mx += nx * offset;
     my += ny * offset;
-
     var left = displace(x1, y1, mx, my, depth - 1, spread * 0.55);
     var right = displace(mx, my, x2, y2, depth - 1, spread * 0.55);
-    // Merge: left already ends at (mx,my) and right starts there.
     return left.concat(right.slice(1));
   }
 
-  /**
-   * Build one complete bolt tree (trunk + branches) originating from
-   * sky top down to the mountain peak.
-   */
   function buildBolt() {
     var startX = W * (0.42 + Math.random() * 0.16);
     var startY = H * (0.02 + Math.random() * 0.08);
     var endX = W * 0.5 + (Math.random() - 0.5) * W * 0.05;
     var endY = H * 0.38;
-
     var trunk = displace(startX, startY, endX, endY, 4, W * 0.06);
-
     var branches = [];
-    // Add 2–4 branches forking off from random midpoints.
     var numBranches = 2 + Math.floor(Math.random() * 3);
     for (var b = 0; b < numBranches; b++) {
       var idx = Math.floor(trunk.length * (0.2 + Math.random() * 0.6));
@@ -176,8 +209,6 @@
       var branchEndY = origin.y + H * (0.05 + Math.random() * 0.1);
       var branch = displace(origin.x, origin.y, branchEndX, branchEndY, 2, W * 0.03);
       branches.push(branch);
-
-      // Occasionally add a sub-branch.
       if (Math.random() < 0.5) {
         var subIdx = Math.floor(branch.length * (0.3 + Math.random() * 0.4));
         var subOrigin = branch[subIdx];
@@ -186,21 +217,17 @@
         branches.push(displace(subOrigin.x, subOrigin.y, subEndX, subEndY, 1, W * 0.02));
       }
     }
-
     return { trunk: trunk, branches: branches, age: 0 };
   }
 
   function regenerateBolts() {
     bolts = [];
-    var count = 1 + Math.floor(Math.random() * 2); // 1 or 2 simultaneous bolts
+    var count = 1 + Math.floor(Math.random() * 2);
     for (var i = 0; i < count; i++) {
       bolts.push(buildBolt());
     }
   }
 
-  /**
-   * Draw a polyline from an array of {x,y} points.
-   */
   function strokePoints(points, lineWidth, alpha) {
     if (points.length < 2) return;
     ctx.beginPath();
@@ -217,16 +244,12 @@
     var fade = Math.max(0, 1 - bolt.age / boltInterval);
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-
-    // Glow pass
     ctx.shadowBlur = 18;
     ctx.shadowColor = 'rgba(160,200,255,0.8)';
     strokePoints(bolt.trunk, 6, fade * 0.3);
     for (var i = 0; i < bolt.branches.length; i++) {
       strokePoints(bolt.branches[i], 3, fade * 0.2);
     }
-
-    // Core pass
     ctx.shadowBlur = 0;
     strokePoints(bolt.trunk, 1.8, fade * 0.95);
     for (var i = 0; i < bolt.branches.length; i++) {
@@ -234,7 +257,6 @@
     }
   }
 
-  // ---- Mountain ----
   function drawMountain() {
     ctx.beginPath();
     for (var i = 0; i < MOUNTAIN_FRAC.length; i++) {
@@ -248,7 +270,6 @@
     ctx.fill();
   }
 
-  // Soft ambient glow at the peak (fire light on rock)
   function drawPeakGlow() {
     var gx = W * 0.5;
     var gy = H * 0.38;
@@ -259,11 +280,9 @@
     ctx.fillRect(gx - H * 0.12, gy - H * 0.12, H * 0.24, H * 0.24);
   }
 
-  // ---- Resize ----
   function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    // Clamp to reasonable aspect so the composition doesn't stretch oddly.
+    W = canvas.width = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
     var aspect = W / H;
     if (aspect > 2.5) {
       W = canvas.width = Math.round(H * 2.5);
@@ -277,13 +296,10 @@
   resize();
   initParticles();
 
-  // ---- Main loop ----
   function frame() {
-    // Sky background
     ctx.fillStyle = '#0a0a12';
     ctx.fillRect(0, 0, W, H);
 
-    // Bolts (drawn before mountain so mountain clips base)
     boltTimer++;
     if (boltTimer >= boltInterval) {
       boltTimer = 0;
@@ -294,13 +310,9 @@
       bolts[i].age++;
     }
 
-    // Mountain (clips lightning base)
     drawMountain();
-
-    // Peak glow
     drawPeakGlow();
 
-    // Particles (fire + smoke above peak)
     tickParticles();
     for (var j = 0; j < particles.length; j++) {
       drawParticle(particles[j]);

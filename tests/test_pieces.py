@@ -14,7 +14,7 @@ import pytest
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 
-REQUIRED_FIELDS = ("id", "title", "tagline", "year", "theme", "technique", "path", "thumbnail")
+REQUIRED_FIELDS = ("id", "title", "tagline", "year", "theme", "technique", "path", "thumbnail", "essay")
 
 
 # ---------------------------------------------------------------------------
@@ -118,6 +118,57 @@ def test_readme_exists():
         readme = os.path.join(piece_dir, "README.md")
         assert os.path.isfile(readme), (
             f"Piece '{piece['id']}': README.md is missing from {piece_dir}"
+        )
+
+
+def test_essay_field_points_to_existing_file():
+    """The 'essay' path in every pieces.json entry must exist on disk."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay_rel = piece.get("essay", "")
+        assert essay_rel, f"Piece '{piece.get('id', '?')}' has empty essay field"
+        full_path = os.path.join(GALLERY_ROOT, essay_rel)
+        assert os.path.isfile(full_path), (
+            f"Piece '{piece['id']}': essay file '{essay_rel}' does not exist on disk"
+        )
+
+
+def test_essay_md_has_at_least_200_words():
+    """Each essay.md must be substantial — at least 200 words — to catch placeholder stubs."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay_rel = piece.get("essay", "")
+        if not essay_rel:
+            continue
+        full_path = os.path.join(GALLERY_ROOT, essay_rel)
+        if not os.path.isfile(full_path):
+            continue
+        text = open(full_path, encoding="utf-8").read()
+        word_count = len(text.split())
+        assert word_count >= 200, (
+            f"Piece '{piece['id']}': essay.md has only {word_count} words (need ≥ 200)"
+        )
+
+
+def test_index_html_contains_essay_text():
+    """Each piece's index.html must embed essay text inline (no runtime fetch of essay.md)."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay_rel = piece.get("essay", "")
+        if not essay_rel:
+            continue
+        essay_path = os.path.join(GALLERY_ROOT, essay_rel)
+        if not os.path.isfile(essay_path):
+            continue
+        essay_text = open(essay_path, encoding="utf-8").read()
+        html_path = os.path.join(GALLERY_ROOT, piece["path"])
+        html = open(html_path, encoding="utf-8").read()
+        words = [w for w in essay_text.split() if len(w) > 5]
+        sampled = words[:10]
+        found = sum(1 for w in sampled if w in html)
+        assert found >= 5, (
+            f"Piece '{piece['id']}': index.html does not appear to embed the essay text "
+            f"(only {found}/10 sampled words found in HTML)"
         )
 
 

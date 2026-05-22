@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engraved in Stone — Luchot HaBrit</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0e0c08; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0e0c08;
+      overflow: hidden;
+    }
+
+    .art-panel svg {
+      max-width: 100%;
+      max-height: 100vh;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #302010;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0a0804;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: auto; flex: none; padding: 1rem; }
+      .art-panel svg { max-height: 65vw; }
+      .essay-panel { border-left: none; border-top: 1px solid #302010; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #e8d8b0;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #706050;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #c8a860;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { font-style: italic; }
+
+    @keyframes glow {
+      from { opacity: 0.04; }
+      to   { opacity: 0.20; }
+    }
+    .tablet-glow { animation: glow 8s ease-in-out infinite alternate; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 540">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080704"/>
+      <stop offset="100%" stop-color="#1c1408"/>
+    </linearGradient>
+
+    <linearGradient id="stone-l" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%"   stop-color="#8a8a8a"/>
+      <stop offset="100%" stop-color="#c8c0b0"/>
+    </linearGradient>
+    <linearGradient id="stone-r" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%"   stop-color="#888080"/>
+      <stop offset="100%" stop-color="#c4bca8"/>
+    </linearGradient>
+
+    <filter id="stone-tex" x="-5%" y="-5%" width="110%" height="110%"
+            color-interpolation-filters="linearRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3"
+                    seed="9" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="5"
+                         xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <filter id="carved" x="-12%" y="-12%" width="124%" height="124%"
+            color-interpolation-filters="linearRGB">
+      <feOffset in="SourceAlpha" dx="2" dy="3"    result="sa"/>
+      <feFlood  flood-color="#180e04" flood-opacity="0.90" result="sc"/>
+      <feComposite in="sc" in2="sa" operator="in" result="shadow"/>
+
+      <feOffset in="SourceAlpha" dx="-1" dy="-1.5" result="ha"/>
+      <feFlood  flood-color="#ffffff" flood-opacity="0.20" result="hc"/>
+      <feComposite in="hc" in2="ha" operator="in" result="hi"/>
+
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="hi"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="820" height="540" fill="url(#bg)"/>
+
+  <ellipse cx="410" cy="540" rx="380" ry="70" fill="#b05010" opacity="0.12"/>
+
+  <path d="M 70,515 L 70,190 A 130,130,0,0,1,330,190 L 330,515 Z"
+        fill="url(#stone-l)" filter="url(#stone-tex)"/>
+
+  <path class="tablet-glow"
+        d="M 70,515 L 70,190 A 130,130,0,0,1,330,190 L 330,515 Z"
+        fill="#c87820"/>
+
+  <line x1="100" y1="204" x2="300" y2="204"
+        stroke="#908070" stroke-width="1.2" opacity="0.45"/>
+
+  <g font-family="'David','Frank Ruehl','FrankRuehlCLM','Noto Serif Hebrew','Times New Roman',serif"
+     font-size="26" fill="#f0ece0" text-anchor="middle"
+     direction="rtl" unicode-bidi="bidi-override"
+     filter="url(#carved)">
+    <text x="200" y="245">אָנֹכִי</text>
+    <text x="200" y="299">לֹא יִהְיֶה</text>
+    <text x="200" y="353">לֹא תִשָּׂא</text>
+    <text x="200" y="407">זָכוֹר</text>
+    <text x="200" y="461">כַּבֵּד</text>
+  </g>
+
+  <path d="M 490,515 L 490,190 A 130,130,0,0,1,750,190 L 750,515 Z"
+        fill="url(#stone-r)" filter="url(#stone-tex)"/>
+
+  <path class="tablet-glow"
+        d="M 490,515 L 490,190 A 130,130,0,0,1,750,190 L 750,515 Z"
+        fill="#c87820"/>
+
+  <line x1="520" y1="204" x2="720" y2="204"
+        stroke="#908070" stroke-width="1.2" opacity="0.45"/>
+
+  <g font-family="'David','Frank Ruehl','FrankRuehlCLM','Noto Serif Hebrew','Times New Roman',serif"
+     font-size="26" fill="#f0ece0" text-anchor="middle"
+     direction="rtl" unicode-bidi="bidi-override"
+     filter="url(#carved)">
+    <text x="620" y="245">לֹא תִרְצָח</text>
+    <text x="620" y="299">לֹא תִנְאָף</text>
+    <text x="620" y="353">לֹא תִגְנֹב</text>
+    <text x="620" y="407">לֹא-תַעֲנֶה</text>
+    <text x="620" y="461">לֹא תַחְמֹד</text>
+  </g>
+</svg>
+  </div>
+
+  <div class="essay-panel" lang="en">
+    <h1>Engraved in Stone</h1>
+    <p class="subtitle">לוחות הברית — The Tablets of the Covenant</p>
+
+    <h2>The Object</h2>
+    <p>"And He gave Moses, when He had finished speaking with him on Mount Sinai, the two tablets of the testimony, tablets of stone, written by the finger of God." (Exodus 31:18)</p>
+    <p>The luchot HaBrit — the two stone tablets — are among the most immediately legible objects in all of religious art. Everyone knows their shape before they are told: two upright slabs, arched at the top, one beside the other. The shape is so familiar it has become a pictogram. Yet the familiarity conceals something remarkable: the Torah says almost nothing about what the tablets looked like. The arch is a tradition, not a prescription. Every generation has reimagined the tablets, and in reimagining them, has asked: what does it mean that the words were not written on papyrus or clay, but cut into stone?</p>
+
+    <h2>The Word in the Stone</h2>
+    <p>The Hebrew root ח-ר-ת (<em>charut</em>) means engraved, cut, inscribed. The same letters also spell <em>cherut</em> — freedom. The Sages noticed. "Read not <em>charut</em> (engraved) but <em>cherut</em> (freedom)" (Avot 6:2). The commandments were not merely deposited on the tablets; they were driven into them. The law and the material were made one thing. The stone did not carry the words; the words <em>were</em> the stone.</p>
+    <p>Engraving is an irreversible act. You can erase ink. You cannot un-carve stone. What is cut in will remain unless the stone itself is shattered — which is precisely what happened, when Moses descended to find the golden calf and broke the tablets in grief and rage. Even that shattering is preserved: the Talmud records that both the broken fragments and the new, second tablets were carried together in the Ark. Broken law is still law; the pieces of the covenant still belong inside the covenant.</p>
+
+    <h2>The Division</h2>
+    <p>The Rabbis debate the arrangement: were five commandments on each tablet, or were all ten on each? The majority view — five and five — carries its own symmetry. The first tablet governs the relationship between the human and the divine. The second governs the relationships between humans. The tablets stand beside one another as equals. The care owed to God and the care owed to your neighbor are of equivalent weight, pressed onto stones of identical size and shape.</p>
+
+    <h2>The Glow</h2>
+    <p>"And all the people perceived the thunderings and the lightnings and the voice of the shofar and the mountain smoking; and when the people saw it, they trembled and stood afar off." (Exodus 20:15)</p>
+    <p>"The mountain was burning with fire to the very heart of heaven — darkness, cloud, and thick darkness." (Deuteronomy 4:11)</p>
+    <p>The giving of the Torah was not a quiet event. The tablets emerged from a mountain on fire. The amber pulse in this piece is not ornamental — it is a reminder that the carved stone was formed in the presence of something overwhelming, and that the words it carries have never entirely cooled.</p>
+
+    <h2>This Piece</h2>
+    <p>The artwork is self-contained SVG. The stone texture is procedural, generated by fractal noise displacement. The Hebrew text uses Unicode characters with proper RTL direction. The glow is pure CSS, requiring no JavaScript — the animation continues as long as the page is open, eight seconds to breathe in and eight to breathe out, the way a fire pulses.</p>
+    <p>The ten brief traditional headings are: אָנֹכִי · לֹא יִהְיֶה · לֹא תִשָּׂא · זָכוֹר · כַּבֵּד · לֹא תִרְצָח · לֹא תִנְאָף · לֹא תִגְנֹב · לֹא-תַעֲנֶה · לֹא תַחְמֹד. One per line. Ten words for a civilization.</p>
+  </div>
+</div>
+</body>
+</html>
