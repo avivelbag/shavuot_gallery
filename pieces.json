@@ -75,5 +75,16 @@
     "path": "pieces/09-greenery-lsystem/index.html",
     "thumbnail": "pieces/09-greenery-lsystem/thumbnail.svg",
     "essay": "pieces/09-greenery-lsystem/essay.md"
+  },
+  {
+    "id": "10-tagin-pen-plotter",
+    "title": "The Crowns",
+    "tagline": "the ornamental tagin drawn onto Torah letters at Sinai",
+    "year": 2026,
+    "theme": "Tagin / Crown of Torah",
+    "technique": "canvas 2D pen-plotter, hand-drawn stroke simulation",
+    "path": "pieces/10-tagin-pen-plotter/index.html",
+    "thumbnail": "pieces/10-tagin-pen-plotter/thumbnail.svg",
+    "essay": "pieces/10-tagin-pen-plotter/essay.md"
   }
 ]
