@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Where You Go — Ruth in the Wheat Field</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #1a0f00; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    canvas { display: block; max-width: 100vw; max-height: 100vh; }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+// ─── Value noise ────────────────────────────────────────────────────────────
+// 64×64 grid of random floats; bilinear interpolation gives smooth output.
+const GRID = 64;
+const noiseGrid = new Float32Array(GRID * GRID);
+for (let i = 0; i < noiseGrid.length; i++) noiseGrid[i] = Math.random();
+
+function fade(t) { return t * t * (3 - 2 * t); }
+
+function valueNoise(x, y) {
+  const xi = Math.floor(x) & (GRID - 1);
+  const yi = Math.floor(y) & (GRID - 1);
+  const tx = fade(x - Math.floor(x));
+  const ty = fade(y - Math.floor(y));
+  const x1 = (xi + 1) & (GRID - 1);
+  const y1 = (yi + 1) & (GRID - 1);
+  const v00 = noiseGrid[yi * GRID + xi];
+  const v10 = noiseGrid[yi * GRID + x1];
+  const v01 = noiseGrid[y1 * GRID + xi];
+  const v11 = noiseGrid[y1 * GRID + x1];
+  return v00 + tx * (v10 - v00) + ty * ((v01 + tx * (v11 - v01)) - (v00 + tx * (v10 - v00)));
+}
+
+// ─── Canvas setup ────────────────────────────────────────────────────────────
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = 800, H = 600;
+canvas.width = W;
+canvas.height = H;
+
+// ─── Stalks ──────────────────────────────────────────────────────────────────
+// ~300 wheat stalks placed in a jittered grid across the lower 60% of canvas.
+const STALK_COUNT = 300;
+const FIELD_TOP = H * 0.38;
+const FIELD_BOT = H;
+
+const stalks = [];
+const cols = 20, rows = 15;
+for (let r = 0; r < rows; r++) {
+  for (let c = 0; c < cols; c++) {
+    const bx = (c / cols) * W + (Math.random() - 0.5) * (W / cols);
+    const by = FIELD_TOP + (r / rows) * (FIELD_BOT - FIELD_TOP) + (Math.random() - 0.5) * 20;
+    const baseH = (H * 0.13) * (0.8 + Math.random() * 0.4); // ±20%
+    const nxOff = Math.random() * 64;
+    const nyOff = Math.random() * 64;
+    stalks.push({ bx, by, baseH, nxOff, nyOff });
+  }
+}
+
+// ─── Silhouette figures (Ruth and Naomi) ─────────────────────────────────────
+// Two static canvas Path2D silhouettes. Naomi faces left, Ruth faces right.
+// Bodies are rounded rectangles + ellipse heads, kept simple but legible.
+
+function buildFigure(cx, groundY, height, facingRight) {
+  const p = new Path2D();
+  const headR = height * 0.12;
+  const bodyW = height * 0.2;
+  const bodyH = height * 0.45;
+  const legH = height * 0.35;
+  const shoulderY = groundY - legH - bodyH;
+  const headCY = shoulderY - headR - height * 0.02;
+
+  // legs
+  const legSpread = bodyW * 0.25;
+  p.moveTo(cx - legSpread, groundY);
+  p.lineTo(cx - legSpread * 0.3, groundY - legH);
+  p.lineTo(cx + legSpread * 0.3, groundY - legH);
+  p.lineTo(cx + legSpread, groundY);
+  p.closePath();
+
+  // body (trapezoid — wider at shoulders)
+  const shoulderW = bodyW * 1.2;
+  p.moveTo(cx - legSpread * 0.3, groundY - legH);
+  p.lineTo(cx - shoulderW / 2, shoulderY);
+  p.lineTo(cx + shoulderW / 2, shoulderY);
+  p.lineTo(cx + legSpread * 0.3, groundY - legH);
+  p.closePath();
+
+  // head
+  p.moveTo(headCY, headR); // reset
+  p.ellipse(cx, headCY, headR, headR * 1.05, 0, 0, Math.PI * 2);
+
+  // arm reaching outward
+  const armDir = facingRight ? 1 : -1;
+  p.moveTo(cx + armDir * bodyW * 0.3, shoulderY + bodyH * 0.25);
+  p.lineTo(cx + armDir * bodyW * 0.9, shoulderY + bodyH * 0.65);
+
+  return p;
+}
+
+const GROUND_Y = H * 0.68;
+const FIG_HEIGHT = 110;
+// Naomi: left-center, facing left (departing)
+const naomiFig = buildFigure(W * 0.32, GROUND_Y, FIG_HEIGHT, false);
+// Ruth: slightly right of Naomi, facing right (following)
+const ruthFig  = buildFigure(W * 0.44, GROUND_Y, FIG_HEIGHT * 0.92, true);
+
+// ─── Draw sky gradient (static) ──────────────────────────────────────────────
+function drawSky() {
+  const skyGrad = ctx.createLinearGradient(0, 0, 0, FIELD_TOP + 40);
+  skyGrad.addColorStop(0, '#c8a96e');
+  skyGrad.addColorStop(0.5, '#e8c97a');
+  skyGrad.addColorStop(1, '#f5e6c8');
+  ctx.fillStyle = skyGrad;
+  ctx.fillRect(0, 0, W, FIELD_TOP + 40);
+}
+
+// ─── Draw field base ─────────────────────────────────────────────────────────
+function drawFieldBase() {
+  const fGrad = ctx.createLinearGradient(0, FIELD_TOP, 0, H);
+  fGrad.addColorStop(0, '#d4a017');
+  fGrad.addColorStop(1, '#8b6914');
+  ctx.fillStyle = fGrad;
+  ctx.fillRect(0, FIELD_TOP, W, H - FIELD_TOP);
+}
+
+// ─── Draw stalks ─────────────────────────────────────────────────────────────
+function drawStalks(t) {
+  for (const s of stalks) {
+    const noiseVal = valueNoise(s.nxOff + s.bx / 160 + t * 0.18, s.nyOff + s.by / 160);
+    const lean = (noiseVal - 0.5) * 60; // px tip offset
+
+    const tipX = s.bx + lean;
+    const tipY = s.by - s.baseH;
+    const ctrlX = s.bx + lean * 0.5;
+    const ctrlY = s.by - s.baseH * 0.6;
+
+    const stalkGrad = ctx.createLinearGradient(s.bx, s.by, tipX, tipY);
+    stalkGrad.addColorStop(0, '#7a5500');
+    stalkGrad.addColorStop(0.5, '#d4a017');
+    stalkGrad.addColorStop(1, '#f0c84a');
+
+    ctx.beginPath();
+    ctx.moveTo(s.bx, s.by);
+    ctx.quadraticCurveTo(ctrlX, ctrlY, tipX, tipY);
+    ctx.strokeStyle = stalkGrad;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // wheat head — small filled ellipse at tip
+    ctx.beginPath();
+    ctx.ellipse(tipX, tipY, 2.5, 5, Math.atan2(tipX - s.bx, s.by - tipY), 0, Math.PI * 2);
+    ctx.fillStyle = '#f0c84a';
+    ctx.fill();
+  }
+}
+
+// ─── Draw silhouettes ────────────────────────────────────────────────────────
+function drawFigures() {
+  ctx.fillStyle = '#1a0f00';
+  ctx.fill(naomiFig);
+  ctx.fill(ruthFig);
+  ctx.strokeStyle = '#1a0f00';
+  ctx.lineWidth = 3;
+  ctx.stroke(naomiFig);
+  ctx.stroke(ruthFig);
+}
+
+// ─── Draw text overlay ───────────────────────────────────────────────────────
+function drawText() {
+  const barH = 48;
+  ctx.fillStyle = 'rgba(0,0,0,0.38)';
+  ctx.fillRect(0, H - barH, W, barH);
+
+  ctx.font = 'bold 22px serif';
+  ctx.fillStyle = 'rgba(255, 248, 220, 0.92)';
+  ctx.direction = 'rtl';
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center';
+  ctx.fillText('כִּי אֲשֶׁר תֵּלְכִי אֵלֵךְ', W / 2, H - barH / 2);
+  ctx.direction = 'ltr';
+}
+
+// ─── Animation loop ──────────────────────────────────────────────────────────
+let startTime = null;
+
+function frame(ts) {
+  if (!startTime) startTime = ts;
+  const t = (ts - startTime) * 0.001; // seconds
+
+  ctx.clearRect(0, 0, W, H);
+  drawSky();
+  drawFieldBase();
+  drawStalks(t);
+  drawFigures();
+  drawText();
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Parchment sky gradient -->
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c8a96e"/>
+      <stop offset="60%" stop-color="#e8c97a"/>
+      <stop offset="100%" stop-color="#f5e6c8"/>
+    </linearGradient>
+    <linearGradient id="fieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4a017"/>
+      <stop offset="100%" stop-color="#8b6914"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="400" height="220" fill="url(#skyGrad)"/>
+
+  <!-- Wheat field -->
+  <rect y="200" width="400" height="200" fill="url(#fieldGrad)"/>
+
+  <!-- Wheat stalks (simplified static representation) -->
+  <g stroke="#d4a017" stroke-width="1.2" opacity="0.85">
+    <line x1="20"  y1="370" x2="28"  y2="255"/>
+    <line x1="38"  y1="375" x2="43"  y2="258"/>
+    <line x1="55"  y1="368" x2="65"  y2="252"/>
+    <line x1="72"  y1="372" x2="79"  y2="256"/>
+    <line x1="90"  y1="370" x2="96"  y2="254"/>
+    <line x1="108" y1="373" x2="118" y2="257"/>
+    <line x1="125" y1="369" x2="131" y2="253"/>
+    <line x1="142" y1="374" x2="152" y2="258"/>
+    <line x1="210" y1="372" x2="220" y2="256"/>
+    <line x1="228" y1="369" x2="235" y2="253"/>
+    <line x1="245" y1="373" x2="253" y2="257"/>
+    <line x1="262" y1="370" x2="270" y2="254"/>
+    <line x1="280" y1="374" x2="290" y2="258"/>
+    <line x1="298" y1="369" x2="304" y2="253"/>
+    <line x1="315" y1="372" x2="323" y2="256"/>
+    <line x1="332" y1="370" x2="340" y2="254"/>
+    <line x1="350" y1="374" x2="358" y2="258"/>
+    <line x1="368" y1="369" x2="376" y2="253"/>
+    <line x1="385" y1="373" x2="391" y2="257"/>
+  </g>
+  <!-- Brighter tips -->
+  <g fill="#f0c84a" opacity="0.9">
+    <ellipse cx="28"  cy="255" rx="2" ry="5"/>
+    <ellipse cx="43"  cy="258" rx="2" ry="5"/>
+    <ellipse cx="65"  cy="252" rx="2" ry="5"/>
+    <ellipse cx="79"  cy="256" rx="2" ry="5"/>
+    <ellipse cx="96"  cy="254" rx="2" ry="5"/>
+    <ellipse cx="118" cy="257" rx="2" ry="5"/>
+    <ellipse cx="131" cy="253" rx="2" ry="5"/>
+    <ellipse cx="220" cy="256" rx="2" ry="5"/>
+    <ellipse cx="235" cy="253" rx="2" ry="5"/>
+    <ellipse cx="253" cy="257" rx="2" ry="5"/>
+    <ellipse cx="270" cy="254" rx="2" ry="5"/>
+    <ellipse cx="290" cy="258" rx="2" ry="5"/>
+    <ellipse cx="304" cy="253" rx="2" ry="5"/>
+    <ellipse cx="323" cy="256" rx="2" ry="5"/>
+    <ellipse cx="340" cy="254" rx="2" ry="5"/>
+    <ellipse cx="358" cy="258" rx="2" ry="5"/>
+    <ellipse cx="376" cy="253" rx="2" ry="5"/>
+    <ellipse cx="391" cy="257" rx="2" ry="5"/>
+  </g>
+
+  <!-- Naomi silhouette (left, facing left) -->
+  <g fill="#1a0f00">
+    <!-- legs -->
+    <polygon points="128,310 133,272 140,272 145,310"/>
+    <!-- body -->
+    <polygon points="125,272 122,248 148,248 145,272"/>
+    <!-- head -->
+    <ellipse cx="135" cy="238" rx="10" ry="11"/>
+    <!-- arm reaching left -->
+    <line x1="122" y1="256" x2="110" y2="265" stroke="#1a0f00" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Ruth silhouette (right of Naomi, facing right) -->
+  <g fill="#1a0f00">
+    <!-- legs -->
+    <polygon points="157,310 162,274 168,274 173,310"/>
+    <!-- body -->
+    <polygon points="154,274 152,251 176,251 174,274"/>
+    <!-- head -->
+    <ellipse cx="164" cy="241" rx="9" ry="10"/>
+    <!-- arm reaching right -->
+    <line x1="176" y1="259" x2="188" y2="268" stroke="#1a0f00" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Text overlay bar -->
+  <rect y="356" width="400" height="44" fill="rgba(0,0,0,0.38)"/>
+  <text x="200" y="382" font-family="serif" font-size="18" font-weight="bold"
+        fill="rgba(255,248,220,0.92)" text-anchor="middle" direction="rtl">
+    כִּי אֲשֶׁר תֵּלְכִי אֵלֵךְ
+  </text>
+</svg>
