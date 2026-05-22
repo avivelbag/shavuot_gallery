@@ -6,9 +6,6 @@ essay content requirements, and pieces.json registration.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "51-am-segulah-boids"
