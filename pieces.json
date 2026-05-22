@@ -240,5 +240,16 @@
     "path": "pieces/26-shtei-halechem/index.html",
     "thumbnail": "pieces/26-shtei-halechem/thumbnail.svg",
     "essay": "pieces/26-shtei-halechem/essay.md"
+  },
+  {
+    "id": "27-black-fire-white-fire",
+    "title": "Black Fire on White Fire",
+    "tagline": "the primordial Torah — twenty-two letters burning before the world was made",
+    "year": 2026,
+    "theme": "Matan Torah / The Primordial Torah",
+    "technique": "canvas 2D probabilistic cellular automaton, Hebrew letter rasterization",
+    "path": "pieces/27-black-fire-white-fire/index.html",
+    "thumbnail": "pieces/27-black-fire-white-fire/thumbnail.svg",
+    "essay": "pieces/27-black-fire-white-fire/essay.md"
   }
 ]
