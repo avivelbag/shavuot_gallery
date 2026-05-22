@@ -988,5 +988,16 @@
     "path": "pieces/67-magnetic-pendulum-matan-torah/index.html",
     "thumbnail": "pieces/67-magnetic-pendulum-matan-torah/thumbnail.svg",
     "essay": "pieces/67-magnetic-pendulum-matan-torah/essay.md"
+  },
+  {
+    "id": "67-particle-life-bikkurim-procession",
+    "title": "The Flute Plays Before Them",
+    "tagline": "three species — pilgrims, musicians, escort — self-organize into a rightward procession through pairwise attraction rules alone",
+    "year": 2026,
+    "theme": "Bikkurim",
+    "technique": "particle life / multi-species attraction-repulsion",
+    "path": "pieces/67-particle-life-bikkurim-procession/index.html",
+    "thumbnail": "pieces/67-particle-life-bikkurim-procession/thumbnail.svg",
+    "essay": "pieces/67-particle-life-bikkurim-procession/essay.md"
   }
 ]

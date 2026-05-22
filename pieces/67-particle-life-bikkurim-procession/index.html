@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Flute Plays Before Them — Bikkurim Procession</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #0A0A08; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0A0A08;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a1a10;
+      overflow-y: auto;
+      color: #b8c0a0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #06060a;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a1a10; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #C8A020;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #4a3a10;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #C8A020;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+    }
+    .essay-panel em { color: #d4c090; font-style: italic; }
+    .essay-panel strong { color: #C8A020; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #12120a; margin: 2rem 0; }
+
+    .passage-block {
+      background: #090905;
+      border: 1px solid #2a1e04;
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 0 0 1.8rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.2rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #C8A020;
+      line-height: 2.1;
+      margin: 0 0 0.9rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.88rem;
+      color: #806040;
+      font-style: italic;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .passage-block .source {
+      font-size: 0.78rem;
+      color: #4a3010;
+      margin: 0.5rem 0 0;
+      text-align: right;
+    }
+
+    .mishnah-block {
+      background: #070504;
+      border: 1px solid #281408;
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      margin: 0 0 1.5rem;
+    }
+    .mishnah-block .hebrew-text {
+      font-size: 1.05rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #a09050;
+      line-height: 2.0;
+      margin: 0 0 0.6rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .mishnah-block .english-text {
+      font-size: 0.85rem;
+      color: #60502a;
+      font-style: italic;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .mishnah-block .source {
+      font-size: 0.76rem;
+      color: #30200a;
+      margin: 0.4rem 0 0;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>The Flute Plays Before Them</h1>
+    <p class="subtitle">particle life / multi-species attraction-repulsion — Mishnah Bikkurim 3:2–4; Deuteronomy 26:5–10</p>
+
+    <h2>The Procession</h2>
+
+    <p>The Mishnah in tractate Bikkurim (3:2–4) preserves one of the most vivid spectacles in the
+    Temple-era calendar: the procession of first-fruits pilgrims ascending to Jerusalem for Shavuot.</p>
+
+    <div class="mishnah-block">
+      <p class="hebrew-text">כֵּיצַד מַעֲלִין אֶת הַבִּכּוּרִים? כָּל הָעֲיָרוֹת שֶׁבַּמַּעֲמָד מִתְכַּנְּסוֹת לְעִיר הַמַּעֲמָד, וְלָנִין בִּרְחוֹבָהּ שֶׁל עִיר; וְלֹא הָיוּ נִכְנָסִין לַבָּתִּים. וּבְשַׁחֲרִית הָיָה הַמְּמֻנֶּה אוֹמֵר: "קוּמוּ וְנַעֲלֶה צִיּוֹן, אֶל-בֵּית יְיָ אֱלֹהֵינוּ".</p>
+      <p class="english-text">"How do they bring up the first-fruits? All the towns in the district gathered to the district capital and spent the night in the town square — they did not enter the houses. In the morning the appointed one said: Arise, let us go up to Zion, to the house of the Lord our God."</p>
+      <p class="source">— Mishnah Bikkurim 3:2</p>
+    </div>
+
+    <p>The procession moved with ceremony: an ox with gilded horns and an olive wreath led the way.
+    Ahead of the pilgrims, a flute played. The Mishnah records that <em>hachalil makkeh lifneihem</em>
+    — "the flute plays before them" — until they drew near Jerusalem. Then the great ones of Jerusalem
+    and the craftsmen came out to greet them, and the procession entered the Temple Mount to the
+    sound of Levitical song.</p>
+
+    <div class="mishnah-block">
+      <p class="hebrew-text">וְהֶחָלִיל מַכֶּה לִפְנֵיהֶם, עַד שֶׁמַּגִּיעִין קָרוֹב לִירוּשָׁלָיִם. הִגִּיעוּ קָרוֹב לִירוּשָׁלָיִם, שָׁלְחוּ לִפְנֵיהֶם, וְעִטְּרוּ אֶת בִּכּוּרֵיהֶם. הַפַּחוֹת וְהַסְּגָנִים וְהַגִּזְבָּרִים יוֹצְאִין לִקְרָאתָם.</p>
+      <p class="english-text">"And the flute plays before them until they draw near Jerusalem. When they drew near Jerusalem they sent messengers ahead and adorned their first-fruits. The governors, officers, and treasurers came out to meet them."</p>
+      <p class="source">— Mishnah Bikkurim 3:3</p>
+    </div>
+
+    <h2>Three Names of Shavuot</h2>
+
+    <p>Shavuot is one holiday with three names in the Torah: <em>Chag HaShavuot</em> (the Festival of
+    Weeks, marking seven weeks from Passover), <em>Chag HaKatzir</em> (the Festival of the Harvest),
+    and <em>Yom HaBikkurim</em> — the Day of First Fruits. Each name illuminates a different facet:
+    the counting of the Omer, the wheat harvest that peaks at this season, and the obligation to bring
+    the <em>bikkurim</em> — the first ripened produce — to the Temple before eating from the new crop.</p>
+
+    <p>The first-fruits ceremony is ancient, but the declaration that accompanied it is older still.
+    When a pilgrim placed his basket before the altar, he recited a liturgical formula from
+    Deuteronomy 26 — a seven-verse compressed history of the Jewish people:</p>
+
+    <div class="passage-block">
+      <p class="hebrew-text">אֲרַמִּי אֹבֵד אָבִי, וַיֵּרֶד מִצְרַיְמָה וַיָּגָר שָׁם בִּמְתֵי מְעָט, וַיְהִי-שָׁם לְגוֹי גָּדוֹל עָצוּם וָרָב. וַיָּרֵעוּ אֹתָנוּ הַמִּצְרִים וַיְעַנּוּנוּ, וַיִּתְּנוּ עָלֵינוּ עֲבֹדָה קָשָׁה. וַנִּצְעַק אֶל-יְיָ אֱלֹהֵי אֲבֹתֵינוּ, וַיִּשְׁמַע יְיָ אֶת-קֹלֵנוּ, וַיַּרְא אֶת-עָנְיֵנוּ וְאֶת-עֲמָלֵנוּ וְאֶת-לַחֲצֵנוּ. וַיּוֹצִאֵנוּ יְיָ מִמִּצְרַיִם בְּיָד חֲזָקָה וּבִזְרֹעַ נְטוּיָה, וּבְמֹרָא גָּדֹל, וּבְאֹתוֹת וּבְמֹפְתִים. וַיְבִאֵנוּ אֶל-הַמָּקוֹם הַזֶּה, וַיִּתֶּן-לָנוּ אֶת-הָאָרֶץ הַזֹּאת, אֶרֶץ זָבַת חָלָב וּדְבָשׁ.</p>
+      <p class="english-text">"A wandering Aramean was my ancestor; he went down to Egypt and sojourned there, few in number, and there he became a great, mighty, and populous nation. The Egyptians mistreated us and afflicted us, and imposed hard labor upon us. We cried to the Lord, the God of our ancestors; the Lord heard our voice and saw our affliction, our toil, and our oppression. The Lord brought us out of Egypt with a mighty hand and an outstretched arm, with terrifying power, and with signs and wonders. He brought us to this place and gave us this land, a land flowing with milk and honey."</p>
+      <p class="source">— Deuteronomy 26:5–9</p>
+    </div>
+
+    <h2>The Conceptual Ancestor of the Seder</h2>
+
+    <p>This recitation — the <em>Arami oved avi</em> declaration — is one of the earliest examples of
+    Jewish historical narrative liturgy. It compresses the entire Exodus story into seven verses,
+    recited in the first person, while holding a basket of fruit. The liturgy insists: this happened
+    to <em>me</em>, not merely to my ancestors.</p>
+
+    <p>The non-obvious connection: the Passover Haggadah is not an independent composition. It is a
+    rabbinic expansion — a midrash — on precisely these verses. The Talmud (Pesachim 116a) and the
+    halakhic midrash <em>Sifrei Devarim</em> (section 301) instruct that the obligation to tell the
+    Exodus story at the Seder is fulfilled specifically by expounding the <em>Arami oved avi</em>
+    passage, phrase by phrase. The four children, the plagues, the "with a mighty hand" — these
+    are all derived from unpacking Deuteronomy 26:5–8, one clause at a time.</p>
+
+    <p>This means the Bikkurim ceremony is the conceptual ancestor of the Passover Seder. The first
+    fruits pilgrims who recited these words while standing in the Temple court were performing the
+    earliest form of what would become the Haggadah. The Seder is a Bikkurim recitation that
+    survived the Temple's destruction and migrated to the dining table.</p>
+
+    <h2>Self-Organized Procession</h2>
+
+    <p>In this simulation, three species of particles move according to pairwise attraction and
+    repulsion rules — no conductor, no central clock, no explicit path. Gold pilgrims (300 particles)
+    attract each other strongly and weakly attract the deep-green musicians (80 particles). The
+    musicians pull hard toward the pilgrims and cohere among themselves. The deep-blue escort (40
+    particles) drifts through all groups at medium strength. A gentle rightward drift pushes
+    every particle toward Jerusalem. From these local rules alone, a procession column spontaneously
+    forms and marches, endlessly wrapping from left edge to right in a toroidal world — a procession
+    that never ends.</p>
+
+    <p>The self-organization mirrors the Mishnah's account: the pilgrims did not receive marching
+    orders from a single commander. They converged from their surrounding towns, gathered into one
+    group, and moved together — drawn by shared purpose, not by instruction. The flute played
+    before them. The procession organized itself.</p>
+
+    <hr>
+
+    <p style="font-size: 0.82rem; color: #3a2a10;">
+    Sources: Mishnah Bikkurim 3:2–4; Deuteronomy 26:5–10; Pesachim 116a; Sifrei Devarim 301.
+    </p>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+const W = 700;
+const H = 700;
+canvas.width = W;
+canvas.height = H;
+
+/* Particle life: three species with pairwise attraction-repulsion rules. */
+const R_ATTRACT = 120;
+const R_REPEL = 15;
+const MAX_SPEED = 3;
+const DAMPING = 0.85;
+const DRIFT = 0.02;
+
+/* Species: 0=pilgrims, 1=musicians, 2=escort */
+const SPECIES_COUNT = [300, 80, 40];
+const SPECIES_COLORS = ['#C8A020', '#3A7040', '#1A3080'];
+
+/*
+ * Attraction matrix A[i][j]: coefficient for force species-i particle exerts
+ * toward a species-j particle (positive = attract, negative = repel).
+ */
+const A = [
+  [ 0.30,  0.05, -0.10],
+  [ 0.40,  0.20,  0.10],
+  [ 0.15,  0.15,  0.20],
+];
+
+function makeParticle(species) {
+  return {
+    x: Math.random() * W,
+    y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.5,
+    vy: (Math.random() - 0.5) * 0.5,
+    s: species,
+  };
+}
+
+const particles = [];
+for (let s = 0; s < 3; s++) {
+  for (let k = 0; k < SPECIES_COUNT[s]; k++) {
+    particles.push(makeParticle(s));
+  }
+}
+
+const N = particles.length;
+
+/*
+ * Apply attraction force from particle pi toward particle pj using linear
+ * falloff within radius R.  coeff > 0 attracts, coeff < 0 repels.
+ */
+function applyForce(pi, pj, coeff, R) {
+  let dx = pj.x - pi.x;
+  let dy = pj.y - pi.y;
+  /* Shortest-path distance on torus */
+  if (dx > W / 2) dx -= W;
+  if (dx < -W / 2) dx += W;
+  if (dy > H / 2) dy -= H;
+  if (dy < -H / 2) dy += H;
+  const d = Math.sqrt(dx * dx + dy * dy) + 0.001;
+  if (d > R) return;
+  const f = coeff * (1 - d / R) / d;
+  pi.vx += f * dx;
+  pi.vy += f * dy;
+}
+
+/*
+ * Apply short-range repulsion between all species to prevent overlap.
+ */
+function applyRepulsion(pi, pj) {
+  let dx = pj.x - pi.x;
+  let dy = pj.y - pi.y;
+  if (dx > W / 2) dx -= W;
+  if (dx < -W / 2) dx += W;
+  if (dy > H / 2) dy -= H;
+  if (dy < -H / 2) dy += H;
+  const d2 = dx * dx + dy * dy;
+  if (d2 > R_REPEL * R_REPEL || d2 < 0.0001) return;
+  const d = Math.sqrt(d2);
+  const f = -0.5 * (1 - d / R_REPEL) / d;
+  pi.vx += f * dx;
+  pi.vy += f * dy;
+}
+
+function step() {
+  for (let i = 0; i < N; i++) {
+    const pi = particles[i];
+    for (let j = 0; j < N; j++) {
+      if (i === j) continue;
+      const pj = particles[j];
+      applyForce(pi, pj, A[pi.s][pj.s], R_ATTRACT);
+      applyRepulsion(pi, pj);
+    }
+  }
+
+  for (const p of particles) {
+    p.vx += DRIFT;
+    p.vx *= DAMPING;
+    p.vy *= DAMPING;
+    const spd = Math.hypot(p.vx, p.vy);
+    if (spd > MAX_SPEED) {
+      p.vx *= MAX_SPEED / spd;
+      p.vy *= MAX_SPEED / spd;
+    }
+    p.x = (p.x + p.vx + W) % W;
+    p.y = (p.y + p.vy + H) % H;
+  }
+}
+
+function draw() {
+  ctx.fillStyle = '#0A0A08';
+  ctx.fillRect(0, 0, W, H);
+
+  /* Hebrew title at top */
+  ctx.font = '16px "Times New Roman", Georgia, serif';
+  ctx.fillStyle = '#C8A020';
+  ctx.textAlign = 'center';
+  ctx.direction = 'rtl';
+  ctx.fillText('וְהֶחָלִיל מַכֶּה לִפְנֵיהֶם', W / 2, 24);
+  ctx.direction = 'ltr';
+
+  for (const p of particles) {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = SPECIES_COLORS[p.s];
+    ctx.fill();
+  }
+}
+
+let last = 0;
+const FRAME_MS = 1000 / 60;
+
+function loop(ts) {
+  if (ts - last >= FRAME_MS) {
+    last = ts;
+    step();
+    draw();
+  }
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

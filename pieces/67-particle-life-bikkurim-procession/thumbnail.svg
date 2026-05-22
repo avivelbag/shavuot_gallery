@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0A0A08"/>
+
+  <!-- Motion trail lines (gold pilgrims) -->
+  <line x1="40" y1="210" x2="72" y2="208" stroke="#C8A020" stroke-width="1.5" stroke-opacity="0.3"/>
+  <line x1="55" y1="225" x2="88" y2="222" stroke="#C8A020" stroke-width="1.5" stroke-opacity="0.3"/>
+  <line x1="70" y1="195" x2="100" y2="193" stroke="#C8A020" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- Motion trail lines (musicians) -->
+  <line x1="160" y1="175" x2="185" y2="174" stroke="#3A7040" stroke-width="1.5" stroke-opacity="0.3"/>
+  <line x1="155" y1="190" x2="178" y2="189" stroke="#3A7040" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- Motion trail lines (escort) -->
+  <line x1="265" y1="200" x2="285" y2="199" stroke="#1A3080" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- Gold pilgrims cluster (large, leftish) -->
+  <circle cx="80" cy="210" r="4" fill="#C8A020"/>
+  <circle cx="92" cy="220" r="4" fill="#C8A020"/>
+  <circle cx="76" cy="228" r="4" fill="#C8A020"/>
+  <circle cx="100" cy="215" r="4" fill="#C8A020"/>
+  <circle cx="88" cy="200" r="4" fill="#C8A020"/>
+  <circle cx="110" cy="225" r="4" fill="#C8A020"/>
+  <circle cx="68" cy="215" r="4" fill="#C8A020"/>
+  <circle cx="95" cy="235" r="4" fill="#C8A020"/>
+  <circle cx="115" cy="210" r="4" fill="#C8A020"/>
+  <circle cx="82" cy="240" r="3" fill="#C8A020"/>
+  <circle cx="105" cy="240" r="3" fill="#C8A020"/>
+  <circle cx="120" cy="230" r="3" fill="#C8A020"/>
+  <circle cx="72" cy="200" r="3" fill="#C8A020"/>
+  <circle cx="125" cy="220" r="3" fill="#C8A020"/>
+  <circle cx="60" cy="225" r="3" fill="#C8A020"/>
+  <circle cx="130" cy="215" r="3" fill="#C8A020"/>
+  <circle cx="55" cy="210" r="3" fill="#C8A020"/>
+  <circle cx="98" cy="245" r="3" fill="#C8A020"/>
+  <circle cx="115" cy="245" r="3" fill="#C8A020"/>
+  <circle cx="135" cy="225" r="3" fill="#C8A020"/>
+
+  <!-- Musicians cluster (medium, middle) -->
+  <circle cx="195" cy="185" r="4" fill="#3A7040"/>
+  <circle cx="207" cy="195" r="4" fill="#3A7040"/>
+  <circle cx="185" cy="195" r="4" fill="#3A7040"/>
+  <circle cx="200" cy="205" r="4" fill="#3A7040"/>
+  <circle cx="215" cy="188" r="4" fill="#3A7040"/>
+  <circle cx="192" cy="175" r="3" fill="#3A7040"/>
+  <circle cx="220" cy="200" r="3" fill="#3A7040"/>
+  <circle cx="178" cy="185" r="3" fill="#3A7040"/>
+  <circle cx="210" cy="210" r="3" fill="#3A7040"/>
+  <circle cx="225" cy="195" r="3" fill="#3A7040"/>
+
+  <!-- Escort cluster (small, rightmost) -->
+  <circle cx="295" cy="200" r="4" fill="#1A3080"/>
+  <circle cx="307" cy="210" r="4" fill="#1A3080"/>
+  <circle cx="285" cy="210" r="4" fill="#1A3080"/>
+  <circle cx="300" cy="218" r="3" fill="#1A3080"/>
+  <circle cx="315" cy="203" r="3" fill="#1A3080"/>
+  <circle cx="290" cy="220" r="3" fill="#1A3080"/>
+  <circle cx="320" cy="215" r="3" fill="#1A3080"/>
+
+  <!-- Rightward drift arrow hint: few stray particles ahead -->
+  <circle cx="345" cy="205" r="2.5" fill="#C8A020" fill-opacity="0.5"/>
+  <circle cx="358" cy="212" r="2" fill="#C8A020" fill-opacity="0.4"/>
+  <circle cx="370" cy="200" r="2" fill="#3A7040" fill-opacity="0.4"/>
+</svg>
