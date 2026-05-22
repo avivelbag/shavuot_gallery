@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>An Everlasting Covenant — The Torus Knot of Sinai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(ellipse at center, #08031f 0%, #050210 65%);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a0a4a;
+      overflow-y: auto;
+      color: #b0c4e0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #030109;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a0a4a; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #e0d0ff;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4a3a6a;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #c0a0ff;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #2a1a5a;
+      font-style: italic;
+      color: #7060a0;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #d0c0ff; font-style: italic; }
+    .essay-panel strong { color: #c0a0ff; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #150820; margin: 2rem 0; }
+
+    .passage-block {
+      background: #0a0418;
+      border: 1px solid #2a1a5a;
+      border-radius: 4px;
+      padding: 1.5rem;
+      margin: 0 0 2rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.25rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #d0b0ff;
+      line-height: 2.0;
+      margin: 0 0 1rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.9rem;
+      color: #8888aa;
+      font-style: italic;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .passage-block .source {
+      font-size: 0.8rem;
+      color: #4a3a6a;
+      margin: 0.5rem 0 0;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>An Everlasting Covenant</h1>
+    <p class="subtitle">The Torus Knot of Sinai — Exodus 24:7–8; Shabbat 88a; Esther 9:27</p>
+
+    <div class="passage-block">
+      <p class="hebrew-text">וַיִּקַּח סֵפֶר הַבְּרִית וַיִּקְרָא בְּאָזְנֵי הָעָם וַיֹּאמְרוּ כֹּל אֲשֶׁר-דִּבֶּר יְהוָה נַעֲשֶׂה וְנִשְׁמָע׃ וַיִּקַּח מֹשֶׁה אֶת-הַדָּם וַיִּזְרֹק עַל-הָעָם וַיֹּאמֶר הִנֵּה דַם-הַבְּרִית אֲשֶׁר כָּרַת יְהוָה עִמָּכֶם עַל כָּל-הַדְּבָרִים הָאֵלֶּה׃</p>
+      <p class="english-text">"And he took the book of the covenant and read it in the hearing of the people; and they said, 'All that the LORD has spoken we will do and we will hear.' And Moses took the blood and dashed it on the people, and said, 'See the blood of the covenant that the LORD has made with you in accordance with all these words.'"</p>
+      <p class="source">— Exodus 24:7–8</p>
+    </div>
+
+    <h2>What a Brit Is</h2>
+    <p>A <em>brit</em> — a covenant — was a familiar instrument in the ancient Near East long before the Israelites arrived at Sinai. Hittite and Mesopotamian documents preserve the genre in detail: a suzerainty treaty in which a great king enumerated his past benefits, stated his present claims, imposed binding obligations on a vassal nation, and accepted obligations in return. What made the agreement legally operative was the cutting ritual. Animals were sliced down the middle; the parties walked between the pieces, calling upon themselves the fate of the animals if they violated the terms. The Hebrew idiom <em>karat brit</em>, to cut a covenant, encodes this ceremony literally. The cutting is the contract.</p>
+
+    <p>What makes the Sinai covenant theologically astonishing is the identity of the parties. Exodus 24 is not describing Israel's subjugation to a divine sovereign. It is describing a bilateral legal agreement. The obligations run in both directions. God accepts them as freely as Israel does. The prophets — Isaiah, Jeremiah, Hosea — will spend centuries invoking the terms of this treaty against all parties, including against God himself. "Remember your covenant" is not a prayer; it is a legal demand. This is the radical claim of the text: the Creator of heaven and earth has entered into a binding relationship with a human nation.</p>
+
+    <hr>
+
+    <h2>The Mountain Over Their Heads</h2>
+    <p>But the Talmud records a disturbing detail. The Babylonian Talmud (Shabbat 88a) transmits a tradition in the name of Rav Avdimi bar Hama bar Hassa: when the Torah was offered at Sinai, the Holy One, Blessed be He, held Mount Sinai over the heads of the Israelites like an inverted barrel and declared: "If you accept the Torah, good; if not, this will be your grave."</p>
+
+    <p>This image inverts the covenant formula entirely. Acceptance under the threat of death is not acceptance. Talmudic law recognizes <em>ones</em> — duress — as vitiating contractual obligations. A <em>brit</em> made with a sword at your throat is not a <em>brit</em>; it is extortion. So the rabbis face a genuine legal problem: if the Sinai covenant was invalid at the moment of its making, what makes any of it binding?</p>
+
+    <p>The answer arrives in the Book of Esther, six centuries later. Esther 9:27 records how the Jews of Persia responded to the Purim miracle: <em>kiym'u v'kiblu</em>, "they established and accepted." The rabbis (Shabbat 88a) read the doubling as temporal: the Israelites had previously accepted the Torah at Sinai under duress; in Persia, they reaffirmed it freely. The Sinai covenant, made under the shadow of the mountain, was retroactively validated by a free choice made in exile. The <em>brit</em> was not dead; it was waiting to be ratified.</p>
+
+    <hr>
+
+    <h2>The Geometry of Eternity</h2>
+    <p>A torus knot is a closed curve on the surface of a torus — a donut shape — that winds <em>p</em> times around the central axis and <em>q</em> times through the hole, without ever crossing itself. Unlike a simple loop, which is topologically trivial, a torus knot is topologically locked. No continuous deformation can convert it into an unknot without cutting the curve. It has no start and no end. It cannot be loosened, unraveled, or slipped off. The only way to change its topology is to break it.</p>
+
+    <p>This is the geometry of <em>brit olam</em>, an eternal covenant. A <em>brit olam</em> cannot be dissolved through negotiation, through lapse, through forgetting, or through conquest. The term appears throughout Tanach: with Noah (Genesis 9:16), with Abraham (Genesis 17:7), with the Levitical priesthood, with David. In each case, what "eternal" means is precisely this topological property: the knot cannot be untied from within the knot. The curve cannot exit its own topology.</p>
+
+    <p>The piece renders a (3,2) torus knot: three winds around the torus axis, two through its hole. It is the simplest non-trivial torus knot of this family. As it tumbles slowly on all three axes, the gold emission ridge catches the directional light, giving the appearance of a braided cord of ancient gold. The covenant formula <strong>נַעֲשֶׂה וְנִשְׁמָע</strong> — we will do and we will hear — is canvas-rendered in white and mapped onto the tube surface, running along the full length of the cord.</p>
+
+    <hr>
+
+    <h2>The Visualization</h2>
+    <p>A (3,2) torus knot is built from scratch as a WebGL tube mesh: 240 segments along the parametric curve, 10 sides per cross-section. Frenet-Serret frames are parallel-transported along the curve to avoid twist artifacts at the join point. A Phong-style fragment shader provides ambient and directional lighting from above-right, with a gold emission stripe calculated from the world-upward component of each fragment's surface normal. The covenant formula is rendered onto a 512×64 canvas and uploaded as a WebGL texture, mapped along the full length of the tube. The knot rotates meditatively on all three axes — 0.003 radians per frame in X, 0.007 in Y, 0.001 in Z — a slow, weightless tumble through deep midnight space. No external libraries; raw WebGL 1 with typed arrays throughout.</p>
+  </div>
+</div>
+<script>
+(function () {
+'use strict';
+
+/* ---- Vector3 helpers ---- */
+function add3(a,b){return[a[0]+b[0],a[1]+b[1],a[2]+b[2]];}
+function sub3(a,b){return[a[0]-b[0],a[1]-b[1],a[2]-b[2]];}
+function mul3(a,s){return[a[0]*s,a[1]*s,a[2]*s];}
+function dot3(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
+function len3(a){return Math.sqrt(dot3(a,a));}
+function norm3(a){var l=len3(a);return l>1e-12?mul3(a,1/l):[0,0,0];}
+function cross3(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];}
+
+/**
+ * Rotate vector v around unit axis k by angle theta (Rodrigues' formula).
+ * Used for parallel-transport frame computation along the torus knot curve.
+ */
+function rodrigues(v,k,theta){
+  var c=Math.cos(theta),s=Math.sin(theta),d=dot3(k,v);
+  var kxv=cross3(k,v);
+  return[v[0]*c+kxv[0]*s+k[0]*d*(1-c),
+         v[1]*c+kxv[1]*s+k[1]*d*(1-c),
+         v[2]*c+kxv[2]*s+k[2]*d*(1-c)];
+}
+
+/* ---- Mat4 helpers (column-major Float32Array) ---- */
+function m4id(){return new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);}
+
+function m4mul(a,b){
+  var r=new Float32Array(16);
+  for(var col=0;col<4;col++)
+    for(var row=0;row<4;row++){
+      var s=0;for(var k=0;k<4;k++)s+=a[k*4+row]*b[col*4+k];
+      r[col*4+row]=s;
+    }
+  return r;
+}
+
+/* Column-major rotation matrices. */
+function m4rotX(a){var c=Math.cos(a),s=Math.sin(a);return new Float32Array([1,0,0,0,0,c,s,0,0,-s,c,0,0,0,0,1]);}
+function m4rotY(a){var c=Math.cos(a),s=Math.sin(a);return new Float32Array([c,0,-s,0,0,1,0,0,s,0,c,0,0,0,0,1]);}
+function m4rotZ(a){var c=Math.cos(a),s=Math.sin(a);return new Float32Array([c,s,0,0,-s,c,0,0,0,0,1,0,0,0,0,1]);}
+
+/**
+ * Perspective projection matrix (column-major).
+ * fovY in radians, near/far clip planes.
+ */
+function m4persp(fovY,aspect,near,far){
+  var f=1/Math.tan(fovY/2);
+  return new Float32Array([
+    f/aspect,0,0,0,
+    0,f,0,0,
+    0,0,(far+near)/(near-far),-1,
+    0,0,2*far*near/(near-far),0
+  ]);
+}
+
+/**
+ * Camera lookAt matrix (column-major).
+ * eye: camera position, ctr: look-at target, up: world up vector.
+ */
+function m4lookAt(eye,ctr,up){
+  var f=norm3(sub3(ctr,eye));
+  var r=norm3(cross3(f,up));
+  var u=cross3(r,f);
+  return new Float32Array([
+    r[0],u[0],-f[0],0,
+    r[1],u[1],-f[1],0,
+    r[2],u[2],-f[2],0,
+    -dot3(r,eye),-dot3(u,eye),dot3(f,eye),1
+  ]);
+}
+
+/** Extract upper-left 3×3 from a 4×4 column-major matrix. */
+function m3fromM4(m){return new Float32Array([m[0],m[1],m[2],m[4],m[5],m[6],m[8],m[9],m[10]]);}
+
+/* ---- Torus knot parametric geometry ---- */
+var P=3,Q=2,R=0.6,RR=0.25,TUBE_R=0.07;
+var N_SEG=240,SIDES=10;
+
+/** Sample a single point on the (P,Q) torus knot curve at parameter t. */
+function torusKnotPt(t){
+  var phi=P*t,theta=Q*t;
+  return[(R+RR*Math.cos(theta))*Math.cos(phi),
+         (R+RR*Math.cos(theta))*Math.sin(phi),
+         RR*Math.sin(theta)];
+}
+
+/**
+ * Build tube mesh for the torus knot.
+ * Returns { pos, nrm, uv, idx } as typed arrays ready for WebGL upload.
+ *
+ * Parallel transport frames avoid the twist discontinuity that arises with
+ * raw Frenet-Serret frames at curve inflection points.
+ */
+function buildMesh(){
+  var TWO_PI=2*Math.PI;
+
+  /* Sample N_SEG+1 curve points; pts[N_SEG] === pts[0] for closure. */
+  var pts=[];
+  for(var i=0;i<=N_SEG;i++) pts.push(torusKnotPt((i/N_SEG)*TWO_PI));
+
+  /* Tangents via central differences on the closed curve. */
+  var T=[];
+  for(var i=0;i<=N_SEG;i++){
+    var prev=(i===0)?pts[N_SEG-1]:pts[i-1];
+    var next=(i===N_SEG)?pts[1]:pts[i+1];
+    T.push(norm3(sub3(next,prev)));
+  }
+
+  /* Seed the initial normal frame: Gram-Schmidt against a reference vector. */
+  var ref=[0,0,1];
+  if(Math.abs(dot3(T[0],ref))>0.9) ref=[0,1,0];
+  var N0=norm3(sub3(ref,mul3(T[0],dot3(ref,T[0]))));
+  var B0=norm3(cross3(T[0],N0));
+
+  /* Parallel-transport each frame to the next using Rodrigues rotation. */
+  var NF=[N0],BF=[B0];
+  for(var i=1;i<=N_SEG;i++){
+    var t0=T[i-1],t1=T[i];
+    var ax=cross3(t0,t1);
+    var axl=len3(ax);
+    if(axl<1e-8){
+      NF.push(NF[i-1].slice());BF.push(BF[i-1].slice());
+    } else {
+      var axn=mul3(ax,1/axl);
+      var ang=Math.asin(Math.min(1,axl));
+      var nn=rodrigues(NF[i-1],axn,ang);
+      var bn=rodrigues(BF[i-1],axn,ang);
+      /* Re-orthogonalize against the new tangent. */
+      nn=norm3(sub3(nn,mul3(t1,dot3(nn,t1))));
+      bn=norm3(cross3(t1,nn));
+      NF.push(nn);BF.push(bn);
+    }
+  }
+
+  /* Build per-vertex data: position, outward normal, UV. */
+  var nVerts=(N_SEG+1)*(SIDES+1);
+  var pos=new Float32Array(nVerts*3);
+  var nrm=new Float32Array(nVerts*3);
+  var uv =new Float32Array(nVerts*2);
+  var vi=0;
+  for(var i=0;i<=N_SEG;i++){
+    var pt=pts[i],tn=NF[i],tb=BF[i];
+    var uCoord=i/N_SEG;
+    for(var j=0;j<=SIDES;j++){
+      var ang=(j/SIDES)*TWO_PI;
+      var ca=Math.cos(ang),sa=Math.sin(ang);
+      /* Outward normal in world space for this tube vertex. */
+      var nx=ca*tn[0]+sa*tb[0];
+      var ny=ca*tn[1]+sa*tb[1];
+      var nz=ca*tn[2]+sa*tb[2];
+      pos[vi*3  ]=pt[0]+TUBE_R*nx;
+      pos[vi*3+1]=pt[1]+TUBE_R*ny;
+      pos[vi*3+2]=pt[2]+TUBE_R*nz;
+      nrm[vi*3  ]=nx;nrm[vi*3+1]=ny;nrm[vi*3+2]=nz;
+      uv [vi*2  ]=uCoord;uv[vi*2+1]=j/SIDES;
+      vi++;
+    }
+  }
+
+  /*
+   * Index buffer: two CCW triangles per quad (winding verified against
+   * the analytic outward normal of the tube cross-section).
+   */
+  var idx=new Uint16Array(N_SEG*SIDES*6);
+  var ii=0;
+  for(var i=0;i<N_SEG;i++){
+    for(var j=0;j<SIDES;j++){
+      var a=i*(SIDES+1)+j;
+      var b=a+1;
+      var c=(i+1)*(SIDES+1)+j;
+      var d=c+1;
+      idx[ii++]=a;idx[ii++]=b;idx[ii++]=c;
+      idx[ii++]=b;idx[ii++]=d;idx[ii++]=c;
+    }
+  }
+
+  return{pos:pos,nrm:nrm,uv:uv,idx:idx};
+}
+
+/* ---- Hebrew text canvas texture ---- */
+/**
+ * Render the covenant formula onto an offscreen canvas and upload as a
+ * WebGL texture.  White glyphs on a transparent background; the fragment
+ * shader uses the alpha channel as the text mask.
+ */
+function makeTextTexture(gl){
+  var tc=document.createElement('canvas');
+  tc.width=512;tc.height=64;
+  var ctx=tc.getContext('2d');
+  ctx.clearRect(0,0,512,64);
+  ctx.fillStyle='rgba(255,255,255,1)';
+  ctx.font='30px "Times New Roman",Georgia,serif';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  /* נַעֲשֶׂה וְנִשְׁמָע */
+  ctx.fillText('נַעֲשֶׁה וְנִשְׁמָע',256,32);
+  var tex=gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D,tex);
+  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,tc);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.REPEAT);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+  return tex;
+}
+
+/* ---- Shader sources ---- */
+var VS=[
+  'attribute vec3 aPos;',
+  'attribute vec3 aNrm;',
+  'attribute vec2 aUV;',
+  'uniform mat4 uModel;',
+  'uniform mat4 uView;',
+  'uniform mat4 uProj;',
+  'uniform mat3 uNormMat;',
+  'varying vec3 vWNorm;',
+  'varying vec2 vUV;',
+  'void main(){',
+  '  vWNorm=normalize(uNormMat*aNrm);',
+  '  vUV=aUV;',
+  '  gl_Position=uProj*uView*uModel*vec4(aPos,1.0);',
+  '}'
+].join('\n');
+
+var FS=[
+  'precision mediump float;',
+  'uniform sampler2D uTex;',
+  'varying vec3 vWNorm;',
+  'varying vec2 vUV;',
+  /* Fixed directional light from above-right. */
+  'const vec3 LIGHT=vec3(0.534,0.802,0.267);',
+  /* Deep royal blue base color: #1A0A4A. */
+  'const vec3 TUBE=vec3(0.102,0.039,0.290);',
+  /* Bright golden-white emission stripe. */
+  'const vec3 GOLD=vec3(1.0,0.92,0.60);',
+  'void main(){',
+  '  vec3 n=normalize(vWNorm);',
+  '  float diff=max(0.0,dot(n,LIGHT));',
+  '  vec3 base=TUBE*(0.22+0.78*diff);',
+  /* Emission stripe: faces toward world +Y get the gold glow. */
+  '  float stripe=pow(max(0.0,n.y),4.0);',
+  '  base+=stripe*GOLD;',
+  /* Blend white text over tube using texture alpha channel. */
+  '  vec4 t=texture2D(uTex,vUV);',
+  '  base=mix(base,vec3(1.0),t.a*0.85);',
+  '  gl_FragColor=vec4(base,1.0);',
+  '}'
+].join('\n');
+
+/* ---- WebGL initialisation ---- */
+var canvas=document.getElementById('c');
+var gl=canvas.getContext('webgl',{alpha:true,antialias:true});
+if(!gl){document.getElementById('art-panel').textContent='WebGL not supported';return;}
+
+function compileShader(type,src){
+  var sh=gl.createShader(type);
+  gl.shaderSource(sh,src);
+  gl.compileShader(sh);
+  if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))
+    console.error('Shader error:',gl.getShaderInfoLog(sh));
+  return sh;
+}
+
+var prog=gl.createProgram();
+gl.attachShader(prog,compileShader(gl.VERTEX_SHADER,VS));
+gl.attachShader(prog,compileShader(gl.FRAGMENT_SHADER,FS));
+gl.linkProgram(prog);
+if(!gl.getProgramParameter(prog,gl.LINK_STATUS))
+  console.error('Link error:',gl.getProgramInfoLog(prog));
+gl.useProgram(prog);
+
+var aPosLoc   =gl.getAttribLocation(prog,'aPos');
+var aNrmLoc   =gl.getAttribLocation(prog,'aNrm');
+var aUVLoc    =gl.getAttribLocation(prog,'aUV');
+var uModelLoc =gl.getUniformLocation(prog,'uModel');
+var uViewLoc  =gl.getUniformLocation(prog,'uView');
+var uProjLoc  =gl.getUniformLocation(prog,'uProj');
+var uNormMatLoc=gl.getUniformLocation(prog,'uNormMat');
+var uTexLoc   =gl.getUniformLocation(prog,'uTex');
+
+/* Build mesh and upload to GPU. */
+var mesh=buildMesh();
+
+var posVBO=gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER,posVBO);
+gl.bufferData(gl.ARRAY_BUFFER,mesh.pos,gl.STATIC_DRAW);
+
+var nrmVBO=gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER,nrmVBO);
+gl.bufferData(gl.ARRAY_BUFFER,mesh.nrm,gl.STATIC_DRAW);
+
+var uvVBO=gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER,uvVBO);
+gl.bufferData(gl.ARRAY_BUFFER,mesh.uv,gl.STATIC_DRAW);
+
+var idxVBO=gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,idxVBO);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,mesh.idx,gl.STATIC_DRAW);
+
+var nIndices=mesh.idx.length;
+
+/* Upload text texture. */
+var textTex=makeTextTexture(gl);
+gl.uniform1i(uTexLoc,0);
+
+/* Fixed view matrix: camera at (0,0,3) looking at origin. */
+var view=m4lookAt([0,0,3],[0,0,0],[0,1,0]);
+gl.uniformMatrix4fv(uViewLoc,false,view);
+
+var rx=0,ry=0,rz=0;
+
+function resize(){
+  var panel=document.getElementById('art-panel');
+  var W=panel.clientWidth,H=panel.clientHeight;
+  canvas.width=W;canvas.height=H;
+  gl.viewport(0,0,W,H);
+  gl.uniformMatrix4fv(uProjLoc,false,m4persp(0.96,W/H,0.1,10));
+}
+resize();
+window.addEventListener('resize',resize);
+
+gl.enable(gl.DEPTH_TEST);
+gl.enable(gl.CULL_FACE);
+gl.cullFace(gl.BACK);
+
+/* Animation loop: slow meditative tumble on all three axes. */
+function frame(){
+  rx+=0.003;ry+=0.007;rz+=0.001;
+  var model=m4mul(m4rotZ(rz),m4mul(m4rotY(ry),m4rotX(rx)));
+  gl.uniformMatrix4fv(uModelLoc,false,model);
+  /* For pure rotation, the normal matrix is the same 3×3 sub-matrix. */
+  gl.uniformMatrix3fv(uNormMatLoc,false,m3fromM4(model));
+
+  gl.clearColor(0,0,0,0);
+  gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+
+  gl.bindBuffer(gl.ARRAY_BUFFER,posVBO);
+  gl.enableVertexAttribArray(aPosLoc);
+  gl.vertexAttribPointer(aPosLoc,3,gl.FLOAT,false,0,0);
+
+  gl.bindBuffer(gl.ARRAY_BUFFER,nrmVBO);
+  gl.enableVertexAttribArray(aNrmLoc);
+  gl.vertexAttribPointer(aNrmLoc,3,gl.FLOAT,false,0,0);
+
+  gl.bindBuffer(gl.ARRAY_BUFFER,uvVBO);
+  gl.enableVertexAttribArray(aUVLoc);
+  gl.vertexAttribPointer(aUVLoc,2,gl.FLOAT,false,0,0);
+
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,idxVBO);
+  gl.activeTexture(gl.TEXTURE0);
+  gl.bindTexture(gl.TEXTURE_2D,textTex);
+  gl.drawElements(gl.TRIANGLES,nIndices,gl.UNSIGNED_SHORT,0);
+
+  requestAnimationFrame(frame);
+}
+frame();
+})();
+</script>
+</body>
+</html>

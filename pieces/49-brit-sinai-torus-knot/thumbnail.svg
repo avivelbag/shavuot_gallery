@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="400" height="400">
+  <defs>
+    <radialGradient id="bg49" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#08031f"/>
+      <stop offset="100%" stop-color="#050210"/>
+    </radialGradient>
+    <radialGradient id="glow49" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3020a0" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#3020a0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="200" fill="url(#bg49)"/>
+  <circle cx="100" cy="100" r="78" fill="url(#glow49)"/>
+
+  <!-- Torus knot tube: three interlocking loops in royal blue, suggesting (3,2) topology -->
+  <!-- Loop 1: top -->
+  <ellipse cx="100" cy="78" rx="44" ry="27"
+           fill="none" stroke="#0d0535" stroke-width="10"/>
+  <ellipse cx="100" cy="78" rx="44" ry="27"
+           fill="none" stroke="#3a1890" stroke-width="5"/>
+  <ellipse cx="100" cy="78" rx="44" ry="27"
+           fill="none" stroke="#1A0A4A" stroke-width="7"/>
+
+  <!-- Loop 2: bottom-right -->
+  <ellipse cx="124" cy="118" rx="44" ry="27" transform="rotate(60 124 118)"
+           fill="none" stroke="#0d0535" stroke-width="10"/>
+  <ellipse cx="124" cy="118" rx="44" ry="27" transform="rotate(60 124 118)"
+           fill="none" stroke="#3a1890" stroke-width="5"/>
+  <ellipse cx="124" cy="118" rx="44" ry="27" transform="rotate(60 124 118)"
+           fill="none" stroke="#1A0A4A" stroke-width="7"/>
+
+  <!-- Loop 3: bottom-left -->
+  <ellipse cx="76" cy="118" rx="44" ry="27" transform="rotate(-60 76 118)"
+           fill="none" stroke="#0d0535" stroke-width="10"/>
+  <ellipse cx="76" cy="118" rx="44" ry="27" transform="rotate(-60 76 118)"
+           fill="none" stroke="#3a1890" stroke-width="5"/>
+  <ellipse cx="76" cy="118" rx="44" ry="27" transform="rotate(-60 76 118)"
+           fill="none" stroke="#1A0A4A" stroke-width="7"/>
+
+  <!-- Gold emission highlights -->
+  <ellipse cx="100" cy="78" rx="44" ry="27"
+           fill="none" stroke="#c0a030" stroke-width="1.2" opacity="0.6"/>
+  <ellipse cx="124" cy="118" rx="44" ry="27" transform="rotate(60 124 118)"
+           fill="none" stroke="#c0a030" stroke-width="1.2" opacity="0.4"/>
+
+  <!-- Hebrew covenant formula -->
+  <text x="100" y="190" font-family="'Times New Roman',serif" font-size="10"
+        fill="#5040a0" text-anchor="middle" opacity="0.8">נַעֲשֶׂה וְנִשְׁמָע</text>
+</svg>

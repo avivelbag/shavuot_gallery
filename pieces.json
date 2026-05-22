@@ -583,6 +583,17 @@
     "essay": "pieces/48-two-torahs-double-helix/essay.md"
   },
   {
+    "id": "49-brit-sinai-torus-knot",
+    "title": "An Everlasting Covenant — The Torus Knot of Sinai",
+    "tagline": "נַעֲשֶׂה וְנִשְׁמָע — the covenant formula mapped onto a (3,2) torus knot tumbling in WebGL",
+    "year": 2026,
+    "theme": "Matan Torah",
+    "technique": "WebGL 3D torus knot tube mesh",
+    "path": "pieces/49-brit-sinai-torus-knot/index.html",
+    "thumbnail": "pieces/49-brit-sinai-torus-knot/thumbnail.svg",
+    "essay": "pieces/49-brit-sinai-torus-knot/essay.md"
+  },
+  {
     "id": "49-sefirot-omer-hex",
     "title": "Seven Times Seven",
     "tagline": "the Sefirot grid of Omer — seven weeks of seven",
