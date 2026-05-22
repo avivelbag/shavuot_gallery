@@ -493,5 +493,16 @@
     "path": "pieces/43-they-saw-the-voices/index.html",
     "thumbnail": "pieces/43-they-saw-the-voices/thumbnail.svg",
     "essay": "pieces/43-they-saw-the-voices/essay.md"
+  },
+  {
+    "id": "45-they-saw-the-voices",
+    "title": "They Saw the Voices",
+    "tagline": "וְכָל-הָעָם רֹאִים אֶת-הַקּוֹלֹת — at Sinai, sound became visible",
+    "year": 2026,
+    "theme": "Matan Torah / Synaesthetic revelation — Exodus 20:15 (Hebrew); Mechilta d'Rabbi Ishmael, Yitro 9",
+    "technique": "canvas 2D — two-frequency Lissajous oscillator, phosphor-persistence trail, slow ratio interpolation",
+    "path": "pieces/45-they-saw-the-voices/index.html",
+    "thumbnail": "pieces/45-they-saw-the-voices/thumbnail.svg",
+    "essay": "pieces/45-they-saw-the-voices/essay.md"
   }
 ]

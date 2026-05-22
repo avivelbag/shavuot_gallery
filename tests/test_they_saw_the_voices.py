@@ -6,13 +6,10 @@ HTML animation requirements, and several edge-case / failure-mode checks.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
-PIECE_ID = "43-they-saw-the-voices"
+PIECE_ID = "45-they-saw-the-voices"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 
 
