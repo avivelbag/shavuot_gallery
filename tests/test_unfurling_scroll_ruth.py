@@ -1,5 +1,5 @@
 """
-Tests for piece 54-unfurling-scroll-ruth.
+Tests for piece 55-unfurling-scroll-ruth.
 
 Verifies the piece directory, pieces.json registration, and
 HTML/essay content requirements described in the acceptance criteria.
@@ -7,10 +7,8 @@ HTML/essay content requirements described in the acceptance criteria.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PIECE_ID = "54-unfurling-scroll-ruth"
+PIECE_ID = "55-unfurling-scroll-ruth"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 INDEX_HTML = os.path.join(PIECE_DIR, "index.html")
 ESSAY_MD = os.path.join(PIECE_DIR, "essay.md")

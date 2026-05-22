@@ -337,13 +337,7 @@
           ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
           pen = p3;
         } else {
-          // De Casteljau subdivision to draw only the first partial of the curve
           var pt = bezierPoint(p0, p1, p2, p3, partial);
-          // Compute split control points for the first sub-curve
-          var q0 = p0;
-          var q1 = {x: p0.x + (p1.x - p0.x) * partial, y: p0.y + (p1.y - p0.y) * partial};
-          var q2 = bezierPoint(p0, p1, p2, p3, partial * 0.5);
-          // Use a simplified approach: just draw to midpoint with original cp1
           ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, pt.x, pt.y);
           pen = pt;
         }

@@ -746,5 +746,16 @@
     "path": "pieces/54-unfurling-scroll-ruth/index.html",
     "thumbnail": "pieces/54-unfurling-scroll-ruth/thumbnail.svg",
     "essay": "pieces/54-unfurling-scroll-ruth/essay.md"
+  },
+  {
+    "id": "55-unfurling-scroll-ruth",
+    "title": "The Unfurling Scroll",
+    "tagline": "עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי — Ruth 1:16 appears stroke by stroke as the megillah unfurls on Shavuot",
+    "year": 2026,
+    "theme": "Book of Ruth",
+    "technique": "canvas calligraphic stroke animation",
+    "path": "pieces/55-unfurling-scroll-ruth/index.html",
+    "thumbnail": "pieces/55-unfurling-scroll-ruth/thumbnail.svg",
+    "essay": "pieces/55-unfurling-scroll-ruth/essay.md"
   }
 ]

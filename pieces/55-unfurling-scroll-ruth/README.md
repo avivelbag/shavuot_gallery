@@ -1,4 +1,4 @@
-# 54 — The Unfurling Scroll — Megillat Ruth
+# 55 — The Unfurling Scroll — Megillat Ruth
 
 **Theme:** Book of Ruth / Megillat Ruth / Shavuot  
 **Technique:** Canvas 2D — procedural calligraphic stroke animation, bezier path lettering, scroll unfurl
