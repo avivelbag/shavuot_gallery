@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thunder at Sinai</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a12;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas {
+      display: block;
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+
+  var W, H;
+
+  // Mountain polygon vertices — expressed as fractions of W/H so they scale.
+  // Peak is at (0.5, 0.38). Slopes reach bottom corners.
+  var MOUNTAIN_FRAC = [
+    [0.0,  1.0],
+    [0.15, 1.0],
+    [0.20, 0.85],
+    [0.28, 0.72],
+    [0.35, 0.60],
+    [0.40, 0.50],
+    [0.50, 0.38],
+    [0.60, 0.50],
+    [0.65, 0.60],
+    [0.72, 0.72],
+    [0.80, 0.85],
+    [0.85, 1.0],
+    [1.0,  1.0],
+  ];
+
+  // ---- Particle pool ----
+  var PARTICLE_COUNT = 45;
+  var particles = [];
+
+  function resetParticle(p) {
+    // Spawn near the mountain peak.
+    var peakX = W * 0.5;
+    var peakY = H * 0.38;
+    p.x = peakX + (Math.random() - 0.5) * W * 0.06;
+    p.y = peakY + (Math.random() - 0.5) * H * 0.03;
+    p.vx = (Math.random() - 0.5) * 0.6;
+    p.vy = -(0.4 + Math.random() * 0.8);
+    p.life = 0;
+    p.maxLife = 60 + Math.random() * 60;
+    // Fire vs smoke: lower-spawning particles are fire.
+    p.isFire = Math.random() < 0.55;
+    p.size = p.isFire
+      ? (3 + Math.random() * 5)
+      : (6 + Math.random() * 10);
+  }
+
+  function initParticles() {
+    for (var i = 0; i < PARTICLE_COUNT; i++) {
+      var p = {};
+      resetParticle(p);
+      // Stagger initial lifetimes so they don't all die at once.
+      p.life = Math.random() * p.maxLife;
+      particles.push(p);
+    }
+  }
+
+  function drawParticle(p) {
+    var t = p.life / p.maxLife; // 0 → 1
+    if (p.isFire) {
+      // Fire: orange → gold → transparent
+      var r = 255;
+      var g = Math.round(106 + (215 - 106) * t);  // 106→215
+      var b = 0;
+      var alpha = (1 - t) * 0.85;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * (1 - t * 0.5), 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+      ctx.fill();
+    } else {
+      // Smoke: grey, fading out slowly
+      var alpha2 = (1 - t) * 0.28;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * (1 + t * 0.8), 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(160,140,120,' + alpha2 + ')';
+      ctx.fill();
+    }
+  }
+
+  function tickParticles() {
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      // Smoke drifts more sideways over time.
+      if (!p.isFire) p.vx += (Math.random() - 0.5) * 0.08;
+      p.life++;
+      if (p.life >= p.maxLife) resetParticle(p);
+    }
+  }
+
+  // ---- Lightning ----
+  var bolts = [];
+  var boltTimer = 0;
+  var boltInterval = 10; // frames between bolt regeneration
+
+  /**
+   * Recursively subdivide a line segment with midpoint displacement to produce
+   * a jagged lightning path. Returns an array of {x,y} points.
+   *
+   * @param {number} x1
+   * @param {number} y1
+   * @param {number} x2
+   * @param {number} y2
+   * @param {number} depth   - remaining recursion levels
+   * @param {number} spread  - pixels of perpendicular displacement
+   */
+  function displace(x1, y1, x2, y2, depth, spread) {
+    if (depth === 0) return [{x: x1, y: y1}, {x: x2, y: y2}];
+
+    var mx = (x1 + x2) / 2;
+    var my = (y1 + y2) / 2;
+    // Perpendicular offset
+    var dx = x2 - x1;
+    var dy = y2 - y1;
+    var len = Math.sqrt(dx * dx + dy * dy);
+    var nx = -dy / len;
+    var ny = dx / len;
+    var offset = (Math.random() - 0.5) * 2 * spread;
+    mx += nx * offset;
+    my += ny * offset;
+
+    var left = displace(x1, y1, mx, my, depth - 1, spread * 0.55);
+    var right = displace(mx, my, x2, y2, depth - 1, spread * 0.55);
+    // Merge: left already ends at (mx,my) and right starts there.
+    return left.concat(right.slice(1));
+  }
+
+  /**
+   * Build one complete bolt tree (trunk + branches) originating from
+   * sky top down to the mountain peak.
+   */
+  function buildBolt() {
+    var startX = W * (0.42 + Math.random() * 0.16);
+    var startY = H * (0.02 + Math.random() * 0.08);
+    var endX = W * 0.5 + (Math.random() - 0.5) * W * 0.05;
+    var endY = H * 0.38;
+
+    var trunk = displace(startX, startY, endX, endY, 4, W * 0.06);
+
+    var branches = [];
+    // Add 2–4 branches forking off from random midpoints.
+    var numBranches = 2 + Math.floor(Math.random() * 3);
+    for (var b = 0; b < numBranches; b++) {
+      var idx = Math.floor(trunk.length * (0.2 + Math.random() * 0.6));
+      var origin = trunk[idx];
+      var branchEndX = origin.x + (Math.random() - 0.5) * W * 0.15;
+      var branchEndY = origin.y + H * (0.05 + Math.random() * 0.1);
+      var branch = displace(origin.x, origin.y, branchEndX, branchEndY, 2, W * 0.03);
+      branches.push(branch);
+
+      // Occasionally add a sub-branch.
+      if (Math.random() < 0.5) {
+        var subIdx = Math.floor(branch.length * (0.3 + Math.random() * 0.4));
+        var subOrigin = branch[subIdx];
+        var subEndX = subOrigin.x + (Math.random() - 0.5) * W * 0.08;
+        var subEndY = subOrigin.y + H * (0.03 + Math.random() * 0.06);
+        branches.push(displace(subOrigin.x, subOrigin.y, subEndX, subEndY, 1, W * 0.02));
+      }
+    }
+
+    return { trunk: trunk, branches: branches, age: 0 };
+  }
+
+  function regenerateBolts() {
+    bolts = [];
+    var count = 1 + Math.floor(Math.random() * 2); // 1 or 2 simultaneous bolts
+    for (var i = 0; i < count; i++) {
+      bolts.push(buildBolt());
+    }
+  }
+
+  /**
+   * Draw a polyline from an array of {x,y} points.
+   */
+  function strokePoints(points, lineWidth, alpha) {
+    if (points.length < 2) return;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (var i = 1; i < points.length; i++) {
+      ctx.lineTo(points[i].x, points[i].y);
+    }
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = 'rgba(208,232,255,' + alpha + ')';
+    ctx.stroke();
+  }
+
+  function drawBolt(bolt) {
+    var fade = Math.max(0, 1 - bolt.age / boltInterval);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    // Glow pass
+    ctx.shadowBlur = 18;
+    ctx.shadowColor = 'rgba(160,200,255,0.8)';
+    strokePoints(bolt.trunk, 6, fade * 0.3);
+    for (var i = 0; i < bolt.branches.length; i++) {
+      strokePoints(bolt.branches[i], 3, fade * 0.2);
+    }
+
+    // Core pass
+    ctx.shadowBlur = 0;
+    strokePoints(bolt.trunk, 1.8, fade * 0.95);
+    for (var i = 0; i < bolt.branches.length; i++) {
+      strokePoints(bolt.branches[i], 1, fade * 0.7);
+    }
+  }
+
+  // ---- Mountain ----
+  function drawMountain() {
+    ctx.beginPath();
+    for (var i = 0; i < MOUNTAIN_FRAC.length; i++) {
+      var px = MOUNTAIN_FRAC[i][0] * W;
+      var py = MOUNTAIN_FRAC[i][1] * H;
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fillStyle = '#1a1a2e';
+    ctx.fill();
+  }
+
+  // Soft ambient glow at the peak (fire light on rock)
+  function drawPeakGlow() {
+    var gx = W * 0.5;
+    var gy = H * 0.38;
+    var grad = ctx.createRadialGradient(gx, gy, 0, gx, gy, H * 0.12);
+    grad.addColorStop(0, 'rgba(255,150,0,0.22)');
+    grad.addColorStop(1, 'rgba(255,150,0,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(gx - H * 0.12, gy - H * 0.12, H * 0.24, H * 0.24);
+  }
+
+  // ---- Resize ----
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    // Clamp to reasonable aspect so the composition doesn't stretch oddly.
+    var aspect = W / H;
+    if (aspect > 2.5) {
+      W = canvas.width = Math.round(H * 2.5);
+    } else if (aspect < 0.5) {
+      H = canvas.height = Math.round(W / 0.5);
+    }
+    regenerateBolts();
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  initParticles();
+
+  // ---- Main loop ----
+  function frame() {
+    // Sky background
+    ctx.fillStyle = '#0a0a12';
+    ctx.fillRect(0, 0, W, H);
+
+    // Bolts (drawn before mountain so mountain clips base)
+    boltTimer++;
+    if (boltTimer >= boltInterval) {
+      boltTimer = 0;
+      regenerateBolts();
+    }
+    for (var i = 0; i < bolts.length; i++) {
+      drawBolt(bolts[i]);
+      bolts[i].age++;
+    }
+
+    // Mountain (clips lightning base)
+    drawMountain();
+
+    // Peak glow
+    drawPeakGlow();
+
+    // Particles (fire + smoke above peak)
+    tickParticles();
+    for (var j = 0; j < particles.length; j++) {
+      drawParticle(particles[j]);
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shavuot Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Shavuot Gallery</h1>
+    <p>Visual meditations on Matan Torah</p>
+  </header>
+  <main>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </main>
+
+  <dialog id="piece-dialog" aria-modal="true" aria-label="Piece viewer">
+    <div class="modal-inner">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <iframe id="piece-frame" title="Piece viewer" allowfullscreen></iframe>
+    </div>
+  </dialog>
+
+  <script>
+    (function () {
+      const grid = document.getElementById('gallery-grid');
+      const dialog = document.getElementById('piece-dialog');
+      const frame = document.getElementById('piece-frame');
+      const closeBtn = document.getElementById('modal-close');
+
+      function openPiece(path) {
+        frame.src = path;
+        dialog.showModal();
+      }
+
+      function closePiece() {
+        dialog.close();
+        frame.src = '';
+      }
+
+      closeBtn.addEventListener('click', closePiece);
+
+      dialog.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closePiece();
+      });
+
+      // Close on backdrop click
+      dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) closePiece();
+      });
+
+      function buildCard(piece) {
+        const card = document.createElement('article');
+        card.className = 'piece-card';
+        card.tabIndex = 0;
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', piece.title);
+
+        const img = document.createElement('img');
+        img.src = piece.thumbnail;
+        img.alt = piece.title + ' thumbnail';
+        img.loading = 'lazy';
+
+        const overlay = document.createElement('div');
+        overlay.className = 'card-overlay';
+
+        const titleEl = document.createElement('div');
+        titleEl.className = 'card-title';
+        titleEl.textContent = piece.title;
+
+        const taglineEl = document.createElement('div');
+        taglineEl.className = 'card-tagline';
+        taglineEl.textContent = piece.tagline;
+
+        overlay.appendChild(titleEl);
+        overlay.appendChild(taglineEl);
+        card.appendChild(img);
+        card.appendChild(overlay);
+
+        function activate() { openPiece(piece.path); }
+        card.addEventListener('click', activate);
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activate();
+          }
+        });
+
+        return card;
+      }
+
+      fetch('pieces.json')
+        .then(function (res) {
+          if (!res.ok) throw new Error('Failed to load pieces.json: ' + res.status);
+          return res.json();
+        })
+        .then(function (pieces) {
+          pieces.forEach(function (piece) {
+            grid.appendChild(buildCard(piece));
+          });
+        })
+        .catch(function (err) {
+          const msg = document.createElement('p');
+          msg.className = 'error-message';
+          msg.textContent = 'Could not load gallery: ' + err.message;
+          grid.appendChild(msg);
+        });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "01-thunder-at-sinai",
+    "title": "Thunder at Sinai",
+    "tagline": "the mountain that could not be touched",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "canvas 2D — procedural lightning, particle smoke",
+    "path": "pieces/01-thunder-at-sinai/index.html",
+    "thumbnail": "pieces/01-thunder-at-sinai/thumbnail.svg"
+  }
+]
