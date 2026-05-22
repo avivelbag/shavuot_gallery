@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forty-Nine Fires — Sefirat HaOmer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #04041a;
+      color: #c8c8f8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; position: relative; }
+    canvas {
+      display: block;
+      border: 1px solid #2a2a6a;
+      background: #08082a;
+    }
+    #tooltip {
+      position: absolute;
+      background: rgba(4,4,30,0.92);
+      color: #e8e8ff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      direction: rtl;
+      white-space: nowrap;
+      border: 1px solid #3a3a8a;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.35rem;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #9090d0;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #3a3a9a;
+      padding-left: 0.75rem;
+      line-height: 1.5;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #c0c0f0;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #ffd700; font-style: normal; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #7070b0;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #2a2a5a;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="560" height="560"></canvas>
+    <div id="tooltip"></div>
+  </div>
+  <div class="essay-pane">
+    <h1>Forty-Nine Fires — Sefirat HaOmer</h1>
+    <p class="source">Source: The commandment to count the Omer is given in Leviticus 23:15–16: "You shall count for yourselves from the day after the Sabbath... seven complete weeks they shall be; until the day after the seventh Sabbath you shall count fifty days." The Sefer HaChinuch (R. Aaron HaLevi of Barcelona, c. 1300 CE), in Mitzvah 306, explains the psychological and spiritual logic of this unusual commandment.</p>
+
+    <p>Among the 613 commandments in the Torah, Sefirat HaOmer is remarkable for its temporal structure. Most commandments happen in a moment: you give the tithe, you eat the matzah, you dwell in the sukkah. The counting of the Omer, by contrast, unfolds over forty-nine days. It is a commandment whose medium is time itself.</p>
+
+    <p>The rabbis noticed this oddity. Why must we count? The Sefer HaChinuch offers an answer rooted in human psychology: we count toward something precious as anticipation builds. He draws an analogy to a prisoner awaiting release, who marks each passing day — not because the marking does anything, but because the act of attention is itself a form of yearning. Israel, newly freed from Egypt, awaited the gift of Torah the way a beloved awaits a meeting. The counting was the anticipation made visible, the desire given form.</p>
+
+    <p>But the Kabbalists, particularly the Safed school of the sixteenth century, heard a different music in the numbers. They mapped the forty-nine days onto a grid of seven <em>sefirot</em> times seven <em>sefirot</em> — the seven divine qualities (chesed, gevurah, tiferet, netzach, hod, yesod, malkhut) repeated across seven weeks. Each day of the count corresponded to a specific combination: the hesed within gevurah, the tiferet within netzach. The counting became a curriculum of inner work: not just waiting, but refining.</p>
+
+    <p>This piece takes that structural insight as its animating principle. The Archimedean spiral mirrors the structure of the count itself: seven rotations of seven points each. The spiral does not merely repeat; it grows. Day 1 and Day 8 share the same angular position but different radii. The same quality returns, but at a further remove, a wider circle of understanding.</p>
+
+    <p>The color shifts from ember-orange at the beginning (the heat of liberation, the fire at Sinai visible on the horizon) to gold as the count advances (the golden light of revelation). The forty-nine fires move toward a center: the fiftieth moment, Shavuot itself, which is not a day of counting but of arrival. It stands outside the structure — a crown that the structure points toward but cannot contain.</p>
+
+    <p>Fifty is beyond the seven-times-seven matrix. The Talmud (Rosh HaShanah 21b) speaks of fifty gates of understanding, of which forty-nine were given to Moses and one belongs to the Holy One alone. The crown in the center glows when all forty-nine fires are lit — a glimpse of what lies at the center of all this counting, the gate that cannot be numbered.</p>
+
+    <p class="citations">See: Leviticus 23:15–16; Sefer HaChinuch Mitzvah 306; Talmud Bavli Rosh HaShanah 21b; Pri Etz Chaim, Sha'ar Sefirat HaOmer (R. Chaim Vital, c. 1600).</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const tooltip = document.getElementById('tooltip');
+  const W = 560, H = 560, cx = W / 2, cy = H / 2;
+  const N = 49;
+  const ANG_STEP = 2 * Math.PI / 7;
+  const A = 12, B = 4.6;
+  const ADVANCE_MS = 700;
+  const CROWN_MS = 2000;
+  const CYCLE_MS = N * ADVANCE_MS + CROWN_MS;
+
+  function hebrewNum(n) {
+    const ones = ['', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט'];
+    const tens = ['', 'י', 'כ', 'ל', 'מ'];
+    if (n === 15) return 'ט״ו';
+    if (n === 16) return 'ט״ז';
+    const d = Math.floor(n / 10), u = n % 10;
+    if (d && u) return tens[d] + '״' + ones[u];
+    if (d) return tens[d] + '׳';
+    return ones[u] + '׳';
+  }
+
+  const dots = Array.from({ length: N }, (_, i) => {
+    const theta = i * ANG_STEP;
+    const r = A + B * theta;
+    return {
+      x: cx + r * Math.cos(theta - Math.PI / 2),
+      y: cy + r * Math.sin(theta - Math.PI / 2),
+      label: 'יום ' + hebrewNum(i + 1),
+      day: i + 1
+    };
+  });
+
+  function dotRGB(i) {
+    const t = i / 48;
+    return [255, Math.round(80 + 135 * t), Math.round(10 + 40 * t)];
+  }
+
+  function drawDot(x, y, brightness, rgb) {
+    const [r, g, b] = rgb;
+    const coreR = 6, glowR = 22;
+    const grd = ctx.createRadialGradient(x, y, 0, x, y, glowR);
+    grd.addColorStop(0, `rgba(${r},${g},${b},${(brightness * 0.7).toFixed(3)})`);
+    grd.addColorStop(0.35, `rgba(${r},${g},${b},${(brightness * 0.35).toFixed(3)})`);
+    grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+    ctx.beginPath();
+    ctx.arc(x, y, glowR, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(x, y, coreR, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${r},${g},${b},${Math.min(1, brightness * 1.4).toFixed(3)})`;
+    ctx.fill();
+  }
+
+  function drawCrown(brightness, ts) {
+    const pulse = 0.5 + 0.5 * Math.sin(ts * 0.004);
+    const br = brightness * (0.8 + 0.2 * pulse);
+    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 44);
+    grd.addColorStop(0, `rgba(255,255,200,${(br * 0.9).toFixed(3)})`);
+    grd.addColorStop(0.4, `rgba(200,210,255,${(br * 0.5).toFixed(3)})`);
+    grd.addColorStop(1, 'rgba(200,210,255,0)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, 44, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx, cy, 16, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(255,220,60,${br.toFixed(3)})`;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,250,200,${br.toFixed(3)})`;
+    ctx.fill();
+  }
+
+  let startTs = null;
+  let hoveredDot = null;
+
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const sx = W / rect.width, sy = H / rect.height;
+    const mx = (e.clientX - rect.left) * sx;
+    const my = (e.clientY - rect.top) * sy;
+    hoveredDot = null;
+    for (const d of dots) {
+      if (Math.hypot(d.x - mx, d.y - my) < 14) { hoveredDot = d; break; }
+    }
+    if (hoveredDot) {
+      tooltip.textContent = hoveredDot.label;
+      tooltip.style.left = (e.clientX - rect.left + 12) + 'px';
+      tooltip.style.top = (e.clientY - rect.top - 28) + 'px';
+      tooltip.style.opacity = '1';
+    } else {
+      tooltip.style.opacity = '0';
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    hoveredDot = null;
+    tooltip.style.opacity = '0';
+  });
+
+  function draw(ts) {
+    if (startTs === null) startTs = ts;
+    const elapsed = (ts - startTs) % CYCLE_MS;
+    const countingPhase = elapsed < N * ADVANCE_MS;
+    const litCount = countingPhase ? Math.floor(elapsed / ADVANCE_MS) : N;
+    const inCrown = !countingPhase;
+    const crownBrightness = inCrown
+      ? Math.sin(((elapsed - N * ADVANCE_MS) / CROWN_MS) * Math.PI)
+      : 0;
+
+    ctx.fillStyle = '#08082a';
+    ctx.fillRect(0, 0, W, H);
+
+    for (let i = 0; i < N; i++) {
+      const d = dots[i];
+      let brightness;
+      if (inCrown) {
+        brightness = 0.6;
+      } else if (i < litCount) {
+        brightness = 0.6;
+      } else if (i === litCount) {
+        brightness = 0.75 + 0.25 * Math.sin(ts * 0.006);
+      } else {
+        brightness = 0.15;
+      }
+      drawDot(d.x, d.y, brightness, dotRGB(i));
+    }
+
+    if (crownBrightness > 0.01) drawCrown(crownBrightness, ts);
+
+    if (hoveredDot) {
+      const d = hoveredDot;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, 10, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
