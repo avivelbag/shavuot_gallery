@@ -6,9 +6,6 @@ thumbnail validity, and specific Wang-tile / sapphire-pavement acceptance criter
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON  = os.path.join(GALLERY_ROOT, "pieces.json")
@@ -309,7 +306,6 @@ def test_no_piece_59_renumbered():
 def test_piece_60_after_piece_59_in_json():
     """Piece 60 must appear after piece 59 in pieces.json order."""
     pieces = load_pieces()
-    ids = [p["id"] for p in pieces]
     idx_59 = next((i for i, p in enumerate(pieces) if p["id"] == "59-ten-roots-newton-fractal"), -1)
     idx_60 = next((i for i, p in enumerate(pieces) if p["id"] == PIECE_ID), -1)
     assert idx_59 >= 0 and idx_60 >= 0, "Both pieces 59 and 60 must be in pieces.json"

@@ -14,7 +14,7 @@ Nachmanides reads differently. For him, the sapphire represents the pure reveale
 
 Both readings point to the same paradox: this is a floor, something walked upon, yet it is made of the sky. The pavement does not separate the human from the divine — it joins them. Standing on sapphire tiles clear as heaven, Moses and the elders are at once earthbound and transparent.
 
-Wang tiles enact this quality. Each tile is a small square with colored edges that must match its neighbors — structured by law, yet producing patterns that never quite repeat. No single tile explains the whole. The grid is governed by strict rules, yet the eye can never fully predict what comes next. The mosaic is legible but inexhaustible, structured but inexhaustible. This is what the Torah describes: not a vision of chaos but an ordered radiance — a pavement — whose regularity is the regularity of law itself, and whose beauty is the beauty of a sky that is always new.
+Wang tiles enact this quality. Each tile is a small square with colored edges that must match its neighbors — structured by law, yet producing patterns that never quite repeat. No single tile explains the whole. The grid is governed by strict rules, yet the eye can never fully predict what comes next. The mosaic is legible but inexhaustible, structured but unpredictable. This is what the Torah describes: not a vision of chaos but an ordered radiance — a pavement — whose regularity is the regularity of law itself, and whose beauty is the beauty of a sky that is always new.
 
 The empty center is the *makom* — the place — beneath the divine feet. It is not a gap or an absence but a holding. The verse does not say what was there above the pavement. That is left, deliberately, without image.
 
