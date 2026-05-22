@@ -460,5 +460,16 @@
     "path": "pieces/42-sinai-chuppah/index.html",
     "thumbnail": "pieces/42-sinai-chuppah/thumbnail.svg",
     "essay": "pieces/42-sinai-chuppah/essay.md"
+  },
+  {
+    "id": "43-rose-of-sharon",
+    "title": "Rose of Sharon",
+    "tagline": "six rhodonea curves bloom and drift on the night of deveikut — the rose of Sharon is a mathematical rose",
+    "year": 2026,
+    "theme": "Shir HaShirim / Deveikut — Song of Songs 2:1; Shabbat 88b; Yadayim 3:5",
+    "technique": "canvas 2D — rhodonea polar rose curves, rational k = p/q parametric form, independent rotation, slow k-drift, screen compositing, shadow glow",
+    "path": "pieces/43-rose-of-sharon/index.html",
+    "thumbnail": "pieces/43-rose-of-sharon/thumbnail.svg",
+    "essay": "pieces/43-rose-of-sharon/essay.md"
   }
 ]

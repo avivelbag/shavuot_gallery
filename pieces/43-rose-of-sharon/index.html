@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rose of Sharon — Rhodonea Curves of the Covenant</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1A1035; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 56%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #1A1035;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2a1a40;
+      overflow-y: auto;
+      color: #c8b8a0;
+      font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+      background: #110a20;
+      line-height: 1.85;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2a1a40; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.55rem;
+      color: #E8A0A0;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #6a5080;
+      margin: 0 0 2rem;
+      letter-spacing: 0.04em;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #D4A843;
+      margin: 2rem 0 0.5rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      font-size: 0.93rem;
+      margin: 0 0 1rem;
+    }
+    .essay-panel .verse {
+      font-style: italic;
+      color: #FDF6E3;
+      margin: 0 0 1rem;
+    }
+    .essay-panel .math-line {
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+      color: #D4A843;
+      margin: 0.3rem 0 0.3rem 1.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Rose of Sharon</h1>
+    <p class="subtitle">Rhodonea Curves of the Covenant — Song of Songs 2:1</p>
+
+    <h2>"I Am the Rose of Sharon"</h2>
+    <p class="verse">אֲנִי חֲבַצֶּלֶת הַשָּׁרוֹן, שׁוֹשַׁנַּת הָעֲמָקִים</p>
+    <p>Song of Songs 2:1 begins: "I am the rose of Sharon, a lily of the valleys." The verse is spoken by the beloved — and in the allegorical tradition that defines how the Rabbis read Shir HaShirim, the beloved is Israel itself, speaking from the moment of encounter at Sinai.</p>
+    <p>The plain meaning of the verse is botanical: a wild flower growing in the coastal plain of Sharon. But the Rabbis did not read Scripture for its plain meaning alone. They heard in every word of the Song a compressed address from the people to God, and from God to the people — a love letter written in the grammar of longing.</p>
+
+    <h2>The Song as the Sinai Covenant</h2>
+    <p>Talmud Bavli, Tractate Shabbat 88b, records that the entire Song of Songs was spoken at the moment of divine revelation: "When Israel said 'naaseh v'nishma — we will do and we will hear' (Exodus 24:7), they merited the sixty myriad ministering angels who came and crowned each of them with two crowns, one for naaseh and one for nishma." The Song, in this reading, is the love lyric of the covenant itself — the exchange of vows at the wedding feast of Sinai.</p>
+    <p>This is not incidental. The Rabbis understood Shavuot not merely as the agricultural Feast of Weeks, nor simply as the commemoration of Torah-giving, but as the wedding day of God and Israel. The Torah is the ketubah — the marriage contract — and Sinai is the hall. Song of Songs is the poetry of that marriage, heard backwards and forwards across time. When Israel calls itself the rose of Sharon, it is the bride speaking on her wedding night.</p>
+
+    <h2>Rabbi Akiva and the "Holy of Holies"</h2>
+    <p>This allegorical reading was not marginal. It was declared foundational by Rabbi Akiva himself, the greatest sage of his generation, who intervened when the canonicity of Song of Songs was debated. Mishnah Yadayim 3:5 records: "Rabbi Akiva said: Heaven forbid! No man of Israel ever disputed that Song of Songs renders the hands impure [i.e., is sacred scripture], for the entire age is not worth the day on which the Song of Songs was given to Israel. All the Writings are holy, but the Song of Songs is the holy of holies."</p>
+    <p>Rabbi Akiva's declaration is breathtaking in its precision. He does not say the Song is merely poetic or historically valuable. He says it is the <em>holy of holies</em> — the innermost sanctuary, the place where the Presence rested. This is because the Song encodes the inner structure of the Sinai event: the love-covenant of Torah-giving, the mutual choosing that underlies all of Israel's subsequent history. Shavuot is the day of that choosing, and the Song is its record.</p>
+
+    <h2>Deveikut — Clinging and Union</h2>
+    <p>Kabbalistic tradition goes further still. In the Zohar and in later Hasidic teaching, Shavuot is identified as the <em>chag of deveikut</em> — the festival of clinging. <em>Deveikut</em> (דְּבֵקוּת) means adhesion, cleaving, mystical union. It is the state of the soul fused with its divine source, the erasure of distance between creature and Creator.</p>
+    <p>The word appears first in Deuteronomy 30:20 — "to love the Lord your God, to hearken to His voice, and to cleave to Him" — and it becomes, in kabbalistic thought, the highest attainment of religious life. Shavuot is the moment when Israel achieved deveikut collectively: not a single mystic in solitary practice, but an entire people, standing at the foot of a mountain that was simultaneously fire and cloud, simultaneously threatening and intimate, receiving a Torah described as "dark fire on white fire" — words beyond ordinary legibility, written in the language of pure union.</p>
+    <p>The rose of Sharon is deveikut's emblem. The beloved cleaves to the beloved. The flower cannot be separated from its root.</p>
+
+    <h2>Form Following Name — The Mathematical Rose</h2>
+    <p>Rhodonea curves — polar curves of the form r = cos(k·θ) — are called <em>roses</em> precisely because they produce petal-like forms radiating from a center. The mathematician Luigi Guido Grandi named them "rhodonea" from the Greek <em>rhodon</em> (ῥόδον, rose) in the eighteenth century, noting that the curves traced exactly the shape that the word described.</p>
+    <p>In the parametric form used here:</p>
+    <p class="math-line">x = R · cos(k·t) · cos(t)</p>
+    <p class="math-line">y = R · cos(k·t) · sin(t)</p>
+    <p>where t ranges from 0 to 2π·q for a rational k = p/q, the curve traces petals that close perfectly and symmetrically around the origin. With k = 3, three petals. With k = 5/2, ten petals. With k = 7/3, seven petals. Each rational k produces a distinct bloom.</p>
+    <p>This is form following name in the strictest mathematical sense. The curve does not merely <em>resemble</em> a rose; it is what the word "rose" means translated into the language of polar coordinates. And when multiple rhodonea curves with distinct k values are laid atop one another — rotating independently, their parameters drifting slowly between nearby rationals — they form a mandala, a rose window, a pattern of layered meaning that cannot be reduced to any single petal count.</p>
+    <p>The covenant at Sinai has this structure. It cannot be reduced to law alone, or to love alone, or to obligation alone. It is all of these, rotating through each other, producing at every moment a different aspect of a figure that, taken whole, is inexhaustible.</p>
+
+    <h2>This Piece</h2>
+    <p>Six rhodonea curves — k values of 3, 5/2, 7/3, 4/3, 8/3, and 9/4 — rotate at independent speeds on a field of deep indigo, the color of the Shavuot night sky. The palette is warm: ivory, blush rose, deep burgundy, harvest gold — the colors of the flower and the flame. Each curve is drawn with moderate opacity and a faint glow, so where petals overlap they become richer, as meanings do when held together.</p>
+    <p>Every twenty seconds, approximately, each curve's k parameter begins drifting toward a new rational value — a new petal-count, a new symmetry — while still rotating. The overall composition never collapses into chaos; it always reads as a layered rose-window, because the forms are all of the same family: rhodonea. They are all roses. What changes is which aspect of the rose is visible.</p>
+    <p>The Hebrew text below the mandala — <em>אֲנִי חֲבַצֶּלֶת הַשָּׁרוֹן</em>, "I am the rose of Sharon" — is held still while the curves above it move. The declaration of identity is fixed. The geometry of its meaning is alive.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  const BG = '#1A1035';
+
+  // Six rhodonea curves: k = p/q, distinct colors from the warm covenant palette
+  const CURVE_DEFS = [
+    { k: 3,       color: '#E8A0A0', opacity: 0.60, speed: 0.00030, blur: 8  },
+    { k: 5 / 2,   color: '#D4A843', opacity: 0.55, speed: 0.00050, blur: 12 },
+    { k: 7 / 3,   color: '#FDF6E3', opacity: 0.50, speed: 0.00040, blur: 6  },
+    { k: 4 / 3,   color: '#6B2040', opacity: 0.65, speed: 0.00070, blur: 10 },
+    { k: 8 / 3,   color: '#E8A0A0', opacity: 0.55, speed: 0.00060, blur: 14 },
+    { k: 9 / 4,   color: '#D4A843', opacity: 0.50, speed: 0.00080, blur: 8  },
+  ];
+
+  // Nearby rational k targets for the slow drift; denominators kept small so curves stay rose-like
+  const DRIFT_TARGETS = [
+    3, 2.5, 7 / 3, 4 / 3, 8 / 3, 9 / 4,
+    5 / 3, 7 / 4, 11 / 4, 5 / 2, 7 / 2, 6 / 5, 11 / 3,
+  ];
+
+  // Build mutable state per curve
+  const curves = CURVE_DEFS.map(function (def, i) {
+    return {
+      k:        def.k,
+      targetK:  def.k,
+      kStep:    0,
+      color:    def.color,
+      opacity:  def.opacity,
+      speed:    def.speed,
+      blur:     def.blur,
+      angle:    (i * Math.PI * 2) / CURVE_DEFS.length,
+      timer:    Math.floor(i * 200),       // stagger initial drift times
+      interval: 1200 + i * 120,           // ~20 s at 60 fps, staggered
+    };
+  });
+
+  const N_POINTS = 2400;
+  // Universal period: 2*pi*12 closes all curves whose denominator divides 12
+  const PERIOD = 2 * Math.PI * 12;
+
+  function pickTarget(current) {
+    var candidates = DRIFT_TARGETS.filter(function (t) {
+      return Math.abs(t - current) > 0.08 && Math.abs(t - current) < 1.8;
+    });
+    if (!candidates.length) return current;
+    return candidates[Math.floor(Math.random() * candidates.length)];
+  }
+
+  function drawCurve(curve, cx, cy, R) {
+    ctx.save();
+    ctx.globalAlpha = curve.opacity;
+    ctx.strokeStyle = curve.color;
+    ctx.lineWidth = 1.5;
+    ctx.shadowColor = curve.color;
+    ctx.shadowBlur = curve.blur;
+    ctx.globalCompositeOperation = 'screen';
+
+    ctx.beginPath();
+    for (var i = 0; i <= N_POINTS; i++) {
+      var t = (PERIOD * i) / N_POINTS;
+      var r = R * Math.cos(curve.k * t);
+      var x = cx + r * Math.cos(t + curve.angle);
+      var y = cy + r * Math.sin(t + curve.angle);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function updateCurve(curve) {
+    curve.angle += curve.speed;
+
+    curve.timer++;
+    if (curve.timer >= curve.interval) {
+      curve.timer = 0;
+      var newK = pickTarget(curve.targetK);
+      curve.targetK = newK;
+      // Morph toward new k over ~600 frames (~10 s)
+      curve.kStep = (newK - curve.k) / 600;
+    }
+
+    if (Math.abs(curve.k - curve.targetK) > 0.001) {
+      curve.k += curve.kStep;
+    } else {
+      curve.k = curve.targetK;
+      curve.kStep = 0;
+    }
+  }
+
+  function resize() {
+    var panel = document.getElementById('art-panel');
+    canvas.width  = panel.clientWidth;
+    canvas.height = panel.clientHeight;
+  }
+
+  function render() {
+    var W  = canvas.width;
+    var H  = canvas.height;
+    var cx = W / 2;
+    var cy = H * 0.47;
+    var R  = Math.min(W, H) * 0.41;
+
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+
+    for (var i = 0; i < curves.length; i++) {
+      updateCurve(curves[i]);
+      drawCurve(curves[i], cx, cy, R);
+    }
+
+    // Hebrew inscription — right-to-left, below the mandala
+    ctx.save();
+    ctx.globalAlpha = 0.80;
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.font = 'italic ' + Math.round(R * 0.085) + 'px "Palatino Linotype", Palatino, Georgia, serif';
+    ctx.fillStyle = '#FDF6E3';
+    ctx.textAlign = 'center';
+    ctx.direction = 'rtl';
+    ctx.fillText('אֲנִי חֲבַצֶלֶת הַשָּרוֹן', cx, cy + R + Math.round(R * 0.12));
+    ctx.restore();
+
+    requestAnimationFrame(render);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  render();
+}());
+</script>
+</body>
+</html>
