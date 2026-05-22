@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Greening of the House — Shavuot L-system Plants</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a2e14;
+      color: #2a5c1e;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas {
+      display: block;
+      max-width: 100%;
+      border: 1px solid #c8d8c0;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+      color: #e8f0e4;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #a8d890;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #8ab878;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #4a8c3f;
+      padding-left: 0.75rem;
+    }
+    .essay-pane p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #d8e8d0;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #b8d8a8; font-style: italic; }
+    .essay-pane .read-more {
+      font-size: 0.85rem;
+      color: #8ab878;
+      font-style: italic;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>The Greening of the House — Decorating for Shavuot</h1>
+    <p class="source">Source: The custom is codified by the Rama (Rabbi Moshe Isserles) in Shulchan Aruch, Orach Chaim 494:3. The Mishnah Berurah (ad loc., §10–11) explains the theological reason.</p>
+
+    <p>Walk into any synagogue on the eve of Shavuot and you will find the bimah wreathed in palm fronds, roses tucked between the pews, ferns cascading from the windowsills. The smell of cut greenery mingles with the scent of candle wax. Children carry branches. This is the custom of decorating with greenery — and it is ancient.</p>
+
+    <p>The Rama records the practice as normative law, not merely custom: spread grass and flowers in the home and synagogue on Shavuot. The Mishnah Berurah preserves the reason in two registers. The first is pragmatic and joyful: greenery and flowers honor the holiday. The second is theological and surprising.</p>
+
+    <p>The folk explanation, cited in the name of the Geonim, runs as follows. When the Torah was given at Sinai, the mountain was green. Exodus 34:3 forbids the flocks from grazing near Sinai — not because the mountain was barren, but because it was <em>lush</em>. God prepared a blooming mountain for the revelation. We bring the bloom indoors so we do not forget.</p>
+
+    <p>There is a subtle inversion at work here. The verse that most readers read as prohibition becomes, in this reading, evidence of extraordinary fertility. The mountain God chose for the covenant was not the austere desert peak of popular imagination but something vivid and growing. Torah was given in a garden.</p>
+
+    <p>This is theologically apt for Shavuot in a way that goes beyond decoration. Shavuot marks the giving of Torah, but the rabbis understand Torah as the blueprint of creation, pre-existing the world, the medium through which abundance becomes possible. Greenery is not mere ornament: it is the argument. Look at what grows.</p>
+
+    <p>The painting responds to this idea through the mechanics of the image itself. Each plant begins as a single point — a seed, an axiom — and unfolds through recursive branching rules into a full form. The L-system grammar that drives the growth is an algorithm of becoming: apply the rule, apply the rule again, apply it again. What starts as <em>F</em> expands into the whole elaborate branching structure.</p>
+
+    <p>The two plant types — the tree-form with its wide branching crown, and the vine with its coiling tendrils and clustered nodes — represent the two registers of Sinai's greenery: the anchored trees that give shade and the spreading vines that overgrow whatever supports them.</p>
+
+    <p>Five-petal flowers bloom at the branch tips in white and soft rose. Their color is the pale pink of early morning — the moment when the people of Israel gathered at the foot of the mountain and waited for what would come down.</p>
+
+    <p class="read-more">See: Shulchan Aruch Orach Chaim 494:3 (Rama); Mishnah Berurah ad loc.; Exodus 19–20, 34:3.</p>
+  </div>
+</div>
+<script>
+// ─── Canvas setup ────────────────────────────────────────────────────────────
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = 800, H = 600;
+canvas.width = W;
+canvas.height = H;
+
+const BG = '#fafaf2';
+const DEEP_GREEN = '#2a5c1e';
+const MID_GREEN = '#4a8c3f';
+const ROSE = '#d98c8c';
+const YELLOW = '#f5c842';
+
+// ─── L-system expansion ───────────────────────────────────────────────────────
+/**
+ * Expand an L-system axiom by applying production rules for `depth` iterations.
+ * Rules is a plain object mapping single characters to replacement strings.
+ * Returns the resulting symbol string.
+ */
+function expandLSystem(axiom, rules, depth) {
+  let current = axiom;
+  for (let i = 0; i < depth; i++) {
+    let next = '';
+    for (const ch of current) {
+      next += (rules[ch] !== undefined) ? rules[ch] : ch;
+    }
+    current = next;
+  }
+  return current;
+}
+
+// Tree/shrub: wide branching crown
+const TREE_RULES = { 'F': 'FF+[+F-F-F]-[-F+F+F]' };
+const TREE_AXIOM = 'F';
+
+// Vine: coiling tendrils with lateral branching
+const VINE_RULES = { 'F': 'F[+FF][-FF]F[+F][-F]' };
+const VINE_AXIOM = 'F';
+
+const MAX_DEPTH = 4;
+
+// Pre-expand both plant types at full depth
+const TREE_STRING = expandLSystem(TREE_AXIOM, TREE_RULES, MAX_DEPTH);
+const VINE_STRING = expandLSystem(VINE_AXIOM, VINE_RULES, MAX_DEPTH);
+
+// ─── Plant configuration ─────────────────────────────────────────────────────
+/**
+ * Each plant specifies its anchor on the canvas, the L-system string to use,
+ * segment length, rotation angle (radians), initial heading (pointing up = -PI/2),
+ * and a scale multiplier.
+ */
+const PLANTS = [
+  // central large tree
+  { x: 400, y: 590, string: TREE_STRING, segLen: 5, angle: 25 * Math.PI / 180, heading: -Math.PI / 2, scale: 1.0, type: 'tree' },
+  // flanking vine left
+  { x: 160, y: 590, string: VINE_STRING, segLen: 7, angle: 20 * Math.PI / 180, heading: -Math.PI / 2 + 0.15, scale: 0.75, type: 'vine' },
+  // flanking vine right
+  { x: 640, y: 590, string: VINE_STRING, segLen: 7, angle: 20 * Math.PI / 180, heading: -Math.PI / 2 - 0.15, scale: 0.75, type: 'vine' },
+  // small tree left
+  { x: 80, y: 590, string: TREE_STRING, segLen: 3.5, angle: 25 * Math.PI / 180, heading: -Math.PI / 2 + 0.1, scale: 0.55, type: 'tree' },
+  // small tree right
+  { x: 720, y: 590, string: TREE_STRING, segLen: 3.5, angle: 25 * Math.PI / 180, heading: -Math.PI / 2 - 0.1, scale: 0.55, type: 'tree' },
+];
+
+// ─── Drawing helpers ─────────────────────────────────────────────────────────
+
+/**
+ * Draw a five-petal flower centered at (cx, cy) with the given radius.
+ * Petals alternate between white and rose; center dot is yellow.
+ */
+function drawFlower(cx, cy, r, isRose) {
+  const petalColor = isRose ? ROSE : '#ffffff';
+  for (let i = 0; i < 5; i++) {
+    const a = (i / 5) * Math.PI * 2 - Math.PI / 2;
+    const px = cx + Math.cos(a) * r * 1.2;
+    const py = cy + Math.sin(a) * r * 1.2;
+    ctx.beginPath();
+    ctx.ellipse(px, py, r * 0.65, r * 0.45, a, 0, Math.PI * 2);
+    ctx.fillStyle = petalColor;
+    ctx.fill();
+  }
+  ctx.beginPath();
+  ctx.arc(cx, cy, r * 0.4, 0, Math.PI * 2);
+  ctx.fillStyle = YELLOW;
+  ctx.fill();
+}
+
+/**
+ * Draw a filled leaf ellipse at (cx, cy) oriented along `angle`.
+ */
+function drawLeaf(cx, cy, len, angle) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(angle);
+  ctx.beginPath();
+  ctx.ellipse(0, -len * 0.5, len * 0.18, len * 0.5, 0, 0, Math.PI * 2);
+  ctx.fillStyle = MID_GREEN;
+  ctx.fill();
+  ctx.restore();
+}
+
+// ─── Turtle interpretation ────────────────────────────────────────────────────
+/**
+ * Render the first `limit` symbols of `plant.string` using turtle graphics.
+ * The turtle state stack supports `[` (push) and `]` (pop).
+ * Draws segments, leaves at terminal depth, and flowers near-terminal.
+ *
+ * `depthCount` tracks bracket nesting to determine when a segment is at or
+ * near max turtle depth for leaf/flower placement.
+ */
+function renderPlant(plant, limit) {
+  const { x, y, string, segLen, angle, heading, scale } = plant;
+  let tx = x, ty = y, th = heading;
+  let depth = 0;
+  const stack = [];
+  const maxStack = 8;
+
+  ctx.strokeStyle = DEEP_GREEN;
+  ctx.lineWidth = 1.5;
+
+  const n = Math.min(limit, string.length);
+  for (let i = 0; i < n; i++) {
+    const sym = string[i];
+    if (sym === 'F') {
+      const len = segLen * scale * Math.pow(0.72, depth);
+      const nx = tx + Math.cos(th) * len;
+      const ny = ty + Math.sin(th) * len;
+      ctx.beginPath();
+      ctx.moveTo(tx, ty);
+      ctx.lineTo(nx, ny);
+      // Thinner lines at higher depths for natural tapering
+      ctx.lineWidth = Math.max(0.5, 2.0 * scale * Math.pow(0.6, depth));
+      ctx.strokeStyle = DEEP_GREEN;
+      ctx.stroke();
+
+      if (depth >= maxStack - 1) {
+        // Terminal segment: draw leaf
+        const midX = (tx + nx) / 2;
+        const midY = (ty + ny) / 2;
+        drawLeaf(midX, midY, len * 1.8, th);
+      } else if (depth >= maxStack - 3 && i % 7 === 0) {
+        // Near-terminal: occasionally draw a flower
+        const isRose = (i % 3 === 0);
+        drawFlower(nx, ny, len * 0.55, isRose);
+      }
+
+      tx = nx;
+      ty = ny;
+    } else if (sym === '+') {
+      th += angle;
+    } else if (sym === '-') {
+      th -= angle;
+    } else if (sym === '[') {
+      stack.push({ tx, ty, th, depth });
+      depth = Math.min(depth + 1, maxStack);
+    } else if (sym === ']') {
+      if (stack.length > 0) {
+        const s = stack.pop();
+        tx = s.tx; ty = s.ty; th = s.th; depth = s.depth;
+      }
+    }
+  }
+}
+
+// ─── Animation ───────────────────────────────────────────────────────────────
+// Growth: 0→1 over GROW_DURATION seconds; hold for HOLD_DURATION; then restart.
+const GROW_DURATION = 4.0;
+const HOLD_DURATION = 2.0;
+const CYCLE = GROW_DURATION + HOLD_DURATION;
+
+let startTime = null;
+
+function frame(ts) {
+  if (!startTime) startTime = ts;
+  const elapsed = (ts - startTime) * 0.001;
+  const cycleT = elapsed % CYCLE;
+  const progress = Math.min(cycleT / GROW_DURATION, 1.0);
+
+  // Clear and fill background
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw a soft ground strip
+  const grad = ctx.createLinearGradient(0, H - 40, 0, H);
+  grad.addColorStop(0, '#c8d8b0');
+  grad.addColorStop(1, '#a0b888');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, H - 40, W, 40);
+
+  // Render each plant up to the revealed fraction of its string
+  for (const plant of PLANTS) {
+    const limit = Math.floor(progress * plant.string.length);
+    renderPlant(plant, limit);
+  }
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

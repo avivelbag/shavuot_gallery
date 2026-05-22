@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background: off-white canvas -->
+  <rect width="400" height="400" fill="#fafaf2"/>
+
+  <!-- Ground strip -->
+  <rect x="0" y="360" width="400" height="40" fill="#a0b888"/>
+
+  <!-- Central branching tree silhouette (deep green) -->
+  <!-- Main trunk -->
+  <line x1="200" y1="360" x2="200" y2="270" stroke="#2a5c1e" stroke-width="5"/>
+  <!-- Left major branch -->
+  <line x1="200" y1="290" x2="155" y2="230" stroke="#2a5c1e" stroke-width="4"/>
+  <!-- Right major branch -->
+  <line x1="200" y1="290" x2="245" y2="230" stroke="#2a5c1e" stroke-width="4"/>
+  <!-- Left sub-branches -->
+  <line x1="155" y1="230" x2="130" y2="185" stroke="#2a5c1e" stroke-width="3"/>
+  <line x1="155" y1="230" x2="170" y2="185" stroke="#2a5c1e" stroke-width="3"/>
+  <!-- Right sub-branches -->
+  <line x1="245" y1="230" x2="230" y2="185" stroke="#2a5c1e" stroke-width="3"/>
+  <line x1="245" y1="230" x2="268" y2="185" stroke="#2a5c1e" stroke-width="3"/>
+  <!-- Upper left branchlets -->
+  <line x1="130" y1="185" x2="115" y2="155" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="130" y1="185" x2="143" y2="155" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="170" y1="185" x2="158" y2="155" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="170" y1="185" x2="182" y2="155" stroke="#2a5c1e" stroke-width="2"/>
+  <!-- Upper right branchlets -->
+  <line x1="230" y1="185" x2="218" y2="155" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="230" y1="185" x2="240" y2="155" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="268" y1="185" x2="258" y2="155" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="268" y1="185" x2="282" y2="155" stroke="#2a5c1e" stroke-width="2"/>
+
+  <!-- Leaves: mid-green ellipses at branch tips -->
+  <ellipse cx="115" cy="148" rx="6" ry="12" fill="#4a8c3f" transform="rotate(-20 115 148)"/>
+  <ellipse cx="143" cy="148" rx="6" ry="12" fill="#4a8c3f" transform="rotate(15 143 148)"/>
+  <ellipse cx="158" cy="148" rx="6" ry="12" fill="#4a8c3f" transform="rotate(-10 158 148)"/>
+  <ellipse cx="182" cy="148" rx="6" ry="12" fill="#4a8c3f" transform="rotate(20 182 148)"/>
+  <ellipse cx="218" cy="148" rx="6" ry="12" fill="#4a8c3f" transform="rotate(-15 218 148)"/>
+  <ellipse cx="240" cy="148" rx="6" ry="12" fill="#4a8c3f" transform="rotate(10 240 148)"/>
+  <ellipse cx="258" cy="148" rx="6" ry="12" fill="#4a8c3f" transform="rotate(-25 258 148)"/>
+  <ellipse cx="282" cy="148" rx="6" ry="12" fill="#4a8c3f" transform="rotate(18 282 148)"/>
+  <!-- Crown leaves on central top -->
+  <ellipse cx="200" cy="262" rx="7" ry="13" fill="#4a8c3f"/>
+
+  <!-- Five-petal flowers at several tips (white with yellow center) -->
+  <!-- Flower at top-left tip -->
+  <g transform="translate(115,140)">
+    <ellipse cx="-5" cy="-7" rx="4" ry="6" fill="white" transform="rotate(-36)"/>
+    <ellipse cx="5" cy="-7" rx="4" ry="6" fill="white" transform="rotate(36)"/>
+    <ellipse cx="8" cy="0" rx="4" ry="6" fill="white" transform="rotate(72)"/>
+    <ellipse cx="0" cy="6" rx="4" ry="6" fill="white" transform="rotate(108)"/>
+    <ellipse cx="-8" cy="0" rx="4" ry="6" fill="white" transform="rotate(144)"/>
+    <circle cx="0" cy="0" r="3" fill="#f5c842"/>
+  </g>
+  <!-- Rose flower at top-right tip -->
+  <g transform="translate(282,140)">
+    <ellipse cx="-5" cy="-7" rx="4" ry="6" fill="#d98c8c" transform="rotate(-36)"/>
+    <ellipse cx="5" cy="-7" rx="4" ry="6" fill="#d98c8c" transform="rotate(36)"/>
+    <ellipse cx="8" cy="0" rx="4" ry="6" fill="#d98c8c" transform="rotate(72)"/>
+    <ellipse cx="0" cy="6" rx="4" ry="6" fill="#d98c8c" transform="rotate(108)"/>
+    <ellipse cx="-8" cy="0" rx="4" ry="6" fill="#d98c8c" transform="rotate(144)"/>
+    <circle cx="0" cy="0" r="3" fill="#f5c842"/>
+  </g>
+  <!-- White flower near center -->
+  <g transform="translate(200,140)">
+    <ellipse cx="-5" cy="-7" rx="3" ry="5" fill="white" transform="rotate(-36)"/>
+    <ellipse cx="5" cy="-7" rx="3" ry="5" fill="white" transform="rotate(36)"/>
+    <ellipse cx="7" cy="0" rx="3" ry="5" fill="white" transform="rotate(72)"/>
+    <ellipse cx="0" cy="5" rx="3" ry="5" fill="white" transform="rotate(108)"/>
+    <ellipse cx="-7" cy="0" rx="3" ry="5" fill="white" transform="rotate(144)"/>
+    <circle cx="0" cy="0" r="2.5" fill="#f5c842"/>
+  </g>
+
+  <!-- Left small vine -->
+  <line x1="75" y1="360" x2="75" y2="295" stroke="#2a5c1e" stroke-width="3"/>
+  <line x1="75" y1="330" x2="50" y2="295" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="75" y1="330" x2="95" y2="290" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="50" y1="295" x2="38" y2="265" stroke="#2a5c1e" stroke-width="1.5"/>
+  <line x1="95" y1="290" x2="108" y2="262" stroke="#2a5c1e" stroke-width="1.5"/>
+  <ellipse cx="38" cy="258" rx="5" ry="9" fill="#4a8c3f" transform="rotate(-15 38 258)"/>
+  <ellipse cx="108" cy="256" rx="5" ry="9" fill="#4a8c3f" transform="rotate(12 108 256)"/>
+  <ellipse cx="75" cy="288" rx="5" ry="9" fill="#4a8c3f"/>
+
+  <!-- Right small vine -->
+  <line x1="325" y1="360" x2="325" y2="295" stroke="#2a5c1e" stroke-width="3"/>
+  <line x1="325" y1="330" x2="305" y2="295" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="325" y1="330" x2="350" y2="290" stroke="#2a5c1e" stroke-width="2"/>
+  <line x1="305" y1="295" x2="292" y2="265" stroke="#2a5c1e" stroke-width="1.5"/>
+  <line x1="350" y1="290" x2="362" y2="262" stroke="#2a5c1e" stroke-width="1.5"/>
+  <ellipse cx="292" cy="258" rx="5" ry="9" fill="#4a8c3f" transform="rotate(-12 292 258)"/>
+  <ellipse cx="362" cy="256" rx="5" ry="9" fill="#4a8c3f" transform="rotate(15 362 256)"/>
+  <ellipse cx="325" cy="288" rx="5" ry="9" fill="#4a8c3f"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="355" width="400" height="45" fill="rgba(42,92,30,0.75)"/>
+  <text x="200" y="383" font-family="Georgia, serif" font-size="14" fill="#e8f8e0" text-anchor="middle">The Greening of the House</text>
+</svg>

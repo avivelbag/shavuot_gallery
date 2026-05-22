@@ -42,5 +42,16 @@
     "path": "pieces/06-luchot-engraved/index.html",
     "thumbnail": "pieces/06-luchot-engraved/thumbnail.svg",
     "essay": "pieces/06-luchot-engraved/essay.md"
+  },
+  {
+    "id": "09-greenery-lsystem",
+    "title": "The Greening of the House",
+    "tagline": "plants growing from seed at the foot of the mountain",
+    "year": 2026,
+    "theme": "Greenery and Flowers / Chag Shavuot",
+    "technique": "L-system turtle graphics",
+    "path": "pieces/09-greenery-lsystem/index.html",
+    "thumbnail": "pieces/09-greenery-lsystem/thumbnail.svg",
+    "essay": "pieces/09-greenery-lsystem/essay.md"
   }
 ]
