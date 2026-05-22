@@ -129,7 +129,6 @@ def test_piece_all_required_fields():
 def test_piece_ordered_between_16_and_18():
     """Piece 17 should appear between 16-bikkurim-procession and 18-shofar-sinai."""
     pieces = load_pieces()
-    ids = [p["id"] for p in pieces]
     idx17 = next((i for i, p in enumerate(pieces) if p["id"] == PIECE_ID), None)
     assert idx17 is not None, "Piece 17 not found"
     has_16_before = any(p["id"] == "16-bikkurim-procession" for p in pieces[:idx17])
