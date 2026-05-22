@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Fiftieth Gate — IFS Harvest Field</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #110D04;
+      color: #d8c89a;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      background: #0C0902;
+    }
+    #ifsCanvas {
+      display: block;
+      width: 100%; height: 100%;
+      transform-origin: center bottom;
+    }
+    .nun-label {
+      position: absolute;
+      left: 50%;
+      top: 7%;
+      transform: translateX(-50%);
+      font-size: 2.8rem;
+      color: rgba(232, 200, 74, 0.38);
+      text-shadow:
+        0 0 22px rgba(232, 200, 74, 0.25),
+        0 0 48px rgba(200, 160, 53, 0.12);
+      pointer-events: none;
+      direction: rtl;
+      z-index: 2;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2rem 1.8rem 2rem 1.6rem;
+      background: #110D04;
+      border-left: 1px solid rgba(200, 160, 53, 0.15);
+    }
+    .essay h1 {
+      font-size: 1.15rem;
+      color: #E8C84A;
+      margin: 0 0 1.2rem 0;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+    .essay p {
+      font-size: 0.87rem;
+      line-height: 1.78;
+      margin: 0 0 0.95rem 0;
+      color: #c8b882;
+    }
+    .essay .citation {
+      font-size: 0.93rem;
+      color: #E8C84A;
+      direction: rtl;
+      text-align: right;
+      margin: 0.15rem 0 0.2rem 0;
+      line-height: 1.65;
+    }
+    .essay .citation-en {
+      font-style: italic;
+      color: #a89a65;
+      font-size: 0.84rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.6;
+    }
+    .essay strong { color: #E8C84A; }
+    .essay em { color: #d4bc76; }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; }
+      .artwork { flex: none; height: 65vw; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(200,160,53,0.15); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="artwork">
+      <canvas id="ifsCanvas"></canvas>
+      <div class="nun-label">נ</div>
+    </div>
+    <div class="essay">
+      <h1>The Fiftieth Gate — IFS Harvest Field</h1>
+
+      <p><strong>Exodus 23:16</strong></p>
+      <p class="citation">וְחַג הַקָּצִיר בִּכּוּרֵי מַעֲשֶׂיךָ אֲשֶׁר תִּזְרַע בַּשָּׂדֶה</p>
+      <p class="citation-en">"And the feast of harvest, the first-fruits of your labors which you sow in the field."</p>
+
+      <p>The Torah knows Shavuot by three names, and the first of them is agricultural: <em>Chag HaKatzir</em>, the Festival of the Harvest. This name appears before the rabbinical holiday calendar is established, embedded in a cluster of rules about the land and the seasons. Shavuot was, in origin and practice, the celebration of the wheat harvest — the moment when the granaries filled and the agricultural year reached its first great culmination.</p>
+
+      <p>But the harvest of Shavuot is bounded by another harvest. The Omer offering, brought on the second day of Passover, was a barley offering — the first cut of the barely-ripe spring grain. Shavuot's offering, the <em>shtei halechem</em> (the two loaves), was made from wheat — the fully matured grain of early summer. The same calendar that names Shavuot as the harvest festival defines it as the endpoint of a forty-nine-day journey that began in the barley fields of Nisan.</p>
+
+      <p><strong>Leviticus 23:15–16</strong></p>
+      <p class="citation">וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת עֹמֶר הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה — עַד מִמָּחֳרַת הַשַּׁבָּת הַשְּׁבִיעִת תִּסְפְּרוּ חֲמִשִּׁים יוֹם</p>
+      <p class="citation-en">"And you shall count for yourselves from the day after the sabbath, from the day that you brought the sheaf of the wave offering; seven complete weeks there shall be. Until the day after the seventh sabbath you shall count fifty days."</p>
+
+      <p>This passage is the foundation of <em>Sefirat HaOmer</em>, the forty-nine-day count from Passover to Shavuot. The count traces the agricultural year from barley to wheat. The rabbis note that the Torah requires each person to count individually, because each day between the two offerings is itself a form of growth, not merely a waiting period. You are not waiting for the wheat to ripen. You are ripening with it.</p>
+
+      <p>The two grains — barley and wheat — are the only grain species among the seven species of the Land of Israel.</p>
+
+      <p><strong>Deuteronomy 8:8</strong></p>
+      <p class="citation">אֶרֶץ חִטָּה וּשְׂעֹרָה וְגֶפֶן וּתְאֵנָה וְרִמּוֹן אֶרֶץ זֵית שֶׁמֶן וּדְבָשׁ</p>
+      <p class="citation-en">"A land of wheat and barley, of vines and fig trees and pomegranates, a land of olive oil and honey."</p>
+
+      <p>The seven species appear in this order: wheat and barley lead the list, followed by vine, fig, pomegranate, olive, and honey. Wheat and barley head the list because they are the staple crops, and because they are the species directly offered on the Temple altar during the festival cycle. The barley opens the Omer period at Passover; the wheat closes it at Shavuot. The vine and fig also appear in this piece; the vine's spreading, leafy form completes the triad of grain and fruit that Deuteronomy places first among the seven species.</p>
+
+      <p>The Maharal of Prague, in <em>Tiferet Yisrael</em> (chapter 11), describes Torah study using a botanical metaphor with an exact mathematical correlate. Every principle of Torah contains within it all its derivative laws in compressed form, the way a seed contains the full structure of the plant. The laws that grow from a root principle are not added from outside the text; they are already present in it, nested inside, waiting to unfold. When a student learns deeply, they draw out what was already there — in latent, self-similar form.</p>
+
+      <p>Hasidic thought, especially in the tradition of the Baal Shem Tov as elaborated by Levi Yitzchak of Berditchev (<em>Kedushat Levi</em>, Shavuot), extends this image: each soul who received the Torah at Sinai absorbed sparks of teaching suited to their particular root. When they study and observe, those sparks grow outward through a structure of resemblance that mirrors the original. The growth is fractal: local rules applied repeatedly produce forms that resemble the whole.</p>
+
+      <p>This is precisely the geometry of Iterated Function Systems. An IFS defines a small set of affine transformations — each a combination of rotation, scaling, and translation — with an assigned probability. Starting from a single point and applying a randomly chosen transformation, iteration after iteration, the orbit traces a fractal attractor. The fern-like shapes that emerge do not require the algorithm to know what a plant looks like. The plant-ness is already encoded in the parameters. The transformation rules contain their output the way a seed contains its fruit.</p>
+
+      <p>Three IFS attractors grow simultaneously on the canvas: a wheat stalk with a slightly drooping ear, a dense symmetric barley frond, and a spreading vine leaf. The chaos game adds five thousand points per plant per frame, building the field from empty ground to lush fullness over roughly two seconds. The letter <em>nun</em> — נ — which equals fifty in the Hebrew numeral system, appears above the central plant. Fifty is the number of days from Passover to Shavuot; fifty is also the <em>Sha'ar HaBinah</em>, the fiftieth gate of understanding, associated with Shavuot — the day the count completes and comprehension arrives, not gradually, but at once, the way a field becomes visibly full.</p>
+
+      <p>When the field is full, it breathes: the scale of the image pulses two percent larger and smaller over four seconds. A field of grain in wind. The harvest is complete, and the field is still alive.</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('ifsCanvas');
+    const ctx = canvas.getContext('2d');
+    const artwork = canvas.parentElement;
+
+    /**
+     * IFS plant definitions. Each plant has:
+     *   transforms: array of affine maps {a,b,c,d,e,f,p} where
+     *     x' = a*x + b*y + e
+     *     y' = c*x + d*y + f
+     *     p  = probability weight (must sum to 1.0)
+     *   col: column index (0 = left, 1 = center, 2 = right)
+     *   x,y: current chaos-game point (mutable state)
+     *
+     * Wheat uses the classic Barnsley fern transforms, which produce a
+     * frond with a natural droop at the tip when the upper-left leaflet
+     * transform is tuned to pull the top slightly leftward.
+     *
+     * Barley is made denser and more symmetric by mirroring the branch
+     * transforms and tightening the main-stem contraction ratio.
+     *
+     * Vine spreads wider with rounder leaflets by enlarging the branch
+     * rotation components and giving them equal left/right probability.
+     */
+    const plants = [
+      {
+        name: 'wheat',
+        transforms: [
+          { a: 0.00,  b:  0.00,  c:  0.00,  d: 0.16, e:  0.00, f:  0.00, p: 0.01 },
+          { a: 0.85,  b:  0.04,  c: -0.04,  d: 0.85, e:  0.00, f:  1.60, p: 0.85 },
+          { a: 0.20,  b: -0.26,  c:  0.23,  d: 0.22, e:  0.00, f:  1.60, p: 0.07 },
+          { a:-0.15,  b:  0.28,  c:  0.26,  d: 0.24, e:  0.00, f:  0.44, p: 0.07 },
+        ],
+        x: 0, y: 0, col: 0,
+      },
+      {
+        name: 'barley',
+        transforms: [
+          { a: 0.00,  b:  0.00,  c:  0.00,  d: 0.25, e:  0.00, f: -0.40, p: 0.01 },
+          { a: 0.85,  b:  0.00,  c:  0.00,  d: 0.82, e:  0.00, f:  1.50, p: 0.82 },
+          { a: 0.20,  b: -0.26,  c:  0.23,  d: 0.22, e:  0.00, f:  1.50, p: 0.085 },
+          { a:-0.20,  b:  0.26,  c: -0.23,  d: 0.22, e:  0.00, f:  1.50, p: 0.085 },
+        ],
+        x: 0, y: 0, col: 1,
+      },
+      {
+        name: 'vine',
+        transforms: [
+          { a: 0.00,  b:  0.00,  c:  0.00,  d: 0.16, e:  0.00, f:  0.00, p: 0.01 },
+          { a: 0.80,  b:  0.00,  c:  0.00,  d: 0.80, e:  0.00, f:  1.60, p: 0.62 },
+          { a: 0.22,  b: -0.34,  c:  0.36,  d: 0.22, e:  0.00, f:  1.40, p: 0.15 },
+          { a:-0.22,  b:  0.34,  c: -0.36,  d: 0.22, e:  0.00, f:  1.40, p: 0.15 },
+          { a: 0.14,  b:  0.28,  c: -0.29,  d: 0.14, e:  0.06, f:  2.20, p: 0.035 },
+          { a:-0.14,  b: -0.28,  c:  0.29,  d: 0.14, e: -0.06, f:  2.20, p: 0.035 },
+        ],
+        x: 0, y: 0, col: 2,
+      },
+    ];
+
+    const POINTS_PER_FRAME = 5000;
+    const MAX_GROW_FRAMES = 200;
+
+    /* Cumulative probability tables, built once per plant for fast lookup. */
+    const cumulativeTables = plants.map(plant => {
+      const table = [];
+      let sum = 0;
+      for (const t of plant.transforms) {
+        sum += t.p;
+        table.push(sum);
+      }
+      return table;
+    });
+
+    let growFrames = 0;
+    let growthComplete = false;
+
+    function resize() {
+      canvas.width = artwork.clientWidth || 600;
+      canvas.height = artwork.clientHeight || 700;
+      /* Resizing clears the canvas; restart growth so the field refills. */
+      for (const plant of plants) { plant.x = 0; plant.y = 0; }
+      growFrames = 0;
+      growthComplete = false;
+    }
+
+    /**
+     * Select a transform index by weighted random draw using the cumulative
+     * probability table built for this plant.
+     */
+    function pickTransform(cumTable) {
+      const r = Math.random();
+      for (let i = 0; i < cumTable.length; i++) {
+        if (r < cumTable[i]) return i;
+      }
+      return cumTable.length - 1;
+    }
+
+    /**
+     * Map a normalised y value (0 = base, 1 = tip) to an RGBA color string.
+     * The palette sweeps from warm earth at the roots through deep field green
+     * in the mid-stalk to harvest gold and off-white seed at the tips.
+     */
+    function harvestColor(ynorm, jitter) {
+      const stops = [
+        { r: 0x8B, g: 0x5E, b: 0x3C },  // warm earth
+        { r: 0x3A, g: 0x6B, b: 0x2A },  // deep field green
+        { r: 0xC8, g: 0xA0, b: 0x35 },  // ripe barley
+        { r: 0xE8, g: 0xC8, b: 0x4A },  // harvest gold
+        { r: 0xF5, g: 0xED, b: 0xD8 },  // off-white seed
+      ];
+      const t = Math.max(0, Math.min(1, ynorm));
+      const pos = t * (stops.length - 1);
+      const i = Math.min(Math.floor(pos), stops.length - 2);
+      const f = pos - i;
+      const c0 = stops[i], c1 = stops[i + 1];
+      const r = Math.round(c0.r + f * (c1.r - c0.r) + jitter);
+      const g = Math.round(c0.g + f * (c1.g - c0.g) + jitter * 0.8);
+      const b = Math.round(c0.b + f * (c1.b - c0.b) + jitter * 0.5);
+      const alpha = 0.45 + 0.55 * t;
+      return `rgba(${r},${g},${b},${alpha.toFixed(2)})`;
+    }
+
+    /**
+     * Run POINTS_PER_FRAME chaos-game iterations for one plant and paint each
+     * resulting point onto the canvas.  Coordinates from the IFS are in the
+     * abstract space used by the Barnsley fern (x ≈ [-2.5, 2.5], y ≈ [0, 10]);
+     * they are mapped to the plant's column on the canvas.
+     */
+    function iteratePlant(plant, cumTable) {
+      const cw = canvas.width / 3;
+      const yScale = canvas.height * 0.86 / 10;
+      const xScale = yScale;
+      const cx = cw * (plant.col + 0.5);
+      const cy = canvas.height - Math.round(canvas.height * 0.04);
+
+      for (let i = 0; i < POINTS_PER_FRAME; i++) {
+        const idx = pickTransform(cumTable);
+        const t = plant.transforms[idx];
+        const nx = t.a * plant.x + t.b * plant.y + t.e;
+        const ny = t.c * plant.x + t.d * plant.y + t.f;
+        plant.x = nx;
+        plant.y = ny;
+
+        const px = Math.round(cx + plant.x * xScale);
+        const py = Math.round(cy - plant.y * yScale);
+        if (px < 0 || px >= canvas.width || py < 0 || py >= canvas.height) continue;
+
+        const ynorm = plant.y / 10;
+        const jitter = (Math.random() - 0.5) * 18;
+        ctx.fillStyle = harvestColor(ynorm, jitter);
+        ctx.fillRect(px, py, 1, 1);
+      }
+    }
+
+    function animate() {
+      if (!growthComplete) {
+        for (let p = 0; p < plants.length; p++) {
+          iteratePlant(plants[p], cumulativeTables[p]);
+        }
+        growFrames++;
+        if (growFrames >= MAX_GROW_FRAMES) {
+          growthComplete = true;
+        }
+      }
+
+      /* Breathing: gentle ±2% scale pulse over 4 seconds. */
+      const breathScale = 1 + 0.02 * Math.sin(2 * Math.PI * (Date.now() / 4000));
+      canvas.style.transform = `scale(${breathScale.toFixed(4)})`;
+
+      requestAnimationFrame(animate);
+    }
+
+    canvas.style.transformOrigin = 'center bottom';
+    window.addEventListener('resize', () => { resize(); });
+    resize();
+    animate();
+  </script>
+</body>
+</html>

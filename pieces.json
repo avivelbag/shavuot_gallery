@@ -361,5 +361,16 @@
     "path": "pieces/37-dew-of-torah/index.html",
     "thumbnail": "pieces/37-dew-of-torah/thumbnail.svg",
     "essay": "pieces/37-dew-of-torah/essay.md"
+  },
+  {
+    "id": "38-fiftieth-gate-ifs",
+    "title": "The Fiftieth Gate",
+    "tagline": "wheat, barley, and vine grown by the chaos game — the harvest field as fractal attractor",
+    "year": 2026,
+    "theme": "Chag HaKatzir / Harvest — Exodus 23:16; Sefirat HaOmer — the Fiftieth Day",
+    "technique": "canvas 2D — Iterated Function Systems (IFS) chaos game, harvest color palette",
+    "path": "pieces/38-fiftieth-gate-ifs/index.html",
+    "thumbnail": "pieces/38-fiftieth-gate-ifs/thumbnail.svg",
+    "essay": "pieces/38-fiftieth-gate-ifs/essay.md"
   }
 ]
