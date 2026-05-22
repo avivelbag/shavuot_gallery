@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>As One Person, With One Heart — Am Segulah at Sinai</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #060A18;
+      color: #FFF8E7;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas {
+      display: block;
+      max-width: 100%;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+      color: #FFF8E7;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #FFD700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .blockquote {
+      border-left: 3px solid #FF8C00;
+      padding-left: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    .hebrew {
+      direction: rtl;
+      font-size: 1.15rem;
+      color: #FFD700;
+      display: block;
+      margin-bottom: 0.3rem;
+      line-height: 1.9;
+    }
+    .english {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #c8b88a;
+      display: block;
+      line-height: 1.6;
+    }
+    .essay-pane h2 {
+      font-size: 1rem;
+      color: #FFD700;
+      margin-top: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .essay-pane p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: #FFF8E7;
+      margin-bottom: 0.95rem;
+    }
+    .essay-pane em { color: #FFD700; font-style: italic; }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>כְּאִישׁ אֶחָד בְּלֵב אֶחָד — As One Person, With One Heart</h1>
+
+    <div class="blockquote">
+      <span class="hebrew">כְּאִישׁ אֶחָד בְּלֵב אֶחָד</span>
+      <span class="english">As one person, with one heart. — Rashi on Exodus 19:2</span>
+    </div>
+
+    <p>Exodus 19:2 is a verse about camping. Israel arrived at the Sinai wilderness and they camped before the mountain. The grammar is unremarkable. But Rashi, drawing on the Mekhilta, lingers: the verb <em>vayichan</em> is singular, not plural. A nation of hundreds of thousands camped as if they were a single person. Rashi's gloss is four words in Hebrew — <em>ke'ish echad be'lev echad</em>, "as one person, with one heart" — and they carry the weight of an entire theology.</p>
+
+    <p>The consequence arrives three verses later. Exodus 19:5–6: because you have done this — because you have become unified — you will be <em>li segulah mikol ha'amim</em>, "my treasured people from among all the nations." <em>Am Segulah</em>. A kingdom of priests, a holy nation. The claim is breathtaking in its logic: the unity at the mountain is not merely a precondition for receiving Torah. It <em>is</em> the moment of covenant. The scattered tribes arrived as twelve separate camps. They left as one people.</p>
+
+    <h2>The Paradox: One Voice, Many Ears</h2>
+
+    <p>Yet the tradition preserves a counter-tradition that refuses to let the unity dissolve the individual. The Mekhilta d'Rabbi Yishmael on Parashat Yitro, section 9, teaches that the divine voice at Sinai spoke to every person according to their own capacity — the elder heard differently from the young man, the woman differently from the man, Moses differently from the ordinary Israelite. The same voice. Different receptions. This is not a contradiction of the unity at the foot of the mountain. It is its deeper structure: genuine unity is not uniformity. It is the condition in which difference is held without fracture.</p>
+
+    <h2>A Kingdom of Priests</h2>
+
+    <div class="blockquote">
+      <span class="hebrew">וְאַתֶּם תִּהְיוּ לִי מַמְלֶכֶת כֹּהֲנִים וְגוֹי קָדוֹשׁ</span>
+      <span class="english">You shall be to me a kingdom of priests and a holy nation. — Exodus 19:6</span>
+    </div>
+
+    <p>Exodus 19:6 names the people <em>mamlekhet kohanim</em>, a kingdom of priests. In the ancient Near East, priests were the professional mediators between the divine and the human — a hereditary class with exclusive access to holy things. To call an entire nation a "kingdom of priests" is to abolish that class entirely. Every person stands in direct relation to the sacred. Torah is not mediated through specialists. It is given, and kept, by everyone.</p>
+
+    <h2>All Generations Present</h2>
+
+    <p>The Midrash in Shemot Rabbah 28:6 extends the covenant beyond those who stood at the mountain. The souls of every Jew who would ever live were present at Sinai — those not yet born, those scattered in exile generations unborn. The covenant was not made once with one generation. It was made with all generations simultaneously. This reading makes the moment structurally impossible to date: it is a present-tense event, always happening.</p>
+
+    <h2>The Simulation</h2>
+
+    <p>The animation on this canvas has no conductor. There is no boid that decides what shape the flock takes. Each of the four hundred agents follows three local rules: do not crowd your neighbors, match their speed and heading, move toward their center of mass. From these three instructions — none of which mentions a collective goal — a murmuration emerges.</p>
+
+    <p>The shape is not stored anywhere. It is continuously generated by the local decisions of individuals who can see only a small neighborhood. When you watch the flock coalesce and spiral around the central light, you are watching individual autonomy produce emergent unity. This is what happened at Sinai. Hundreds of thousands of separate acts of <em>na'aseh v'nishmah</em> — "we will do and we will hear" — coalesced into a single voice. No one coordinated them. The unity was real. The individuals remained themselves.</p>
+
+    <p>The gold at the center of the canvas is the mountain. Boids near the mountain are drawn toward it, their color shifting from cream to gold as they enter its radius. This is not force in the mechanical sense. It is the pull of the sacred on those who are near enough to feel it. And when they circle back out into the dark blue field, they carry the pattern with them — changed, but not absorbed.</p>
+
+    <p>The flock begins scattered, twelve loose clusters distributed around the canvas, one for each tribe. Watch them find each other in the first seconds of the animation — the self-organization is spontaneous, unorchestrated, inevitable. <em>Ke'ish echad be'lev echad.</em></p>
+  </div>
+</div>
+<script>
+'use strict';
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+const W = 640;
+const H = 640;
+canvas.width = W;
+canvas.height = H;
+
+const N = 400;
+
+/* Neighbor radii and force weights per the acceptance criteria. */
+const SEP_R = 25;
+const ALI_R = 50;
+const COH_R = 80;
+const SEP_W = 1.5;
+const ALI_W = 1.0;
+const COH_W = 0.8;
+
+const MAX_SPEED = 2.5;
+const MIN_SPEED = 0.8;
+
+/* Sinai is fixed at the canvas center. */
+const SX = W / 2;
+const SY = H / 2;
+
+/* Boids within this fraction of canvas width are in the revelation zone. */
+const SINAI_R = W * 0.15;
+const SINAI_GLOW_R = W * 0.08;
+const SINAI_ATTRACT_W = 0.6;
+
+/* Float32 buffers for cache-friendly boid state. */
+const xs  = new Float32Array(N);
+const ys  = new Float32Array(N);
+const vxs = new Float32Array(N);
+const vys = new Float32Array(N);
+
+/**
+ * Initialise boids in 12 clusters (one per tribe) distributed around
+ * the canvas perimeter.  Each cluster starts with a small inward velocity
+ * so the tribes immediately begin converging.
+ */
+function initBoids() {
+  const CLUSTERS = 12;
+  const PER_CLUSTER = Math.ceil(N / CLUSTERS);
+  const SPREAD = 30;
+
+  for (let c = 0; c < CLUSTERS; c++) {
+    const angle = (c / CLUSTERS) * 2 * Math.PI;
+    /* Place cluster centres near the perimeter, leaving a small margin. */
+    const cx = W / 2 + Math.cos(angle) * (W * 0.42);
+    const cy = H / 2 + Math.sin(angle) * (H * 0.42);
+
+    /* Inward direction (toward canvas centre) as initial heading. */
+    const dx = SX - cx;
+    const dy = SY - cy;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    const ndx = dx / len;
+    const ndy = dy / len;
+
+    for (let k = 0; k < PER_CLUSTER; k++) {
+      const i = c * PER_CLUSTER + k;
+      if (i >= N) break;
+      xs[i] = cx + (Math.random() - 0.5) * SPREAD;
+      ys[i] = cy + (Math.random() - 0.5) * SPREAD;
+      const speed = MIN_SPEED + Math.random() * 1.0;
+      /* Add a small random offset so boids do not all fly in lock-step. */
+      vxs[i] = ndx * speed + (Math.random() - 0.5) * 0.4;
+      vys[i] = ndy * speed + (Math.random() - 0.5) * 0.4;
+    }
+  }
+}
+
+initBoids();
+
+/**
+ * Build the Sinai glow gradient once; reuse each frame.
+ * Returns a CanvasGradient centred on (SX, SY).
+ */
+function makeSinaiGradient() {
+  const g = ctx.createRadialGradient(SX, SY, 0, SX, SY, SINAI_GLOW_R);
+  g.addColorStop(0,   'rgba(255,140,0,0.80)');
+  g.addColorStop(0.4, 'rgba(255,140,0,0.35)');
+  g.addColorStop(1,   'rgba(255,140,0,0.00)');
+  return g;
+}
+
+const sinaiGradient = makeSinaiGradient();
+
+/**
+ * Advance the boid simulation by one time step.
+ * dt is capped at 32ms to prevent tunnelling on slow frames.
+ *
+ * Rules applied per boid i:
+ *   Separation – steer away from neighbours within SEP_R
+ *   Alignment  – match average heading of neighbours within ALI_R
+ *   Cohesion   – steer toward average position of neighbours within COH_R
+ *   Sinai pull – if inside SINAI_R, add acceleration toward canvas centre
+ */
+function stepBoids(dt) {
+  const dtCapped = Math.min(dt, 32) * 0.06; /* scale to ~pixel/frame units */
+
+  for (let i = 0; i < N; i++) {
+    const xi = xs[i], yi = ys[i];
+    const vxi = vxs[i], vyi = vys[i];
+
+    let sepX = 0, sepY = 0;
+    let aliX = 0, aliY = 0;
+    let cohX = 0, cohY = 0;
+    let aliCount = 0, cohCount = 0;
+
+    for (let j = 0; j < N; j++) {
+      if (j === i) continue;
+      const dx = xs[j] - xi;
+      const dy = ys[j] - yi;
+      const d2 = dx * dx + dy * dy;
+
+      if (d2 < SEP_R * SEP_R && d2 > 0) {
+        const d = Math.sqrt(d2);
+        sepX -= dx / d;
+        sepY -= dy / d;
+      }
+      if (d2 < ALI_R * ALI_R) {
+        aliX += vxs[j];
+        aliY += vys[j];
+        aliCount++;
+      }
+      if (d2 < COH_R * COH_R) {
+        cohX += xs[j];
+        cohY += ys[j];
+        cohCount++;
+      }
+    }
+
+    if (aliCount > 0) { aliX /= aliCount; aliY /= aliCount; }
+    if (cohCount > 0) {
+      cohX = cohX / cohCount - xi;
+      cohY = cohY / cohCount - yi;
+    }
+
+    let accelX = sepX * SEP_W + aliX * ALI_W + cohX * COH_W;
+    let accelY = sepY * SEP_W + aliY * ALI_W + cohY * COH_W;
+
+    /* Sinai attraction: pull toward center within revelation radius. */
+    const sdx = SX - xi, sdy = SY - yi;
+    const sd2 = sdx * sdx + sdy * sdy;
+    if (sd2 < SINAI_R * SINAI_R) {
+      const sd = Math.sqrt(sd2);
+      /* Attraction grows stronger as boid approaches centre. */
+      const pull = SINAI_ATTRACT_W * (1 - sd / SINAI_R);
+      accelX += (sdx / sd) * pull;
+      accelY += (sdy / sd) * pull;
+    }
+
+    let nvx = vxi + accelX * dtCapped;
+    let nvy = vyi + accelY * dtCapped;
+
+    /* Clamp speed. */
+    const speed = Math.sqrt(nvx * nvx + nvy * nvy);
+    if (speed > MAX_SPEED) {
+      nvx = nvx / speed * MAX_SPEED;
+      nvy = nvy / speed * MAX_SPEED;
+    } else if (speed < MIN_SPEED && speed > 1e-9) {
+      nvx = nvx / speed * MIN_SPEED;
+      nvy = nvy / speed * MIN_SPEED;
+    }
+
+    /* Advance position and wrap at canvas edges. */
+    let nx = xi + nvx;
+    let ny = yi + nvy;
+    if (nx < 0) nx += W; else if (nx >= W) nx -= W;
+    if (ny < 0) ny += H; else if (ny >= H) ny -= H;
+
+    xs[i] = nx; ys[i] = ny; vxs[i] = nvx; vys[i] = nvy;
+  }
+}
+
+/**
+ * Draw a single boid as a small chevron pointing in its velocity direction.
+ * length: 7px tip-to-back, width: 3px.
+ */
+function drawBoid(x, y, vx, vy, color) {
+  const angle = Math.atan2(vy, vx);
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle);
+  ctx.beginPath();
+  /* Chevron: tip at (4,0), wings at (-3,±3). */
+  ctx.moveTo(4, 0);
+  ctx.lineTo(-3,  3);
+  ctx.lineTo(-1,  0);
+  ctx.lineTo(-3, -3);
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.restore();
+}
+
+let lastTime = null;
+
+/**
+ * Main animation loop.  Uses requestAnimationFrame for a seamless,
+ * perpetual murmuration with no restart.
+ *
+ * The canvas is cleared with a semi-transparent fill (alpha 0.25) rather
+ * than a full clear, producing soft motion trails that give the flock
+ * atmospheric depth.
+ */
+function frame(ts) {
+  const dt = lastTime === null ? 16 : ts - lastTime;
+  lastTime = ts;
+
+  /* Soft trail: partial clear with canvas background colour. */
+  ctx.fillStyle = 'rgba(6,10,24,0.25)';
+  ctx.fillRect(0, 0, W, H);
+
+  /* Sinai glow. */
+  ctx.fillStyle = sinaiGradient;
+  ctx.beginPath();
+  ctx.arc(SX, SY, SINAI_GLOW_R * 1.2, 0, Math.PI * 2);
+  ctx.fill();
+
+  /* Advance physics. */
+  stepBoids(dt);
+
+  /* Draw boids: gold inside SINAI_R, warm cream outside. */
+  const sinaiR2 = SINAI_R * SINAI_R;
+  for (let i = 0; i < N; i++) {
+    const dx = xs[i] - SX, dy = ys[i] - SY;
+    const inGold = dx * dx + dy * dy < sinaiR2;
+    drawBoid(xs[i], ys[i], vxs[i], vys[i], inGold ? '#FFD700' : '#FFF8E7');
+  }
+
+  /* Hebrew watermark at bottom of canvas. */
+  ctx.save();
+  ctx.globalAlpha = 0.18;
+  ctx.fillStyle = '#FFD700';
+  ctx.font = '22px Georgia, serif';
+  ctx.direction = 'rtl';
+  ctx.textAlign = 'center';
+  ctx.fillText('כְּאִישׁ אֶחָד בְּלֵב אֶחָד', W / 2, H - 18);
+  ctx.restore();
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

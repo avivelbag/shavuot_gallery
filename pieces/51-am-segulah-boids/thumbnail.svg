@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#060A18"/>
+  <!-- Sinai glow -->
+  <defs>
+    <radialGradient id="sinai" cx="50%" cy="50%" r="16%">
+      <stop offset="0%" stop-color="#FF8C00" stop-opacity="0.85"/>
+      <stop offset="60%" stop-color="#FF8C00" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#FF8C00" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="100" cy="100" r="32" fill="url(#sinai)"/>
+  <!-- Boid shapes — scattered flock converging on Sinai -->
+  <!-- Gold boids near centre -->
+  <polygon points="108,100 104,103 105,100 104,97" fill="#FFD700" opacity="0.95"/>
+  <polygon points="94,96 90,99 91,96 90,93" fill="#FFD700" opacity="0.95"/>
+  <polygon points="102,108 98,111 99,108 98,105" fill="#FFD700" opacity="0.95"/>
+  <polygon points="112,93 108,96 109,93 108,90" fill="#FFD700" opacity="0.90"/>
+  <polygon points="88,105 84,108 85,105 84,102" fill="#FFD700" opacity="0.90"/>
+  <!-- Cream boids in outer field -->
+  <polygon points="145,55 141,58 142,55 141,52" fill="#FFF8E7" opacity="0.80"/>
+  <polygon points="50,148 46,151 47,148 46,145" fill="#FFF8E7" opacity="0.80"/>
+  <polygon points="160,130 156,133 157,130 156,127" fill="#FFF8E7" opacity="0.75"/>
+  <polygon points="35,65 31,68 32,65 31,62" fill="#FFF8E7" opacity="0.75"/>
+  <polygon points="130,165 126,168 127,165 126,162" fill="#FFF8E7" opacity="0.70"/>
+  <polygon points="65,30 61,33 62,30 61,27" fill="#FFF8E7" opacity="0.70"/>
+  <polygon points="170,75 166,78 167,75 166,72" fill="#FFF8E7" opacity="0.65"/>
+  <polygon points="25,120 21,123 22,120 21,117" fill="#FFF8E7" opacity="0.65"/>
+  <polygon points="140,45 136,48 137,45 136,42" fill="#FFF8E7" opacity="0.60"/>
+  <polygon points="60,158 56,161 57,158 56,155" fill="#FFF8E7" opacity="0.60"/>
+  <polygon points="172,108 168,111 169,108 168,105" fill="#FFF8E7" opacity="0.60"/>
+  <polygon points="28,90 24,93 25,90 24,87" fill="#FFF8E7" opacity="0.60"/>
+  <!-- Hebrew watermark -->
+  <text x="100" y="188" text-anchor="middle" font-family="Georgia,serif" font-size="9"
+        fill="#FFD700" opacity="0.30" direction="rtl">כְּאִישׁ אֶחָד בְּלֵב אֶחָד</text>
+</svg>

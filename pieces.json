@@ -625,5 +625,16 @@
     "path": "pieces/50-sandpile-at-sinai/index.html",
     "thumbnail": "pieces/50-sandpile-at-sinai/thumbnail.svg",
     "essay": "pieces/50-sandpile-at-sinai/essay.md"
+  },
+  {
+    "id": "51-am-segulah-boids",
+    "title": "As One Person, With One Heart",
+    "tagline": "כְּאִישׁ אֶחָד בְּלֵב אֶחָד — 400 boid agents self-organize into a murmuration around the light of Sinai",
+    "year": 2026,
+    "theme": "Am Segulah / Covenant",
+    "technique": "boids flocking simulation",
+    "path": "pieces/51-am-segulah-boids/index.html",
+    "thumbnail": "pieces/51-am-segulah-boids/thumbnail.svg",
+    "essay": "pieces/51-am-segulah-boids/essay.md"
   }
 ]
