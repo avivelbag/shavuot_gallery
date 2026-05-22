@@ -581,5 +581,16 @@
     "path": "pieces/48-two-torahs-double-helix/index.html",
     "thumbnail": "pieces/48-two-torahs-double-helix/thumbnail.svg",
     "essay": "pieces/48-two-torahs-double-helix/essay.md"
+  },
+  {
+    "id": "49-sefirot-omer-hex",
+    "title": "Seven Times Seven",
+    "tagline": "the Sefirot grid of Omer — seven weeks of seven",
+    "year": 2026,
+    "theme": "Sefirat HaOmer",
+    "technique": "hexagonal grid canvas animation",
+    "path": "pieces/49-sefirot-omer-hex/index.html",
+    "thumbnail": "pieces/49-sefirot-omer-hex/thumbnail.svg",
+    "essay": "pieces/49-sefirot-omer-hex/essay.md"
   }
 ]

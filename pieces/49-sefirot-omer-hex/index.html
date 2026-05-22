@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seven Times Seven — The Sefirot Omer Grid</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0D0820; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .art-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1E1040;
+      overflow-y: auto;
+      color: #C8BAD8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080514;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: relative; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1E1040; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #C89AE8;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4A3A6A;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #A070C8;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #2A1A4A;
+      font-style: italic;
+      color: #9A80B0;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #E8D0F8; font-style: italic; }
+    .essay-panel strong { color: #C89AE8; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #1A0A30; margin: 2rem 0; }
+
+    .scripture-block {
+      background: #0D0825;
+      border: 1px solid #2A1A50;
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      margin: 0 0 1.5rem;
+    }
+    .scripture-block .heb {
+      direction: rtl;
+      unicode-bidi: embed;
+      font-size: 1.15rem;
+      color: #C89AE8;
+      line-height: 2;
+      margin: 0 0 0.8rem;
+      display: block;
+    }
+    .scripture-block .eng {
+      font-style: italic;
+      color: #9A80B0;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .essay-panel .ref {
+      font-size: 0.8rem;
+      color: #5A4A7A;
+      display: block;
+      margin-top: 0.4rem;
+    }
+
+    .sefirot-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+      margin: 1rem 0;
+      font-size: 0.7rem;
+      direction: rtl;
+    }
+    .sefirot-grid .sefira-label {
+      padding: 3px 2px;
+      border-radius: 2px;
+      color: #0D0820;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <div class="art-inner" id="art-inner">
+      <canvas id="c"></canvas>
+    </div>
+  </div>
+  <div class="essay-panel">
+    <h1>Seven Times Seven</h1>
+    <p class="subtitle">Sefirat HaOmer — hexagonal grid canvas animation — Leviticus 23:15–16</p>
+
+    <div class="scripture-block">
+      <span class="heb">וּסְפַרְתֶּם לָכֶם מִמׇּחֳרַת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת־עֹמֶר הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה׃ עַד מִמׇּחֳרַת הַשַּׁבָּת הַשְּׁבִיעִת תִּסְפְּרוּ חֲמִשִּׁים יוֹם וְהִקְרַבְתֶּם מִנְחָה חֲדָשָׁה לַיהוָה׃</span>
+      <span class="eng">"And you shall count for yourselves from the day after the sabbath, from the day that you brought the sheaf of the wave offering; seven complete weeks there shall be. Until the day after the seventh week you shall count fifty days; then you shall present a new grain offering to the LORD."</span>
+      <span class="ref">— Leviticus 23:15–16</span>
+    </div>
+
+    <h2>The Architecture of the Count</h2>
+
+    <p>Leviticus 23:15–16 issues a structurally precise command: count <em>seven complete weeks</em>, then the fiftieth day. The Torah does not say "count fifty days." It counts differently — it counts seven sevens, and then gestures beyond them. The forty-nine days form a closed, self-similar structure (7×7), and the fiftieth arrives from outside that structure. This gap between 49 and 50 is not arithmetic. It is theological.</p>
+
+    <p>The Kabbalistic tradition, formalized by Rabbi Aharon HaLevi in <em>Sefer HaChinuch</em> (Mitzvah 306) drawing on the <em>Tikkunei Zohar</em>, maps this structure onto the lower seven <em>Sefirot</em> — the emotional and spiritual faculties of the divine image imprinted in the human person:</p>
+
+    <p><strong>Chesed</strong> (lovingkindness) · <strong>Gevurah</strong> (strength, judgment) · <strong>Tiferet</strong> (beauty, harmony) · <strong>Netzach</strong> (endurance, victory) · <strong>Hod</strong> (splendor, acknowledgment) · <strong>Yesod</strong> (foundation, channel) · <strong>Malkhut</strong> (sovereignty, presence)</p>
+
+    <p>Each of the seven weeks corresponds to one Sefirah, and each day within a week refines that Sefirah through the lens of one of the seven. Day 1 is <em>Chesed she-b'Chesed</em> — lovingkindness within lovingkindness. Day 2 is <em>Gevurah she-b'Chesed</em> — judgment within lovingkindness: the discipline that makes kindness sustainable rather than enabling. Day 8 opens the second week: <em>Chesed she-b'Gevurah</em> — the tenderness inside severity. And so on across 49 distinct combinations.</p>
+
+    <hr>
+
+    <h2>A Curriculum, Not a Waiting Room</h2>
+
+    <p>The non-obvious claim of this reading is that the Omer period is not merely calendrical waiting. It is a structured curriculum in which each day refines a different emotional-spiritual quality. The question changes daily: <em>how does this faculty express within that faculty?</em> Maimonides writes that the entire period from Passover to Shavuot is like <em>Chol HaMoed</em> — the intermediate days of one long festival — because Shavuot is the culmination of the Exodus: the liberation from Egypt was not complete until the Torah was given at Sinai. But if the Exodus freed the body, Shavuot frees the mind — and that freedom must be built, quality by quality, through the disciplines the Omer maps.</p>
+
+    <p>This is where the Sefer HaChinuch's rationale becomes interesting. Rabbi Aharon HaLevi is explicit: the person who arrives at Sinai unprepared is not ready to receive revelation. The forty-nine days of Sefirat HaOmer are the preparation. The seven Sefirot structure is the syllabus. Each day's combination names what is to be noticed, refined, and integrated — from the naive wholeness of Chesed-within-Chesed at the start, to the grounded, present-tense Malkhut-within-Malkhut at the end. Only after that traversal does the fiftieth day arrive.</p>
+
+    <hr>
+
+    <h2>The Fiftieth Gate</h2>
+
+    <p>Here is the tension the grid exposes: if the forty-nine days are complete — seven times seven, mathematically closed, a perfect square — why is there a fiftieth?</p>
+
+    <p>The <em>Tikkunei Zohar</em> (Tikkun 21) counts fifty gates of <em>Binah</em> — divine understanding, the faculty of discernment that stands above all seven Sefirot of the lower tree. These fifty gates are called <em>Shaarei haBinah</em>. The forty-ninth gate is the highest a human mind can reach by effort. Moses, the Torah teaches (Deuteronomy 34:10, "there was no prophet like Moses"), attained forty-nine. He could not reach the fiftieth: <em>Sha'ar haNun</em> — the gate of fifty, so called because <em>nun</em> (נ) is the Hebrew numeral fifty.</p>
+
+    <p>This means Shavuot is not the reward at the end of the Omer curriculum. It is the horizon the curriculum approaches — the point beyond what any finite effort can grasp. The forty-nine days of refinement make a person <em>capable of being addressed</em>. But the revelation itself is not the result of work. It arrives as gift, as pure descent from above the system.</p>
+
+    <p>The structural insight is this: 50 is not part of the 7×7 matrix. You cannot reach it by multiplying sevens. It stands outside the grid — and this is precisely the Zohar's point. The grid is complete and beautiful in itself. The fiftieth does not fit inside it. Shavuot is what the grid was arranged <em>around</em>. It was the center all along; the count reveals it.</p>
+
+    <hr>
+
+    <h2>The Animation</h2>
+
+    <p>Forty-nine hexagons bloom into existence one by one, row by row, week by week. Each row is colored by the Sefirah it refines — sky blue for Chesed, deep red for Gevurah, gold for Tiferet, emerald for Netzach, burnt orange for Hod, violet for Yesod, burgundy for Malkhut. Each hexagon is labeled with its Hebrew day-numeral and, on hover, reveals its Sefirah combination. The 50th hexagon — larger, white-gold, pulsing — glows at the center. It was always there. The count reveals it.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx    = canvas.getContext('2d');
+  var panel  = document.getElementById('art-inner');
+  var W, H, cx, cy, R;
+
+  /* Kabbalistic week colors, index = week (0–6). */
+  var WEEK_COLORS = [
+    '#7EC8E3', /* Chesed   — sky blue    */
+    '#C0392B', /* Gevurah  — deep red    */
+    '#F4C430', /* Tiferet  — gold        */
+    '#27AE60', /* Netzach  — emerald     */
+    '#E67E22', /* Hod      — burnt orange*/
+    '#8E44AD', /* Yesod    — deep violet */
+    '#6D2349'  /* Malkhut  — dark burgundy */
+  ];
+
+  /* Slightly lighter stroke colors per week. */
+  var WEEK_STROKE = [
+    '#A8DCEF',
+    '#D05040',
+    '#F8DC68',
+    '#50C878',
+    '#F09040',
+    '#AA60D0',
+    '#904060'
+  ];
+
+  /* Text colors chosen for contrast on each week's background. */
+  var WEEK_TEXT = [
+    'rgba(10,30,50,0.85)',
+    'rgba(255,210,200,0.90)',
+    'rgba(50,30,0,0.85)',
+    'rgba(230,255,235,0.90)',
+    'rgba(40,15,0,0.85)',
+    'rgba(240,220,255,0.90)',
+    'rgba(255,220,232,0.90)'
+  ];
+
+  /* Seven Sefirot names in Hebrew (with nikud). */
+  var SEFIROT = [
+    'חֶסֶד',
+    'גְּבוּרָה',
+    'תִּפְאֶרֶת',
+    'נֶצַח',
+    'הוֹד',
+    'יְסוֹד',
+    'מַלְכוּת'
+  ];
+
+  /* Hebrew ordinals with geresh/gershayim, used in tooltip: day 1–49. */
+  var HEBREW_ORD = [
+    'א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ז׳','ח׳','ט׳','י׳',
+    'י״א','י״ב','י״ג','י״ד','ט״ו','ט״ז','י״ז','י״ח','י״ט','כ׳',
+    'כ״א','כ״ב','כ״ג','כ״ד','כ״ה','כ״ו','כ״ז','כ״ח','כ״ט','ל׳',
+    'ל״א','ל״ב','ל״ג','ל״ד','ל״ה','ל״ו','ל״ז','ל״ח','ל״ט','מ׳',
+    'מ״א','מ״ב','מ״ג','מ״ד','מ״ה','מ״ו','מ״ז','מ״ח','מ״ט'
+  ];
+
+  /* Abbreviated day labels for inside the hex (no geresh, less clutter). */
+  var HEBREW_DAY = [
+    'א','ב','ג','ד','ה','ו','ז','ח','ט','י',
+    'יא','יב','יג','יד','טו','טז','יז','יח','יט','כ',
+    'כא','כב','כג','כד','כה','כו','כז','כח','כט','ל',
+    'לא','לב','לג','לד','לה','לו','לז','לח','לט','מ',
+    'מא','מב','מג','מד','מה','מו','מז','מח','מט'
+  ];
+
+  /*
+   * Precompute all 49 Sefirah combination labels.
+   * Day d (1-based): week = floor((d-1)/7), day-within-week = (d-1) % 7.
+   * Label = SEFIROT[dayIdx] + ' שֶׁבְּ' + SEFIROT[weekIdx].
+   */
+  var SEFIRA_LABELS = [];
+  for (var d = 1; d <= 49; d++) {
+    var wk = Math.floor((d - 1) / 7);
+    var dk = (d - 1) % 7;
+    SEFIRA_LABELS.push(SEFIROT[dk] + ' שֶׁבְּ' + SEFIROT[wk]);
+  }
+
+  /* Hex objects for the 49 grid cells plus the 50th. */
+  var hexes = [];
+  var hex50 = null;
+
+  /* Animation state. */
+  var phase       = 'blooming'; /* 'blooming' | 'holding' | 'fading' */
+  var revealIdx   = 0;          /* next hex index to bloom (0–48); 49 means hex50 */
+  var nextReveal  = 0;          /* timestamp after which to trigger the next bloom */
+  var holdStart   = 0;
+  var fadeStart   = 0;
+  var sceneAlpha  = 1;
+
+  /* Mouse state for hover tooltip. */
+  var mouseX    = -9999;
+  var mouseY    = -9999;
+  var hoverDay  = 0; /* 1–49, or 0 for none */
+
+  /* -----------------------------------------------------------------------
+   * drawHex — traces a pointy-top hexagonal path (no fill/stroke applied).
+   * ctx: CanvasRenderingContext2D
+   * hx, hy: center coordinates
+   * r: circumradius
+   * ----------------------------------------------------------------------- */
+  function drawHex(ctx, hx, hy, r) {
+    ctx.beginPath();
+    for (var i = 0; i < 6; i++) {
+      var a  = Math.PI / 180 * (60 * i - 30); /* pointy-top: first vertex at top-right */
+      var px = hx + r * Math.cos(a);
+      var py = hy + r * Math.sin(a);
+      if (i === 0) ctx.moveTo(px, py);
+      else         ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+  }
+
+  /* -----------------------------------------------------------------------
+   * roundRect — traces a rounded rectangle path.
+   * ----------------------------------------------------------------------- */
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  /* -----------------------------------------------------------------------
+   * computeLayout — (re)computes R and hex center positions from canvas size.
+   * Called on init and on resize.  Positions are stored in hex objects.
+   * ----------------------------------------------------------------------- */
+  function computeLayout() {
+    W  = canvas.width  = panel.offsetWidth;
+    H  = canvas.height = panel.offsetHeight;
+    cx = W / 2;
+    cy = H / 2;
+
+    /* Fit 7×7 pointy-top grid within the canvas with 10% margin.
+     * Grid span: width = 6 * HEX_W + HEX_W/2 = 6.5 * sqrt(3) * R
+     *            height = 6 * 1.5R + 2R = 11R                        */
+    var maxR_w = (W * 0.88) / (6.5 * Math.sqrt(3));
+    var maxR_h = (H * 0.88) / 11;
+    R = Math.min(maxR_w, maxR_h, 46);
+
+    var HEX_W = Math.sqrt(3) * R;
+    var HEX_H = 2 * R;
+
+    hexes = [];
+    for (var row = 0; row < 7; row++) {
+      for (var col = 0; col < 7; col++) {
+        var day  = row * 7 + col + 1;
+        /* Odd rows (1,3,5) are offset right by half a hex width. */
+        var hx   = cx + (col - 3) * HEX_W + (row % 2 === 1 ? HEX_W / 2 : 0);
+        var hy   = cy + (row - 3) * HEX_H * 0.75;
+        hexes.push({
+          day:         day,
+          row:         row,
+          x:           hx,
+          y:           hy,
+          fillColor:   WEEK_COLORS[row],
+          strokeColor: WEEK_STROKE[row],
+          textColor:   WEEK_TEXT[row],
+          scale:       0,
+          bloomStart:  null,
+          revealed:    false
+        });
+      }
+    }
+
+    /* 50th hex sits at the canvas center, 1.25× size. */
+    hex50 = {
+      x:          cx,
+      y:          cy,
+      scale:      0,
+      bloomStart: null,
+      revealed:   false
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+   * resetAnimation — resets all bloom state to prepare for the next cycle.
+   * ----------------------------------------------------------------------- */
+  function resetAnimation(now) {
+    for (var i = 0; i < hexes.length; i++) {
+      hexes[i].scale      = 0;
+      hexes[i].bloomStart = null;
+      hexes[i].revealed   = false;
+    }
+    hex50.scale      = 0;
+    hex50.bloomStart = null;
+    hex50.revealed   = false;
+    revealIdx  = 0;
+    nextReveal = now + 600; /* brief pause before restarting */
+    phase      = 'blooming';
+    sceneAlpha = 1;
+  }
+
+  /* -----------------------------------------------------------------------
+   * drawHexCell — draws one of the 49 grid hexagons at its current scale.
+   * h: hex object  |  now: current timestamp for text color fade-in
+   * ----------------------------------------------------------------------- */
+  function drawHexCell(h, now) {
+    if (h.scale <= 0) return;
+    var s = h.scale;
+
+    ctx.save();
+    /* Scale about the hex's own center. */
+    ctx.translate(h.x, h.y);
+    ctx.scale(s, s);
+    ctx.translate(-h.x, -h.y);
+
+    drawHex(ctx, h.x, h.y, R);
+    ctx.fillStyle = h.fillColor;
+    ctx.fill();
+    ctx.strokeStyle = h.strokeColor;
+    ctx.lineWidth   = 1.5;
+    ctx.stroke();
+
+    /* Day numeral — only draw when the hex is nearly fully bloomed. */
+    if (s > 0.6) {
+      var textAlpha = Math.min(1, (s - 0.6) / 0.4);
+      ctx.globalAlpha = textAlpha * sceneAlpha;
+      ctx.fillStyle   = h.textColor;
+      ctx.font        = Math.round(R * 0.42) + 'px serif';
+      ctx.direction   = 'rtl';
+      ctx.textAlign   = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(HEBREW_DAY[h.day - 1], h.x, h.y);
+      ctx.globalAlpha = sceneAlpha;
+    }
+
+    ctx.restore();
+  }
+
+  /* -----------------------------------------------------------------------
+   * drawHex50 — draws the 50th (Shavuot) hexagon with glow and pulse.
+   * now: current timestamp (drives the pulse oscillation)
+   * ----------------------------------------------------------------------- */
+  function drawHex50(now) {
+    if (!hex50 || hex50.scale <= 0) return;
+    var s = hex50.scale;
+    var r50 = R * 1.25;
+
+    /* Slow pulsing glow — period ≈ 3 s. */
+    var pulse = 0.5 + 0.5 * Math.sin(now * 0.0021);
+
+    ctx.save();
+    ctx.translate(hex50.x, hex50.y);
+    ctx.scale(s, s);
+    ctx.translate(-hex50.x, -hex50.y);
+
+    /* Outer glow aura. */
+    ctx.globalAlpha = sceneAlpha * s * (0.35 + 0.25 * pulse);
+    var aura = ctx.createRadialGradient(hex50.x, hex50.y, 0, hex50.x, hex50.y, r50 * 2.2);
+    aura.addColorStop(0,   'rgba(255, 248, 200, 0.9)');
+    aura.addColorStop(0.4, 'rgba(255, 215,   0, 0.4)');
+    aura.addColorStop(1,   'rgba(255, 215,   0, 0)');
+    ctx.fillStyle = aura;
+    ctx.beginPath();
+    ctx.arc(hex50.x, hex50.y, r50 * 2.2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = sceneAlpha;
+
+    /* Hex fill — white-gold with subtle radial gradient. */
+    var grad = ctx.createRadialGradient(
+      hex50.x - r50 * 0.2, hex50.y - r50 * 0.2, 0,
+      hex50.x, hex50.y, r50
+    );
+    grad.addColorStop(0, '#FFFEF5');
+    grad.addColorStop(1, '#FFF4C2');
+    drawHex(ctx, hex50.x, hex50.y, r50);
+    ctx.fillStyle = grad;
+    ctx.shadowColor = '#FFD700';
+    ctx.shadowBlur  = 20 + 10 * pulse;
+    ctx.fill();
+    ctx.shadowBlur  = 0;
+
+    ctx.strokeStyle = '#FFD700';
+    ctx.lineWidth   = 2;
+    drawHex(ctx, hex50.x, hex50.y, r50);
+    ctx.stroke();
+
+    /* Label "נ" (Hebrew numeral 50 — nun — symbol of the fiftieth gate). */
+    if (s > 0.5) {
+      var ta = Math.min(1, (s - 0.5) / 0.5);
+      ctx.globalAlpha = ta * sceneAlpha;
+      ctx.fillStyle   = '#8B6914';
+      ctx.font        = 'bold ' + Math.round(r50 * 0.52) + 'px serif';
+      ctx.direction   = 'rtl';
+      ctx.textAlign   = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('נ', hex50.x, hex50.y);
+      ctx.globalAlpha = sceneAlpha;
+    }
+
+    ctx.restore();
+  }
+
+  /* -----------------------------------------------------------------------
+   * drawTooltip — draws the hover label near the cursor.
+   * day: 1–49 integer
+   * ----------------------------------------------------------------------- */
+  function drawTooltip(day) {
+    var label = 'יום ' + HEBREW_ORD[day - 1] + ' — ' + SEFIRA_LABELS[day - 1];
+
+    ctx.save();
+    ctx.font = '14px serif';
+    ctx.direction = 'rtl';
+
+    var tw = ctx.measureText(label).width + 24;
+    var th = 34;
+    var tx = mouseX + 16;
+    var ty = mouseY - th - 8;
+    if (tx + tw > W - 4) tx = mouseX - tw - 16;
+    if (ty < 4)          ty = mouseY + 12;
+
+    ctx.fillStyle   = 'rgba(13, 8, 32, 0.92)';
+    ctx.strokeStyle = 'rgba(200, 154, 232, 0.6)';
+    ctx.lineWidth   = 1;
+    roundRect(ctx, tx, ty, tw, th, 5);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle    = '#C89AE8';
+    ctx.textAlign    = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, tx + tw - 12, ty + th / 2);
+
+    ctx.restore();
+  }
+
+  /* -----------------------------------------------------------------------
+   * tick — main animation loop driven by requestAnimationFrame.
+   * ----------------------------------------------------------------------- */
+  function tick(now) {
+    requestAnimationFrame(tick);
+
+    /* Advance bloom scales using a linear ease (300 ms for grid hexes). */
+    for (var i = 0; i < hexes.length; i++) {
+      var h = hexes[i];
+      if (h.bloomStart !== null && h.scale < 1) {
+        h.scale = Math.min(1, (now - h.bloomStart) / 300);
+      }
+    }
+    /* The 50th hex gets a longer bloom: 500 ms. */
+    if (hex50.bloomStart !== null && hex50.scale < 1) {
+      hex50.scale = Math.min(1, (now - hex50.bloomStart) / 500);
+    }
+
+    /* Phase: BLOOMING — reveal hexes one by one every 120 ms. */
+    if (phase === 'blooming') {
+      if (revealIdx < 49 && now >= nextReveal) {
+        hexes[revealIdx].bloomStart = now;
+        hexes[revealIdx].revealed   = true;
+        revealIdx++;
+        nextReveal = now + 120;
+      } else if (revealIdx === 49 && now >= nextReveal) {
+        /* All 49 done — now bloom the 50th with an extra 300 ms delay. */
+        hex50.bloomStart = now;
+        hex50.revealed   = true;
+        revealIdx        = 50;
+      }
+      /* Transition to HOLDING once the 50th hex is fully bloomed. */
+      if (revealIdx === 50 && hex50.scale >= 1) {
+        phase     = 'holding';
+        holdStart = now;
+      }
+    }
+
+    /* Phase: HOLDING — display for 6 s then fade. */
+    if (phase === 'holding' && now - holdStart > 6000) {
+      phase     = 'fading';
+      fadeStart = now;
+    }
+
+    /* Phase: FADING — fade to black over 1.2 s then restart. */
+    if (phase === 'fading') {
+      sceneAlpha = Math.max(0, 1 - (now - fadeStart) / 1200);
+      if (sceneAlpha <= 0) resetAnimation(now);
+    }
+
+    /* ---- Render ---- */
+    ctx.clearRect(0, 0, W, H);
+    ctx.save();
+    ctx.globalAlpha = sceneAlpha;
+
+    ctx.fillStyle = '#0D0820';
+    ctx.fillRect(0, 0, W, H);
+
+    for (var j = 0; j < hexes.length; j++) {
+      if (hexes[j].revealed) drawHexCell(hexes[j], now);
+    }
+    if (hex50.revealed) drawHex50(now);
+
+    ctx.restore();
+
+    /* Tooltip rendered outside sceneAlpha so it stays crisp during fade. */
+    if (hoverDay > 0) drawTooltip(hoverDay);
+  }
+
+  /* -----------------------------------------------------------------------
+   * Hover hit-testing: approximate each hex as a circle of radius R * 0.85.
+   * ----------------------------------------------------------------------- */
+  canvas.addEventListener('mousemove', function (e) {
+    var rect  = canvas.getBoundingClientRect();
+    var scaleX = canvas.width  / rect.width;
+    var scaleY = canvas.height / rect.height;
+    mouseX = (e.clientX - rect.left) * scaleX;
+    mouseY = (e.clientY - rect.top)  * scaleY;
+
+    hoverDay = 0;
+    var threshold = R * R * 0.72; /* radius² for circle hit test */
+    for (var i = 0; i < hexes.length; i++) {
+      var h  = hexes[i];
+      if (!h.revealed || h.scale < 0.5) continue;
+      var dx = mouseX - h.x;
+      var dy = mouseY - h.y;
+      if (dx * dx + dy * dy < threshold) {
+        hoverDay = h.day;
+        break;
+      }
+    }
+  });
+
+  canvas.addEventListener('mouseleave', function () { hoverDay = 0; });
+
+  /* -----------------------------------------------------------------------
+   * Resize handler — recomputes layout without resetting bloom state.
+   * A resize mid-animation repositions hexes but keeps scales intact.
+   * ----------------------------------------------------------------------- */
+  window.addEventListener('resize', function () {
+    computeLayout();
+  });
+
+  /* Init. */
+  computeLayout();
+  nextReveal = performance.now() + 400;
+  requestAnimationFrame(tick);
+}());
+</script>
+</body>
+</html>

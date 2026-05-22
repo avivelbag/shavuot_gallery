@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 165">
+  <rect width="180" height="165" fill="#0D0820"/>
+
+  <!-- Row 0 (y=18): Chesed #7EC8E3 — cols at x=60,82,104 -->
+  <polygon points="71,12 71,24 60,30 49,24 49,12 60,6"   fill="#7EC8E3" stroke="#A8DCEF" stroke-width="0.8"/>
+  <polygon points="93,12 93,24 82,30 71,24 71,12 82,6"   fill="#7EC8E3" stroke="#A8DCEF" stroke-width="0.8"/>
+  <polygon points="115,12 115,24 104,30 93,24 93,12 104,6" fill="#7EC8E3" stroke="#A8DCEF" stroke-width="0.8"/>
+
+  <!-- Row 1 (y=36): Gevurah #C0392B — odd row offset +11: cols 71,93,115 -->
+  <polygon points="82,30 82,42 71,48 60,42 60,30 71,24" fill="#C0392B" stroke="#D05040" stroke-width="0.8"/>
+  <polygon points="104,30 104,42 93,48 82,42 82,30 93,24" fill="#C0392B" stroke="#D05040" stroke-width="0.8"/>
+  <polygon points="126,30 126,42 115,48 104,42 104,30 115,24" fill="#C0392B" stroke="#D05040" stroke-width="0.8"/>
+
+  <!-- Row 2 (y=54): Tiferet #F4C430 — cols at x=60,82,104 -->
+  <polygon points="71,48 71,60 60,66 49,60 49,48 60,42" fill="#F4C430" stroke="#F8DC68" stroke-width="0.8"/>
+  <polygon points="93,48 93,60 82,66 71,60 71,48 82,42" fill="#F4C430" stroke="#F8DC68" stroke-width="0.8"/>
+  <polygon points="115,48 115,60 104,66 93,60 93,48 104,42" fill="#F4C430" stroke="#F8DC68" stroke-width="0.8"/>
+
+  <!-- Row 3 (y=72): Netzach #27AE60 — odd row offset +11: cols 71,93,115 -->
+  <polygon points="82,66 82,78 71,84 60,78 60,66 71,60" fill="#27AE60" stroke="#50C878" stroke-width="0.8"/>
+  <polygon points="104,66 104,78 93,84 82,78 82,66 93,60" fill="#27AE60" stroke="#50C878" stroke-width="0.8"/>
+  <polygon points="126,66 126,78 115,84 104,78 104,66 115,60" fill="#27AE60" stroke="#50C878" stroke-width="0.8"/>
+
+  <!-- Row 4 (y=90): Hod #E67E22 — cols at x=60,82,104 -->
+  <polygon points="71,84 71,96 60,102 49,96 49,84 60,78" fill="#E67E22" stroke="#F09040" stroke-width="0.8"/>
+  <polygon points="93,84 93,96 82,102 71,96 71,84 82,78" fill="#E67E22" stroke="#F09040" stroke-width="0.8"/>
+  <polygon points="115,84 115,96 104,102 93,96 93,84 104,78" fill="#E67E22" stroke="#F09040" stroke-width="0.8"/>
+
+  <!-- Row 5 (y=108): Yesod #8E44AD — odd row offset +11: cols 71,93,115 -->
+  <polygon points="82,102 82,114 71,120 60,114 60,102 71,96" fill="#8E44AD" stroke="#AA60D0" stroke-width="0.8"/>
+  <polygon points="104,102 104,114 93,120 82,114 82,102 93,96" fill="#8E44AD" stroke="#AA60D0" stroke-width="0.8"/>
+  <polygon points="126,102 126,114 115,120 104,114 104,102 115,96" fill="#8E44AD" stroke="#AA60D0" stroke-width="0.8"/>
+
+  <!-- Row 6 (y=126): Malkhut #6D2349 — cols at x=60,82,104 -->
+  <polygon points="71,120 71,132 60,138 49,132 49,120 60,114" fill="#6D2349" stroke="#904060" stroke-width="0.8"/>
+  <polygon points="93,120 93,132 82,138 71,132 71,120 82,114" fill="#6D2349" stroke="#904060" stroke-width="0.8"/>
+  <polygon points="115,120 115,132 104,138 93,132 93,120 104,114" fill="#6D2349" stroke="#904060" stroke-width="0.8"/>
+
+  <!-- 50th hex — Shavuot — centered at (82,72), R=15, white-gold with glow -->
+  <defs>
+    <radialGradient id="glow50" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#FFD700" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="82" cy="72" r="26" fill="url(#glow50)"/>
+  <polygon points="95,64 95,80 82,87 69,80 69,64 82,57" fill="#FFF4C2" stroke="#FFD700" stroke-width="1.5"/>
+  <text x="82" y="76" text-anchor="middle" font-family="serif" font-size="13" font-weight="bold" fill="#8B6914">נ</text>
+</svg>
