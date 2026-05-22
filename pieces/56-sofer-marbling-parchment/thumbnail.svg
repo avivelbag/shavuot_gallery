@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150">
+  <rect width="200" height="150" fill="#FBF3DC"/>
+  <!-- Marbled ink layers — parchment, sepia, gold, azure swirls -->
+  <path d="M0,45 C30,10 70,80 110,35 S165,65 200,30 L200,0 L0,0 Z" fill="#1C1208" opacity="0.75"/>
+  <path d="M0,90 C40,55 85,120 130,80 S175,100 200,75 L200,0 L0,0 Z" fill="#6B3F1A" opacity="0.6"/>
+  <path d="M0,130 C50,95 100,148 145,110 S185,138 200,120 L200,150 L0,150 Z" fill="#6B3F1A" opacity="0.55"/>
+  <path d="M0,60 C35,30 75,90 115,55 S170,80 200,55 L200,20 L0,20 Z" fill="#C8960C" opacity="0.5"/>
+  <path d="M0,105 C45,75 90,128 135,95 S180,118 200,100 L200,150 L0,150 Z" fill="#1E3A6A" opacity="0.45"/>
+  <!-- Horizontal comb swirl lines -->
+  <path d="M0,38 Q50,22 100,42 T200,36" fill="none" stroke="#1C1208" stroke-width="2.5" opacity="0.7"/>
+  <path d="M0,72 Q55,58 110,76 T200,68" fill="none" stroke="#6B3F1A" stroke-width="3" opacity="0.6"/>
+  <path d="M0,108 Q60,94 120,112 T200,104" fill="none" stroke="#1C1208" stroke-width="2" opacity="0.5"/>
+  <path d="M20,0 Q30,50 22,100 T18,150" fill="none" stroke="#C8960C" stroke-width="2" opacity="0.4"/>
+  <path d="M100,0 Q108,55 98,105 T102,150" fill="none" stroke="#6B3F1A" stroke-width="1.5" opacity="0.4"/>
+  <!-- Hebrew letter overlay -->
+  <text x="100" y="136" text-anchor="middle" font-family="serif" font-size="13" fill="#1C1208" opacity="0.9" direction="rtl">וַיִּכְתֹּב</text>
+</svg>

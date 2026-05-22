@@ -768,5 +768,16 @@
     "path": "pieces/55-unfurling-scroll-ruth/index.html",
     "thumbnail": "pieces/55-unfurling-scroll-ruth/thumbnail.svg",
     "essay": "pieces/55-unfurling-scroll-ruth/essay.md"
+  },
+  {
+    "id": "56-sofer-marbling-parchment",
+    "title": "Before the Letters",
+    "tagline": "ink spreads on water before it becomes Torah — Ebru marbling of sacred parchment",
+    "year": 2026,
+    "theme": "Matan Torah / The Writing of the Torah — Exodus 24:3–4",
+    "technique": "canvas 2D — Ebru drop displacement, sinusoidal comb distortion, ImageData pixel manipulation",
+    "path": "pieces/56-sofer-marbling-parchment/index.html",
+    "thumbnail": "pieces/56-sofer-marbling-parchment/thumbnail.svg",
+    "essay": "pieces/56-sofer-marbling-parchment/essay.md"
   }
 ]
