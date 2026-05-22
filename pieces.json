@@ -22,6 +22,17 @@
     "essay": "pieces/04-until-dawn/essay.md"
   },
   {
+    "id": "05-ruth-wheat-field",
+    "title": "Where You Go",
+    "tagline": "Ruth and Naomi in the fields of Bethlehem",
+    "year": 2026,
+    "theme": "Book of Ruth",
+    "technique": "canvas 2D — flow field, Perlin noise, wheat stalk simulation",
+    "path": "pieces/05-ruth-wheat-field/index.html",
+    "thumbnail": "pieces/05-ruth-wheat-field/thumbnail.svg",
+    "essay": "pieces/05-ruth-wheat-field/essay.md"
+  },
+  {
     "id": "06-luchot-engraved",
     "title": "Engraved in Stone",
     "tagline": "two tablets, ten words, one covenant",

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Where You Go — Ruth in the Wheat Field</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a0f00;
+      color: #f5e6c8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+    }
+    canvas {
+      display: block;
+      max-width: 100%;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #f0c84a;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #c8a96e;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #d4a017;
+      padding-left: 0.75rem;
+    }
+    .essay-pane p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #e8d8b8;
+      margin-bottom: 1rem;
+    }
+    .essay-pane .read-more {
+      font-size: 0.85rem;
+      color: #c8a96e;
+      font-style: italic;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 800px) {
+      .layout {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      canvas {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>Where You Go I Will Go — Loyalty, Gleaning, and the Harvest in the Book of Ruth</h1>
+    <p class="source">Source: The Book of Ruth, read publicly in synagogue on Shavuot. The central verse is Ruth 1:16 — <span dir="rtl">כִּי אֲשֶׁר תֵּלְכִי אֵלֵךְ</span> ("For wherever you go, I will go"). See also Ruth 2:1–16.</p>
+
+    <p>The Book of Ruth is read on Shavuot because the connection runs deeper than harvest timing. Yes, the story unfolds during the barley and wheat harvests in Bethlehem, and Shavuot marks the culmination of that same grain harvest. But the real resonance is theological: just as the Israelites at Sinai chose, freely and irrevocably, to receive the Torah, Ruth chooses, freely and irrevocably, to join the people of Israel. Her declaration to Naomi — "your people shall be my people, and your God my God" (Ruth 1:16) — is the most compressed and beautiful conversion speech in all of scripture.</p>
+
+    <p>The traditional reading pairs these two acts of chosen belonging. Sinai was a collective declaration; Ruth's was a private one, spoken on a dusty road between Moab and Bethlehem. Yet the rabbis understood them as structurally identical: in both, someone who was not bound chose to be bound. Covenant is not coercion.</p>
+
+    <p>The artwork renders the moment just after that declaration, once both women have turned toward Bethlehem. Naomi faces left — still partly turned toward the life she is leaving — while Ruth faces right, toward what is ahead. Neither figure is labeled; both are silhouetted in near-black against a golden field, equals in grief and in resolve. The wheat around them is alive with wind.</p>
+
+    <p>That aliveness is deliberate. Ruth arrives in Bethlehem "at the beginning of the barley harvest" (Ruth 1:22), and the entire second chapter is set among standing grain: she gleans behind the reapers, Boaz notices her, instruction is given to leave extra stalks for her deliberately. The field is where loyalty becomes visible in the world — where the abstract commitment of Ruth 1:16 is tested and honored by actual humans feeding an actual widow.</p>
+
+    <p>The gleaning law itself (Leviticus 19:9–10) is never named in Ruth, but it is the legal infrastructure that makes the story possible. The corners of the field must be left; what falls cannot be gathered back. This is Torah in the form of a gap in the harvest — an absence that creates space for the stranger and the poor. Ruth's loyalty to Naomi, and Boaz's loyalty to the spirit of the law rather than just its letter, are both acts of <em>hesed</em> (loving-kindness): the untranslatable word that appears three times in the book and forms its moral core.</p>
+
+    <p>The flow field driving the wheat stalks uses a 2D value noise to simulate continuous wind. No stalk resets abruptly; the movement is the same kind of gradual, accumulating pressure that marks both grief and faithfulness — nothing dramatic, just direction, held consistently, over time.</p>
+
+    <p class="read-more">Read the full text: Ruth 1:1–4:22, particularly Ruth 1:16 and 2:1–16.</p>
+  </div>
+</div>
+<script>
+// ─── Value noise ────────────────────────────────────────────────────────────
+// 64×64 grid of random floats; bilinear interpolation gives smooth output.
+const GRID = 64;
+const noiseGrid = new Float32Array(GRID * GRID);
+for (let i = 0; i < noiseGrid.length; i++) noiseGrid[i] = Math.random();
+
+function fade(t) { return t * t * (3 - 2 * t); }
+
+function valueNoise(x, y) {
+  const xi = Math.floor(x) & (GRID - 1);
+  const yi = Math.floor(y) & (GRID - 1);
+  const tx = fade(x - Math.floor(x));
+  const ty = fade(y - Math.floor(y));
+  const x1 = (xi + 1) & (GRID - 1);
+  const y1 = (yi + 1) & (GRID - 1);
+  const v00 = noiseGrid[yi * GRID + xi];
+  const v10 = noiseGrid[yi * GRID + x1];
+  const v01 = noiseGrid[y1 * GRID + xi];
+  const v11 = noiseGrid[y1 * GRID + x1];
+  return v00 + tx * (v10 - v00) + ty * ((v01 + tx * (v11 - v01)) - (v00 + tx * (v10 - v00)));
+}
+
+// ─── Canvas setup ────────────────────────────────────────────────────────────
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = 800, H = 600;
+canvas.width = W;
+canvas.height = H;
+
+// ─── Stalks ──────────────────────────────────────────────────────────────────
+// ~300 wheat stalks placed in a jittered grid across the lower 60% of canvas.
+const STALK_COUNT = 300;
+const FIELD_TOP = H * 0.38;
+const FIELD_BOT = H;
+
+const stalks = [];
+const cols = 20, rows = 15;
+for (let r = 0; r < rows; r++) {
+  for (let c = 0; c < cols; c++) {
+    const bx = (c / cols) * W + (Math.random() - 0.5) * (W / cols);
+    const by = FIELD_TOP + (r / rows) * (FIELD_BOT - FIELD_TOP) + (Math.random() - 0.5) * 20;
+    const baseH = (H * 0.13) * (0.8 + Math.random() * 0.4); // ±20%
+    const nxOff = Math.random() * 64;
+    const nyOff = Math.random() * 64;
+    stalks.push({ bx, by, baseH, nxOff, nyOff });
+  }
+}
+
+// ─── Silhouette figures (Ruth and Naomi) ─────────────────────────────────────
+// Two static canvas Path2D silhouettes. Naomi faces left, Ruth faces right.
+// Bodies are rounded rectangles + ellipse heads, kept simple but legible.
+
+function buildFigure(cx, groundY, height, facingRight) {
+  const p = new Path2D();
+  const headR = height * 0.12;
+  const bodyW = height * 0.2;
+  const bodyH = height * 0.45;
+  const legH = height * 0.35;
+  const shoulderY = groundY - legH - bodyH;
+  const headCY = shoulderY - headR - height * 0.02;
+
+  // legs
+  const legSpread = bodyW * 0.25;
+  p.moveTo(cx - legSpread, groundY);
+  p.lineTo(cx - legSpread * 0.3, groundY - legH);
+  p.lineTo(cx + legSpread * 0.3, groundY - legH);
+  p.lineTo(cx + legSpread, groundY);
+  p.closePath();
+
+  // body (trapezoid — wider at shoulders)
+  const shoulderW = bodyW * 1.2;
+  p.moveTo(cx - legSpread * 0.3, groundY - legH);
+  p.lineTo(cx - shoulderW / 2, shoulderY);
+  p.lineTo(cx + shoulderW / 2, shoulderY);
+  p.lineTo(cx + legSpread * 0.3, groundY - legH);
+  p.closePath();
+
+  // head — moveTo the ellipse start point so no stray line is drawn
+  p.moveTo(cx + headR, headCY);
+  p.ellipse(cx, headCY, headR, headR * 1.05, 0, 0, Math.PI * 2);
+
+  // arm reaching outward
+  const armDir = facingRight ? 1 : -1;
+  p.moveTo(cx + armDir * bodyW * 0.3, shoulderY + bodyH * 0.25);
+  p.lineTo(cx + armDir * bodyW * 0.9, shoulderY + bodyH * 0.65);
+
+  return p;
+}
+
+const GROUND_Y = H * 0.68;
+const FIG_HEIGHT = 110;
+// Naomi: left-center, facing left (departing)
+const naomiFig = buildFigure(W * 0.32, GROUND_Y, FIG_HEIGHT, false);
+// Ruth: slightly right of Naomi, facing right (following)
+const ruthFig  = buildFigure(W * 0.44, GROUND_Y, FIG_HEIGHT * 0.92, true);
+
+// ─── Draw sky gradient (static) ──────────────────────────────────────────────
+function drawSky() {
+  const skyGrad = ctx.createLinearGradient(0, 0, 0, FIELD_TOP + 40);
+  skyGrad.addColorStop(0, '#c8a96e');
+  skyGrad.addColorStop(0.5, '#e8c97a');
+  skyGrad.addColorStop(1, '#f5e6c8');
+  ctx.fillStyle = skyGrad;
+  ctx.fillRect(0, 0, W, FIELD_TOP + 40);
+}
+
+// ─── Draw field base ─────────────────────────────────────────────────────────
+function drawFieldBase() {
+  const fGrad = ctx.createLinearGradient(0, FIELD_TOP, 0, H);
+  fGrad.addColorStop(0, '#d4a017');
+  fGrad.addColorStop(1, '#8b6914');
+  ctx.fillStyle = fGrad;
+  ctx.fillRect(0, FIELD_TOP, W, H - FIELD_TOP);
+}
+
+// ─── Draw stalks ─────────────────────────────────────────────────────────────
+function drawStalks(t) {
+  for (const s of stalks) {
+    const noiseVal = valueNoise(s.nxOff + s.bx / 160 + t * 0.18, s.nyOff + s.by / 160);
+    const lean = (noiseVal - 0.5) * 60; // px tip offset
+
+    const tipX = s.bx + lean;
+    const tipY = s.by - s.baseH;
+    const ctrlX = s.bx + lean * 0.5;
+    const ctrlY = s.by - s.baseH * 0.6;
+
+    const stalkGrad = ctx.createLinearGradient(s.bx, s.by, tipX, tipY);
+    stalkGrad.addColorStop(0, '#7a5500');
+    stalkGrad.addColorStop(0.5, '#d4a017');
+    stalkGrad.addColorStop(1, '#f0c84a');
+
+    ctx.beginPath();
+    ctx.moveTo(s.bx, s.by);
+    ctx.quadraticCurveTo(ctrlX, ctrlY, tipX, tipY);
+    ctx.strokeStyle = stalkGrad;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // wheat head — small filled ellipse at tip
+    ctx.beginPath();
+    ctx.ellipse(tipX, tipY, 2.5, 5, Math.atan2(tipX - s.bx, s.by - tipY), 0, Math.PI * 2);
+    ctx.fillStyle = '#f0c84a';
+    ctx.fill();
+  }
+}
+
+// ─── Draw silhouettes ────────────────────────────────────────────────────────
+function drawFigures() {
+  ctx.fillStyle = '#1a0f00';
+  ctx.fill(naomiFig);
+  ctx.fill(ruthFig);
+  ctx.strokeStyle = '#1a0f00';
+  ctx.lineWidth = 3;
+  ctx.stroke(naomiFig);
+  ctx.stroke(ruthFig);
+}
+
+// ─── Draw text overlay ───────────────────────────────────────────────────────
+function drawText() {
+  const barH = 48;
+  ctx.fillStyle = 'rgba(0,0,0,0.38)';
+  ctx.fillRect(0, H - barH, W, barH);
+
+  ctx.font = 'bold 22px serif';
+  ctx.fillStyle = 'rgba(255, 248, 220, 0.92)';
+  ctx.direction = 'rtl';
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center';
+  ctx.fillText('כִּי אֲשֶׁר תֵּלְכִי אֵלֵךְ', W / 2, H - barH / 2);
+  ctx.direction = 'ltr';
+}
+
+// ─── Animation loop ──────────────────────────────────────────────────────────
+let startTime = null;
+
+function frame(ts) {
+  if (!startTime) startTime = ts;
+  const t = (ts - startTime) * 0.001; // seconds
+
+  ctx.clearRect(0, 0, W, H);
+  drawSky();
+  drawFieldBase();
+  drawStalks(t);
+  drawFigures();
+  drawText();
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
