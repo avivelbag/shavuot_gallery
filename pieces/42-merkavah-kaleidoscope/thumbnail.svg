@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#1A3A6B" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#050510"/>
+      <stop offset="100%" stop-color="#050510"/>
+    </radialGradient>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#C8A000" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#C8A000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <!-- four-fold symmetry via pattern trick -->
+    <pattern id="quad" x="0" y="0" width="200" height="150" patternUnits="userSpaceOnUse">
+      <!-- seed quadrant — sapphire to gold gradient with crimson accent -->
+      <rect width="200" height="150" fill="#0D2050"/>
+      <ellipse cx="0" cy="0" rx="140" ry="100" fill="#1A3A6B" opacity="0.8"/>
+      <ellipse cx="80" cy="60" rx="60" ry="50" fill="#8B1A1A" opacity="0.4"/>
+      <ellipse cx="130" cy="110" rx="70" ry="50" fill="#C8A000" opacity="0.25"/>
+      <!-- wheel lines -->
+      <line x1="0" y1="75" x2="200" y2="75" stroke="white" stroke-width="0.5" opacity="0.3"/>
+      <line x1="100" y1="0" x2="100" y2="150" stroke="white" stroke-width="0.5" opacity="0.3"/>
+      <line x1="0" y1="0" x2="200" y2="150" stroke="white" stroke-width="0.4" opacity="0.2"/>
+      <line x1="200" y1="0" x2="0" y2="150" stroke="white" stroke-width="0.4" opacity="0.2"/>
+      <!-- concentric arc -->
+      <circle cx="0" cy="0" r="120" fill="none" stroke="#C8A000" stroke-width="0.6" opacity="0.4"/>
+      <circle cx="0" cy="0" r="70"  fill="none" stroke="#1A3A6B" stroke-width="0.8" opacity="0.5"/>
+    </pattern>
+    <!-- mirror via transforms applied to four rects -->
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="#050510"/>
+  <rect width="400" height="300" fill="url(#bg)"/>
+
+  <!-- Four quadrants via rect + clip transforms -->
+  <!-- Q1: top-left normal -->
+  <g clip-path="url(#tlClip)">
+    <rect x="0" y="0" width="200" height="150" fill="url(#quad)"/>
+  </g>
+  <!-- Q2: top-right flipped H -->
+  <g transform="translate(400,0) scale(-1,1)">
+    <rect x="0" y="0" width="200" height="150" fill="url(#quad)"/>
+  </g>
+  <!-- Q3: bottom-left flipped V -->
+  <g transform="translate(0,300) scale(1,-1)">
+    <rect x="0" y="0" width="200" height="150" fill="url(#quad)"/>
+  </g>
+  <!-- Q4: bottom-right flipped both -->
+  <g transform="translate(400,300) scale(-1,-1)">
+    <rect x="0" y="0" width="200" height="150" fill="url(#quad)"/>
+  </g>
+
+  <!-- Central glow -->
+  <rect width="400" height="300" fill="url(#glow1)"/>
+
+  <!-- Central circle — the sapphire throne -->
+  <circle cx="200" cy="150" r="28" fill="#1A3A6B" opacity="0.7"/>
+  <circle cx="200" cy="150" r="18" fill="#2A5AAF" opacity="0.6"/>
+  <circle cx="200" cy="150" r="10" fill="#C8A000" opacity="0.8"/>
+  <circle cx="200" cy="150" r="5"  fill="white"   opacity="0.9"/>
+
+  <!-- Concentric rings -->
+  <circle cx="200" cy="150" r="55"  fill="none" stroke="#C8A000" stroke-width="0.8" opacity="0.5"/>
+  <circle cx="200" cy="150" r="90"  fill="none" stroke="#C8A000" stroke-width="0.6" opacity="0.4"/>
+  <circle cx="200" cy="150" r="130" fill="none" stroke="#C8A000" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Hebrew face labels at four cardinal points -->
+  <text x="200" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="13"
+        font-weight="600" fill="#C8A000" opacity="0.85">אַרְיֵה</text>
+  <text x="388" y="155" text-anchor="end" font-family="Georgia,serif" font-size="13"
+        font-weight="600" fill="#C8A000" opacity="0.85">נֶשֶׁר</text>
+  <text x="200" y="292" text-anchor="middle" font-family="Georgia,serif" font-size="13"
+        font-weight="600" fill="#C8A000" opacity="0.85">שׁוֹר</text>
+  <text x="12" y="155" text-anchor="start" font-family="Georgia,serif" font-size="13"
+        font-weight="600" fill="#C8A000" opacity="0.85">אָדָם</text>
+
+  <!-- Axis lines through centre -->
+  <line x1="200" y1="30" x2="200" y2="270" stroke="#C8A000" stroke-width="0.5" opacity="0.25"/>
+  <line x1="30" y1="150" x2="370" y2="150" stroke="#C8A000" stroke-width="0.5" opacity="0.25"/>
+  <line x1="100" y1="50" x2="300" y2="250" stroke="white" stroke-width="0.4" opacity="0.15"/>
+  <line x1="300" y1="50" x2="100" y2="250" stroke="white" stroke-width="0.4" opacity="0.15"/>
+</svg>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Chariot of Fire — Merkavah Kaleidoscope</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #050510;
+      color: #c8c8e8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      background: #050510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #mainCanvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2rem 1.8rem 2rem 1.6rem;
+      background: #050510;
+      border-left: 1px solid rgba(200, 160, 0, 0.2);
+    }
+    .essay h1 {
+      font-size: 1.1rem;
+      color: #C8A000;
+      margin: 0 0 1.2rem 0;
+      font-weight: normal;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+    .essay h2 {
+      font-size: 0.95rem;
+      color: #A08000;
+      margin: 1.4rem 0 0.7rem 0;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+    }
+    .essay p {
+      font-size: 0.86rem;
+      line-height: 1.80;
+      margin: 0 0 0.9rem 0;
+      color: #a8a8cc;
+    }
+    .essay blockquote {
+      margin: 0.3rem 0 0.9rem 1rem;
+      padding-left: 0.9rem;
+      border-left: 2px solid rgba(200, 160, 0, 0.35);
+    }
+    .essay blockquote p {
+      font-style: italic;
+      color: #8888bb;
+      margin: 0 0 0.4rem 0;
+    }
+    .essay .citation {
+      font-size: 0.97rem;
+      color: #C8A000;
+      direction: rtl;
+      text-align: right;
+      margin: 0.1rem 0 0.15rem 0;
+      line-height: 1.7;
+    }
+    .essay strong { color: #C8A000; }
+    .essay em { color: #9999cc; }
+    .essay hr {
+      border: none;
+      border-top: 1px solid rgba(200, 160, 0, 0.15);
+      margin: 1.2rem 0;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; }
+      .artwork { flex: none; height: 80vw; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(200,160,0,0.2); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="artwork">
+      <canvas id="mainCanvas"></canvas>
+    </div>
+    <div class="essay">
+      <h1>The Chariot of Fire — Ma'ase Merkavah</h1>
+
+      <p><strong>Ezekiel 1:4–28</strong></p>
+      <p class="citation">וָאֵרֶא וְהִנֵּה רוּחַ סְעָרָה בָּאָה מִן הַצָּפוֹן עָנָן גָּדוֹל וְאֵשׁ מִתְלַקַּחַת</p>
+      <p>"And I looked, and behold, a stormy wind came from the north, a great cloud and flashing fire." (Ezekiel 1:4)</p>
+
+      <p class="citation">וּדְמוּת פְּנֵיהֶם פְּנֵי אָדָם וּפְנֵי אַרְיֵה אֶל הַיָּמִין לְאַרְבַּעְתָּם וּפְנֵי שׁוֹר מֵהַשְּׂמֹאל לְאַרְבַּעְתָּם וּפְנֵי נֶשֶׁר לְאַרְבַּעְתָּם</p>
+      <p>"As for the likeness of their faces: each had a human face, and each had a lion's face on the right, and each had an ox's face on the left, and each had an eagle's face." (Ezekiel 1:10)</p>
+
+      <p>Ezekiel, a priest in exile on the banks of the Chebar River in Babylon, received the most overwhelming prophetic vision in the Hebrew Bible. The heavens opened. Four living creatures appeared, each with four faces and four wings. Beneath them, interlocking wheels — <em>ophanim</em> — spun within wheels, their rims filled with eyes. Above, a crystal expanse. Above that, a sapphire throne. And upon the throne, a likeness of the glory of the LORD.</p>
+
+      <p>What is striking is when this vision appears in the liturgical calendar: the first chapter of Ezekiel is the <em>haftarah</em> — the prophetic reading — assigned to Shavuot in Ashkenazic tradition. The Talmud records this assignment explicitly: <em>Megillah 31a</em> states that on Shavuot one reads the account of Ma'ase Merkavah, the Chariot Vision. The same festival on which we commemorate the giving of Torah at Sinai is also the day we read Ezekiel's encounter with the divine chariot.</p>
+
+      <hr>
+
+      <h2>The Haftarah That Is Not About the Festival</h2>
+
+      <p>Every other major festival has a haftarah that fits the occasion. Sukkot, Pesach, Rosh Hashanah — each has a prophetic reading tied to history, season, or national memory. Shavuot breaks this pattern. The haftarah of Shavuot does not speak of harvest, of first fruits, of the Ten Commandments, or even of Sinai. It speaks of a chariot of fire attended by four-faced creatures whose appearance is like burning coals and lightning.</p>
+
+      <p>The rabbis who assigned this reading were making a theological claim: the proper frame for receiving Torah is not history but encounter with the nature of divine presence itself. Before asking what the Torah says, we should ask what it means that anything was communicated across the infinite distance between the divine and the human. Ezekiel's vision is the answer to that question rendered in image rather than argument. Torah is not legislation handed down by a sovereign. It is revelation proceeding from a source that Ezekiel could only gesture toward with a cascade of approximations: <em>like</em> burning coals, <em>like</em> lightning, <em>the appearance of the likeness of the glory of</em> the LORD.</p>
+
+      <hr>
+
+      <h2>The Four Creatures and Their Faces</h2>
+
+      <p>Ezekiel 1:10 identifies the faces of the four living creatures — <em>chayot</em> — precisely: <strong>אָדָם</strong> (man), the face of human reason; <strong>אַרְיֵה</strong> (lion), strength and royal Davidic descent; <strong>שׁוֹר</strong> (ox), priestly labor and Temple service; <strong>נֶשֶׁר</strong> (eagle), transcendence and the prophetic faculty of receiving from beyond.</p>
+
+      <p>The Zohar (I:71a) interprets these four faces as the four foundations of created existence — the four directions, the four elements, the four royal beasts on the standards of the Israelite camp. The Merkavah is not just a vision; it is a map of the structure of creation centered on the divine presence.</p>
+
+      <h2>The Wheels Within Wheels</h2>
+
+      <p class="citation">וּמַרְאֵיהֶם וּמַעֲשֵׂיהֶם כַּאֲשֶׁר יִהְיֶה הָאוֹפַן בְּתוֹךְ הָאוֹפָן</p>
+      <p>"Their appearance and their construction being as it were a wheel within a wheel." (Ezekiel 1:16)</p>
+
+      <p>The <em>ophanim</em> — the great wheels — moved in all four directions simultaneously without turning, their rims filled with eyes. Above them stretched the <em>rakia</em>, the crystal expanse, brilliant and terrible. The wheels are tall and recursive: the wheel contains a wheel, which would contain another wheel, opening outward indefinitely. Medieval philosophers read this as a cosmological diagram; the Kabbalists read it as the sefirot in dynamic relationship, each containing the others, the whole turning as a single organism.</p>
+
+      <h2>Tikkun Leil Shavuot and Ma'ase Merkavah</h2>
+
+      <p>The custom of staying awake all night on Shavuot studying Torah — <em>Tikkun Leil Shavuot</em> — was codified in the 16th-century kabbalistic circle of Rabbi Joseph Karo in Safed. The classical Tikkun text begins precisely with selections from the first chapter of Ezekiel. The kabbalists understood Shavuot as the night on which the divine presence — <em>Shekhinah</em> — is available to be encountered directly. The proper starting point for that all-night vigil is not the laws of tithes or agricultural festivals but Ezekiel's vision of what one is orienting toward.</p>
+
+      <p>The kaleidoscope — the four-fold reflective symmetry of the Merkavah's geometry — is not decoration. It is the shape of the thing itself: an asymmetric seed pattern, reflected and rotated until it achieves perfect four-fold symmetry. The seed evolves continuously. The symmetry holds. New combinations arise from the same generative rules without exact repetition. This is what Ezekiel saw: not a static diagram but a living, evolving structure that preserved its essential form while never holding still — <em>like burning coals, like the appearance of torches, running to and fro among the living creatures, and the fire was bright and out of the fire went forth lightning.</em></p>
+    </div>
+  </div>
+
+  <script>
+    /*
+     * Four-fold kaleidoscope driven by inline Perlin noise.
+     *
+     * Architecture:
+     *   seedCanvas (SZ x SZ) — the evolving quarter-wedge drawn each frame
+     *   mainCanvas (SZ*2 + BORDER*2 + RING) — the display: four mirrored
+     *     copies of seedCanvas plus an outer ring of Hebrew face labels
+     *
+     * The Perlin noise implementation is a classic permutation-table gradient
+     * noise (Ken Perlin 2002 improved noise), inlined here to avoid any fetch.
+     */
+
+    const SZ = 400;        /* seed canvas side length (one quadrant) */
+    const RING = 52;       /* extra pixels around each edge for the label ring */
+    const TOTAL = SZ * 2 + RING * 2;
+
+    /* Hebrew names of the four Merkavah faces (Ezekiel 1:10) */
+    const FACE_LABELS = [
+      { text: 'אַרְיֵה', angle: -Math.PI / 2 },  /* lion  — top    */
+      { text: 'נֶשֶׁר',  angle: 0 },               /* eagle — right  */
+      { text: 'שׁוֹר',   angle: Math.PI / 2 },     /* ox   — bottom  */
+      { text: 'אָדָם',   angle: Math.PI },          /* man  — left    */
+    ];
+
+    /* Perlin noise — permutation table + gradient interpolation */
+    const perm = new Uint8Array(512);
+    const grad3 = [
+      [1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],
+      [1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],
+      [0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1]
+    ];
+
+    (function buildPerm() {
+      const p = new Uint8Array(256);
+      for (let i = 0; i < 256; i++) p[i] = i;
+      for (let i = 255; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [p[i], p[j]] = [p[j], p[i]];
+      }
+      for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+    })();
+
+    function fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+    function lerp(a, b, t) { return a + t * (b - a); }
+
+    function dot(g, x, y, z) { return g[0]*x + g[1]*y + g[2]*z; }
+
+    /**
+     * Classic improved Perlin noise returning a value in [-1, 1].
+     * @param {number} x
+     * @param {number} y
+     * @param {number} z
+     * @returns {number}
+     */
+    function perlin(x, y, z) {
+      const X = Math.floor(x) & 255;
+      const Y = Math.floor(y) & 255;
+      const Z = Math.floor(z) & 255;
+      x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+      const u = fade(x), v = fade(y), w = fade(z);
+      const A  = perm[X]+Y,   AA = perm[A]+Z,  AB = perm[A+1]+Z;
+      const B  = perm[X+1]+Y, BA = perm[B]+Z,  BB = perm[B+1]+Z;
+      return lerp(
+        lerp(
+          lerp(dot(grad3[perm[AA]%12], x,   y,   z  ),
+               dot(grad3[perm[BA]%12], x-1, y,   z  ), u),
+          lerp(dot(grad3[perm[AB]%12], x,   y-1, z  ),
+               dot(grad3[perm[BB]%12], x-1, y-1, z  ), u), v),
+        lerp(
+          lerp(dot(grad3[perm[AA+1]%12], x,   y,   z-1),
+               dot(grad3[perm[BA+1]%12], x-1, y,   z-1), u),
+          lerp(dot(grad3[perm[AB+1]%12], x,   y-1, z-1),
+               dot(grad3[perm[BB+1]%12], x-1, y-1, z-1), u), v), w);
+    }
+
+    /* Fractional Brownian Motion: layered octaves of Perlin noise */
+    function fbm(x, y, z, octaves) {
+      let v = 0, amp = 0.5, freq = 1, max = 0;
+      for (let o = 0; o < octaves; o++) {
+        v   += perlin(x * freq, y * freq, z * freq) * amp;
+        max += amp;
+        amp  *= 0.5;
+        freq *= 2.0;
+      }
+      return v / max;  /* normalised to roughly [-1, 1] */
+    }
+
+    /* Colour palette: sapphire, gold, crimson — Ezekiel's fire and crystal */
+    const PALETTE = [
+      [26,  58, 107],   /* sapphire  #1A3A6B */
+      [200, 160,  0],   /* gold      #C8A000 */
+      [139,  26, 26],   /* crimson   #8B1A1A */
+    ];
+
+    /**
+     * Sample the noise field at (nx, ny, nz) and blend between palette colours.
+     * Returns [r, g, b] integers 0-255.
+     * @param {number} nx  noise-space x
+     * @param {number} ny  noise-space y
+     * @param {number} nz  noise-space z (time)
+     */
+    function sampleColor(nx, ny, nz) {
+      const n = fbm(nx, ny, nz, 4) * 0.5 + 0.5;   /* [0, 1] */
+      /* three-stop gradient cycling through the palette */
+      const t = (n * 2) % 1;
+      const idx = Math.floor(n * 2) % 3;
+      const c0 = PALETTE[idx];
+      const c1 = PALETTE[(idx + 1) % 3];
+      return [
+        Math.round(c0[0] + t * (c1[0] - c0[0])),
+        Math.round(c0[1] + t * (c1[1] - c0[1])),
+        Math.round(c0[2] + t * (c1[2] - c0[2])),
+      ];
+    }
+
+    /* Canvas setup */
+    const mainCanvas = document.getElementById('mainCanvas');
+    mainCanvas.width  = TOTAL;
+    mainCanvas.height = TOTAL;
+    const ctx = mainCanvas.getContext('2d');
+
+    const seedCanvas = document.createElement('canvas');
+    seedCanvas.width  = SZ;
+    seedCanvas.height = SZ;
+    const sCtx = seedCanvas.getContext('2d');
+
+    /* Pre-allocate ImageData for the seed canvas */
+    const seedImg = sCtx.createImageData(SZ, SZ);
+
+    /* Global time counter — advances 0.005 per frame to drive noise evolution */
+    let t = 0;
+
+    /**
+     * Draw the evolving noise field + rotating line segments into seedCanvas.
+     * The ImageData buffer is written directly for pixel-perfect noise.
+     */
+    function drawSeed(t) {
+      const d = seedImg.data;
+      const F = 0.008;   /* noise spatial frequency */
+      for (let py = 0; py < SZ; py++) {
+        for (let px = 0; px < SZ; px++) {
+          const [r, g, b] = sampleColor(px * F, py * F, t * 0.2);
+          const i = (py * SZ + px) * 4;
+          d[i]   = r;
+          d[i+1] = g;
+          d[i+2] = b;
+          d[i+3] = 255;
+        }
+      }
+      sCtx.putImageData(seedImg, 0, 0);
+
+      /* Overlay thin white line segments — wheels and fire */
+      sCtx.save();
+      sCtx.strokeStyle = 'rgba(255,255,255,0.55)';
+      sCtx.lineWidth = 1.2;
+      sCtx.lineCap = 'round';
+      const cx = SZ / 2, cy = SZ / 2;
+      const NUM_LINES = 5;
+      const BASE_LEN  = 80;
+      for (let i = 0; i < NUM_LINES; i++) {
+        const phase  = (i / NUM_LINES) * Math.PI * 2;
+        const angle  = t * 0.3 + phase;
+        const radius = 60 + i * 55;
+        const lx = cx + Math.cos(angle) * radius;
+        const ly = cy + Math.sin(angle) * radius;
+        const perp = angle + Math.PI / 2;
+        const half = (BASE_LEN - i * 10) / 2;
+        sCtx.beginPath();
+        sCtx.moveTo(lx - Math.cos(perp) * half, ly - Math.sin(perp) * half);
+        sCtx.lineTo(lx + Math.cos(perp) * half, ly + Math.sin(perp) * half);
+        sCtx.stroke();
+      }
+      sCtx.restore();
+    }
+
+    /**
+     * Mirror seedCanvas into all four quadrants of mainCanvas via canvas
+     * transforms.  The four quadrants share a corner at the canvas centre.
+     *
+     * Quadrant layout (origin = top-left of mainCanvas):
+     *   Q1 top-left     — seed drawn normal, placed at (RING, RING)
+     *   Q2 top-right    — seed flipped horizontally
+     *   Q3 bottom-left  — seed flipped vertically
+     *   Q4 bottom-right — seed flipped both axes
+     */
+    function stampKaleidoscope() {
+      const cx = RING + SZ;   /* x-centre of kaleidoscope square */
+      const cy = RING + SZ;   /* y-centre of kaleidoscope square */
+
+      /* Q1: normal */
+      ctx.save();
+      ctx.translate(RING, RING);
+      ctx.drawImage(seedCanvas, 0, 0);
+      ctx.restore();
+
+      /* Q2: flip horizontal (mirror across vertical centre axis) */
+      ctx.save();
+      ctx.translate(cx + SZ, RING);
+      ctx.scale(-1, 1);
+      ctx.drawImage(seedCanvas, 0, 0);
+      ctx.restore();
+
+      /* Q3: flip vertical */
+      ctx.save();
+      ctx.translate(RING, cy + SZ);
+      ctx.scale(1, -1);
+      ctx.drawImage(seedCanvas, 0, 0);
+      ctx.restore();
+
+      /* Q4: flip both axes */
+      ctx.save();
+      ctx.translate(cx + SZ, cy + SZ);
+      ctx.scale(-1, -1);
+      ctx.drawImage(seedCanvas, 0, 0);
+      ctx.restore();
+    }
+
+    /**
+     * Draw the outer ring: four Hebrew face labels rotating very slowly,
+     * placed at top/right/bottom/left with ctx.rotate so text always reads
+     * outward from the centre.
+     * @param {number} t  global time
+     */
+    function drawLabels(t) {
+      const cx = TOTAL / 2;
+      const cy = TOTAL / 2;
+      /* orbit radius: just inside the outer edge of the border ring */
+      const R  = SZ + RING * 0.62;
+      const ROT_SPEED = 0.04;   /* radians per unit time — very slow */
+
+      ctx.save();
+      ctx.font = '600 17px Georgia, serif';
+      ctx.fillStyle = 'rgba(200, 160, 0, 0.85)';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      for (const { text, angle } of FACE_LABELS) {
+        const a = angle + t * ROT_SPEED;
+        const lx = cx + Math.cos(a) * R;
+        const ly = cy + Math.sin(a) * R;
+        ctx.save();
+        ctx.translate(lx, ly);
+        /* rotate text to face outward from centre */
+        ctx.rotate(a + Math.PI / 2);
+        ctx.fillText(text, 0, 0);
+        ctx.restore();
+      }
+      ctx.restore();
+    }
+
+    /**
+     * Main animation loop. Clears mainCanvas, draws the seed, stamps
+     * four mirrored quadrants, draws the label ring, and schedules
+     * the next frame. Advances t by 0.005 per frame.
+     */
+    function frame() {
+      t += 0.005;
+
+      /* Dark background */
+      ctx.fillStyle = '#050510';
+      ctx.fillRect(0, 0, TOTAL, TOTAL);
+
+      drawSeed(t);
+      stampKaleidoscope();
+      drawLabels(t);
+
+      requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  </script>
+</body>
+</html>

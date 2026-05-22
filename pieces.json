@@ -438,5 +438,16 @@
     "path": "pieces/42-finger-of-god/index.html",
     "thumbnail": "pieces/42-finger-of-god/thumbnail.svg",
     "essay": "pieces/42-finger-of-god/essay.md"
+  },
+  {
+    "id": "42-merkavah-kaleidoscope",
+    "title": "The Chariot of Fire",
+    "tagline": "Ezekiel's Merkavah vision as a four-fold kaleidoscope — the haftarah of Shavuot made visible",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot / Ma'ase Merkavah — Ezekiel 1",
+    "technique": "canvas 2D — four-fold kaleidoscopic symmetry, inline Perlin noise fBm, ImageData pixel painting",
+    "path": "pieces/42-merkavah-kaleidoscope/index.html",
+    "thumbnail": "pieces/42-merkavah-kaleidoscope/thumbnail.svg",
+    "essay": "pieces/42-merkavah-kaleidoscope/essay.md"
   }
 ]
