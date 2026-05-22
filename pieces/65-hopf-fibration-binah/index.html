@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sefirat HaOmer — Circles of Counting</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0D0B14;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a0a4a;
+      overflow-y: auto;
+      color: #b0c4e0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #030109;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a0a4a; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #e0d0ff;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4a3a6a;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #c0a0ff;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #2a1a5a;
+      font-style: italic;
+      color: #7060a0;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #d0c0ff; font-style: italic; }
+    .essay-panel strong { color: #c0a0ff; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #150820; margin: 2rem 0; }
+
+    .passage-block {
+      background: #0a0418;
+      border: 1px solid #2a1a5a;
+      border-radius: 4px;
+      padding: 1.5rem;
+      margin: 0 0 2rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.25rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #d0b0ff;
+      line-height: 2.2;
+      margin: 0 0 1rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.9rem;
+      color: #8888aa;
+      font-style: italic;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .passage-block .source {
+      font-size: 0.8rem;
+      color: #4a3a6a;
+      margin: 0.5rem 0 0;
+      text-align: right;
+    }
+
+    .talmud-block {
+      background: #070310;
+      border: 1px solid #1a0a4a;
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      margin: 0 0 1.5rem;
+    }
+    .talmud-block .hebrew-text {
+      font-size: 1.1rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #c0a8e8;
+      line-height: 2.0;
+      margin: 0 0 0.6rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .talmud-block .english-text {
+      font-size: 0.85rem;
+      color: #7070a0;
+      font-style: italic;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .talmud-block .source {
+      font-size: 0.78rem;
+      color: #3a2a5a;
+      margin: 0.4rem 0 0;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Sefirat HaOmer</h1>
+    <p class="subtitle">Circles of Counting — Leviticus 23:15–16; Rosh Hashana 21b; Hopf fibration / WebGL 3D</p>
+
+    <div class="passage-block">
+      <p class="hebrew-text">וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת-עֹמֶר הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה׃ עַד מִמָּחֳרַת הַשַּׁבָּת הַשְּׁבִיעִת תִּסְפְּרוּ חֲמִשִּׁים יוֹם וְהִקְרַבְתֶּם מִנְחָה חֲדָשָׁה לַיהוָה׃</p>
+      <p class="english-text">"You shall count for yourselves from the day after the Sabbath, from the day you brought the sheaf of the wave offering; seven complete weeks shall there be. Until the day after the seventh Sabbath you shall count fifty days, and you shall bring a new grain offering to the LORD."</p>
+      <p class="source">— Leviticus 23:15–16</p>
+    </div>
+
+    <h2>The Commandment of Counting</h2>
+    <p>From Passover to Shavuot, the Torah commands forty-nine days of explicit counting. Each evening after nightfall, the full count is spoken aloud — day and week together: "Today is the fourteenth day, which is two weeks of the Omer." The act is not bookkeeping. It is the act of counting as <em>relation</em>: each day announced in terms of its place in the chain, each evening the link forged to the day before and the days still remaining.</p>
+
+    <p>The number fifty is the culmination. The journey through forty-nine days does not end on the forty-ninth; it ends on the fiftieth, the day the Torah was given at Sinai. Seven weeks are counted so that the fiftieth day — Shavuot — can be received not as an arbitrary date but as the goal of an intentional journey.</p>
+
+    <hr>
+
+    <h2>Fifty Gates</h2>
+
+    <div class="talmud-block">
+      <p class="hebrew-text">חֲמִשִּׁים שַׁעֲרֵי בִינָה נִבְרְאוּ בָּעוֹלָם</p>
+      <p class="english-text">"Fifty gates of understanding were created in the world."</p>
+      <p class="source">— Babylonian Talmud, Rosh Hashana 21b</p>
+    </div>
+
+    <p>The Talmud preserves a teaching that the universe contains fifty gates of understanding, forty-nine of which were accessible to Moses — the greatest of all prophets — while the fiftieth remained beyond any human reach. The fifty days of the Omer correspond to these gates: each day of counting opens one gate, and the count culminates on the threshold of the fiftieth, the one that admits the divine gift of Torah itself.</p>
+
+    <p>This is why the counting matters. Arriving at Shavuot unprepared — without the forty-nine days of intentional approach — is to arrive at a gate without having climbed the steps. The counting is the journey; the fiftieth day is the destination toward which every link in the chain points.</p>
+
+    <hr>
+
+    <h2>The Mathematics of Interlocking Circles</h2>
+    <p>The Hopf fibration, discovered by Heinz Hopf in 1931, is a continuous map from the three-dimensional sphere S³ — the set of unit-length points in four-dimensional space — to the ordinary two-dimensional sphere S². Its defining miracle is this: every single point on S² has exactly one circle as its preimage under the map, and any two such circles are topologically linked. You cannot separate any two fibers without cutting one of them.</p>
+
+    <p>This topological necessity runs deep. Take any two distinct points on S². Their preimage circles — two closed curves in S³ — are inseparably linked, like two rings of a chain. There is no continuous deformation that unlinks them without breaking one. The entire fibration is one inseparable structure: every circle is in relationship with every other.</p>
+
+    <p>To visualize the fibration in ordinary three-dimensional space, one applies the stereographic projection from S³ to R³. Each Hopf circle becomes a circle or a large arc in R³, and their mutual linking becomes visible to the eye. The result — hundreds of circles weaving through each other endlessly without ever intersecting — is among the most beautiful objects in modern mathematics. Each fiber touches every other fiber's topology, yet no two ever meet.</p>
+
+    <hr>
+
+    <h2>This Piece</h2>
+    <p>Two hundred Hopf fibers are computed from base points distributed evenly across S² using a Fibonacci spiral — the same golden-ratio spacing found in sunflower seeds and pinecone spirals. Each fiber is a closed circle on S³, computed via the standard unit-quaternion parametrization and projected stereographically into R³ for display.</p>
+
+    <p>The coloring follows latitude on S²: fibers near the north pole are rendered in deep violet (#1A1050), those at the equator in violet (#3A1E6A), those near the south pole in gold (#D4A820) — the palette of a night sky turning slowly toward dawn. Additive blending means that where fibers overlap and cross, their light accumulates into brighter intersections. The whole structure rotates slowly around the vertical axis, and the camera breathes gently, expanding and contracting, so the viewer moves closer and farther through the weave.</p>
+
+    <p>Watching the circles weave through each other endlessly — united without merging, related without touching — is what the forty-nine days of counting look like made visible. Each day is a circle. Each circle is inseparably linked to every other. The fiftieth gate, the one beyond Moses, lies somewhere inside that luminous, turning whole.</p>
+  </div>
+</div>
+<script>
+(function () {
+'use strict';
+
+const FIBERS = 200;
+const SEGMENTS = 64;
+const CLIP = 5.0;
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+/**
+ * Generate n evenly-distributed points on S² using the Fibonacci sphere algorithm.
+ * Returns Cartesian [x, y, z] where y is the north-south axis (y=1 is north pole).
+ */
+function fibonacciSphere(n) {
+  const pts = [];
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  for (let i = 0; i < n; i++) {
+    const y = 1 - (i / (n - 1)) * 2;
+    const r = Math.sqrt(1 - y * y);
+    const angle = golden * i;
+    pts.push([r * Math.cos(angle), y, r * Math.sin(angle)]);
+  }
+  return pts;
+}
+
+/**
+ * Compute the Hopf fiber for a base point at spherical coordinates (theta, phi) on S².
+ * The base point is p = (sin(theta)*cos(phi), sin(theta)*sin(phi), cos(theta)).
+ * Returns SEGMENTS+1 points forming a closed circle on S³ projected to R³ via
+ * stereographic projection. Large values are clamped to CLIP to handle the pole.
+ *
+ * Parametrization (closes at t=2π):
+ *   q(t) = (cos(θ/2)cos(t), cos(θ/2)sin(t), sin(θ/2)cos(t-φ), sin(θ/2)sin(t-φ))
+ * Hopf map verification: H(q) = (2(ac+bd), 2(bc-ad), a²+b²-c²-d²) = p ✓
+ */
+function hopfFiber(theta, phi) {
+  const pts = [];
+  const halfTheta = theta / 2;
+  const cosHT = Math.cos(halfTheta);
+  const sinHT = Math.sin(halfTheta);
+  for (let i = 0; i <= SEGMENTS; i++) {
+    const t = (i / SEGMENTS) * 2 * Math.PI;
+    const a = cosHT * Math.cos(t);
+    const b = cosHT * Math.sin(t);
+    const c = sinHT * Math.cos(t - phi);
+    const d = sinHT * Math.sin(t - phi);
+    const denom = 1.0 - a;
+    if (denom < 1e-6) {
+      const len = Math.sqrt(b * b + c * c + d * d);
+      if (len < 1e-10) { pts.push([0, 0, CLIP]); continue; }
+      pts.push([b / len * CLIP, c / len * CLIP, d / len * CLIP]);
+      continue;
+    }
+    let px = b / denom, py = c / denom, pz = d / denom;
+    const r = Math.sqrt(px * px + py * py + pz * pz);
+    if (r > CLIP) { const s = CLIP / r; px *= s; py *= s; pz *= s; }
+    pts.push([px, py, pz]);
+  }
+  return pts;
+}
+
+/**
+ * Map a colatitude angle (0=north, π=south) to an RGB color.
+ * North: deep violet #1A1050, equator: violet #3A1E6A, south: gold #D4A820.
+ */
+function fiberColor(thetaS2) {
+  const t = thetaS2 / Math.PI;
+  let r, g, b;
+  if (t < 0.5) {
+    const u = t * 2;
+    r = lerp(26 / 255, 58 / 255, u);
+    g = lerp(16 / 255, 30 / 255, u);
+    b = lerp(80 / 255, 106 / 255, u);
+  } else {
+    const u = (t - 0.5) * 2;
+    r = lerp(58 / 255, 212 / 255, u);
+    g = lerp(30 / 255, 168 / 255, u);
+    b = lerp(106 / 255, 32 / 255, u);
+  }
+  return [r, g, b];
+}
+
+/* ---- Mat4 helpers (column-major Float32Array) ---- */
+function m4mul(a, b) {
+  const r = new Float32Array(16);
+  for (let col = 0; col < 4; col++)
+    for (let row = 0; row < 4; row++) {
+      let s = 0;
+      for (let k = 0; k < 4; k++) s += a[k * 4 + row] * b[col * 4 + k];
+      r[col * 4 + row] = s;
+    }
+  return r;
+}
+
+function m4rotY(a) {
+  const c = Math.cos(a), s = Math.sin(a);
+  return new Float32Array([c, 0, -s, 0, 0, 1, 0, 0, s, 0, c, 0, 0, 0, 0, 1]);
+}
+
+function m4persp(fovY, aspect, near, far) {
+  const f = 1 / Math.tan(fovY / 2);
+  return new Float32Array([
+    f / aspect, 0, 0, 0,
+    0, f, 0, 0,
+    0, 0, (far + near) / (near - far), -1,
+    0, 0, 2 * far * near / (near - far), 0
+  ]);
+}
+
+function sub3(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
+function cross3(a, b) { return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
+function dot3(a, b) { return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]; }
+function len3(a) { return Math.sqrt(dot3(a, a)); }
+function norm3(a) { const l = len3(a); return l > 1e-12 ? [a[0]/l, a[1]/l, a[2]/l] : [0, 0, 0]; }
+
+/**
+ * Standard OpenGL-style lookAt matrix (column-major).
+ */
+function m4lookAt(eye, ctr, up) {
+  const f = norm3(sub3(ctr, eye));
+  const r = norm3(cross3(f, up));
+  const u = cross3(r, f);
+  return new Float32Array([
+    r[0], u[0], -f[0], 0,
+    r[1], u[1], -f[1], 0,
+    r[2], u[2], -f[2], 0,
+    -dot3(r, eye), -dot3(u, eye), dot3(f, eye), 1
+  ]);
+}
+
+/* ---- WebGL setup ---- */
+const canvas = document.getElementById('c');
+const gl = canvas.getContext('webgl', { antialias: true, alpha: false });
+if (!gl) {
+  document.getElementById('art-panel').innerHTML =
+    '<p style="color:#c0a0ff;padding:2rem">WebGL not available in this browser.</p>';
+  return;
+}
+
+function resize() {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.round(rect.width * dpr);
+  canvas.height = Math.round(rect.height * dpr);
+}
+window.addEventListener('resize', resize);
+resize();
+
+/* ---- Shaders ---- */
+const vsrc = `
+  attribute vec3 aPos;
+  attribute vec3 aCol;
+  uniform mat4 uMVP;
+  varying vec3 vCol;
+  void main() {
+    vCol = aCol;
+    gl_Position = uMVP * vec4(aPos, 1.0);
+  }
+`;
+const fsrc = `
+  precision mediump float;
+  varying vec3 vCol;
+  void main() {
+    gl_FragColor = vec4(vCol, 1.0);
+  }
+`;
+
+function compileShader(type, src) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  return s;
+}
+const prog = gl.createProgram();
+gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, vsrc));
+gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, fsrc));
+gl.linkProgram(prog);
+gl.useProgram(prog);
+
+const locPos = gl.getAttribLocation(prog, 'aPos');
+const locCol = gl.getAttribLocation(prog, 'aCol');
+const locMVP = gl.getUniformLocation(prog, 'uMVP');
+
+/* ---- Build geometry ---- */
+const basePts = fibonacciSphere(FIBERS);
+const fiberStarts = [];
+const allVerts = [];
+
+for (let i = 0; i < FIBERS; i++) {
+  const [bx, by, bz] = basePts[i];
+  const theta_s2 = Math.acos(Math.max(-1, Math.min(1, by)));
+  const phi_s2 = Math.atan2(bz, bx);
+  const col = fiberColor(theta_s2);
+  const pts = hopfFiber(theta_s2, phi_s2);
+  fiberStarts.push(allVerts.length / 6);
+  for (const [px, py, pz] of pts) {
+    allVerts.push(px, py, pz, col[0], col[1], col[2]);
+  }
+}
+
+const vbo = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(allVerts), gl.STATIC_DRAW);
+
+const STRIDE = 24; // 6 floats × 4 bytes
+gl.enableVertexAttribArray(locPos);
+gl.vertexAttribPointer(locPos, 3, gl.FLOAT, false, STRIDE, 0);
+gl.enableVertexAttribArray(locCol);
+gl.vertexAttribPointer(locCol, 3, gl.FLOAT, false, STRIDE, 12);
+
+/* Additive blending: overlapping fibers accumulate light. */
+gl.enable(gl.DEPTH_TEST);
+gl.enable(gl.BLEND);
+gl.blendFunc(gl.ONE, gl.ONE);
+
+/* ---- Animation ---- */
+let rotY = 0;
+let lastTime = 0;
+let frameTime = 0;
+const TARGET_DT = 1000 / 60;
+
+function frame(now) {
+  const rawDt = now - lastTime;
+  lastTime = now;
+  /* Skip first frame to avoid huge initial dt. */
+  if (rawDt > 200) { requestAnimationFrame(frame); return; }
+
+  rotY += 0.25 * (rawDt / 1000);
+
+  /* Camera breathes ±10% of base distance 12. */
+  const camDist = 12 * (1 + 0.1 * Math.sin(now / 3000));
+
+  const aspect = canvas.width / canvas.height;
+  const proj = m4persp(55 * Math.PI / 180, aspect, 0.1, 100.0);
+  const view = m4lookAt([0, 0, camDist], [0, 0, 0], [0, 1, 0]);
+  const model = m4rotY(rotY);
+  const mvp = m4mul(proj, m4mul(view, model));
+
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  /* Background: #0D0B14 */
+  gl.clearColor(0.051, 0.043, 0.078, 1.0);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  gl.uniformMatrix4fv(locMVP, false, mvp);
+
+  for (let i = 0; i < FIBERS; i++) {
+    gl.drawArrays(gl.LINE_STRIP, fiberStarts[i], SEGMENTS + 1);
+  }
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

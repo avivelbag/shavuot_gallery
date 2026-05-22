@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#0D0B14"/>
+
+  <!-- Outer large ellipse, violet, tilted -->
+  <ellipse cx="200" cy="200" rx="160" ry="55" fill="none" stroke="#5A20A0" stroke-width="2.5" opacity="0.7"
+    transform="rotate(-18, 200, 200)"/>
+
+  <!-- Gold ellipse, steeply tilted -->
+  <ellipse cx="200" cy="200" rx="140" ry="42" fill="none" stroke="#D4A820" stroke-width="2.2" opacity="0.75"
+    transform="rotate(52, 200, 200)"/>
+
+  <!-- Medium violet ellipse, nearly upright -->
+  <ellipse cx="200" cy="200" rx="90" ry="155" fill="none" stroke="#7A30C8" stroke-width="2.0" opacity="0.65"
+    transform="rotate(8, 200, 200)"/>
+
+  <!-- Small gold ellipse, tilted opposite -->
+  <ellipse cx="200" cy="200" rx="110" ry="35" fill="none" stroke="#C89010" stroke-width="1.8" opacity="0.6"
+    transform="rotate(-65, 200, 200)"/>
+
+  <!-- Small deep violet circle (south pole fiber) -->
+  <ellipse cx="200" cy="200" rx="50" ry="50" fill="none" stroke="#3A1E6A" stroke-width="2.5" opacity="0.8"/>
+
+  <!-- Accent: bright intersection highlights -->
+  <ellipse cx="200" cy="200" rx="170" ry="60" fill="none" stroke="#9040E0" stroke-width="1.2" opacity="0.35"
+    transform="rotate(30, 200, 200)"/>
+</svg>

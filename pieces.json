@@ -944,5 +944,16 @@
     "path": "pieces/64-clifford-attractor-tikkun-leil/index.html",
     "thumbnail": "pieces/64-clifford-attractor-tikkun-leil/thumbnail.svg",
     "essay": "pieces/64-clifford-attractor-tikkun-leil/essay.md"
+  },
+  {
+    "id": "65-hopf-fibration-binah",
+    "title": "Sefirat HaOmer — Circles of Counting",
+    "tagline": "Two hundred Hopf fibers — topologically linked circles from the 3-sphere — rotate through the night, each inseparably bound to every other, as the forty-nine days of counting are bound to the fiftieth gate.",
+    "year": 2026,
+    "theme": "Sefirat HaOmer",
+    "technique": "Hopf fibration / WebGL 3D",
+    "path": "pieces/65-hopf-fibration-binah/index.html",
+    "thumbnail": "pieces/65-hopf-fibration-binah/thumbnail.svg",
+    "essay": "pieces/65-hopf-fibration-binah/essay.md"
   }
 ]
