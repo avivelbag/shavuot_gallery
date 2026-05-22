@@ -185,5 +185,16 @@
     "path": "pieces/19-ruth-road/index.html",
     "thumbnail": "pieces/19-ruth-road/thumbnail.svg",
     "essay": "pieces/19-ruth-road/essay.md"
+  },
+  {
+    "id": "20-sinai-ketubah",
+    "title": "The Mountain as Canopy",
+    "tagline": "Sinai as ketubah — the mountain held over Israel like a wedding canopy",
+    "year": 2026,
+    "theme": "Matan Torah / Sinai as Covenant",
+    "technique": "SVG generative ornamental border, Hebrew calligraphic typography",
+    "path": "pieces/20-sinai-ketubah/index.html",
+    "thumbnail": "pieces/20-sinai-ketubah/thumbnail.svg",
+    "essay": "pieces/20-sinai-ketubah/essay.md"
   }
 ]
