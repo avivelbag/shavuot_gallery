@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="bg53" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0f1220"/>
+      <stop offset="100%" stop-color="#0A0D1A"/>
+    </radialGradient>
+    <!-- Multi-stage glow filter: outer red halo, inner orange, white core -->
+    <filter id="fireGlow53" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1"/>
+      <feColorMatrix in="blur1" type="matrix"
+        values="2 0.5 0 0 0
+                0 0.2 0 0 0
+                0 0   0 0 0
+                0 0   0 1 0" result="red"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur2"/>
+      <feColorMatrix in="blur2" type="matrix"
+        values="1.5 0.8 0 0 0
+                0.3 0.4 0 0 0
+                0   0   0 0 0
+                0   0   0 1 0" result="orange"/>
+      <feMerge>
+        <feMergeNode in="red"/>
+        <feMergeNode in="orange"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Soft white-fire background glow -->
+    <radialGradient id="wfGlow53" cx="50%" cy="55%" r="55%">
+      <stop offset="0%" stop-color="#F5F0E8" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#F5F0E8" stop-opacity="0.0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="200" fill="url(#bg53)"/>
+
+  <!-- White-fire ground luminescence -->
+  <ellipse cx="100" cy="110" rx="80" ry="50" fill="url(#wfGlow53)"/>
+
+  <!-- Outer ember glow layer (widest blur) -->
+  <text
+    x="100" y="112"
+    font-family="serif"
+    font-size="28"
+    text-anchor="middle"
+    fill="#CC2200"
+    opacity="0.5"
+    filter="url(#fireGlow53)"
+    direction="rtl"
+  >אָנֹכִי יְהֹוָה אֱלֹהֶיךָ</text>
+
+  <!-- Orange flame layer -->
+  <text
+    x="100" y="112"
+    font-family="serif"
+    font-size="28"
+    text-anchor="middle"
+    fill="#FF7A1A"
+    opacity="0.75"
+    direction="rtl"
+  >אָנֹכִי יְהֹוָה אֱלֹהֶיךָ</text>
+
+  <!-- Hot yellow layer -->
+  <text
+    x="100" y="112"
+    font-family="serif"
+    font-size="28"
+    text-anchor="middle"
+    fill="#FFE566"
+    opacity="0.88"
+    direction="rtl"
+  >אָנֹכִי יְהֹוָה אֱלֹהֶיךָ</text>
+
+  <!-- White-hot core -->
+  <text
+    x="100" y="112"
+    font-family="serif"
+    font-size="28"
+    font-weight="bold"
+    text-anchor="middle"
+    fill="#FFFDE8"
+    opacity="1.0"
+    direction="rtl"
+  >אָנֹכִי יְהֹוָה אֱלֹהֶיךָ</text>
+
+  <!-- Caption -->
+  <text
+    x="100" y="168"
+    font-family="serif"
+    font-size="7"
+    text-anchor="middle"
+    fill="#FF7A1A"
+    opacity="0.55"
+    letter-spacing="0.5"
+  >BLACK FIRE ON WHITE FIRE</text>
+
+  <text
+    x="100" y="180"
+    font-family="serif"
+    font-size="6"
+    text-anchor="middle"
+    fill="#3a3d5a"
+    letter-spacing="0.5"
+  >EXODUS 20:2 · WEBGL SDF SHADER</text>
+</svg>

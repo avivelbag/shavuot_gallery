@@ -704,6 +704,17 @@
     "essay": "pieces/52-tagin-in-bloom/essay.md"
   },
   {
+    "id": "53-black-fire-white-fire-shader",
+    "title": "Black Fire on White Fire",
+    "tagline": "אָנֹכִי יְהֹוָה אֱלֹהֶיךָ — the opening of the Decalogue rendered as living flame: black fire letters on white fire ground, as the Midrash teaches the primordial Torah was written",
+    "year": 2026,
+    "theme": "Matan Torah: the giving of the Torah at Sinai",
+    "technique": "WebGL fragment shader / SDF letterforms",
+    "path": "pieces/53-black-fire-white-fire-shader/index.html",
+    "thumbnail": "pieces/53-black-fire-white-fire-shader/thumbnail.svg",
+    "essay": "pieces/53-black-fire-white-fire-shader/essay.md"
+  },
+  {
     "id": "53-gleaning-ruth",
     "title": "Gleaning in the Fields of Boaz",
     "tagline": "Ruth follows the harvesters through Boaz’s field — marching squares trace the contours of a harvest landscape, the invisible structure of leket made visible",
