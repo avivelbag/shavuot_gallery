@@ -285,7 +285,7 @@
     var usableH = H * (1 - 2 * pad);
     var cx = W * pad + (lx - LORENZ_X_MIN) / (LORENZ_X_MAX - LORENZ_X_MIN) * usableW;
     /* z is plotted inverted: z=0 at bottom, z=50 at top of canvas */
-    var cy = W * pad + (LORENZ_Z_MAX - lz) / (LORENZ_Z_MAX - LORENZ_Z_MIN) * usableH;
+    var cy = H * pad + (LORENZ_Z_MAX - lz) / (LORENZ_Z_MAX - LORENZ_Z_MIN) * usableH;
     return [cx, cy];
   }
 
