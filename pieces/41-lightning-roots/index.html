@@ -136,10 +136,8 @@
     const ctx = canvas.getContext('2d');
     const artwork = canvas.parentElement;
 
-    /* DBM grid dimensions in logical pixels. Canvas is rendered at SCALE× */
     const W = 240;
     const H = 320;
-    const SCALE = 3;
     const ETA = 1.7;  /* potential exponent — controls branching width */
 
     /* Potential grid: Float32Array indexed [y * W + x]. Values in [0, 1]. */
@@ -354,7 +352,6 @@
       canvas.style.height = artwork.clientHeight + 'px';
     }
 
-    let lastTime = 0;
     const FADE_DURATION = 3000;
     let fadeStartTime = 0;
 

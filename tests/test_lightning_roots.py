@@ -1,5 +1,5 @@
 """
-Tests for piece 39-lightning-roots (Lichtenberg at Sinai).
+Tests for piece 41-lightning-roots (Lichtenberg at Sinai).
 
 Covers:
 - pieces.json registration and required fields
@@ -14,11 +14,9 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
-PIECE_ID = "39-lightning-roots"
+PIECE_ID = "41-lightning-roots"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 
 
