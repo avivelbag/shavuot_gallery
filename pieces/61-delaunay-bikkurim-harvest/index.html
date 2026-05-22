@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Fruits — Delaunay Harvest</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f0e8d0;
+      color: #3a2a10;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #svg-container svg {
+      display: block;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    .hebrew-title {
+      font-size: 1.5rem;
+      color: #7d4a2f;
+      direction: rtl;
+      margin-top: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.3rem;
+      color: #5a3a10;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .scripture-block {
+      margin: 1rem 0;
+      padding: 0.6rem 0.75rem;
+      border-left: 3px solid #c8a96e;
+      background: rgba(200,169,110,0.08);
+    }
+    .scripture-he {
+      font-size: 1.05rem;
+      direction: rtl;
+      line-height: 1.9;
+      color: #3a2510;
+      margin-bottom: 0.4rem;
+      font-family: 'Times New Roman', serif;
+    }
+    .scripture-en {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: #6a4820;
+      line-height: 1.6;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #3a2a10;
+      margin-bottom: 0.9rem;
+    }
+    .essay-pane em { color: #7d4a2f; font-style: normal; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #8a6a40;
+      font-style: italic;
+      margin-top: 1.2rem;
+      border-top: 1px solid #c8a96e;
+      padding-top: 0.6rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      #svg-container svg { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <div id="svg-container"></div>
+    <div class="hebrew-title">בִּכּוּרִים — שֶׁבַע הַמִּינִים</div>
+  </div>
+  <div class="essay-pane">
+    <h1>First Fruits — Delaunay Harvest</h1>
+
+    <p>The land promised in Deuteronomy is not a vague inheritance but a precisely described one: seven species, seven witnesses to the fulfilled covenant. Deuteronomy 8:8 names them with botanical exactness:</p>
+
+    <div class="scripture-block">
+      <div class="scripture-he">אֶרֶץ חִטָּה וּשְׂעֹרָה, וְגֶפֶן וּתְאֵנָה וְרִמּוֹן; אֶרֶץ זֵית שֶׁמֶן, וּדְבָשׁ.</div>
+      <div class="scripture-en">"A land of wheat and barley, and vines and fig-trees and pomegranates; a land of olive-trees and honey." <em>(Deuteronomy 8:8)</em></div>
+    </div>
+
+    <p>The commandment of <em>bikkurim</em> — first fruits — is addressed to the farmer who has settled that land and begun to harvest it. Deuteronomy 26:2 instructs him to take a basket to the Temple:</p>
+
+    <div class="scripture-block">
+      <div class="scripture-he">וְלָקַחְתָּ מֵרֵאשִׁית כָּל-פְּרִי הָאֲדָמָה אֲשֶׁר תָּבִיא מֵאַרְצְךָ, אֲשֶׁר יְהוָה אֱלֹהֶיךָ נֹתֵן לָךְ; וְשַׂמְתָּ בַטֶּנֶא.</div>
+      <div class="scripture-en">"You shall take of the first of all the fruit of the earth which you shall bring in from your land that the LORD your God gives you, and you shall put it in a basket." <em>(Deuteronomy 26:2)</em></div>
+    </div>
+
+    <p>Holding the basket before the priest, the farmer recites the extraordinary declaration that opens with one of the Torah's most famous lines:</p>
+
+    <div class="scripture-block">
+      <div class="scripture-he">אֲרַמִּי אֹבֵד אָבִי, וַיֵּרֶד מִצְרַיְמָה, וַיָּגָר שָׁם בִּמְתֵי מְעָט; וַיְהִי-שָׁם לְגוֹי גָּדוֹל, עָצוּם וָרָב.</div>
+      <div class="scripture-en">"A wandering Aramean was my father, and he went down into Egypt, and sojourned there, few in number; and he became there a nation, great, mighty, and populous." <em>(Deuteronomy 26:5)</em></div>
+    </div>
+
+    <p>The declaration traces slavery, exodus, and entry into the land, ending: <em>"And now, behold, I have brought the first-fruit of the ground which You, O LORD, have given me"</em> (Deuteronomy 26:10). This liturgy, recited on Shavuot, was so structurally central that the Passover Haggadah later adopted it as the backbone of its own historical recitation.</p>
+
+    <p>Mishnah Bikkurim 3:1–4 describes the procession. Farmers from surrounding towns gathered and traveled together to Jerusalem. At the head walked a gilded ox, its horns covered in gold leaf, an olive-branch wreath on its brow. A flute played before the convoy on the road. As they neared the city, a messenger ran ahead; craftsmen left their workbenches to greet the pilgrims. The procession entered the Temple Mount with baskets on shoulders — gold and silver for the wealthy, woven reed for the poor.</p>
+
+    <p>The commandment's most striking detail is not the procession but what precedes it. The Mishnah (Bikkurim 3:1) preserves this practice: when a farmer noticed the very first cluster of grapes beginning to color, the very first fig swelling, he would tie a piece of straw around it — <em>"this is for bikkurim."</em> The fruit was consecrated in that first moment of ripening, before it was fully ripe, before it could be eaten. This act of noticing and marking — pausing at the threshold of abundance before it becomes ordinary, before it becomes merely yours — is the spiritual heart of Bikkurim as an agricultural observance, prior to all the Sinai-Torah theology later layered onto Shavuot. The question it poses is: can you see a gift as a gift before it becomes your possession?</p>
+
+    <p>This piece renders the land of Israel as a Delaunay tessellation: seed points scattered across a 700×700 canvas, denser in the lower two-thirds (the fields), sparser near the top (sky and horizon). Triangulation connects each seed to its nearest neighbors, dividing the ground into irregular but structurally coherent patches — each colored by which of the seven species its centroid falls among. The land is not uniform. It is a patchwork of seven distinct promises, each one fulfilled.</p>
+
+    <p class="citations">Sources: Deuteronomy 8:8; Deuteronomy 26:1–11; Mishnah Bikkurim 3:1–4.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+'use strict';
+
+const W = 700, H = 700;
+const SKY_FRAC = 0.20;
+const EARTH_FRAC = 0.92;
+
+// ---------------------------------------------------------------------------
+// Seeded PRNG (xorshift32)
+// ---------------------------------------------------------------------------
+function makeRng(seed) {
+  let s = (seed ^ 0xdeadbeef) >>> 0 || 1;
+  return function () {
+    s ^= s << 13; s ^= s >>> 17; s ^= s << 5;
+    return (s >>> 0) / 0x100000000;
+  };
+}
+
+const rng = makeRng(42);
+
+// ---------------------------------------------------------------------------
+// Seven-species palette
+// ---------------------------------------------------------------------------
+const SPECIES = [
+  { glyph: 'חִיטָּה', color: '#D4A020' }, // wheat
+  { glyph: 'שְׂעֹרָה', color: '#B8860B' }, // barley
+  { glyph: 'גֶּפֶן',  color: '#6A2080' }, // grapes
+  { glyph: 'תְּאֵנָה', color: '#7A4010' }, // figs
+  { glyph: 'רִמּוֹן', color: '#A01828' }, // pomegranates
+  { glyph: 'זַיִת',   color: '#4A6020' }, // olives
+  { glyph: 'תָּמָר',  color: '#8B4513' }, // dates
+];
+
+function triColor(cx, cy) {
+  if (cy < H * SKY_FRAC) {
+    const t = cy / (H * SKY_FRAC);
+    const r = Math.round(0x7E + t * (0xA8 - 0x7E));
+    const g = Math.round(0xB8 + t * (0xCC - 0xB8));
+    const b = Math.round(0xD0 + t * (0xE0 - 0xD0));
+    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+  }
+  if (cy > H * EARTH_FRAC) return '#8B4030';
+  const h = Math.abs(Math.sin(cx * 0.017 + cy * 0.031) * 7919) % 7;
+  return SPECIES[Math.floor(h)].color;
+}
+
+function darkenHex(hex, amount) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return '#' + [r, g, b]
+    .map(v => Math.max(0, Math.round(v * (1 - amount))).toString(16).padStart(2, '0'))
+    .join('');
+}
+
+// ---------------------------------------------------------------------------
+// Weighted Poisson-disk sampling
+// ---------------------------------------------------------------------------
+const MIN_SKY   = 38;  // sparser sky zone
+const MIN_FIELD = 22;  // denser field zone
+const MAX_PTS   = 440;
+
+function effectiveMin(y) {
+  return y < H * SKY_FRAC ? MIN_SKY : MIN_FIELD;
+}
+
+function generatePoints() {
+  const pts = [];
+
+  // Anchor points along the border so triangulation covers the full canvas
+  const step = 40;
+  for (let x = 0; x <= W; x += step) { pts.push([x, 0]); pts.push([x, H]); }
+  for (let y = step; y < H; y += step) { pts.push([0, y]); pts.push([W, y]); }
+
+  function tooClose(px, py) {
+    const em = effectiveMin(py);
+    const em2 = em * em;
+    for (const [qx, qy] of pts) {
+      if ((px - qx) * (px - qx) + (py - qy) * (py - qy) < em2) return true;
+    }
+    return false;
+  }
+
+  pts.push([W / 2, H / 2]);
+  const active = [pts[pts.length - 1]];
+
+  while (active.length && pts.length < MAX_PTS) {
+    const idx = Math.floor(rng() * active.length);
+    const base = active[idx];
+    let found = false;
+    for (let k = 0; k < 30; k++) {
+      const angle = rng() * 2 * Math.PI;
+      const r = MIN_FIELD * (1 + rng());
+      const np = [base[0] + r * Math.cos(angle), base[1] + r * Math.sin(angle)];
+      if (np[0] < 0 || np[0] > W || np[1] < 0 || np[1] > H) continue;
+      if (!tooClose(np[0], np[1])) { pts.push(np); active.push(np); found = true; break; }
+    }
+    if (!found) active.splice(idx, 1);
+  }
+  return pts;
+}
+
+// ---------------------------------------------------------------------------
+// Bowyer-Watson Delaunay triangulation
+// ---------------------------------------------------------------------------
+
+function inCircumcircle(ax, ay, bx, by, cx, cy, px, py) {
+  const d = ax - px, e = ay - py;
+  const f = bx - px, g = by - py;
+  const h = cx - px, k = cy - py;
+  const det = (d * d + e * e) * (f * k - h * g)
+            - (f * f + g * g) * (d * k - h * e)
+            + (h * h + k * k) * (d * g - f * e);
+  const cross = (bx - ax) * (cy - ay) - (cx - ax) * (by - ay);
+  return cross * det > 0;
+}
+
+function delaunay(pts) {
+  const n = pts.length;
+  const M = 1e8;
+  const all = pts.concat([[W / 2, -M], [W / 2 + 2 * M, 2 * M], [W / 2 - 2 * M, 2 * M]]);
+  // Each entry is [a, b, c] indices into all[]
+  let tris = [[n, n + 1, n + 2]];
+
+  for (let i = 0; i < n; i++) {
+    const [px, py] = pts[i];
+    const bad = new Set();
+
+    for (let j = 0; j < tris.length; j++) {
+      const [a, b, c] = tris[j];
+      if (inCircumcircle(
+        all[a][0], all[a][1], all[b][0], all[b][1], all[c][0], all[c][1], px, py
+      )) bad.add(j);
+    }
+
+    // Boundary edges: appear in exactly one bad triangle
+    const edgeCnt = new Map();
+    const edgeDir = new Map();
+    for (const j of bad) {
+      const [a, b, c] = tris[j];
+      for (const [u, v] of [[a, b], [b, c], [c, a]]) {
+        const key = u < v ? `${u},${v}` : `${v},${u}`;
+        edgeCnt.set(key, (edgeCnt.get(key) || 0) + 1);
+        if (!edgeDir.has(key)) edgeDir.set(key, [u, v]);
+      }
+    }
+
+    tris = tris.filter((_, j) => !bad.has(j));
+
+    for (const [key, cnt] of edgeCnt) {
+      if (cnt === 1) {
+        const [u, v] = edgeDir.get(key);
+        tris.push([u, v, i]);
+      }
+    }
+  }
+
+  return tris
+    .filter(([a, b, c]) => a < n && b < n && c < n)
+    .map(([a, b, c]) => [all[a], all[b], all[c]]);
+}
+
+// ---------------------------------------------------------------------------
+// SVG rendering
+// ---------------------------------------------------------------------------
+
+function buildSVG(triangles) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  // Defs: parchment filter
+  const defs = document.createElementNS(ns, 'defs');
+  defs.innerHTML = `
+    <filter id="parch" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3"
+        stitchTiles="stitch" result="n"/>
+      <feBlend in="SourceGraphic" in2="n" mode="multiply"/>
+    </filter>`;
+  svg.appendChild(defs);
+
+  // Background
+  const bg = document.createElementNS(ns, 'rect');
+  bg.setAttribute('width', W); bg.setAttribute('height', H);
+  bg.setAttribute('fill', '#e8dfc8');
+  svg.appendChild(bg);
+
+  // Triangle group
+  const g = document.createElementNS(ns, 'g');
+  for (const [[ax, ay], [bx, by], [cx, cy]] of triangles) {
+    const centX = (ax + bx + cx) / 3;
+    const centY = (ay + by + cy) / 3;
+    const fill = triColor(centX, centY);
+    const stroke = darkenHex(fill, 0.20);
+    const poly = document.createElementNS(ns, 'polygon');
+    poly.setAttribute('points', `${ax.toFixed(1)},${ay.toFixed(1)} ${bx.toFixed(1)},${by.toFixed(1)} ${cx.toFixed(1)},${cy.toFixed(1)}`);
+    poly.setAttribute('fill', fill);
+    poly.setAttribute('stroke', stroke);
+    poly.setAttribute('stroke-width', '0.5');
+    g.appendChild(poly);
+  }
+  svg.appendChild(g);
+
+  // Parchment texture overlay (thin, semi-transparent)
+  const overlay = document.createElementNS(ns, 'rect');
+  overlay.setAttribute('width', W); overlay.setAttribute('height', H);
+  overlay.setAttribute('fill', 'white');
+  overlay.setAttribute('opacity', '0.07');
+  overlay.setAttribute('filter', 'url(#parch)');
+  svg.appendChild(overlay);
+
+  // Hebrew species legend at bottom
+  const legendY = H - 14;
+  const slots = SPECIES.length;
+  const spacing = W / (slots + 1);
+  const legendGroup = document.createElementNS(ns, 'g');
+  legendGroup.setAttribute('font-family', "'Times New Roman', serif");
+  legendGroup.setAttribute('font-size', '12');
+  legendGroup.setAttribute('fill', '#F5EDD5');
+  legendGroup.setAttribute('text-anchor', 'middle');
+  legendGroup.setAttribute('direction', 'rtl');
+  for (let i = 0; i < SPECIES.length; i++) {
+    const tx = document.createElementNS(ns, 'text');
+    tx.setAttribute('x', (spacing * (i + 1)).toFixed(1));
+    tx.setAttribute('y', legendY);
+    tx.textContent = SPECIES[i].glyph;
+    legendGroup.appendChild(tx);
+  }
+  svg.appendChild(legendGroup);
+
+  return svg;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+const pts = generatePoints();
+const tris = delaunay(pts);
+const svg = buildSVG(tris);
+document.getElementById('svg-container').appendChild(svg);
+
+})();
+</script>
+</body>
+</html>
