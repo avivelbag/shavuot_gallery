@@ -115,9 +115,4 @@
     <path id="thumb-arc" d="M 28,142 Q 200,115 372,142"/>
   </defs>
 
-  <!-- Hebrew text directly (fallback) -->
-  <text x="200" y="142" font-family="Georgia,'Times New Roman',serif" font-size="11"
-        fill="#E8B84B" opacity="0.20" text-anchor="middle" direction="rtl">
-    לֹא בַשָּׁמַיִם הִוא
-  </text>
 </svg>
