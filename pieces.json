@@ -339,5 +339,16 @@
     "path": "pieces/35-before-every-nation/index.html",
     "thumbnail": "pieces/35-before-every-nation/thumbnail.svg",
     "essay": "pieces/35-before-every-nation/essay.md"
+  },
+  {
+    "id": "36-heart-of-heaven",
+    "title": "Burning to the Heart of Heaven",
+    "tagline": "Sinai rendered as a topographic contour map — the mountain burning to the heart of the sky",
+    "year": 2026,
+    "theme": "Har Sinai / Deuteronomy 4:11 — the Mountain of Revelation",
+    "technique": "canvas 2D simplex-noise terrain, topographic contour band rendering, animated particle smoke column",
+    "path": "pieces/36-heart-of-heaven/index.html",
+    "thumbnail": "pieces/36-heart-of-heaven/thumbnail.svg",
+    "essay": "pieces/36-heart-of-heaven/essay.md"
   }
 ]
