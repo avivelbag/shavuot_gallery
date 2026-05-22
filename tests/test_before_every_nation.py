@@ -6,9 +6,6 @@ HTML animation structure, and essay content requirements.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "35-before-every-nation"

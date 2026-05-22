@@ -7,22 +7,22 @@ Yitro, chapter 5** — and cited across rabbinic literature as the essential
 context for understanding what Israel's acceptance at Sinai truly meant.
 
 The midrash unfolds in a precise sequence. God went first to the children of
-Esau, who asked: *What is written in it?* God replied: *You shall not murder.*
-They refused: their founding ancestor Esau was characterised by the sword. Their
-whole identity was structured around violence, and the Torah's prohibition of
-murder struck at the core of who they were.
+Esau, who asked: *What is written in it?* God replied: **לֹא תִרְצָח** — *You
+shall not murder* (Exodus 20:13). They refused: their founding ancestor Esau was
+characterised by the sword. Their whole identity was structured around violence,
+and the Torah's prohibition of murder struck at the core of who they were.
 
 Next God went to the children of Ammon and Moab. They too asked what was
-written. God said: *You shall not commit adultery.* They refused: their very
-origins (according to Genesis 19) were bound up with sexual transgression. The
-commandment they could not accept was the one that named the fault line at their
-foundations.
+written. God said: **לֹא תִנְאָף** — *You shall not commit adultery* (Exodus
+20:13). They refused: their very origins (according to Genesis 19) were bound up
+with sexual transgression. The commandment they could not accept was the one that
+named the fault line at their foundations.
 
 Then God went to the children of Ishmael. They asked their question and received
-the answer: *You shall not steal.* They refused: their ancestor was described in
-Genesis 16 as *pera adam* — a wild man whose hand would be against everyone.
-Trade and raiding were woven into their story; the prohibition of theft was not a
-commandment they could take on.
+the answer: **לֹא תִגְנֹב** — *You shall not steal* (Exodus 20:13). They
+refused: their ancestor was described in Genesis 16 as *pera adam* — a wild man
+whose hand would be against everyone. Trade and raiding were woven into their
+story; the prohibition of theft was not a commandment they could take on.
 
 One by one, every nation was approached, and every nation found a commandment
 that cut too close. The nations did not reject the Torah because they were evil
