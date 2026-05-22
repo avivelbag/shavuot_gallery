@@ -8,8 +8,11 @@
 </head>
 <body>
   <header>
-    <h1>Shavuot Gallery</h1>
-    <p>Visual meditations on Matan Torah</p>
+    <div class="header-title">
+      <h1>Shavuot Gallery</h1>
+      <p>Visual meditations on Matan Torah</p>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle light/dark theme">&#9680; Light / Dark</button>
   </header>
   <main>
     <div id="filter-row" class="filter-row"></div>
@@ -31,10 +34,19 @@
       const frame = document.getElementById('piece-frame');
       const closeBtn = document.getElementById('modal-close');
       let pieceCards = [];
+      let focusedIdx = -1;
+
+      const root = document.documentElement;
+      root.dataset.theme = localStorage.getItem('theme') || 'dark';
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+        root.dataset.theme = next;
+        localStorage.setItem('theme', next);
+      });
 
       function openPiece(path) {
         frame.src = path;
-        dialog.showModal();
+        if (!dialog.open) dialog.showModal();
       }
 
       function closePiece() {
@@ -111,7 +123,10 @@
         card.appendChild(img);
         card.appendChild(overlay);
 
-        function activate() { openPiece(piece.path); }
+        function activate() {
+          focusedIdx = pieceCards.indexOf(card);
+          openPiece(piece.path);
+        }
         card.addEventListener('click', activate);
         card.addEventListener('keydown', function (e) {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -133,6 +148,29 @@
             grid.appendChild(buildCard(piece));
           });
           pieceCards = Array.from(grid.querySelectorAll('.piece-card'));
+
+          pieceCards.forEach(function (card, i) {
+            card.addEventListener('focus', function () { focusedIdx = i; });
+          });
+
+          document.addEventListener('keydown', function (e) {
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            const visible = pieceCards.filter(function (c) { return c.style.display !== 'none'; });
+            if (visible.length === 0) return;
+            e.preventDefault();
+            const curCard = focusedIdx >= 0 ? pieceCards[focusedIdx] : null;
+            let curVisIdx = curCard ? visible.indexOf(curCard) : -1;
+            if (e.key === 'ArrowRight') {
+              curVisIdx = Math.min(curVisIdx + 1, visible.length - 1);
+            } else {
+              curVisIdx = Math.max(curVisIdx - 1, 0);
+            }
+            const target = visible[curVisIdx];
+            focusedIdx = pieceCards.indexOf(target);
+            target.focus();
+            target.click();
+          });
+
           buildChips(pieces);
           var raw = location.hash.startsWith('#theme=') ? location.hash.slice(7) : '';
           var initial = raw ? decodeURIComponent(raw) : 'All';

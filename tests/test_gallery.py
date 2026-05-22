@@ -1,8 +1,10 @@
 """
-Tests for the gallery theme-filter feature added to index.html and styles.css.
+Tests for the gallery theme-filter, keyboard navigation, and dark/light toggle
+features added to index.html and styles.css.
 
 Verifies that the filter-chip UI elements, JavaScript logic, URL-hash behaviour,
-and CSS rules required by the acceptance criteria are present in the source files.
+CSS custom properties, keyboard navigation handlers, and theme toggle button
+required by the acceptance criteria are present in the source files.
 """
 import os
 import re
@@ -181,4 +183,193 @@ def test_filter_js_under_60_lines():
                     if any(kw in ln for kw in filter_keywords)]
     assert len(filter_lines) <= 60, (
         f'Filter-related JS lines ({len(filter_lines)}) exceed 60-line budget'
+    )
+
+
+# ---------------------------------------------------------------------------
+# Dark/light theme toggle tests
+# ---------------------------------------------------------------------------
+
+def test_theme_toggle_button_present():
+    """index.html must contain the theme toggle button with id=theme-toggle."""
+    html = _read(INDEX_HTML)
+    assert 'id="theme-toggle"' in html, (
+        'index.html is missing the theme toggle button with id="theme-toggle"'
+    )
+
+
+def test_theme_toggle_has_aria_label():
+    """The theme toggle button must carry an aria-label for screen-reader accessibility."""
+    html = _read(INDEX_HTML)
+    toggle_pos = html.find('id="theme-toggle"')
+    assert toggle_pos != -1, 'theme-toggle button not found'
+    surrounding = html[max(0, toggle_pos - 200):toggle_pos + 200]
+    assert 'aria-label' in surrounding, (
+        'The theme toggle button must have an aria-label attribute'
+    )
+
+
+def test_css_custom_property_bg_defined():
+    """styles.css must define the --bg custom property for theme-aware background."""
+    css = _read(STYLES_CSS)
+    assert re.search(r'--bg\s*:', css), (
+        'styles.css must define the --bg CSS custom property'
+    )
+
+
+def test_css_custom_property_fg_defined():
+    """styles.css must define the --fg custom property for theme-aware text colour."""
+    css = _read(STYLES_CSS)
+    assert re.search(r'--fg\s*:', css), (
+        'styles.css must define the --fg CSS custom property'
+    )
+
+
+def test_css_custom_property_card_bg_defined():
+    """styles.css must define the --card-bg custom property for card backgrounds."""
+    css = _read(STYLES_CSS)
+    assert re.search(r'--card-bg\s*:', css), (
+        'styles.css must define the --card-bg CSS custom property'
+    )
+
+
+def test_css_custom_property_card_border_defined():
+    """styles.css must define the --card-border custom property for card outlines."""
+    css = _read(STYLES_CSS)
+    assert re.search(r'--card-border\s*:', css), (
+        'styles.css must define the --card-border CSS custom property'
+    )
+
+
+def test_css_light_theme_block_present():
+    """styles.css must contain a [data-theme="light"] override block."""
+    css = _read(STYLES_CSS)
+    assert '[data-theme="light"]' in css, (
+        'styles.css must define a [data-theme="light"] block to override dark defaults'
+    )
+
+
+def test_css_body_uses_bg_variable():
+    """body background must use var(--bg) so toggling the theme changes the page background."""
+    css = _read(STYLES_CSS)
+    assert 'var(--bg)' in css, (
+        'styles.css must use var(--bg) somewhere (e.g. body background)'
+    )
+
+
+def test_css_body_uses_fg_variable():
+    """body color must use var(--fg) so toggling the theme changes text colour."""
+    css = _read(STYLES_CSS)
+    assert 'var(--fg)' in css, (
+        'styles.css must use var(--fg) somewhere (e.g. body color)'
+    )
+
+
+def test_js_theme_persisted_in_localstorage():
+    """index.html must write and read the theme choice from localStorage."""
+    html = _read(INDEX_HTML)
+    assert 'localStorage.setItem' in html, (
+        'index.html must persist the theme choice via localStorage.setItem'
+    )
+    assert 'localStorage.getItem' in html, (
+        'index.html must restore the theme via localStorage.getItem on load'
+    )
+
+
+def test_css_theme_toggle_min_44px():
+    """The #theme-toggle button must have min-height of at least 44px for mobile touch targets."""
+    css = _read(STYLES_CSS)
+    assert re.search(r'min-height\s*:\s*44px', css), (
+        'styles.css must set min-height: 44px on #theme-toggle for mobile usability'
+    )
+
+
+# ---------------------------------------------------------------------------
+# Keyboard navigation tests
+# ---------------------------------------------------------------------------
+
+def test_js_arrow_right_key_handled():
+    """index.html must handle the ArrowRight keydown event for forward navigation."""
+    html = _read(INDEX_HTML)
+    assert 'ArrowRight' in html, (
+        'index.html must contain ArrowRight key handling for keyboard navigation'
+    )
+
+
+def test_js_arrow_left_key_handled():
+    """index.html must handle the ArrowLeft keydown event for backward navigation."""
+    html = _read(INDEX_HTML)
+    assert 'ArrowLeft' in html, (
+        'index.html must contain ArrowLeft key handling for keyboard navigation'
+    )
+
+
+def test_js_escape_key_closes_modal():
+    """index.html must handle the Escape keydown event to close the piece modal."""
+    html = _read(INDEX_HTML)
+    assert 'Escape' in html, (
+        'index.html must handle the Escape key to close the modal'
+    )
+
+
+def test_js_tabindex_on_cards():
+    """Piece cards must receive tabIndex so Tab/Shift-Tab cycles keyboard focus."""
+    html = _read(INDEX_HTML)
+    assert 'tabIndex' in html or 'tabindex' in html, (
+        'index.html must set tabIndex on piece cards to enable Tab navigation'
+    )
+
+
+def test_js_arrow_nav_inside_script():
+    """ArrowRight and ArrowLeft handling must be inside the <script> block, not inline."""
+    html = _read(INDEX_HTML)
+    script_start = html.find('<script>')
+    script_end = html.rfind('</script>')
+    assert script_start != -1 and script_end != -1, '<script> block not found'
+    script = html[script_start:script_end]
+    assert 'ArrowRight' in script, 'ArrowRight must be handled inside <script>'
+    assert 'ArrowLeft' in script, 'ArrowLeft must be handled inside <script>'
+
+
+def test_css_focus_ring_defined():
+    """styles.css must define a visible :focus or :focus-visible rule for keyboard users."""
+    css = _read(STYLES_CSS)
+    assert ':focus' in css, (
+        'styles.css must define a :focus or :focus-visible rule for keyboard focus ring'
+    )
+
+
+# ---------------------------------------------------------------------------
+# Edge-case / failure-mode tests (keyboard + theme)
+# ---------------------------------------------------------------------------
+
+def test_no_outline_none_globally():
+    """styles.css must not suppress focus outlines with a universal outline:none rule."""
+    css = _read(STYLES_CSS)
+    assert not re.search(r'\*\s*\{[^}]*outline\s*:\s*none', css), (
+        'styles.css must not globally suppress outlines — keyboard users need focus rings'
+    )
+
+
+def test_light_theme_overrides_bg_and_fg():
+    """The [data-theme="light"] block must override both --bg and --fg."""
+    css = _read(STYLES_CSS)
+    light_match = re.search(
+        r'\[data-theme=["\']light["\']\]\s*\{([^}]+)\}', css, re.DOTALL
+    )
+    assert light_match is not None, '[data-theme="light"] block not found'
+    block = light_match.group(1)
+    assert '--bg' in block, '--bg must be overridden in the light theme block'
+    assert '--fg' in block, '--fg must be overridden in the light theme block'
+
+
+def test_theme_toggle_not_inline_styled():
+    """The toggle button must not carry inline style= attributes — styles belong in CSS."""
+    html = _read(INDEX_HTML)
+    toggle_pos = html.find('id="theme-toggle"')
+    assert toggle_pos != -1, 'theme-toggle not found'
+    tag_end = html.find('>', toggle_pos)
+    tag_html = html[toggle_pos:tag_end]
+    assert 'style=' not in tag_html, (
+        'The theme-toggle button must not use inline style= attributes'
     )
