@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A1408"/>
+      <stop offset="100%" stop-color="#100D05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background — deep parchment -->
+  <rect width="400" height="300" fill="url(#bgGrad)"/>
+
+  <!-- Written Torah ribbon — warm gold sinusoidal path (strand 1) -->
+  <!-- Helix projected: x = cx + R*cos(t), y = top + t*pitch + R*sin(t)*0.15 -->
+  <g opacity="0.90">
+    <!-- Gold ribbon segments, front-facing (sin(t) > 0) -->
+    <path d="M 200,18 C 240,22 268,44 268,68 C 268,92 240,110 200,118 C 160,126 132,148 132,172
+             C 132,196 160,214 200,222 C 240,230 268,252 268,268"
+          fill="none" stroke="#D4A830" stroke-width="9" stroke-linecap="round" opacity="0.95"/>
+    <!-- Gold ribbon segments, back-facing (sin(t) < 0) -->
+    <path d="M 200,18 C 160,22 132,44 132,68 C 132,92 160,110 200,118 C 240,126 268,148 268,172
+             C 268,196 240,214 200,222 C 160,230 132,252 132,268"
+          fill="none" stroke="#D4A830" stroke-width="9" stroke-linecap="round" opacity="0.38"/>
+
+    <!-- Oral Torah ribbon — deep olive-green, π offset (strand 2) -->
+    <path d="M 200,18 C 160,22 132,44 132,68 C 132,92 160,110 200,118 C 240,126 268,148 268,172
+             C 268,196 240,214 200,222 C 160,230 132,252 132,268"
+          fill="none" stroke="#3A5C1A" stroke-width="9" stroke-linecap="round" opacity="0.90"/>
+    <path d="M 200,18 C 240,22 268,44 268,68 C 268,92 240,110 200,118 C 160,126 132,148 132,172
+             C 132,196 160,214 200,222 C 240,230 268,252 268,268"
+          fill="none" stroke="#3A5C1A" stroke-width="9" stroke-linecap="round" opacity="0.35"/>
+  </g>
+
+  <!-- Hebrew text hints — Written Torah strand -->
+  <g font-family="Georgia,'Times New Roman',serif" fill="#F0E8D0" opacity="0.80">
+    <text x="258" y="72"  font-size="8"  transform="rotate(-12, 258, 72)">בְּרֵאשִׁית</text>
+    <text x="142" y="176" font-size="8"  transform="rotate(12, 142, 176)">אֱלֹהִים</text>
+    <text x="258" y="226" font-size="8"  transform="rotate(-12, 258, 226)">הַשָּׁמַיִם</text>
+  </g>
+
+  <!-- Hebrew text hints — Oral Torah strand -->
+  <g font-family="Georgia,'Times New Roman',serif" fill="#D4F0B0" opacity="0.75">
+    <text x="136" y="72"  font-size="8"  transform="rotate(12, 136, 72)">מֹשֶׁה</text>
+    <text x="258" y="176" font-size="8"  transform="rotate(-12, 258, 176)">תּוֹרָה</text>
+    <text x="136" y="226" font-size="8"  transform="rotate(12, 136, 226)">מִסִּינַי</text>
+  </g>
+
+  <!-- Axis spine -->
+  <line x1="200" y1="14" x2="200" y2="272" stroke="#3A2E18" stroke-width="1" opacity="0.5"/>
+
+  <!-- Label at bottom -->
+  <text font-family="Georgia,'Times New Roman',serif" font-size="10.5" text-anchor="middle" y="290">
+    <tspan x="168" fill="#D4A830" opacity="0.88">תּוֹרָה שֶׁבִּכְתָב</tspan>
+    <tspan fill="#888868" opacity="0.70"> / </tspan>
+    <tspan fill="#5A9A2A" opacity="0.88">תּוֹרָה שֶׁבְּעַל פֶּה</tspan>
+  </text>
+
+</svg>

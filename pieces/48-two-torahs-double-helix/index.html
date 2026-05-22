@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Torahs, One Sinai — The Double Helix</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1A1408; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 55%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .art-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2E2210;
+      overflow-y: auto;
+      color: #C8B890;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #100D05;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: relative; height: 65vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2E2210; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #D4A830;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #5A4A22;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #B8982A;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #3A2A10;
+      font-style: italic;
+      color: #8A7A50;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #D8C888; font-style: italic; }
+    .essay-panel strong { color: #E8D0A0; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #1E1808; margin: 2rem 0; }
+    .essay-panel .hebrew {
+      font-size: 1.4rem;
+      direction: rtl;
+      unicode-bidi: embed;
+      color: #D4A830;
+      margin: 0 0 0.5rem;
+    }
+    .essay-panel .label-written { color: #D4A830; }
+    .essay-panel .label-oral    { color: #5A9A2A; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <div class="art-inner" id="art-inner">
+      <canvas id="c"></canvas>
+    </div>
+  </div>
+  <div class="essay-panel">
+    <h1>Two Torahs, One Sinai</h1>
+    <p class="subtitle">The Double Helix — 3D generative typography ribbon — Avot 1:1; Exodus Rabbah 47:1</p>
+
+    <p class="hebrew">תּוֹרָה שֶׁבִּכְתָב / תּוֹרָה שֶׁבְּעַל פֶּה</p>
+    <blockquote>"Moses received Torah from Sinai and transmitted it to Joshua; Joshua to the Elders; the Elders to the Prophets; and the Prophets transmitted it to the Men of the Great Assembly." — Mishnah Avot 1:1</blockquote>
+
+    <hr>
+
+    <h2>Two Voices at Sinai — Exodus Rabbah 47:1</h2>
+
+    <p>The Mishnah's opening verse begins with Moses receiving Torah — not a Torah, not some Torah, but the Torah in its fullness. The rabbinic tradition is explicit about what this means. Exodus Rabbah 47:1 teaches that when Moses ascended to receive the Torah, he received both simultaneously: <em>Torah she-bikhsav</em>, the Written Torah of the Five Books, and <em>Torah she-baal peh</em>, the Oral Torah of interpretation, commentary, and legal ruling that accompanies it. Both were given at Sinai. Both are revelation.</p>
+
+    <p>This claim is the theological cornerstone of rabbinic Judaism. It means that when Moses came down the mountain carrying the tablets, he carried something that cannot be read from stone alone — he carried the interpretive tradition needed to understand it.</p>
+
+    <hr>
+
+    <h2>Not Commentary, But Co-Equal Revelation</h2>
+
+    <p>The instinctive modern assumption is that the Oral Torah is commentary — a later human addition that builds on the written text, a set of rabbinic interpretations that accumulated over centuries. This assumption is precisely what rabbinic theology rejects. The tradition does not claim the Oral Torah was derived from the written text by the rabbis. It claims both were given together, at the same moment, to the same person.</p>
+
+    <p>The consequence is radical. Interpretation is not something humans invented to cope with an obscure text. Interpretation was given — divinely authorised, at the very moment of revelation. When a sage in the Talmud offers a legal ruling based on reasoning, precedent, or analogy, that act of reasoning is itself what was given at Sinai. The tradition of interpretation was not built on top of revelation; it is part of revelation.</p>
+
+    <p>This is why Avot 1:1 opens with a chain: Moses to Joshua, Joshua to the Elders, the Elders to the Prophets, the Prophets to the Men of the Great Assembly. The chain is not a list of copyists transmitting a text. It is a chain of transmission of an interpretive tradition — a living body of meaning that is precisely as ancient as the written words it accompanies.</p>
+
+    <hr>
+
+    <h2>What Shavuot Does Not Say</h2>
+
+    <p>Shavuot is the festival of the giving of the Torah. And yet the Torah itself says remarkably little about what Shavuot is actually for. It counts weeks from Passover, commands bringing two loaves of leavened bread, and says you shall keep the festival — but it never names the giving of the Torah as the content of the holiday. The connection to Sinai is entirely traditional — a calculation, a midrash, a rabbinic assignment of meaning.</p>
+
+    <p>Why would the Written Torah be silent about the reason for its own festival?</p>
+
+    <p>The silence makes sense once you understand the two-Torah tradition. Shavuot does not celebrate a text. It celebrates a transmission. The content of Shavuot is not something that can be written on the first giving; it lives in the chain of handoffs that follow. The Written Torah could not name the content of Shavuot because that content is the Oral Torah, and the Oral Torah by its nature must be transmitted person to person, teacher to student, generation to generation.</p>
+
+    <p>Shavuot is not the anniversary of a text. It is the anniversary of a living handoff.</p>
+
+    <hr>
+
+    <h2>The Helix</h2>
+
+    <p>Neither strand of the double helix is readable without the other. The written sequence of nucleotides specifies nothing without the cellular machinery that reads it; the reading machinery cannot exist without being specified. In the same way, the Written Torah gives you letters; the Oral Torah gives you the tradition of reading them. Neither is primary. Neither comes first. Both were given, together, at Sinai.</p>
+
+    <p>The animation renders this as two ribbons of Hebrew text intertwining around a shared vertical axis. The <strong class="label-written">gold ribbon</strong> carries words from Bereishit 1:1 — the first words of the written revelation. The <strong class="label-oral">olive-green ribbon</strong> carries phrases from Pirkei Avot 1:1–4 — the opening of the chain of oral transmission. They wind around each other, each passing in front of and behind the other as the helix turns. Neither strand, viewed alone, forms a continuous line. Their meaning is in the intertwining.</p>
+
+    <hr>
+
+    <h2>The Chain Is Not Metaphor</h2>
+
+    <p>The Mishnah uses the word <em>kibbel</em> — received. Moses received Torah. Not "wrote" Torah, not "was given" Torah in the passive sense. He received it — a verb that implies an active taking, a grasping hold of something living. What he grasped was not only stone. What he grasped was a tradition of interpretation that he could only pass on the same way it was given: orally, directly, person to person.</p>
+
+    <p>The chain in Avot 1:1 through 1:4 — Moses to Joshua to the Elders to the Prophets to the Great Assembly, then to Shimon the Just, to Antigonus, to Yose ben Yoezer — is a claim about ontology. Every ruling, every midrash, every talmudic argument, is connected — through this chain — back to Sinai. Not by derivation. By transmission. The <em>Torah she-baal peh</em> — the Torah on the mouth — can only live where mouths are speaking to ears.</p>
+
+    <p>Shavuot celebrates the moment when the chain began. The helix has been turning ever since.</p>
+
+    <hr>
+
+    <h2>The Animation</h2>
+
+    <p>Two helical ribbons are projected from 3D to 2D using simple orthographic projection with an isometric z-tilt (<em>screen_y += z × 0.15</em>). The helix completes one full rotation every 60 seconds (advancing at 6°/frame at 60 fps). A painter's algorithm — sort all ribbon segments by depth each frame, draw back-to-front — ensures the near ribbon correctly occludes the far ribbon. Hebrew words are drawn along each ribbon's surface, scaled and faded by depth so that farther segments appear smaller and more transparent. The technique — 3D-projected generative typography ribbon — has not been used elsewhere in the gallery.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx    = canvas.getContext('2d');
+  var panel  = document.getElementById('art-inner');
+  var W, H, R, pitch, ribbonHW, baseFontSize;
+
+  /* Hebrew words from Bereishit 1:1–2 — the Written Torah strand */
+  var WRITTEN_WORDS = [
+    'בְּרֵאשִׁית', 'בָּרָא', 'אֱלֹהִים', 'אֵת', 'הַשָּׁמַיִם',
+    'וְאֵת', 'הָאָרֶץ', 'וְהָאָרֶץ', 'הָיְתָה', 'תֹהוּ',
+    'וָבֹהוּ', 'וְחֹשֶׁךְ', 'עַל', 'פְּנֵי', 'תְהוֹם',
+    'וְרוּחַ', 'אֱלֹהִים', 'מְרַחֶפֶת', 'עַל', 'פְּנֵי', 'הַמָּיִם'
+  ];
+
+  /* Hebrew phrases from Pirkei Avot 1:1–4 — the Oral Torah strand */
+  var ORAL_WORDS = [
+    'מֹשֶׁה', 'קִבֵּל', 'תּוֹרָה', 'מִסִּינַי', 'וּמְסָרָהּ',
+    'לִיהוֹשֻׁעַ', 'יְהוֹשֻׁעַ', 'לִזְקֵנִים', 'וּזְקֵנִים', 'לִנְבִיאִים',
+    'נְבִיאִים', 'לְאַנְשֵׁי', 'כְּנֶסֶת', 'הַגְּדוֹלָה', 'שִׁמְעוֹן',
+    'הַצַּדִּיק', 'תּוֹרָה', 'עֲבוֹדָה', 'גְמִילוּת', 'חֲסָדִים',
+    'אַנְטִיגְנוֹס', 'יוֹסֵי', 'בֶּן', 'יוֹעֶזֶר', 'הֱוֵי'
+  ];
+
+  var TURNS        = 4.5;
+  var STEPS        = Math.round(TURNS * 120);
+  var T_MAX        = TURNS * 2 * Math.PI;
+  /* 6°/second × (1 second / 60 frames) = 0.1°/frame = π/1800 rad/frame */
+  var OMEGA        = Math.PI / 1800;
+  var phase        = 0;
+
+  function resize() {
+    W = panel.clientWidth  || panel.offsetWidth  || 600;
+    H = panel.clientHeight || panel.offsetHeight || 800;
+    canvas.width  = W;
+    canvas.height = H;
+    R            = Math.min(W, H) * 0.20;
+    /* helix occupies the middle 82% of the canvas height */
+    pitch        = (H * 0.82) / T_MAX;
+    ribbonHW     = R * 0.22;
+    baseFontSize = Math.max(10, Math.min(W, H) * 0.023);
+  }
+
+  /**
+   * Project a point on the helix (parameterised by t) to 2D screen space.
+   * phaseOff is the strand's angular offset (0 for Written, π for Oral).
+   * Returns { sx, sy, z } where z drives painter's sort and depth effects.
+   */
+  function project(t, phaseOff) {
+    var angle = t + phase + phaseOff;
+    var x3    = R * Math.cos(angle);
+    var z3    = R * Math.sin(angle);
+    /* t=0 maps to H*0.09 (top of helix), t=T_MAX maps to H*0.91 (bottom) */
+    var sy    = H * 0.09 + t * pitch + z3 * 0.15;
+    return { sx: W / 2 + x3, sy: sy, z: z3 };
+  }
+
+  /**
+   * Build every ribbon segment for both strands in the current frame.
+   * A segment is the filled quad between two consecutive helix sample points.
+   * Segments carry all data needed by drawSegment: corners, depth z, colour,
+   * and optional Hebrew word to render at the segment midpoint.
+   */
+  function buildSegments() {
+    var segs = [];
+
+    for (var strand = 0; strand < 2; strand++) {
+      var phaseOff    = strand * Math.PI;
+      var words       = strand === 0 ? WRITTEN_WORDS : ORAL_WORDS;
+      var ribbonColor = strand === 0 ? '#D4A830' : '#3A5C1A';
+      /* text colours: near-white for Written Torah, pale cream for Oral Torah */
+      var textR = strand === 0 ? 248 : 230;
+      var textG = strand === 0 ? 244 : 240;
+      var textB = strand === 0 ? 220 : 210;
+
+      for (var i = 0; i < STEPS; i++) {
+        var t0 = (i       / STEPS) * T_MAX;
+        var t1 = ((i + 1) / STEPS) * T_MAX;
+
+        var p0 = project(t0, phaseOff);
+        var p1 = project(t1, phaseOff);
+
+        var dx  = p1.sx - p0.sx;
+        var dy  = p1.sy - p0.sy;
+        var len = Math.sqrt(dx * dx + dy * dy) || 1;
+
+        /* Perpendicular to tangent — gives ribbon its width in screen space */
+        var px = -dy / len;
+        var py =  dx / len;
+
+        /* Depth fraction 0 (far) … 1 (near) for each endpoint */
+        var df0 = (p0.z + R) / (2 * R);
+        var df1 = (p1.z + R) / (2 * R);
+
+        /* Ribbon half-width scales slightly with depth for a shading hint */
+        var hw0 = ribbonHW * (0.80 + 0.20 * df0);
+        var hw1 = ribbonHW * (0.80 + 0.20 * df1);
+
+        var corners = [
+          { x: p0.sx + px * hw0, y: p0.sy + py * hw0 },
+          { x: p0.sx - px * hw0, y: p0.sy - py * hw0 },
+          { x: p1.sx - px * hw1, y: p1.sy - py * hw1 },
+          { x: p1.sx + px * hw1, y: p1.sy + py * hw1 }
+        ];
+
+        /* Depth of this segment for painter's sort */
+        var segZ  = (p0.z + p1.z) * 0.5;
+        /* Opacity: farther = 0.35, nearer = 1.0 */
+        var alpha = 0.35 + 0.65 * ((segZ + R) / (2 * R));
+
+        /* Place one word every 4 segments, cycling through the word list */
+        var word = null;
+        if (i % 4 === 0) {
+          word = words[Math.floor(i / 4) % words.length];
+        }
+
+        var mx    = (p0.sx + p1.sx) * 0.5;
+        var my    = (p0.sy + p1.sy) * 0.5;
+        var angle = Math.atan2(dy, dx);
+        /* Font size scales with depth: smaller and fainter at the back */
+        var fs    = baseFontSize * (0.60 + 0.40 * df0);
+
+        segs.push({
+          corners: corners,
+          z:            segZ,
+          alpha:        alpha,
+          ribbonColor:  ribbonColor,
+          textR: textR, textG: textG, textB: textB,
+          word:  word,
+          mx: mx, my: my,
+          angle: angle,
+          fontSize: fs
+        });
+      }
+    }
+
+    return segs;
+  }
+
+  /**
+   * Draw one ribbon segment quad and, if present, its Hebrew word label.
+   * globalAlpha is set per-segment so both ribbon fill and text fade together.
+   */
+  function drawSegment(seg) {
+    var c = seg.corners;
+    ctx.globalAlpha = seg.alpha;
+
+    ctx.beginPath();
+    ctx.moveTo(c[0].x, c[0].y);
+    ctx.lineTo(c[1].x, c[1].y);
+    ctx.lineTo(c[2].x, c[2].y);
+    ctx.lineTo(c[3].x, c[3].y);
+    ctx.closePath();
+    ctx.fillStyle = seg.ribbonColor;
+    ctx.fill();
+
+    if (seg.word) {
+      ctx.save();
+      ctx.translate(seg.mx, seg.my);
+      ctx.rotate(seg.angle);
+      ctx.font = seg.fontSize + 'px Georgia,"Times New Roman",serif';
+      ctx.fillStyle = 'rgb(' + seg.textR + ',' + seg.textG + ',' + seg.textB + ')';
+      ctx.textAlign    = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(seg.word, 0, 0);
+      ctx.restore();
+    }
+  }
+
+  /**
+   * Draw the two-colour label at the bottom of the canvas.
+   * Written Torah label in gold (right), Oral Torah label in olive-green (left),
+   * separated by " / " — laid out so RTL reading order is correct.
+   */
+  function drawLabel() {
+    var y  = H * 0.962;
+    var fs = Math.max(12, Math.min(W, H) * 0.026);
+    ctx.font         = fs + 'px Georgia,"Times New Roman",serif';
+    ctx.textBaseline = 'middle';
+    ctx.globalAlpha  = 0.88;
+
+    var written = 'תּוֹרָה שֶׁבִּכְתָב';
+    var sep     = '  /  ';
+    var oral    = 'תּוֹרָה שֶׁבְּעַל פֶּה';
+
+    var wW = ctx.measureText(written).width;
+    var wS = ctx.measureText(sep).width;
+    var wO = ctx.measureText(oral).width;
+
+    /* In RTL reading order: Written Torah on the right, Oral Torah on the left.
+       In LTR screen layout: oral | sep | written, centred at W/2. */
+    var startX = W / 2 - (wO + wS + wW) / 2;
+
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#5A9A2A';
+    ctx.fillText(oral, startX, y);
+
+    ctx.fillStyle = '#7A7050';
+    ctx.fillText(sep, startX + wO, y);
+
+    ctx.fillStyle = '#D4A830';
+    ctx.fillText(written, startX + wO + wS, y);
+  }
+
+  function frame() {
+    ctx.globalAlpha = 1;
+    ctx.fillStyle   = '#1A1408';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Build and sort all ribbon segments back-to-front (painter's algorithm) */
+    var segs = buildSegments();
+    segs.sort(function (a, b) { return a.z - b.z; });
+
+    for (var i = 0; i < segs.length; i++) {
+      drawSegment(segs[i]);
+    }
+
+    ctx.globalAlpha = 1;
+    drawLabel();
+
+    phase += OMEGA;
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>
