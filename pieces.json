@@ -295,5 +295,16 @@
     "path": "pieces/31-seven-weeks-spirograph/index.html",
     "thumbnail": "pieces/31-seven-weeks-spirograph/thumbnail.svg",
     "essay": "pieces/31-seven-weeks-spirograph/essay.md"
+  },
+  {
+    "id": "32-where-you-go",
+    "title": "Where You Go",
+    "tagline": "Ruth 1:16 — two figures built from a thousand crossed threads, leaning toward each other",
+    "year": 2026,
+    "theme": "Book of Ruth / Ruth 1:16 — Loyalty and Covenant",
+    "technique": "canvas 2D greedy string art — signed-distance-field silhouette, pin-and-thread portrait",
+    "path": "pieces/32-where-you-go/index.html",
+    "thumbnail": "pieces/32-where-you-go/thumbnail.svg",
+    "essay": "pieces/32-where-you-go/essay.md"
   }
 ]

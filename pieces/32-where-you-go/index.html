@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Where You Go — String Art Portrait of Ruth</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1A1208;
+      color: #F0E8D5;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas {
+      display: block;
+      background: #1A1208;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.35rem;
+      color: #F0E8D5;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #C4A97A;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #8B6914;
+      padding-left: 0.75rem;
+      line-height: 1.5;
+      direction: ltr;
+    }
+    .essay-pane .hebrew-verse {
+      font-size: 1.1rem;
+      direction: rtl;
+      unicode-bidi: embed;
+      color: #F0E8D5;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #D4C9A8;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #F0E8D5; font-style: italic; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #8B7A55;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #8B6914;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="500" height="530"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>Where You Go — String Art Portrait of Ruth</h1>
+    <p class="source">
+      <span class="hebrew-verse">כִּי אֶל-אֲשֶׁר תֵּלְכִי אֵלֵךְ וּבַאֲשֶׁר תָּלִינִי אָלִין</span>
+      Ruth 1:16 — "Where you go, I will go; where you lodge, I will lodge. Your people shall be my people and your God my God."
+    </p>
+
+    <p>The Book of Ruth opens in grief. Elimelech, a man of Bethlehem, takes his wife Naomi and their two sons to the fields of Moab to escape a famine. There his sons marry Moabite women — Orpah and Ruth. Then the three men die. Naomi, twice widowed by proxy, is left with two daughters-in-law in a foreign land, bound to them only through sorrow and the habit of shared meals.</p>
+
+    <p>The moment that shapes everything comes on the road back to Bethlehem. Naomi urges her daughters-in-law to go home — back to their mothers' houses, back to the gods of Moab. <em>Shuvna</em>, she says: <em>return</em>. The logic is sound. Naomi has nothing to offer them. No more sons in her womb. No economic prospects. No standing in Bethlehem for a widow with Moabite companions in tow.</p>
+
+    <p>Orpah weeps and turns back. The narrative does not condemn her. She makes the reasonable choice. But Ruth cleaves. The Hebrew verb — <em>vattidbok</em> — is the same word used in Genesis 2:24 for the cleaving of husband and wife in marriage. What Ruth does in this moment is not politely declining advice; it is an act of covenant-making, as deliberate and binding as any formal vow.</p>
+
+    <p>"Where you go, I will go. Where you lodge, I will lodge. Your people shall be my people and your God my God. Where you die, I will die, and there will I be buried." (Ruth 1:16–17) The declaration is absolute, sevenfold, irrevocable. Ruth transfers her entire identity — national, religious, familial — from Moab to Israel. She converts, entirely voluntarily, at the worst possible moment, with no promise of reward.</p>
+
+    <p>The rabbis recognized this scene as the paradigm of sincere conversion. The Talmud (Yevamot 47b) records that a prospective convert must be informed of the hardships of Jewish life so that their acceptance is genuinely free. The wording echoes Ruth's declaration precisely: <em>your people will be my people, your God my God</em>. Ruth, encountering no court and no formal process, says these words spontaneously — to a woman who has explicitly warned her not to come.</p>
+
+    <p>This is precisely why the Book of Ruth is read on Shavuot. The festival commemorates Israel's acceptance of Torah at Sinai — the moment the people declared <em>naaseh v'nishma</em>, "we will do and we will hear" (Exodus 24:7). Ruth's declaration on the road has the same structure: she commits before she understands what she is accepting. The acceptance is precisely the point.</p>
+
+    <p>The Talmud (Yevamot 47b) draws the parallel explicitly: just as Israel accepted Torah at Sinai as a people, so the <em>ger</em> — the one who joins — re-enacts that acceptance individually. Ruth standing on the road to Bethlehem <em>is</em> Israel standing at the foot of Sinai. Her "where you go, I will go" is their <em>naaseh v'nishma</em> — loyalty declared before arrival, covenant sworn in the open field of unknowing.</p>
+
+    <p>The visual language of string art makes this geometry legible. Two figures, each built from hundreds of interlocking straight lines, lean toward each other across a shared space. No single line creates the form; the figures emerge only through density and accumulation — the way loyalty becomes visible not in one dramatic declaration but in the textured weight of daily presence: the gleaning in the fields of Boaz, the return each evening to Naomi's side, the quiet persistence of a woman who chose a life she had no claim to and then worked to deserve it.</p>
+
+    <p>Ruth's story does not end with declaration. She marries Boaz. She bears Obed, who becomes the father of Jesse, who becomes the father of David. Ruth the Moabite, the voluntary convert, becomes the great-grandmother of the king whose line the tradition holds will produce the Messiah. The Book of Ruth is not an addendum to Israelite history. It is a hinge. And the hinge swings on six words spoken on a dusty road: <em>ki el asher telchi elech</em> — where you go, I will go.</p>
+
+    <p class="citations">See: Ruth 1:1–22, 3:11, 4:17–22; Talmud Bavli Yevamot 47b; Exodus 24:7 ("naaseh v'nishma"); Genesis 2:24; Midrash Rabbah Ruth 2:22; Rashi on Ruth 1:16.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = 500, H = 530;
+  const CX = 250, CY = 252;
+  const R = 215;
+  const N = 256;
+  const BG = '#1A1208';
+  const LINE_COLOR = '#F0E8D5';
+  const LINE_ALPHA = 0.10;
+  const MAX_LINES = 4000;
+  const LINES_PER_FRAME = 4;
+  const HOLD_MS = 3000;
+  const FADE_MS = 1500;
+  const COMPUTE_PER_FRAME = 12;
+  const MIN_ARC = Math.floor(N / 8);
+  const SUBTRACT_AMT = 0.20;
+
+  // Pin positions around the circle.
+  const pinX = new Float32Array(N);
+  const pinY = new Float32Array(N);
+  for (let i = 0; i < N; i++) {
+    const a = (2 * Math.PI * i) / N;
+    pinX[i] = CX + R * Math.cos(a);
+    pinY[i] = CY + R * Math.sin(a);
+  }
+
+  // Density grid: one float per pixel inside the bounding box of the pin circle.
+  const GX0 = CX - R - 2;
+  const GY0 = CY - R - 2;
+  const GW = Math.ceil(2 * R + 4);
+  const GH = Math.ceil(2 * R + 4);
+
+  function smoothstep(lo, hi, x) {
+    x = Math.max(0, Math.min(1, (x - lo) / (hi - lo)));
+    return x * x * (3 - 2 * x);
+  }
+
+  // Signed-distance-like measure for a rotated ellipse (1 on boundary, <1 inside, >1 outside).
+  function rotEllipseDist(px, py, ex, ey, rx, ry, angle) {
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+    const dx = px - ex;
+    const dy = py - ey;
+    const lx = cos * dx + sin * dy;
+    const ly = -sin * dx + cos * dy;
+    return Math.sqrt((lx * lx) / (rx * rx) + (ly * ly) / (ry * ry));
+  }
+
+  // Target silhouette: two humanoid figures (head + body ellipses) leaning toward
+  // each other, converging at a shared road/horizon line below center.
+  function targetDensity(px, py) {
+    const dx = px - CX;
+    const dy = py - CY;
+    if (dx * dx + dy * dy > (R - 3) * (R - 3)) return 0;
+
+    const lean = 0.13;
+
+    // Left figure
+    const nHead = rotEllipseDist(px, py, CX - 90, CY - 95, 20, 23, lean);
+    const nBody = rotEllipseDist(px, py, CX - 74, CY - 12, 22, 60, lean);
+    const leftFig = Math.min(nHead, nBody);
+
+    // Right figure (mirror)
+    const rHead = rotEllipseDist(px, py, CX + 90, CY - 95, 20, 23, -lean);
+    const rBody = rotEllipseDist(px, py, CX + 74, CY - 12, 22, 60, -lean);
+    const rightFig = Math.min(rHead, rBody);
+
+    // Converging road: a tapering strip centered horizontally, active in lower half.
+    // Width widens as dy increases (toward bottom of frame).
+    const roadHalfWidth = Math.max(4, 18 + 0.22 * (dy + R));
+    const roadDist = dy > -25 ? Math.abs(dx) / roadHalfWidth : 2;
+
+    const d = Math.min(leftFig, rightFig, roadDist);
+    return Math.max(0, 1 - smoothstep(0.72, 1.08, d));
+  }
+
+  // Initialise density and residual grids.
+  const density = new Float32Array(GW * GH);
+  for (let gy = 0; gy < GH; gy++) {
+    for (let gx = 0; gx < GW; gx++) {
+      density[gy * GW + gx] = targetDensity(GX0 + gx, GY0 + gy);
+    }
+  }
+  const residual = density.slice();
+
+  // Precomputed line sequence stored as flat int16 arrays (from/to pin indices).
+  const lineFrom = new Int16Array(MAX_LINES);
+  const lineTo   = new Int16Array(MAX_LINES);
+  let computedCount = 0;
+  let currentPin = 0;
+
+  // Sum residual values along the line from pin fromIdx to pin toIdx.
+  // Used to score candidate lines in the greedy selection step.
+  function sampleScore(fromIdx, toIdx) {
+    const x0 = pinX[fromIdx], y0 = pinY[fromIdx];
+    const x1 = pinX[toIdx],   y1 = pinY[toIdx];
+    const dx = x1 - x0, dy = y1 - y0;
+    const steps = Math.ceil(Math.sqrt(dx * dx + dy * dy));
+    if (steps === 0) return 0;
+    const inv = 1 / steps;
+    let sum = 0;
+    for (let s = 0; s <= steps; s++) {
+      const t = s * inv;
+      const gx = Math.round(x0 + dx * t - GX0);
+      const gy = Math.round(y0 + dy * t - GY0);
+      if (gx >= 0 && gx < GW && gy >= 0 && gy < GH) {
+        sum += residual[gy * GW + gx];
+      }
+    }
+    return sum / (steps + 1);
+  }
+
+  // Subtract a fixed contribution from residual pixels along the chosen line,
+  // so the next greedy step won't re-use the same dark region redundantly.
+  function subtractLine(fromIdx, toIdx) {
+    const x0 = pinX[fromIdx], y0 = pinY[fromIdx];
+    const x1 = pinX[toIdx],   y1 = pinY[toIdx];
+    const dx = x1 - x0, dy = y1 - y0;
+    const steps = Math.ceil(Math.sqrt(dx * dx + dy * dy));
+    if (steps === 0) return;
+    const inv = 1 / steps;
+    for (let s = 0; s <= steps; s++) {
+      const t = s * inv;
+      const gx = Math.round(x0 + dx * t - GX0);
+      const gy = Math.round(y0 + dy * t - GY0);
+      if (gx >= 0 && gx < GW && gy >= 0 && gy < GH) {
+        const idx = gy * GW + gx;
+        residual[idx] = Math.max(0, residual[idx] - SUBTRACT_AMT);
+      }
+    }
+  }
+
+  // Compute COMPUTE_PER_FRAME greedy steps and append to lineFrom/lineTo.
+  // Each step picks the pin (at least MIN_ARC arc distance away) whose connecting
+  // line has the highest mean residual, then subtracts its contribution.
+  function computeGreedy() {
+    const end = Math.min(computedCount + COMPUTE_PER_FRAME, MAX_LINES);
+    for (let n = computedCount; n < end; n++) {
+      let bestPin = -1;
+      let bestScore = -1;
+      for (let j = 0; j < N; j++) {
+        const arc = Math.min(Math.abs(j - currentPin), N - Math.abs(j - currentPin));
+        if (arc < MIN_ARC) continue;
+        const score = sampleScore(currentPin, j);
+        if (score > bestScore) {
+          bestScore = score;
+          bestPin = j;
+        }
+      }
+      if (bestPin === -1) bestPin = (currentPin + Math.floor(N / 2)) % N;
+      lineFrom[n] = currentPin;
+      lineTo[n]   = bestPin;
+      subtractLine(currentPin, bestPin);
+      currentPin = bestPin;
+    }
+    computedCount = end;
+  }
+
+  // Offscreen canvas accumulates drawn lines persistently across frames.
+  const off = document.createElement('canvas');
+  off.width = W; off.height = H;
+  const offCtx = off.getContext('2d');
+  offCtx.fillStyle = BG;
+  offCtx.fillRect(0, 0, W, H);
+
+  // Draw the Hebrew verse below the circle on the provided 2D context.
+  function drawHebrew(c) {
+    c.save();
+    c.font = '18px Georgia, serif';
+    c.fillStyle = LINE_COLOR;
+    c.textAlign = 'center';
+    c.textBaseline = 'middle';
+    c.direction = 'rtl';
+    c.fillText('כִּי אֶל-אֲשֶׁר תֵּלְכִי אֵלֵךְ', CX, CY + R + 32);
+    c.restore();
+  }
+
+  // Animation state machine: computing → drawing → holding → fading → drawing …
+  let phase = 'computing';
+  let drawIdx = 0;
+  let phaseTs = null;
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+
+    if (phase === 'computing') {
+      computeGreedy();
+      if (computedCount >= MAX_LINES) {
+        phase = 'drawing';
+        drawIdx = 0;
+      }
+      ctx.fillStyle = BG;
+      ctx.fillRect(0, 0, W, H);
+      return;
+    }
+
+    if (phase === 'drawing') {
+      offCtx.strokeStyle = LINE_COLOR;
+      offCtx.lineWidth = 1;
+      offCtx.globalAlpha = LINE_ALPHA;
+      for (let i = 0; i < LINES_PER_FRAME && drawIdx < MAX_LINES; i++, drawIdx++) {
+        offCtx.beginPath();
+        offCtx.moveTo(pinX[lineFrom[drawIdx]], pinY[lineFrom[drawIdx]]);
+        offCtx.lineTo(pinX[lineTo[drawIdx]],   pinY[lineTo[drawIdx]]);
+        offCtx.stroke();
+      }
+      offCtx.globalAlpha = 1;
+      ctx.drawImage(off, 0, 0);
+      drawHebrew(ctx);
+      if (drawIdx >= MAX_LINES) {
+        phase = 'holding';
+        phaseTs = ts;
+      }
+      return;
+    }
+
+    if (phase === 'holding') {
+      ctx.drawImage(off, 0, 0);
+      drawHebrew(ctx);
+      if (ts - phaseTs >= HOLD_MS) {
+        phase = 'fading';
+        phaseTs = ts;
+      }
+      return;
+    }
+
+    if (phase === 'fading') {
+      const t = Math.min(1, (ts - phaseTs) / FADE_MS);
+      ctx.drawImage(off, 0, 0);
+      drawHebrew(ctx);
+      ctx.globalAlpha = t;
+      ctx.fillStyle = BG;
+      ctx.fillRect(0, 0, W, H);
+      ctx.globalAlpha = 1;
+      if (t >= 1) {
+        offCtx.fillStyle = BG;
+        offCtx.fillRect(0, 0, W, H);
+        drawIdx = 0;
+        phase = 'drawing';
+        phaseTs = null;
+      }
+    }
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
