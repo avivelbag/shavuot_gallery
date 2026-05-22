@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="pile" cx="50%" cy="50%" r="46%">
+      <stop offset="0%"   stop-color="#FFF8E7"/>
+      <stop offset="12%"  stop-color="#D4A017"/>
+      <stop offset="38%"  stop-color="#8B7355"/>
+      <stop offset="68%"  stop-color="#3A3050"/>
+      <stop offset="100%" stop-color="#0A0A18" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="50%">
+      <stop offset="45%" stop-color="#030109" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#030109" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <rect width="200" height="200" fill="#0A0A18"/>
+  <circle cx="100" cy="100" r="92" fill="url(#pile)"/>
+  <!-- Radial arms suggesting the sandpile's 4-fold fractal symmetry -->
+  <g stroke="#D4A017" stroke-width="0.8" stroke-opacity="0.32" fill="none">
+    <line x1="100" y1="100" x2="100" y2="8"/>
+    <line x1="100" y1="100" x2="100" y2="192"/>
+    <line x1="100" y1="100" x2="8"   y2="100"/>
+    <line x1="100" y1="100" x2="192" y2="100"/>
+    <line x1="100" y1="100" x2="35"  y2="35"/>
+    <line x1="100" y1="100" x2="165" y2="35"/>
+    <line x1="100" y1="100" x2="35"  y2="165"/>
+    <line x1="100" y1="100" x2="165" y2="165"/>
+  </g>
+  <!-- Concentric diamonds evoking the nested self-similar structure -->
+  <g stroke="#FFF8E7" stroke-width="0.5" stroke-opacity="0.10" fill="none">
+    <rect x="72"  y="72"  width="56"  height="56"  transform="rotate(45 100 100)"/>
+    <rect x="56"  y="56"  width="88"  height="88"  transform="rotate(45 100 100)"/>
+    <rect x="40"  y="40"  width="120" height="120" transform="rotate(45 100 100)"/>
+  </g>
+  <rect width="200" height="200" fill="url(#vig)"/>
+</svg>

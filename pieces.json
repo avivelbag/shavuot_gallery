@@ -614,5 +614,16 @@
     "path": "pieces/50-etz-chaim/index.html",
     "thumbnail": "pieces/50-etz-chaim/thumbnail.svg",
     "essay": "pieces/50-etz-chaim/essay.md"
+  },
+  {
+    "id": "50-sandpile-at-sinai",
+    "title": "The Mountain That Could Not Be Touched",
+    "tagline": "abelian sandpile: grains accumulate toward the sacred threshold, then cascade",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "abelian sandpile cellular automaton",
+    "path": "pieces/50-sandpile-at-sinai/index.html",
+    "thumbnail": "pieces/50-sandpile-at-sinai/thumbnail.svg",
+    "essay": "pieces/50-sandpile-at-sinai/essay.md"
   }
 ]
