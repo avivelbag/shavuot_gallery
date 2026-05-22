@@ -196,5 +196,16 @@
     "path": "pieces/20-sinai-ketubah/index.html",
     "thumbnail": "pieces/20-sinai-ketubah/thumbnail.svg",
     "essay": "pieces/20-sinai-ketubah/essay.md"
+  },
+  {
+    "id": "22-akdamut",
+    "title": "Before the Words",
+    "tagline": "the 22 Hebrew letters assembling from scattered gold particles — before the Akdamut piyyut",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot / Torah and Devotion",
+    "technique": "canvas 2D particle-swarm letter assembly, Hebrew/Aramaic typography",
+    "path": "pieces/22-akdamut/index.html",
+    "thumbnail": "pieces/22-akdamut/thumbnail.svg",
+    "essay": "pieces/22-akdamut/essay.md"
   }
 ]
