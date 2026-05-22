@@ -7,8 +7,6 @@ technique, Hebrew label presence, essay content requirements, and failure modes.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID     = "48-two-torahs-double-helix"
 PIECE_DIR    = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
