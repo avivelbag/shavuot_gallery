@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Land Flowing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1a1005; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #1a1005;
+    }
+    canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #3a2800;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #130e00;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #3a2800; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #e8c870; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #605030; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #c8a048; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #e8c870; font-style: normal; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>A Land Flowing</h1>
+    <p class="subtitle">Milk and Honey / Bikkurim</p>
+
+    <h2>The Phrase</h2>
+    <p>"And I have come down to deliver them out of the hand of the Egyptians, and to bring them up out of that land to a good and broad land, a land flowing with milk and honey." (Exodus 3:8)</p>
+    <p>The phrase <em>eretz zavat chalav u'dvash</em> — a land flowing with milk and honey — appears more than twenty times in the Torah, but it is most charged at Shavuot. The holiday of Bikkurim, the first fruits, is the ritual fulfillment of this promise. The farmer who brings his first-ripening grain and fruit to the Temple recites the declaration from Deuteronomy 26:</p>
+    <p>"I have come to the land which the Lord swore to our ancestors to give us." (Deuteronomy 26:3)</p>
+    <p>The milk and honey are no longer distant prophecy. They are here, in the hand, in the basket on the shoulder. The abstract promise has become something you can hold.</p>
+
+    <h2>Abundance and Covenant</h2>
+    <p>The Rabbis debated what "milk and honey" meant literally. Date honey? Grape syrup? The thick slow amber pressed from ripe fruit? Most settled on date honey — <em>silan</em> — and goat milk from animals grazing the limestone slopes. But the phrase carries far more than agricultural description. It encodes a theological claim: the land is alive and generous. The flowing is not passive — it implies abundance under pressure, sweetness forced out by ripeness itself. A land that gives without being asked.</p>
+    <p>Deuteronomy 8 extends the picture: "A land of wheat and barley, and vines and fig-trees and pomegranates; a land of olive oil and honey." Every clause adds texture. The promise is not a single commodity but an ecology — a whole system of interlocking abundance. The milk and honey condense this complexity into two textures: pale white and warm thick gold, the quick sustenance and the slow sweetness.</p>
+    <p>The Deuteronomy 26 declaration is one of the oldest liturgical texts we possess. Its structure is deliberate: before naming what he has brought, the farmer recites the whole history of his people — slavery, wandering, redemption, arrival. The gift means something only against the backdrop of absence. Milk and honey are sweet partly because the bread of affliction is bitter.</p>
+
+    <h2>This Piece</h2>
+    <p>The Gray-Scott reaction-diffusion equations govern pattern formation in nature — the spots of the leopard, the stripes of the zebrafish, the branching of coral. Seeded at a few points, the U field (cream) and V field (honey gold to amber) interact through autocatalysis and inhibition, producing slowly evolving forms that pool and spread and loop: thick liquid shapes that are visually apt for the flowing described in Exodus 3:8.</p>
+    <p>The Hebrew phrase composited above — <em>אֶרֶץ זָבַת חָלָב וּדְבַשׁ</em> — becomes part of the visual field rather than a caption, dissolving into the flow the way the promise dissolves into the landscape it describes.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var SIM_W = 256, SIM_H = 256, N = SIM_W * SIM_H;
+  var Du = 0.16, Dv = 0.08, F = 0.055, k = 0.062;
+  var STEPS_PER_FRAME = 3;
+  var MAX_DT = 50;
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+  var W, H;
+
+  var uA = new Float32Array(N);
+  var vA = new Float32Array(N);
+  var uB = new Float32Array(N);
+  var vB = new Float32Array(N);
+
+  var LUT_R = new Uint8Array(256);
+  var LUT_G = new Uint8Array(256);
+  var LUT_B = new Uint8Array(256);
+
+  // Build color lookup table: index = floor(v*255)
+  // cream #fdf6e3 (253,246,227) -> honey #d4a017 (212,160,23) -> amber #8b5a00 (139,90,0)
+  (function () {
+    for (var i = 0; i < 256; i++) {
+      var v = i / 255, r, g, b, t;
+      if (v < 0.5) {
+        t = v * 2;
+        r = 253 + (212 - 253) * t; g = 246 + (160 - 246) * t; b = 227 + (23 - 227) * t;
+      } else {
+        t = (v - 0.5) * 2;
+        r = 212 + (139 - 212) * t; g = 160 + (90 - 160) * t; b = 23 * (1 - t);
+      }
+      LUT_R[i] = r + 0.5 | 0; LUT_G[i] = g + 0.5 | 0; LUT_B[i] = b + 0.5 | 0;
+    }
+  }());
+
+  function initSim() {
+    var i;
+    for (i = 0; i < N; i++) { uA[i] = 1; vA[i] = 0; }
+    var seeds = [[SIM_W >> 1, SIM_H >> 1], [77, 77], [179, 102], [102, 179]];
+    for (var s = 0; s < seeds.length; s++) {
+      var cx = seeds[s][0], cy = seeds[s][1], dx, dy, px, py;
+      for (dy = -6; dy <= 6; dy++) {
+        for (dx = -6; dx <= 6; dx++) {
+          if (dx * dx + dy * dy <= 36) {
+            px = (cx + dx + SIM_W) % SIM_W; py = (cy + dy + SIM_H) % SIM_H;
+            i = py * SIM_W + px; uA[i] = 0; vA[i] = 1;
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * One Gray-Scott step using 5-point Laplacian stencil with periodic boundaries.
+   * dU = Du*lap(U) - U*V^2 + F*(1-U)
+   * dV = Dv*lap(V) + U*V^2 - (F+k)*V
+   */
+  function simStep(u, v, nu, nv) {
+    var x, y, i, lt, rt, up, dn, ui, vi, lapU, lapV, uvv, val;
+    for (y = 0; y < SIM_H; y++) {
+      var row = y * SIM_W;
+      var rowUp = (y === 0 ? SIM_H - 1 : y - 1) * SIM_W;
+      var rowDn = (y === SIM_H - 1 ? 0 : y + 1) * SIM_W;
+      for (x = 0; x < SIM_W; x++) {
+        i = row + x;
+        lt = row + (x === 0 ? SIM_W - 1 : x - 1);
+        rt = row + (x === SIM_W - 1 ? 0 : x + 1);
+        up = rowUp + x; dn = rowDn + x;
+        ui = u[i]; vi = v[i];
+        lapU = u[lt] + u[rt] + u[up] + u[dn] - 4 * ui;
+        lapV = v[lt] + v[rt] + v[up] + v[dn] - 4 * vi;
+        uvv = ui * vi * vi;
+        val = ui + Du * lapU - uvv + F * (1 - ui);
+        nu[i] = val < 0 ? 0 : val > 1 ? 1 : val;
+        val = vi + Dv * lapV + uvv - (F + k) * vi;
+        nv[i] = val < 0 ? 0 : val > 1 ? 1 : val;
+      }
+    }
+  }
+
+  var offCanvas = document.createElement('canvas');
+  offCanvas.width = SIM_W; offCanvas.height = SIM_H;
+  var offCtx = offCanvas.getContext('2d');
+  var imgData = offCtx.createImageData(SIM_W, SIM_H);
+  var pix = imgData.data;
+
+  function render() {
+    var i, p, vi;
+    for (i = 0; i < N; i++) {
+      vi = (vA[i] * 255 + 0.5) | 0;
+      if (vi < 0) vi = 0; else if (vi > 255) vi = 255;
+      p = i << 2;
+      pix[p] = LUT_R[vi]; pix[p + 1] = LUT_G[vi]; pix[p + 2] = LUT_B[vi]; pix[p + 3] = 255;
+    }
+    offCtx.putImageData(imgData, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(offCanvas, 0, 0, W, H);
+  }
+
+  function drawOverlay() {
+    ctx.save();
+    ctx.globalAlpha = 0.18;
+    ctx.fillStyle = '#fdf6e3';
+    ctx.font = 'bold ' + Math.floor(H * 0.09) + 'px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('אֶרֶץ זָבַת חָלָב וּדְבַשׁ', W / 2, H / 2);
+    ctx.restore();
+  }
+
+  function resize() {
+    W = canvas.width = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  initSim();
+
+  var lastTs = 0;
+
+  function frame(ts) {
+    var dt = ts - lastTs;
+    if (dt > MAX_DT) dt = MAX_DT; // guard against catchup after tab sleep
+    lastTs = ts;
+    var tu, tv, s;
+    for (s = 0; s < STEPS_PER_FRAME; s++) {
+      simStep(uA, vA, uB, vB);
+      tu = uA; uA = uB; uB = tu;
+      tv = vA; vA = vB; vB = tv;
+    }
+    render();
+    drawOverlay();
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>
