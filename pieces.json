@@ -671,6 +671,17 @@
     "essay": "pieces/52-cloud-upon-the-mountain/essay.md"
   },
   {
+    "id": "52-milk-and-honey",
+    "title": "Milk and Honey — Halftone Drip",
+    "tagline": "זָבַת חָלָב וּדְבַשׁ — two halftone layers meet on cream: amber honey descends, milk-white rises, as on the day of Bikkurim",
+    "year": 2026,
+    "theme": "Bikkurim / Land Flowing with Milk and Honey",
+    "technique": "canvas 2D — variable-radius halftone dot-screen, procedural drip density field",
+    "path": "pieces/52-milk-and-honey/index.html",
+    "thumbnail": "pieces/52-milk-and-honey/thumbnail.svg",
+    "essay": "pieces/52-milk-and-honey/essay.md"
+  },
+  {
     "id": "52-tagin-in-bloom",
     "title": "Crowns Upon the Letters",
     "tagline": "the tagin bloom from the Torah's letterforms — reaction-diffusion tendrils crown the letters as Akiva found mountains of meaning in each mark",

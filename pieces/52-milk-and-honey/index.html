@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milk and Honey — Halftone Drip</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #FFF8E7; height: 100%; }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+    .art-panel {
+      flex: 0 0 50%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: #FFF8E7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    canvas { display: block; max-width: 100%; max-height: 100%; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 2px solid #E8C890;
+      overflow-y: auto;
+      background: #FFFDF5;
+      color: #5a3e10;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 70vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 2px solid #E8C890; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 {
+      font-size: 1.7rem;
+      color: #C97B00;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #A09080;
+      margin: 0 0 2.5rem;
+      font-style: italic;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #9B6A00;
+      margin: 2rem 0 0.5rem;
+      font-weight: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      max-width: 60ch;
+      line-height: 1.85;
+      margin: 0 0 1.1rem;
+      font-size: 0.93rem;
+    }
+    .essay-panel em { color: #B07000; font-style: italic; }
+    .essay-panel blockquote {
+      border-left: 3px solid #E8A020;
+      padding: 0.4rem 0 0.4rem 1rem;
+      margin: 1rem 0 1rem 0.5rem;
+      color: #7a5520;
+      font-style: italic;
+      font-size: 0.9rem;
+      max-width: 58ch;
+    }
+    .essay-panel .sources {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: #A09080;
+      border-top: 1px solid #E8D8B0;
+      padding-top: 1rem;
+      max-width: 60ch;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c" width="500" height="600"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Milk and Honey</h1>
+    <p class="subtitle">Chag HaBikkurim &middot; Deuteronomy 26:1&ndash;11</p>
+
+    <h2>The Promise</h2>
+    <p>The land was named before it was reached. &ldquo;And I have come down to deliver them&hellip; to bring them up to a good and broad land, a land flowing with milk and honey&rdquo; (Exodus 3:8). The phrase <em>eretz zavat chalav u&rsquo;dvash</em> &mdash; land flowing with milk and honey &mdash; appears over twenty times in the Torah. It begins as a destination held at a distance, a landscape made of words.</p>
+    <p>Shavuot closes that distance.</p>
+
+    <h2>The Bikkurim Declaration</h2>
+    <p>On Shavuot &mdash; <em>Chag HaBikkurim</em>, the Festival of First Fruits &mdash; the farmer brings the earliest-ripening produce to the Temple in Jerusalem. The ceremony is prescribed in Deuteronomy 26:1&ndash;11, and it is one of the few rituals in the Torah that includes its own script: the farmer must recite the entire narrative of descent into Egypt, slavery, redemption, and arrival in the land.</p>
+    <blockquote>
+      &ldquo;And He brought us to this place and gave us this land, a land flowing with milk and honey. And now, behold, I have brought the first fruits of the land which You, O Lord, have given me.&rdquo; (Deuteronomy 26:9&ndash;10)
+    </blockquote>
+    <p>The milk and honey are no longer distant prophecy. They are here, in the hand, in the basket held at arm&rsquo;s length before the altar. What was once a destination described in words has become something a person can hold.</p>
+
+    <h2>Two Kinds of Sustenance</h2>
+    <p>The great medieval commentators asked: which milk? Which honey? Most agree the honey is <em>silan</em> &mdash; date honey, the thick amber syrup pressed from ripe dates &mdash; or perhaps wild honey found in the clefts of limestone, as Deuteronomy 32:13 describes: &ldquo;He made him suck honey from a crag, and oil from a flinty rock.&rdquo; This is wild sweetness, not cultivated. The land yields it unasked, from its very geology.</p>
+    <p>The milk is different. Milk requires animals &mdash; goats and sheep tended on hillsides, morning and evening milking, the patient work of husbandry. Milk is the sweetness of the <em>domestic</em>, the abundance that flows from care and covenant with the creatures of the land.</p>
+    <p>Together, milk and honey represent two modes of divine provision: the untamed gift of the wild land, and the fruit of human partnership with creation. One flows from rock; the other from relationship. The two could not be more different in origin, and yet they are invoked together throughout the Torah &mdash; as if to say that the fullness of the Land requires both, and neither alone is sufficient.</p>
+
+    <h2>The Dairy Custom</h2>
+    <p>On Shavuot it is customary to eat dairy foods &mdash; cheesecake, blintzes, dishes of cheese and cream. The reasons given by halakhic authorities span centuries: the Torah was given on Shabbat and there was no time to prepare meat in the newly commanded manner; the laws separating milk from meat were just received and the vessels not yet ready to keep them apart; the land of milk and honey is most purely tasted in its dairy form. Each explanation circles the same intuition: on the day the Torah was given, what we eat becomes a form of remembrance.</p>
+    <p>The custom is also connected to the giving of Torah itself. The verse &ldquo;honey and milk are under your tongue&rdquo; (Song of Songs 4:11) was read by the Rabbis as a description of Torah study &mdash; sweet and nourishing in the same breath.</p>
+
+    <h2>The Artwork</h2>
+    <p>This piece renders the two substances as two halftone dot layers, computed entirely in JavaScript on an HTML canvas &mdash; no image assets, no CSS filters. The dot-screen is a print technique: divide the canvas into a grid, compute a density value at each point, draw a filled circle whose radius encodes that density. Dense regions look solid; sparse regions show only the cream background between small dots.</p>
+    <p>The honey descends from above &mdash; warm amber circles of variable radius, dense at the crown and thinning into a sinusoidal drip front, like actual honey pulling to a point before releasing. Below, the milk layer rises as pale blue-white dots from the lower half of the canvas, a cool counterpart always present, waiting.</p>
+    <p>Where the two layers meet is the heart of the image. The wavy honey front descends into the region where milk dots are already rising from below. For a moment, both grids are present in the same zone, amber and pale blue-white circles mingling on cream. The canvas embodies what Deuteronomy 26 compresses into one sentence: two kinds of abundance, meeting in one land, held in one hand.</p>
+
+    <p class="sources">Sources: Deuteronomy 26:1&ndash;11; Exodus 3:8; Deuteronomy 32:13; Song of Songs 4:11</p>
+  </div>
+</div>
+<script>
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;
+  const H = canvas.height;
+
+  const P = 11;           // halftone dot grid pitch (px)
+  const DRIP_SPEED = 30;  // pixels per second the drip front advances
+  const FADE_DIST = 88;   // distance (px) over which honey thins at drip front
+  const SINE_A = 28;      // amplitude of sinusoidal drip-front variation
+  const SINE_FREQ = 3;    // number of sine lobes across canvas width
+  const FADE_RATE = 0.4;  // alpha decrease per second during fade-out
+
+  // Honey color range: #C97B00 (201,123,0) → #E8A020 (232,160,32)
+  const HR1 = 201, HG1 = 123, HB1 = 0;
+  const HR2 = 232, HG2 = 160, HB2 = 32;
+  // Milk color: #D0D8F0 (208,216,240)
+  const MR = 208, MG = 216, MB = 240;
+
+  let dripY = 0;
+  let phase = 'dripping'; // 'dripping' | 'fading'
+  let fadeAlpha = 1.0;
+  let lastTs = null;
+
+  /**
+   * Returns an rgb() string for the honey color interpolated by density d ∈ [0,1].
+   * Low d → deep amber (#C97B00), high d → bright amber (#E8A020).
+   */
+  function honeyColor(d) {
+    const r = Math.round(HR1 + (HR2 - HR1) * d);
+    const g = Math.round(HG1 + (HG2 - HG1) * d);
+    const b = Math.round(HB1 + (HB2 - HB1) * d);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  /**
+   * Draws one full halftone frame.
+   * t: animation time in seconds (drives noise variation)
+   * alpha: global opacity for the dot layers (used during fade-out)
+   *
+   * Honey layer: dots above the sinusoidal drip front, density falling to
+   * zero at the front edge over FADE_DIST pixels, with sinusoidal noise.
+   * Milk layer: dots rising from the lower half, density increasing toward
+   * the bottom, with independent sinusoidal noise.
+   */
+  function drawFrame(t, alpha) {
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = '#FFF8E7';
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.globalAlpha = alpha;
+
+    const milkStart = H * 0.50;
+    const milkRange = H * 0.40;
+
+    for (let gy = P / 2; gy < H + P; gy += P) {
+      for (let gx = P / 2; gx < W + P; gx += P) {
+        // Sinusoidal drip front at this x position
+        const dripEdge = dripY + SINE_A * Math.sin(gx / W * Math.PI * 2 * SINE_FREQ + t * 0.4);
+
+        // Honey density: 1.0 well above the front, fades to 0 at the front
+        let hd = Math.max(0, Math.min(1, (dripEdge - gy) / FADE_DIST));
+        if (hd > 0) {
+          const noise = 0.14 * Math.sin(gx * 0.08 + t * 1.2) * Math.cos(gy * 0.06 - t * 0.7);
+          hd = Math.max(0, Math.min(1, hd + noise));
+        }
+
+        if (hd > 0.04) {
+          ctx.beginPath();
+          ctx.arc(gx, gy, P * 0.5 * hd, 0, Math.PI * 2);
+          ctx.fillStyle = honeyColor(hd);
+          ctx.fill();
+        }
+
+        // Milk density: rises from milkStart downward
+        let md = Math.max(0, Math.min(1, (gy - milkStart) / milkRange));
+        if (md > 0) {
+          const noise = 0.09 * Math.sin(gx * 0.05 + t * 0.6) * Math.cos(gy * 0.04 + t * 0.35);
+          md = Math.max(0, Math.min(1, md + noise));
+        }
+
+        if (md > 0.04) {
+          ctx.beginPath();
+          ctx.arc(gx, gy, P * 0.5 * md, 0, Math.PI * 2);
+          ctx.fillStyle = `rgb(${MR},${MG},${MB})`;
+          ctx.fill();
+        }
+      }
+    }
+
+    ctx.globalAlpha = 1.0;
+  }
+
+  function animate(ts) {
+    if (lastTs === null) lastTs = ts;
+    const dt = Math.min((ts - lastTs) / 1000, 0.05); // cap dt to avoid jumps on tab resume
+    lastTs = ts;
+
+    if (phase === 'dripping') {
+      dripY += DRIP_SPEED * dt;
+      if (dripY > H + SINE_A + 20) {
+        phase = 'fading';
+        fadeAlpha = 1.0;
+      }
+      drawFrame(ts / 1000, 1.0);
+    } else {
+      fadeAlpha -= FADE_RATE * dt;
+      if (fadeAlpha <= 0) {
+        dripY = 0;
+        phase = 'dripping';
+        fadeAlpha = 1.0;
+        lastTs = ts;
+      }
+      drawFrame(ts / 1000, Math.max(0, fadeAlpha));
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+</script>
+</body>
+</html>
