@@ -6,9 +6,6 @@ differentiation from related pieces (42-sinai-chuppah, 55-unfurling-scroll-ruth)
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "60-verlet-scroll-covenant"
