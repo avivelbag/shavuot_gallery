@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1A4ACA" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#08061A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="#08061A"/>
+
+  <!-- Glow at center -->
+  <ellipse cx="200" cy="150" rx="160" ry="120" fill="url(#glow)"/>
+
+  <!-- Lorenz butterfly silhouette — left lobe (x-z projection, schematic) -->
+  <!-- Left wing -->
+  <path d="M200,150
+    C190,130 160,115 140,120
+    C115,128 105,148 110,165
+    C118,188 148,198 172,190
+    C192,183 202,168 200,150Z"
+    fill="none" stroke="#4A1A8C" stroke-width="1.2" opacity="0.7"/>
+  <path d="M200,150
+    C192,136 168,124 150,128
+    C130,134 122,152 128,168
+    C136,186 158,192 176,186
+    C194,180 204,166 200,150Z"
+    fill="none" stroke="#1A4ACA" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Right wing -->
+  <path d="M200,150
+    C210,130 240,115 260,120
+    C285,128 295,148 290,165
+    C282,188 252,198 228,190
+    C208,183 198,168 200,150Z"
+    fill="none" stroke="#4A1A8C" stroke-width="1.2" opacity="0.7"/>
+  <path d="M200,150
+    C208,136 232,124 250,128
+    C270,134 278,152 272,168
+    C264,186 242,192 224,186
+    C206,180 196,166 200,150Z"
+    fill="none" stroke="#1A4ACA" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Inner orbit traces — left -->
+  <path d="M200,150 C188,138 172,132 162,136 C150,142 148,156 155,166 C163,178 180,180 192,174 C200,170 202,160 200,150Z"
+    fill="none" stroke="#D4A017" stroke-width="0.7" opacity="0.5"/>
+  <!-- Inner orbit traces — right -->
+  <path d="M200,150 C212,138 228,132 238,136 C250,142 252,156 245,166 C237,178 220,180 208,174 C200,170 198,160 200,150Z"
+    fill="none" stroke="#D4A017" stroke-width="0.7" opacity="0.5"/>
+
+  <!-- Crossing point highlight -->
+  <circle cx="200" cy="150" r="3" fill="#F5F0E0" opacity="0.8"/>
+
+  <!-- Aleph glyph — faint, centered -->
+  <text x="200" y="168"
+    font-family="'Noto Serif Hebrew', 'Times New Roman', serif"
+    font-size="72"
+    font-weight="100"
+    text-anchor="middle"
+    fill="white"
+    opacity="0.07">א</text>
+</svg>
