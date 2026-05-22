@@ -9,7 +9,6 @@ essay content (Zohar, Karo, Magen Avraham), thumbnail validity, and edge cases.
 import json
 import math
 import os
-import re
 import unicodedata
 
 import pytest
