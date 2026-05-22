@@ -669,5 +669,16 @@
     "path": "pieces/52-cloud-upon-the-mountain/index.html",
     "thumbnail": "pieces/52-cloud-upon-the-mountain/thumbnail.svg",
     "essay": "pieces/52-cloud-upon-the-mountain/essay.md"
+  },
+  {
+    "id": "52-tagin-in-bloom",
+    "title": "Crowns Upon the Letters",
+    "tagline": "the tagin bloom from the Torah's letterforms — reaction-diffusion tendrils crown the letters as Akiva found mountains of meaning in each mark",
+    "year": 2026,
+    "theme": "Tagin / Scribal Crowns",
+    "technique": "Gray-Scott reaction-diffusion seeded by Hebrew letterforms",
+    "path": "pieces/52-tagin-in-bloom/index.html",
+    "thumbnail": "pieces/52-tagin-in-bloom/thumbnail.svg",
+    "essay": "pieces/52-tagin-in-bloom/essay.md"
   }
 ]

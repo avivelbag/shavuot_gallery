@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crowns Upon the Letters — Tagin in Bloom · Shavuot Gallery</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0A0A1F; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0A0A1F;
+    }
+    canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2a2a4a;
+      overflow-y: auto;
+      color: #c0b090;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #06061a;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2a2a4a; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #FFD700; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #4a4a7a; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #c8a048; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #FFD700; font-style: normal; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Crowns Upon the Letters</h1>
+    <p class="subtitle">Tagin in Bloom — reaction-diffusion from the letterform</p>
+
+    <h2>The Crowns</h2>
+    <p>A <em>tag</em> (תָּג, plural <em>tagin</em>, תַּגִּין) is the small ornamental crown drawn atop certain Hebrew letters in a Torah scroll by the sofer — the ritual scribe. These tiny flourishes are not decorative afterthoughts. They are legally mandated, their presence or absence subject to rabbinical scrutiny. Seven letters bear full sets of tagin in a Torah scroll: <em>שׁ עָ טָ נָ זָ גָ יָ</em> — remembered by the mnemonic <em>sha'atnez getz</em> (שַׁעְטְנֵ"ז גָּ"ץ). Each letter in this sequence wears three tagin, crowns stacked like a diadem of fire.</p>
+
+    <h2>The Story at Sinai</h2>
+    <p>The Talmud (Menachot 29b) records a remarkable account: Moses, watching God inscribe the Torah in heaven, noticed God tying tiny crowns onto the letters. "Master of the Universe," Moses asked, "who requires these?" God replied: "There is a man who will arise after many generations — Akiva ben Joseph — who will one day derive mountains of halacha from each single one of them." Moses asked to see this Akiva and was transported forward in time to Akiva's academy. He sat at the back, unable to follow the discussion. When a student asked Akiva the source of his teaching, Akiva replied: "It is a teaching handed down from Moses at Sinai." And Moses was consoled.</p>
+    <p>This story contains a precise theological claim: the crowns are not decoration. They are surplus, latent meaning — marks whose reason exceeds current understanding. Moses could not decode what was being tied to the letters. He was told only to be patient. Understanding will arrive through time, through the right interpreter, through history itself unfolding.</p>
+
+    <h2>The Seal of Truth</h2>
+    <p>The Talmud (Shabbat 55a) teaches that <em>חוֹתָמוֹ שֶׁל הַקָּדוֹשׁ בָּרוּךְ הוּא אֱמֶת</em> — "the seal of the Holy One, blessed be He, is Truth — <em>אֶמֶת</em>." The word <em>emet</em> is built from the first, middle, and last letters of the Hebrew alphabet: alef, mem, tav. Truth spans the whole: beginning, middle, end. The tagin on each letter are the visible sign that the letter participates in this span, that it carries more than it immediately shows.</p>
+    <p>What does it mean to crown a letter? The letter already carries meaning — it is already language. The tag says: there is more here than the letter alone conveys. Rabbi Akiva's genius was to take those crowns seriously, to treat each one as a question — why here? what is being said that the letter itself cannot say? — and to derive living law from the residue.</p>
+
+    <h2>Latent Potential</h2>
+    <p>The Gray-Scott reaction-diffusion model enacts precisely this dynamic. The Hebrew letters <em>תּוֹרָה</em> (Torah) are rasterized onto the simulation grid as initial seeds: where a letter body falls, the activator and inhibitor concentrations are perturbed. The rest of the grid is inert — dark, uniform, stable.</p>
+    <p>Then the equations run: autocatalysis, inhibition, diffusion. Given time and the right conditions, organic tendrils bloom outward from the letter forms, branching and curling above and around the letterwork exactly as tagin curl above the letters in a Torah scroll. The letters contain latent potential; the simulation gives it time to bloom.</p>
+
+    <h2>The Simulation</h2>
+    <p>The Gray-Scott model maintains two chemical concentrations: U (activator) and V (inhibitor). Each frame advances 30 simulation steps with parameters Du = 0.21, Dv = 0.105, F = 0.055, k = 0.062 — the coral-growth regime producing branching organic tendrils. Letter pixels are re-seeded each step, keeping the letter cores stable while tendril crowns grow outward. After approximately 5000 steps the V field converges; non-letter areas are gently reset over 200 frames, then the bloom restarts.</p>
+    <p>Color maps the V field from deep midnight blue (<em>#0A0A1F</em>) at V = 0 to bright gold (<em>#FFD700</em>) at V = 1 — gold ink on dark parchment, the visual register of Torah written in fire on fire.</p>
+
+    <h2>Sources</h2>
+    <p>Talmud Bavli, Menachot 29b (Moses watching God crown the letters; Akiva deriving halacha from tagin). Talmud Bavli, Shabbat 55a (the seal of the Holy One is <em>emet</em>). Tractate Sofrim 1:6 (scribal law governing tagin). Rambam, Mishneh Torah, Hilchot Sefer Torah 7:7–8 (the seven letters bearing tagin: שַׁעְטְנֵ"ז גָּ"ץ).</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  /* Gray-Scott reaction-diffusion seeded by Hebrew letterforms.
+   * Letter pixels act as persistent seed points; organic tendrils grow outward,
+   * visually evoking tagin (scribal crowns) blooming from the letter bodies.
+   * Du=0.21, Dv=0.105, F=0.055, k=0.062 — coral/worm regime.
+   * Color: V=0 → #0A0A1F (midnight blue), V boosted → #FFD700 (gold). */
+
+  var SIM_W = 300, SIM_H = 300, N = SIM_W * SIM_H;
+  var Du = 0.21, Dv = 0.105, F = 0.055, k = 0.062;
+  var STEPS_PER_FRAME = 30;
+  var RESET_STEPS = 5000;
+  var RESET_FRAMES = 200;
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+  var W, H;
+
+  var uA = new Float32Array(N);
+  var vA = new Float32Array(N);
+  var uB = new Float32Array(N);
+  var vB = new Float32Array(N);
+  /* 1 where a letter pixel was rasterized; these cells are re-seeded each step */
+  var seedMask = new Uint8Array(N);
+
+  /* Color LUT indexed by floor(v_normalized * 255).
+   * V=0 maps to midnight blue #0A0A1F (10,10,31);
+   * V=1 maps to bright gold #FFD700 (255,215,0). */
+  var LUT_R = new Uint8Array(256);
+  var LUT_G = new Uint8Array(256);
+  var LUT_B = new Uint8Array(256);
+  (function buildLut() {
+    for (var i = 0; i < 256; i++) {
+      var t = i / 255;
+      LUT_R[i] = (10 + 245 * t + 0.5) | 0;
+      LUT_G[i] = (10 + 205 * t + 0.5) | 0;
+      LUT_B[i] = (31 * (1 - t) + 0.5) | 0;
+    }
+  }());
+
+  /* Rasterize תּוֹרָה onto an offscreen canvas; mark dark pixels in seedMask. */
+  function buildSeedMask() {
+    var off = document.createElement('canvas');
+    off.width = SIM_W; off.height = SIM_H;
+    var c = off.getContext('2d');
+    c.fillStyle = '#ffffff';
+    c.fillRect(0, 0, SIM_W, SIM_H);
+    c.fillStyle = '#000000';
+    c.font = 'bold ' + Math.floor(SIM_H * 0.48) + 'px serif';
+    c.textAlign = 'center';
+    c.textBaseline = 'middle';
+    c.fillText('תּוֹרָה', SIM_W / 2, SIM_H / 2);
+    var data = c.getImageData(0, 0, SIM_W, SIM_H).data;
+    for (var i = 0; i < N; i++) {
+      seedMask[i] = data[i * 4] < 128 ? 1 : 0;
+    }
+  }
+
+  /* Reset U and V arrays to the letter-seeded initial condition. */
+  function initSim() {
+    for (var i = 0; i < N; i++) {
+      if (seedMask[i]) {
+        uA[i] = 0.5; vA[i] = 0.25;
+      } else {
+        uA[i] = 1.0; vA[i] = 0.0;
+      }
+    }
+  }
+
+  /* One Gray-Scott step using a 5-point Laplacian stencil with toroidal boundaries.
+   * dU = Du*lap(U) - U*V^2 + F*(1-U)
+   * dV = Dv*lap(V) + U*V^2 - (F+k)*V
+   * After computing the step, letter-seed cells are clamped to their seed values
+   * to keep them as stable cores from which tendrils grow. */
+  function simStep(u, v, nu, nv) {
+    var x, y, i, lt, rt, up, dn, ui, vi, lapU, lapV, uvv, val;
+    for (y = 0; y < SIM_H; y++) {
+      var row = y * SIM_W;
+      var rowUp = (y === 0 ? SIM_H - 1 : y - 1) * SIM_W;
+      var rowDn = (y === SIM_H - 1 ? 0 : y + 1) * SIM_W;
+      for (x = 0; x < SIM_W; x++) {
+        i = row + x;
+        lt = row + (x === 0 ? SIM_W - 1 : x - 1);
+        rt = row + (x === SIM_W - 1 ? 0 : x + 1);
+        up = rowUp + x; dn = rowDn + x;
+        ui = u[i]; vi = v[i];
+        lapU = u[lt] + u[rt] + u[up] + u[dn] - 4 * ui;
+        lapV = v[lt] + v[rt] + v[up] + v[dn] - 4 * vi;
+        uvv = ui * vi * vi;
+        val = ui + Du * lapU - uvv + F * (1 - ui);
+        nu[i] = val < 0 ? 0 : val > 1 ? 1 : val;
+        val = vi + Dv * lapV + uvv - (F + k) * vi;
+        nv[i] = val < 0 ? 0 : val > 1 ? 1 : val;
+      }
+    }
+    for (i = 0; i < N; i++) {
+      if (seedMask[i]) { nu[i] = 0.5; nv[i] = 0.25; }
+    }
+  }
+
+  var offCanvas = document.createElement('canvas');
+  offCanvas.width = SIM_W; offCanvas.height = SIM_H;
+  var offCtx = offCanvas.getContext('2d');
+  var imgData = offCtx.createImageData(SIM_W, SIM_H);
+  var pix = imgData.data;
+
+  /* Map V field to RGB via LUT.
+   * V is multiplied by 3 so the coral-regime peak (~0.33) maps to full brightness,
+   * producing visible gold threads on the midnight-blue background. */
+  function render() {
+    var i, p, vi;
+    for (i = 0; i < N; i++) {
+      vi = (vA[i] * 3 * 255 + 0.5) | 0;
+      if (vi < 0) vi = 0; else if (vi > 255) vi = 255;
+      p = i << 2;
+      pix[p] = LUT_R[vi]; pix[p + 1] = LUT_G[vi]; pix[p + 2] = LUT_B[vi]; pix[p + 3] = 255;
+    }
+    offCtx.putImageData(imgData, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(offCanvas, 0, 0, W, H);
+  }
+
+  function resize() {
+    W = canvas.width = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  buildSeedMask();
+  initSim();
+
+  var totalSteps = 0;
+  var resetFrame = 0;
+  var resetting = false;
+
+  function frame() {
+    var tu, tv, s, i;
+
+    if (resetting) {
+      /* Exponential fade of V toward 0 for non-seed cells over RESET_FRAMES frames.
+       * 0.95^200 ≈ 0.00004, effectively zeroing the field before restart. */
+      for (i = 0; i < N; i++) {
+        if (!seedMask[i]) vA[i] *= 0.95;
+      }
+      resetFrame--;
+      if (resetFrame <= 0) {
+        resetting = false;
+        initSim();
+        totalSteps = 0;
+      }
+    } else {
+      for (s = 0; s < STEPS_PER_FRAME; s++) {
+        simStep(uA, vA, uB, vB);
+        tu = uA; uA = uB; uB = tu;
+        tv = vA; vA = vB; vB = tv;
+      }
+      totalSteps += STEPS_PER_FRAME;
+      if (totalSteps >= RESET_STEPS) {
+        resetting = true;
+        resetFrame = RESET_FRAMES;
+      }
+    }
+
+    render();
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>
