@@ -131,11 +131,10 @@ const KILL_RADIUS = 12;
 const SEGMENT_LENGTH = 6;
 const NUM_ATTRACTORS = 300;
 const UPWARD_BIAS = 0.35;
-const STEPS_PER_FRAME = 4;
+const STEPS_PER_FRAME = 1;
 
 let attractors = [];
 let nodes = [];
-let tips = [];
 let growthDone = false;
 let phase = 'growing';
 let holdStart = 0;
@@ -187,10 +186,7 @@ function seedAttractors() {
  * Initialize the tree with a single root node at the bottom center.
  */
 function seedTree() {
-  const rootX = W / 2;
-  const rootY = H * 0.90;
-  nodes = [{ x: rootX, y: rootY, parentIdx: -1, depth: 0 }];
-  tips = [0];
+  nodes = [{ x: W / 2, y: H * 0.90, parentIdx: -1, depth: 0 }];
 }
 
 function init() {
@@ -204,85 +200,78 @@ function init() {
 }
 
 /**
- * Execute one step of the space colonization algorithm (Runions 2007).
+ * Execute one step of the Runions 2007 space colonization algorithm.
  *
- * For each active tip:
- *   1. Collect attractors within PERCEPTION_RADIUS.
- *   2. Average the unit direction vectors toward them; add upward bias.
- *   3. Extend the tip by SEGMENT_LENGTH to create a new child node.
- * Then remove any attractor within KILL_RADIUS of any node.
+ * Unlike a single-tip frontier approach, ALL nodes in the tree are growth
+ * candidates. Each active attractor votes for its nearest node (within
+ * PERCEPTION_RADIUS). Every node that receives ≥1 vote grows one child in the
+ * averaged direction of its voters. Because separate attractor clusters can
+ * vote for the same parent node on different frames, a single node naturally
+ * forks into multiple children over time — producing a vascular branching tree.
+ *
+ * After growth, any attractor within KILL_RADIUS of any node is consumed.
+ * Growth terminates when a full step produces zero new nodes and zero consumed
+ * attractors — meaning the tree and the attractor field are mutually unreachable.
  */
 function stepGrowth() {
   if (growthDone) return;
 
-  const activeCount = attractors.reduce((n, a) => n + (a.active ? 1 : 0), 0);
-  if (activeCount === 0) {
-    growthDone = true;
-    return;
-  }
-
   const pr2 = PERCEPTION_RADIUS * PERCEPTION_RADIUS;
   const kr2 = KILL_RADIUS * KILL_RADIUS;
+
+  // Phase 1: each active attractor votes for its nearest node within pr.
+  // nodeInfluence maps nodeIndex -> accumulated direction sum and count.
+  const nodeInfluence = new Map();
+  for (let ai = 0; ai < attractors.length; ai++) {
+    const a = attractors[ai];
+    if (!a.active) continue;
+    let nearestIdx = -1;
+    let nearestD2 = pr2;
+    for (let ni = 0; ni < nodes.length; ni++) {
+      const d2 = dist2(a.x, a.y, nodes[ni].x, nodes[ni].y);
+      if (d2 < nearestD2) { nearestD2 = d2; nearestIdx = ni; }
+    }
+    if (nearestIdx === -1) continue;
+    const d = Math.sqrt(nearestD2);
+    const dx = (a.x - nodes[nearestIdx].x) / d;
+    const dy = (a.y - nodes[nearestIdx].y) / d;
+    if (!nodeInfluence.has(nearestIdx)) {
+      nodeInfluence.set(nearestIdx, { sumX: 0, sumY: 0, count: 0 });
+    }
+    const inf = nodeInfluence.get(nearestIdx);
+    inf.sumX += dx;
+    inf.sumY += dy;
+    inf.count++;
+  }
+
+  // Phase 2: grow one child per influenced node in the averaged direction.
   const newNodes = [];
-  const deadTips = new Set();
-
-  for (let ti = 0; ti < tips.length; ti++) {
-    const tipIdx = tips[ti];
-    const tip = nodes[tipIdx];
-    let sumX = 0, sumY = 0, count = 0;
-
-    for (let ai = 0; ai < attractors.length; ai++) {
-      const a = attractors[ai];
-      if (!a.active) continue;
-      const d2 = dist2(tip.x, tip.y, a.x, a.y);
-      if (d2 < pr2) {
-        const d = Math.sqrt(d2);
-        sumX += (a.x - tip.x) / d;
-        sumY += (a.y - tip.y) / d;
-        count++;
-      }
+  for (const [nodeIdx, inf] of nodeInfluence) {
+    const parent = nodes[nodeIdx];
+    const [nx, ny] = normalize(inf.sumX, inf.sumY - UPWARD_BIAS * inf.count);
+    const newX = parent.x + nx * SEGMENT_LENGTH;
+    const newY = parent.y + ny * SEGMENT_LENGTH;
+    if (newX >= 2 && newX <= W - 2 && newY >= 2 && newY <= H - 2) {
+      newNodes.push({ x: newX, y: newY, parentIdx: nodeIdx, depth: parent.depth + 1 });
     }
-
-    if (count === 0) {
-      deadTips.add(tipIdx);
-      continue;
-    }
-
-    sumY -= UPWARD_BIAS * count;
-    const [nx, ny] = normalize(sumX, sumY);
-    const newX = tip.x + nx * SEGMENT_LENGTH;
-    const newY = tip.y + ny * SEGMENT_LENGTH;
-
-    if (newX < 2 || newX > W - 2 || newY < 2 || newY > H - 2) {
-      deadTips.add(tipIdx);
-      continue;
-    }
-
-    newNodes.push({ x: newX, y: newY, parentIdx: tipIdx, depth: tip.depth + 1 });
-    deadTips.add(tipIdx);
   }
+  for (const n of newNodes) nodes.push(n);
 
-  for (const n of newNodes) {
-    const idx = nodes.length;
-    nodes.push(n);
-    tips.push(idx);
-  }
-  tips = tips.filter(ti => !deadTips.has(ti));
-
-  // Kill attractors within kill radius of any node
+  // Phase 3: consume attractors within kill radius of any node.
+  let anyConsumed = false;
   for (let ai = 0; ai < attractors.length; ai++) {
     const a = attractors[ai];
     if (!a.active) continue;
     for (let ni = 0; ni < nodes.length; ni++) {
-      const n = nodes[ni];
-      if (dist2(a.x, a.y, n.x, n.y) < kr2) {
+      if (dist2(a.x, a.y, nodes[ni].x, nodes[ni].y) < kr2) {
         a.active = false;
+        anyConsumed = true;
         break;
       }
     }
   }
 
-  if (tips.length === 0) {
+  if (newNodes.length === 0 && !anyConsumed) {
     growthDone = true;
   }
 }
