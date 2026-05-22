@@ -1,4 +1,4 @@
-# 57 — Ten Roots: Newton's Fractal of the Commandments
+# 59 — Ten Roots: Newton's Fractal of the Commandments
 
 **Theme:** Matan Torah / Aseret HaDibrot (the Ten Commandments at Sinai)
 

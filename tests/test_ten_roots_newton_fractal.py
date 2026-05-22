@@ -1,5 +1,5 @@
 """
-Tests for piece 57-ten-roots-newton-fractal.
+Tests for piece 59-ten-roots-newton-fractal.
 
 Verifies: file layout, pieces.json registration, essay content,
 HTML structure (WebGL shader, legend, essay embed), thumbnail SVG,
@@ -9,12 +9,9 @@ import cmath
 import json
 import math
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PIECE_ID = "57-ten-roots-newton-fractal"
+PIECE_ID = "59-ten-roots-newton-fractal"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 
 
