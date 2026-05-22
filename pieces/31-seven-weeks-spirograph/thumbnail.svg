@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" width="200" height="200">
+  <rect x="-100" y="-100" width="200" height="200" fill="#F2EAD3"/>
+  <defs>
+    <linearGradient id="rg" x1="1" y1="0" x2="-1" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2D5016"/>
+      <stop offset="50%" stop-color="#7A7A1A"/>
+      <stop offset="100%" stop-color="#C8962A"/>
+    </linearGradient>
+  </defs>
+  <!-- Seven-petal hypotrochoid: R=7, r=1, d=3, scale=9.
+       Points sampled at 10° intervals. SVG y-axis is flipped (y increases down). -->
+  <path d="M 81 0
+    L 66.7 -14 L 37.2 -4.9 L 19.8 27 L 27.9 58.1
+    L 48.2 64.7 L 54 46.8 L 32 27.4 L -4.1 29.8
+    L -27 54 L -22.9 76.6 L -5 74.1 L 0 46.8
+    L -21.2 18 L -54.9 11.3 L -73.8 27 L -64.2 41.9
+    L -39.7 32.8 L -27 0 L -39.7 -32.8 L -64.3 -41.9
+    L -73.8 -27 L -54.9 -11.3 L -21.2 -18 L 0 -46.8
+    L -5 -74.1 L -22.9 -76.6 L -27 -54 L -4.1 -29.8
+    L 32 -27.4 L 54 -46.8 L 48.2 -64.7 L 27.9 -58.1
+    L 19.8 -27 L 37.3 4.9 L 66.7 14 Z"
+    fill="none" stroke="url(#rg)" stroke-width="2.5" stroke-linejoin="round"/>
+  <text x="0" y="5" font-family="Georgia, serif" font-size="10"
+        fill="#2D5016" text-anchor="middle">שבועות</text>
+</svg>

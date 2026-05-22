@@ -273,5 +273,16 @@
     "path": "pieces/30-tikkun-leil-star-trails/index.html",
     "thumbnail": "pieces/30-tikkun-leil-star-trails/thumbnail.svg",
     "essay": "pieces/30-tikkun-leil-star-trails/essay.md"
+  },
+  {
+    "id": "31-seven-weeks-spirograph",
+    "title": "Seven Weeks of Seven",
+    "tagline": "the seven-fold Omer count drawn as a hypotrochoid rose — seven petals for seven weeks",
+    "year": 2026,
+    "theme": "Sefirat HaOmer — Seven Weeks / Kabbalistic Sefirot",
+    "technique": "canvas 2D hypotrochoid spirograph (roulette curve), progressive stroke animation",
+    "path": "pieces/31-seven-weeks-spirograph/index.html",
+    "thumbnail": "pieces/31-seven-weeks-spirograph/thumbnail.svg",
+    "essay": "pieces/31-seven-weeks-spirograph/essay.md"
   }
 ]

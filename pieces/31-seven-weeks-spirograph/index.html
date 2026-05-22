@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seven Weeks of Seven — Spirograph Omer Rose</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #F2EAD3;
+      color: #2D2D1A;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas {
+      display: block;
+      background: #F2EAD3;
+      border: 1px solid #C8962A;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.35rem;
+      color: #2D5016;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #6A5C30;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #C8962A;
+      padding-left: 0.75rem;
+      line-height: 1.5;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #2D2D1A;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #2D5016; font-style: normal; font-weight: bold; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #6A5C30;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #C8962A;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="560" height="560"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>Seven Weeks of Seven — Spirograph Omer Rose</h1>
+    <p class="source">The commandment to count the Omer is given in Leviticus 23:15–16: "You shall count for yourselves from the day after the Sabbath, from the day when you bring the wave-offering sheaf — seven complete weeks they shall be; until the day after the seventh Sabbath you shall count fifty days." Shavuot literally means "weeks" — the festival is named for the seven weeks of counting that precede it.</p>
+
+    <p>The structure of the Omer count is deceptively simple: seven times seven. Forty-nine days bridge Passover (the liberation from Egypt) and Shavuot (the giving of Torah at Sinai). But the kabbalists, particularly the Safed school of the sixteenth century, heard in these numbers a precise map of the soul's refinement.</p>
+
+    <p>The Zohar and later the Ari (R. Isaac Luria) mapped each of the forty-nine days onto a grid of the seven <em>sefirot</em> — divine emanations or qualities — repeated seven times. The first week belongs to <em>chesed</em> (lovingkindness); the second to <em>gevurah</em> (strength and discipline); the third to <em>tiferet</em> (beauty); the fourth to <em>netzach</em> (perseverance); the fifth to <em>hod</em> (gratitude); the sixth to <em>yesod</em> (connection); the seventh to <em>malkhut</em> (presence). Within each week, the seven days subdivide by the same qualities. Day 1 is chesed within chesed; Day 2 is gevurah within chesed. Each of the forty-nine days is a unique spiritual coordinate.</p>
+
+    <p>This piece encodes that seven-fold symmetry in the geometry of a hypotrochoid — a spirograph curve traced by a point on a small circle rolling inside a large one. With outer radius R = 7, inner radius r = 1, and tracing distance d = 3, the curve produces exactly seven petals. The mathematics reveals the theology: the same ratio 7:1 that governs the weeks governs the flower's symmetry.</p>
+
+    <p>The Zohar (Tikunei Zohar 18b) describes the counting as "the purification of the bride before her wedding." Israel is the bride; Torah is the groom; and the forty-nine days are the preparation — the inner work of <em>teshuvah</em> and <em>tikun</em> that makes the receiving of Torah possible. The kabbalists speak of the forty-nine gates of impurity absorbed during slavery, one gate being shed each day of the Omer. By the fiftieth day, Shavuot, all gates stand open.</p>
+
+    <p>The curve is drawn progressively over eight seconds — one second per week of counting. The color journey mirrors the agricultural Omer season: deep field green at the start (<em>barley</em> harvest, Passover's grain) shifts to harvest gold by the close (<em>wheat</em> harvest, Shavuot's Shtei HaLechem offering). The completed rose displays <span style="font-size:1.1em;color:#2D5016;direction:rtl;unicode-bidi:embed;">שָׁבוּעוֹת</span> at its heart, where the seven petals converge — the destination that the seven-fold structure encircles and points toward, but cannot contain.</p>
+
+    <p>The Sefat Emet observed that the word <em>sefirah</em> (counting) shares its root with <em>sapphire</em> — the gemstone representing divine clarity. The forty-nine days are not mere waiting; they are facets being polished. The spirograph enacts this same arc: the curve must trace the full seven-fold path before the flower's shape becomes visible. So too with the Omer: the complete design is seen only at the end.</p>
+
+    <p class="citations">See: Leviticus 23:15–16; Zohar, Tikunei Zohar 18b; Pri Etz Chaim, Sha'ar Sefirat HaOmer (R. Chaim Vital, c. 1600); Talmud Bavli Rosh HaShanah 21b; Sefat Emet, Bamidbar (R. Yehudah Leib Alter, 1847–1905); Sefer HaChinuch, Mitzvah 306.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = 560, H = 560, cx = W / 2, cy = H / 2;
+  const BG = '#F2EAD3';
+
+  // Hypotrochoid parameters producing a 7-petal rose.
+  // x(t) = (R-r)*cos(t) + d*cos((R-r)/r * t)
+  // y(t) = (R-r)*sin(t) - d*sin((R-r)/r * t)
+  // With R=7, r=1: frequency ratio K=6, curve distance^2 = 45 + 36*cos(7t)
+  // giving 7 maxima (petal tips) at t = 2πk/7 for k=0..6.
+  const Rv = 7, rv = 1, dv = 3;
+  const K = (Rv - rv) / rv;
+  const SCALE = 250 / (Rv - rv + dv);
+
+  const NUM_POINTS = 3000;
+  const T_MAX = 2 * Math.PI;
+
+  const xs = new Float32Array(NUM_POINTS + 1);
+  const ys = new Float32Array(NUM_POINTS + 1);
+  for (let i = 0; i <= NUM_POINTS; i++) {
+    const t = (i / NUM_POINTS) * T_MAX;
+    xs[i] = cx + ((Rv - rv) * Math.cos(t) + dv * Math.cos(K * t)) * SCALE;
+    ys[i] = cy + ((Rv - rv) * Math.sin(t) - dv * Math.sin(K * t)) * SCALE;
+  }
+
+  // Palette: field green (#2D5016) → harvest gold (#C8962A)
+  const C0 = [0x2D, 0x50, 0x16];
+  const C1 = [0xC8, 0x96, 0x2A];
+  function lerpColor(t) {
+    const r = Math.round(C0[0] + (C1[0] - C0[0]) * t);
+    const g = Math.round(C0[1] + (C1[1] - C0[1]) * t);
+    const b = Math.round(C0[2] + (C1[2] - C0[2]) * t);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  // Hebrew numerals 1-49 for the center ring display
+  function buildHebrewNums() {
+    const ones = ['', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט'];
+    const tens = ['', 'י', 'כ', 'ל', 'מ'];
+    const out = [];
+    for (let n = 1; n <= 49; n++) {
+      if (n === 15) { out.push('ט״ו'); continue; }
+      if (n === 16) { out.push('ט״ז'); continue; }
+      const d = Math.floor(n / 10), u = n % 10;
+      if (d && u) out.push(tens[d] + '״' + ones[u]);
+      else if (d) out.push(tens[d] + '׳');
+      else out.push(ones[u] + '׳');
+    }
+    return out;
+  }
+  const NUMS = buildHebrewNums();
+
+  const DRAW_MS = 8000;
+  const HOLD_MS = 2000;
+  const CYCLE_MS = DRAW_MS + HOLD_MS;
+
+  // Offscreen canvas accumulates curve segments across frames for efficiency.
+  // Only new segments are drawn each frame; completed segments persist.
+  const offscreen = document.createElement('canvas');
+  offscreen.width = W;
+  offscreen.height = H;
+  const offCtx = offscreen.getContext('2d');
+  offCtx.fillStyle = BG;
+  offCtx.fillRect(0, 0, W, H);
+
+  let startTs = null;
+  let lastCycleIdx = -1;
+  let lastDrawnIdx = 0;
+
+  function draw(ts) {
+    if (startTs === null) startTs = ts;
+    const totalMs = ts - startTs;
+    const cycleIdx = Math.floor(totalMs / CYCLE_MS);
+    const elapsed = totalMs % CYCLE_MS;
+
+    if (cycleIdx !== lastCycleIdx) {
+      offCtx.fillStyle = BG;
+      offCtx.fillRect(0, 0, W, H);
+      lastDrawnIdx = 0;
+      lastCycleIdx = cycleIdx;
+    }
+
+    const inDraw = elapsed < DRAW_MS;
+    const fraction = inDraw ? elapsed / DRAW_MS : 1.0;
+    const targetIdx = Math.min(Math.floor(fraction * NUM_POINTS), NUM_POINTS);
+
+    if (targetIdx > lastDrawnIdx) {
+      offCtx.lineWidth = 2.5;
+      offCtx.lineCap = 'round';
+      for (let i = lastDrawnIdx + 1; i <= targetIdx; i++) {
+        const colorT = (i - 1) / NUM_POINTS;
+        offCtx.beginPath();
+        offCtx.moveTo(xs[i - 1], ys[i - 1]);
+        offCtx.lineTo(xs[i], ys[i]);
+        offCtx.strokeStyle = lerpColor(colorT);
+        offCtx.stroke();
+      }
+      lastDrawnIdx = targetIdx;
+    }
+
+    ctx.drawImage(offscreen, 0, 0);
+
+    if (!inDraw) {
+      const holdFrac = (elapsed - DRAW_MS) / HOLD_MS;
+      // Smooth fade-in and fade-out using a sine envelope over the hold window.
+      const alpha = Math.sin(holdFrac * Math.PI);
+      if (alpha > 0.01) {
+        ctx.save();
+        ctx.globalAlpha = alpha;
+
+        // Ring of 49 Hebrew day-numbers arranged in a full circle at radius 62px.
+        // The inner region of the completed rose is clear to radius ~83px (3 * SCALE).
+        ctx.font = '7.5px Georgia, serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#6A5C30';
+        for (let i = 0; i < 49; i++) {
+          const angle = (i / 49) * Math.PI * 2 - Math.PI / 2;
+          const nr = 62;
+          const nx = cx + nr * Math.cos(angle);
+          const ny = cy + nr * Math.sin(angle);
+          ctx.fillText(NUMS[i], nx, ny);
+        }
+
+        // Central label: שָׁבוּעוֹת
+        ctx.font = 'bold 24px Georgia, serif';
+        ctx.fillStyle = '#2D5016';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('שָבוּעות', cx, cy);
+
+        ctx.restore();
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
