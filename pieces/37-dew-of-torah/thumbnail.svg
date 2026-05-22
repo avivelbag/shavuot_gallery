@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%"   stop-color="#12215A"/>
+      <stop offset="100%" stop-color="#060C1E"/>
+    </radialGradient>
+    <radialGradient id="drop1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#F8F0D0" stop-opacity="1"/>
+      <stop offset="60%"  stop-color="#EAF4FF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#EAF4FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="drop2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#FFFAF0" stop-opacity="1"/>
+      <stop offset="55%"  stop-color="#D8ECFF" stop-opacity="0.90"/>
+      <stop offset="100%" stop-color="#D8ECFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="400" height="300" fill="url(#bg)"/>
+
+  <!-- Ground -->
+  <rect x="0" y="248" width="400" height="52" fill="#0C0D10"/>
+
+  <!-- Falling drops (small, high up) -->
+  <circle cx="80"  cy="40"  r="5"  fill="url(#drop2)" opacity="0.6"/>
+  <circle cx="150" cy="20"  r="4"  fill="url(#drop2)" opacity="0.5"/>
+  <circle cx="240" cy="55"  r="6"  fill="url(#drop2)" opacity="0.65"/>
+  <circle cx="320" cy="30"  r="4"  fill="url(#drop2)" opacity="0.5"/>
+  <circle cx="360" cy="80"  r="5"  fill="url(#drop2)" opacity="0.55"/>
+  <circle cx="60"  cy="120" r="7"  fill="url(#drop2)" opacity="0.70"/>
+  <circle cx="190" cy="100" r="5"  fill="url(#drop2)" opacity="0.60"/>
+  <circle cx="290" cy="90"  r="6"  fill="url(#drop2)" opacity="0.65"/>
+
+  <!-- Mid-air drops (medium) -->
+  <circle cx="110" cy="165" r="9"  fill="url(#drop1)" filter="url(#glow)" opacity="0.85"/>
+  <circle cx="260" cy="150" r="8"  fill="url(#drop1)" filter="url(#glow)" opacity="0.80"/>
+  <circle cx="340" cy="175" r="7"  fill="url(#drop1)" filter="url(#glow)" opacity="0.75"/>
+
+  <!-- Pooled drops at ground — larger, merged metaballs -->
+  <circle cx="90"  cy="236" r="18" fill="url(#drop1)" filter="url(#softglow)" opacity="0.92"/>
+  <circle cx="160" cy="238" r="14" fill="url(#drop1)" filter="url(#glow)"     opacity="0.90"/>
+  <circle cx="220" cy="234" r="22" fill="url(#drop1)" filter="url(#softglow)" opacity="0.95"/>
+  <circle cx="300" cy="237" r="16" fill="url(#drop1)" filter="url(#glow)"     opacity="0.90"/>
+  <circle cx="355" cy="239" r="12" fill="url(#drop1)" filter="url(#glow)"     opacity="0.85"/>
+
+  <!-- Hebrew text hint -->
+  <text x="200" y="136" font-family="Georgia,serif" font-size="16"
+        fill="rgba(200,228,255,0.45)" text-anchor="middle" direction="rtl"
+        letter-spacing="4">תִּזַּל כַּטַּל</text>
+</svg>

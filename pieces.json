@@ -350,5 +350,16 @@
     "path": "pieces/36-heart-of-heaven/index.html",
     "thumbnail": "pieces/36-heart-of-heaven/thumbnail.svg",
     "essay": "pieces/36-heart-of-heaven/essay.md"
+  },
+  {
+    "id": "37-dew-of-torah",
+    "title": "Let My Teaching Drop as Dew",
+    "tagline": "תִּזַּל כַּטַּל אִמְרָתִי — metaball droplets fall silently and pool into Torah",
+    "year": 2026,
+    "theme": "Matan Torah / Deuteronomy 32:2 — Torah as Dew",
+    "technique": "WebGL fragment shader / metaball SDF threshold, JS physics simulation",
+    "path": "pieces/37-dew-of-torah/index.html",
+    "thumbnail": "pieces/37-dew-of-torah/thumbnail.svg",
+    "essay": "pieces/37-dew-of-torah/essay.md"
   }
 ]

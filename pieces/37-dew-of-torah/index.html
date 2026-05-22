@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let My Teaching Drop as Dew — Metaballs</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #0D1B3E;
+      color: #c8d8ee;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #glCanvas {
+      display: block;
+      width: 100%; height: 100%;
+    }
+    .hebrew-overlay {
+      position: absolute;
+      top: 1.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.9rem;
+      letter-spacing: 0.18em;
+      color: rgba(220, 238, 255, 0.80);
+      text-shadow:
+        0 0 14px rgba(160, 200, 255, 0.55),
+        0 0 36px rgba(100, 150, 240, 0.22);
+      pointer-events: none;
+      white-space: nowrap;
+      direction: rtl;
+      z-index: 2;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(6, 10, 24, 0.97);
+      border-left: 1px solid rgba(80, 120, 200, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #8ab2e0;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(180, 210, 255, 0.52);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.78;
+      margin: 0 0 1rem;
+      color: #b8ccdf;
+    }
+    .essay p strong { color: #8ab2e0; }
+    .essay .source {
+      font-size: 0.78rem;
+      color: rgba(180, 210, 255, 0.42);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(80, 120, 200, 0.12);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 60vw; min-height: 280px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(80,120,200,0.18); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="glCanvas"></canvas>
+    <div class="hebrew-overlay">תִּזַּל כַּטַּל אִמְרָתִי</div>
+  </div>
+
+  <div class="essay">
+    <h1>Let My Teaching Drop as Dew</h1>
+    <h2>Deuteronomy 32:2 — Torah as dew, available to all</h2>
+    <p style="font-style:italic; color:rgba(180,210,255,0.65); font-size:0.88rem; margin-bottom:1.4rem; border-left:2px solid rgba(100,160,255,0.3); padding-left:0.8rem;"><span dir="rtl">יַעֲרֹף כַּמָּטָר לִקְחִי, תִּזַּל כַּטַּל אִמְרָתִי</span><br>"Let my teaching drop like rain, my speech distill as dew." — Deuteronomy 32:2</p>
+
+    <p>The opening verse of Moses's farewell poem, Ha'azinu, makes a double
+    comparison that the rabbis refused to collapse into a single image. Rain
+    and dew are not the same thing, and Moses is deliberate: his <em>teaching</em>
+    (likhi) will be like rain, but his <em>speech</em> (imrati) — his most intimate
+    utterance — will be like dew. The distinction is crucial, and the Talmud
+    presses it hard in <strong>Eruvin 54b</strong>.</p>
+
+    <p><strong>Eruvin 54b</strong> asks why, if Torah can be compared to rain,
+    the tradition leans so heavily on dew. The Talmud's answer emerges from
+    observation. Rain can damage. It floods fields, erodes soil, destroys what
+    is already planted. Dew never damages. It arrives without force, absorbed
+    silently into whatever it touches, leaving nothing broken. Torah, therefore,
+    must be like dew: it falls on the learned and the unlearned, the strong
+    vessel and the broken one, those who seek it and those who have not thought
+    to look. The Talmud states this plainly: just as dew is available to
+    everyone, so Torah words must be available to everyone. The absence of
+    exclusivity is the point. This is a radical claim: most spiritual goods
+    require initiation or preparation. But Torah as dew does not require any
+    special vessel. It falls.</p>
+
+    <p><strong>Rashi on Eruvin 54b</strong> adds the observation that transforms
+    the image entirely. Rain announces itself. Clouds gather, thunder rolls, the
+    air changes. You can watch rain coming and prepare. Dew does not announce
+    itself. It forms in the night, in silence, and you discover it only in the
+    morning when everything is already wet. This is why Moses chose dew
+    specifically for <em>imrati</em> — his <em>speech</em>, the direct utterance,
+    the most unmediated form of teaching. Torah absorbed as dew is absorbed
+    without performance, without the act of receiving being made visible, without
+    ceremony. It enters quietly.</p>
+
+    <p>This silence is theologically significant. The opposite of dew is not
+    rain — it is a fanfare. The scholar who takes up Torah with great display,
+    announcing the beginning of learning and the difficulty of learning and the
+    prestige of learning, has made it rain. The scholar who simply learns —
+    who reads in the night, who thinks while walking, who returns to the same
+    text as naturally as one returns to morning — has let it fall as dew.
+    Torah absorbed this way becomes part of the ground it touches. It cannot
+    be extracted. The ground is changed.</p>
+
+    <p>Why did Moses choose this image in his final speech? Because Ha'azinu
+    is the penultimate utterance of his life, spoken by a man who knows he will
+    not enter the land. He is not teaching for himself. He is teaching so that
+    what he transmits will remain after he is gone. And dew is precisely the
+    image of transmission that does not require the original source to be
+    present. Rain requires clouds. Dew forms from the air itself, from moisture
+    already present in the world. Once Moses has spoken, Torah continues to
+    form — from the existing conditions of the community, the tradition, the
+    accumulated words. He will be gone. The teaching will still arrive, nightly,
+    silently.</p>
+
+    <p>In this piece, glowing droplets fall from the deep indigo sky and
+    accumulate on an implied surface. Each drop falls without drama — no
+    announcement, no violence. At the ground they settle, and when enough have
+    gathered, smaller drops are absorbed into larger ones: the pool grows. Over
+    time, the resting positions of the settled drops are gently biased, and the
+    accumulation traces the shape of the word <strong>תּוֹרָה</strong> — not by
+    force, but by the patient addition of what arrives each morning to what was
+    already there. The letter does not appear suddenly. It emerges. That is the
+    only way dew makes something.</p>
+
+    <p class="source">WebGL fragment shader / metaball SDF threshold · 2026</p>
+  </div>
+</div>
+
+<!-- Vertex shader: fullscreen quad pass-through -->
+<script type="x-shader/x-vertex" id="vert">
+attribute vec2 aPos;
+void main() {
+  gl_Position = vec4(aPos, 0.0, 1.0);
+}
+</script>
+
+<!-- Fragment shader: metaball SDF field rendered over night-sky background.
+     Each ball contributes r²/|p−c|² to the field; pixels where the sum
+     crosses 1.0 are inside the metaball surface.                         -->
+<script type="x-shader/x-fragment" id="frag">
+precision highp float;
+
+#define MAX_BALLS 60
+
+uniform vec2  uResolution;
+uniform vec3  uBalls[MAX_BALLS]; /* (cx_norm, cy_norm, r_norm) — y=0 at bottom */
+uniform float uGround;           /* ground line in GL normalized y (0..1 from bottom) */
+
+void main() {
+  vec2  uv     = gl_FragCoord.xy / uResolution;
+  float aspect = uResolution.x / uResolution.y;
+
+  /* Metaball SDF field — sum of rᵢ²/|p−cᵢ|² with aspect-correct distances */
+  float field = 0.0;
+  for (int i = 0; i < MAX_BALLS; i++) {
+    float r = uBalls[i].z;
+    vec2  d = (uv - uBalls[i].xy) * vec2(aspect, 1.0);
+    float d2 = max(dot(d, d), 0.000025);
+    field += r * r / d2;
+  }
+
+  /* Background: deep indigo sky fading to near-black at top */
+  float skyT      = smoothstep(uGround + 0.01, 1.0, uv.y);
+  vec3  skyNear   = vec3(0.072, 0.112, 0.258); /* rich indigo near ground */
+  vec3  skyFar    = vec3(0.030, 0.042, 0.100); /* near-black at canvas top */
+  vec3  groundCol = vec3(0.055, 0.055, 0.062); /* dark charcoal ground */
+  float aboveGnd  = smoothstep(uGround - 0.006, uGround + 0.006, uv.y);
+  vec3  sky       = mix(skyNear, skyFar, skyT);
+  vec3  bgCol     = mix(groundCol, sky, aboveGnd);
+
+  /* Ambient glow — subtle halo around forming metaballs */
+  float halo  = clamp((field - 0.25) / 0.75, 0.0, 1.0);
+  bgCol      += vec3(0.22, 0.32, 0.52) * halo * 0.10;
+
+  /* Surface threshold with smooth anti-alias band */
+  float inside = smoothstep(0.92, 1.08, field);
+
+  /* Color: pearl white at the metaball edge, pale gold deeper inside */
+  vec3  pearlWhite = vec3(0.918, 0.957, 1.000); /* #EAF4FF */
+  vec3  paleGold   = vec3(0.973, 0.941, 0.816); /* #F8F0D0 */
+  float depth      = clamp((field - 1.0) * 2.0, 0.0, 1.0);
+  vec3  ballCol    = mix(pearlWhite, paleGold, depth);
+
+  /* Specular highlight: small bright point near each ball center */
+  float specular = clamp((field - 3.0) * 0.4, 0.0, 1.0);
+  ballCol = mix(ballCol, vec3(1.0, 0.99, 0.97), specular);
+
+  vec3 col = mix(bgCol, ballCol, inside);
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}
+</script>
+
+<script>
+(function () {
+  /* ── WebGL bootstrap ───────────────────────────────────────────── */
+  const canvas = document.getElementById('glCanvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) {
+    canvas.style.background = '#0D1B3E';
+    console.warn('WebGL not available');
+    return;
+  }
+
+  function compileShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.error('Shader error:', gl.getShaderInfoLog(s));
+      gl.deleteShader(s);
+      return null;
+    }
+    return s;
+  }
+
+  const vSrc = document.getElementById('vert').textContent.trim();
+  const fSrc = document.getElementById('frag').textContent.trim();
+  const vert = compileShader(gl.VERTEX_SHADER,   vSrc);
+  const frag = compileShader(gl.FRAGMENT_SHADER, fSrc);
+  if (!vert || !frag) return;
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vert);
+  gl.attachShader(prog, frag);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    console.error('Link error:', gl.getProgramInfoLog(prog));
+    return;
+  }
+
+  const quad = new Float32Array([-1, -1,  1, -1,  -1, 1,  1, 1]);
+  const buf  = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, quad, gl.STATIC_DRAW);
+
+  gl.useProgram(prog);
+  const aPosLoc    = gl.getAttribLocation(prog,  'aPos');
+  gl.enableVertexAttribArray(aPosLoc);
+  gl.vertexAttribPointer(aPosLoc, 2, gl.FLOAT, false, 0, 0);
+
+  const uResLoc    = gl.getUniformLocation(prog, 'uResolution');
+  const uBallsLoc  = gl.getUniformLocation(prog, 'uBalls[0]');
+  const uGroundLoc = gl.getUniformLocation(prog, 'uGround');
+
+  /* ── Physics constants (normalized coords: 0..1 in each axis) ── */
+  const MAX_BALLS    = 60;
+  const GRAVITY      = 0.00028;  /* per-frame² downward acceleration */
+  const DRAG         = 0.990;    /* per-frame velocity multiplier    */
+  const GROUND_FRAC  = 0.820;    /* ground as fraction of canvas h   */
+  const MIN_R        = 0.0070;   /* min ball radius (fraction of H)  */
+  const MAX_R        = 0.0155;   /* max ball radius                  */
+  const SPAWN_EVERY  = 50;       /* frames between spawns            */
+  const DRIFT_SPEED  = 0.00080;  /* per-frame drift toward letter    */
+
+  /* ── Letter target points for "תּוֹרָה" ──────────────────────────
+     Stored as (fracX, fracY) fractions.  Hebrew is RTL so the visual
+     left-to-right order is ה ר ו ת.  All targets are near the ground
+     so settled balls need only small drifts to reach them.           */
+  const TARGETS = [
+    /* ה — leftmost visually, x: 0.23..0.34 */
+    [0.230, 0.770], [0.268, 0.745], [0.305, 0.745], [0.340, 0.745],
+    [0.230, 0.780], [0.340, 0.758],
+    [0.265, 0.780],
+    /* ר — x: 0.385..0.470 */
+    [0.385, 0.745], [0.428, 0.745], [0.470, 0.745],
+    [0.470, 0.758], [0.470, 0.768], [0.470, 0.780],
+    /* ו — narrow vav, x: 0.520..0.535 */
+    [0.528, 0.732], [0.528, 0.749], [0.528, 0.764], [0.528, 0.780],
+    /* ת — rightmost visually, x: 0.575..0.760 */
+    [0.575, 0.745], [0.620, 0.745], [0.668, 0.745], [0.715, 0.745], [0.760, 0.745],
+    [0.575, 0.758], [0.575, 0.769], [0.575, 0.780],
+    [0.760, 0.758], [0.760, 0.769], [0.760, 0.780],
+  ];
+
+  /* ── Ball state array ────────────────────────────────────────── */
+  const balls    = [];
+  let   frameNum = 0;
+
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+
+  function spawnBall() {
+    if (balls.length >= MAX_BALLS) return;
+    balls.push({
+      x:  rnd(0.04, 0.96),
+      y:  rnd(-0.040, -0.010),  /* above top edge */
+      vx: rnd(-0.0012, 0.0012),
+      vy: rnd(0.0004, 0.0010),
+      r:  rnd(MIN_R, MAX_R),
+      settled: false,
+    });
+  }
+
+  /* Find nearest letter-target to (bx, by); prefer unclaimed targets */
+  function nearestTarget(bx, by) {
+    const claimed = new Set(balls.filter(b => b.settled && b._ti != null).map(b => b._ti));
+    let best = 0, bestDist = Infinity;
+    TARGETS.forEach(([fx, fy], idx) => {
+      if (claimed.has(idx)) return;
+      const d = Math.hypot(bx - fx, by - fy);
+      if (d < bestDist) { bestDist = d; best = idx; }
+    });
+    /* if all claimed, pick nearest regardless */
+    if (bestDist === Infinity) {
+      TARGETS.forEach(([fx, fy], idx) => {
+        const d = Math.hypot(bx - fx, by - fy);
+        if (d < bestDist) { bestDist = d; best = idx; }
+      });
+    }
+    return best;
+  }
+
+  /* Merge settled balls that overlap strongly (center distance < 0.85*(r1+r2)) */
+  function mergeSettled() {
+    let changed = true;
+    while (changed) {
+      changed = false;
+      outer: for (let i = 0; i < balls.length; i++) {
+        if (!balls[i].settled) continue;
+        for (let j = i + 1; j < balls.length; j++) {
+          if (!balls[j].settled) continue;
+          const dx = balls[i].x - balls[j].x;
+          const dy = balls[i].y - balls[j].y;
+          if (Math.sqrt(dx * dx + dy * dy) < (balls[i].r + balls[j].r) * 0.85) {
+            const ri = balls[i].r, rj = balls[j].r;
+            /* Keep the larger ball's position; grow its radius conservatively */
+            if (rj > ri) {
+              balls[i].x = balls[j].x;
+              balls[i].y = balls[j].y;
+            }
+            balls[i].r = Math.sqrt(ri * ri + rj * rj);
+            balls.splice(j, 1);
+            changed = true;
+            break outer;
+          }
+        }
+      }
+    }
+  }
+
+  /* Flat upload buffer: 3 floats per ball × MAX_BALLS */
+  const ballData = new Float32Array(MAX_BALLS * 3);
+
+  let lastW = 0, lastH = 0;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w   = Math.round(canvas.clientWidth  * dpr);
+    const h   = Math.round(canvas.clientHeight * dpr);
+    if (w === lastW && h === lastH) return;
+    lastW = w; lastH = h;
+    canvas.width  = w;
+    canvas.height = h;
+    gl.viewport(0, 0, w, h);
+  }
+
+  function frame() {
+    resize();
+    const W = lastW, H = lastH;
+    if (W === 0 || H === 0) { requestAnimationFrame(frame); return; }
+
+    frameNum++;
+
+    /* Spawn one new droplet periodically */
+    if (frameNum % SPAWN_EVERY === 0) spawnBall();
+
+    /* Physics update */
+    for (const b of balls) {
+      if (b.settled) {
+        /* Drift settled ball gently toward its letter target */
+        const [tx, ty] = TARGETS[b._ti];
+        const dx = tx - b.x, dy = ty - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > 0.0005) {
+          b.x += (dx / dist) * DRIFT_SPEED;
+          b.y += (dy / dist) * DRIFT_SPEED;
+        }
+        continue;
+      }
+
+      /* Falling drop: gravity + drag */
+      b.vy = (b.vy + GRAVITY) * DRAG;
+      b.vx *= DRAG;
+      b.x  += b.vx;
+      b.y  += b.vy;
+
+      if (b.y + b.r >= GROUND_FRAC) {
+        b.y      = GROUND_FRAC - b.r;
+        b.settled = true;
+        b.vy      = 0;
+        b.vx      = 0;
+        b._ti     = nearestTarget(b.x, b.y);
+      }
+    }
+
+    mergeSettled();
+
+    /* Upload ball data to shader (GL y=0 at bottom, so flip y) */
+    ballData.fill(0);
+    for (let i = 0; i < balls.length && i < MAX_BALLS; i++) {
+      const b = balls[i];
+      ballData[i * 3 + 0] = b.x;
+      ballData[i * 3 + 1] = 1.0 - b.y;
+      ballData[i * 3 + 2] = b.r;
+    }
+
+    gl.uniform3fv(uBallsLoc, ballData);
+    gl.uniform2f(uResLoc, W, H);
+    gl.uniform1f(uGroundLoc, 1.0 - GROUND_FRAC);
+
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(frame);
+  }
+
+  frame();
+}());
+</script>
+</body>
+</html>
