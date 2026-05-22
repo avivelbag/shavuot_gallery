@@ -361,5 +361,16 @@
     "path": "pieces/37-dew-of-torah/index.html",
     "thumbnail": "pieces/37-dew-of-torah/thumbnail.svg",
     "essay": "pieces/37-dew-of-torah/essay.md"
+  },
+  {
+    "id": "38-voice-in-seventy-tongues",
+    "title": "The Voice in Seventy Tongues",
+    "tagline": "one aleph at Sinai — seventy languages, infinite aperiodic variety",
+    "year": 2026,
+    "theme": "Matan Torah / Shemot Rabbah 5:9 — the Voice at Sinai",
+    "technique": "canvas 2D — Penrose P3 rhombic tiling via triangle deflation, radial luminosity pulse",
+    "path": "pieces/38-voice-in-seventy-tongues/index.html",
+    "thumbnail": "pieces/38-voice-in-seventy-tongues/thumbnail.svg",
+    "essay": "pieces/38-voice-in-seventy-tongues/essay.md"
   }
 ]
