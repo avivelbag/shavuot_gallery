@@ -9,8 +9,6 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 PIECE_ID = "07-milk-honey-reaction-diffusion"
@@ -449,7 +447,6 @@ def test_gray_scott_no_growth_without_seed():
 def test_gen_thumbnail_produces_correct_output(tmp_path):
     """Running gen_thumbnail.py must produce a 256x256 PNG with amber tones."""
     import importlib.util
-    import sys
     # Load gen_thumbnail as a module without executing __main__
     spec = importlib.util.spec_from_file_location(
         "gen_thumbnail",
