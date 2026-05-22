@@ -7,9 +7,6 @@ theorem implementation embedded in the piece.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "42-finger-of-god"
@@ -253,7 +250,6 @@ def test_descartes_theorem_zero_radius_edge_case():
 
 def test_descartes_theorem_large_curvature():
     """Very small circles (large k) should still satisfy Descartes relation."""
-    import math
     k1, k2, k3 = 100, 200, 300
     k4a, k4b = descartes_k(k1, k2, k3)
     # Verify Descartes: (k1+k2+k3+k4)^2 == 2*(k1^2+k2^2+k3^2+k4^2)
