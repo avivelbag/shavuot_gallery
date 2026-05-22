@@ -37,9 +37,7 @@
 
   <!-- Four quadrants via rect + clip transforms -->
   <!-- Q1: top-left normal -->
-  <g clip-path="url(#tlClip)">
-    <rect x="0" y="0" width="200" height="150" fill="url(#quad)"/>
-  </g>
+  <rect x="0" y="0" width="200" height="150" fill="url(#quad)"/>
   <!-- Q2: top-right flipped H -->
   <g transform="translate(400,0) scale(-1,1)">
     <rect x="0" y="0" width="200" height="150" fill="url(#quad)"/>
