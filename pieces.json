@@ -878,5 +878,16 @@
     "path": "pieces/60-verlet-scroll-covenant/index.html",
     "thumbnail": "pieces/60-verlet-scroll-covenant/thumbnail.svg",
     "essay": "pieces/60-verlet-scroll-covenant/essay.md"
+  },
+  {
+    "id": "61-dejong-attractor-sinai-fire",
+    "title": "And the Mountain Burned",
+    "tagline": "a million points, one fire",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "de Jong strange attractor / density accumulation",
+    "path": "pieces/61-dejong-attractor-sinai-fire/index.html",
+    "thumbnail": "pieces/61-dejong-attractor-sinai-fire/thumbnail.svg",
+    "essay": "pieces/61-dejong-attractor-sinai-fire/essay.md"
   }
 ]

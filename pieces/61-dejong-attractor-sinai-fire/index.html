@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>And the Mountain Burned — de Jong Attractor</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: #050208;
+      color: #d0c0a8;
+      font-family: Georgia, 'Times New Roman', serif;
+      height: 100%;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050208;
+      overflow: hidden;
+    }
+    #c {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .sinai-label {
+      position: absolute;
+      bottom: 1.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 15px;
+      color: #F5E8C8;
+      font-family: Georgia, 'Times New Roman', serif;
+      direction: rtl;
+      white-space: nowrap;
+      pointer-events: none;
+      text-shadow: 0 0 12px rgba(200, 80, 20, 0.7);
+      opacity: 0.82;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e0e08;
+      overflow-y: auto;
+      background: #070508;
+    }
+    .essay-panel h1 {
+      font-size: 1.55rem;
+      color: #D08040;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #60402A;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.92rem;
+      color: #A06030;
+      margin: 2rem 0 0.5rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      font-size: 0.92rem;
+      line-height: 1.82;
+      margin: 0 0 1rem;
+      color: #c8b89a;
+    }
+    .essay-panel blockquote {
+      margin: 1.2rem 0;
+      padding: 0.7rem 1.1rem;
+      border-left: 2px solid rgba(200, 80, 20, 0.4);
+      background: rgba(200, 80, 20, 0.05);
+    }
+    .essay-panel blockquote p {
+      margin: 0 0 0.5rem;
+      color: #d8c8b0;
+      font-size: 0.9rem;
+    }
+    .essay-panel blockquote p:last-child { margin-bottom: 0; }
+    .essay-panel blockquote .he {
+      font-size: 1.05rem;
+      direction: rtl;
+      text-align: right;
+      color: #FFD090;
+      line-height: 2;
+    }
+    .essay-panel .source {
+      font-size: 0.76rem;
+      color: #50301A;
+      margin-top: 2rem;
+      border-top: 1px solid #1e0e08;
+      padding-top: 0.8rem;
+      font-style: italic;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 70vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e0e08; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c" width="700" height="700"></canvas>
+    <div class="sinai-label">וְהַר סִינַי עָשַׁן כֻּלּוֹ</div>
+  </div>
+
+  <div class="essay-panel">
+    <h1>And the Mountain Burned</h1>
+    <p class="subtitle">de Jong Strange Attractor — Har Sinai / Matan Torah</p>
+
+    <p>The theophany at Sinai begins with weather and becomes something else entirely:</p>
+
+    <blockquote>
+      <p class="he">וַיְהִי בַיּוֹם הַשְּׁלִישִׁי בִּהְיֹת הַבֹּקֶר וַיְהִי קֹלֹת וּבְרָקִים וְעָנָן כָּבֵד עַל-הָהָר וְקֹל שֹׁפָר חָזָק מְאֹד וַיֶּחֱרַד כָּל-הָעָם אֲשֶׁר בַּמַּחֲנֶה</p>
+      <p>"And it came to pass on the third day, when it was morning, that there were thunders and lightnings and a thick cloud upon the mountain, and the voice of the shofar exceedingly loud; so that all the people who were in the camp trembled." (Exodus 19:16)</p>
+    </blockquote>
+
+    <p>By verse 18, the mountain is entirely consumed:</p>
+
+    <blockquote>
+      <p class="he">וְהַר סִינַי עָשַׁן כֻּלּוֹ מִפְּנֵי אֲשֶׁר יָרַד עָלָיו יְהֹוָה בָּאֵשׁ וַיַּעַל עֲשָׁנוֹ כְּעֶשֶׁן הַכִּבְשָׁן וַיֶּחֱרַד כָּל-הָהָר מְאֹד</p>
+      <p>"And Mount Sinai was all in smoke, because the LORD descended upon it in fire; and the smoke thereof ascended as the smoke of a furnace, and the whole mountain quaked greatly." (Exodus 19:18)</p>
+    </blockquote>
+
+    <p>The phrase <strong>כְּעֶשֶׁן הַכִּבְשָׁן</strong> — "like the smoke of a furnace" — is not a simile deployed for rhetorical effect. The Talmud (Shabbat 88b) records that the mountain was literally uprooted and held suspended above the heads of the people as a cosmic ultimatum: receive the Torah, or be buried beneath it. The fire was real; the simile understates it.</p>
+
+    <p>But this scene was already anticipated when God led Israel out of Egypt. There, the Torah establishes a duality that runs through the entire wilderness narrative:</p>
+
+    <blockquote>
+      <p class="he">וַיהֹוָה הֹלֵךְ לִפְנֵיהֶם יוֹמָם בְּעַמּוּד עָנָן לַנְחֹתָם הַדֶּרֶךְ וְלַיְלָה בְּעַמּוּד אֵשׁ לְהָאִיר לָהֶם לָלֶכֶת יוֹמָם וָלָיְלָה</p>
+      <p>"And the LORD went before them by day in a pillar of cloud to lead them in the way; and by night in a pillar of fire to give them light; that they might go by day and by night." (Exodus 13:21)</p>
+    </blockquote>
+
+    <p>Cloud by day, fire by night — the same divine presence in two distinct registers. Rashi explains that the cloud served specifically so Israel could approach: the opacity that appears to conceal is precisely what makes encounter possible. Without the cloud, the fire alone would be unapproachable. The form of hiddenness is the form of accessibility.</p>
+
+    <h2>This Piece</h2>
+
+    <p>The de Jong strange attractor is defined by four numbers and a two-line rule: <em>x' = sin(a·y) − cos(b·x), y' = sin(c·x) − cos(d·y)</em>. No single point reveals where the next will land. The iteration is deterministic — the same starting position always produces the same sequence — yet the cloud that emerges over a million iterations could not have been read from the rule. Local obedience produces global irreducibility. This is what makes the attractor <em>strange</em>: determinism without predictability, law without foreknowledge.</p>
+
+    <p>The revelation at Sinai has this quality. Israel was told to prepare for three days. They knew something was coming. Yet nothing in their prior experience — not the ten plagues, not the crossing of the sea — constituted a framework for what actually occurred. The forty-nine gates of understanding that Moses possessed gave no advance picture of the moment. Revelation arrived as the attractor settles: by lawful iteration, producing something genuinely unprecedented.</p>
+
+    <p>Three parameter presets cycle here over roughly thirty seconds, each generating a different cloud shape — a tall flame column, a wide billowing mass, a narrow pillar — before dissolving into the next. They are the fire by night and the cloud by day: the same four-parameter grammar, different aspects, one underlying fire.</p>
+
+    <p class="source">שמות י״ט:ט״ז, י״ח · שמות י״ג:כ״א · תלמוד בבלי שבת פ״ח ע״ב ·
+    de Jong strange attractor / density accumulation · 2026</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var W = 700, H = 700;
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+
+  var density = new Float32Array(W * H);
+
+  var presets = [
+    [1.641,  1.902,  0.316,  1.525],
+    [-2.24,  0.43,  -0.65,  -2.43],
+    [2.01,  -2.53,   1.61,  -0.33]
+  ];
+
+  var pi = 0;
+  var a = presets[0][0], b = presets[0][1], c = presets[0][2], d = presets[0][3];
+  var x = 0.1, y = 0.1;
+
+  var HOLD_FRAMES = 600;
+  var FADE_FRAMES = 90;
+  var phase = 'hold';
+  var phaseFrame = 0;
+
+  /**
+   * Advance the de Jong attractor by n steps, accumulating hit counts into
+   * the Float32Array density buffer.  The attractor's natural bounding box
+   * (~[-3, 3] in both axes) is mapped to the canvas with a 10% margin so the
+   * full cloud is always visible without clipping.
+   */
+  function iterate(n) {
+    var scale = 0.9;
+    var offX = (1 - scale) * 0.5 * W;
+    var offY = (1 - scale) * 0.5 * H;
+    for (var i = 0; i < n; i++) {
+      var nx = Math.sin(a * y) - Math.cos(b * x);
+      var ny = Math.sin(c * x) - Math.cos(d * y);
+      x = nx;
+      y = ny;
+      var px = ((x + 3) / 6 * scale * W + offX) | 0;
+      var py = ((y + 3) / 6 * scale * H + offY) | 0;
+      if (px >= 0 && px < W && py >= 0 && py < H) {
+        density[py * W + px] += 1;
+      }
+    }
+  }
+
+  /**
+   * Tone-map the Float32Array density buffer to canvas pixels using a
+   * logarithmic scale so both sparse tendrils and dense cores are visible.
+   * Four colour stops: background #050208 → ember #3A0800 → orange #C04010
+   * → gold-white #FFF0B0, interpolated linearly through normalised log density.
+   */
+  function render() {
+    var img = ctx.createImageData(W, H);
+    var maxD = 0;
+    for (var i = 0; i < W * H; i++) {
+      if (density[i] > maxD) maxD = density[i];
+    }
+    if (maxD < 1) maxD = 1;
+    var logMax = Math.log1p(maxD);
+
+    for (var j = 0; j < W * H; j++) {
+      var t = Math.log1p(density[j]) / logMax;
+      var r, g, bl;
+      if (t < 0.33) {
+        var s = t / 0.33;
+        r  = (5  + s * 53)  | 0;
+        g  = (2  + s * 6)   | 0;
+        bl = (8  - s * 8)   | 0;
+      } else if (t < 0.66) {
+        var s = (t - 0.33) / 0.33;
+        r  = (58  + s * 134) | 0;
+        g  = (8   + s * 56)  | 0;
+        bl = (s   * 16)      | 0;
+      } else {
+        var s = (t - 0.66) / 0.34;
+        r  = (192 + s * 63)  | 0;
+        g  = (64  + s * 176) | 0;
+        bl = (16  + s * 160) | 0;
+      }
+      var base = j * 4;
+      img.data[base]     = r;
+      img.data[base + 1] = g;
+      img.data[base + 2] = bl;
+      img.data[base + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  var lastTs = 0;
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    if (ts - lastTs < 16) return;
+    lastTs = ts;
+
+    iterate(8000);
+    phaseFrame++;
+
+    if (phase === 'hold') {
+      if (phaseFrame >= HOLD_FRAMES) {
+        phase = 'fade';
+        phaseFrame = 0;
+        pi = (pi + 1) % presets.length;
+        a = presets[pi][0]; b = presets[pi][1];
+        c = presets[pi][2]; d = presets[pi][3];
+        x = 0.1; y = 0.1;
+      }
+    } else {
+      /* Decay old density while new preset iterates, creating an organic
+         dissolve where the old flame fades as the new one grows in. */
+      for (var i = 0; i < density.length; i++) density[i] *= 0.88;
+      if (phaseFrame >= FADE_FRAMES) {
+        density.fill(0);
+        phase = 'hold';
+        phaseFrame = 0;
+      }
+    }
+
+    render();
+  }
+
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

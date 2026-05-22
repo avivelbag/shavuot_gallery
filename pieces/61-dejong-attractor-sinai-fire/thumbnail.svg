@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="outerGlow" cx="50%" cy="52%" r="45%">
+      <stop offset="0%"   stop-color="#FFF0B0" stop-opacity="0.95"/>
+      <stop offset="22%"  stop-color="#E06020" stop-opacity="0.85"/>
+      <stop offset="48%"  stop-color="#9A1800" stop-opacity="0.55"/>
+      <stop offset="72%"  stop-color="#3A0800" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#050208" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="40%">
+      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="#FFD060" stop-opacity="0.7"/>
+      <stop offset="70%" stop-color="#C04010" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#050208" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="blur3">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Near-black background -->
+  <rect width="400" height="400" fill="#050208"/>
+
+  <!-- Outer diffuse glow halo -->
+  <ellipse cx="200" cy="208" rx="145" ry="170" fill="#3A0800" opacity="0.35" filter="url(#blur2)"/>
+
+  <!-- Mid glow layer — wide smoke mass -->
+  <ellipse cx="200" cy="205" rx="105" ry="140" fill="#8A1800" opacity="0.45" filter="url(#blur1)"/>
+
+  <!-- Flame-cloud silhouette: irregular organic shape approximating the
+       de Jong attractor's characteristic tall-cloud outline -->
+  <path d="
+    M 200 68
+    C 218 72,  248 88,  255 118
+    C 262 148, 256 162, 268 182
+    C 280 202, 285 220, 274 245
+    C 263 270, 248 282, 242 300
+    C 236 318, 235 332, 222 340
+    C 212 346, 200 348, 188 344
+    C 175 340, 165 328, 159 310
+    C 153 292, 152 274, 140 255
+    C 128 236, 118 218, 122 194
+    C 126 170, 140 156, 142 132
+    C 144 108, 165 76, 180 70
+    Z
+  " fill="#C04010" opacity="0.70" filter="url(#blur3)"/>
+
+  <!-- Radial gradient overlay for glow effect -->
+  <ellipse cx="200" cy="208" rx="120" ry="148" fill="url(#outerGlow)"/>
+
+  <!-- Bright core -->
+  <ellipse cx="200" cy="200" rx="52" ry="68" fill="url(#coreGlow)"/>
+
+  <!-- Hot centre spot -->
+  <ellipse cx="200" cy="196" rx="18" ry="24" fill="#FFFFFF" opacity="0.75" filter="url(#blur3)"/>
+
+  <!-- Tendrils — sparse upper wisps suggesting attractor filaments -->
+  <path d="M 200 80 C 195 65, 188 55, 183 42" stroke="#FFD080" stroke-width="1.5" fill="none" opacity="0.5" filter="url(#blur3)"/>
+  <path d="M 206 75 C 212 60, 218 50, 224 40" stroke="#FF9040" stroke-width="1.2" fill="none" opacity="0.4" filter="url(#blur3)"/>
+  <path d="M 197 78 C 190 62, 186 48, 180 35" stroke="#FFB060" stroke-width="1"  fill="none" opacity="0.35"/>
+
+  <!-- Side wisps suggesting the wide cloud form -->
+  <path d="M 256 170 C 275 165, 285 158, 296 148" stroke="#FF6020" stroke-width="1.2" fill="none" opacity="0.3" filter="url(#blur3)"/>
+  <path d="M 144 168 C 124 162, 114 155, 104 144" stroke="#FF6020" stroke-width="1.2" fill="none" opacity="0.3" filter="url(#blur3)"/>
+</svg>
