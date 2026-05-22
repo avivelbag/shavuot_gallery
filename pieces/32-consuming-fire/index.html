@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Consuming Fire — WebGL Plasma at Sinai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #0a0507;
+      color: #e8dcc8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #glCanvas {
+      display: block;
+      width: 100%; height: 100%;
+    }
+    .hebrew-overlay {
+      position: absolute;
+      top: 1.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.6rem;
+      letter-spacing: 0.28em;
+      color: #F8F4E8;
+      text-shadow:
+        0 0 16px rgba(255, 150, 20, 0.75),
+        0 0 40px rgba(255, 80, 0, 0.35);
+      pointer-events: none;
+      white-space: nowrap;
+      direction: rtl;
+      z-index: 2;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(10, 5, 7, 0.97);
+      border-left: 1px solid rgba(200, 80, 20, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #e87830;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(232, 220, 200, 0.65);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+      color: #ddd0bc;
+    }
+    .essay p strong { color: #e87830; }
+    .essay .source {
+      font-size: 0.78rem;
+      color: rgba(232, 220, 200, 0.5);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(200, 80, 20, 0.12);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 60vw; min-height: 280px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(200,80,20,0.18); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="glCanvas"></canvas>
+    <div class="hebrew-overlay">אֵשׁ אֹכֶלֶת</div>
+  </div>
+
+  <div class="essay">
+    <h1>A Consuming Fire</h1>
+    <h2>Har Sinai — the Theophany at the Mountain</h2>
+
+    <p>The Sinai theophany is described in Exodus through an accumulation of
+    overwhelming natural phenomena. Exodus 19:16–18 records thunder, lightning,
+    thick cloud, and a very loud shofar blast. The mountain smoked like a furnace
+    because God descended upon it in fire, and the whole mountain trembled greatly.
+    By Exodus 24:17, when Moses himself ascends and the Torah is given, the text
+    crystallises the scene into a single image: <strong>וּמַרְאֵה כְּבוֹד יְהוָה
+    כְּאֵשׁ אֹכֶלֶת</strong> — <em>the appearance of the glory of the LORD was
+    like a consuming fire on the top of the mountain.</em> It is this phrase —
+    <em>esh okhelet</em>, consuming fire — that lies at the heart of what Shavuot
+    commemorates.</p>
+
+    <p>The theophany at Sinai (Exodus 19–24) is the hinge of the Jewish year and
+    of Jewish existence. It is the moment at which a nation of former slaves became
+    covenant partners with God, receiving a legal order, a moral framework, and a
+    direct experience of divine presence that no subsequent generation has witnessed
+    but all subsequent generations re-enact. Shavuot is the annual return to that
+    hinge: the offering of first-fruits and the counting of the Omer both point
+    toward Sinai, and the Talmud's identification of Shavuot as <em>Zman Matan
+    Torateinu</em> — the Time of the Giving of Our Torah — makes the connection
+    explicit.</p>
+
+    <p>What is remarkable about the Exodus account is that it refuses to reduce the
+    theophany to a single phenomenon. The text layers cloud, thick darkness, fire,
+    and smoke simultaneously, and the rabbis notice the tension. If God descended
+    in fire, why was there also cloud? The <strong>Mekhilta</strong> on Exodus 19
+    and the Talmud (<strong>Shabbat 88b</strong>) press this question. The most
+    evocative answer, preserved in several midrashic traditions, is that God did
+    indeed descend in fire — but surrounded the fire in cloud so that Israel could
+    approach without being consumed. The consuming fire was wrapped in mercy.
+    Divine holiness at full force is lethal; the cloud was the accommodation that
+    made encounter possible.</p>
+
+    <p>The phrase <em>esh okhelet</em> — consuming fire — carries the full weight
+    of this ambivalence. Fire consumes what it touches; it does not leave its
+    objects intact. The experience of revelation at Sinai is not described as
+    illuminating or warming or comforting. It is described as total, transforming,
+    overwhelming. The rabbis in <strong>Talmud Shabbat 88b</strong> compare the
+    Torah given at Sinai to a hammer breaking rock into fragments: in that image,
+    the Torah does not decorate what it touches — it shatters it and reassembles
+    the pieces. And yet Israel stood and survived and received, which is itself the
+    miracle the holiday celebrates.</p>
+
+    <p>The theological weight of <em>consuming fire</em> as a description of divine
+    holiness goes beyond the narrative. It names a permanent feature of religious
+    experience: that genuine encounter with what is holy both attracts and
+    overwhelms, draws near and burns. The Israelites asked Moses to speak to them
+    rather than God, not out of indifference but out of self-preservation — the
+    unmediated voice was more than they could sustain. Every tradition that follows
+    from Sinai must reckon with this: the fire is real, and the cloud is mercy, and
+    both are required.</p>
+
+    <p>In this piece the fire is generated entirely from mathematics. There are no
+    images, no pre-drawn textures: only coordinates transformed repeatedly through
+    layered noise functions until chaos takes on the shape of flame. Domain-warped
+    fractional Brownian motion — noise used to warp the input coordinates of
+    further noise — produces exactly the turbulent, churning quality of fire, the
+    character of a living thing that is neither random nor predictable. The
+    mountain from which the fire erupts is a signed-distance triangle in the
+    shader; the sky above transitions from deep violet to near-black. The fire
+    rises from the peak, most brilliant at the source, dispersing into darkness as
+    it ascends. That dispersal is also part of the image: revelation at full
+    intensity is more than what can be sustained, and the light necessarily dims as
+    it travels from its origin. Pure mathematical transformation of coordinates
+    into colour, repeating endlessly, is one way to approximate what it might mean
+    to stand at the foot of a mountain on fire.</p>
+
+    <p class="source">WebGL fragment shader / domain-warped fBm plasma · 2026</p>
+  </div>
+</div>
+
+<!-- Vertex shader: fullscreen quad pass-through -->
+<script type="x-shader/x-vertex" id="vert">
+attribute vec2 aPos;
+void main() {
+  gl_Position = vec4(aPos, 0.0, 1.0);
+}
+</script>
+
+<!-- Fragment shader: consuming-fire plasma -->
+<script type="x-shader/x-fragment" id="frag">
+precision highp float;
+
+uniform vec2  uResolution;
+uniform float uTime;
+
+/* Hash-based pseudo-random value — no texture needed */
+float hash(vec2 p) {
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+/* Bilinear value noise — smooth interpolation of hash at integer corners */
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash(i),               hash(i + vec2(1.0, 0.0)), u.x),
+    mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
+    u.y
+  );
+}
+
+/* Six-octave fBm: accumulates noise at successive frequencies */
+float fbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 6; i++) {
+    v += a * noise(p);
+    p  = p * 2.0 + vec2(0.31, 0.57);
+    a *= 0.5;
+  }
+  return v;
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / uResolution;
+  float t  = uTime;
+
+  /* Mountain triangle SDF.
+     mline = height of mountain surface at this horizontal position.
+     Below mline: dark rock.  Above mline: sky + fire. */
+  float mline = 0.38 - abs(uv.x - 0.5) * 0.82;
+  float above = smoothstep(-0.008, 0.008, uv.y - mline);
+
+  /* Normalised height above the mountain line (0 at crest, 1 at canvas top) */
+  float hAbove = clamp((uv.y - mline) / max(0.001, 1.0 - mline), 0.0, 1.0);
+
+  /* Domain-warped fBm for fire plasma.
+     Negative-y drift in noise coordinates makes flames rise upward.
+     Two warp layers (q.x, q.y) offset the final fbm sample, producing
+     the characteristic churning of flame. */
+  vec2 uv1 = uv * 2.8 + vec2(0.0, -t * 0.28);
+  vec2 uv2 = uv * 2.2 + vec2(1.7, 9.2) + vec2(0.0, -t * 0.20);
+  vec2 q   = vec2(fbm(uv1), fbm(uv2));
+  float f  = fbm(uv * 2.0 + 4.0 * q + vec2(0.0, -t * 0.10));
+  f = clamp(f, 0.0, 1.0);
+
+  /* Fire intensity decays with height: brilliant at the mountain crest,
+     dispersing into darkness as it rises — matching the physics of convection
+     and the theology of revelation that dims with distance from its source. */
+  float decay  = 1.0 - smoothstep(0.0, 0.62, hAbove);
+  float fFire  = clamp(f * decay * 1.3, 0.0, 1.0);
+
+  /* Fire color ramp: deep black → dark red → bright orange → pale gold → white */
+  vec3 cBlack  = vec3(0.00, 0.00, 0.00);
+  vec3 cDkRed  = vec3(0.42, 0.02, 0.00);
+  vec3 cOrange = vec3(0.95, 0.38, 0.02);
+  vec3 cGold   = vec3(1.00, 0.86, 0.30);
+  vec3 cWhite  = vec3(1.00, 0.97, 0.92);
+
+  vec3 fireCol = mix(cBlack,  cDkRed,  smoothstep(0.00, 0.30, fFire));
+  fireCol      = mix(fireCol, cOrange, smoothstep(0.30, 0.60, fFire));
+  fireCol      = mix(fireCol, cGold,   smoothstep(0.60, 0.85, fFire));
+  fireCol      = mix(fireCol, cWhite,  smoothstep(0.85, 1.00, fFire));
+
+  /* Sky gradient above mountain: deep violet near crest, near-black at top.
+     Squared progression gives more violet near the fire and rapid darkening above. */
+  vec3 cViolet = vec3(0.13, 0.04, 0.26);
+  vec3 cNight  = vec3(0.02, 0.01, 0.05);
+  vec3 sky     = mix(cViolet, cNight, hAbove * hAbove);
+
+  /* Alpha-blend fire over sky.
+     Where fFire is low (black fire) the sky shows through; where high,
+     the plasma color dominates. */
+  float fireAlpha = clamp(fFire * 1.6 - 0.05, 0.0, 1.0);
+  vec3  aboveCol  = mix(sky, fireCol, fireAlpha);
+
+  /* Rock face below mountain line: dark brown-grey with subtle noise texture */
+  float rockNoise = fbm(uv * 9.0) * 0.05;
+  vec3  rockCol   = vec3(0.072 + rockNoise, 0.055 + rockNoise, 0.040 + rockNoise);
+
+  /* Warm glow from fire spilling just below the crest — corona effect */
+  float crownDist = clamp(mline - uv.y, 0.0, 1.0);
+  float glow      = exp(-crownDist * 28.0) * fFire * 0.7;
+  float glowH     = exp(-abs(uv.x - 0.5) * 5.5);
+  rockCol        += vec3(glow * glowH * 0.9, glow * glowH * 0.25, 0.0);
+
+  vec3 col = mix(rockCol, aboveCol, above);
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}
+</script>
+
+<script>
+(function () {
+  const canvas = document.getElementById('glCanvas');
+
+  const gl = canvas.getContext('webgl') ||
+             canvas.getContext('experimental-webgl');
+
+  if (!gl) {
+    canvas.style.background = '#0a0507';
+    console.warn('WebGL not supported — static fallback');
+    return;
+  }
+
+  function compileShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.error('Shader error:', gl.getShaderInfoLog(s));
+      gl.deleteShader(s);
+      return null;
+    }
+    return s;
+  }
+
+  function buildProgram(vSrc, fSrc) {
+    const vert = compileShader(gl.VERTEX_SHADER,   vSrc);
+    const frag = compileShader(gl.FRAGMENT_SHADER, fSrc);
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vert);
+    gl.attachShader(prog, frag);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.error('Link error:', gl.getProgramInfoLog(prog));
+      return null;
+    }
+    return prog;
+  }
+
+  const vSrc = document.getElementById('vert').textContent.trim();
+  const fSrc = document.getElementById('frag').textContent.trim();
+  const prog = buildProgram(vSrc, fSrc);
+  if (!prog) return;
+
+  /* Fullscreen quad as two triangles (triangle strip) */
+  const quad = new Float32Array([-1, -1,  1, -1,  -1, 1,  1, 1]);
+  const buf  = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, quad, gl.STATIC_DRAW);
+
+  gl.useProgram(prog);
+  const aPosLoc = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(aPosLoc);
+  gl.vertexAttribPointer(aPosLoc, 2, gl.FLOAT, false, 0, 0);
+
+  const uTimeLoc = gl.getUniformLocation(prog, 'uTime');
+  const uResLoc  = gl.getUniformLocation(prog, 'uResolution');
+
+  let lastW = 0, lastH = 0;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w   = Math.round(canvas.clientWidth  * dpr);
+    const h   = Math.round(canvas.clientHeight * dpr);
+    if (w === lastW && h === lastH) return;
+    lastW = w; lastH = h;
+    canvas.width  = w;
+    canvas.height = h;
+    gl.viewport(0, 0, w, h);
+  }
+
+  const t0 = performance.now();
+
+  function render() {
+    resize();
+    const t = (performance.now() - t0) / 1000.0;
+    gl.uniform1f(uTimeLoc, t);
+    gl.uniform2f(uResLoc, canvas.width, canvas.height);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+
+  render();
+}());
+</script>
+</body>
+</html>
