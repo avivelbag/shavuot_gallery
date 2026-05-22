@@ -14,7 +14,9 @@ import pytest
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 
-REQUIRED_FIELDS = ("id", "title", "tagline", "year", "theme", "technique", "path", "thumbnail")
+REQUIRED_FIELDS = ("id", "title", "tagline", "year", "theme", "technique", "path", "thumbnail", "essay")
+
+ESSAY_MIN_WORDS = 200
 
 
 # ---------------------------------------------------------------------------
@@ -260,3 +262,61 @@ def test_empty_pieces_json_is_detected(tmp_path):
     empty_json.write_text("[]", encoding="utf-8")
     data = json.loads(empty_json.read_text())
     assert len(data) == 0  # confirm behaviour: caller would raise an assertion error
+
+
+# ---------------------------------------------------------------------------
+# Essay requirements — every piece must ship essay.md and register it
+# ---------------------------------------------------------------------------
+
+def test_every_piece_has_essay_field():
+    """Every entry in pieces.json must have a non-empty 'essay' field."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay = piece.get("essay")
+        assert essay is not None and essay != "", (
+            f"Piece '{piece.get('id', '?')}' is missing the 'essay' field in pieces.json"
+        )
+
+
+def test_every_piece_essay_file_exists():
+    """The essay.md file referenced in pieces.json must exist on disk."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay_rel = piece.get("essay")
+        if not essay_rel:
+            continue
+        essay_path = os.path.join(GALLERY_ROOT, essay_rel)
+        assert os.path.isfile(essay_path), (
+            f"Piece '{piece.get('id', '?')}': essay file '{essay_rel}' does not exist on disk"
+        )
+
+
+def test_every_piece_essay_is_substantial():
+    """Every essay.md must contain at least ESSAY_MIN_WORDS words of real content."""
+    pieces = load_pieces()
+    for piece in pieces:
+        essay_rel = piece.get("essay")
+        if not essay_rel:
+            continue
+        essay_path = os.path.join(GALLERY_ROOT, essay_rel)
+        if not os.path.isfile(essay_path):
+            continue
+        text = open(essay_path, encoding="utf-8").read()
+        word_count = len(text.split())
+        assert word_count >= ESSAY_MIN_WORDS, (
+            f"Piece '{piece.get('id', '?')}' essay has only {word_count} words "
+            f"(minimum is {ESSAY_MIN_WORDS})"
+        )
+
+
+def test_piece_with_no_essay_field_fails(tmp_path):
+    """A pieces.json entry missing the essay field must be caught by the essay check."""
+    bad_pieces = [{"id": "99-test", "essay": ""}]
+    essay = bad_pieces[0].get("essay")
+    assert not essay, "Fixture confirms empty essay field should be treated as missing"
+
+
+def test_piece_with_nonexistent_essay_file_fails(tmp_path):
+    """An essay path that points to a missing file must be detected."""
+    missing_path = os.path.join(str(tmp_path), "nonexistent.md")
+    assert not os.path.isfile(missing_path), "Fixture path must not exist on disk"

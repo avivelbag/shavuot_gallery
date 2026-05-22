@@ -5,23 +5,164 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Until Dawn — Tikkun Leil Shavuot</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
       background: #080c1a;
+      color: #e8dcc8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
     }
     canvas {
       display: block;
-      max-width: 100vw;
-      max-height: 100vh;
+      width: 100%;
+      height: 100%;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(8, 12, 26, 0.97);
+      border-left: 1px solid rgba(255, 200, 80, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #ffc850;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(232, 220, 200, 0.65);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+      color: #ddd0bc;
+    }
+    .essay p strong {
+      color: #ffc850;
+    }
+    .essay .source {
+      font-size: 0.78rem;
+      color: rgba(232, 220, 200, 0.5);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 200, 80, 0.12);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout {
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
+      }
+      .artwork {
+        flex: none;
+        height: 56vw;
+        min-height: 240px;
+        max-height: 60vh;
+      }
+      .essay {
+        flex: none;
+        border-left: none;
+        border-top: 1px solid rgba(255, 200, 80, 0.18);
+      }
     }
   </style>
 </head>
 <body>
-<canvas id="c"></canvas>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="c"></canvas>
+  </div>
+  <aside class="essay" aria-label="Essay: The Night We Stayed Awake">
+    <h1>Until Dawn</h1>
+    <h2>The Night We Stayed Awake</h2>
+
+    <p>
+      Each year on the eve of Shavuot, Jews around the world remain awake
+      through the night in the practice known as <em>Tikkun Leil Shavuot</em>
+      — a vigil of Torah study that extends until dawn. The word
+      <em>tikkun</em> (תִּקּוּן) means repair or preparation: a structured
+      curriculum of texts drawn from across the breadth of Jewish tradition,
+      recited as a vigil before the holiday&#8217;s morning prayers.
+    </p>
+
+    <p>
+      The custom&#8217;s earliest formal articulation appears in the Zohar,
+      the foundational text of Kabbalah (Parashat Emor). The Zohar describes
+      the night before Shavuot as an opportunity for the righteous to adorn
+      the bride &#8212; in Kabbalistic language, to prepare the Shekhinah,
+      God&#8217;s indwelling presence, for the cosmic marriage of Israel and
+      Torah that occurs at the moment of revelation. The mystics of
+      sixteenth-century Safed &#8212; among them Rabbi Joseph Karo, Rabbi
+      Shlomo Alkabetz (author of <em>Lecha Dodi</em>), and Rabbi Moses
+      Cordovero &#8212; formalized the all-night study as essential Shavuot
+      practice. Alkabetz recorded in a famous letter that during one such
+      Tikkun night in 1533, a Heavenly Voice spoke through Karo, confirming
+      that the preparation was worthy.
+    </p>
+
+    <p>
+      At the center of this piece stands the phrase
+      <strong>נַעֲשֶׂה וְנִשְׁמַע</strong> &#8212;
+      <em>&#8220;we will do, and we will hear&#8221;</em> &#8212; drawn from
+      Exodus 24:7, the moment Israel commits to the covenant at Sinai before
+      hearing all its terms. The Talmud (Shabbat 88a) marveled at this
+      inversion: in ordinary life one hears terms before agreeing to them.
+      Israel reversed that order &#8212; commitment before comprehension,
+      action before understanding. A Heavenly Voice then called out:
+      <em>&#8220;Who revealed to My children this secret that the ministering
+      angels use?&#8221;</em> &#8212; as if radical, pre-rational faith were
+      the angels&#8217; own mode of being.
+    </p>
+
+    <p>
+      The falling Hebrew letters embody that paradox. Letters precede words,
+      words precede meaning, meaning emerges only in the act of study &#8212;
+      and study, in the Tikkun, continues until the sky itself brightens. The
+      canvas shifts from midnight blue to rose-gold not as metaphor but as
+      time: a ninety-second clock whose zero is always nightfall and whose end
+      is always morning. The letters carry no fixed semantic content &#8212;
+      they are the raw alphabet, the raw material of Torah &#8212; yet their
+      fall enacts the tradition&#8217;s central claim: that each act of study,
+      however partial, is already a form of receiving.
+    </p>
+
+    <p>
+      The Talmud (Shabbat 88b) adds a final image: at the moment of
+      <em>naaseh v&#8217;nishma</em>, each Israelite was crowned with two
+      crowns &#8212; one for <em>naaseh</em>, one for <em>nishma</em>. The
+      Tikkun is how we carry those crowns through the dark.
+    </p>
+
+    <p class="source">
+      Sources: Zohar, Parashat Emor; Exodus 24:7; Babylonian Talmud, Shabbat
+      88a&#8211;88b; Shlomo Alkabetz, letter on Tikkun Leil Shavuot (Safed,
+      1533).
+    </p>
+  </aside>
+</div>
 <script>
 (function () {
   'use strict';
@@ -38,20 +179,15 @@
   var MAX_LETTER_SIZE = 72;
   var FPS_MIN_MS = 1000 / 60;
 
-  // Individual Hebrew letters drawn from Torah opening words/phrases.
-  // Base consonants (alef-bet) plus common forms with dagesh/shin-dot.
   var CHAR_POOL = 'אבגדהוזחטיכלמנסעפצקרשת'.split('').concat(
     ['בּ', 'גּ', 'דּ', 'כּ', 'פּ', 'תּ', 'שׁ', 'שׂ']
   );
 
-  // Phrase shown at dawn midpoint.
   var NISHMA = 'נַעֲשֶׂה וְנִשְׁמַע';
 
-  // Background: midnight blue → dawn rose-gold
-  var BG_MIDNIGHT = [8, 12, 26];
+  var BG_MIDNIGHT = [8, 12, 26];   // #080c1a midnight
   var BG_DAWN = [253, 232, 200];   // #fde8c8 dawn rose-gold
 
-  // Letter fill color: near-white candlelight (top) → warm amber (bottom)
   var LETTER_TOP = [255, 250, 235];
   var LETTER_BOTTOM = [255, 160, 50];
 
@@ -89,8 +225,9 @@
   }
 
   function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+    var container = canvas.parentElement;
+    W = canvas.width = container.clientWidth;
+    H = canvas.height = container.clientHeight;
   }
 
   window.addEventListener('resize', resize);
@@ -130,8 +267,6 @@
     }
   }
 
-  // Returns opacity (0–1) for the naaseh v'nishma overlay at the given cycle position.
-  // Phrase fades in at 45 s, holds through 51 s, fades out by 53 s (8 s total arc).
   function getNaasehAlpha(cycleMs) {
     if (cycleMs < 45000 || cycleMs >= 53000) return 0;
     if (cycleMs < 47000) return (cycleMs - 45000) / 2000;
