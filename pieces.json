@@ -86,5 +86,16 @@
     "path": "pieces/10-tagin-pen-plotter/index.html",
     "thumbnail": "pieces/10-tagin-pen-plotter/thumbnail.svg",
     "essay": "pieces/10-tagin-pen-plotter/essay.md"
+  },
+  {
+    "id": "11-seven-species-botanical",
+    "title": "Sheva Minim",
+    "tagline": "the seven species of the Land, arranged as a wreath",
+    "year": 2026,
+    "theme": "Bikkurim / Seven Species",
+    "technique": "SVG botanical illustration",
+    "path": "pieces/11-seven-species-botanical/index.html",
+    "thumbnail": "pieces/11-seven-species-botanical/thumbnail.svg",
+    "essay": "pieces/11-seven-species-botanical/essay.md"
   }
 ]
