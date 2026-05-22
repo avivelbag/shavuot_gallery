@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keter Torah — Crown of Torah Harmonograph</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a1a;
+      color: #c8c8f8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    canvas {
+      display: block;
+      border: 1px solid #1a237e;
+      background: #050514;
+    }
+    .hebrew-title {
+      font-size: 2rem;
+      color: #c9a84c;
+      direction: rtl;
+      margin-top: 0.75rem;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 18px rgba(201,168,76,0.6);
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.35rem;
+      color: #c9a84c;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #8080c0;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #1a237e;
+      padding-left: 0.75rem;
+      line-height: 1.5;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #c0c0f0;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #c9a84c; font-style: normal; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #6060a0;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #1a237e;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="520" height="520"></canvas>
+    <div class="hebrew-title">כֶּתֶר תּוֹרָה</div>
+  </div>
+  <div class="essay-pane">
+    <h1>Keter Torah — Crown of Torah</h1>
+    <p class="source">"There are three crowns: the crown of Torah, the crown of priesthood, and the crown of kingship — but the crown of a good name surpasses them all." — Mishnah Avot 4:13, Rabbi Shimon ben Yehuda HaNasi</p>
+
+    <p>Among the Mishnah's most compressed and resonant teachings is the one found in Avot 4:13. Three crowns exist in the world, the Mishnah says: <em>keter kehunah</em> (the crown of priesthood), <em>keter malkhut</em> (the crown of kingship), and <em>keter Torah</em> (the crown of Torah). The first two are hereditary — you are born a Kohen or a descendant of David. But the crown of Torah belongs to anyone who reaches for it. The Mishnah's fourth crown — <em>keter shem tov</em>, the crown of a good name — surpasses them all, because it is earned solely through how one lives.</p>
+
+    <p>What does it mean to call Torah a crown? The metaphor is not merely honorific. A crown is placed <em>on top</em>, which positions the one crowned beneath it — not above the crown but responsible to it. Torah as crown means Torah rules; the one who accepts it is subject to it. And yet, unlike the crowns of priesthood and kingship, which are imposed by bloodline or conquest, the keter Torah is accepted freely. This is the theological significance of the words Israel spoke at Sinai: <em>naaseh v'nishma</em> — "we will do and we will hear" (Exodus 24:7). They accepted the crown before knowing its full weight. Sovereignty here is claimed not by birth or force but by the act of saying yes.</p>
+
+    <p>The Midrash deepens this image. When God gave the Torah, the tradition holds, the letters themselves were adorned with crowns — the <em>tagin</em>, the small ornamental marks that appear atop certain letters in a Torah scroll. These are not decorations. They are, the rabbis say, vessels of meaning: extra layers of significance that a sufficiently prepared reader can unlock. The Talmud (Menachot 29b) tells the extraordinary story of Moses ascending to heaven and finding God adding these crowns to the letters. Moses asks why. God replies: "There is a man who will arise after many generations — Akiva ben Yosef is his name — who will derive mountains of laws from each and every crown." Moses asks to see him. God shows Moses Rabbi Akiva's classroom, where students ask: "From where do you learn this?" Akiva answers: "It is a law given to Moses at Sinai." Moses, who gave the Torah, cannot follow Akiva's reasoning — and yet is comforted, because the chain of transmission holds. The crown generates meaning across the centuries.</p>
+
+    <p>This piece renders that generative process as a harmonograph — a dual-pendulum drawing machine used by Victorian-era scientists to plot Lissajous-family curves. Two pendulums swing at carefully chosen frequency ratios; as both decay exponentially, their interaction traces a dense, crown-like form with pointed arches and bilateral symmetry. The mathematics is: <em>x(t) = A₁·sin(f₁·t + φ₁)·e^(−d₁·t) + A₂·sin(f₂·t + φ₂)·e^(−d₂·t)</em>, same form for y. What emerges is not chaotic but ordered — a form that closes on itself, accumulating through repetition into something richer than any single pass.</p>
+
+    <p>Three to four traces overlap, each in a different shade of the royal palette — deep blue, gold, violet, white — at low opacity. Where traces coincide, brightness accumulates. The crown is not drawn at once but writes itself progressively, line segment by line segment, the way understanding comes not in a single moment but through return and repetition. It fades and redraws with slightly varied damping — the same form, slightly changed, the way each generation reads the same Torah and derives something new.</p>
+
+    <p>On Shavuot, Israel received a document whose every mark — including the crowns on its letters — contains compressed significance awaiting the student willing to ask: from where do we learn this?</p>
+
+    <p class="citations">Sources: Mishnah Avot 4:13; Exodus 24:7; Talmud Bavli Menachot 29b; Talmud Bavli Shabbat 89a; Zohar III:132b.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = 520, H = 520;
+  const cx = W / 2, cy = H / 2;
+
+  const PALETTE = [
+    'rgba(26,35,126,',   // deep royal blue  #1a237e
+    'rgba(201,168,76,',  // gold             #c9a84c
+    'rgba(106,27,154,',  // warm violet      #6a1b9a
+    'rgba(245,245,245,', // white            #f5f5f5
+  ];
+  const ALPHA = 0.38;
+
+  // Harmonograph parameters — freq ratios 3:2 produce a pointed crown form.
+  // Four traces with phase offsets of PI/6 build overlapping depth.
+  function buildTrace(phaseOffset, dampingVariant) {
+    const f1x = 3, f1y = 2, f2x = 2, f2y = 3;
+    const A1 = 120, A2 = 100;
+    const d1 = 0.002 + dampingVariant, d2 = 0.0025 + dampingVariant;
+    const phi1 = phaseOffset;
+    const phi2 = phaseOffset + Math.PI / 4;
+    const dt = 0.05;
+    const tMax = 900;
+    const pts = [];
+    for (let t = 0; t <= tMax; t += dt) {
+      const decay1 = Math.exp(-d1 * t);
+      const decay2 = Math.exp(-d2 * t);
+      const x = cx + A1 * Math.sin(f1x * t + phi1) * decay1
+                    + A2 * Math.sin(f2x * t + phi2) * decay2;
+      const y = cy + A1 * Math.sin(f1y * t + phi1 + Math.PI / 6) * decay1
+                    + A2 * Math.sin(f2y * t + phi2 + Math.PI / 3) * decay2;
+      pts.push([x, y]);
+    }
+    return pts;
+  }
+
+  const NUM_TRACES = 4;
+  // Pre-compute all four traces synchronously at init.
+  function buildAllTraces(dampingVariant) {
+    return Array.from({ length: NUM_TRACES }, (_, i) =>
+      buildTrace(i * Math.PI / 6, dampingVariant)
+    );
+  }
+
+  // trace length = tMax/dt = 900/0.05 = 18000 pts; 18000/40 = 450 frames ≈ 7.5s at 60fps.
+  const SEGS_PER_FRAME = 40;
+
+  const HOLD_DURATION = 3000;  // ms to hold after trace complete
+  const FADE_DURATION = 800;   // ms to fade out
+
+  let traces = buildAllTraces(0);
+  let drawIndex = 0;
+  let phase = 'drawing';  // 'drawing' | 'holding' | 'fading'
+  let phaseStart = null;
+  let dampingCycle = 0;
+  const DAMPING_VARIANTS = [0, 0.0003, -0.0002, 0.0005];
+
+  function clearCanvas(alpha) {
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = '#050514';
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+  }
+
+  // Off-screen canvas accumulates the full drawing so we can fade it.
+  const offscreen = document.createElement('canvas');
+  offscreen.width = W;
+  offscreen.height = H;
+  const offCtx = offscreen.getContext('2d');
+
+  function startNewCycle() {
+    dampingCycle = (dampingCycle + 1) % DAMPING_VARIANTS.length;
+    traces = buildAllTraces(DAMPING_VARIANTS[dampingCycle]);
+    drawIndex = 0;
+    phase = 'drawing';
+    phaseStart = null;
+    offCtx.fillStyle = '#050514';
+    offCtx.fillRect(0, 0, W, H);
+  }
+
+  function draw(ts) {
+    if (phase === 'drawing') {
+      if (drawIndex < traces[0].length - 1) {
+        const toIndex = Math.min(drawIndex + SEGS_PER_FRAME, traces[0].length - 1);
+        for (let ti = 0; ti < traces.length; ti++) {
+          const pts = traces[ti];
+          offCtx.strokeStyle = PALETTE[ti] + ALPHA + ')';
+          offCtx.lineWidth = 1.2;
+          offCtx.beginPath();
+          offCtx.moveTo(pts[drawIndex][0], pts[drawIndex][1]);
+          for (let i = drawIndex + 1; i <= toIndex; i++) {
+            offCtx.lineTo(pts[i][0], pts[i][1]);
+          }
+          offCtx.stroke();
+        }
+        drawIndex = toIndex;
+
+        // Blit offscreen to main canvas.
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#050514';
+        ctx.fillRect(0, 0, W, H);
+        ctx.drawImage(offscreen, 0, 0);
+      } else {
+        phase = 'holding';
+        phaseStart = ts;
+      }
+    } else if (phase === 'holding') {
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#050514';
+      ctx.fillRect(0, 0, W, H);
+      ctx.drawImage(offscreen, 0, 0);
+      if (ts - phaseStart >= HOLD_DURATION) {
+        phase = 'fading';
+        phaseStart = ts;
+      }
+    } else if (phase === 'fading') {
+      const elapsed = ts - phaseStart;
+      const t = Math.min(elapsed / FADE_DURATION, 1);
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#050514';
+      ctx.fillRect(0, 0, W, H);
+      ctx.globalAlpha = 1 - t;
+      ctx.drawImage(offscreen, 0, 0);
+      ctx.globalAlpha = 1;
+      if (t >= 1) {
+        startNewCycle();
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  // Initialize offscreen background.
+  offCtx.fillStyle = '#050514';
+  offCtx.fillRect(0, 0, W, H);
+
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
