@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aseret HaDibrot — Ten Words Engraved in Fire</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1c1612;
+      color: #f5eed8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    canvas {
+      display: block;
+      border: 1px solid rgba(200,184,154,0.2);
+    }
+    .hebrew-title {
+      font-size: 1.5rem;
+      color: #ffcc66;
+      direction: rtl;
+      margin-top: 0.75rem;
+      letter-spacing: 0.05em;
+      font-family: 'SBL Hebrew', 'David', serif;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.25rem;
+      color: #ffcc66;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .essay-pane p {
+      font-size: 0.91rem;
+      line-height: 1.8;
+      color: #e8dfc8;
+      margin-bottom: 0.95rem;
+    }
+    .essay-pane em { color: #ffcc66; font-style: normal; }
+    .quote-block {
+      border-left: 3px solid #ff9900;
+      padding-left: 0.85rem;
+      margin: 0.85rem 0 1rem;
+      background: rgba(255,153,0,0.06);
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-right: 0.5rem;
+    }
+    .quote-he {
+      direction: rtl;
+      font-family: 'SBL Hebrew', 'David', serif;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #ffdd99;
+      margin-bottom: 0.4rem;
+    }
+    .quote-en {
+      font-size: 0.84rem;
+      font-style: italic;
+      color: #b8a880;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    .essay-pane .citations {
+      font-size: 0.8rem;
+      color: #8a7a55;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid rgba(200,184,154,0.25);
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <div class="hebrew-title">עֲשֶׂרֶת הַדִּבְּרוֹת</div>
+  </div>
+  <div class="essay-pane">
+    <h1>"The Ten Words" — Aseret HaDibrot</h1>
+
+    <p>The climax of the Sinai revelation arrives in Exodus 20:2–14, where God speaks the <em>Aseret HaDibrot</em> — the "Ten Words" or Ten Commandments — directly to all Israel. This is the only moment in the Torah where God addresses the entire assembled nation collectively, not through a prophet or intermediary. Every man, woman, and child present heard the voice of God; the Talmud (Berakhot 22a) even extends this to future generations. The covenant was not mediated — it was spoken into the air of the mountain.</p>
+
+    <p>The first words God speaks are:</p>
+
+    <div class="quote-block">
+      <p class="quote-he">אָנֹכִי יְהוָה אֱלֹהֶיךָ אֲשֶׁר הוֹצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם מִבֵּית עֲבָדִים</p>
+      <p class="quote-en">"I am the Lord your God, who brought you out of the land of Egypt, from the house of slavery." — Exodus 20:2</p>
+    </div>
+
+    <p>The commandment begins not with an obligation but with an identity declaration: God introduces Himself through historical act, through liberation. Freedom precedes law; deliverance precedes covenant. Only after this introduction do the nine prohibitions and obligations follow — five governing Israel's relationship with God, five governing relations between people, the structure of all ethical life laid out on two tablets of stone.</p>
+
+    <p>The physical medium of these words carries its own theology. Exodus 31:18 records that when Moses descended, God gave him:</p>
+
+    <div class="quote-block">
+      <p class="quote-he">לֻחֹת הָאֶבֶן כְּתֻבִים בְּאֶצְבַּע אֱלֹהִים</p>
+      <p class="quote-en">"tablets of stone written by the finger of God" — Exodus 31:18</p>
+    </div>
+
+    <p>Deuteronomy 9:10 adds that the writing was <em>charut</em> (חָרוּת), "engraved," upon the stone — not painted, not inscribed with ink, but driven into the rock itself. The rabbis of the Mishnah heard a pun in this word that transformed its theology:</p>
+
+    <div class="quote-block">
+      <p class="quote-he">אַל תִּקְרָא חָרוּת אֶלָּא חֵרוּת, שֶׁאֵין לְךָ בֶן חוֹרִין אֶלָּא מִי שֶׁעוֹסֵק בְּתַלְמוּד תּוֹרָה</p>
+      <p class="quote-en">"Do not read <em>charut</em> ('engraved') but <em>cherut</em> ('freedom'): for no one is truly free except one who occupies himself with the study of Torah." — Pirkei Avot 6:2</p>
+    </div>
+
+    <p>The play on חָרוּת / חֵרוּת — engraved / free — encodes a paradox at the heart of Sinai: the very law that constrains is the path to liberation. Constraint and freedom are not opposites; the letters cut into stone carry both meanings simultaneously, and the pun depends on nothing more than a vowel.</p>
+
+    <p>The visual form of the tablets encodes tradition as well. Commandments 1–5, covering Israel's relationship with God, appear on the left stone; Commandments 6–10, governing relations between people, appear on the right. The two tablets together form a diptych: the vertical and horizontal axes of ethical life, the covenant expressed geometrically. The Talmud Yerushalmi (Shekalim 6:1) records that the tablets were each six handbreadths wide and six tall — square, balanced, each commanding equal weight.</p>
+
+    <p>On Shavuot morning, the festival that commemorates the giving of the Torah at Sinai, it is customary in most congregations to rise for the public chanting of the <em>Aseret HaDibrot</em>. The Torah reader chants the passage with the special <em>ta'am elyon</em> ("upper cantillation"), a melody reserved for this passage, because the words were not merely heard but, as Exodus 20:15 records, also <em>seen</em>: "All the people saw the sounds." Sound, vision, law, and fire — all converge in these ten words, still alive in the stone.</p>
+
+    <p>In this piece the words breathe. The amber glow pulsing through each engraved letter recalls the midrashic tradition (Talmud Bavli Megillah 21a) that the original script was written in fire — black fire on white fire — the divine inscription still burning within the rock, waiting to be read.</p>
+
+    <p class="citations">Sources: Exodus 20:2–14; Exodus 31:18; Deuteronomy 9:10; Pirkei Avot 6:2; Talmud Bavli Berakhot 22a; Talmud Bavli Megillah 21a; Talmud Yerushalmi Shekalim 6:1.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = 600, H = 600;
+
+  const LEFT  = { x: 20,  y: 20, w: 265, h: 560 };
+  const RIGHT = { x: 315, y: 20, w: 265, h: 560 };
+  const RADIUS = 20;
+
+  const FONT_CMD = "15px 'SBL Hebrew', 'David', serif";
+  const FONT_NUM = "11px 'SBL Hebrew', 'David', serif";
+
+  const LEFT_CMD = [
+    { num: 'א׳', text: 'אָנֹכִי יְהוָה אֱלֹהֶיךָ' },
+    { num: 'ב׳', text: 'לֹא יִהְיֶה לְךָ' },
+    { num: 'ג׳', text: 'לֹא תִשָּׂא' },
+    { num: 'ד׳', text: 'זָכוֹר אֶת-יוֹם הַשַּׁבָּת' },
+    { num: 'ה׳', text: 'כַּבֵּד אֶת-אָבִיךָ' },
+  ];
+
+  const RIGHT_CMD = [
+    { num: 'ו׳', text: 'לֹא תִרְצָח' },
+    { num: 'ז׳', text: 'לֹא תִנְאָף' },
+    { num: 'ח׳', text: 'לֹא תִגְנֹב' },
+    { num: 'ט׳', text: 'לֹא תַעֲנֶה' },
+    { num: 'י׳', text: 'לֹא תַחְמֹד' },
+  ];
+
+  function makeStoneTexture(w, h) {
+    const off = document.createElement('canvas');
+    off.width = w;
+    off.height = h;
+    const oc = off.getContext('2d');
+    oc.fillStyle = '#c8b89a';
+    oc.fillRect(0, 0, w, h);
+    for (let i = 0; i < w * h * 0.10; i++) {
+      const gx = Math.random() * w;
+      const gy = Math.random() * h;
+      const light = Math.random() > 0.5;
+      const alpha = 0.04 + Math.random() * 0.09;
+      oc.fillStyle = light
+        ? `rgba(215,200,170,${alpha})`
+        : `rgba(138,118,90,${alpha})`;
+      oc.fillRect(gx, gy, 1.5, 1.5);
+    }
+    return off;
+  }
+
+  const stoneL = makeStoneTexture(LEFT.w,  LEFT.h);
+  const stoneR = makeStoneTexture(RIGHT.w, RIGHT.h);
+
+  function tabletPath(tab) {
+    const { x, y, w, h } = tab;
+    const r = RADIUS;
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.arcTo(x + w, y,     x + w, y + r,     r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+    ctx.lineTo(x + r, y + h);
+    ctx.arcTo(x,     y + h, x,     y + h - r, r);
+    ctx.lineTo(x, y + r);
+    ctx.arcTo(x,     y,     x + r, y,         r);
+    ctx.closePath();
+  }
+
+  function drawTablet(tab, stoneTex) {
+    ctx.save();
+    tabletPath(tab);
+    ctx.clip();
+    ctx.drawImage(stoneTex, tab.x, tab.y);
+    const grad = ctx.createLinearGradient(tab.x, tab.y, tab.x + tab.w, tab.y + tab.h);
+    grad.addColorStop(0, 'rgba(255,255,255,0.15)');
+    grad.addColorStop(1, 'rgba(0,0,0,0.2)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(tab.x, tab.y, tab.w, tab.h);
+    ctx.restore();
+
+    ctx.save();
+    tabletPath(tab);
+    ctx.strokeStyle = '#a89880';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawGlyph(text, cx, y, blur) {
+    ctx.save();
+    ctx.font = FONT_CMD;
+    ctx.direction = 'rtl';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    // Dark engraved-depth offset
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = 'rgba(40,20,5,0.7)';
+    ctx.fillText(text, cx + 2, y + 2);
+
+    // Warm amber glow pass
+    ctx.shadowBlur = blur;
+    ctx.shadowColor = '#ff9900';
+    ctx.fillStyle = '#ffcc66';
+    ctx.fillText(text, cx, y);
+
+    // Sharp bright pass on top
+    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'rgba(0,0,0,0)';
+    ctx.fillStyle = '#f5eed8';
+    ctx.fillText(text, cx, y);
+
+    ctx.restore();
+  }
+
+  function drawCommandments(tab, cmds, blur) {
+    const cx = tab.x + tab.w / 2;
+    const spacing = (tab.h - 60) / cmds.length;
+    const startY = tab.y + 50;
+
+    for (let i = 0; i < cmds.length; i++) {
+      const baseY = startY + i * spacing;
+
+      ctx.save();
+      ctx.font = FONT_NUM;
+      ctx.direction = 'rtl';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = 'rgba(80,50,25,0.9)';
+      ctx.fillText(cmds[i].num, cx, baseY);
+      ctx.restore();
+
+      drawGlyph(cmds[i].text, cx, baseY + 22, blur);
+    }
+  }
+
+  function frame(ts) {
+    const phase = (ts / 12000) * 2 * Math.PI;
+    const blur = 8 + 12 * (0.5 + 0.5 * Math.sin(phase));
+
+    ctx.fillStyle = '#1c1612';
+    ctx.fillRect(0, 0, W, H);
+
+    drawTablet(LEFT,  stoneL);
+    drawTablet(RIGHT, stoneR);
+
+    drawCommandments(LEFT,  LEFT_CMD,  blur);
+    drawCommandments(RIGHT, RIGHT_CMD, blur);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
