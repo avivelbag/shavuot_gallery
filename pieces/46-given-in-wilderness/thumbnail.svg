@@ -48,5 +48,5 @@
   <!-- Hebrew word מִדְבָּר above horizon -->
   <text x="378" y="182" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
         font-size="18" font-weight="200" fill="#C8A87A" opacity="0.72"
-        text-anchor="end" direction="rtl">מִדְבָר</text>
+        text-anchor="end" direction="rtl">מִדְבָּר</text>
 </svg>
