@@ -87,13 +87,13 @@ while len(circles) < 500 and attempts < 50000:
 # Build SVG
 lines = []
 lines.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">')
-lines.append(f'  <defs>')
-lines.append(f'    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">')
-lines.append(f'      <stop offset="0%" stop-color="#c8dce8"/>')
-lines.append(f'      <stop offset="35%" stop-color="#e8c870"/>')
-lines.append(f'      <stop offset="100%" stop-color="#f5c842"/>')
-lines.append(f'    </linearGradient>')
-lines.append(f'  </defs>')
+lines.append('  <defs>')
+lines.append('    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">')
+lines.append('      <stop offset="0%" stop-color="#c8dce8"/>')
+lines.append('      <stop offset="35%" stop-color="#e8c870"/>')
+lines.append('      <stop offset="100%" stop-color="#f5c842"/>')
+lines.append('    </linearGradient>')
+lines.append('  </defs>')
 lines.append(f'  <rect width="{W}" height="{H}" fill="url(#bg)"/>')
 
 for (x, y, r, color) in circles:
