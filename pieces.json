@@ -671,6 +671,17 @@
     "essay": "pieces/52-cloud-upon-the-mountain/essay.md"
   },
   {
+    "id": "52-gleaning-ruth",
+    "title": "Gleaning in the Fields of Boaz",
+    "tagline": "Ruth follows the harvesters through Boaz’s field — marching squares trace the contours of a harvest landscape, the invisible structure of leket made visible",
+    "year": 2026,
+    "theme": "Ruth / Harvest",
+    "technique": "canvas 2D — marching squares contour tracing, fBm noise field, figure silhouettes",
+    "path": "pieces/52-gleaning-ruth/index.html",
+    "thumbnail": "pieces/52-gleaning-ruth/thumbnail.svg",
+    "essay": "pieces/52-gleaning-ruth/essay.md"
+  },
+  {
     "id": "52-milk-and-honey",
     "title": "Milk and Honey — Halftone Drip",
     "tagline": "זָבַת חָלָב וּדְבַשׁ — two halftone layers meet on cream: amber honey descends, milk-white rises, as on the day of Bikkurim",

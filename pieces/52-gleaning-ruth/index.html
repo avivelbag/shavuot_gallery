@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gleaning in the Fields of Boaz — Contour Harvest</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1A1208; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #4A6741;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #1A1208;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #4A6741; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #C9922A; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #6B8055; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #D4B483; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #C9922A; font-style: normal; }
+    .essay-panel blockquote {
+      border-left: 3px solid #C9922A;
+      margin: 1rem 0 1rem 0.5rem;
+      padding-left: 1rem;
+      color: #E8D5A3;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Gleaning in the Fields of Boaz</h1>
+    <p class="subtitle">Ruth · Harvest · Shavuot</p>
+
+    <h2>The Field in Ruth 2</h2>
+    <p>The second chapter of Ruth takes place entirely in a barley field. Naomi has returned to Bethlehem from Moab, accompanied by her daughter-in-law Ruth. It is the beginning of the barley harvest, and Ruth goes out to glean — to gather the grain stalks that fall behind the harvesters, the forgotten sheaves and dropped handfuls that belonged, by ancient law, to the poor and the stranger.</p>
+    <p>The landowner is Boaz, a kinsman of Naomi's. He notices Ruth and asks who she is. He is told: "She is the Moabite girl who came back with Naomi from the country of Moab." Then Boaz does something remarkable: he instructs his workers to let grain fall deliberately for her, to share their water with her, to tell her to follow close behind his reapers. <em>"The Lord repay you for what you have done,"</em> he tells her — and she immediately asks why she has found favour, since she is a foreigner.</p>
+    <p>The answer Boaz gives is not about ethnicity or property. It is about loyalty, about <em>chesed</em> — the steadfast kindness Ruth showed Naomi when she chose to stay with her after Elimelech's death, when she could have returned to her own people and her own gods. The harvest field is the setting for something that has nothing to do with grain.</p>
+
+    <h2>Ruth and Shavuot</h2>
+    <p>Ruth is read aloud in synagogue on Shavuot, the festival that commemorates the giving of the Torah at Sinai. The surface connection is the harvest: Shavuot is the festival of Bikkurim (first fruits), and Ruth's story unfolds precisely during this harvest season. But the deeper connection is theological.</p>
+    <p>Shavuot celebrates the moment when Israel received the Torah collectively, as a nation. Ruth embodies what it means to receive the Torah as an individual, through deliberate personal choice. Her declaration to Naomi — <em>"Your people shall be my people, and your God my God"</em> (Ruth 1:16) — is a private Sinai. She accepts not just a people but a covenant, not just a land but its laws, including the very laws that will shortly feed her in Boaz's field.</p>
+
+    <h2>Leket: The Torah in the Field</h2>
+    <p>The commandment that makes Ruth's gleaning possible is <em>leket</em> — the law of fallen grain. It appears in Leviticus 19:9: "When you reap the harvest of your land, you shall not reap to the very edges of your field, nor shall you gather the gleanings after your harvest." And again in Deuteronomy 24:19: "When you reap your harvest in your field and forget a sheaf in the field, you shall not go back to get it. It shall be for the sojourner, the fatherless, and the widow."</p>
+    <p>These laws were given at Sinai. Ruth gleaning in Boaz's field is not merely a story of personal kindness — it is a story of a society whose legal architecture functions exactly as designed. The invisible boundaries of the field — who may enter, what must be left behind, how the stranger is sustained — were written at Sinai and are operating here in Bethlehem. Ruth is living proof that the Torah works: its social fabric holds even for the outsider, even across the boundary of nation and origin.</p>
+    <p>Boaz does not give Ruth charity. He arranges that the <em>leket</em> law operates in her favour. He does not override the structure — he uses it. The Torah's mechanism for including the vulnerable is not a personal favour that could be withheld tomorrow. It is a legal entitlement, woven into the harvest itself.</p>
+
+    <h2>Contours and Thresholds</h2>
+    <p>This piece uses the marching squares algorithm to trace topographic contour lines through a slowly evolving noise field. Multiple iso-values divide the landscape into bands — deep field green where the grain still stands, warm straw and harvest gold where the rows have been cut and cleared. The field breathes and shifts: the underlying fractional Brownian noise drifts at a constant rate, so contours ripple and migrate like wind moving through standing grain.</p>
+    <p>Five small figures move across the terrain at walking pace. They follow straight paths, crossing contour thresholds as they cross the rows of the harvest. The contour lines that divide the field into bands are its invisible legal structure — the boundaries that define where the gleaner may follow, where the reaper must stop. The piece is a portrait of the Torah working: invisible lines that hold the harvest together, making room for Ruth.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var COLS = 150, ROWS = 100;
+  var NUM_BANDS = 10;
+
+  var THRESHOLDS = [];
+  for (var i = 1; i < NUM_BANDS; i++) THRESHOLDS.push(i / NUM_BANDS);
+
+  var BAND_FILL = [
+    '#2E4A26', '#344E2C', '#3E5832', '#4A6741',
+    '#5E7A52', '#789068', '#9BAD7B', '#C4BB83',
+    '#DCAC55', '#C9922A'
+  ];
+
+  var BAND_STROKE = [
+    '#1E3219', '#293D22', '#33492A', '#3D5535',
+    '#4D6542', '#607A53', '#7D9062', '#A09866',
+    '#BE943A', '#A07020'
+  ];
+
+  var FIGURE_COLOR = '#1A1208';
+  var SKY_TOP = '#8EA4B2';
+  var SKY_BOT = '#6A8495';
+
+  // 64×64 value noise lattice — bilinear-interpolated, wrapping
+  var LW = 64, LH = 64;
+  var lattice = new Float32Array(LW * LH);
+  for (var li = 0; li < lattice.length; li++) lattice[li] = Math.random();
+
+  function sampleNoise(x, y) {
+    var fx = ((x % LW) + LW) % LW;
+    var fy = ((y % LH) + LH) % LH;
+    var ix = fx | 0;
+    var iy = fy | 0;
+    var tx = fx - ix;
+    var ty = fy - iy;
+    var x1 = (ix + 1) % LW;
+    var y1 = (iy + 1) % LH;
+    var v00 = lattice[iy * LW + ix];
+    var v10 = lattice[iy * LW + x1];
+    var v01 = lattice[y1 * LW + ix];
+    var v11 = lattice[y1 * LW + x1];
+    var u = tx * tx * (3 - 2 * tx);
+    var v = ty * ty * (3 - 2 * ty);
+    return v00 + u * (v10 - v00) + v * (v01 - v00) + u * v * (v00 - v10 - v01 + v11);
+  }
+
+  // 3-octave fBm — coarse structure dominates, fine detail sharpens contours
+  function fbm(nx, ny) {
+    return 0.5  * sampleNoise(nx * 5,  ny * 5)  +
+           0.3  * sampleNoise(nx * 10, ny * 10) +
+           0.2  * sampleNoise(nx * 20, ny * 20);
+  }
+
+  // Marching squares lookup: MS_SEGS[case] = [[edgeA, edgeB], ...]
+  // Corner bit encoding: TL=8, TR=4, BR=2, BL=1
+  // Edges: 0=top, 1=right, 2=bottom, 3=left
+  // null entries are resolved at runtime (saddle cases 5 and 10)
+  var MS_SEGS = [
+    [],           // 0  0000
+    [[2, 3]],     // 1  0001 BL
+    [[1, 2]],     // 2  0010 BR
+    [[1, 3]],     // 3  0011 BR+BL
+    [[0, 1]],     // 4  0100 TR
+    null,         // 5  0101 TR+BL saddle — resolved below
+    [[0, 2]],     // 6  0110 TR+BR
+    [[0, 3]],     // 7  0111 not TL
+    [[0, 3]],     // 8  1000 TL
+    [[0, 2]],     // 9  1001 TL+BL
+    null,         // 10 1010 TL+BR saddle — resolved below
+    [[0, 1]],     // 11 1011 not TR
+    [[1, 3]],     // 12 1100 TL+TR
+    [[1, 2]],     // 13 1101 not BR
+    [[2, 3]],     // 14 1110 not BL
+    []            // 15 1111
+  ];
+
+  function edgePoint(edge, px, py, cw, ch, tl, tr, br, bl, thr) {
+    var t;
+    switch (edge) {
+      case 0: t = Math.abs(tr - tl) < 1e-9 ? 0.5 : (thr - tl) / (tr - tl); return [px + t * cw, py];
+      case 1: t = Math.abs(br - tr) < 1e-9 ? 0.5 : (thr - tr) / (br - tr); return [px + cw, py + t * ch];
+      case 2: t = Math.abs(br - bl) < 1e-9 ? 0.5 : (thr - bl) / (br - bl); return [px + t * cw, py + ch];
+      case 3: t = Math.abs(bl - tl) < 1e-9 ? 0.5 : (thr - tl) / (bl - tl); return [px, py + t * ch];
+    }
+  }
+
+  var grid = new Float32Array((COLS + 1) * (ROWS + 1));
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+
+  var W = 0, H = 0, cellW = 0, cellH = 0;
+  var offX = 0, offY = 0;
+
+  function resize() {
+    W = panel.clientWidth;
+    H = panel.clientHeight;
+    if (!W || !H) return;
+    canvas.width = W;
+    canvas.height = H;
+    cellW = W / COLS;
+    cellH = H / ROWS;
+  }
+
+  // 5 figure silhouettes: Ruth and four harvesters
+  var figures = [
+    { x: 0.10, y: 0.45, vx:  0.000040, vy:  0.000008 },
+    { x: 0.25, y: 0.62, vx:  0.000035, vy: -0.000010 },
+    { x: 0.42, y: 0.38, vx:  0.000050, vy:  0.000012 },
+    { x: 0.65, y: 0.70, vx: -0.000038, vy: -0.000009 },
+    { x: 0.82, y: 0.52, vx:  0.000042, vy:  0.000015 }
+  ];
+
+  function drawFigure(cx, cy) {
+    var s = Math.min(W, H) * 0.016;
+    ctx.strokeStyle = FIGURE_COLOR;
+    ctx.fillStyle = FIGURE_COLOR;
+    ctx.lineWidth = 1.5;
+    ctx.lineCap = 'round';
+    // head
+    ctx.beginPath();
+    ctx.arc(cx, cy - s * 1.9, s * 0.32, 0, Math.PI * 2);
+    ctx.fill();
+    // body bent slightly forward (gleaning posture)
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - s * 1.55);
+    ctx.bezierCurveTo(cx + s * 0.15, cy - s * 0.9, cx + s * 0.1, cy - s * 0.35, cx - s * 0.1, cy);
+    ctx.stroke();
+    // forward arm reaching down toward grain
+    ctx.beginPath();
+    ctx.moveTo(cx + s * 0.1, cy - s * 1.1);
+    ctx.quadraticCurveTo(cx + s * 0.85, cy - s * 0.3, cx + s * 1.2, cy + s * 0.25);
+    ctx.stroke();
+    // back arm
+    ctx.beginPath();
+    ctx.moveTo(cx - s * 0.05, cy - s * 1.1);
+    ctx.quadraticCurveTo(cx - s * 0.65, cy - s * 0.7, cx - s * 0.85, cy - s * 0.5);
+    ctx.stroke();
+    // legs
+    ctx.beginPath();
+    ctx.moveTo(cx - s * 0.1, cy);
+    ctx.quadraticCurveTo(cx - s * 0.35, cy + s * 0.7, cx - s * 0.25, cy + s * 1.35);
+    ctx.moveTo(cx - s * 0.1, cy);
+    ctx.quadraticCurveTo(cx + s * 0.25, cy + s * 0.65, cx + s * 0.2, cy + s * 1.35);
+    ctx.stroke();
+  }
+
+  var lastT = 0;
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!W || !H) { resize(); return; }
+    if (now - lastT < 1000 / 61) return;
+    lastT = now;
+
+    offX += 0.003;
+    offY += 0.0015;
+
+    // recompute scalar field at all grid vertices
+    for (var gy = 0; gy <= ROWS; gy++) {
+      var ny = gy / ROWS + offY;
+      for (var gx = 0; gx <= COLS; gx++) {
+        grid[gy * (COLS + 1) + gx] = fbm(gx / COLS + offX, ny);
+      }
+    }
+
+    // choropleth background: fill each cell with the colour of its scalar band
+    for (var row = 0; row < ROWS; row++) {
+      var py0 = row * cellH;
+      for (var col = 0; col < COLS; col++) {
+        var v = grid[row * (COLS + 1) + col];
+        var band = v * NUM_BANDS | 0;
+        if (band >= NUM_BANDS) band = NUM_BANDS - 1;
+        ctx.fillStyle = BAND_FILL[band];
+        ctx.fillRect(col * cellW, py0, cellW + 0.5, cellH + 0.5);
+      }
+    }
+
+    // sky gradient fading into the top of the field
+    var skyH = H * 0.15;
+    var grad = ctx.createLinearGradient(0, 0, 0, skyH * 1.8);
+    grad.addColorStop(0, SKY_TOP);
+    grad.addColorStop(0.55, SKY_BOT + 'BB');
+    grad.addColorStop(1, SKY_BOT + '00');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, skyH * 1.8);
+
+    // contour lines: one marching-squares pass per threshold
+    ctx.lineWidth = 1;
+    ctx.lineCap = 'butt';
+    for (var ti = 0; ti < THRESHOLDS.length; ti++) {
+      var thr = THRESHOLDS[ti];
+      ctx.strokeStyle = BAND_STROKE[ti];
+      ctx.beginPath();
+      for (var r = 0; r < ROWS; r++) {
+        var py = r * cellH;
+        for (var c = 0; c < COLS; c++) {
+          var px = c * cellW;
+          var tl = grid[r       * (COLS + 1) + c];
+          var tr = grid[r       * (COLS + 1) + c + 1];
+          var br = grid[(r + 1) * (COLS + 1) + c + 1];
+          var bl = grid[(r + 1) * (COLS + 1) + c];
+
+          var ci = (tl >= thr ? 8 : 0) | (tr >= thr ? 4 : 0) |
+                   (br >= thr ? 2 : 0) | (bl >= thr ? 1 : 0);
+
+          var segs = MS_SEGS[ci];
+          if (segs === null) {
+            // saddle case: resolve by comparing cell average to threshold
+            var avg = (tl + tr + br + bl) * 0.25;
+            segs = ci === 5
+              ? (avg >= thr ? [[0, 1], [2, 3]] : [[0, 3], [1, 2]])
+              : (avg >= thr ? [[0, 3], [1, 2]] : [[0, 1], [2, 3]]);
+          }
+
+          for (var s = 0; s < segs.length; s++) {
+            var pa = edgePoint(segs[s][0], px, py, cellW, cellH, tl, tr, br, bl, thr);
+            var pb = edgePoint(segs[s][1], px, py, cellW, cellH, tl, tr, br, bl, thr);
+            ctx.moveTo(pa[0], pa[1]);
+            ctx.lineTo(pb[0], pb[1]);
+          }
+        }
+      }
+      ctx.stroke();
+    }
+
+    // update and draw figure silhouettes
+    for (var fi = 0; fi < figures.length; fi++) {
+      var fig = figures[fi];
+      fig.x += fig.vx;
+      fig.y += fig.vy;
+      if (fig.x > 1.05) fig.x -= 1.1;
+      if (fig.x < -0.05) fig.x += 1.1;
+      if (fig.y > 0.90) fig.vy = -Math.abs(fig.vy);
+      if (fig.y < 0.20) fig.vy =  Math.abs(fig.vy);
+      drawFigure(fig.x * W, fig.y * H);
+    }
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

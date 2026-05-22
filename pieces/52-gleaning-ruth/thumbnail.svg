@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- band fills — topographic-style diagonal layers from deep green to harvest gold -->
+  <rect width="256" height="256" fill="#2E4A26"/>
+  <polygon points="0,256 256,256 256,190 0,220" fill="#344E2C"/>
+  <polygon points="0,220 256,190 256,148 0,178" fill="#3E5832"/>
+  <polygon points="0,178 256,148 256,108 0,140" fill="#4A6741"/>
+  <polygon points="0,140 256,108 256,72  0,100" fill="#5E7A52"/>
+  <polygon points="0,100 256,72  256,42  0,64"  fill="#789068"/>
+  <polygon points="0,64  256,42  256,18  0,34"  fill="#9BAD7B"/>
+  <polygon points="0,34  256,18  256,0   0,10"  fill="#C4BB83"/>
+
+  <!-- sky gradient at top -->
+  <defs>
+    <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#8EA4B2"/>
+      <stop offset="0.7" stop-color="#8EA4B2" stop-opacity="0.6"/>
+      <stop offset="1"   stop-color="#8EA4B2" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="50" fill="url(#skyg)"/>
+
+  <!-- contour lines -->
+  <line x1="0" y1="220" x2="256" y2="190" stroke="#1E3219" stroke-width="1.2"/>
+  <line x1="0" y1="178" x2="256" y2="148" stroke="#293D22" stroke-width="1.2"/>
+  <line x1="0" y1="140" x2="256" y2="108" stroke="#3D5535" stroke-width="1.2"/>
+  <line x1="0" y1="100" x2="256" y2="72"  stroke="#607A53" stroke-width="1.2"/>
+  <line x1="0" y1="64"  x2="256" y2="42"  stroke="#A09866" stroke-width="1.5"/>
+  <line x1="0" y1="34"  x2="256" y2="18"  stroke="#C9922A" stroke-width="2"/>
+
+  <!-- figure silhouette (Ruth gleaning) at roughly centre-left -->
+  <circle cx="90" cy="146" r="4.5" fill="#1A1208"/>
+  <!-- body bent forward -->
+  <path d="M90 151 C91 157 90.5 162 89 167" stroke="#1A1208" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <!-- forward arm reaching down -->
+  <path d="M90.5 154 Q98 160 103 165" stroke="#1A1208" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- back arm -->
+  <path d="M89.5 154 Q83 157 80 156" stroke="#1A1208" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- legs -->
+  <path d="M89 167 Q86 174 87 180" stroke="#1A1208" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M89 167 Q92 173 91 180" stroke="#1A1208" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+  <!-- second figure (smaller, distant) -->
+  <circle cx="170" cy="125" r="3" fill="#1A1208"/>
+  <path d="M170 128 C171 133 170 137 169 141" stroke="#1A1208" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M170.5 131 Q176 135 179 138" stroke="#1A1208" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <path d="M169 141 Q167 146 168 150" stroke="#1A1208" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <path d="M169 141 Q171 146 170 150" stroke="#1A1208" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+</svg>
