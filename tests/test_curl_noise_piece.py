@@ -256,11 +256,11 @@ def test_no_duplicate_ids_after_addition():
     assert len(ids) == len(set(ids)), f"Duplicate IDs found: {ids}"
 
 
-def test_piece_46_is_last_entry():
-    """Piece 46-given-in-wilderness should be the last entry (highest number)."""
+def test_piece_46_is_in_pieces_json():
+    """Piece 46-given-in-wilderness must still exist in pieces.json."""
     pieces = load_pieces()
-    assert pieces[-1]["id"] == PIECE_ID, \
-        f"Expected '{PIECE_ID}' to be the last entry; got '{pieces[-1]['id']}'"
+    ids = [p["id"] for p in pieces]
+    assert PIECE_ID in ids, f"'{PIECE_ID}' not found in pieces.json"
 
 
 def test_index_html_no_external_fetch():

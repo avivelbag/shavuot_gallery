@@ -515,5 +515,16 @@
     "path": "pieces/46-given-in-wilderness/index.html",
     "thumbnail": "pieces/46-given-in-wilderness/thumbnail.svg",
     "essay": "pieces/46-given-in-wilderness/essay.md"
+  },
+  {
+    "id": "47-kol-hashofar-chladni",
+    "title": "The Voice Grew Louder — Kol HaShofar",
+    "tagline": "the shofar that had no source and obeyed no limit",
+    "year": 2026,
+    "theme": "Matan Torah",
+    "technique": "canvas 2D — Chladni eigenfunction vibration simulation, ImageData pixel rendering, field morphing",
+    "path": "pieces/47-kol-hashofar-chladni/index.html",
+    "thumbnail": "pieces/47-kol-hashofar-chladni/thumbnail.svg",
+    "essay": "pieces/47-kol-hashofar-chladni/essay.md"
   }
 ]
