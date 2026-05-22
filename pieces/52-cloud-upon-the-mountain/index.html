@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cloud Upon the Mountain — Ananei HaKavod</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #0D0A1A;
+      color: #e8dcc8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #glCanvas {
+      display: block;
+      width: 100%; height: 100%;
+    }
+    .hebrew-overlay {
+      position: absolute;
+      bottom: 32%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.7rem;
+      letter-spacing: 0.22em;
+      color: rgba(248, 240, 220, 0.55);
+      text-shadow:
+        0 0 12px rgba(255, 160, 40, 0.4),
+        0 0 30px rgba(180, 100, 10, 0.2);
+      pointer-events: none;
+      white-space: nowrap;
+      direction: rtl;
+      z-index: 2;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(13, 10, 26, 0.97);
+      border-left: 1px solid rgba(120, 80, 200, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #a078d8;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(232, 220, 200, 0.65);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+      color: #ddd0bc;
+    }
+    .essay p strong { color: #c8a050; }
+    .essay .source {
+      font-size: 0.78rem;
+      color: rgba(232, 220, 200, 0.5);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(120, 80, 200, 0.12);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 60vw; min-height: 280px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(120,80,200,0.18); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="glCanvas"></canvas>
+    <div class="hebrew-overlay">וַיְכַס הֶעָנָן אֶת-הָהָר</div>
+  </div>
+
+  <div class="essay">
+    <h1>The Cloud Upon the Mountain</h1>
+    <h2>Ananei HaKavod — the Clouds of Glory at Sinai</h2>
+
+    <p>Exodus 19:9 records God telling Moses: <strong>הִנֵּה אָנֹכִי בָּא אֵלֶיךָ
+    בְּעַב הֶעָנָן</strong> — <em>Behold, I am coming to you in a thick cloud.</em>
+    By Exodus 24:15–18 the same cloud has descended and settled: <em>the cloud covered
+    the mountain, and the glory of the LORD dwelt on Mount Sinai, and the cloud covered
+    it for six days.</em> Then Moses entered the cloud and remained inside it for forty
+    days and forty nights. To the watching Israelites below, the cloud's interior appeared
+    as <em>devouring fire</em> — amber and orange visible through its body. The cloud
+    is not backdrop. The cloud is the event.</p>
+
+    <p>The Ananei HaKavod — the Clouds of Glory — are one of the defining images of
+    Israel's relationship with the divine presence. They accompany the Israelites through
+    the wilderness (Exodus 13:21–22), fill the Tabernacle when it is completed (Exodus
+    40:34–38), and settle on the Temple at its dedication (1 Kings 8:10–11). In each
+    case the cloud serves the same double function: it signals the <strong>Shekhinah</strong>
+    — the indwelling divine presence — and simultaneously protects those in proximity from
+    direct encounter with what is too vast to face. The cloud is not an obstacle to
+    revelation but its medium: a bounded form that makes the unbounded approachable.</p>
+
+    <p>The Talmudic tradition in <strong>Berakhot 7a</strong> records that Moses made
+    three requests of God after the Golden Calf: that God's presence continue with Israel,
+    that God show Moses God's glory, and that God reveal the divine ways. The second
+    request — <em>show me Your glory</em> — is famously answered in Exodus 33:18–23:
+    Moses is placed in the cleft of the rock, God's glory passes before him, but Moses
+    may only see God's back — <em>panim lo tir'eh</em>, my face you shall not see. The
+    cloud is the permanent form of this partial-yet-real encounter. It allows approach
+    without annihilation: presence without full disclosure. Every subsequent generation
+    knows the divine presence the same way Moses did — through what is shown, not through
+    what is withheld.</p>
+
+    <p>Shavuot re-enacts not simply the content of revelation — the commandments, the
+    covenant — but the experience: the overwhelming, vertiginous quality of a presence
+    too vast to look at directly. The Israelites ask Moses to be their intermediary not
+    because they are indifferent to God but because the unmediated encounter is more than
+    a human being can sustain (Exodus 20:15–16). This is the theological heart of what
+    the cloud represents: divine accommodation. The Shekhinah does not retreat behind
+    the cloud in order to be absent. It gathers itself into the cloud in order to be
+    present on terms that life can survive.</p>
+
+    <p>The Talmud in <strong>Berakhot 7a</strong> presses the point further. Moses was
+    granted the vision of the divine back — something more intimate than any prophet
+    received — precisely because he persisted in asking. The cloud is the permanent
+    structure of that persistence: you cannot see the face, but you are shown the back,
+    and that back is real, and it is enough to make you shine for the rest of your life
+    (Exodus 34:29). Shavuot celebrates a people who stood at a mountain and accepted
+    that condition: encounter-through-cloud as the permanent mode of relationship between
+    Israel and its God.</p>
+
+    <p>In this piece the cloud is generated entirely from layered fractional Brownian
+    motion with domain warping — noise used to offset the coordinates of further noise,
+    producing the characteristic billowing, folded shapes of real cumulonimbus. There are
+    no pre-drawn images. Three rounds of domain warp create the turbulent, three-dimensional
+    depth of a cloud mass that is knowable only in approximation: the edges never resolve
+    to a sharp line, the interior never fully discloses itself. The amber and orange glow
+    visible through the cloud body is the Shekhinah within — the devouring fire that the
+    Israelites saw from below, before Moses entered. The dark mountain silhouette in the
+    lower third is rendered as a multi-peak ridge: Israel below, cloud above, fire within.
+    The cloud breathes and churns continuously as the noise domain advances; the fire
+    within pulses gently on a five-second cycle, ±15% brightness — present but not static,
+    illuminated but not fully revealed.</p>
+
+    <p class="source">WebGL fragment shader / layered fBm domain-warped volumetric cloud · 2026</p>
+  </div>
+</div>
+
+<!-- Vertex shader: fullscreen quad pass-through -->
+<script type="x-shader/x-vertex" id="vert">
+attribute vec2 aPos;
+void main() {
+  gl_Position = vec4(aPos, 0.0, 1.0);
+}
+</script>
+
+<!-- Fragment shader: Ananei HaKavod — billowing cloud with interior fire -->
+<script type="x-shader/x-fragment" id="frag">
+precision highp float;
+
+uniform vec2  uResolution;
+uniform float uTime;
+
+/* Hash-based pseudo-random value — no texture needed */
+float hash(vec2 p) {
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+/* Bilinear value noise — smooth interpolation of hash at integer corners */
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash(i),                 hash(i + vec2(1.0, 0.0)), u.x),
+    mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
+    u.y
+  );
+}
+
+/* Six-octave fBm: accumulates noise at successively finer frequencies */
+float fbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 6; i++) {
+    v += a * noise(p);
+    p  = p * 2.1 + vec2(1.7, 9.2);
+    a *= 0.5;
+  }
+  return v;
+}
+
+/* Multi-peak mountain ridge height at horizontal position x.
+   Returns the y-coordinate of the silhouette ridge, in [0,1] UV space.
+   Three overlapping Gaussian peaks form a realistic mountain range. */
+float ridgeHeight(float x) {
+  float h = 0.14;
+  h = max(h, 0.32 * exp(-pow((x - 0.50) * 4.2, 2.0)));
+  h = max(h, 0.23 * exp(-pow((x - 0.30) * 5.8, 2.0)));
+  h = max(h, 0.21 * exp(-pow((x - 0.70) * 5.8, 2.0)));
+  h += 0.025 * noise(vec2(x * 11.0 + 3.1, 0.7));
+  return h;
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / uResolution;
+  float t  = uTime;
+
+  /* Fire-color pulse: ±15% brightness on a ~5-second cycle */
+  float pulse = 0.85 + 0.15 * sin(t * 1.2566);
+
+  /* Mountain silhouette mask: 1 where pixel is inside the mountain body */
+  float mRidge  = ridgeHeight(uv.x);
+  float mountain = smoothstep(0.008, 0.0, uv.y - mRidge);
+
+  /* Domain-warped fBm for cloud density.
+     The noise domain advances slowly in x and y to create continuous churning
+     without teleporting jumps. Three warp levels build the characteristic
+     billowing, folded-cloth cloud shapes. */
+  vec2 p0 = uv * 2.6 + vec2(t * 0.038, t * 0.016);
+
+  vec2 q = vec2(
+    fbm(p0),
+    fbm(p0 + vec2(5.2, 1.3))
+  );
+
+  vec2 r = vec2(
+    fbm(p0 + 3.5 * q + vec2(1.7, 9.2) + vec2(t * 0.011, 0.0)),
+    fbm(p0 + 3.5 * q + vec2(8.3, 2.8))
+  );
+
+  float rawDensity = fbm(p0 + 3.5 * r);
+
+  /* Cloud presence zone: peaks from y=0.35 to y=0.90, fades at base and top.
+     Side fade prevents cloud from fully reaching canvas edges.
+     Together these bounds confine the cloud to the upper two-thirds,
+     leaving a clear silhouette region below. */
+  float baseGate = smoothstep(0.28, 0.44, uv.y);
+  float topGate  = 1.0 - smoothstep(0.82, 0.98, uv.y);
+  float sideGate = 1.0 - smoothstep(0.38, 0.52, abs(uv.x - 0.5));
+  float zoneMask = baseGate * topGate * max(sideGate, 0.0);
+
+  /* Raw fBm outputs cluster near 0.4–0.6; shift and scale so cloud body
+     shows at medium density and edges taper off organically. */
+  float cloudDensity = clamp((rawDensity - 0.28) * 2.8 * zoneMask, 0.0, 1.0);
+
+  /* Sky background: deep mountain blue-black (#0D0A1A),
+     with a faint warm haze near the cloud base where the internal glow
+     bleeds into the surrounding atmosphere. */
+  vec3 cSky = vec3(0.051, 0.039, 0.102);
+  float hazeY = smoothstep(0.55, 0.30, uv.y) * 0.06;
+  vec3 sky = cSky + vec3(hazeY * 0.5, hazeY * 0.18, 0.0);
+
+  /* Cloud color ramp: density drives a four-stop gradient from
+     cool blue-grey cloud edges through warm ivory cloud body into
+     deep amber and gold at the fiery interior core. */
+  vec3 cEdge  = vec3(0.62, 0.65, 0.76);
+  vec3 cIvory = vec3(0.93, 0.91, 0.86);
+  vec3 cAmber = vec3(1.00, 0.416, 0.0)  * pulse;
+  vec3 cGold  = vec3(1.00, 0.843, 0.0)  * pulse;
+  vec3 cCore  = vec3(1.00, 0.97,  0.90);
+
+  vec3 cloudCol = sky;
+  cloudCol = mix(cloudCol, cEdge,  smoothstep(0.00, 0.28, cloudDensity));
+  cloudCol = mix(cloudCol, cIvory, smoothstep(0.28, 0.50, cloudDensity));
+  cloudCol = mix(cloudCol, cAmber, smoothstep(0.50, 0.70, cloudDensity));
+  cloudCol = mix(cloudCol, cGold,  smoothstep(0.70, 0.88, cloudDensity));
+  cloudCol = mix(cloudCol, cCore,  smoothstep(0.88, 1.00, cloudDensity));
+
+  /* Blend cloud over sky using a smooth alpha derived from density */
+  float cloudAlpha = smoothstep(0.08, 0.38, cloudDensity);
+  vec3 col = mix(sky, cloudCol, cloudAlpha);
+
+  /* Mountain rock: near-black with a blue-violet undertone matching the sky.
+     The mountain top receives a warm amber ambient glow from the cloud above,
+     simulating the devouring fire visible to the Israelites below. */
+  vec3 cRock = vec3(0.028, 0.022, 0.042);
+  float topness = smoothstep(0.0, mRidge, uv.y);
+  float topGlow = topness * topness * 0.35 * pulse;
+  vec3 rockCol = cRock + vec3(topGlow * 0.7, topGlow * 0.22, 0.0);
+
+  col = mix(col, rockCol, mountain);
+
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}
+</script>
+
+<script>
+(function () {
+  const canvas = document.getElementById('glCanvas');
+
+  const gl = canvas.getContext('webgl') ||
+             canvas.getContext('experimental-webgl');
+
+  if (!gl) {
+    canvas.style.background = '#0D0A1A';
+    console.warn('WebGL not supported — static fallback');
+    return;
+  }
+
+  function compileShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.error('Shader error:', gl.getShaderInfoLog(s));
+      gl.deleteShader(s);
+      return null;
+    }
+    return s;
+  }
+
+  function buildProgram(vSrc, fSrc) {
+    const vert = compileShader(gl.VERTEX_SHADER,   vSrc);
+    const frag = compileShader(gl.FRAGMENT_SHADER, fSrc);
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vert);
+    gl.attachShader(prog, frag);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.error('Link error:', gl.getProgramInfoLog(prog));
+      return null;
+    }
+    return prog;
+  }
+
+  const vSrc = document.getElementById('vert').textContent.trim();
+  const fSrc = document.getElementById('frag').textContent.trim();
+  const prog = buildProgram(vSrc, fSrc);
+  if (!prog) return;
+
+  /* Fullscreen quad as two triangles (triangle strip) */
+  const quad = new Float32Array([-1, -1,  1, -1,  -1, 1,  1, 1]);
+  const buf  = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, quad, gl.STATIC_DRAW);
+
+  gl.useProgram(prog);
+  const aPosLoc = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(aPosLoc);
+  gl.vertexAttribPointer(aPosLoc, 2, gl.FLOAT, false, 0, 0);
+
+  const uTimeLoc = gl.getUniformLocation(prog, 'uTime');
+  const uResLoc  = gl.getUniformLocation(prog, 'uResolution');
+
+  let lastW = 0, lastH = 0;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w   = Math.round(canvas.clientWidth  * dpr);
+    const h   = Math.round(canvas.clientHeight * dpr);
+    if (w === lastW && h === lastH) return;
+    lastW = w; lastH = h;
+    canvas.width  = w;
+    canvas.height = h;
+    gl.viewport(0, 0, w, h);
+  }
+
+  const t0 = performance.now();
+
+  function render() {
+    resize();
+    const t = (performance.now() - t0) / 1000.0;
+    gl.uniform1f(uTimeLoc, t);
+    gl.uniform2f(uResLoc, canvas.width, canvas.height);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+
+  render();
+}());
+</script>
+</body>
+</html>

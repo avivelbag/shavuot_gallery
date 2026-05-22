@@ -658,5 +658,16 @@
     "path": "pieces/51-torah-like-rain/index.html",
     "thumbnail": "pieces/51-torah-like-rain/thumbnail.svg",
     "essay": "pieces/51-torah-like-rain/essay.md"
+  },
+  {
+    "id": "52-cloud-upon-the-mountain",
+    "title": "The Cloud Upon the Mountain",
+    "tagline": "וַיְכַס הֶעָנָן אֶת-הָהָר — the Ananei HaKavod billow above Sinai, their interior burning with devouring fire",
+    "year": 2026,
+    "theme": "Har Sinai / Ananei HaKavod — Exodus 19:9; 24:15–18",
+    "technique": "WebGL fragment shader / layered fBm domain-warped volumetric cloud",
+    "path": "pieces/52-cloud-upon-the-mountain/index.html",
+    "thumbnail": "pieces/52-cloud-upon-the-mountain/thumbnail.svg",
+    "essay": "pieces/52-cloud-upon-the-mountain/essay.md"
   }
 ]
