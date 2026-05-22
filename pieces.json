@@ -847,6 +847,17 @@
     "essay": "pieces/59-ten-roots-newton-fractal/essay.md"
   },
   {
+    "id": "60-fiftieth-gate-julia-set",
+    "title": "The Fiftieth Gate",
+    "tagline": "חֲמִשִּׁים שַׁעֲרֵי בִינָה — a slowly morphing Julia set whose parameter orbits the Mandelbrot boundary, enacting the kabbalistic teaching that the 50th gate of understanding can be approached but never crossed",
+    "year": 2026,
+    "theme": "Shavuot / Chamishim Sha'arei Binah",
+    "technique": "Julia set / WebGL escape-time fractal with smooth coloring",
+    "path": "pieces/60-fiftieth-gate-julia-set/index.html",
+    "thumbnail": "pieces/60-fiftieth-gate-julia-set/thumbnail.svg",
+    "essay": "pieces/60-fiftieth-gate-julia-set/essay.md"
+  },
+  {
     "id": "60-sapphire-pavement-wang-tiles",
     "title": "Livnat HaSapir — The Pavement of Sapphire",
     "tagline": "לִבְנַת הַסַּפִּיר — when Moses and the seventy elders saw the God of Israel, under His feet was a pavement of sapphire clear as sky; Wang tiles enact that rule-governed yet inexhaustible radiance",

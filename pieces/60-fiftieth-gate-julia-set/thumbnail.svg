@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0D0B14"/>
+  <!-- Outer glow ring suggesting the fractal boundary -->
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#D4A820" stroke-width="0.5" opacity="0.25"/>
+  <!-- Main filled Julia set body — rough organic silhouette -->
+  <path d="M100,30 C122,28 142,40 154,58 C164,72 167,90 163,108
+           C159,126 148,140 135,150 C126,157 117,160 110,156
+           C106,153 103,147 100,138
+           C97,147 94,153 90,156
+           C83,160 74,157 65,150
+           C52,140 41,126 37,108
+           C33,90 36,72 46,58
+           C58,40 78,28 100,30 Z"
+        fill="#3A1E6A" opacity="0.7"/>
+  <!-- Brighter inner body -->
+  <path d="M100,38 C118,37 134,47 143,62 C151,75 152,92 147,107
+           C142,120 133,132 122,139 C114,144 107,146 100,142
+           C93,146 86,144 78,139
+           C67,132 58,120 53,107
+           C48,92 49,75 57,62
+           C66,47 82,37 100,38 Z"
+        fill="#D4A820" opacity="0.85"/>
+  <!-- Dark interior hole (filled Julia set interior has intricate dark regions) -->
+  <ellipse cx="100" cy="95" rx="28" ry="32" fill="#0D0B14" opacity="0.75"/>
+  <!-- Secondary lobe — characteristic Julia set double-lobe shape -->
+  <ellipse cx="72" cy="105" rx="14" ry="16" fill="#D4A820" opacity="0.5"/>
+  <ellipse cx="128" cy="105" rx="14" ry="16" fill="#D4A820" opacity="0.5"/>
+  <!-- Filaments suggesting fractal tendrils -->
+  <line x1="154" y1="58" x2="168" y2="45" stroke="#D4A820" stroke-width="1.2" opacity="0.5"/>
+  <line x1="163" y1="108" x2="179" y2="108" stroke="#D4A820" stroke-width="1" opacity="0.4"/>
+  <line x1="135" y1="150" x2="142" y2="166" stroke="#D4A820" stroke-width="1" opacity="0.4"/>
+  <line x1="65" y1="150" x2="58" y2="166" stroke="#D4A820" stroke-width="1" opacity="0.4"/>
+  <line x1="37" y1="108" x2="21" y2="108" stroke="#D4A820" stroke-width="1" opacity="0.4"/>
+  <line x1="46" y1="58" x2="32" y2="45" stroke="#D4A820" stroke-width="1.2" opacity="0.5"/>
+  <!-- Gate label -->
+  <text x="100" y="188" text-anchor="middle"
+        font-family="Georgia,'Times New Roman',serif" font-size="11"
+        fill="#D4A820" opacity="0.9">שַׁעַר נ׳</text>
+</svg>
