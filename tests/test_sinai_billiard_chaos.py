@@ -9,8 +9,6 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 PIECE_ID = "66-sinai-billiard-chaos"
@@ -372,7 +370,7 @@ def test_piece_id_unique_in_pieces_json():
     assert count == 1, f"Piece ID '{PIECE_ID}' appears {count} times in pieces.json (expected 1)"
 
 
-def test_essay_has_both_hebrew_and_english_for_each_source(tmp_path):
+def test_essay_has_both_hebrew_and_english_for_each_source():
     """Each cited source should appear with both Hebrew and English text."""
     text = read_essay()
     # Hebrew characters present (U+05D0–U+05EA range covers Hebrew alef-tav)
@@ -386,7 +384,7 @@ def test_essay_has_both_hebrew_and_english_for_each_source(tmp_path):
     )
 
 
-def test_missing_piece_not_found(tmp_path):
+def test_missing_piece_not_found():
     """A non-existent piece ID should not be found in pieces.json."""
     piece = next((p for p in load_pieces() if p["id"] == "99-nonexistent"), None)
     assert piece is None, "Fixture: non-existent piece must not appear in pieces.json"
