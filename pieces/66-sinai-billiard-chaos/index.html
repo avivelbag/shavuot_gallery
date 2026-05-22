@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Where All Paths Converge — Sinai Billiard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #0A0A14; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0A0A14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a1430;
+      overflow-y: auto;
+      color: #b8c8d8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #06040e;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a1430; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #e8d890;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #4a3a2a;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #c8a840;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+    }
+    .essay-panel em { color: #d4c090; font-style: italic; }
+    .essay-panel strong { color: #c8a840; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #120e20; margin: 2rem 0; }
+
+    .passage-block {
+      background: #090610;
+      border: 1px solid #2a1e10;
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 0 0 1.8rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.2rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #e0c870;
+      line-height: 2.1;
+      margin: 0 0 0.9rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.88rem;
+      color: #806040;
+      font-style: italic;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .passage-block .source {
+      font-size: 0.78rem;
+      color: #4a3010;
+      margin: 0.5rem 0 0;
+      text-align: right;
+    }
+
+    .midrash-block {
+      background: #070410;
+      border: 1px solid #1a1040;
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      margin: 0 0 1.5rem;
+    }
+    .midrash-block .hebrew-text {
+      font-size: 1.05rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #c0a8e0;
+      line-height: 2.0;
+      margin: 0 0 0.6rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .midrash-block .english-text {
+      font-size: 0.85rem;
+      color: #6858a0;
+      font-style: italic;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .midrash-block .source {
+      font-size: 0.76rem;
+      color: #30205a;
+      margin: 0.4rem 0 0;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Where All Paths Converge</h1>
+    <p class="subtitle">Sinai billiard — chaotic ergodic trajectories — Mechilta d'Rabbi Yishmael, Yitro 1; Exodus 19:2; Shemot Rabbah 5:9</p>
+
+    <h2>Given in the Wilderness</h2>
+
+    <p>The Mechilta d'Rabbi Yishmael (Yitro 1) asks a pointed question: why was the Torah given
+    specifically in the wilderness of Sinai, and not in the Land of Israel?</p>
+
+    <div class="midrash-block">
+      <p class="hebrew-text">דָּבָר אַחֵר: לָמָּה נִתְּנָה תּוֹרָה בַּמִּדְבָּר? לְפִי שֶׁנִּתְּנָה בִּמְקוֹם הֶפְקֵר בְּפַרְהֶסְיָא — כָּל הָרוֹצֶה לְקַבֵּל יָבוֹא וְיִקַּבֵּל.</p>
+      <p class="english-text">"Another interpretation: Why was the Torah given in the wilderness? Because it was given in ownerless, public space — let anyone who wishes to receive it come and receive it."</p>
+      <p class="source">— Mechilta d'Rabbi Yishmael, Yitro 1</p>
+    </div>
+
+    <p>If Torah had been given in any tribe's territory, that tribe would have claimed it. The wilderness —
+    <em>hefker</em>, ownerless — was the only space large enough to belong to everyone. And so the entire
+    people assembled at Sinai: as one.</p>
+
+    <div class="passage-block">
+      <p class="hebrew-text">וַיַּחֲנוּ בַמִּדְבָּר וַיִּחַן-שָׁם יִשְׂרָאֵל נֶגֶד הָהָר׃</p>
+      <p class="english-text">"They encamped in the wilderness, and Israel encamped there, opposite the mountain."</p>
+      <p class="source">— Exodus 19:2</p>
+    </div>
+
+    <p>The verb <em>vayichan</em> — "he encamped" — appears in the singular, though hundreds of thousands
+    had gathered. Rashi hears in this: <em>ke-ish echad be-lev echad</em> — "like one person, with one
+    heart." Every soul present at the same moment, facing the same mountain, beginning from the same
+    starting point.</p>
+
+    <h2>The Sinai Billiard</h2>
+
+    <p>In 1970, the Russian-American mathematician Yakov Grigoryevich Sinai proved a theorem about a
+    deceptively simple system: a square room with a circular obstacle at its center. He showed that
+    the billiard trajectories inside this room are <em>ergodic</em> — over infinite time, almost every
+    trajectory visits every region of the room with equal frequency, touching every corner, filling
+    all available space — and <em>hyperbolic</em> — nearby trajectories diverge from each other
+    exponentially fast. The system bears his name: the Sinai billiard.</p>
+
+    <p>The double resonance with Har Sinai — the mountain of Sinai — was not lost on those who
+    encountered the theorem.</p>
+
+    <p>Ergodicity is a promise: given enough time, every soul reaches every corner of Torah. No region
+    of the room is permanently avoided. The wilderness belongs to everyone, and over the full expanse
+    of study and transmission, every path fills the entire space.</p>
+
+    <p>But the short-term tells a different story. Two particles launched from positions only a millimeter
+    apart — same velocity, same room, same obstacle — trace completely different paths. The circular
+    obstacle acts as a focusing lens: any two trajectories incident on opposite sides of the circle
+    are reflected outward in opposite directions, amplifying every initial difference exponentially
+    with each collision. By the hundredth bounce, the two particles are on opposite sides of the room.
+    This is what mathematicians call <em>sensitivity to initial conditions</em>.</p>
+
+    <h2>Each Person Heard Differently</h2>
+
+    <div class="midrash-block">
+      <p class="hebrew-text">כֵּיוָן שֶׁנִּתְּנָה תּוֹרָה לְיִשְׂרָאֵל, שֶׁנֶּחֱלַק הַקּוֹל לְשִׁבְעִים לָשׁוֹן, וְכָל אֶחָד וְאֶחָד שָׁמַע לְפִי כֹּחוֹ.</p>
+      <p class="english-text">"When the Torah was given to Israel, the voice divided into seventy languages, and each and every person heard according to their strength."</p>
+      <p class="source">— Shemot Rabbah 5:9</p>
+    </div>
+
+    <p>They were all present at once — <em>ke-ish echad</em> — yet each soul was a distinct starting
+    point, a slightly different position within the cluster. The same revelation, passing through ten
+    different people, produces ten different trajectories through the same room.</p>
+
+    <p>This is what this piece makes visible. Ten particles begin from a single tight cluster — nearly
+    identical starting positions, the same initial velocity, the same room, the same central obstacle.
+    Within a few dozen collisions, they scatter across the entire table. Their trails, accumulating
+    over time, fill the room with equal density — just as ergodic theory predicts. But no two trails
+    are alike. The crimson particle has not gone where the gold one went. The sapphire has not bounced
+    where the violet has.</p>
+
+    <p>They are ten souls who stood together at the same mountain, at the same moment, heard the same
+    voice — and each went somewhere different.</p>
+
+    <p>The room, over time, fills completely. Every corner is reached. The wilderness belongs to all of
+    them equally. But the paths that got them there were their own.</p>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+const W = 700;
+const H = 700;
+canvas.width = W;
+canvas.height = H;
+
+/* World coordinates: box [-1, 1] x [-1, 1], circle radius 0.4 at origin */
+const WORLD = 1.0;
+const R = 0.4;
+const N_STEPS = 500;
+const FPS_CAP = 60;
+const FRAME_MS = 1000 / FPS_CAP;
+
+/* Trail fade: draw a semi-transparent background overlay each frame */
+const FADE_ALPHA = 0.04;
+
+/* 10 particle colors */
+const PALETTE = [
+  '#D4A020', /* deep gold     */
+  '#8B1A1A', /* crimson       */
+  '#1A4080', /* sapphire      */
+  '#F0E8D0', /* warm white    */
+  '#B85A20', /* copper        */
+  '#4A1A80', /* violet        */
+  '#4080C0', /* sky           */
+  '#7A8020', /* olive         */
+  '#9A3A5A', /* rose          */
+  '#2A7A6A'  /* mint          */
+];
+
+/* y-offsets: 10 particles clustered near (-0.6, -0.6) */
+const EPSILONS = [-0.018, -0.012, -0.006, 0, 0.006, 0.012, 0.018, 0.024, 0.030, 0.036];
+
+const INV_SQRT2 = 1 / Math.SQRT2;
+
+/**
+ * Each particle is a point mass bouncing inside the Sinai billiard.
+ * Velocity is kept as a unit vector (elastic reflections preserve speed).
+ */
+const particles = EPSILONS.map((eps, i) => ({
+  x: -0.6,
+  y: -0.6 + eps,
+  vx: INV_SQRT2,
+  vy: INV_SQRT2,
+  color: PALETTE[i]
+}));
+
+/** Map world x in [-1,1] to canvas x in [0,W]. */
+function wx(x) { return (x + WORLD) * (W / (2 * WORLD)); }
+
+/** Map world y in [-1,1] to canvas y in [0,H] (y-axis flipped). */
+function wy(y) { return (1 - (y + WORLD) / (2 * WORLD)) * H; }
+
+/**
+ * Advance particle p to its next collision (wall or circle) and apply
+ * the exact reflection. Returns [x0, y0, x1, y1] — the segment drawn
+ * by this step.
+ *
+ * Wall reflection: invert the perpendicular velocity component.
+ * Circle reflection: reflect velocity about the outward normal at the
+ *   contact point using the formula v' = v - 2(v·n)n.
+ *
+ * Ray-circle intersection: solve |P + t·V|² = R² for smallest positive t.
+ *   For unit |V|: t = -(P·V) ± sqrt((P·V)² - (P·P - R²))
+ */
+function stepParticle(p) {
+  const x0 = p.x, y0 = p.y;
+
+  /* --- find time to nearest collision --- */
+  let tMin = 1e10;
+  let hitType = 0; /* 0=none, 1=wall_x, 2=wall_y, 3=circle */
+
+  if (p.vx > 1e-12) {
+    const t = (WORLD - p.x) / p.vx;
+    if (t > 1e-9 && t < tMin) { tMin = t; hitType = 1; }
+  } else if (p.vx < -1e-12) {
+    const t = (-WORLD - p.x) / p.vx;
+    if (t > 1e-9 && t < tMin) { tMin = t; hitType = 1; }
+  }
+
+  if (p.vy > 1e-12) {
+    const t = (WORLD - p.y) / p.vy;
+    if (t > 1e-9 && t < tMin) { tMin = t; hitType = 2; }
+  } else if (p.vy < -1e-12) {
+    const t = (-WORLD - p.y) / p.vy;
+    if (t > 1e-9 && t < tMin) { tMin = t; hitType = 2; }
+  }
+
+  /* Ray-circle: P·V and P·P - R² for unit velocity */
+  const bC = p.x * p.vx + p.y * p.vy;
+  const cC = p.x * p.x + p.y * p.y - R * R;
+  const discC = bC * bC - cC;
+  if (discC >= 0) {
+    const sd = Math.sqrt(discC);
+    const t1 = -bC - sd;
+    const t2 = -bC + sd;
+    const tc = (t1 > 1e-9) ? t1 : ((t2 > 1e-9) ? t2 : -1);
+    if (tc > 0 && tc < tMin) { tMin = tc; hitType = 3; }
+  }
+
+  /* Safety: if somehow no collision found, advance a small step */
+  if (tMin > 1e9) tMin = 0.01;
+
+  /* --- advance to collision point --- */
+  p.x += p.vx * tMin;
+  p.y += p.vy * tMin;
+
+  /* --- apply reflection --- */
+  if (hitType === 1) {
+    p.vx = -p.vx;
+    if (p.x > WORLD)  p.x = WORLD  - 1e-10;
+    if (p.x < -WORLD) p.x = -WORLD + 1e-10;
+  } else if (hitType === 2) {
+    p.vy = -p.vy;
+    if (p.y > WORLD)  p.y = WORLD  - 1e-10;
+    if (p.y < -WORLD) p.y = -WORLD + 1e-10;
+  } else if (hitType === 3) {
+    /* Outward normal at contact point */
+    const d = Math.sqrt(p.x * p.x + p.y * p.y);
+    const nx = p.x / d, ny = p.y / d;
+    const dot = p.vx * nx + p.vy * ny;
+    p.vx -= 2 * dot * nx;
+    p.vy -= 2 * dot * ny;
+    /* Ensure particle is outside circle after reflection */
+    if (d < R + 1e-9) {
+      p.x = nx * (R + 1e-9);
+      p.y = ny * (R + 1e-9);
+    }
+  }
+
+  return [x0, y0, p.x, p.y];
+}
+
+/**
+ * Draw the static scene elements: room boundary (gold square) and central
+ * circular obstacle (gold with radial glow).
+ */
+function drawStatic() {
+  /* Room boundary */
+  ctx.save();
+  ctx.strokeStyle = 'rgba(212, 160, 32, 0.55)';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(1, 1, W - 2, H - 2);
+  ctx.restore();
+
+  /* Circle glow (radial gradient) */
+  const cx = wx(0), cy = wy(0);
+  const cr = R * (W / (2 * WORLD)); /* 0.4 * 350 = 140 px */
+
+  ctx.save();
+  const grd = ctx.createRadialGradient(cx, cy, cr * 0.4, cx, cy, cr * 1.8);
+  grd.addColorStop(0,   'rgba(212, 160, 32, 0.18)');
+  grd.addColorStop(0.5, 'rgba(180, 120, 20, 0.08)');
+  grd.addColorStop(1,   'rgba(180, 120, 20, 0)');
+  ctx.fillStyle = grd;
+  ctx.beginPath();
+  ctx.arc(cx, cy, cr * 1.8, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+
+  /* Circle outline */
+  ctx.save();
+  ctx.strokeStyle = '#D4A020';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(cx, cy, cr, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.restore();
+}
+
+let lastTime = 0;
+
+function frame(ts) {
+  if (ts - lastTime < FRAME_MS) {
+    requestAnimationFrame(frame);
+    return;
+  }
+  lastTime = ts;
+
+  /* Fade old trails toward background color */
+  ctx.fillStyle = `rgba(10, 10, 20, ${FADE_ALPHA})`;
+  ctx.fillRect(0, 0, W, H);
+
+  /* Simulate N_STEPS collision events per particle; batch draw by color */
+  ctx.save();
+  ctx.globalAlpha = 0.6;
+  ctx.lineWidth = 0.85;
+
+  for (const p of particles) {
+    ctx.strokeStyle = p.color;
+    ctx.beginPath();
+    for (let s = 0; s < N_STEPS; s++) {
+      const [x0, y0, x1, y1] = stepParticle(p);
+      ctx.moveTo(wx(x0), wy(y0));
+      ctx.lineTo(wx(x1), wy(y1));
+    }
+    ctx.stroke();
+  }
+
+  ctx.restore();
+
+  /* Room and circle drawn on top so they stay visible through the trails */
+  drawStatic();
+
+  requestAnimationFrame(frame);
+}
+
+/* Initialize canvas background then start loop */
+ctx.fillStyle = '#0A0A14';
+ctx.fillRect(0, 0, W, H);
+drawStatic();
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

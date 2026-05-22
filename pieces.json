@@ -957,6 +957,17 @@
     "essay": "pieces/65-hopf-fibration-binah/essay.md"
   },
   {
+    "id": "66-sinai-billiard-chaos",
+    "title": "Where All Paths Converge",
+    "tagline": "ten souls, one mountain — the Sinai billiard traces ergodic trajectories from a single cluster",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "chaotic billiard / ergodic trajectory",
+    "path": "pieces/66-sinai-billiard-chaos/index.html",
+    "thumbnail": "pieces/66-sinai-billiard-chaos/thumbnail.svg",
+    "essay": "pieces/66-sinai-billiard-chaos/essay.md"
+  },
+  {
     "id": "66-stipple-ruth-gleaning",
     "title": "The Stranger Who Chose In",
     "tagline": "Three thousand stipple dots settle into a wheat field via Lloyd’s algorithm, clustering at Ruth’s silhouette — the field organizes itself around the one who chose to be there",
