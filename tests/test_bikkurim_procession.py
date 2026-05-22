@@ -5,7 +5,9 @@ Verifies file layout, pieces.json registration, essay content,
 HTML structure, animation requirements, and quadtree-split math.
 """
 import json
+import math
 import os
+import random
 import re
 
 
@@ -377,9 +379,6 @@ def test_thumbnail_has_background():
 # Quadtree math sanity checks (pure Python)
 # ---------------------------------------------------------------------------
 
-import math
-import random
-
 
 def simulate_splits(n_splits=300, seed=42):
     """
@@ -393,7 +392,7 @@ def simulate_splits(n_splits=300, seed=42):
     def gauss_rand():
         u = rng.random() or 1e-10
         v = rng.random() or 1e-10
-        return math.sqrt(-2.0 * math.log(u)) * math.cos(2.0 * math.PI * v)
+        return math.sqrt(-2.0 * math.log(u)) * math.cos(2.0 * math.pi * v)
 
     def split_pos():
         return max(0.2, min(0.8, 0.5 + gauss_rand() * 0.15))
@@ -424,10 +423,6 @@ def simulate_splits(n_splits=300, seed=42):
         cells[best:best + 1] = [c1, c2]
 
     return cells
-
-
-# Attach the math.PI alias needed by the helper above
-math.PI = math.pi
 
 
 def test_cells_cover_full_canvas():
@@ -500,7 +495,7 @@ def test_split_position_stays_near_center():
     for _ in range(1000):
         u = rng.random() or 1e-10
         v = rng.random() or 1e-10
-        g = math.sqrt(-2.0 * math.log(u)) * math.cos(2.0 * math.PI * v)
+        g = math.sqrt(-2.0 * math.log(u)) * math.cos(2.0 * math.pi * v)
         pos = max(0.2, min(0.8, 0.5 + g * 0.15))
         results.append(pos)
     mean = sum(results) / len(results)
