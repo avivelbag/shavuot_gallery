@@ -605,3 +605,56 @@ def test_pieces_json_no_duplicate_ids():
     pieces = load_pieces()
     ids = [p["id"] for p in pieces]
     assert len(ids) == len(set(ids)), "Duplicate piece IDs detected in pieces.json"
+
+
+# ---------------------------------------------------------------------------
+# Bug-fix regression tests (reviewer round 2)
+# ---------------------------------------------------------------------------
+
+def test_camera_lookat_not_negated_forward():
+    """lookAt must return mat3(r, u, f) — NOT mat3(r, u, -f).
+
+    When the forward column is negated the centre ray points away from the
+    target and the mountain is never hit.  Verified as a string check since
+    the only occurrence of mat3 in the shader is the lookAt return.
+    """
+    html = read_html()
+    assert "mat3(r, u, -f)" not in html, (
+        "lookAt() must not negate the forward column: use mat3(r, u, f)"
+    )
+    assert "mat3(r, u, f)" in html, (
+        "lookAt() must return mat3(r, u, f) so the centre ray aims at the target"
+    )
+
+
+def test_fire_drift_speed_matches_essay():
+    """Fire vertical drift must be 0.15 units/sec, matching the essay claim.
+
+    The essay states 'The fire drifts at 0.15 units per second.'  A drift
+    constant of 0.4 would contradict that claim and make the fire move faster
+    than described.
+    """
+    html = read_html()
+    assert "u_time * 0.15" in html, (
+        "Fire noise drift must use 0.15 (units/sec) as stated in the essay; "
+        "found a different constant"
+    )
+    assert "u_time * 0.4" not in html, (
+        "Fire noise drift must not use 0.4 — that contradicts the essay's 0.15 units/sec claim"
+    )
+
+
+def test_lightning_shader_iterates_segment_pairs():
+    """Lightning loop must step k by 2, reading independent (start, end) pairs.
+
+    The JS genBolt() stores segments as explicit (x0,y0, x1,y1) pairs —
+    NOT a continuous polyline.  A k++ step would connect unrelated endpoints,
+    creating spurious stray segments during each flash.
+    """
+    html = read_html()
+    assert "k += 2" in html, (
+        "Lightning shader loop must use 'k += 2' to read independent segment pairs"
+    )
+    assert "k + 1 >= u_boltCount" in html, (
+        "Lightning loop bounds must check 'k + 1 >= u_boltCount' for pair iteration"
+    )
