@@ -330,14 +330,14 @@
     "essay": "pieces/34-consuming-fire/essay.md"
   },
   {
-    "id": "35-dew-of-torah",
+    "id": "37-dew-of-torah",
     "title": "Let My Teaching Drop as Dew",
     "tagline": "תִּזַּל כַּטַּל אִמְרָתִי — metaball droplets fall silently and pool into Torah",
     "year": 2026,
     "theme": "Matan Torah / Deuteronomy 32:2 — Torah as Dew",
     "technique": "WebGL fragment shader / metaball SDF threshold, JS physics simulation",
-    "path": "pieces/35-dew-of-torah/index.html",
-    "thumbnail": "pieces/35-dew-of-torah/thumbnail.svg",
-    "essay": "pieces/35-dew-of-torah/essay.md"
+    "path": "pieces/37-dew-of-torah/index.html",
+    "thumbnail": "pieces/37-dew-of-torah/thumbnail.svg",
+    "essay": "pieces/37-dew-of-torah/essay.md"
   }
 ]

@@ -6,13 +6,10 @@ all satisfy the acceptance criteria for this swarm branch.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON  = os.path.join(GALLERY_ROOT, "pieces.json")
-PIECE_ID     = "35-dew-of-torah"
+PIECE_ID     = "37-dew-of-torah"
 PIECE_DIR    = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 HTML_PATH    = os.path.join(PIECE_DIR, "index.html")
 ESSAY_PATH   = os.path.join(PIECE_DIR, "essay.md")
@@ -181,6 +178,12 @@ def test_html_has_hebrew_overlay():
         "index.html must include Hebrew text (dew / Torah verse)"
 
 
+def test_html_has_english_verse_quote():
+    html = open(HTML_PATH, encoding="utf-8").read()
+    assert "distill as dew" in html or "drop like rain" in html or "Let my teaching" in html, \
+        "index.html must include the English translation of Deuteronomy 32:2"
+
+
 def test_html_has_ground_settling():
     html = open(HTML_PATH, encoding="utf-8").read()
     assert "settled" in html or "GROUND" in html, \
@@ -228,8 +231,8 @@ def test_html_not_empty():
     assert len(html.strip()) > 100, "index.html must not be empty or near-empty"
 
 
-def test_pieces_json_35_is_last_or_present():
-    """Piece 35 must appear in pieces.json (correct numbering enforced)."""
+def test_pieces_json_37_is_last_or_present():
+    """Piece 37 must appear in pieces.json (correct numbering enforced)."""
     pieces = load_pieces()
     ids = [p["id"] for p in pieces]
     assert PIECE_ID in ids, f"'{PIECE_ID}' missing from pieces.json"
