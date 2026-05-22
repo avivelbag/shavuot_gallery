@@ -8,8 +8,6 @@ thumbnail validity, and explicit failure-mode guards.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "20-sinai-ketubah"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
