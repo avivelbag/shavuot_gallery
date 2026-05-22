@@ -6,10 +6,7 @@ requirements, HTML animation requirements, thumbnail validity, and the
 analytical dragon-turn formula used by the piece's JavaScript.
 """
 import json
-import math
 import os
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "61-forty-nine-folds-dragon-curve"
