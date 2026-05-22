@@ -141,5 +141,16 @@
     "path": "pieces/15-keter-torah-harmonograph/index.html",
     "thumbnail": "pieces/15-keter-torah-harmonograph/thumbnail.svg",
     "essay": "pieces/15-keter-torah-harmonograph/essay.md"
+  },
+  {
+    "id": "18-shofar-sinai",
+    "title": "Growing Louder",
+    "tagline": "the shofar at Sinai — a voice that grew louder and louder",
+    "year": 2026,
+    "theme": "Har Sinai / The Shofar Blast",
+    "technique": "canvas 2D additive waveform synthesis, oscilloscope animation",
+    "path": "pieces/18-shofar-sinai/index.html",
+    "thumbnail": "pieces/18-shofar-sinai/thumbnail.svg",
+    "essay": "pieces/18-shofar-sinai/essay.md"
   }
 ]

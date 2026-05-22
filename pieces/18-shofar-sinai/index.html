@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Growing Louder — The Shofar at Sinai</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d0d1a;
+      color: #c0c0e0;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1280px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hebrew-title {
+      font-size: 1.6rem;
+      color: #d4a017;
+      direction: rtl;
+      text-align: right;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 20px rgba(212,160,23,0.55);
+      width: 720px;
+    }
+    canvas {
+      display: block;
+      background: #0d0d1a;
+      border: 1px solid #1a1a3a;
+    }
+    .source-label {
+      font-size: 0.78rem;
+      color: #5a5a8a;
+      margin-top: 0.4rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.35rem;
+      color: #d4a017;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #7070a8;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #1a1a3a;
+      padding-left: 0.75rem;
+      line-height: 1.5;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #b8b8d8;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #d4a017; font-style: normal; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #5a5a8a;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #1a1a3a;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      .hebrew-title { width: 100%; font-size: 1.2rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <div class="hebrew-title">וְקוֹל הַשּׁוֹפָר הוֹלֵךְ וְחָזֵק מְאֹד</div>
+    <canvas id="canvas" width="720" height="300"></canvas>
+    <div class="source-label">Exodus 19:19 — "the voice of the shofar grew louder and louder"</div>
+  </div>
+  <div class="essay-pane">
+    <h1>Growing Louder — The Shofar at Sinai</h1>
+    <p class="source">"And when the voice of the shofar grew louder and louder, Moses spoke and God answered him in a voice." — Exodus 19:19</p>
+
+    <p>On the morning of the third day of the third month, before any word was spoken, Sinai shook. The Torah catalogues the sensory overload deliberately: thunder and lightning, a thick cloud upon the mountain, and then — more unexpected than either — <em>kol shofar chazak me'od</em>, the voice of the shofar, exceedingly strong (Exodus 19:16). The camp trembled. Moses led the people to the foot of the mountain. The mountain smoked. And then the Torah adds a detail so counter-intuitive that the rabbis did not let it pass: <em>vayhi kol hashofar holekh v'chazek me'od</em> — "the voice of the shofar went and grew very strong" (Exodus 19:19).</p>
+
+    <p>No human instrument works this way. A breath-driven horn crescendos by adding more breath, and eventually the breath runs out and the sound stops. The shofar at Sinai inverted this logic entirely: the longer it blew, the louder it became. This is the mark of a sound with no human source. When Moses speaks and God answers "in a voice" in the very next phrase, the grammar suggests that the shofar's growing crescendo was already a form of speech — presence before language, call before response.</p>
+
+    <p>The shofar appears twice at Sinai, serving different functions. Earlier, in Exodus 19:13, God instructs that when the long blast sounds (<em>bimshokh hayovel</em>), the people may ascend the mountain. The shofar is the signal that holy ground has opened. Then in 19:19, the same instrument returns not as a gate-signal but as a voice in its own right — the divine speech before the divine speech. The Mekhilta de-Rabbi Ishmael notes this doubling: first the shofar clears the path, then it fills it.</p>
+
+    <p>The instrument reappears at the festival of Jubilee (Leviticus 25:9): on the Day of Atonement in the fiftieth year, the shofar sounds throughout the land and all debts are cancelled, all slaves freed, all ancestral land returned. Revelation and redemption share the same instrument, the same raw pre-linguistic register. The shofar does not say "you are free" in any language. It sounds. Those who hear understand.</p>
+
+    <p>This is what is theologically significant about the shofar: it is pure sound, prior to semantics. The Ten Commandments, the verbal revelation, comes after. The shofar goes first, shaking the structure of the world before it is populated with meaning. Speech requires a listener already oriented toward the speaker. The shofar creates that orientation — a sound so insistent, so growing-louder, that the only possible response is to stop, to stand, to listen.</p>
+
+    <p>The sound of the shofar is also the simplest possible musical object: a fundamental frequency and its harmonics. Ram's horn and wind interact to produce the overtone series — the same mathematical structure that underlies all complex timbres. What the ear perceives as a single, rough, urgent sound is in fact a sum of pure sine waves at frequencies f, 2f, 3f, and so on. This piece renders that structure visibly: six harmonics drawn separately as faint amber overlays, then summed into the composite waveform. The composite grows from silence to full canvas height across a ten-second cycle, then releases — the mathematical shape of a sound becoming overwhelming.</p>
+
+    <p>Presence before words. Sound before speech. The shofar at Sinai was not a prelude to the revelation. It was the revelation, arriving before language was adequate to the task.</p>
+
+    <p class="citations">Sources: Exodus 19:13, 19:16–19; Leviticus 25:9; Mekhilta de-Rabbi Ishmael, Yitro, Bachodesh 4; Talmud Bavli Rosh Hashanah 26a; Maimonides, Mishneh Torah, Laws of Repentance 3:4.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;
+  const H = canvas.height;
+  const centerY = H / 2;
+
+  /*
+   * Seven harmonics with 1/k amplitude weights — the natural overtone series
+   * of a ram's horn.  Phase offsets spread each harmonic so they are visually
+   * distinguishable as overlays.  Speed multipliers give each harmonic a
+   * slightly different horizontal drift, showing wave motion.
+   */
+  const HARMONICS = [
+    { k: 1, A: 1.000, phase: 0,                    speed: 0.30 },
+    { k: 2, A: 0.500, phase: Math.PI / 6,           speed: 0.60 },
+    { k: 3, A: 0.333, phase: Math.PI / 4,           speed: 0.90 },
+    { k: 4, A: 0.250, phase: Math.PI / 3,           speed: 1.20 },
+    { k: 5, A: 0.200, phase: Math.PI / 2,           speed: 1.50 },
+    { k: 6, A: 0.167, phase: 2 * Math.PI / 3,       speed: 1.80 },
+    { k: 7, A: 0.143, phase: 5 * Math.PI / 6,       speed: 2.10 },
+  ];
+  const HARMONIC_SUM = HARMONICS.reduce((s, h) => s + h.A, 0);
+
+  // Number of spatial cycles visible across the canvas width.
+  const BASE_FREQ = 3.0;
+
+  /*
+   * Compute the amplitude envelope at time t (seconds).
+   * One cycle = 10 seconds.  The waveform grows from near-zero to H*0.45
+   * using a power curve, then decays over the final 0.5 s of each cycle.
+   */
+  function envelope(t) {
+    const c = t % 10;
+    const peak = (H * 0.45) / HARMONIC_SUM;
+    if (c < 9.5) {
+      return peak * Math.pow(c / 10, 1.5);
+    }
+    const f = (c - 9.5) / 0.5;
+    return peak * Math.pow(9.5 / 10, 1.5) * (1 - f * f);
+  }
+
+  function frame(ts) {
+    const t = ts / 1000;
+    const amp = envelope(t);
+
+    ctx.fillStyle = '#0d0d1a';
+    ctx.fillRect(0, 0, W, H);
+
+    // Faint centerline for oscilloscope reference.
+    ctx.strokeStyle = 'rgba(212,160,23,0.12)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, centerY);
+    ctx.lineTo(W, centerY);
+    ctx.stroke();
+
+    // Draw each harmonic as a faint amber overlay.
+    ctx.globalAlpha = 0.25;
+    ctx.strokeStyle = '#d4a017';
+    ctx.lineWidth = 1;
+    for (const h of HARMONICS) {
+      ctx.beginPath();
+      for (let x = 0; x <= W; x++) {
+        const y = centerY + amp * h.A * Math.sin(
+          2 * Math.PI * h.k * BASE_FREQ * (x / W) + h.phase + t * h.speed
+        );
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    // Draw the composite (additive sum of all harmonics) as a thick bright line.
+    ctx.strokeStyle = '#f0ece0';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    for (let x = 0; x <= W; x++) {
+      let sum = 0;
+      for (const h of HARMONICS) {
+        sum += h.A * Math.sin(
+          2 * Math.PI * h.k * BASE_FREQ * (x / W) + h.phase + t * h.speed
+        );
+      }
+      const y = centerY + amp * sum;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
