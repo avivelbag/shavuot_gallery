@@ -362,3 +362,44 @@ def test_wrong_technique_would_fail(tmp_path):
     assert "space colonization" not in bad_piece["technique"].lower(), (
         "Fixture confirms missing space colonization technique keyword"
     )
+
+
+# ---------------------------------------------------------------------------
+# Algorithm implementation checks — verify the fix for the trunk-reach bug
+# ---------------------------------------------------------------------------
+
+def test_html_has_no_influence_fallback():
+    """index.html must implement the Runions no-influence fallback so the trunk
+    can grow toward the canopy before any attractor enters perception range."""
+    html = open(INDEX_HTML, encoding="utf-8").read()
+    # The fallback is gated on nodeInfluence.size === 0
+    assert "nodeInfluence.size === 0" in html or "nodeInfluence.size == 0" in html, (
+        "index.html must check nodeInfluence.size for the no-influence fallback"
+    )
+
+
+def test_html_has_attractor_centroid_fallback():
+    """index.html must compute the attractor centroid for the no-influence trunk."""
+    html = open(INDEX_HTML, encoding="utf-8").read()
+    # The fallback divides the sum by count to get the centroid
+    assert "cx /= count" in html or "centroid" in html.lower(), (
+        "index.html must compute attractor centroid for the no-influence fallback"
+    )
+
+
+def test_html_uses_time_based_step_rate():
+    """index.html must throttle growth steps with a time interval, not a fixed
+    STEPS_PER_FRAME count, to achieve ~20-30 seconds of visible growth."""
+    html = open(INDEX_HTML, encoding="utf-8").read()
+    assert "STEP_INTERVAL_MS" in html or "lastStepTime" in html, (
+        "index.html must use time-based step throttling (STEP_INTERVAL_MS / lastStepTime)"
+    )
+
+
+def test_html_no_steps_per_frame_constant():
+    """STEPS_PER_FRAME caused incorrect fast-growth; it must be replaced by
+    time-based throttling. This test guards against regression."""
+    html = open(INDEX_HTML, encoding="utf-8").read()
+    assert "STEPS_PER_FRAME" not in html, (
+        "STEPS_PER_FRAME must be replaced by STEP_INTERVAL_MS for correct timing"
+    )

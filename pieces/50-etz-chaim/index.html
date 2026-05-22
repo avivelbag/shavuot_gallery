@@ -131,7 +131,8 @@ const KILL_RADIUS = 12;
 const SEGMENT_LENGTH = 6;
 const NUM_ATTRACTORS = 300;
 const UPWARD_BIAS = 0.35;
-const STEPS_PER_FRAME = 1;
+// One growth step every 60ms → ~350 steps × 60ms ≈ 21s total growth time.
+const STEP_INTERVAL_MS = 60;
 
 let attractors = [];
 let nodes = [];
@@ -140,6 +141,7 @@ let phase = 'growing';
 let holdStart = 0;
 let fadeStart = 0;
 let fadeAlpha = 0;
+let lastStepTime = -Infinity;
 
 /**
  * Squared Euclidean distance between two points.
@@ -197,6 +199,7 @@ function init() {
   holdStart = 0;
   fadeStart = 0;
   fadeAlpha = 0;
+  lastStepTime = -Infinity;
 }
 
 /**
@@ -242,6 +245,37 @@ function stepGrowth() {
     inf.sumX += dx;
     inf.sumY += dy;
     inf.count++;
+  }
+
+  // Canonical Runions no-influence fallback: when no attractor lies within
+  // PERCEPTION_RADIUS of any node (e.g. while the trunk is climbing toward the
+  // canopy), grow the tip node nearest to the attractor centroid one step toward
+  // it. This builds the trunk before the canopy enters perception range.
+  if (nodeInfluence.size === 0) {
+    let cx = 0, cy = 0, count = 0;
+    for (const a of attractors) {
+      if (a.active) { cx += a.x; cy += a.y; count++; }
+    }
+    if (count === 0) { growthDone = true; return; }
+    cx /= count; cy /= count;
+    const hasChildren = new Set();
+    for (const n of nodes) { if (n.parentIdx >= 0) hasChildren.add(n.parentIdx); }
+    let bestTip = -1, bestD2 = Infinity;
+    for (let i = 0; i < nodes.length; i++) {
+      if (!hasChildren.has(i)) {
+        const d2 = dist2(nodes[i].x, nodes[i].y, cx, cy);
+        if (d2 < bestD2) { bestD2 = d2; bestTip = i; }
+      }
+    }
+    if (bestTip === -1) { growthDone = true; return; }
+    const par = nodes[bestTip];
+    const [nx, ny] = normalize(cx - par.x, cy - par.y);
+    const newX = par.x + nx * SEGMENT_LENGTH;
+    const newY = par.y + ny * SEGMENT_LENGTH;
+    if (newX >= 2 && newX <= W - 2 && newY >= 2 && newY <= H - 2) {
+      nodes.push({ x: newX, y: newY, parentIdx: bestTip, depth: par.depth + 1 });
+    }
+    return;
   }
 
   // Phase 2: grow one child per influenced node in the averaged direction.
@@ -346,7 +380,10 @@ function animate(ts) {
   requestAnimationFrame(animate);
 
   if (phase === 'growing') {
-    for (let s = 0; s < STEPS_PER_FRAME; s++) stepGrowth();
+    if (ts - lastStepTime >= STEP_INTERVAL_MS) {
+      lastStepTime = ts;
+      stepGrowth();
+    }
     draw();
     if (growthDone) {
       phase = 'holding';
