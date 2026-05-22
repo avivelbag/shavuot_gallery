@@ -53,5 +53,16 @@
     "path": "pieces/07-milk-honey-reaction-diffusion/index.html",
     "thumbnail": "pieces/07-milk-honey-reaction-diffusion/thumbnail.png",
     "essay": "pieces/07-milk-honey-reaction-diffusion/essay.md"
+  },
+  {
+    "id": "08-naaseh-vnishma-voronoi",
+    "title": "We Will Do and We Will Hear",
+    "tagline": "the two words of Israel's covenant, shattered into light",
+    "year": 2026,
+    "theme": "Naaseh V'Nishma / Matan Torah",
+    "technique": "Voronoi diagram with Hebrew typography",
+    "path": "pieces/08-naaseh-vnishma-voronoi/index.html",
+    "thumbnail": "pieces/08-naaseh-vnishma-voronoi/thumbnail.svg",
+    "essay": "pieces/08-naaseh-vnishma-voronoi/essay.md"
   }
 ]
