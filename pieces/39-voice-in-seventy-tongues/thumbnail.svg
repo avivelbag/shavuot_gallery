@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#1a0c02"/>
+
+  <!-- Fat rhombus tiles (parchment/gold) radiating from center -->
+  <!-- Ring 1: close to center -->
+  <polygon points="200,200 218,168 236,200" fill="#FFF2D0" opacity="0.92"/>
+  <polygon points="200,200 236,200 218,232" fill="#F0D890" opacity="0.88"/>
+  <polygon points="200,200 164,200 182,168" fill="#F0D890" opacity="0.88"/>
+  <polygon points="200,200 182,232 164,200" fill="#FFF2D0" opacity="0.90"/>
+  <polygon points="200,200 218,168 200,142" fill="#E8C560" opacity="0.84"/>
+  <polygon points="200,200 200,142 182,168" fill="#E8C560" opacity="0.84"/>
+
+  <!-- Thin rhombus tiles (blue) interspersed -->
+  <polygon points="218,168 236,140 254,168" fill="#90B8D8" opacity="0.82"/>
+  <polygon points="182,168 164,140 146,168" fill="#90B8D8" opacity="0.82"/>
+  <polygon points="236,200 254,168 272,200" fill="#6898C0" opacity="0.78"/>
+  <polygon points="164,200 146,168 128,200" fill="#6898C0" opacity="0.78"/>
+  <polygon points="218,232 236,200 254,232" fill="#4878A8" opacity="0.75"/>
+  <polygon points="182,232 164,200 146,232" fill="#4878A8" opacity="0.75"/>
+
+  <!-- Outer ring fat tiles -->
+  <polygon points="200,142 218,110 236,142" fill="#D4A030" opacity="0.80"/>
+  <polygon points="200,142 182,110 164,142" fill="#D4A030" opacity="0.80"/>
+  <polygon points="254,168 272,140 290,168" fill="#C09020" opacity="0.76"/>
+  <polygon points="146,168 128,140 110,168" fill="#C09020" opacity="0.76"/>
+  <polygon points="272,200 290,168 308,200" fill="#B88018" opacity="0.74"/>
+  <polygon points="128,200 110,168  92,200" fill="#B88018" opacity="0.74"/>
+  <polygon points="254,232 272,200 290,232" fill="#A87010" opacity="0.72"/>
+  <polygon points="146,232 128,200 110,232" fill="#A87010" opacity="0.72"/>
+  <polygon points="218,260 236,232 254,260" fill="#987008" opacity="0.70"/>
+  <polygon points="182,260 164,232 146,260" fill="#987008" opacity="0.70"/>
+  <polygon points="200,258 218,230 200,200" fill="#D4A843" opacity="0.77"/>
+  <polygon points="200,258 182,230 200,200" fill="#D4A843" opacity="0.77"/>
+
+  <!-- More outer thin tiles -->
+  <polygon points="236,142 254,110 272,142" fill="#355A8A" opacity="0.72"/>
+  <polygon points="164,142 146,110 128,142" fill="#355A8A" opacity="0.72"/>
+  <polygon points="290,200 308,168 326,200" fill="#2B4F7A" opacity="0.68"/>
+  <polygon points="110,200  92,168  74,200" fill="#2B4F7A" opacity="0.68"/>
+  <polygon points="290,232 308,200 326,232" fill="#2B4F7A" opacity="0.65"/>
+  <polygon points="110,232  92,200  74,232" fill="#2B4F7A" opacity="0.65"/>
+
+  <!-- More coverage top/bottom -->
+  <polygon points="218,110 200, 82 182,110" fill="#E8C040" opacity="0.72"/>
+  <polygon points="218,290 200,318 182,290" fill="#987008" opacity="0.65"/>
+  <polygon points="308,200 326,168 344,200" fill="#1E3A6A" opacity="0.60"/>
+  <polygon points="92,200  74,168  56,200" fill="#1E3A6A" opacity="0.60"/>
+
+  <!-- Tile outlines (subtle gap) -->
+  <g stroke="#1a0c02" stroke-width="0.8" fill="none">
+    <polygon points="200,200 218,168 236,200"/>
+    <polygon points="200,200 236,200 218,232"/>
+    <polygon points="200,200 164,200 182,168"/>
+    <polygon points="200,200 182,232 164,200"/>
+  </g>
+
+  <!-- Central aleph with glow -->
+  <text x="200" y="215"
+        text-anchor="middle"
+        font-family="David, serif"
+        font-size="72"
+        fill="#FFF8E8"
+        opacity="0.95"
+        filter="url(#glow)">א</text>
+
+  <!-- Scattered script glyphs -->
+  <text x="240" y="148" text-anchor="middle" font-family="serif" font-size="13"
+        fill="#FFF8D0" opacity="0.70" filter="url(#softglow)">α</text>
+  <text x="160" y="148" text-anchor="middle" font-family="serif" font-size="13"
+        fill="#FFF8D0" opacity="0.70" filter="url(#softglow)">ب</text>
+  <text x="270" y="200" text-anchor="middle" font-family="serif" font-size="13"
+        fill="#FFF8D0" opacity="0.65" filter="url(#softglow)">A</text>
+  <text x="130" y="200" text-anchor="middle" font-family="serif" font-size="13"
+        fill="#FFF8D0" opacity="0.65" filter="url(#softglow)">ܐ</text>
+  <text x="220" y="248" text-anchor="middle" font-family="serif" font-size="13"
+        fill="#FFF8D0" opacity="0.68" filter="url(#softglow)">ש</text>
+  <text x="200" y="118" text-anchor="middle" font-family="serif" font-size="13"
+        fill="#FFF8D0" opacity="0.60" filter="url(#softglow)">λ</text>
+</svg>

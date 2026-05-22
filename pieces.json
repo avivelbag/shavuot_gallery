@@ -374,7 +374,7 @@
     "essay": "pieces/38-fiftieth-gate-ifs/essay.md"
   },
   {
-    "id": "39-voice-in-seventy-tongues",
+    "id": "38-voice-in-seventy-tongues",
     "title": "The Voice in Seventy Tongues",
     "tagline": "one aleph at Sinai — seventy languages, infinite aperiodic variety",
     "year": 2026,
@@ -405,5 +405,16 @@
     "path": "pieces/39-chesed-like-water/index.html",
     "thumbnail": "pieces/39-chesed-like-water/thumbnail.svg",
     "essay": "pieces/39-chesed-like-water/essay.md"
+  },
+  {
+    "id": "39-voice-in-seventy-tongues",
+    "title": "The Voice in Seventy Tongues",
+    "tagline": "the divine voice at Sinai split into seventy languages — Penrose aperiodic tiling radiating from a central aleph",
+    "year": 2026,
+    "theme": "Matan Torah / The Voice in Seventy Languages — Shemot Rabbah 5:9",
+    "technique": "canvas 2D — Penrose P3 rhombic tiling via Robinson-triangle deflation, luminosity-pulse animation",
+    "path": "pieces/39-voice-in-seventy-tongues/index.html",
+    "thumbnail": "pieces/39-voice-in-seventy-tongues/thumbnail.svg",
+    "essay": "pieces/39-voice-in-seventy-tongues/essay.md"
   }
 ]
