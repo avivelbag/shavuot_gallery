@@ -4,7 +4,9 @@ Forty years after Sinai, Moses retells the revelation. He stands on the plains
 of Moab, preparing to die, and describes what Israel witnessed. The mountain was
 burning with fire to the *lev hashamayim* — the heart of the heavens. And yet
 his entire homily in Deuteronomy 4 turns on a single, devastating absence:
-"You heard a voice but saw no form — only a voice" (Deuteronomy 4:12).
+
+> **וְקוֹל דְּבָרִים אַתֶּם שֹׁמְעִים וּתְמוּנָה אֵינְכֶם רֹאִים זוּלָתִי קוֹל**
+> "A voice of words you heard, but no form did you see — only a voice." (Deuteronomy 4:12)
 
 This is the theological crux of the passage. Israel experienced the most
 spectacular theophany in human memory — fire ascending to the sky, thick
@@ -13,11 +15,15 @@ God's self-disclosure, was voice without form. The fire was not God. The smoke
 was not God. The trembling mountain was not God. These were the frame around
 the word, the context for something that could not be depicted.
 
-Exodus 19:18 describes the mountain wrapped in smoke "because the LORD descended
-upon it in fire." The smoke is the mountain's response to proximity to the
-divine — a consequence of encounter, not a manifestation of presence. God
-arrives in fire; the mountain smokes; the fire ascends to heaven. The landscape
-testifies to an experience it cannot contain.
+Exodus 19:18 describes the mountain wrapped in smoke:
+
+> **וְהַר סִינַי עָשַׁן כֻּלּוֹ מִפְּנֵי אֲשֶׁר יָרַד עָלָיו יְהוָה בָּאֵשׁ**
+> "And Mount Sinai smoked entirely, because the LORD descended upon it in fire." (Exodus 19:18)
+
+The smoke is the mountain's response to proximity to the divine — a consequence
+of encounter, not a manifestation of presence. God arrives in fire; the mountain
+smokes; the fire ascends to heaven. The landscape testifies to an experience it
+cannot contain.
 
 This piece renders Sinai as a topographic contour map — the mountain's geometry
 stripped to elevation bands, the form of the place reduced to its shape. The

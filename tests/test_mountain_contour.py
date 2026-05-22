@@ -1,5 +1,5 @@
 """
-Tests for piece 35-heart-of-heaven (Sinai topographic contour map).
+Tests for piece 36-heart-of-heaven (Sinai topographic contour map).
 
 Verifies: pieces.json registration, required file layout, essay content,
 simplex-noise presence, Hebrew verse, particle animation markers, and
@@ -9,10 +9,8 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PIECE_ID = "35-heart-of-heaven"
+PIECE_ID = "36-heart-of-heaven"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 HTML_PATH = os.path.join(PIECE_DIR, "index.html")
 ESSAY_PATH = os.path.join(PIECE_DIR, "essay.md")
@@ -40,7 +38,7 @@ def read_html():
 # ─── pieces.json registration ─────────────────────────────────────────────────
 
 def test_piece_registered_in_json():
-    """Piece 35 must appear in pieces.json."""
+    """Piece 36 must appear in pieces.json."""
     entry = load_piece_entry()
     assert entry is not None, f"'{PIECE_ID}' not found in pieces.json"
 
@@ -94,7 +92,7 @@ def test_essay_at_least_200_words():
 
 
 def test_essay_cites_deuteronomy_4():
-    """Essay must cite Deuteronomy 4:11 as specified by the acceptance criteria."""
+    """Essay must cite Deuteronomy 4:11 and 4:12 as specified by the acceptance criteria."""
     text = open(ESSAY_PATH, encoding="utf-8").read()
     assert "Deuteronomy 4" in text, "essay.md must cite Deuteronomy 4"
 
@@ -224,11 +222,10 @@ def test_thumbnail_has_contour_colors():
 # ─── Edge-case / failure-mode tests ───────────────────────────────────────────
 
 def test_missing_piece_id_fails(tmp_path):
-    """A pieces.json without piece 35 must be detected as missing."""
+    """A pieces.json without piece 36 must be detected as missing."""
     with open(PIECES_JSON, encoding="utf-8") as f:
         pieces = json.load(f)
     found = any(p["id"] == PIECE_ID for p in pieces)
-    # This test asserts the current state is correct
     assert found, f"Piece '{PIECE_ID}' must be in pieces.json"
 
 
