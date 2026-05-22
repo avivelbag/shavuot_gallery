@@ -317,5 +317,16 @@
     "path": "pieces/33-where-you-go/index.html",
     "thumbnail": "pieces/33-where-you-go/thumbnail.svg",
     "essay": "pieces/33-where-you-go/essay.md"
+  },
+  {
+    "id": "34-consuming-fire",
+    "title": "A Consuming Fire",
+    "tagline": "the glory of the LORD like a consuming fire on the top of the mountain — Exodus 24:17",
+    "year": 2026,
+    "theme": "Har Sinai / The Theophany",
+    "technique": "WebGL fragment shader / domain-warped fBm plasma, mountain SDF",
+    "path": "pieces/34-consuming-fire/index.html",
+    "thumbnail": "pieces/34-consuming-fire/thumbnail.svg",
+    "essay": "pieces/34-consuming-fire/essay.md"
   }
 ]

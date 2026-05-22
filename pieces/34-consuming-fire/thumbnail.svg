@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#050208"/>
+      <stop offset="40%"  stop-color="#120425"/>
+      <stop offset="70%"  stop-color="#1e0615"/>
+      <stop offset="100%" stop-color="#0a0507"/>
+    </linearGradient>
+    <radialGradient id="fireGlow" cx="50%" cy="62%" r="42%">
+      <stop offset="0%"   stop-color="#fffce8" stop-opacity="0.95"/>
+      <stop offset="15%"  stop-color="#ffd060" stop-opacity="0.88"/>
+      <stop offset="35%"  stop-color="#ff6010" stop-opacity="0.72"/>
+      <stop offset="60%"  stop-color="#8a1000" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#0a0507"  stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="peakHalo" cx="50%" cy="61%" r="12%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="aboveMountain">
+      <polygon points="200,114 0,300 400,300 400,300 0,300"/>
+    </clipPath>
+  </defs>
+
+  <!-- Night sky background -->
+  <rect width="400" height="300" fill="url(#bg)"/>
+
+  <!-- Fire glow radiating from mountain peak -->
+  <ellipse cx="200" cy="174" rx="170" ry="140" fill="url(#fireGlow)"/>
+
+  <!-- Bright peak corona -->
+  <ellipse cx="200" cy="174" rx="48" ry="36" fill="url(#peakHalo)"/>
+
+  <!-- Fire column — narrow flame shapes -->
+  <g opacity="0.85">
+    <ellipse cx="200" cy="145" rx="14" ry="38" fill="#fffce8" opacity="0.6"/>
+    <ellipse cx="196" cy="130" rx="8"  ry="25" fill="#ffe090" opacity="0.5"/>
+    <ellipse cx="204" cy="118" rx="5"  ry="18" fill="#ffffff" opacity="0.35"/>
+    <!-- Side plumes -->
+    <ellipse cx="182" cy="155" rx="9"  ry="22" fill="#ff8020" opacity="0.4" transform="rotate(-10 182 155)"/>
+    <ellipse cx="218" cy="155" rx="9"  ry="22" fill="#ff8020" opacity="0.4" transform="rotate(10 218 155)"/>
+    <ellipse cx="170" cy="165" rx="7"  ry="18" fill="#cc3000" opacity="0.35" transform="rotate(-18 170 165)"/>
+    <ellipse cx="230" cy="165" rx="7"  ry="18" fill="#cc3000" opacity="0.35" transform="rotate(18 230 165)"/>
+  </g>
+
+  <!-- Mountain silhouette — dark rock triangle -->
+  <polygon points="200,174 20,300 380,300" fill="#140808"/>
+  <!-- Rock face shading -->
+  <polygon points="200,174 20,300 120,300" fill="#0e0606" opacity="0.5"/>
+
+  <!-- Hebrew text -->
+  <text x="200" y="280" text-anchor="middle"
+        font-family="serif" font-size="18"
+        fill="#F8F4E8" letter-spacing="4" direction="rtl"
+        style="text-shadow: 0 0 8px rgba(255,150,30,0.8)">
+    אֵשׁ אֹכֶלֶת
+  </text>
+</svg>
