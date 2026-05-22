@@ -295,5 +295,16 @@
     "path": "pieces/31-seven-weeks-spirograph/index.html",
     "thumbnail": "pieces/31-seven-weeks-spirograph/thumbnail.svg",
     "essay": "pieces/31-seven-weeks-spirograph/essay.md"
+  },
+  {
+    "id": "32-fifty-gates",
+    "title": "The Fifty Gates",
+    "tagline": "the gates of Binah rendered as Bayer-dithered thresholds — forty-nine crossed, one beyond reach",
+    "year": 2026,
+    "theme": "Sefirat HaOmer — The Fifty Gates of Binah / Shavuot",
+    "technique": "canvas 2D Bayer 4×4 ordered dithering, ImageData pixel manipulation, sequential cell animation",
+    "path": "pieces/32-fifty-gates/index.html",
+    "thumbnail": "pieces/32-fifty-gates/thumbnail.svg",
+    "essay": "pieces/32-fifty-gates/essay.md"
   }
 ]

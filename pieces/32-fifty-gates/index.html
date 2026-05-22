@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Fifty Gates — Bayer-Dithered Omer Calendar</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0D1B2A;
+      color: #E8C96A;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas { display: block; }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.35rem;
+      color: #F5C842;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #E8C96A;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #F5C842;
+      padding-left: 0.75rem;
+      line-height: 1.5;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #C9B88A;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #F5C842; font-style: normal; font-weight: bold; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #E8C96A;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #F5C842;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="500" height="740"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>The Fifty Gates — Bayer-Dithered Omer Calendar</h1>
+    <p class="source">"There are fifty gates of Binah, and all of them were given to Moses except one." — Talmud Bavli, Rosh Hashanah 21b</p>
+
+    <p>The Omer count is a pilgrimage in time. Leviticus 23:15–16 commands:</p>
+    <p class="source" dir="rtl" lang="he" style="text-align:right;font-size:1.05rem;line-height:1.9;">וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת עֹמֶר הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה׃ עַד מִמָּחֳרַת הַשַּׁבָּת הַשְּׁבִיעִת תִּסְפְּרוּ חֲמִשִּׁים יוֹם וְהִקְרַבְתֶּם מִנְחָה חֲדָשָׁה לַיהוָה׃</p>
+    <p>"You shall count for yourselves from the day after the Sabbath, from the day when you bring the wave-offering sheaf — seven complete weeks they shall be; until the day after the seventh Sabbath you shall count fifty days." The destination is Shavuot, the fiftieth day, the giving of Torah at Sinai.</p>
+
+    <p>Shavuot is unique among the major festivals in one striking way: it has no fixed date in the Torah. Passover falls on the fifteenth of Nisan. Sukkot on the fifteenth of Tishrei. Rosh HaShanah on the first of Tishrei. But Shavuot is identified only as "the day after seven weeks" — it is defined entirely by counting, not by the calendar. The rabbis noticed this and drew a theological conclusion: the fiftieth day cannot be fixed in advance. It can only be arrived at by counting. The festival is not a point on a map; it is the end of a journey. You cannot mark it on the calendar and simply arrive. You must count your way to it, day by day.</p>
+
+    <p>The Talmud (Rosh Hashanah 21b) speaks of fifty gates of <em>Binah</em> — divine understanding, the second sefirah, associated with the womb of creation. Moses, the greatest of prophets, received forty-nine of these gates. The fiftieth gate — the threshold of God's own understanding — remained beyond any human's reach. Tractate Nedarim (38a) returns to this theme: even Moses, the receiver of Torah itself, attained only forty-nine of the fifty gates. We count forty-nine days; on the fiftieth, we arrive. But we do not cross. We receive Torah; we do not receive God.</p>
+
+    <p>This piece renders the forty-nine-day count as Bayer ordered dithering, a technique in which a threshold matrix determines which pixels light up at a given luminance level. The standard 4×4 Bayer matrix — sixteen threshold values arranged in a precise dispersed pattern — produces mathematically optimal distribution of lit and unlit pixels at any luminance. At luminance 1/50 (day 1), only one threshold is exceeded: one pixel of sixteen lights up, a lone golden point in a field of indigo. The pattern grows in steps, each new threshold crossed illuminating one more pixel per tile, building a progressively brighter grid of gold.</p>
+
+    <p>The dithering technique is a literal enactment of threshold-crossing. At each pixel position, the question is binary: does the luminance value exceed the local threshold? This mirrors how the Talmud describes the Omer — each day is a gate, a threshold. Forty-nine thresholds are crossed, forty-nine gates opened, forty-nine days counted. On the fiftieth, the threshold does not yield to us — the gate opens itself.</p>
+
+    <p>The Bayer matrix is also the most <em>ordered</em> arrangement of dithering thresholds possible. Ordered dithering places each new lit pixel at the position of maximum visual distance from all already-lit pixels — not chaotic but expanding in a mathematically defined sequence toward uniform coverage. This too mirrors the Omer: the preparation for Sinai was not random. The kabbalists mapped each of the forty-nine days onto a precise coordinate in the 7×7 grid of the <em>sefirot</em> — seven qualities of soul, each refined seven times, crossing thresholds in an ordered sequence.</p>
+
+    <p class="citations">See: Leviticus 23:15–16; Talmud Bavli, Rosh Hashanah 21b; Talmud Bavli, Nedarim 38a; Maimonides, Mishneh Torah, Laws of the Counting of the Omer; Zohar III:97a; Sefat Emet, Shavuot (R. Yehudah Leib Alter, d. 1905).</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;   // 500
+  const H = canvas.height;  // 740
+
+  // Colors
+  const BG = '#0D1B2A';
+  const BG_R = 0x0D, BG_G = 0x1B, BG_B = 0x2A;
+  const DOT_R = 0xE8, DOT_G = 0xC9, DOT_B = 0x6A; // #E8C96A warm wheat gold
+  const GOLD50 = '#F5C842';  // 50th panel solid gold
+  const TEXT_BG = '#0D1B2A'; // text on gold panel
+
+  // Bayer 4×4 threshold matrix — standard dispersed-dot ordered dithering
+  const BAYER = [
+    [ 0,  8,  2, 10],
+    [12,  4, 14,  6],
+    [ 3, 11,  1,  9],
+    [15,  7, 13,  5]
+  ];
+
+  // Grid layout
+  const CELL_W = 56;  // dither area width in pixels
+  const CELL_H = 56;  // dither area height in pixels
+  const LABEL_H = 14; // label area below dither
+  const HGAP = 8;     // horizontal gap between cells
+  const VGAP = 8;     // vertical gap (between label row and next cell row)
+  const NCOLS = 7, NROWS = 7;
+
+  // Pixel step between cell origins
+  const HSTEP = CELL_W + HGAP;              // 64
+  const VSTEP = CELL_H + LABEL_H + VGAP;    // 78
+
+  const GRID_W = NCOLS * CELL_W + (NCOLS - 1) * HGAP; // 440
+  const GRID_H = NROWS * (CELL_H + LABEL_H) + (NROWS - 1) * VGAP; // 538
+
+  const GRID_X = Math.round((W - GRID_W) / 2); // 30
+  const GRID_Y = 30;
+
+  // 50th panel
+  const PANEL_SIZE = Math.round(CELL_W * 1.5); // 84
+  const PANEL_X = Math.round((W - PANEL_SIZE) / 2); // 208
+  const PANEL_Y = GRID_Y + GRID_H + 30;             // 598
+
+  // Hebrew numerals for days 1–49
+  const ONES = ['', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט'];
+  const TENS = ['', 'י', 'כ', 'ל', 'מ'];
+
+  function hebrewNumeral(n) {
+    if (n === 15) return 'ט״ו';
+    if (n === 16) return 'ט״ז';
+    const t = Math.floor(n / 10);
+    const u = n % 10;
+    if (t && u) return TENS[t] + '״' + ONES[u];
+    if (t) return TENS[t] + '׳';
+    return ONES[u] + '׳';
+  }
+
+  const DAY_LABELS = [];
+  for (let d = 1; d <= 49; d++) DAY_LABELS.push(hebrewNumeral(d));
+
+  // Precompute full dither ImageData for each day (1–49).
+  // Luminance for day d is d/50; pixel (px,py) is gold if luminance > BAYER[py%4][px%4]/16.
+  const DAY_IMAGE_DATA = [];
+  for (let d = 1; d <= 49; d++) {
+    const lum = d / 50;
+    const imgData = ctx.createImageData(CELL_W, CELL_H);
+    const data = imgData.data;
+    for (let py = 0; py < CELL_H; py++) {
+      for (let px = 0; px < CELL_W; px++) {
+        const threshold = BAYER[py % 4][px % 4] / 16.0;
+        const lit = lum > threshold;
+        const idx = (py * CELL_W + px) * 4;
+        data[idx]     = lit ? DOT_R : BG_R;
+        data[idx + 1] = lit ? DOT_G : BG_G;
+        data[idx + 2] = lit ? DOT_B : BG_B;
+        data[idx + 3] = 255;
+      }
+    }
+    DAY_IMAGE_DATA.push(imgData);
+  }
+
+  function cellOrigin(d) {
+    const idx = d - 1;
+    const col = idx % NCOLS;
+    const row = Math.floor(idx / NCOLS);
+    return [GRID_X + col * HSTEP, GRID_Y + row * VSTEP];
+  }
+
+  // Draw cell d with revealCols columns revealed (undefined = all columns).
+  function drawCell(d, revealCols) {
+    const cols = (revealCols === undefined) ? CELL_W : Math.min(Math.max(0, revealCols), CELL_W);
+    const [cx, cy] = cellOrigin(d);
+
+    ctx.fillStyle = BG;
+    ctx.fillRect(cx, cy, CELL_W, CELL_H);
+
+    if (cols > 0) {
+      // putImageData dirty-rect: copies only columns [0, cols) of the precomputed ImageData
+      ctx.putImageData(DAY_IMAGE_DATA[d - 1], cx, cy, 0, 0, cols, CELL_H);
+    }
+
+    ctx.fillStyle = (revealCols === undefined || revealCols > 0) ? '#E8C96A' : '#1D3249';
+    ctx.font = '9px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(DAY_LABELS[d - 1], cx + CELL_W / 2, cy + CELL_H + 3);
+  }
+
+  function drawPendingCell(d) {
+    const [cx, cy] = cellOrigin(d);
+    ctx.fillStyle = BG;
+    ctx.fillRect(cx, cy, CELL_W, CELL_H);
+    ctx.fillStyle = '#1D3249';
+    ctx.font = '9px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(DAY_LABELS[d - 1], cx + CELL_W / 2, cy + CELL_H + 3);
+  }
+
+  // Draw the 50th panel scaling in from zero over bloomFrac (0→1).
+  function drawPanel50(bloomFrac) {
+    const bf = Math.min(1, Math.max(0, bloomFrac));
+    const ease = 1 - Math.pow(1 - bf, 3); // ease-out cubic
+
+    const pcx = PANEL_X + PANEL_SIZE / 2;
+    const pcy = PANEL_Y + PANEL_SIZE / 2;
+
+    ctx.save();
+    ctx.translate(pcx, pcy);
+    ctx.scale(ease, ease);
+
+    // Radial glow behind the panel
+    const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, PANEL_SIZE * 0.85);
+    glow.addColorStop(0, 'rgba(245, 200, 66, 0.55)');
+    glow.addColorStop(1, 'rgba(245, 200, 66, 0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(-PANEL_SIZE, -PANEL_SIZE, PANEL_SIZE * 2, PANEL_SIZE * 2);
+
+    // Solid gold panel
+    const half = PANEL_SIZE / 2;
+    ctx.fillStyle = GOLD50;
+    ctx.fillRect(-half, -half, PANEL_SIZE, PANEL_SIZE);
+
+    // Hebrew letter נ (nun = 50) centered on the panel
+    ctx.fillStyle = TEXT_BG;
+    ctx.font = 'bold ' + Math.round(PANEL_SIZE * 0.52) + 'px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('נ', 0, 0);
+
+    ctx.restore();
+
+    // "שבועות" label fades in once bloom is well underway
+    if (bf > 0.4) {
+      const labelAlpha = Math.min(1, (bf - 0.4) / 0.3);
+      ctx.save();
+      ctx.globalAlpha = labelAlpha;
+      ctx.fillStyle = GOLD50;
+      ctx.font = '13px Georgia, serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText('שבועות', W / 2, PANEL_Y + PANEL_SIZE + 6);
+      ctx.restore();
+    }
+  }
+
+  // Animation timing: 250ms per day × 49 days = 12250ms counting phase,
+  // then 1000ms bloom, then 2000ms hold, then cycle resets.
+  const DAY_MS = 250;
+  const BLOOM_MS = 1000;
+  const HOLD_MS = 2000;
+  const COUNT_MS = 49 * DAY_MS;                    // 12250
+  const CYCLE_MS = COUNT_MS + BLOOM_MS + HOLD_MS;  // 15250
+
+  let startTs = null;
+
+  function render(ts) {
+    if (startTs === null) startTs = ts;
+    const stageMs = (ts - startTs) % CYCLE_MS;
+
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+
+    if (stageMs < COUNT_MS) {
+      const dayFloat = stageMs / DAY_MS;
+      const doneCount = Math.floor(dayFloat);
+      const revealCols = Math.floor((dayFloat - doneCount) * CELL_W);
+
+      for (let d = 1; d <= 49; d++) {
+        if (d <= doneCount) {
+          drawCell(d);
+        } else if (d === doneCount + 1) {
+          drawCell(d, revealCols);
+        } else {
+          drawPendingCell(d);
+        }
+      }
+    } else if (stageMs < COUNT_MS + BLOOM_MS) {
+      for (let d = 1; d <= 49; d++) drawCell(d);
+      drawPanel50((stageMs - COUNT_MS) / BLOOM_MS);
+    } else {
+      for (let d = 1; d <= 49; d++) drawCell(d);
+      drawPanel50(1);
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>
