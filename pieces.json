@@ -702,5 +702,16 @@
     "path": "pieces/52-tagin-in-bloom/index.html",
     "thumbnail": "pieces/52-tagin-in-bloom/thumbnail.svg",
     "essay": "pieces/52-tagin-in-bloom/essay.md"
+  },
+  {
+    "id": "53-gleaning-ruth",
+    "title": "Gleaning in the Fields of Boaz",
+    "tagline": "Ruth follows the harvesters through Boaz’s field — marching squares trace the contours of a harvest landscape, the invisible structure of leket made visible",
+    "year": 2026,
+    "theme": "Ruth / Harvest",
+    "technique": "canvas 2D — marching squares contour tracing, fBm noise field, figure silhouettes",
+    "path": "pieces/53-gleaning-ruth/index.html",
+    "thumbnail": "pieces/53-gleaning-ruth/thumbnail.svg",
+    "essay": "pieces/53-gleaning-ruth/essay.md"
   }
 ]

@@ -1,5 +1,5 @@
 """
-Tests for piece 52-gleaning-ruth: Gleaning in the Fields of Boaz.
+Tests for piece 53-gleaning-ruth: Gleaning in the Fields of Boaz.
 
 Covers file-structure requirements, pieces.json registration, essay
 content, and the correctness of the marching squares algorithm via a
@@ -10,10 +10,8 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PIECE_ID = "52-gleaning-ruth"
+PIECE_ID = "53-gleaning-ruth"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 

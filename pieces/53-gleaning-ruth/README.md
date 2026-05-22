@@ -1,4 +1,4 @@
-# 52 — Gleaning in the Fields of Boaz
+# 53 — Gleaning in the Fields of Boaz
 
 **Theme:** Ruth / Harvest / Shavuot  
 **Technique:** Canvas 2D — marching squares contour tracing on a 2D fBm noise field, figure silhouettes
