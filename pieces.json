@@ -7,7 +7,8 @@
     "theme": "Har Sinai",
     "technique": "canvas 2D — procedural lightning, particle smoke",
     "path": "pieces/01-thunder-at-sinai/index.html",
-    "thumbnail": "pieces/01-thunder-at-sinai/thumbnail.svg"
+    "thumbnail": "pieces/01-thunder-at-sinai/thumbnail.svg",
+    "essay": "pieces/01-thunder-at-sinai/essay.md"
   },
   {
     "id": "06-luchot-engraved",
@@ -17,6 +18,7 @@
     "theme": "Matan Torah / The Two Tablets",
     "technique": "SVG with filter effects, carved Hebrew typography",
     "path": "pieces/06-luchot-engraved/index.html",
-    "thumbnail": "pieces/06-luchot-engraved/thumbnail.svg"
+    "thumbnail": "pieces/06-luchot-engraved/thumbnail.svg",
+    "essay": "pieces/06-luchot-engraved/essay.md"
   }
 ]

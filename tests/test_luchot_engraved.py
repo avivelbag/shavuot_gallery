@@ -9,8 +9,6 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 PIECE_ID = "06-luchot-engraved"
@@ -137,7 +135,7 @@ def test_piece_06_html_has_hebrew_text():
     """The ten commandments must appear as Unicode Hebrew text."""
     html = read_piece_file("index.html")
     # Check for at least one of the well-known commandment headings
-    assert "אָנֹכִי" in html or "אָנֹכִי" in html, (
+    assert "אָנֹכִי" in html, (
         "index.html must contain the Hebrew text of the commandments (אָנֹכִי)"
     )
     assert "לֹא תִרְצָח" in html or "לא" in html, (
@@ -284,13 +282,34 @@ def test_piece_06_thumbnail_extension_is_svg():
     assert ext == ".svg", f"thumbnail extension must be .svg, got '{ext}'"
 
 
+def test_piece_06_essay_field_in_json():
+    """The pieces.json entry for piece 06 must include a non-empty 'essay' path."""
+    piece = get_piece()
+    assert piece is not None
+    assert "essay" in piece, f"'{PIECE_ID}' is missing the 'essay' field in pieces.json"
+    assert piece["essay"], f"'{PIECE_ID}' has an empty 'essay' field in pieces.json"
+
+
+def test_piece_06_essay_path_points_to_file():
+    """The essay path declared in pieces.json must exist on disk."""
+    piece = get_piece()
+    assert piece is not None
+    essay_path = os.path.join(GALLERY_ROOT, piece["essay"])
+    assert os.path.isfile(essay_path), (
+        f"'{PIECE_ID}': essay file '{piece['essay']}' does not exist"
+    )
+
+
 def test_missing_essay_detected(tmp_path):
-    """Verify that our check correctly fails when essay.md is absent."""
+    """A piece directory without essay.md is missing a required deliverable."""
     fake_dir = tmp_path / "fake-piece"
     fake_dir.mkdir()
-    assert not (fake_dir / "essay.md").exists(), (
-        "essay.md should not exist in the fake directory"
-    )
+    essay_path = fake_dir / "essay.md"
+    assert not essay_path.exists()
+    essay_path.write_text("hi", encoding="utf-8")
+    text = essay_path.read_text(encoding="utf-8")
+    word_count = len(text.split())
+    assert word_count < 200, "stub essay should have fewer than 200 words"
 
 
 def test_piece_06_no_duplicate_with_existing():
