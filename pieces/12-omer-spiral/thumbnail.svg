@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="crown-glow" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#12124a"/>
+      <stop offset="100%" stop-color="#04041a"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="200.0" cy="194.0" r="5" fill="rgb(255,80,10)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="206.9" cy="194.5" r="5" fill="rgb(255,82,10)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="211.5" cy="202.6" r="5" fill="rgb(255,85,11)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="206.3" cy="213.2" r="5" fill="rgb(255,88,12)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="192.4" cy="215.8" r="5" fill="rgb(255,91,13)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="180.1" cy="204.5" r="5" fill="rgb(255,94,14)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="181.8" cy="185.5" r="5" fill="rgb(255,96,15)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="200.0" cy="173.9" r="5" fill="rgb(255,99,15)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="222.7" cy="181.9" r="5" fill="rgb(255,102,16)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="231.1" cy="207.1" r="5" fill="rgb(255,105,17)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="215.1" cy="231.3" r="5" fill="rgb(255,108,18)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="183.7" cy="233.9" r="5" fill="rgb(255,110,19)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="160.5" cy="209.0" r="5" fill="rgb(255,113,20)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="166.1" cy="173.0" r="5" fill="rgb(255,116,20)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="200.0" cy="153.8" r="5" fill="rgb(255,119,21)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="238.4" cy="169.4" r="5" fill="rgb(255,122,22)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="250.7" cy="211.6" r="5" fill="rgb(255,125,23)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="223.8" cy="249.4" r="5" fill="rgb(255,127,24)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="175.0" cy="252.0" r="5" fill="rgb(255,130,25)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="140.9" cy="213.5" r="5" fill="rgb(255,133,25)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="150.4" cy="160.4" r="5" fill="rgb(255,136,26)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="200.0" cy="133.7" r="5" fill="rgb(255,139,27)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="254.1" cy="156.9" r="5" fill="rgb(255,141,28)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="270.3" cy="216.0" r="5" fill="rgb(255,144,29)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="232.5" cy="267.5" r="5" fill="rgb(255,147,30)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="166.2" cy="270.1" r="5" fill="rgb(255,150,30)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="121.3" cy="218.0" r="5" fill="rgb(255,153,31)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="134.7" cy="147.9" r="5" fill="rgb(255,155,32)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="200.0" cy="113.6" r="5" fill="rgb(255,158,33)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="269.8" cy="144.3" r="5" fill="rgb(255,161,34)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="289.9" cy="220.5" r="5" fill="rgb(255,164,35)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="241.2" cy="285.6" r="5" fill="rgb(255,167,35)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="157.5" cy="288.2" r="5" fill="rgb(255,170,36)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="101.7" cy="222.4" r="5" fill="rgb(255,172,37)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="119.0" cy="135.4" r="5" fill="rgb(255,175,38)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="200.0" cy="93.5" r="5" fill="rgb(255,178,39)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="285.5" cy="131.8" r="5" fill="rgb(255,181,40)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="309.5" cy="225.0" r="5" fill="rgb(255,184,40)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="250.0" cy="303.7" r="5" fill="rgb(255,186,41)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="148.8" cy="306.3" r="5" fill="rgb(255,189,42)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="82.1" cy="226.9" r="5" fill="rgb(255,192,43)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="103.2" cy="122.8" r="5" fill="rgb(255,195,44)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="200.0" cy="73.4" r="5" fill="rgb(255,198,45)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="301.3" cy="119.3" r="5" fill="rgb(255,200,45)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="329.1" cy="229.5" r="5" fill="rgb(255,203,46)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="258.7" cy="321.9" r="5" fill="rgb(255,206,47)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="140.1" cy="324.4" r="5" fill="rgb(255,209,48)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="62.5" cy="231.4" r="5" fill="rgb(255,212,49)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="87.5" cy="110.3" r="5" fill="rgb(255,215,50)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="200" cy="200" r="18" fill="none" stroke="#ffd700" stroke-width="3" filter="url(#crown-glow)" opacity="0.95"/>
+  <circle cx="200" cy="200" r="6" fill="#fffacd" filter="url(#crown-glow)" opacity="0.9"/>
+</svg>

@@ -97,5 +97,16 @@
     "path": "pieces/11-seven-species-botanical/index.html",
     "thumbnail": "pieces/11-seven-species-botanical/thumbnail.svg",
     "essay": "pieces/11-seven-species-botanical/essay.md"
+  },
+  {
+    "id": "12-omer-spiral",
+    "title": "Forty-Nine Fires",
+    "tagline": "counting the days toward Shavuot, one fire at a time",
+    "year": 2026,
+    "theme": "Sefirat HaOmer",
+    "technique": "canvas 2D — Archimedean spiral, radial gradient animation",
+    "path": "pieces/12-omer-spiral/index.html",
+    "thumbnail": "pieces/12-omer-spiral/thumbnail.svg",
+    "essay": "pieces/12-omer-spiral/essay.md"
   }
 ]
