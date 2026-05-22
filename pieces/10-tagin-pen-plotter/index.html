@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Crowns — Tagin Pen-Plotter · Shavuot Gallery</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #2b1a0a;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 1.5rem 0;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas {
+      display: block;
+      border: 1px solid #6b4a30;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+      color: #e8d8c0;
+    }
+    .essay-pane h1 {
+      font-size: 1.5rem;
+      color: #d4a96a;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #a07850;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #6b4a30;
+      padding-left: 0.75rem;
+    }
+    .essay-pane p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #e0ccb0;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #d4a96a; font-style: italic; }
+    .essay-pane .cite {
+      font-size: 0.85rem;
+      color: #906840;
+      font-style: italic;
+      margin-top: 1.2rem;
+    }
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; align-items: center; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>The Crowns</h1>
+    <div class="source">Source: Talmud Bavli, Menachot 29b; Maharsha (Rabbi Shmuel Eliezer Eidels), ad loc.</div>
+
+    <p>Look closely at a handwritten Torah scroll and you will notice something unexpected above certain letters: three tiny strokes, each curving upward like a miniature crown. These are <em>tagin</em> (singular: <em>tag</em>, from the Aramaic for crown). They are not decorative flourishes added by the scribe on a whim. They are mandatory, their positions specified by tradition, their origin the subject of one of the most haunting stories in the Talmud.</p>
+
+    <p>Tractate Menachot 29b: Moses ascends to heaven at Sinai and finds the Holy One seated, tying crowns onto the letters of the Torah. Moses asks: why the crowns? God explains that a man named Akiva, who will live many generations hence, will interpret each tag and from it derive mountains of law. Moses asks to see this man. He is transported forward in time and sits in Rabbi Akiva's academy, listening. He cannot follow the discussion. He is distressed — this wisdom transcends him. Then a student asks Rabbi Akiva: from where do you derive this? And Rabbi Akiva answers: it is a law given to Moses at Sinai.</p>
+
+    <p>This passage is one of the most theologically compressed in rabbinic literature. The Maharsha reads it as a statement about the nature of revelation itself. What was given at Sinai was not only the text that Moses received but the entire future of its interpretation — the crowns contained, in latent form, everything that scholars would draw out across millennia. Moses could not understand what Akiva taught, yet Akiva's teaching was already present at Sinai, sealed inside the ornamental strokes that Moses himself watched God add to the letters.</p>
+
+    <p>For Shavuot, which commemorates the giving of Torah at Sinai, the tagin are a potent symbol. The holiday is not merely a commemoration of a past event but a celebration of Torah's inexhaustibility — the fact that every generation finds something new within it. The crowns on the letters are the visual emblem of that surplus. Each flourish says: there is more here than meets the eye.</p>
+
+    <p>This artwork draws a single shin — the first letter of <em>Shema</em>, the central Jewish affirmation — in the style of a pen plotter: thin bezier strokes with the slight tremor of a hand working in lampblack ink on parchment. The three arms of the shin are drawn one by one, as if by a scribe composing a Torah scroll. When the letter is complete, tagin blossom at each arm tip in triple upward flourishes, re-enacting the scene from Menachot 29b: the crowns added after the letter, carrying meanings not yet known.</p>
+
+    <p>The palette is bone-white parchment and deep sepia ink. No color, no ornament except the marks themselves — and the crowns above them.</p>
+
+    <p class="cite">See: Talmud Bavli Menachot 29b; Maharsha ad loc.; Mishneh Torah, Laws of Tefillin 2:10; Shulchan Aruch, Yoreh De'ah 274.</p>
+  </div>
+</div>
+<script>
+const W = 600, H = 600;
+const BG = '#f2ead8';
+const INK = 'rgba(58,31,13,0.85)';
+const JITTER = 0.4;
+const STEPS = 200;
+const STROKE_DUR = 0.8;
+const TAGIN_DUR = 0.35;
+const HOLD_DUR = 5.0;
+const FADE_DUR = 1.5;
+
+const canvas = document.getElementById('c');
+canvas.width = W;
+canvas.height = H;
+const ctx = canvas.getContext('2d');
+
+// Cubic bezier point at parameter t
+function bezierPt(p0, p1, p2, p3, t) {
+  const mt = 1 - t;
+  return {
+    x: mt*mt*mt*p0.x + 3*mt*mt*t*p1.x + 3*mt*t*t*p2.x + t*t*t*p3.x,
+    y: mt*mt*mt*p0.y + 3*mt*mt*t*p1.y + 3*mt*t*t*p2.y + t*t*t*p3.y
+  };
+}
+
+// Pre-compute a jittered point-sequence along a cubic bezier so the line
+// stays stable between animation frames (random offsets fixed at build time).
+function buildPath(p0, p1, p2, p3) {
+  const pts = [];
+  for (let i = 0; i <= STEPS; i++) {
+    const b = bezierPt(p0, p1, p2, p3, i / STEPS);
+    pts.push({
+      x: b.x + (Math.random() - 0.5) * JITTER,
+      y: b.y + (Math.random() - 0.5) * JITTER
+    });
+  }
+  return pts;
+}
+
+// Shin letter: four bezier strokes in a 600x600 canvas, letter fills ~60%.
+// Coordinates: base bowl across the bottom, then three arms rising upward.
+const SHIN_DEFS = [
+  // Base bowl — curves from left to right with a downward arc
+  [{x:155,y:438},{x:210,y:472},{x:390,y:472},{x:445,y:438}],
+  // Left arm — rises from left of bowl to upper-left tip
+  [{x:195,y:432},{x:185,y:342},{x:162,y:232},{x:135,y:130}],
+  // Middle arm — tallest, rises straight from center of bowl
+  [{x:300,y:415},{x:300,y:315},{x:300,y:210},{x:300,y:100}],
+  // Right arm — rises from right of bowl to upper-right tip
+  [{x:405,y:432},{x:415,y:342},{x:438,y:232},{x:465,y:130}],
+];
+
+// Tagin tips: the three arm endpoints (left, middle, right)
+const TIPS = [
+  {x:135, y:130},
+  {x:300, y:100},
+  {x:465, y:130},
+];
+
+// Build three upward-arcing tagin strokes at a single tip position.
+// Each arc fans a different direction — left, center, right — like a crown.
+function buildTagin(tx, ty) {
+  const r = 18;
+  return [
+    buildPath(
+      {x:tx,          y:ty},
+      {x:tx - r*0.55, y:ty - r*0.60},
+      {x:tx - r,      y:ty - r*1.40},
+      {x:tx - r*0.55, y:ty - r*2.10}
+    ),
+    buildPath(
+      {x:tx, y:ty},
+      {x:tx, y:ty - r*0.70},
+      {x:tx, y:ty - r*1.40},
+      {x:tx, y:ty - r*2.10}
+    ),
+    buildPath(
+      {x:tx,          y:ty},
+      {x:tx + r*0.55, y:ty - r*0.60},
+      {x:tx + r,      y:ty - r*1.40},
+      {x:tx + r*0.55, y:ty - r*2.10}
+    ),
+  ];
+}
+
+let paths = [];
+let taginPaths = [];
+
+function rebuild() {
+  paths = SHIN_DEFS.map(([p0,p1,p2,p3]) => buildPath(p0, p1, p2, p3));
+  taginPaths = TIPS.flatMap(({x, y}) => buildTagin(x, y));
+}
+
+// Draw a pre-computed point-sequence up to the given progress (0→1).
+function drawPts(pts, progress) {
+  const end = Math.max(1, Math.round(progress * pts.length));
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < end; i++) ctx.lineTo(pts[i].x, pts[i].y);
+  ctx.stroke();
+}
+
+const LETTER_END = SHIN_DEFS.length * STROKE_DUR;           // 3.2 s
+const TAGIN_END  = LETTER_END + TIPS.length * 3 * TAGIN_DUR; // 6.35 s
+const HOLD_END   = TAGIN_END + HOLD_DUR;                     // 11.35 s
+const CYCLE      = HOLD_END + FADE_DUR;                      // 12.85 s
+
+let elapsed = 0;
+let lastTs = null;
+
+function frame(ts) {
+  if (lastTs === null) lastTs = ts;
+  const dt = Math.min((ts - lastTs) / 1000, 0.05);
+  lastTs = ts;
+  elapsed += dt;
+
+  if (elapsed >= CYCLE) {
+    elapsed -= CYCLE;
+    rebuild();
+  }
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+
+  let alpha = 1;
+  if (elapsed >= HOLD_END) {
+    alpha = Math.max(0, 1 - (elapsed - HOLD_END) / FADE_DUR);
+  }
+  ctx.globalAlpha = alpha;
+  ctx.strokeStyle = INK;
+  ctx.lineWidth = 1.8;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  // Draw shin letter strokes progressively
+  if (elapsed < LETTER_END) {
+    const si = Math.floor(elapsed / STROKE_DUR);
+    for (let i = 0; i < si; i++) drawPts(paths[i], 1);
+    if (si < paths.length) {
+      drawPts(paths[si], (elapsed - si * STROKE_DUR) / STROKE_DUR);
+    }
+  } else {
+    for (const p of paths) drawPts(p, 1);
+  }
+
+  // Draw tagin after the full letter is complete
+  if (elapsed >= LETTER_END) {
+    const tEl = Math.min(elapsed - LETTER_END, TAGIN_END - LETTER_END);
+    const ai = Math.floor(tEl / TAGIN_DUR);
+    for (let i = 0; i < Math.min(ai, taginPaths.length); i++) {
+      drawPts(taginPaths[i], 1);
+    }
+    if (ai < taginPaths.length) {
+      drawPts(taginPaths[ai], (tEl - ai * TAGIN_DUR) / TAGIN_DUR);
+    }
+  }
+
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(frame);
+}
+
+rebuild();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

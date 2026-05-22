@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Aged-parchment background -->
+  <rect width="400" height="400" fill="#f2ead8"/>
+
+  <!-- Shin letter in sepia ink (simplified static pen-plotter style) -->
+  <!-- Base bowl: curves from left to right with a downward arc -->
+  <path d="M 103 292 C 140 318, 260 318, 297 292"
+        stroke="#3a1f0d" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <!-- Left arm: rises from left side of bowl up to left tip -->
+  <path d="M 130 288 C 122 225, 107 153, 90 87"
+        stroke="#3a1f0d" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <!-- Middle arm: rises from center of bowl straight up (tallest) -->
+  <path d="M 200 273 C 200 207, 200 138, 200 67"
+        stroke="#3a1f0d" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <!-- Right arm: rises from right side of bowl up to right tip -->
+  <path d="M 270 288 C 278 225, 293 153, 310 87"
+        stroke="#3a1f0d" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Tagin at left arm tip (90, 87) — three-stroke crown -->
+  <path d="M 90 87 C 83 80, 78 70, 83 62"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 90 87 C 90 79, 90 69, 90 62"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 90 87 C 97 80, 102 70, 97 62"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Tagin at middle arm tip (200, 67) -->
+  <path d="M 200 67 C 193 60, 188 50, 193 42"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 200 67 C 200 59, 200 49, 200 42"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 200 67 C 207 60, 212 50, 207 42"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Tagin at right arm tip (310, 87) -->
+  <path d="M 310 87 C 303 80, 298 70, 303 62"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 310 87 C 310 79, 310 69, 310 62"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 310 87 C 317 80, 322 70, 317 62"
+        stroke="#3a1f0d" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="348" width="400" height="52" fill="rgba(58,31,13,0.12)"/>
+  <text x="200" y="372" font-family="Georgia, serif" font-size="14" fill="#3a1f0d" text-anchor="middle" opacity="0.85">The Crowns — Tagin</text>
+  <text x="200" y="390" font-family="Georgia, serif" font-size="11" fill="#6b4a30" text-anchor="middle" opacity="0.75">Menachot 29b</text>
+</svg>
