@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Until Dawn — Tikkun Leil Shavuot</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #080c1a;
+      color: #e8dcc8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2.4rem 2rem 2rem;
+      background: rgba(8, 12, 26, 0.97);
+      border-left: 1px solid rgba(255, 200, 80, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #ffc850;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .essay h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: rgba(232, 220, 200, 0.65);
+      margin: 0 0 1.4rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+      color: #ddd0bc;
+    }
+    .essay p strong {
+      color: #ffc850;
+    }
+    .essay .source {
+      font-size: 0.78rem;
+      color: rgba(232, 220, 200, 0.5);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 200, 80, 0.12);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 700px) {
+      .layout {
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
+      }
+      .artwork {
+        flex: none;
+        height: 56vw;
+        min-height: 240px;
+        max-height: 60vh;
+      }
+      .essay {
+        flex: none;
+        border-left: none;
+        border-top: 1px solid rgba(255, 200, 80, 0.18);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="c"></canvas>
+  </div>
+  <aside class="essay" aria-label="Essay: The Night We Stayed Awake">
+    <h1>Until Dawn</h1>
+    <h2>The Night We Stayed Awake</h2>
+
+    <p>
+      Each year on the eve of Shavuot, Jews around the world remain awake
+      through the night in the practice known as <em>Tikkun Leil Shavuot</em>
+      — a vigil of Torah study that extends until dawn. The word
+      <em>tikkun</em> (תִּקּוּן) means repair or preparation: a structured
+      curriculum of texts drawn from across the breadth of Jewish tradition,
+      recited as a vigil before the holiday&#8217;s morning prayers.
+    </p>
+
+    <p>
+      The custom&#8217;s earliest formal articulation appears in the Zohar,
+      the foundational text of Kabbalah (Parashat Emor). The Zohar describes
+      the night before Shavuot as an opportunity for the righteous to adorn
+      the bride &#8212; in Kabbalistic language, to prepare the Shekhinah,
+      God&#8217;s indwelling presence, for the cosmic marriage of Israel and
+      Torah that occurs at the moment of revelation. The mystics of
+      sixteenth-century Safed &#8212; among them Rabbi Joseph Karo, Rabbi
+      Shlomo Alkabetz (author of <em>Lecha Dodi</em>), and Rabbi Moses
+      Cordovero &#8212; formalized the all-night study as essential Shavuot
+      practice. Alkabetz recorded in a famous letter that during one such
+      Tikkun night in 1533, a Heavenly Voice spoke through Karo, confirming
+      that the preparation was worthy.
+    </p>
+
+    <p>
+      At the center of this piece stands the phrase
+      <strong>נַעֲשֶׂה וְנִשְׁמַע</strong> &#8212;
+      <em>&#8220;we will do, and we will hear&#8221;</em> &#8212; drawn from
+      Exodus 24:7, the moment Israel commits to the covenant at Sinai before
+      hearing all its terms. The Talmud (Shabbat 88a) marveled at this
+      inversion: in ordinary life one hears terms before agreeing to them.
+      Israel reversed that order &#8212; commitment before comprehension,
+      action before understanding. A Heavenly Voice then called out:
+      <em>&#8220;Who revealed to My children this secret that the ministering
+      angels use?&#8221;</em> &#8212; as if radical, pre-rational faith were
+      the angels&#8217; own mode of being.
+    </p>
+
+    <p>
+      The falling Hebrew letters embody that paradox. Letters precede words,
+      words precede meaning, meaning emerges only in the act of study &#8212;
+      and study, in the Tikkun, continues until the sky itself brightens. The
+      canvas shifts from midnight blue to rose-gold not as metaphor but as
+      time: a ninety-second clock whose zero is always nightfall and whose end
+      is always morning. The letters carry no fixed semantic content &#8212;
+      they are the raw alphabet, the raw material of Torah &#8212; yet their
+      fall enacts the tradition&#8217;s central claim: that each act of study,
+      however partial, is already a form of receiving.
+    </p>
+
+    <p>
+      The Talmud (Shabbat 88b) adds a final image: at the moment of
+      <em>naaseh v&#8217;nishma</em>, each Israelite was crowned with two
+      crowns &#8212; one for <em>naaseh</em>, one for <em>nishma</em>. The
+      Tikkun is how we carry those crowns through the dark.
+    </p>
+
+    <p class="source">
+      Sources: Zohar, Parashat Emor; Exodus 24:7; Babylonian Talmud, Shabbat
+      88a&#8211;88b; Shlomo Alkabetz, letter on Tikkun Leil Shavuot (Safed,
+      1533).
+    </p>
+  </aside>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var W, H;
+
+  var HEBREW_FONT = "'David Libre', 'Frank Ruhl Libre', serif";
+  var CYCLE_MS = 90000;
+  var MAX_PARTICLES = 60;
+  var SPAWN_INTERVAL_MS = 200;
+  var MIN_LETTER_SIZE = 24;
+  var MAX_LETTER_SIZE = 72;
+  var FPS_MIN_MS = 1000 / 60;
+
+  var CHAR_POOL = 'אבגדהוזחטיכלמנסעפצקרשת'.split('').concat(
+    ['בּ', 'גּ', 'דּ', 'כּ', 'פּ', 'תּ', 'שׁ', 'שׂ']
+  );
+
+  var NISHMA = 'נַעֲשֶׂה וְנִשְׁמַע';
+
+  var BG_MIDNIGHT = [8, 12, 26];   // #080c1a midnight
+  var BG_DAWN = [253, 232, 200];   // #fde8c8 dawn rose-gold
+
+  var LETTER_TOP = [255, 250, 235];
+  var LETTER_BOTTOM = [255, 160, 50];
+
+  var particles = [];
+  var lastSpawnTime = 0;
+  var lastFrameTime = 0;
+
+  function lerp3(a, b, t) {
+    return [
+      Math.round(a[0] + (b[0] - a[0]) * t),
+      Math.round(a[1] + (b[1] - a[1]) * t),
+      Math.round(a[2] + (b[2] - a[2]) * t)
+    ];
+  }
+
+  function rgb(c) {
+    return 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
+  }
+
+  function rgba(c, a) {
+    return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')';
+  }
+
+  function spawnParticle() {
+    return {
+      char: CHAR_POOL[Math.floor(Math.random() * CHAR_POOL.length)],
+      x: Math.random() * W,
+      y: -(MAX_LETTER_SIZE + Math.random() * 40),
+      vy: 1.5 + Math.random() * 2.5,
+      size: MIN_LETTER_SIZE + Math.random() * (MAX_LETTER_SIZE - MIN_LETTER_SIZE),
+      rotation: (Math.random() - 0.5) * 0.4,
+      rotSpeed: (Math.random() - 0.5) * 0.008,
+      alpha: 0.55 + Math.random() * 0.45
+    };
+  }
+
+  function resize() {
+    var container = canvas.parentElement;
+    W = canvas.width = container.clientWidth;
+    H = canvas.height = container.clientHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  function drawBackground(cycleFrac) {
+    ctx.fillStyle = rgb(lerp3(BG_MIDNIGHT, BG_DAWN, cycleFrac));
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  function updateParticles(dt) {
+    var dtScale = dt / FPS_MIN_MS;
+    for (var i = particles.length - 1; i >= 0; i--) {
+      var p = particles[i];
+      p.y += p.vy * dtScale;
+      p.rotation += p.rotSpeed * dtScale;
+      if (p.y > H + 100) {
+        particles.splice(i, 1);
+      }
+    }
+  }
+
+  function drawParticles() {
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      var yFrac = Math.max(0, Math.min(1, p.y / H));
+      var col = lerp3(LETTER_TOP, LETTER_BOTTOM, yFrac);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.font = p.size + 'px ' + HEBREW_FONT;
+      ctx.fillStyle = rgba(col, p.alpha);
+      ctx.fillText(p.char, 0, 0);
+      ctx.restore();
+    }
+  }
+
+  function getNaasehAlpha(cycleMs) {
+    if (cycleMs < 45000 || cycleMs >= 53000) return 0;
+    if (cycleMs < 47000) return (cycleMs - 45000) / 2000;
+    if (cycleMs < 51000) return 1;
+    return 1 - (cycleMs - 51000) / 2000;
+  }
+
+  function drawNaaseh(cycleMs) {
+    var alpha = getNaasehAlpha(cycleMs);
+    if (alpha <= 0) return;
+    ctx.save();
+    ctx.font = '120px ' + HEBREW_FONT;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = rgba([255, 140, 20], alpha * 0.7);
+    ctx.shadowBlur = 32;
+    ctx.fillStyle = rgba([255, 200, 80], alpha);
+    ctx.fillText(NISHMA, W / 2, H / 2);
+    ctx.restore();
+  }
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+
+    var elapsed = ts - lastFrameTime;
+    if (elapsed < FPS_MIN_MS) return;
+    lastFrameTime = ts - (elapsed % FPS_MIN_MS);
+    var dt = Math.min(elapsed, 50);
+
+    var cycleMs = ts % CYCLE_MS;
+    var cycleFrac = cycleMs / CYCLE_MS;
+
+    drawBackground(cycleFrac);
+
+    if (ts - lastSpawnTime >= SPAWN_INTERVAL_MS && particles.length < MAX_PARTICLES) {
+      particles.push(spawnParticle());
+      lastSpawnTime = ts;
+    }
+
+    updateParticles(dt);
+    drawParticles();
+    drawNaaseh(cycleMs);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

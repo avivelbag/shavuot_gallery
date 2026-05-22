@@ -12,6 +12,31 @@ The giving of the Torah was not a quiet transfer of information. The text insist
 
 The mountain had to be cordoned off and made untouchable, because holiness of this intensity was dangerous. The Talmud (Shabbat 88a) pictures the mountain held suspended above the heads of Israel as a kind of cosmic ultimatum: accept the Torah, or be buried beneath it. The covenant was not offered gently. What Israel received that day was not a set of propositions but an encounter — and the encounter left its mark. Forty years later, Deuteronomy still describes the mountain burning "to the very heart of heaven" (Deuteronomy 4:11), as if the fire has never entirely gone out.
 
+The Mechilta de-Rabbi Ishmael, a tannaitic commentary on Exodus, dwells on the
+central paradox: Sinai was simultaneously the site of the most intimate divine
+speech — commandments addressed directly to the entire people — and a place of
+absolute physical prohibition. The mountain became holy, charged, untouchable.
+Rabbi Yose the Galilean observed that even after the revelation concluded,
+Moses was instructed to warn the people again not to ascend (Exodus 19:23),
+suggesting that the charge outlasted the fire itself.
+
+The Talmud (Shabbat 88a) offers a more unsettling reading: God held Sinai
+over Israel like an upturned barrel (*כְּגִיגִית*), threatening burial if they
+refused the Torah. The thunder and lightning are not in this reading a
+spectacle but a coercion — revelation and ultimatum fused in the same moment.
+Yet Israel said yes, and the coercion became covenant.
+
 ## This Piece
 
 The animation renders the theophany as the Torah describes it: lightning recursive and branching, fire and smoke rising from the peak, the mountain dark and immovable below. Every bolt is generated procedurally through midpoint displacement — not pre-drawn, not repeated, never identical — because revelation, the Rabbis suggest, addresses each person differently. The mountain burns on regardless. It does not wait for an audience.
+
+This piece holds those two registers together. The recursive lightning branches
+are generated fresh every several frames — no two bolts identical, no pause in
+the storm — because the revelation at Sinai was not an illustration but an
+event, contingent and unrepeatable. The fire particles rising from the peak
+trace the column of smoke of Exodus. The mountain polygon is stable and
+unmoved while everything above it is chaos.
+
+Shavuot commemorates the receiving of that Torah, the moment when the
+untouchable mountain became the source of the commandments that Israel now
+lives by. The mountain did not descend to the people. The Torah did.
