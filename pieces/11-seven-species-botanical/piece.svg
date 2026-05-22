@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+<defs>
+<style>
+.s1{animation:sway 4s ease-in-out 0s infinite;transform-box:fill-box;transform-origin:center bottom}
+.s2{animation:sway 4s ease-in-out .7s infinite;transform-box:fill-box;transform-origin:center bottom}
+.s3{animation:sway 4s ease-in-out 1.4s infinite;transform-box:fill-box;transform-origin:center bottom}
+.s4{animation:sway 4s ease-in-out 2.1s infinite;transform-box:fill-box;transform-origin:center bottom}
+.s5{animation:sway 4s ease-in-out 2.8s infinite;transform-box:fill-box;transform-origin:center bottom}
+@keyframes sway{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-3deg)}}
+</style>
+</defs>
+
+<!-- background -->
+<rect width="600" height="600" fill="#f5ead0"/>
+
+<!-- decorative rings -->
+<circle cx="300" cy="300" r="247" fill="none" stroke="#2d5a1b" stroke-width="1.5" opacity="0.28"/>
+<circle cx="300" cy="300" r="130" fill="none" stroke="#c8921a" stroke-width="1" opacity="0.35"/>
+
+<!-- central disk -->
+<circle cx="300" cy="300" r="97" fill="#efe0bc" stroke="#2d5a1b" stroke-width="2.5"/>
+<text x="300" y="291" text-anchor="middle" font-family="'Times New Roman',Georgia,serif" font-size="23" font-weight="bold" fill="#2d5a1b">שִׁבְעַת</text>
+<text x="300" y="322" text-anchor="middle" font-family="'Times New Roman',Georgia,serif" font-size="23" font-weight="bold" fill="#2d5a1b">הַמִּינִים</text>
+
+<!-- ── WHEAT 1 top-left 315° → translate(187,187) rotate(-45) ── -->
+<g transform="translate(187,187) rotate(-45)">
+  <line x1="0" y1="0" x2="0" y2="-58" stroke="#c8921a" stroke-width="2.5"/>
+  <ellipse cx="0" cy="-67" rx="5" ry="9" fill="#c8921a"/>
+  <ellipse cx="-6" cy="-59" rx="4" ry="7" transform="rotate(-25,-6,-59)" fill="#c8921a"/>
+  <ellipse cx="6" cy="-59" rx="4" ry="7" transform="rotate(25,6,-59)" fill="#c8921a"/>
+  <ellipse cx="-7" cy="-50" rx="4" ry="7" transform="rotate(-35,-7,-50)" fill="#c8921a"/>
+  <ellipse cx="7" cy="-50" rx="4" ry="7" transform="rotate(35,7,-50)" fill="#c8921a"/>
+  <g transform="translate(-9,-36) rotate(-30)"><ellipse class="s1" cx="0" cy="0" rx="4" ry="12" fill="#2d5a1b"/></g>
+  <g transform="translate(9,-22) rotate(30)"><ellipse class="s2" cx="0" cy="0" rx="4" ry="12" fill="#2d5a1b"/></g>
+</g>
+
+<!-- ── BARLEY 1 top 345° → translate(259,146) rotate(-15) ── -->
+<g transform="translate(259,146) rotate(-15)">
+  <line x1="0" y1="0" x2="0" y2="-56" stroke="#b8840f" stroke-width="2.5"/>
+  <ellipse cx="0" cy="-68" rx="4" ry="10" fill="#b8840f"/>
+  <ellipse cx="-5" cy="-60" rx="3" ry="7" transform="rotate(-22,-5,-60)" fill="#b8840f"/>
+  <ellipse cx="5" cy="-60" rx="3" ry="7" transform="rotate(22,5,-60)" fill="#b8840f"/>
+  <!-- awns -->
+  <line x1="0" y1="-78" x2="-9" y2="-96" stroke="#b8840f" stroke-width="1.5"/>
+  <line x1="0" y1="-78" x2="9" y2="-96" stroke="#b8840f" stroke-width="1.5"/>
+  <line x1="-5" y1="-68" x2="-14" y2="-86" stroke="#b8840f" stroke-width="1.5"/>
+  <line x1="5" y1="-68" x2="14" y2="-86" stroke="#b8840f" stroke-width="1.5"/>
+  <g transform="translate(-10,-34) rotate(-32)"><ellipse class="s3" cx="0" cy="0" rx="4" ry="12" fill="#2d5a1b"/></g>
+  <g transform="translate(10,-20) rotate(32)"><ellipse class="s4" cx="0" cy="0" rx="4" ry="12" fill="#2d5a1b"/></g>
+</g>
+
+<!-- ── BARLEY 2 top 15° → translate(341,146) rotate(15) ── -->
+<g transform="translate(341,146) rotate(15)">
+  <line x1="0" y1="0" x2="0" y2="-56" stroke="#b8840f" stroke-width="2.5"/>
+  <ellipse cx="0" cy="-68" rx="4" ry="10" fill="#b8840f"/>
+  <ellipse cx="-5" cy="-60" rx="3" ry="7" transform="rotate(-22,-5,-60)" fill="#b8840f"/>
+  <ellipse cx="5" cy="-60" rx="3" ry="7" transform="rotate(22,5,-60)" fill="#b8840f"/>
+  <line x1="0" y1="-78" x2="-9" y2="-96" stroke="#b8840f" stroke-width="1.5"/>
+  <line x1="0" y1="-78" x2="9" y2="-96" stroke="#b8840f" stroke-width="1.5"/>
+  <line x1="-5" y1="-68" x2="-14" y2="-86" stroke="#b8840f" stroke-width="1.5"/>
+  <line x1="5" y1="-68" x2="14" y2="-86" stroke="#b8840f" stroke-width="1.5"/>
+  <g transform="translate(-10,-34) rotate(-32)"><ellipse class="s5" cx="0" cy="0" rx="4" ry="12" fill="#2d5a1b"/></g>
+  <g transform="translate(10,-20) rotate(32)"><ellipse class="s1" cx="0" cy="0" rx="4" ry="12" fill="#2d5a1b"/></g>
+</g>
+
+<!-- ── WHEAT 2 top-right 45° → translate(413,187) rotate(45) ── -->
+<g transform="translate(413,187) rotate(45)">
+  <line x1="0" y1="0" x2="0" y2="-58" stroke="#c8921a" stroke-width="2.5"/>
+  <ellipse cx="0" cy="-67" rx="5" ry="9" fill="#c8921a"/>
+  <ellipse cx="-6" cy="-59" rx="4" ry="7" transform="rotate(-25,-6,-59)" fill="#c8921a"/>
+  <ellipse cx="6" cy="-59" rx="4" ry="7" transform="rotate(25,6,-59)" fill="#c8921a"/>
+  <ellipse cx="-7" cy="-50" rx="4" ry="7" transform="rotate(-35,-7,-50)" fill="#c8921a"/>
+  <ellipse cx="7" cy="-50" rx="4" ry="7" transform="rotate(35,7,-50)" fill="#c8921a"/>
+  <g transform="translate(-9,-36) rotate(-30)"><ellipse class="s2" cx="0" cy="0" rx="4" ry="12" fill="#2d5a1b"/></g>
+  <g transform="translate(9,-22) rotate(30)"><ellipse class="s3" cx="0" cy="0" rx="4" ry="12" fill="#2d5a1b"/></g>
+</g>
+
+<!-- ── POMEGRANATE right 90° → translate(460,300) rotate(90) ── -->
+<g transform="translate(460,300) rotate(90)">
+  <line x1="0" y1="0" x2="0" y2="-14" stroke="#2d5a1b" stroke-width="2"/>
+  <circle cx="0" cy="-42" r="27" fill="#c0392b"/>
+  <circle cx="-8" cy="-50" r="6" fill="#d45040" opacity="0.45"/>
+  <!-- calyx crown -->
+  <path d="M-13,-67 L-8,-59 L0,-64 L8,-59 L13,-67 L8,-57 L13,-52 L7,-56 L0,-60 L-7,-56 L-13,-52 L-8,-57 Z" fill="#7a1a15"/>
+  <g transform="translate(-15,-12) rotate(-38)"><ellipse class="s4" cx="0" cy="0" rx="5" ry="14" fill="#2d5a1b"/></g>
+  <g transform="translate(15,-12) rotate(38)"><ellipse class="s5" cx="0" cy="0" rx="5" ry="14" fill="#2d5a1b"/></g>
+</g>
+
+<!-- ── OLIVE bottom-right 135° → translate(413,413) rotate(135) ── -->
+<g transform="translate(413,413) rotate(135)">
+  <line x1="0" y1="0" x2="0" y2="-55" stroke="#7a8c2e" stroke-width="2.5"/>
+  <line x1="0" y1="-33" x2="-14" y2="-48" stroke="#7a8c2e" stroke-width="1.5"/>
+  <line x1="0" y1="-43" x2="14" y2="-58" stroke="#7a8c2e" stroke-width="1.5"/>
+  <ellipse cx="-14" cy="-50" rx="4" ry="6" fill="#4a5a10"/>
+  <ellipse cx="14" cy="-60" rx="4" ry="6" fill="#4a5a10"/>
+  <ellipse cx="0" cy="-62" rx="4" ry="6" fill="#5a6a18"/>
+  <g transform="translate(-8,-38) rotate(-32)"><ellipse class="s1" cx="0" cy="0" rx="3" ry="11" fill="#7a8c2e"/></g>
+  <g transform="translate(8,-28) rotate(28)"><ellipse class="s2" cx="0" cy="0" rx="3" ry="11" fill="#7a8c2e"/></g>
+  <g transform="translate(-5,-20) rotate(-25)"><ellipse class="s3" cx="0" cy="0" rx="3" ry="11" fill="#7a8c2e"/></g>
+  <g transform="translate(5,-50) rotate(25)"><ellipse class="s4" cx="0" cy="0" rx="3" ry="11" fill="#7a8c2e"/></g>
+</g>
+
+<!-- ── DATE bottom 180° → translate(300,460) rotate(180) ── -->
+<g transform="translate(300,460) rotate(180)">
+  <line x1="0" y1="0" x2="0" y2="-65" stroke="#8b5e3c" stroke-width="3"/>
+  <ellipse cx="-9" cy="-22" rx="6" ry="9" fill="#d4821a"/>
+  <ellipse cx="9" cy="-20" rx="6" ry="9" fill="#c87818"/>
+  <ellipse cx="0" cy="-32" rx="6" ry="9" fill="#d4821a"/>
+  <g transform="translate(-20,-46) rotate(-50)"><ellipse class="s2" cx="0" cy="0" rx="4" ry="18" fill="#2d5a1b"/></g>
+  <g transform="translate(20,-49) rotate(50)"><ellipse class="s3" cx="0" cy="0" rx="4" ry="18" fill="#2d5a1b"/></g>
+  <g transform="translate(-14,-59) rotate(-30)"><ellipse class="s4" cx="0" cy="0" rx="3" ry="14" fill="#2d5a1b"/></g>
+  <g transform="translate(14,-61) rotate(30)"><ellipse class="s5" cx="0" cy="0" rx="3" ry="14" fill="#2d5a1b"/></g>
+</g>
+
+<!-- ── FIG bottom-left 225° → translate(187,413) rotate(225) ── -->
+<g transform="translate(187,413) rotate(225)">
+  <line x1="0" y1="0" x2="0" y2="-55" stroke="#5a3820" stroke-width="2.5"/>
+  <ellipse cx="-10" cy="-48" rx="9" ry="12" fill="#5a3820"/>
+  <ellipse cx="9" cy="-38" rx="9" ry="12" fill="#4a2e18"/>
+  <circle cx="-10" cy="-60" r="3" fill="#2d1a10"/>
+  <circle cx="9" cy="-50" r="3" fill="#2d1a10"/>
+  <g transform="translate(-16,-28) rotate(-40)"><ellipse class="s1" cx="0" cy="0" rx="9" ry="17" fill="#2d5a1b"/></g>
+  <g transform="translate(14,-22) rotate(36)"><ellipse class="s3" cx="0" cy="0" rx="9" ry="17" fill="#2d5a1b"/></g>
+  <g transform="translate(0,-13) rotate(0)"><ellipse class="s5" cx="0" cy="0" rx="9" ry="17" fill="#3a7025"/></g>
+</g>
+
+<!-- ── GRAPES left 270° → translate(140,300) rotate(270) ── -->
+<g transform="translate(140,300) rotate(270)">
+  <path d="M0,0 C3,-12 3,-26 0,-36" stroke="#2d5a1b" stroke-width="2" fill="none"/>
+  <circle cx="-8" cy="-40" r="9" fill="#6b2d8b"/>
+  <circle cx="8" cy="-40" r="9" fill="#7835a0"/>
+  <circle cx="-16" cy="-56" r="9" fill="#6b2d8b"/>
+  <circle cx="0" cy="-56" r="9" fill="#7835a0"/>
+  <circle cx="16" cy="-56" r="9" fill="#6b2d8b"/>
+  <circle cx="-8" cy="-72" r="9" fill="#7835a0"/>
+  <circle cx="8" cy="-72" r="9" fill="#6b2d8b"/>
+  <circle cx="0" cy="-86" r="8" fill="#6b2d8b"/>
+  <g transform="translate(22,-30) rotate(35)"><ellipse class="s1" cx="0" cy="0" rx="11" ry="14" fill="#2d5a1b"/></g>
+  <path d="M16,-76 C23,-85 21,-94 16,-89" stroke="#2d5a1b" stroke-width="1.2" fill="none"/>
+</g>
+
+</svg>
