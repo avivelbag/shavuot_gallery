@@ -262,5 +262,16 @@
     "path": "pieces/29-fiftieth-day-epicycles/index.html",
     "thumbnail": "pieces/29-fiftieth-day-epicycles/thumbnail.svg",
     "essay": "pieces/29-fiftieth-day-epicycles/essay.md"
+  },
+  {
+    "id": "30-seven-weeks-spirograph",
+    "title": "Seven Weeks of Seven",
+    "tagline": "the seven-fold Omer count drawn as a hypotrochoid rose — seven petals for seven weeks",
+    "year": 2026,
+    "theme": "Sefirat HaOmer — Seven Weeks / Kabbalistic Sefirot",
+    "technique": "canvas 2D hypotrochoid spirograph (roulette curve), progressive stroke animation",
+    "path": "pieces/30-seven-weeks-spirograph/index.html",
+    "thumbnail": "pieces/30-seven-weeks-spirograph/thumbnail.svg",
+    "essay": "pieces/30-seven-weeks-spirograph/essay.md"
   }
 ]
