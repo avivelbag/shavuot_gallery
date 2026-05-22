@@ -9,8 +9,6 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
 PIECE_ID = "09-greenery-lsystem"
@@ -433,7 +431,6 @@ def test_lsystem_expand_empty_axiom():
 
 def test_lsystem_depth_zero_returns_axiom():
     """Zero iterations of expansion should return the axiom unchanged."""
-    rules = {'F': 'FF+[+F-F-F]-[-F+F+F]'}
     axiom = 'F'
     current = axiom
     # zero iterations
@@ -452,3 +449,37 @@ def test_essay_stub_detection(tmp_path):
     stub = tmp_path / "essay.md"
     stub.write_text("Shavuot greenery." * 10, encoding="utf-8")
     assert len(stub.read_text().split()) < 300
+
+
+def test_leaf_flower_thresholds_reachable():
+    """
+    The turtle depth tracker must reach MAX_DEPTH during traversal so that
+    the leaf and flower drawing branches are actually reachable at runtime.
+
+    Simulates bracket-nesting depth counting using the same logic as renderPlant:
+    '[' increments depth (capped at maxStack), ']' restores the prior depth.
+    Verifies the max nesting depth in the depth-4 tree string is >= MAX_DEPTH (4).
+    """
+    tree_rules = {'F': 'FF+[+F-F-F]-[-F+F+F]'}
+    axiom = 'F'
+    current = axiom
+    for _ in range(4):
+        current = ''.join(tree_rules.get(ch, ch) for ch in current)
+
+    MAX_DEPTH = 4
+    max_stack = 8
+    depth = 0
+    max_depth_reached = 0
+    depth_stack = []
+    for sym in current:
+        if sym == '[':
+            depth_stack.append(depth)
+            depth = min(depth + 1, max_stack)
+            max_depth_reached = max(max_depth_reached, depth)
+        elif sym == ']' and depth_stack:
+            depth = depth_stack.pop()
+
+    assert max_depth_reached >= MAX_DEPTH, (
+        f"Tree L-system bracket nesting ({max_depth_reached}) never reaches "
+        f"MAX_DEPTH ({MAX_DEPTH}); leaf/flower drawing branches would be unreachable"
+    )

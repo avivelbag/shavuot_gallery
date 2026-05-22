@@ -232,12 +232,12 @@ function renderPlant(plant, limit) {
       ctx.strokeStyle = DEEP_GREEN;
       ctx.stroke();
 
-      if (depth >= maxStack - 1) {
+      if (depth >= MAX_DEPTH) {
         // Terminal segment: draw leaf
         const midX = (tx + nx) / 2;
         const midY = (ty + ny) / 2;
         drawLeaf(midX, midY, len * 1.8, th);
-      } else if (depth >= maxStack - 3 && i % 7 === 0) {
+      } else if (depth >= MAX_DEPTH - 2 && i % 7 === 0) {
         // Near-terminal: occasionally draw a flower
         const isRose = (i % 3 === 0);
         drawFlower(nx, ny, len * 0.55, isRose);
