@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .warp-gold   { fill: #D4A317; }
+      .warp-cream  { fill: #F5E6B0; }
+      .warp-olive  { fill: #556B2F; }
+      .weft-rose   { fill: #B5302A; }
+      .weft-linen  { fill: #E8D9B0; }
+      .weft-bright { fill: #F0C040; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#1a1208"/>
+
+  <!-- Twill weave grid: 10 columns × 10 rows, each cell 30×30 px, offset 20px from edges -->
+  <!-- Warp column colors follow irregular sin-based assignment; simplified here to a representative sample -->
+  <!-- Col 0: gold, col 1: cream, col 2: gold, col 3: cream, col 4: olive,
+       col 5: gold, col 6: cream, col 7: gold, col 8: cream, col 9: olive -->
+  <!-- Row 7 (index 6 in 0-based) is the Shabbat gold weft row -->
+  <!-- Twill rule: cell (c, r) shows weft if (c+r)%3 != 0, else shows warp -->
+
+  <!-- Row 0 (r=0): weft=rose  -->
+  <rect x="20"  y="20"  width="30" height="30" class="warp-gold"/>   <!-- c=0 r=0: (0+0)%3=0 → warp -->
+  <rect x="50"  y="20"  width="30" height="30" class="weft-rose"/>   <!-- c=1 r=0: 1%3≠0 → weft -->
+  <rect x="80"  y="20"  width="30" height="30" class="weft-rose"/>   <!-- c=2 r=0: 2%3≠0 → weft -->
+  <rect x="110" y="20"  width="30" height="30" class="warp-cream"/>  <!-- c=3 r=0: 3%3=0 → warp -->
+  <rect x="140" y="20"  width="30" height="30" class="weft-rose"/>   <!-- c=4 r=0: 4%3≠0 → weft -->
+  <rect x="170" y="20"  width="30" height="30" class="weft-rose"/>   <!-- c=5 r=0: 5%3≠0 → weft -->
+  <rect x="200" y="20"  width="30" height="30" class="warp-gold"/>   <!-- c=6 r=0: 6%3=0 → warp -->
+  <rect x="230" y="20"  width="30" height="30" class="weft-rose"/>   <!-- c=7 r=0: 7%3≠0 → weft -->
+  <rect x="260" y="20"  width="30" height="30" class="weft-rose"/>   <!-- c=8 r=0: 8%3≠0 → weft -->
+  <rect x="290" y="20"  width="30" height="30" class="warp-olive"/>  <!-- c=9 r=0: 9%3=0 → warp -->
+
+  <!-- Row 1 (r=1): weft=linen -->
+  <rect x="20"  y="50"  width="30" height="30" class="weft-linen"/>  <!-- c=0 r=1: 1%3≠0 → weft -->
+  <rect x="50"  y="50"  width="30" height="30" class="weft-linen"/>  <!-- c=1 r=1: 2%3≠0 → weft -->
+  <rect x="80"  y="50"  width="30" height="30" class="warp-gold"/>   <!-- c=2 r=1: 3%3=0 → warp -->
+  <rect x="110" y="50"  width="30" height="30" class="weft-linen"/>  <!-- c=3 r=1: 4%3≠0 → weft -->
+  <rect x="140" y="50"  width="30" height="30" class="weft-linen"/>  <!-- c=4 r=1: 5%3≠0 → weft -->
+  <rect x="170" y="50"  width="30" height="30" class="warp-olive"/>  <!-- c=5 r=1: 6%3=0 → warp -->
+  <rect x="200" y="50"  width="30" height="30" class="weft-linen"/>  <!-- c=6 r=1: 7%3≠0 → weft -->
+  <rect x="230" y="50"  width="30" height="30" class="weft-linen"/>  <!-- c=7 r=1: 8%3≠0 → weft -->
+  <rect x="260" y="50"  width="30" height="30" class="warp-cream"/>  <!-- c=8 r=1: 9%3=0 → warp -->
+  <rect x="290" y="50"  width="30" height="30" class="weft-linen"/>  <!-- c=9 r=1: 10%3≠0 → weft -->
+
+  <!-- Row 2 (r=2): weft=rose -->
+  <rect x="20"  y="80"  width="30" height="30" class="weft-rose"/>   <!-- c=0 r=2: 2%3≠0 → weft -->
+  <rect x="50"  y="80"  width="30" height="30" class="warp-cream"/>  <!-- c=1 r=2: 3%3=0 → warp -->
+  <rect x="80"  y="80"  width="30" height="30" class="weft-rose"/>   <!-- c=2 r=2: 4%3≠0 → weft -->
+  <rect x="110" y="80"  width="30" height="30" class="weft-rose"/>   <!-- c=3 r=2: 5%3≠0 → weft -->
+  <rect x="140" y="80"  width="30" height="30" class="warp-olive"/>  <!-- c=4 r=2: 6%3=0 → warp -->
+  <rect x="170" y="80"  width="30" height="30" class="weft-rose"/>   <!-- c=5 r=2: 7%3≠0 → weft -->
+  <rect x="200" y="80"  width="30" height="30" class="weft-rose"/>   <!-- c=6 r=2: 8%3≠0 → weft -->
+  <rect x="230" y="80"  width="30" height="30" class="warp-gold"/>   <!-- c=7 r=2: 9%3=0 → warp -->
+  <rect x="260" y="80"  width="30" height="30" class="weft-rose"/>   <!-- c=8 r=2: 10%3≠0 → weft -->
+  <rect x="290" y="80"  width="30" height="30" class="weft-rose"/>   <!-- c=9 r=2: 11%3≠0 → weft -->
+
+  <!-- Row 3 (r=3): weft=linen -->
+  <rect x="20"  y="110" width="30" height="30" class="warp-gold"/>   <!-- c=0 r=3: 3%3=0 → warp -->
+  <rect x="50"  y="110" width="30" height="30" class="weft-linen"/>  <!-- c=1 r=3: 4%3≠0 → weft -->
+  <rect x="80"  y="110" width="30" height="30" class="weft-linen"/>  <!-- c=2 r=3: 5%3≠0 → weft -->
+  <rect x="110" y="110" width="30" height="30" class="warp-cream"/>  <!-- c=3 r=3: 6%3=0 → warp -->
+  <rect x="140" y="110" width="30" height="30" class="weft-linen"/>  <!-- c=4 r=3: 7%3≠0 → weft -->
+  <rect x="170" y="110" width="30" height="30" class="weft-linen"/>  <!-- c=5 r=3: 8%3≠0 → weft -->
+  <rect x="200" y="110" width="30" height="30" class="warp-gold"/>   <!-- c=6 r=3: 9%3=0 → warp -->
+  <rect x="230" y="110" width="30" height="30" class="weft-linen"/>  <!-- c=7 r=3: 10%3≠0 → weft -->
+  <rect x="260" y="110" width="30" height="30" class="weft-linen"/>  <!-- c=8 r=3: 11%3≠0 → weft -->
+  <rect x="290" y="110" width="30" height="30" class="warp-olive"/>  <!-- c=9 r=3: 12%3=0 → warp -->
+
+  <!-- Row 4 (r=4): weft=rose -->
+  <rect x="20"  y="140" width="30" height="30" class="weft-rose"/>   <!-- c=0 r=4: 4%3≠0 → weft -->
+  <rect x="50"  y="140" width="30" height="30" class="weft-rose"/>   <!-- c=1 r=4: 5%3≠0 → weft -->
+  <rect x="80"  y="140" width="30" height="30" class="warp-gold"/>   <!-- c=2 r=4: 6%3=0 → warp -->
+  <rect x="110" y="140" width="30" height="30" class="weft-rose"/>   <!-- c=3 r=4: 7%3≠0 → weft -->
+  <rect x="140" y="140" width="30" height="30" class="weft-rose"/>   <!-- c=4 r=4: 8%3≠0 → weft -->
+  <rect x="170" y="140" width="30" height="30" class="warp-olive"/>  <!-- c=5 r=4: 9%3=0 → warp -->
+  <rect x="200" y="140" width="30" height="30" class="weft-rose"/>   <!-- c=6 r=4: 10%3≠0 → weft -->
+  <rect x="230" y="140" width="30" height="30" class="weft-rose"/>   <!-- c=7 r=4: 11%3≠0 → weft -->
+  <rect x="260" y="140" width="30" height="30" class="warp-cream"/>  <!-- c=8 r=4: 12%3=0 → warp -->
+  <rect x="290" y="140" width="30" height="30" class="weft-rose"/>   <!-- c=9 r=4: 13%3≠0 → weft -->
+
+  <!-- Row 5 (r=5): weft=linen -->
+  <rect x="20"  y="170" width="30" height="30" class="weft-linen"/>  <!-- c=0 r=5: 5%3≠0 → weft -->
+  <rect x="50"  y="170" width="30" height="30" class="warp-cream"/>  <!-- c=1 r=5: 6%3=0 → warp -->
+  <rect x="80"  y="170" width="30" height="30" class="weft-linen"/>  <!-- c=2 r=5: 7%3≠0 → weft -->
+  <rect x="110" y="170" width="30" height="30" class="weft-linen"/>  <!-- c=3 r=5: 8%3≠0 → weft -->
+  <rect x="140" y="170" width="30" height="30" class="warp-olive"/>  <!-- c=4 r=5: 9%3=0 → warp -->
+  <rect x="170" y="170" width="30" height="30" class="weft-linen"/>  <!-- c=5 r=5: 10%3≠0 → weft -->
+  <rect x="200" y="170" width="30" height="30" class="weft-linen"/>  <!-- c=6 r=5: 11%3≠0 → weft -->
+  <rect x="230" y="170" width="30" height="30" class="warp-gold"/>   <!-- c=7 r=5: 12%3=0 → warp -->
+  <rect x="260" y="170" width="30" height="30" class="weft-linen"/>  <!-- c=8 r=5: 13%3≠0 → weft -->
+  <rect x="290" y="170" width="30" height="30" class="weft-linen"/>  <!-- c=9 r=5: 14%3≠0 → weft -->
+
+  <!-- Row 6 (r=6): weft=rose -->
+  <rect x="20"  y="200" width="30" height="30" class="warp-gold"/>   <!-- c=0 r=6: 6%3=0 → warp -->
+  <rect x="50"  y="200" width="30" height="30" class="weft-rose"/>   <!-- c=1 r=6: 7%3≠0 → weft -->
+  <rect x="80"  y="200" width="30" height="30" class="weft-rose"/>   <!-- c=2 r=6: 8%3≠0 → weft -->
+  <rect x="110" y="200" width="30" height="30" class="warp-cream"/>  <!-- c=3 r=6: 9%3=0 → warp -->
+  <rect x="140" y="200" width="30" height="30" class="weft-rose"/>   <!-- c=4 r=6: 10%3≠0 → weft -->
+  <rect x="170" y="200" width="30" height="30" class="weft-rose"/>   <!-- c=5 r=6: 11%3≠0 → weft -->
+  <rect x="200" y="200" width="30" height="30" class="warp-gold"/>   <!-- c=6 r=6: 12%3=0 → warp -->
+  <rect x="230" y="200" width="30" height="30" class="weft-rose"/>   <!-- c=7 r=6: 13%3≠0 → weft -->
+  <rect x="260" y="200" width="30" height="30" class="weft-rose"/>   <!-- c=8 r=6: 14%3≠0 → weft -->
+  <rect x="290" y="200" width="30" height="30" class="warp-olive"/>  <!-- c=9 r=6: 15%3=0 → warp -->
+
+  <!-- Row 7 (r=7): Shabbat row — bright gold weft -->
+  <rect x="20"  y="230" width="30" height="30" class="weft-bright"/> <!-- c=0 r=7: 7%3≠0 → weft(gold) -->
+  <rect x="50"  y="230" width="30" height="30" class="weft-bright"/> <!-- c=1 r=7: 8%3≠0 → weft(gold) -->
+  <rect x="80"  y="230" width="30" height="30" class="warp-gold"/>   <!-- c=2 r=7: 9%3=0 → warp -->
+  <rect x="110" y="230" width="30" height="30" class="weft-bright"/> <!-- c=3 r=7: 10%3≠0 → weft(gold) -->
+  <rect x="140" y="230" width="30" height="30" class="weft-bright"/> <!-- c=4 r=7: 11%3≠0 → weft(gold) -->
+  <rect x="170" y="230" width="30" height="30" class="warp-olive"/>  <!-- c=5 r=7: 12%3=0 → warp -->
+  <rect x="200" y="230" width="30" height="30" class="weft-bright"/> <!-- c=6 r=7: 13%3≠0 → weft(gold) -->
+  <rect x="230" y="230" width="30" height="30" class="weft-bright"/> <!-- c=7 r=7: 14%3≠0 → weft(gold) -->
+  <rect x="260" y="230" width="30" height="30" class="warp-cream"/>  <!-- c=8 r=7: 15%3=0 → warp -->
+  <rect x="290" y="230" width="30" height="30" class="weft-bright"/> <!-- c=9 r=7: 16%3≠0 → weft(gold) -->
+
+  <!-- Row 8 (r=8): weft=rose -->
+  <rect x="20"  y="260" width="30" height="30" class="weft-rose"/>   <!-- c=0 r=8: 8%3≠0 → weft -->
+  <rect x="50"  y="260" width="30" height="30" class="warp-cream"/>  <!-- c=1 r=8: 9%3=0 → warp -->
+  <rect x="80"  y="260" width="30" height="30" class="weft-rose"/>   <!-- c=2 r=8: 10%3≠0 → weft -->
+  <rect x="110" y="260" width="30" height="30" class="weft-rose"/>   <!-- c=3 r=8: 11%3≠0 → weft -->
+  <rect x="140" y="260" width="30" height="30" class="warp-olive"/>  <!-- c=4 r=8: 12%3=0 → warp -->
+  <rect x="170" y="260" width="30" height="30" class="weft-rose"/>   <!-- c=5 r=8: 13%3≠0 → weft -->
+  <rect x="200" y="260" width="30" height="30" class="weft-rose"/>   <!-- c=6 r=8: 14%3≠0 → weft -->
+  <rect x="230" y="260" width="30" height="30" class="warp-gold"/>   <!-- c=7 r=8: 15%3=0 → warp -->
+  <rect x="260" y="260" width="30" height="30" class="weft-rose"/>   <!-- c=8 r=8: 16%3≠0 → weft -->
+  <rect x="290" y="260" width="30" height="30" class="weft-rose"/>   <!-- c=9 r=8: 17%3≠0 → weft -->
+
+  <!-- Row 9 (r=9): weft=linen -->
+  <rect x="20"  y="290" width="30" height="30" class="warp-gold"/>   <!-- c=0 r=9: 9%3=0 → warp -->
+  <rect x="50"  y="290" width="30" height="30" class="weft-linen"/>  <!-- c=1 r=9: 10%3≠0 → weft -->
+  <rect x="80"  y="290" width="30" height="30" class="weft-linen"/>  <!-- c=2 r=9: 11%3≠0 → weft -->
+  <rect x="110" y="290" width="30" height="30" class="warp-cream"/>  <!-- c=3 r=9: 12%3=0 → warp -->
+  <rect x="140" y="290" width="30" height="30" class="weft-linen"/>  <!-- c=4 r=9: 13%3≠0 → weft -->
+  <rect x="170" y="290" width="30" height="30" class="weft-linen"/>  <!-- c=5 r=9: 14%3≠0 → weft -->
+  <rect x="200" y="290" width="30" height="30" class="warp-gold"/>   <!-- c=6 r=9: 15%3=0 → warp -->
+  <rect x="230" y="290" width="30" height="30" class="weft-linen"/>  <!-- c=7 r=9: 16%3≠0 → weft -->
+  <rect x="260" y="290" width="30" height="30" class="weft-linen"/>  <!-- c=8 r=9: 17%3≠0 → weft -->
+  <rect x="290" y="290" width="30" height="30" class="warp-olive"/>  <!-- c=9 r=9: 18%3=0 → warp -->
+
+  <!-- Grid lines to delineate thread crossings -->
+  <g stroke="#1a1208" stroke-width="1" opacity="0.5">
+    <line x1="20" y1="20" x2="20" y2="320"/>
+    <line x1="50" y1="20" x2="50" y2="320"/>
+    <line x1="80" y1="20" x2="80" y2="320"/>
+    <line x1="110" y1="20" x2="110" y2="320"/>
+    <line x1="140" y1="20" x2="140" y2="320"/>
+    <line x1="170" y1="20" x2="170" y2="320"/>
+    <line x1="200" y1="20" x2="200" y2="320"/>
+    <line x1="230" y1="20" x2="230" y2="320"/>
+    <line x1="260" y1="20" x2="260" y2="320"/>
+    <line x1="290" y1="20" x2="290" y2="320"/>
+    <line x1="320" y1="20" x2="320" y2="320"/>
+    <line x1="20" y1="20"  x2="320" y2="20"/>
+    <line x1="20" y1="50"  x2="320" y2="50"/>
+    <line x1="20" y1="80"  x2="320" y2="80"/>
+    <line x1="20" y1="110" x2="320" y2="110"/>
+    <line x1="20" y1="140" x2="320" y2="140"/>
+    <line x1="20" y1="170" x2="320" y2="170"/>
+    <line x1="20" y1="200" x2="320" y2="200"/>
+    <line x1="20" y1="230" x2="320" y2="230"/>
+    <line x1="20" y1="260" x2="320" y2="260"/>
+    <line x1="20" y1="290" x2="320" y2="290"/>
+    <line x1="20" y1="320" x2="320" y2="320"/>
+  </g>
+
+  <!-- Wheat stalk motif at bottom-right corner -->
+  <g transform="translate(330, 325)">
+    <!-- Stalk stem -->
+    <line x1="35" y1="70" x2="35" y2="5" stroke="#D4A317" stroke-width="2"/>
+    <!-- Grain head: central spike -->
+    <ellipse cx="35" cy="5" rx="3" ry="8" fill="#F0C040"/>
+    <!-- Left grain pair -->
+    <ellipse cx="28" cy="18" rx="3" ry="7" fill="#D4A317" transform="rotate(-25 28 18)"/>
+    <ellipse cx="24" cy="32" rx="3" ry="7" fill="#D4A317" transform="rotate(-20 24 32)"/>
+    <!-- Right grain pair -->
+    <ellipse cx="42" cy="18" rx="3" ry="7" fill="#D4A317" transform="rotate(25 42 18)"/>
+    <ellipse cx="46" cy="32" rx="3" ry="7" fill="#D4A317" transform="rotate(20 46 32)"/>
+    <!-- Leaf -->
+    <path d="M35 50 Q20 42 22 30 Q28 40 35 50" fill="#556B2F"/>
+    <path d="M35 45 Q50 37 48 25 Q42 35 35 45" fill="#556B2F"/>
+  </g>
+
+  <!-- Label -->
+  <text x="200" y="375" text-anchor="middle" font-family="Georgia, serif"
+        font-size="13" fill="#D4A317" opacity="0.85">
+    Ruth&apos;s Loom — twill weave, over 2 / under 1
+  </text>
+  <text x="200" y="393" text-anchor="middle" font-family="Georgia, serif"
+        font-size="11" fill="#8A6030">
+    Shavuot 5786
+  </text>
+</svg>

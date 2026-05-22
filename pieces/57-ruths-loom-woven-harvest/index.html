@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruth's Loom — Woven Fields of Bethlehem</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1208;
+      color: #EDE0C4;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1250px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; position: relative; }
+    canvas {
+      display: block;
+      border: 1px solid #6B4A1A;
+      max-width: 100%;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.45rem;
+      color: #D4A317;
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+    .essay-pane .subtitle {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #8A6030;
+      margin-bottom: 1.1rem;
+    }
+    .essay-pane h2 {
+      font-size: 1rem;
+      color: #D4A317;
+      margin: 1.3rem 0 0.45rem;
+      border-bottom: 1px solid rgba(212,163,23,0.25);
+      padding-bottom: 0.2rem;
+    }
+    .source-block {
+      background: rgba(107,63,26,0.18);
+      border-left: 3px solid #6B4A1A;
+      padding: 0.6rem 0.9rem;
+      margin: 0.65rem 0;
+      border-radius: 2px;
+    }
+    .source-block .hebrew {
+      font-size: 1.2rem;
+      direction: rtl;
+      color: #D4A317;
+      display: block;
+      margin-bottom: 0.35rem;
+      line-height: 2;
+    }
+    .source-block .translation {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #B89060;
+    }
+    .essay-pane p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: #D8C8A8;
+      margin-bottom: 0.85rem;
+    }
+    .essay-pane em {
+      color: #E8C87A;
+    }
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="canvas" width="700" height="700"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>Ruth's Loom</h1>
+    <p class="subtitle">Woven Fields of Bethlehem &mdash; Shavuot 5786</p>
+
+    <h2>Ruth 2:2&ndash;3 &mdash; She Went and She Gleaned</h2>
+
+    <div class="source-block">
+      <span class="hebrew">וַתֹּאמֶר רוּת הַמּוֹאֲבִיָּה אֶל-נָעֳמִי אֵלְכָה-נָּא הַשָּׂדֶה</span>
+      <span class="translation">And Ruth the Moabitess said to Naomi: &ldquo;Let me go to the field
+      and glean among the ears of grain&rdquo; &mdash; Ruth 2:2</span>
+    </div>
+
+    <p>
+      The Book of Ruth is a harvest story told entirely through human movement across
+      the fields of Bethlehem. Ruth the Moabitess asks Naomi to let her go to the field
+      and glean. She goes. She arrives in a field. And here the Hebrew introduces a
+      detail that stops any careful reader.
+    </p>
+    <p>
+      When Ruth arrives in the field of Boaz, the text does not say she chose it or
+      happened to arrive there. It says <em>ויקר מקרהּ</em> &mdash; literally,
+      &ldquo;her chance chanced upon her&rdquo; (Ruth 2:3). This doubled root was
+      immediately flagged by the Rabbis as too strange to be accidental. The Talmud
+      (Megillah 13a) reads it as providential design wearing the costume of accident:
+      she did not choose Boaz&rsquo;s field. She was led there.
+    </p>
+
+    <h2>Pe&rsquo;ah and Leket &mdash; The Halakhic Ground</h2>
+
+    <p>
+      Ruth&rsquo;s gleaning is not a favour she asks for or a kindness Boaz extends
+      out of sentiment. It is a <em>legal right</em>. The Torah commands in
+      Leviticus&nbsp;19:9&ndash;10: when you reap your harvest, do not reap to the very
+      edge of the field (<em>pe&rsquo;ah</em>), and do not gather the fallen heads of
+      grain (<em>leket</em>) &mdash; these belong to the poor and the stranger. Ruth
+      qualifies on both grounds: she is a widow and a foreigner. The law itself opens
+      the field to her before Boaz ever speaks.
+    </p>
+    <p>
+      What is extraordinary is not Ruth&rsquo;s access to the field but <em>whose</em>
+      field she enters. She could have gleaned in any field in Bethlehem. The legal
+      mechanism that sustains her &mdash; pe&rsquo;ah and leket &mdash; operates in
+      every field. But it is Boaz&rsquo;s field, and Boaz is the kinsman-redeemer,
+      and the story would not exist otherwise. The law sets the stage; providence sets
+      the scene.
+    </p>
+
+    <h2>Ruth 2:14&ndash;16 &mdash; More Than the Law Requires</h2>
+
+    <div class="source-block">
+      <span class="hebrew">גַּם שֹׁל תָּשֹׁלּוּ לָהּ מִן-הַצְּבָתִים וַעֲזַבְתֶּם וְלִקְּטָה</span>
+      <span class="translation">&ldquo;Also pull out some stalks for her from the bundles and leave them
+      for her to glean&rdquo; &mdash; Ruth 2:16</span>
+    </div>
+
+    <p>
+      At midday, Boaz calls Ruth to eat with his reapers. Then, privately, he instructs
+      his young men to pull grain from the tied sheaves and scatter it in her path.
+      The law does not require this. This is surplus &mdash; grace layered over
+      obligation. The weave registers this moment: every seventh weft row, marking the
+      Shabbat rhythm that pulses through the Omer count between Pesach and Shavuot,
+      is rendered in bright gold &mdash; conspicuous in the cloth, a moment of divine
+      surplus in an otherwise regular pattern.
+    </p>
+
+    <h2>The Loom as Retrospective Design</h2>
+
+    <p>
+      A woven textile is the right medium for this story. Once a weaver sets the warp
+      on the loom &mdash; stretching the longitudinal threads under tension &mdash;
+      every crossing that will ever happen is already structurally determined. The weft
+      shuttle passes through, over two warp threads, under one, and the pattern emerges
+      as pure inevitability. No single crossing is visible at the start. The cloth is
+      only legible from a distance, and only after the last thread is laid.
+    </p>
+    <p>
+      This is the twill weave: each weft thread passes <em>over two, under one</em>,
+      generating a characteristic diagonal rib that runs across the entire cloth. The
+      rule is strictly local &mdash; each cell is computed only from its column and row
+      index, asking whether <em>(col&nbsp;+&nbsp;row)&nbsp;mod&nbsp;3</em> is zero. But
+      the diagonal rib is global, a property of 30,625 individual crossings together.
+    </p>
+    <p>
+      The Talmud&rsquo;s reading of <em>ויקר מקרהּ</em> makes exactly this argument.
+      Looking at any individual moment in Ruth&rsquo;s journey &mdash; the decision to
+      return with Naomi, the walk to the field, the turn into Boaz&rsquo;s plot &mdash;
+      each looks like a small, local choice or coincidence. Looking at the finished
+      story, the diagonal line is unmistakable: from Moab to Bethlehem, from the
+      gleaner&rsquo;s edge of a field to the marriage canopy, from Ruth to her
+      great-grandson David. The weave was always going to produce this cloth. The loom
+      was set before she arrived.
+    </p>
+
+    <h2>Shavuot &mdash; Harvest and Covenant Together</h2>
+
+    <p>
+      The Megillah of Ruth is read on Shavuot, the festival of first fruits and of the
+      giving of the Torah. The harvest and the covenant arrive together. Both are about
+      a people arriving at a place they did not plan to reach &mdash; Israel at Sinai,
+      Ruth in Boaz&rsquo;s field &mdash; and finding that the structure of the moment
+      had been prepared for them. The warp threads were already strung. All that remained
+      was for the weft to pass through.
+    </p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  const COLS = 175;
+  const ROWS = 175;
+  const THREAD = 4;
+  const W = COLS * THREAD;
+  const H = ROWS * THREAD;
+
+  /** Warp color palette: barley gold, wheat cream, deep olive in irregular cycle. */
+  const WARP_PALETTE = ['#D4A317', '#F5E6B0', '#D4A317', '#F5E6B0', '#556B2F'];
+
+  /**
+   * Assign warp colors using sin-based irregularity so adjacent columns
+   * rarely share the same color but the pattern avoids mechanical repetition.
+   */
+  const warpColor = Array.from({ length: COLS }, (_, i) =>
+    WARP_PALETTE[Math.floor(Math.abs(Math.sin(i * 2.3)) * WARP_PALETTE.length)]
+  );
+
+  /**
+   * Twill weave rule: weft is visible (over) when (col + row) % 3 !== 0.
+   * This produces an over-2-under-1 twill generating a diagonal rib.
+   */
+  function isOver(col, row) {
+    return (col + row) % 3 !== 0;
+  }
+
+  /**
+   * Draw a single weft row onto targetCtx.
+   * Every 7th row (Shabbat within the Omer) uses bright gold.
+   * Even rows use rose madder, odd rows use faded linen.
+   */
+  function drawRow(r, targetCtx) {
+    const weftColor = (r % 7 === 0) ? '#F0C040'
+      : (r % 2 === 0) ? '#B5302A' : '#E8D9B0';
+    for (let c = 0; c < COLS; c++) {
+      targetCtx.fillStyle = isOver(c, r) ? weftColor : warpColor[c];
+      targetCtx.fillRect(c * THREAD, r * THREAD, THREAD, THREAD);
+    }
+  }
+
+  /**
+   * Draw the Hebrew inscription overlay at the top-left of the main canvas.
+   * Appears once weaving is complete and persists through the sway phase.
+   */
+  function drawInscription() {
+    const text = 'רות ב:ב — אֵלְכָה־נָּא השָּׂדֶה';
+    ctx.save();
+    ctx.font = 'bold 15px Arial, sans-serif';
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'left';
+    const metrics = ctx.measureText(text);
+    const tw = metrics.width;
+    const pad = 8;
+    const bx = 10;
+    const by = 10;
+    const bw = tw + pad * 2;
+    const bh = 32;
+    ctx.fillStyle = 'rgba(26, 18, 8, 0.82)';
+    ctx.fillRect(bx, by, bw, bh);
+    ctx.fillStyle = '#F0C040';
+    ctx.fillText(text, bx + pad, by + bh / 2);
+    ctx.restore();
+  }
+
+  /** Offscreen canvas holds the completed static cloth for sway compositing. */
+  const offscreen = document.createElement('canvas');
+  offscreen.width = W;
+  offscreen.height = H;
+  const offCtx = offscreen.getContext('2d');
+
+  let currentRow = 0;
+  let weavingComplete = false;
+
+  /**
+   * Timing: distribute 175 rows evenly across 12 000 ms.
+   * lastRowTime tracks when the last row was committed so rows land at the
+   * correct wall-clock moment regardless of display refresh rate.
+   */
+  const WEAVE_DURATION_MS = 12000;
+  const ROW_INTERVAL_MS = WEAVE_DURATION_MS / ROWS;
+  let lastRowTime = null;
+
+  let swayStart = null;
+
+  /**
+   * Sway animation: draw each 4-px-wide column strip from the offscreen cloth
+   * horizontally displaced by 2 * sin(phase + col * 0.05) pixels.
+   * Period is 3 s, so angular frequency = 2π / 3 rad/s.
+   */
+  function swayFrame(t) {
+    if (swayStart === null) swayStart = t;
+    const elapsed = (t - swayStart) / 1000;
+    const phase = (2 * Math.PI / 3) * elapsed;
+
+    ctx.clearRect(0, 0, W, H);
+    for (let c = 0; c < COLS; c++) {
+      const shift = Math.round(2 * Math.sin(phase + c * 0.05));
+      ctx.drawImage(offscreen, c * THREAD, 0, THREAD, H, c * THREAD + shift, 0, THREAD, H);
+    }
+    drawInscription();
+    requestAnimationFrame(swayFrame);
+  }
+
+  /** Main weaving loop: commits rows at a steady pace over WEAVE_DURATION_MS. */
+  function animate(t) {
+    if (lastRowTime === null) lastRowTime = t;
+
+    while (t - lastRowTime >= ROW_INTERVAL_MS && currentRow < ROWS) {
+      drawRow(currentRow, ctx);
+      currentRow++;
+      lastRowTime += ROW_INTERVAL_MS;
+    }
+
+    if (currentRow < ROWS) {
+      requestAnimationFrame(animate);
+    } else if (!weavingComplete) {
+      weavingComplete = true;
+      offCtx.drawImage(canvas, 0, 0);
+      drawInscription();
+      requestAnimationFrame(swayFrame);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}());
+</script>
+</body>
+</html>

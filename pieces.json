@@ -801,5 +801,16 @@
     "path": "pieces/56-sofer-marbling-parchment/index.html",
     "thumbnail": "pieces/56-sofer-marbling-parchment/thumbnail.svg",
     "essay": "pieces/56-sofer-marbling-parchment/essay.md"
+  },
+  {
+    "id": "57-ruths-loom-woven-harvest",
+    "title": "Ruth's Loom — Woven Fields of Bethlehem",
+    "tagline": "every crossing inevitable — the cloth's diagonal rib, like Ruth's path to Boaz, determined before the first thread was laid",
+    "year": 2026,
+    "theme": "Book of Ruth / Ketzir",
+    "technique": "warp-and-weft weaving simulation",
+    "path": "pieces/57-ruths-loom-woven-harvest/index.html",
+    "thumbnail": "pieces/57-ruths-loom-woven-harvest/thumbnail.svg",
+    "essay": "pieces/57-ruths-loom-woven-harvest/essay.md"
   }
 ]
