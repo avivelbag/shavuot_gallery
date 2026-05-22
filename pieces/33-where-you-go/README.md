@@ -1,6 +1,6 @@
 # Where You Go — String Art Portrait of Ruth
 
-**Piece 32** | 2026
+**Piece 33** | 2026
 
 **Technique:** canvas 2D — greedy string art / thread portrait
 
