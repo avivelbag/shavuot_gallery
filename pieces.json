@@ -856,5 +856,16 @@
     "path": "pieces/60-sapphire-pavement-wang-tiles/index.html",
     "thumbnail": "pieces/60-sapphire-pavement-wang-tiles/thumbnail.svg",
     "essay": "pieces/60-sapphire-pavement-wang-tiles/essay.md"
+  },
+  {
+    "id": "60-verlet-scroll-covenant",
+    "title": "HaBrit — The Covenant Unfurls",
+    "tagline": "וַיִּקַּח סֵפֶר הַבְּרִית — the Book of the Covenant hangs from its rod under Verlet cloth physics; naaseh v'nishma deforms with the parchment",
+    "year": 2026,
+    "theme": "Matan Torah",
+    "technique": "Verlet integration / cloth simulation",
+    "path": "pieces/60-verlet-scroll-covenant/index.html",
+    "thumbnail": "pieces/60-verlet-scroll-covenant/thumbnail.svg",
+    "essay": "pieces/60-verlet-scroll-covenant/essay.md"
   }
 ]

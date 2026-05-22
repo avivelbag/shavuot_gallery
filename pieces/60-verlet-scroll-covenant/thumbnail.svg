@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0D0B14"/>
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0D0B14" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0D0B14" stop-opacity="0.7"/>
+    </radialGradient>
+    <linearGradient id="parchment" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF8E7"/>
+      <stop offset="100%" stop-color="#F5E8C0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shadow -->
+  <rect x="57" y="60" width="92" height="112" rx="2" fill="#000" opacity="0.4"/>
+
+  <!-- Parchment body -->
+  <rect x="54" y="57" width="92" height="112" rx="2" fill="url(#parchment)"/>
+  <rect x="54" y="57" width="92" height="112" rx="2" fill="none" stroke="#C8922A" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Subtle horizontal lines (parchment texture) -->
+  <line x1="60" y1="80" x2="140" y2="80" stroke="#C8922A" stroke-width="0.3" opacity="0.25"/>
+  <line x1="60" y1="95" x2="140" y2="95" stroke="#C8922A" stroke-width="0.3" opacity="0.25"/>
+  <line x1="60" y1="130" x2="140" y2="130" stroke="#C8922A" stroke-width="0.3" opacity="0.25"/>
+  <line x1="60" y1="150" x2="140" y2="150" stroke="#C8922A" stroke-width="0.3" opacity="0.25"/>
+
+  <!-- Small upper text -->
+  <text x="100" y="90" font-family="'Times New Roman', serif" font-size="8.5"
+        fill="#2C1810" text-anchor="middle" direction="rtl" font-style="italic" opacity="0.75">וַיִּקַּח סֵפֶר הַבְּרִית</text>
+
+  <!-- Main Hebrew text -->
+  <text x="100" y="122" font-family="'Times New Roman', serif" font-size="15"
+        fill="#2C1810" text-anchor="middle" direction="rtl" font-weight="bold">נַעֲשֶׂה וְנִשְׁמָע</text>
+
+  <!-- Top gold rod -->
+  <rect x="44" y="50" width="112" height="11" rx="5.5" fill="#C8922A"/>
+  <!-- Rod end caps -->
+  <ellipse cx="44" cy="55.5" rx="8" ry="5.5" fill="#D4A438"/>
+  <ellipse cx="156" cy="55.5" rx="8" ry="5.5" fill="#D4A438"/>
+  <!-- Rod highlight -->
+  <rect x="44" y="51" width="112" height="3" rx="1.5" fill="#E8B84A" opacity="0.5"/>
+
+  <!-- Bottom rod (partially visible, cloth hangs from it) -->
+  <rect x="44" y="162" width="112" height="9" rx="4.5" fill="#C8922A" opacity="0.8"/>
+  <ellipse cx="44" cy="166.5" rx="7" ry="4.5" fill="#D4A438" opacity="0.8"/>
+  <ellipse cx="156" cy="166.5" rx="7" ry="4.5" fill="#D4A438" opacity="0.8"/>
+
+  <!-- Vignette -->
+  <rect width="200" height="200" fill="url(#vignette)"/>
+</svg>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HaBrit — The Covenant Unfurls</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #0D0B14;
+      color: #d8cbb8;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 0 0 58%;
+      position: relative;
+      overflow: hidden;
+      background: #0D0B14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #c {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .essay {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2.5rem 2rem 2rem;
+      background: #0D0B14;
+      border-left: 1px solid rgba(200, 146, 42, 0.18);
+    }
+    .essay h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #C8922A;
+      margin: 0 0 0.2rem;
+      letter-spacing: 0.03em;
+    }
+    .essay .subtitle {
+      font-size: 0.85rem;
+      color: rgba(216, 203, 184, 0.5);
+      margin: 0 0 1.6rem;
+      font-style: italic;
+    }
+    .essay p {
+      font-size: 0.9rem;
+      line-height: 1.78;
+      margin: 0 0 0.9rem;
+      color: #d0c4ae;
+    }
+    .essay p strong { color: #C8922A; }
+    .essay p em { color: #e8d8b8; font-style: italic; }
+    .essay hr {
+      border: none;
+      border-top: 1px solid rgba(200,146,42,0.2);
+      margin: 1.4rem 0;
+    }
+    .verse-block {
+      margin: 0.8rem 0 1rem;
+      padding: 0.7rem 1rem;
+      border-left: 3px solid rgba(200,146,42,0.5);
+      background: rgba(200,146,42,0.04);
+    }
+    .verse-he {
+      direction: rtl;
+      text-align: right;
+      font-size: 1rem;
+      color: #f0e4c8;
+      line-height: 1.7;
+      margin: 0 0 0.4rem;
+    }
+    .verse-en {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(216,203,184,0.75);
+      margin: 0;
+    }
+    .essay .source {
+      font-size: 0.75rem;
+      color: rgba(216,203,184,0.4);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(200,146,42,0.12);
+      padding-top: 0.7rem;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; overflow-y: auto; }
+      .artwork { flex: none; height: 70vw; min-height: 300px; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(200,146,42,0.18); }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="artwork">
+    <canvas id="c" width="700" height="700"></canvas>
+  </div>
+  <div class="essay">
+    <h1>HaBrit — The Covenant Unfurls</h1>
+    <p class="subtitle">Matan Torah / Sefer HaBrit / Exodus 24</p>
+
+    <p>The ceremony is described in Exodus 24, verses 3 through 8. Moses had ascended Sinai, received the words of God, and descended. What follows is one of the most consequential liturgical acts in Jewish history — the sealing of the covenant through a physical document, read aloud from a scroll.</p>
+
+    <hr>
+
+    <p><strong>Exodus 24:3</strong></p>
+    <div class="verse-block">
+      <p class="verse-he">וַיָּבֹ֤א מֹשֶׁה֙ וַיְסַפֵּ֣ר לָעָ֔ם אֵ֛ת כָּל-דִּבְרֵ֣י יְהוָ֖ה וְאֵ֣ת כָּל-הַמִּשְׁפָּטִ֑ים וַיַּ֨עַן כָּל-הָעָ֤ם ק֣וֹל אֶחָ֔ד וַיֹּאמְר֗וּ כָּל-הַדְּבָרִ֛ים אֲשֶׁר-דִּבֶּ֥ר יְהוָ֖ה נַעֲשֶֽׂה</p>
+      <p class="verse-en">"Moses came and told the people all the words of the LORD and all the rules; and all the people answered with one voice, saying: All the things that the LORD has spoken we will do."</p>
+    </div>
+
+    <p><strong>Exodus 24:7</strong></p>
+    <div class="verse-block">
+      <p class="verse-he">וַיִּקַּ֗ח סֵ֚פֶר הַבְּרִ֔ית וַיִּקְרָ֖א בְּאָזְנֵ֣י הָעָ֑ם וַיֹּ֣אמְר֔וּ כֹּ֠ל אֲשֶׁר-דִּבֶּ֨ר יְהוָ֥ה נַעֲשֶׂ֖ה וְנִשְׁמָֽע</p>
+      <p class="verse-en">"Then he took the Book of the Covenant and read it aloud to the people; and they said: All that the LORD has spoken we will do and we will hear."</p>
+    </div>
+
+    <p><strong>Exodus 24:8</strong></p>
+    <div class="verse-block">
+      <p class="verse-he">וַיִּקַּ֤ח מֹשֶׁה֙ אֶת-הַדָּ֔ם וַיִּזְרֹ֖ק עַל-הָעָ֑ם וַיֹּ֗אמֶר הִנֵּ֤ה דַֽם-הַבְּרִית֙ אֲשֶׁ֨ר כָּרַ֤ת יְהוָה֙ עִמָּכֶ֔ם עַ֥ל כָּל-הַדְּבָרִ֖ים הָאֵֽלֶּה</p>
+      <p class="verse-en">"Moses then took the blood and dashed it on the people, and said: This is the blood of the covenant that the LORD has now made with you concerning all these commands."</p>
+    </div>
+
+    <hr>
+
+    <p>The phrase <em>נַעֲשֶׂה וְנִשְׁמָע</em> — <em>naaseh v'nishma</em> — reverses the expected order. One normally hears before acting: deliberates, understands, then commits. But here Israel pledges action before the full terms are explained. The Talmud (<em>Shabbat</em> 88a) reads this as the moment Israel achieved the mode of angels: <em>"When Israel proclaimed naaseh before nishma, a heavenly voice went forth and said: Who revealed to My children this secret which the ministering angels use?"</em> Angels act on divine command without prior deliberation; Israel, at this moment, chose the same orientation toward the divine will.</p>
+
+    <p>What the ceremony makes visible — and what is often overlooked — is that the covenant was sealed through a physical object. Moses did not simply speak the words. He <em>wrote</em> them (verse 4). He rose early, built an altar, and had sacrifices performed. He took blood in basins. And then, verse 7: he took the <em>Sefer HaBrit</em>, the Book of the Covenant, and read it aloud. He held a scroll. The people heard words coming from a physical document.</p>
+
+    <p>The material form matters. Torah is called <em>derekh</em> — a path, a way — as often as it is called <em>dat</em> (law). It is something you walk in, carry, handle. The scroll is not a representation of the covenant. It is its physical form.</p>
+
+    <p>This piece gives that form genuine physics. The parchment is modeled as a cloth of 800 mass-spring points under Verlet integration: 20 columns, 40 rows, connected by structural, shear, and bend springs satisfied through 10 constraint iterations per frame. The scroll unrolls under gravity alone — rows released one by one from the rod — and settles into gentle oscillation. The Hebrew inscription deforms with the cloth surface as it moves.</p>
+
+    <p>Like the covenant itself, the scroll has been accepted — <em>naaseh</em> — but continues to move. The understanding — <em>nishma</em> — is always still arriving.</p>
+
+    <p class="source">Exodus 24:3–8 — Sefer HaBrit at Sinai · Talmud Shabbat 88a · 2026</p>
+  </div>
+</div>
+<script>
+(function () {
+'use strict';
+
+const COLS = 20, ROWS = 40, SEG = 13;
+const GRAVITY = 0.25;
+const DAMPING = 0.985;
+const ITERS = 10;
+const ROD_Y = 80;
+const CX = 350;
+
+const UNROLL_MS = 80;
+const HOLD_MS = 4000;
+const REROLL_MS = 3000;
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+let points = [], springs = [];
+let releasedRows = 0;
+let phase = 'unrolling';
+let lastReleaseT = 0, phaseStartT = 0;
+let textCanvas = null;
+
+function restX(c) { return CX + (c - COLS / 2 + 0.5) * SEG; }
+function idx(r, c) { return r * COLS + c; }
+
+/**
+ * Build an offscreen canvas with parchment background and Hebrew text.
+ * Dimensions match the cloth at rest: COLS*SEG wide by ROWS*SEG tall.
+ */
+function buildTextCanvas() {
+  const tw = COLS * SEG;
+  const th = ROWS * SEG;
+  textCanvas = document.createElement('canvas');
+  textCanvas.width = tw;
+  textCanvas.height = th;
+  const tc = textCanvas.getContext('2d');
+
+  tc.fillStyle = '#FFF5DC';
+  tc.fillRect(0, 0, tw, th);
+
+  // Subtle aged-parchment horizontal grain
+  tc.strokeStyle = 'rgba(139,90,43,0.07)';
+  tc.lineWidth = 0.5;
+  for (let y = 8; y < th; y += 14) {
+    tc.beginPath();
+    tc.moveTo(0, y + (Math.random() - 0.5) * 2);
+    tc.lineTo(tw, y + (Math.random() - 0.5) * 2);
+    tc.stroke();
+  }
+
+  // Decorative top rule
+  tc.strokeStyle = 'rgba(44,24,16,0.25)';
+  tc.lineWidth = 0.8;
+  tc.beginPath();
+  tc.moveTo(6, th * 0.17);
+  tc.lineTo(tw - 6, th * 0.17);
+  tc.stroke();
+
+  // "וַיִּקַּח סֵפֶר הַבְּרִית" — upper verse
+  tc.fillStyle = '#2C1810';
+  tc.font = 'bold 13px "Times New Roman", serif';
+  tc.textAlign = 'center';
+  tc.direction = 'rtl';
+  tc.fillText('וַיִּקַּח סֵפֶר הַבְּרִית', tw / 2, th * 0.22);
+
+  // Decorative mid rule
+  tc.strokeStyle = 'rgba(44,24,16,0.18)';
+  tc.lineWidth = 0.6;
+  tc.beginPath();
+  tc.moveTo(6, th * 0.42);
+  tc.lineTo(tw - 6, th * 0.42);
+  tc.stroke();
+
+  // "נַעֲשֶׂה וְנִשְׁמָע" — main declaration, larger
+  tc.fillStyle = '#2C1810';
+  tc.font = 'bold 19px "Times New Roman", serif';
+  tc.fillText('נַעֲשֶׂה וְנִשְׁמָע', tw / 2, th * 0.52);
+
+  // Decorative lower rule
+  tc.strokeStyle = 'rgba(44,24,16,0.15)';
+  tc.lineWidth = 0.5;
+  tc.beginPath();
+  tc.moveTo(6, th * 0.60);
+  tc.lineTo(tw - 6, th * 0.60);
+  tc.stroke();
+}
+
+/**
+ * Initialize all cloth points and springs.
+ * Rows 1..ROWS-1 start pinned at the rod line; row 0 is the permanent pin row.
+ */
+function initCloth() {
+  points = [];
+  springs = [];
+  releasedRows = 0;
+
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const x = restX(c);
+      // Pack unreleased rows tightly above/at rod — gives visible "rolled up" mass
+      const y = ROD_Y + r * 1.4;
+      points.push({ x, y, px: x, py: y, pinned: r !== 0 });
+    }
+  }
+
+  // Structural horizontal springs
+  for (let r = 0; r < ROWS; r++)
+    for (let c = 0; c < COLS - 1; c++)
+      springs.push({ a: idx(r, c), b: idx(r, c + 1), restLen: SEG });
+
+  // Structural vertical springs
+  for (let r = 0; r < ROWS - 1; r++)
+    for (let c = 0; c < COLS; c++)
+      springs.push({ a: idx(r, c), b: idx(r + 1, c), restLen: SEG });
+
+  // Shear springs
+  for (let r = 0; r < ROWS - 1; r++) {
+    for (let c = 0; c < COLS - 1; c++) {
+      springs.push({ a: idx(r, c), b: idx(r + 1, c + 1), restLen: SEG * Math.SQRT2 });
+      springs.push({ a: idx(r, c + 1), b: idx(r + 1, c), restLen: SEG * Math.SQRT2 });
+    }
+  }
+
+  // Bend springs (skip-1 vertical) — resist sharp folds
+  for (let r = 0; r < ROWS - 2; r++)
+    for (let c = 0; c < COLS; c++)
+      springs.push({ a: idx(r, c), b: idx(r + 2, c), restLen: SEG * 2 });
+
+  // Bend springs (skip-1 horizontal)
+  for (let r = 0; r < ROWS; r++)
+    for (let c = 0; c < COLS - 2; c++)
+      springs.push({ a: idx(r, c), b: idx(r, c + 2), restLen: SEG * 2 });
+}
+
+/**
+ * Release one row from the rolled state into the simulation.
+ * Sets initial position just below the previous active row.
+ */
+function releaseRow(r) {
+  for (let c = 0; c < COLS; c++) {
+    const p = points[idx(r, c)];
+    p.pinned = false;
+    // Place just below the previous row with a tiny downward velocity
+    const prev = points[idx(r - 1, c)];
+    p.x = restX(c) + (Math.random() - 0.5) * 0.4;
+    p.y = prev.y + 1.5;
+    p.px = p.x;
+    p.py = p.y - 0.6;
+  }
+}
+
+/**
+ * Advance Verlet physics one step: integrate positions then satisfy all springs.
+ */
+function step() {
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    if (p.pinned) continue;
+    const vx = (p.x - p.px) * DAMPING;
+    const vy = (p.y - p.py) * DAMPING;
+    p.px = p.x;
+    p.py = p.y;
+    p.x += vx;
+    p.y += vy + GRAVITY;
+  }
+
+  for (let iter = 0; iter < ITERS; iter++) {
+    for (let k = 0; k < springs.length; k++) {
+      const s = springs[k];
+      const a = points[s.a], b = points[s.b];
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 1e-6) continue;
+      const corr = (dist - s.restLen) / dist * 0.5;
+      const ox = dx * corr, oy = dy * corr;
+      if (!a.pinned) { a.x += ox; a.y += oy; }
+      if (!b.pinned) { b.x -= ox; b.y -= oy; }
+    }
+  }
+}
+
+/**
+ * Apply gathering force pulling all free points toward the rod — used during rerolling phase.
+ * Kills velocity (px=x, py=y) so the cloth smoothly collapses without oscillating.
+ */
+function gatherStep(strength) {
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    if (p.pinned) continue;
+    const c = i % COLS;
+    p.x += (restX(c) - p.x) * strength;
+    p.y += (ROD_Y - p.y) * strength;
+    p.px = p.x;
+    p.py = p.y;
+  }
+}
+
+/**
+ * Draw one affine-mapped triangle from textCanvas onto the main canvas.
+ * Maps texture UV coordinates (s0,t0), (s1,t1), (s2,t2) in [0,1] range
+ * onto canvas triangle corners p0, p1, p2.
+ */
+function drawTriangle(p0, p1, p2, s0, t0, s1, t1, s2, t2) {
+  const iw = textCanvas.width, ih = textCanvas.height;
+  const u0 = s0 * iw, v0 = t0 * ih;
+  const u1 = s1 * iw, v1 = t1 * ih;
+  const u2 = s2 * iw, v2 = t2 * ih;
+
+  const x0 = p0.x, y0 = p0.y;
+  const x1 = p1.x, y1 = p1.y;
+  const x2 = p2.x, y2 = p2.y;
+
+  // Solve for affine transform: image coords (u,v) → canvas coords (x,y)
+  const det = (u1 - u0) * (v2 - v0) - (u2 - u0) * (v1 - v0);
+  if (Math.abs(det) < 1e-6) return;
+
+  const a = ((x1 - x0) * (v2 - v0) - (x2 - x0) * (v1 - v0)) / det;
+  const c = ((x2 - x0) * (u1 - u0) - (x1 - x0) * (u2 - u0)) / det;
+  const e = x0 - a * u0 - c * v0;
+  const b = ((y1 - y0) * (v2 - v0) - (y2 - y0) * (v1 - v0)) / det;
+  const d = ((y2 - y0) * (u1 - u0) - (y1 - y0) * (u2 - u0)) / det;
+  const f = y0 - b * u0 - d * v0;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(x0, y0);
+  ctx.lineTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.closePath();
+  ctx.clip();
+  ctx.setTransform(a, b, c, d, e, f);
+  ctx.drawImage(textCanvas, 0, 0);
+  ctx.restore();
+}
+
+/**
+ * Draw the cloth surface by splitting each grid quad into two textured triangles.
+ * The offscreen textCanvas is UV-mapped across the full cloth grid.
+ * Also renders a soft shadow below and to the right of the cloth.
+ */
+function drawCloth() {
+  const nRows = ROWS - 1;
+  const nCols = COLS - 1;
+
+  // Shadow pass: draw quads as dark semi-transparent shapes offset by (3, 6)
+  ctx.save();
+  ctx.translate(3, 6);
+  ctx.fillStyle = 'rgba(0,0,0,0.35)';
+  for (let r = 0; r < nRows; r++) {
+    for (let c = 0; c < nCols; c++) {
+      const p00 = points[idx(r, c)];
+      const p01 = points[idx(r, c + 1)];
+      const p10 = points[idx(r + 1, c)];
+      const p11 = points[idx(r + 1, c + 1)];
+      ctx.beginPath();
+      ctx.moveTo(p00.x, p00.y);
+      ctx.lineTo(p01.x, p01.y);
+      ctx.lineTo(p11.x, p11.y);
+      ctx.lineTo(p10.x, p10.y);
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+  ctx.restore();
+
+  // Cloth pass: triangle texture mapping for each quad
+  for (let r = 0; r < nRows; r++) {
+    for (let c = 0; c < nCols; c++) {
+      const p00 = points[idx(r, c)];
+      const p01 = points[idx(r, c + 1)];
+      const p10 = points[idx(r + 1, c)];
+      const p11 = points[idx(r + 1, c + 1)];
+
+      // UV corners: (col/COLS, row/ROWS)
+      const u0 = c / COLS, v0 = r / ROWS;
+      const u1 = (c + 1) / COLS, v1 = (r + 1) / ROWS;
+
+      // Upper-left triangle: p00, p01, p10
+      drawTriangle(p00, p01, p10, u0, v0, u1, v0, u0, v1);
+      // Lower-right triangle: p01, p11, p10
+      drawTriangle(p01, p11, p10, u1, v0, u1, v1, u0, v1);
+    }
+  }
+}
+
+/**
+ * Draw the gold horizontal rod above the cloth.
+ */
+function drawRod() {
+  const leftX = restX(0) - SEG * 0.5;
+  const rightX = restX(COLS - 1) + SEG * 0.5;
+  const rodH = 10;
+  const y = ROD_Y - rodH / 2;
+
+  // Rod body gradient
+  const grad = ctx.createLinearGradient(leftX, y, leftX, y + rodH);
+  grad.addColorStop(0, '#E8B84A');
+  grad.addColorStop(0.3, '#C8922A');
+  grad.addColorStop(1, '#8B6010');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.roundRect(leftX - 12, y, rightX - leftX + 24, rodH, 5);
+  ctx.fill();
+
+  // End caps
+  ctx.fillStyle = '#D4A438';
+  ctx.beginPath();
+  ctx.ellipse(leftX - 12, ROD_Y, 10, 7, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(rightX + 12, ROD_Y, 10, 7, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Highlight sheen
+  ctx.fillStyle = 'rgba(255,220,120,0.35)';
+  ctx.beginPath();
+  ctx.roundRect(leftX - 12, y + 1, rightX - leftX + 24, 3, 1.5);
+  ctx.fill();
+}
+
+/**
+ * Draw radial vignette overlay.
+ */
+function drawVignette() {
+  const grad = ctx.createRadialGradient(350, 350, 160, 350, 350, 420);
+  grad.addColorStop(0, 'rgba(13,11,20,0)');
+  grad.addColorStop(1, 'rgba(13,11,20,0.72)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 700, 700);
+}
+
+let lastFrameT = 0;
+
+function frame(t) {
+  // Cap framerate to 60fps
+  if (t - lastFrameT < 14) {
+    requestAnimationFrame(frame);
+    return;
+  }
+  lastFrameT = t;
+
+  // Animation phase logic
+  if (phase === 'unrolling') {
+    if (releasedRows < ROWS - 1) {
+      if (t - lastReleaseT >= UNROLL_MS) {
+        releasedRows++;
+        releaseRow(releasedRows);
+        lastReleaseT = t;
+      }
+    } else {
+      phase = 'holding';
+      phaseStartT = t;
+    }
+    step();
+  } else if (phase === 'holding') {
+    step();
+    if (t - phaseStartT >= HOLD_MS) {
+      phase = 'rerolling';
+      phaseStartT = t;
+    }
+  } else if (phase === 'rerolling') {
+    const progress = (t - phaseStartT) / REROLL_MS;
+    // Gathering strength increases as scroll rolls back
+    const strength = 0.03 + progress * 0.07;
+    gatherStep(strength);
+    if (progress >= 1) {
+      initCloth();
+      lastReleaseT = t;
+      phaseStartT = t;
+      phase = 'unrolling';
+    }
+  }
+
+  // Render
+  ctx.fillStyle = '#0D0B14';
+  ctx.fillRect(0, 0, 700, 700);
+
+  drawCloth();
+  drawRod();
+  drawVignette();
+
+  requestAnimationFrame(frame);
+}
+
+buildTextCanvas();
+initCloth();
+requestAnimationFrame(frame);
+
+})();
+</script>
+</body>
+</html>
