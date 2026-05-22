@@ -189,7 +189,7 @@ function clipPolygonByHalfPlane(pts, ax, ay, bx, by) {
   const out = [];
   const edgeX = bx - ax, edgeY = by - ay;
   function inside(px, py) {
-    return edgeX * (py - ay) - edgeY * (px - ax) >= 0;
+    return edgeX * (py - ay) - edgeY * (px - ax) <= 0;
   }
   function intersect(x0, y0, x1, y1) {
     const dx = x1 - x0, dy = y1 - y0;
@@ -381,12 +381,12 @@ function drawShardWithText(s, alpha, textAlpha) {
   ctx.fillStyle = 'rgba(255,245,220,0.04)';
   ctx.fillRect(-80, -60, 160, 120);
 
-  // Hebrew text (inverse transform to draw in canvas coords, then re-clip)
   if (textAlpha > 0) {
+    ctx.save();
     ctx.globalAlpha = textAlpha * alpha;
-    ctx.rotate(-s.pa);
-    ctx.translate(-s.px, -s.py);
+    ctx.translate(-s.restX, -s.restY);
     drawTabletText();
+    ctx.restore();
   }
 
   ctx.restore();
@@ -550,10 +550,6 @@ function loop(timestamp) {
     phase = PHASE.SHATTERING;
     t = 0;
   } else if (phase === PHASE.SHATTERING && t > 2.0) {
-    // Snap scattered positions for clean rest
-    for (const s of shards) {
-      s.px = s.px; s.py = s.py; s.pa = s.pa;
-    }
     phase = PHASE.SCATTERED;
     t = 0;
   } else if (phase === PHASE.SCATTERED && t > 3.0) {
