@@ -163,5 +163,16 @@
     "path": "pieces/18-shofar-sinai/index.html",
     "thumbnail": "pieces/18-shofar-sinai/thumbnail.svg",
     "essay": "pieces/18-shofar-sinai/essay.md"
+  },
+  {
+    "id": "19-ruth-road",
+    "title": "Your People, My People",
+    "tagline": "Ruth's road from Moab to Bethlehem traced as a Hilbert space-filling curve",
+    "year": 2026,
+    "theme": "Book of Ruth / Loyalty and Journey",
+    "technique": "canvas 2D Hilbert curve space-filling animation",
+    "path": "pieces/19-ruth-road/index.html",
+    "thumbnail": "pieces/19-ruth-road/thumbnail.svg",
+    "essay": "pieces/19-ruth-road/essay.md"
   }
 ]
