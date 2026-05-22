@@ -7,8 +7,6 @@ and CSS rules required by the acceptance criteria are present in the source file
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INDEX_HTML = os.path.join(GALLERY_ROOT, "index.html")
 STYLES_CSS = os.path.join(GALLERY_ROOT, "styles.css")
