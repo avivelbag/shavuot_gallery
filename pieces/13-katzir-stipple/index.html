@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>חַג הַקָּצִיר — Harvest Stipple</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #2a1a00;
+      color: #e8d8b0;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas {
+      display: block;
+      border: 1px solid #6b4a10;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+      direction: ltr;
+    }
+    .essay-pane h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #f5c842;
+    }
+    .essay-pane h2 {
+      font-size: 1.1rem;
+      margin: 1rem 0 0.3rem;
+      color: #d4a830;
+    }
+    .essay-pane p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
+      color: #e8d8b0;
+    }
+    .essay-pane em {
+      color: #c8b890;
+      font-style: italic;
+    }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="c" width="520" height="580"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>חַג הַקָּצִיר</h1>
+    <h2>Chag HaKatzir — The Harvest Festival</h2>
+    <p><em>Sources: Exodus 23:16; Exodus 34:22; Leviticus 23:9–22; Ruth 2:1–23.</em></p>
+
+    <p>Shavuot is Chag HaKatzir — the Festival of the Harvest — a name that appears in Exodus 23:16 and 34:22, tying the day to the physical reality of standing grain, sickles in hand, fields gold under summer sun. The Torah names the day at the moment of reaping: not a historical anniversary, but an agricultural fact.</p>
+
+    <p>The wheat harvest in the Land of Israel completes itself in late spring, as the barley harvest that began at Passover draws to a close. The agricultural calendar was framed by these two reaping festivals: the cutting of the first barley sheaf — the omer — on the second day of Passover (Leviticus 23:10–11), and the offering of two loaves of leavened wheat bread on Shavuot itself (Leviticus 23:17). In between lay the seven-week count, the Sefirat HaOmer, bridging one grain and another.</p>
+
+    <p>The omer offering was simple: a single sheaf of new barley, cut before dawn. The Shavuot offering — the Shtei HaLechem, the Two Loaves — required baked bread, leavened (unlike any other Temple offering), brought by the entire community at once. Together they stood at the altar: farmer and poor represented in the same gesture.</p>
+
+    <p>This tension is built into the harvest laws themselves. Leviticus 23:22 — appearing immediately after the laws of Shavuot — commands the farmer to leave the corner of the field (pe'ah) unreaped, and not to return for dropped or forgotten sheaves (shikchah). These portions belong, by Torah law, to the stranger, the orphan, and the widow.</p>
+
+    <p>The most famous gleaner in the Hebrew Bible is Ruth. Newly arrived in Bethlehem from Moab with her mother-in-law Naomi, she goes to glean in the fields of Boaz during the barley and wheat harvests (Ruth 2:3). The Torah's agricultural laws are not theoretical for her; they are survival. Boaz instructs his workers to leave extra stalks for her deliberately — a quiet act of chesed embedded in a system designed for it.</p>
+
+    <p>The harvest is not incidental to Sinai; it is its season. The Torah was given to a people who had just been freed from forced agricultural labor, who understood what it meant to reap what they had not sown, and who were now told that even what they sowed and reaped had corners that belonged to someone else.</p>
+
+    <p><em>See: Exodus 23:16 (Chag HaKatzir); Exodus 34:22; Leviticus 23:9–14 (omer offering); Leviticus 23:15–17 (two wheat loaves); Leviticus 23:22 (pe'ah and shikchah); Ruth 2:1–23 (Ruth gleaning in Boaz's fields).</em></p>
+  </div>
+</div>
+
+<script>
+/*
+  Wheat sheaf silhouette — three sheaves leaning together.
+  Bezier skeleton (canvas coords, 520×580 canvas):
+
+  Sheaf A (left, leaning left):
+    Bind zone: roughly (220,310)–(270,360)
+    Head tops fan left: up to (120, 60)
+    Stalks fan left-upward from bind
+    Cut ends fan left-downward: (140, 480)
+
+  Sheaf B (center, upright):
+    Bind zone: (235,300)–(275,350)
+    Head tops straight up: (250, 50)
+    Cut ends straight down: (250, 490)
+
+  Sheaf C (right, leaning right):
+    Bind zone: (250,310)–(300,360)
+    Head tops fan right: (370, 65)
+    Cut ends fan right-downward: (350, 480)
+
+  Binding knot: ellipse at (260,335), rx=28, ry=20
+*/
+
+(function() {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;
+  const H = canvas.height;
+
+  /* ── Sheaf paths ─────────────────────────────────────────────────── */
+
+  function buildSheafPath() {
+    const p = new Path2D();
+
+    // Sheaf A — left sheaf
+    p.moveTo(148, 80);
+    p.bezierCurveTo(130, 120, 125, 180, 140, 240);
+    p.bezierCurveTo(155, 290, 195, 310, 220, 330);
+    p.bezierCurveTo(230, 380, 225, 430, 205, 475);
+    p.bezierCurveTo(195, 490, 185, 492, 178, 488);
+    p.bezierCurveTo(172, 484, 168, 475, 172, 460);
+    p.bezierCurveTo(188, 415, 193, 365, 185, 320);
+    p.bezierCurveTo(160, 300, 115, 270, 108, 210);
+    p.bezierCurveTo(100, 155, 118, 100, 138, 72);
+    p.bezierCurveTo(142, 65, 148, 65, 148, 80);
+    p.closePath();
+
+    // Sheaf B — center sheaf (tallest)
+    p.moveTo(242, 52);
+    p.bezierCurveTo(235, 90, 230, 160, 238, 230);
+    p.bezierCurveTo(243, 270, 248, 295, 252, 310);
+    p.bezierCurveTo(255, 370, 252, 430, 246, 480);
+    p.bezierCurveTo(244, 492, 248, 500, 255, 500);
+    p.bezierCurveTo(262, 500, 268, 492, 266, 480);
+    p.bezierCurveTo(260, 430, 257, 370, 260, 310);
+    p.bezierCurveTo(265, 295, 268, 270, 272, 230);
+    p.bezierCurveTo(280, 160, 276, 90, 268, 52);
+    p.bezierCurveTo(265, 42, 255, 40, 252, 42);
+    p.bezierCurveTo(248, 40, 242, 44, 242, 52);
+    p.closePath();
+
+    // Sheaf C — right sheaf
+    p.moveTo(360, 85);
+    p.bezierCurveTo(368, 100, 385, 160, 380, 215);
+    p.bezierCurveTo(372, 265, 335, 298, 305, 320);
+    p.bezierCurveTo(298, 368, 302, 418, 318, 462);
+    p.bezierCurveTo(324, 477, 320, 488, 314, 490);
+    p.bezierCurveTo(308, 492, 300, 485, 300, 472);
+    p.bezierCurveTo(285, 428, 282, 372, 290, 325);
+    p.bezierCurveTo(315, 305, 350, 280, 358, 225);
+    p.bezierCurveTo(368, 175, 362, 115, 350, 80);
+    p.bezierCurveTo(346, 70, 356, 70, 360, 85);
+    p.closePath();
+
+    // Binding knot (ellipse approximated as rounded rect path)
+    p.ellipse(258, 335, 32, 22, 0, 0, Math.PI * 2);
+
+    return p;
+  }
+
+  /* ── Luminance field ─────────────────────────────────────────────── */
+
+  /*
+    Returns a 0–1 density value for a point (x,y):
+    - Inside sheaf: gradient from dark (body centre) to lighter (straw tips)
+    - Outside sheaf (sky): very sparse — only a faint background gradient
+  */
+  function density(x, y, inSheaf) {
+    if (inSheaf) {
+      // Darker at the bind zone (y≈310–360), lighter at tips
+      const distFromBind = Math.abs(y - 338) / 250;
+      const lateral = Math.abs(x - 258) / 160;
+      const base = 0.85 - distFromBind * 0.35 - lateral * 0.15;
+      return Math.max(0.1, Math.min(1.0, base));
+    } else {
+      // Sky background: very sparse, mainly upper portion
+      const skyFade = Math.max(0, 1 - y / H);
+      return skyFade * 0.06;
+    }
+  }
+
+  /* ── Colour selection ────────────────────────────────────────────── */
+
+  function dotColor(x, y, inSheaf, rng) {
+    if (inSheaf) {
+      const t = (y - 50) / 480;
+      if (t < 0.3) {
+        // straw tips — golden-brown
+        return rng < 0.5 ? '#b87a30' : '#c8922a';
+      } else if (t < 0.6) {
+        // mid-stalk — burnt sienna
+        return rng < 0.5 ? '#7a3010' : '#6b2800';
+      } else {
+        // bind zone and cut ends — deep sienna
+        return rng < 0.4 ? '#6b2800' : '#5a1f00';
+      }
+    } else {
+      // Sky dots — morning blue fading to gold
+      const skyT = 1 - y / H;
+      if (skyT > 0.6) return '#a8c8e0';
+      if (skyT > 0.3) return '#c8d8b0';
+      return '#d4b860';
+    }
+  }
+
+  /* ── Background gradient ─────────────────────────────────────────── */
+
+  function drawBackground() {
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, '#c8dce8');   // pale morning blue at top
+    grad.addColorStop(0.35, '#e8c870'); // golden mid
+    grad.addColorStop(1, '#f5c842');   // warm amber-gold at bottom
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  /* ── Hebrew label ────────────────────────────────────────────────── */
+
+  function drawLabel() {
+    ctx.save();
+    ctx.font = 'bold 28px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = 'rgba(60,20,0,0.82)';
+    ctx.fillText('חַג הַקָּצִיר', W / 2, H - 28);
+    ctx.restore();
+  }
+
+  /* ── Animation state ─────────────────────────────────────────────── */
+
+  const DOTS_PER_FRAME = 300;
+  const TOTAL_DOTS = 54000;  // 300 dots/frame × ~180 frames ≈ 3 s at 60 fps
+  const HOLD_FRAMES = 300;   // ~5 s at 60 fps
+
+  const sheafPath = buildSheafPath();
+  let dotsDrawn = 0;
+  let holdCount = 0;
+  let phase = 'draw';  // 'draw' | 'hold' | 'fade'
+  let fadeAlpha = 1;
+  let offscreen = null;
+
+  function restart() {
+    dotsDrawn = 0;
+    holdCount = 0;
+    phase = 'draw';
+    fadeAlpha = 1;
+    drawBackground();
+  }
+
+  function frame() {
+    if (phase === 'draw') {
+      if (dotsDrawn === 0) {
+        drawBackground();
+      }
+      for (let i = 0; i < DOTS_PER_FRAME && dotsDrawn < TOTAL_DOTS; i++, dotsDrawn++) {
+        const x = Math.random() * W;
+        const y = Math.random() * H;
+        const inSheaf = ctx.isPointInPath(sheafPath, x, y);
+        const d = density(x, y, inSheaf);
+        if (Math.random() > d) continue;
+        const r = inSheaf ? 0.6 + (1 - d) * 0.8 : 0.5;
+        const rng = Math.random();
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = dotColor(x, y, inSheaf, rng);
+        ctx.fill();
+      }
+      if (dotsDrawn >= TOTAL_DOTS) {
+        drawLabel();
+        phase = 'hold';
+      }
+    } else if (phase === 'hold') {
+      holdCount++;
+      if (holdCount >= HOLD_FRAMES) {
+        phase = 'fade';
+        offscreen = document.createElement('canvas');
+        offscreen.width = W;
+        offscreen.height = H;
+        offscreen.getContext('2d').drawImage(canvas, 0, 0);
+      }
+    } else if (phase === 'fade') {
+      fadeAlpha -= 0.018;
+      drawBackground();
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, fadeAlpha);
+      ctx.drawImage(offscreen, 0, 0);
+      ctx.restore();
+      if (fadeAlpha <= 0) {
+        restart();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  drawBackground();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

@@ -110,6 +110,17 @@
     "essay": "pieces/12-omer-spiral/essay.md"
   },
   {
+    "id": "13-katzir-stipple",
+    "title": "Chag HaKatzir",
+    "tagline": "bound wheat sheaves at harvest — the festival of the harvest",
+    "year": 2026,
+    "theme": "Chag HaKatzir / Harvest",
+    "technique": "canvas 2D stipple / halftone dot-density rendering",
+    "path": "pieces/13-katzir-stipple/index.html",
+    "thumbnail": "pieces/13-katzir-stipple/thumbnail.svg",
+    "essay": "pieces/13-katzir-stipple/essay.md"
+  },
+  {
     "id": "14-ruth-naomi-truchet",
     "title": "Wherever You Go",
     "tagline": "Ruth and Naomi walking toward Bethlehem, in truchet tiles",
