@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c1a"/>
+      <stop offset="60%" stop-color="#2a1a3a"/>
+      <stop offset="100%" stop-color="#fde8c8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark-to-dawn gradient background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+
+  <!-- Stars in the night sky -->
+  <circle cx="45" cy="28" r="1.2" fill="#fffaeb" opacity="0.7"/>
+  <circle cx="120" cy="15" r="0.9" fill="#fffaeb" opacity="0.5"/>
+  <circle cx="260" cy="35" r="1.1" fill="#fffaeb" opacity="0.6"/>
+  <circle cx="345" cy="20" r="0.8" fill="#fffaeb" opacity="0.4"/>
+  <circle cx="80" cy="60" r="0.7" fill="#fffaeb" opacity="0.5"/>
+  <circle cx="370" cy="55" r="1" fill="#fffaeb" opacity="0.5"/>
+
+  <!-- Falling Hebrew letters — near-white at top, transitioning to amber below -->
+  <!-- Top letters (near-white, candlelight) -->
+  <text x="55" y="70" font-family="'David Libre', 'Frank Ruhl Libre', serif"
+        font-size="44" fill="rgba(255,250,235,0.85)"
+        transform="rotate(-7, 55, 70)">א</text>
+  <text x="330" y="90" font-family="'David Libre', 'Frank Ruhl Libre', serif"
+        font-size="36" fill="rgba(255,248,230,0.75)"
+        transform="rotate(9, 330, 90)">שׁ</text>
+  <text x="180" y="110" font-family="'David Libre', 'Frank Ruhl Libre', serif"
+        font-size="28" fill="rgba(255,250,230,0.7)"
+        transform="rotate(-4, 180, 110)">ת</text>
+
+  <!-- Mid letters (transitioning, warm gold) -->
+  <text x="70" y="230" font-family="'David Libre', 'Frank Ruhl Libre', serif"
+        font-size="58" fill="rgba(255,215,120,0.8)"
+        transform="rotate(5, 70, 230)">ב</text>
+  <text x="310" y="255" font-family="'David Libre', 'Frank Ruhl Libre', serif"
+        font-size="42" fill="rgba(255,200,90,0.75)"
+        transform="rotate(-8, 310, 255)">מ</text>
+
+  <!-- Lower letter (warm amber, near dawn) -->
+  <text x="145" y="355" font-family="'David Libre', 'Frank Ruhl Libre', serif"
+        font-size="46" fill="rgba(255,165,55,0.72)"
+        transform="rotate(6, 145, 355)">ה</text>
+
+  <!-- Central נַעֲשֶׂה וְנִשְׁמַע in gold — the featured phrase at dawn midpoint -->
+  <text x="200" y="200" font-family="'David Libre', 'Frank Ruhl Libre', serif"
+        font-size="30" fill="#ffc850" text-anchor="middle"
+        font-weight="bold" opacity="0.95">נַעֲשֶׂה וְנִשְׁמַע</text>
+</svg>

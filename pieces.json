@@ -8,5 +8,15 @@
     "technique": "canvas 2D — procedural lightning, particle smoke",
     "path": "pieces/01-thunder-at-sinai/index.html",
     "thumbnail": "pieces/01-thunder-at-sinai/thumbnail.svg"
+  },
+  {
+    "id": "04-until-dawn",
+    "title": "Until Dawn",
+    "tagline": "Torah letters falling through the night until dawn",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot",
+    "technique": "generative Hebrew typography, canvas 2D",
+    "path": "pieces/04-until-dawn/index.html",
+    "thumbnail": "pieces/04-until-dawn/thumbnail.svg"
   }
 ]

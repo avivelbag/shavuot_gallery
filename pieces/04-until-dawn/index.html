@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Until Dawn — Tikkun Leil Shavuot</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #080c1a;
+    }
+    canvas {
+      display: block;
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var W, H;
+
+  var HEBREW_FONT = "'David Libre', 'Frank Ruhl Libre', serif";
+  var CYCLE_MS = 90000;
+  var MAX_PARTICLES = 60;
+  var SPAWN_INTERVAL_MS = 200;
+  var MIN_LETTER_SIZE = 24;
+  var MAX_LETTER_SIZE = 72;
+  var FPS_MIN_MS = 1000 / 60;
+
+  // Individual Hebrew letters drawn from Torah opening words/phrases.
+  // Base consonants (alef-bet) plus common forms with dagesh/shin-dot.
+  var CHAR_POOL = 'אבגדהוזחטיכלמנסעפצקרשת'.split('').concat(
+    ['בּ', 'גּ', 'דּ', 'כּ', 'פּ', 'תּ', 'שׁ', 'שׂ']
+  );
+
+  // Phrase shown at dawn midpoint.
+  var NISHMA = 'נַעֲשֶׂה וְנִשְׁמַע';
+
+  // Background: midnight blue → dawn rose-gold
+  var BG_MIDNIGHT = [8, 12, 26];
+  var BG_DAWN = [253, 232, 200];   // #fde8c8 dawn rose-gold
+
+  // Letter fill color: near-white candlelight (top) → warm amber (bottom)
+  var LETTER_TOP = [255, 250, 235];
+  var LETTER_BOTTOM = [255, 160, 50];
+
+  var particles = [];
+  var lastSpawnTime = 0;
+  var lastFrameTime = 0;
+
+  function lerp3(a, b, t) {
+    return [
+      Math.round(a[0] + (b[0] - a[0]) * t),
+      Math.round(a[1] + (b[1] - a[1]) * t),
+      Math.round(a[2] + (b[2] - a[2]) * t)
+    ];
+  }
+
+  function rgb(c) {
+    return 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
+  }
+
+  function rgba(c, a) {
+    return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')';
+  }
+
+  function spawnParticle() {
+    return {
+      char: CHAR_POOL[Math.floor(Math.random() * CHAR_POOL.length)],
+      x: Math.random() * W,
+      y: -(MAX_LETTER_SIZE + Math.random() * 40),
+      vy: 1.5 + Math.random() * 2.5,
+      size: MIN_LETTER_SIZE + Math.random() * (MAX_LETTER_SIZE - MIN_LETTER_SIZE),
+      rotation: (Math.random() - 0.5) * 0.4,
+      rotSpeed: (Math.random() - 0.5) * 0.008,
+      alpha: 0.55 + Math.random() * 0.45
+    };
+  }
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  function drawBackground(cycleFrac) {
+    ctx.fillStyle = rgb(lerp3(BG_MIDNIGHT, BG_DAWN, cycleFrac));
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  function updateParticles(dt) {
+    var dtScale = dt / FPS_MIN_MS;
+    for (var i = particles.length - 1; i >= 0; i--) {
+      var p = particles[i];
+      p.y += p.vy * dtScale;
+      p.rotation += p.rotSpeed * dtScale;
+      if (p.y > H + 100) {
+        particles.splice(i, 1);
+      }
+    }
+  }
+
+  function drawParticles() {
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      var yFrac = Math.max(0, Math.min(1, p.y / H));
+      var col = lerp3(LETTER_TOP, LETTER_BOTTOM, yFrac);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.font = p.size + 'px ' + HEBREW_FONT;
+      ctx.fillStyle = rgba(col, p.alpha);
+      ctx.fillText(p.char, 0, 0);
+      ctx.restore();
+    }
+  }
+
+  // Returns opacity (0–1) for the naaseh v'nishma overlay at the given cycle position.
+  // Phrase fades in at 45 s, holds through 51 s, fades out by 53 s (8 s total arc).
+  function getNaasehAlpha(cycleMs) {
+    if (cycleMs < 45000 || cycleMs >= 53000) return 0;
+    if (cycleMs < 47000) return (cycleMs - 45000) / 2000;
+    if (cycleMs < 51000) return 1;
+    return 1 - (cycleMs - 51000) / 2000;
+  }
+
+  function drawNaaseh(cycleMs) {
+    var alpha = getNaasehAlpha(cycleMs);
+    if (alpha <= 0) return;
+    ctx.save();
+    ctx.font = '120px ' + HEBREW_FONT;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = rgba([255, 140, 20], alpha * 0.7);
+    ctx.shadowBlur = 32;
+    ctx.fillStyle = rgba([255, 200, 80], alpha);
+    ctx.fillText(NISHMA, W / 2, H / 2);
+    ctx.restore();
+  }
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+
+    var elapsed = ts - lastFrameTime;
+    if (elapsed < FPS_MIN_MS) return;
+    lastFrameTime = ts - (elapsed % FPS_MIN_MS);
+    var dt = Math.min(elapsed, 50);
+
+    var cycleMs = ts % CYCLE_MS;
+    var cycleFrac = cycleMs / CYCLE_MS;
+
+    drawBackground(cycleFrac);
+
+    if (ts - lastSpawnTime >= SPAWN_INTERVAL_MS && particles.length < MAX_PARTICLES) {
+      particles.push(spawnParticle());
+      lastSpawnTime = ts;
+    }
+
+    updateParticles(dt);
+    drawParticles();
+    drawNaaseh(cycleMs);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
