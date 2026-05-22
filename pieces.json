@@ -537,5 +537,16 @@
     "path": "pieces/47-kol-hashofar-chladni/index.html",
     "thumbnail": "pieces/47-kol-hashofar-chladni/thumbnail.svg",
     "essay": "pieces/47-kol-hashofar-chladni/essay.md"
+  },
+  {
+    "id": "47-lo-bashamayim-hi",
+    "title": "Not in Heaven",
+    "tagline": "לֹא בַשָּׁמַיִם הִוא — divine particles fall into the gravity of human study",
+    "year": 2026,
+    "theme": "Matan Torah / Lo Bashamayim Hi — Deuteronomy 30:12; Bava Metzia 59b",
+    "technique": "canvas 2D n-body gravity simulation — orbital cascade particle system",
+    "path": "pieces/47-lo-bashamayim-hi/index.html",
+    "thumbnail": "pieces/47-lo-bashamayim-hi/thumbnail.svg",
+    "essay": "pieces/47-lo-bashamayim-hi/essay.md"
   }
 ]

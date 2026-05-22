@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lo Bashamayim Hi — Not in Heaven</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #050A1E; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .art-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    #svg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1E2E4A;
+      overflow-y: auto;
+      color: #B8C8E8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #020816;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: relative; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1E2E4A; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #E8C87A;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4A5A7A;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #A8C0E0;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid #1E3A6A;
+      font-style: italic;
+      color: #8090B0;
+      line-height: 1.7;
+    }
+    .essay-panel em { color: #C8D8F8; font-style: italic; }
+    .essay-panel strong { color: #E8D0A0; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #0E1830; margin: 2rem 0; }
+    .essay-panel .hebrew {
+      font-size: 1.4rem;
+      direction: rtl;
+      unicode-bidi: embed;
+      color: #E8B84B;
+      margin: 0 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <div class="art-inner" id="art-inner">
+      <canvas id="c"></canvas>
+      <svg id="svg-overlay" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="hebrew-arc" d="" />
+        </defs>
+        <text id="hebrew-text" fill="#E8B84B" opacity="0.22"
+              font-family="Georgia,'Times New Roman',serif" font-size="18">
+          <textPath href="#hebrew-arc" startOffset="50%" text-anchor="middle">
+            לֹא בַשָּׁמַיִם הִוא
+          </textPath>
+        </text>
+      </svg>
+    </div>
+  </div>
+  <div class="essay-panel">
+    <h1>Lo Bashamayim Hi</h1>
+    <p class="subtitle">Not in Heaven — n-body orbital cascade — Bava Metzia 59b</p>
+
+    <p class="hebrew">לֹא בַשָּׁמַיִם הִוא</p>
+    <blockquote>"It is not in heaven, that you should say: 'Who will go up to heaven for us and bring it to us, that we may hear it and do it?'" — Deuteronomy 30:12</blockquote>
+
+    <p>A heavenly voice declared that Rabbi Eliezer was right. Rabbi Yehoshua stood and overruled heaven. God laughed. This is the story the Talmud tells, and it is among the most radical claims in the history of religion.</p>
+
+    <hr>
+
+    <h2>The Oven of Akhnai — Bava Metzia 59b</h2>
+
+    <p>The sages dispute the ritual status of a particular kind of oven — the oven of Akhnai. Rabbi Eliezer holds it cannot contract impurity; the other sages hold that it can. Rabbi Eliezer, finding himself outnumbered, appeals to something beyond argument. He says: "If the law follows me, let this carob tree prove it." The carob tree uproots itself and travels a hundred cubits. The sages answer: "You cannot bring proof from a carob tree." He says: "If the law follows me, let this stream prove it." The stream reverses its course, flowing uphill. "You cannot bring proof from a stream." He says: "Let the walls of the study house prove it." The walls begin to fall inward. Rabbi Yehoshua rebukes the walls: "When scholars are engaged in legal dispute, you have no business interfering." The walls, out of respect for Rabbi Yehoshua, do not fall — but neither do they straighten, and they stand at a tilt to this day, in honor of both sages.</p>
+
+    <p>Then a <em>bat kol</em> — a heavenly voice — sounds from the sky: "Why do you dispute Rabbi Eliezer? The law follows him in every place." Rabbi Yehoshua stands and pronounces the verse from Deuteronomy 30:12: <em>Lo bashamayim hi</em> — it is not in heaven.</p>
+
+    <p>The oven is declared impure. The decision stands. Later, Elijah appears to the sage Rabbi Natan and Rabbi Natan asks him: what did the Holy Blessed One do at that moment? Elijah answers: "He laughed, and said: <em>Nitzchuni banai</em> — my children have defeated Me, my children have defeated Me."</p>
+
+    <hr>
+
+    <h2>Naaseh V'Nishma — The Stakes of Acceptance</h2>
+
+    <p>When Israel stood at Sinai and received the Torah, they declared: <em>Naaseh v'nishma</em> — "We will do and we will hear" (Exodus 24:7). This declaration is usually understood as an expression of unconditional commitment: we will obey even before we hear the details of what is commanded. The Talmud says that at that moment, sixty myriads of angels descended and placed crowns on their heads, one for each word. The courage of receiving before understanding — the willingness to be changed before you know the shape of the change — is the foundation of the covenant.</p>
+
+    <p>But the Bava Metzia story reveals the hidden consequence of that declaration. By accepting Torah at Sinai with a full heart, Israel also accepted the interpretive responsibility that came with it. Torah was not merely deposited with them as a static code; it was given to them to study, to dispute, to interpret, and to decide. The angels who placed crowns on their heads were not crowning them as servants of a law they would carry but never touch. They were crowning them as its custodians — authorized interpreters whose rulings would be binding, whose majority would be decisive, whose study would constitute the ongoing life of the text.</p>
+
+    <hr>
+
+    <h2>God's Laughter Is Not Defeat</h2>
+
+    <p>The instinctive reading of <em>Nitzchuni banai</em> is concession — divine resignation in the face of human stubbornness. But this reading misses the joke. A gift that the giver can always rescind at will is not truly a gift. A Torah subject to ongoing divine override at any moment would not have been given to humanity at all — it would have been lent, conditionally, subject to revocation whenever the sages got it wrong. Such a Torah would be a celestial loan, not a covenant.</p>
+
+    <p>For Torah to have been genuinely given — irrevocably, at Sinai, for all time — it must be unreachable by heaven thereafter. <em>Lo bashamayim hi</em> is not a limitation on God; it is the proof that the gift was real. A parent who can always override their child's decisions has not truly handed over responsibility. God's laughter is the laughter of one who has freely given something and watches, with delight, as the recipients use it. The "defeat" is the fulfillment. <em>Nitzchuni</em> — they have outargued Me — is not complaint. It is pride.</p>
+
+    <p>This is why the Talmud preserves minority opinions alongside majority rulings. The defeated position of Rabbi Eliezer is recorded, studied, and honored — not overwritten. A legal system that believed heaven could correct it at any moment would not need to keep minority views. The very structure of the Talmud is proof that the rabbis understood what had happened: Torah lives in human argument, and all the voices of the argument belong to it.</p>
+
+    <hr>
+
+    <h2>Shavuot and the Transfer of Authority</h2>
+
+    <p>Shavuot celebrates the moment at Sinai. But the Bava Metzia story reveals what that moment actually accomplished. It was not merely the delivery of a text. It was the permanent transfer of interpretive authority to human hands. The mountain came down to earth not once but forever. Every <em>mahloket l'shem shamayim</em> — dispute for the sake of heaven — is an exercise of the authority received at Sinai. Every study session, every ruling, every minority opinion that loses but is preserved, is a continuation of the gift.</p>
+
+    <p>Shavuot is thus the festival of human responsibility as much as divine revelation. We celebrate not just what was given but what was accepted — and what accepting it meant. Torah now lives in the orbit of human study. <em>Lo bashamayim hi.</em></p>
+
+    <hr>
+
+    <h2>The Animation</h2>
+
+    <p>A brilliant emitter at the top of the canvas — the divine source — releases a continuous stream of particles in cool blue-white (<strong>#C8D8FF</strong>), the color of the celestial. Below, four attractor nodes — representing scholars and the study house — exert gravitational pull. The particles follow the combined gravity of all four nodes, curving, spiraling, being captured. When a particle enters the pull of a node, it settles into orbit and shifts to warm gold (<strong>#E8B84B</strong>), the color of Torah as received and interpreted. The node glows with an amber halo that grows as more particles settle.</p>
+
+    <p>The overall composition shows a single divine source above distributing into a network of human interpreters below. A faint arc of Hebrew text curves across the mid-canvas: <em>lo bashamayim hi</em> — inscribed not from above but written into the space between heaven and earth, where the transition happens.</p>
+
+    <p>The technique is a <strong>canvas 2D gravitational n-body particle simulation</strong>: each particle accumulates Newtonian gravitational force from all four attractors simultaneously (<em>F&nbsp;=&nbsp;G/r²</em>, capped at a maximum acceleration to avoid singularities). Light velocity damping prevents indefinite orbiting. This technique has not been used elsewhere in the gallery.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------ */
+  /* Canvas and panel setup                                               */
+  /* ------------------------------------------------------------------ */
+
+  var canvas = document.getElementById('c');
+  var ctx    = canvas.getContext('2d');
+  var panel  = document.getElementById('art-inner');
+  var W, H;
+
+  /* ------------------------------------------------------------------ */
+  /* Attractor nodes — represent the scholars / study house              */
+  /* Four nodes in a rough arc at ~80% canvas height.                   */
+  /* ------------------------------------------------------------------ */
+
+  var attractors;
+
+  function initAttractors() {
+    attractors = [
+      { x: W * 0.17, y: H * 0.81 },
+      { x: W * 0.36, y: H * 0.83 },
+      { x: W * 0.57, y: H * 0.80 },
+      { x: W * 0.76, y: H * 0.82 },
+    ];
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Particle arrays                                                       */
+  /* active[]  — particles still in flight                               */
+  /* settled[] — particles captured by an attractor node                */
+  /* ------------------------------------------------------------------ */
+
+  var active  = [];
+  var settled = [];
+
+  var MAX_ACTIVE  = 650;
+  var MAX_SETTLED = 450;
+
+  /* Gravitational constant, max acceleration cap (px/frame²), damping. */
+  var G         = 13000;
+  var MAX_ACCEL = 6;
+  var DAMPING   = 0.997;
+
+  /* Global downward drift supplements attractor gravity near the top. */
+  var GLOBAL_DY = 0.055;
+
+  /* Distance threshold at which a particle is considered settled. */
+  var CAPTURE_R = 33;
+
+  /**
+   * Spawn one particle from the top-centre emitter with a small random
+   * horizontal scatter and an initial downward velocity.
+   */
+  function emitParticle() {
+    active.push({
+      x:   W / 2 + (Math.random() - 0.5) * 55,
+      y:   H * 0.055,
+      vx:  (Math.random() - 0.5) * 1.3,
+      vy:  0.5 + Math.random() * 0.9,
+      age: 0,
+    });
+  }
+
+  /**
+   * Advance all active particles by one simulation step.
+   *
+   * Each particle accumulates gravitational force from every attractor:
+   *   F = G / max(r², min_r²),  capped at MAX_ACCEL
+   * plus a small global downward drift so distant particles still fall.
+   * Velocity is damped by DAMPING each frame so orbits eventually decay.
+   * Particles within CAPTURE_R of any attractor are removed from active[]
+   * and pushed to settled[]; settled[] is capped by evicting the oldest.
+   */
+  function step() {
+    for (var i = active.length - 1; i >= 0; i--) {
+      var p  = active[i];
+      p.age++;
+
+      var ax = 0;
+      var ay = GLOBAL_DY;
+      var captured = false;
+
+      for (var j = 0; j < attractors.length; j++) {
+        var a  = attractors[j];
+        var dx = a.x - p.x;
+        var dy = a.y - p.y;
+        var r2 = dx * dx + dy * dy;
+        var r  = Math.sqrt(r2);
+
+        if (r < CAPTURE_R) {
+          /* Fix the particle at a random point inside the capture radius. */
+          var ang  = Math.random() * Math.PI * 2;
+          var dist = Math.random() * CAPTURE_R * 0.72;
+          var sp   = {
+            x: a.x + Math.cos(ang) * dist,
+            y: a.y + Math.sin(ang) * dist,
+            attractor: j,
+          };
+          if (settled.length >= MAX_SETTLED) {
+            settled.shift();
+          }
+          settled.push(sp);
+          active.splice(i, 1);
+          captured = true;
+          break;
+        }
+
+        /* Newtonian gravity, capped to avoid near-singularity explosions. */
+        var fMag = Math.min(G / Math.max(r2, 1600), MAX_ACCEL);
+        ax += fMag * dx / r;
+        ay += fMag * dy / r;
+      }
+
+      if (captured) continue;
+
+      /* Cap total acceleration magnitude. */
+      var totalA = Math.sqrt(ax * ax + ay * ay);
+      if (totalA > MAX_ACCEL) {
+        ax = ax / totalA * MAX_ACCEL;
+        ay = ay / totalA * MAX_ACCEL;
+      }
+
+      p.vx = (p.vx + ax) * DAMPING;
+      p.vy = (p.vy + ay) * DAMPING;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      /* Discard particles that have left the canvas entirely. */
+      if (p.x < -35 || p.x > W + 35 || p.y > H + 35 || p.y < -70) {
+        active.splice(i, 1);
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Rendering                                                             */
+  /* ------------------------------------------------------------------ */
+
+  var frameCount = 0;
+
+  /**
+   * Count the number of settled particles belonging to attractor j.
+   * Called once per attractor per frame — O(settled.length * 4) total.
+   */
+  function settledCountFor(j) {
+    var n = 0;
+    for (var i = 0; i < settled.length; i++) {
+      if (settled[i].attractor === j) n++;
+    }
+    return n;
+  }
+
+  function draw() {
+    /* Background — deep midnight blue. */
+    ctx.fillStyle = '#050A1E';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Attractor halos — amber glow that builds as particles settle. */
+    for (var j = 0; j < attractors.length; j++) {
+      var a         = attractors[j];
+      var count     = settledCountFor(j);
+      var intensity = Math.min(count / 55, 1.0);
+      if (intensity > 0.02) {
+        var halo = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, 72);
+        halo.addColorStop(0,   'rgba(192, 106, 16, ' + (0.48 * intensity) + ')');
+        halo.addColorStop(0.5, 'rgba(192, 106, 16, ' + (0.18 * intensity) + ')');
+        halo.addColorStop(1,   'rgba(192, 106, 16, 0)');
+        ctx.fillStyle = halo;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, 72, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    /* Settled particles — warm gold (#E8B84B). */
+    ctx.fillStyle = 'rgba(232, 184, 75, 0.68)';
+    for (var i = 0; i < settled.length; i++) {
+      var sp = settled[i];
+      ctx.beginPath();
+      ctx.arc(sp.x, sp.y, 1.7, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    /* Active (falling) particles — cool blue-white (#C8D8FF), fade in by age. */
+    for (var i = 0; i < active.length; i++) {
+      var p     = active[i];
+      var alpha = Math.min(p.age / 28, 0.88);
+      ctx.fillStyle = 'rgba(200, 216, 255, ' + alpha + ')';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    /* Divine emitter corona — pulsing radial gradient, brilliant white centre. */
+    var pulse  = 38 + 6 * Math.sin(frameCount * 0.038);
+    var corona = ctx.createRadialGradient(W / 2, H * 0.055, 0, W / 2, H * 0.055, pulse);
+    corona.addColorStop(0,    'rgba(255, 255, 255, 0.95)');
+    corona.addColorStop(0.25, 'rgba(220, 235, 255, 0.50)');
+    corona.addColorStop(0.65, 'rgba(200, 216, 255, 0.10)');
+    corona.addColorStop(1,    'rgba(200, 216, 255, 0)');
+    ctx.fillStyle = corona;
+    ctx.beginPath();
+    ctx.arc(W / 2, H * 0.055, pulse, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* Attractor node centres — small gold dot with amber ring. */
+    for (var j = 0; j < attractors.length; j++) {
+      var a = attractors[j];
+      ctx.fillStyle   = '#E8B84B';
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(192, 106, 16, 0.65)';
+      ctx.lineWidth   = 1;
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, 7.5, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* SVG Hebrew text arc                                                  */
+  /* Path coordinates are set in canvas pixel space (= SVG viewBox).    */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Update the SVG overlay's viewBox and the arc path to match the current
+   * canvas dimensions, keeping the Hebrew text at ~46% canvas height.
+   */
+  function updateSvgArc() {
+    var svg    = document.getElementById('svg-overlay');
+    var path   = document.getElementById('hebrew-arc');
+    var textEl = document.getElementById('hebrew-text');
+
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    var y0  = H * 0.47;
+    var cpy = H * 0.40;
+    var x0  = W * 0.07;
+    var x1  = W * 0.93;
+
+    path.setAttribute('d',
+      'M ' + x0.toFixed(1) + ',' + y0.toFixed(1) +
+      ' Q ' + (W / 2).toFixed(1) + ',' + cpy.toFixed(1) +
+      ' ' + x1.toFixed(1) + ',' + y0.toFixed(1)
+    );
+
+    textEl.setAttribute('font-size', Math.max(13, Math.round(H * 0.030)));
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Resize                                                                */
+  /* ------------------------------------------------------------------ */
+
+  function resize() {
+    W = panel.clientWidth;
+    H = panel.clientHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    initAttractors();
+    active     = [];
+    settled    = [];
+    frameCount = 0;
+    updateSvgArc();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Animation loop                                                        */
+  /* ------------------------------------------------------------------ */
+
+  function tick() {
+    frameCount++;
+
+    /* Emit 2–4 particles per frame while below the active cap. */
+    if (active.length < MAX_ACTIVE) {
+      var emit = 2 + Math.floor(Math.random() * 3);
+      for (var i = 0; i < emit; i++) emitParticle();
+    }
+
+    step();
+    draw();
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(tick);
+}());
+</script>
+</body>
+</html>

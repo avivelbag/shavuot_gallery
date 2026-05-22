@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <radialGradient id="emitter" cx="50%" cy="0%" r="25%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#C8D8FF" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#C8D8FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo0" cx="18%" cy="81%" r="12%">
+      <stop offset="0%" stop-color="#C06A10" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#C06A10" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo1" cx="38%" cy="83%" r="12%">
+      <stop offset="0%" stop-color="#C06A10" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#C06A10" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo2" cx="60%" cy="80%" r="12%">
+      <stop offset="0%" stop-color="#C06A10" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#C06A10" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo3" cx="78%" cy="82%" r="12%">
+      <stop offset="0%" stop-color="#C06A10" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#C06A10" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background — deep midnight blue -->
+  <rect width="400" height="300" fill="#050A1E"/>
+
+  <!-- Attractor halos — deep amber -->
+  <ellipse cx="72"  cy="243" rx="40" ry="36" fill="url(#halo0)"/>
+  <ellipse cx="152" cy="249" rx="40" ry="36" fill="url(#halo1)"/>
+  <ellipse cx="240" cy="240" rx="40" ry="36" fill="url(#halo2)"/>
+  <ellipse cx="312" cy="246" rx="40" ry="36" fill="url(#halo3)"/>
+
+  <!-- Settled particles — warm gold clusters near attractors -->
+  <g fill="#E8B84B" opacity="0.70">
+    <circle cx="65"  cy="248" r="1.4"/>
+    <circle cx="74"  cy="240" r="1.4"/>
+    <circle cx="80"  cy="252" r="1.2"/>
+    <circle cx="58"  cy="244" r="1.2"/>
+    <circle cx="70"  cy="257" r="1.1"/>
+    <circle cx="145" cy="245" r="1.4"/>
+    <circle cx="156" cy="252" r="1.4"/>
+    <circle cx="162" cy="242" r="1.2"/>
+    <circle cx="140" cy="255" r="1.2"/>
+    <circle cx="150" cy="262" r="1.1"/>
+    <circle cx="232" cy="243" r="1.4"/>
+    <circle cx="244" cy="250" r="1.4"/>
+    <circle cx="250" cy="238" r="1.2"/>
+    <circle cx="238" cy="255" r="1.1"/>
+    <circle cx="225" cy="248" r="1.1"/>
+    <circle cx="305" cy="248" r="1.4"/>
+    <circle cx="316" cy="242" r="1.4"/>
+    <circle cx="320" cy="254" r="1.2"/>
+    <circle cx="308" cy="258" r="1.1"/>
+    <circle cx="298" cy="244" r="1.1"/>
+  </g>
+
+  <!-- Falling particles — cool blue-white streams -->
+  <g fill="#C8D8FF">
+    <!-- Stream 1 — toward leftmost attractor -->
+    <circle cx="198" cy="22"  r="1.1" opacity="0.90"/>
+    <circle cx="195" cy="42"  r="1.0" opacity="0.80"/>
+    <circle cx="188" cy="68"  r="1.0" opacity="0.75"/>
+    <circle cx="175" cy="98"  r="0.9" opacity="0.70"/>
+    <circle cx="157" cy="130" r="0.9" opacity="0.65"/>
+    <circle cx="130" cy="162" r="0.9" opacity="0.60"/>
+    <circle cx="102" cy="193" r="0.9" opacity="0.55"/>
+    <circle cx="80"  cy="220" r="0.9" opacity="0.50"/>
+    <!-- Stream 2 — toward second attractor -->
+    <circle cx="202" cy="30"  r="1.0" opacity="0.85"/>
+    <circle cx="200" cy="55"  r="1.0" opacity="0.78"/>
+    <circle cx="196" cy="82"  r="0.9" opacity="0.72"/>
+    <circle cx="188" cy="112" r="0.9" opacity="0.67"/>
+    <circle cx="176" cy="145" r="0.9" opacity="0.62"/>
+    <circle cx="162" cy="178" r="0.9" opacity="0.57"/>
+    <circle cx="150" cy="210" r="0.8" opacity="0.52"/>
+    <!-- Stream 3 — toward third attractor -->
+    <circle cx="204" cy="35"  r="1.0" opacity="0.85"/>
+    <circle cx="206" cy="60"  r="1.0" opacity="0.78"/>
+    <circle cx="210" cy="88"  r="0.9" opacity="0.72"/>
+    <circle cx="218" cy="118" r="0.9" opacity="0.67"/>
+    <circle cx="228" cy="150" r="0.9" opacity="0.62"/>
+    <circle cx="235" cy="185" r="0.9" opacity="0.57"/>
+    <circle cx="238" cy="218" r="0.8" opacity="0.52"/>
+    <!-- Stream 4 — toward rightmost attractor -->
+    <circle cx="206" cy="28"  r="1.0" opacity="0.85"/>
+    <circle cx="210" cy="52"  r="1.0" opacity="0.78"/>
+    <circle cx="220" cy="80"  r="0.9" opacity="0.72"/>
+    <circle cx="238" cy="112" r="0.9" opacity="0.67"/>
+    <circle cx="260" cy="145" r="0.9" opacity="0.62"/>
+    <circle cx="280" cy="178" r="0.9" opacity="0.57"/>
+    <circle cx="296" cy="210" r="0.8" opacity="0.52"/>
+  </g>
+
+  <!-- Divine emitter corona -->
+  <circle cx="200" cy="16" r="50" fill="url(#emitter)"/>
+  <circle cx="200" cy="16" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+  <!-- Attractor node centres -->
+  <g fill="#E8B84B" stroke="#C06A10" stroke-width="1">
+    <circle cx="72"  cy="243" r="3"/>
+    <circle cx="152" cy="249" r="3"/>
+    <circle cx="240" cy="240" r="3"/>
+    <circle cx="312" cy="246" r="3"/>
+  </g>
+
+  <!-- Hebrew text arc hint -->
+  <text font-family="Georgia,'Times New Roman',serif" font-size="11"
+        fill="#E8B84B" opacity="0.22" text-anchor="middle">
+    <textPath xmlns:xlink="http://www.w3.org/1999/xlink"
+              href="#thumb-arc" startOffset="50%">לֹא בַשָּׁמַיִם הִוא</textPath>
+  </text>
+  <defs>
+    <path id="thumb-arc" d="M 28,142 Q 200,115 372,142"/>
+  </defs>
+
+  <!-- Hebrew text directly (fallback) -->
+  <text x="200" y="142" font-family="Georgia,'Times New Roman',serif" font-size="11"
+        fill="#E8B84B" opacity="0.20" text-anchor="middle" direction="rtl">
+    לֹא בַשָּׁמַיִם הִוא
+  </text>
+</svg>
