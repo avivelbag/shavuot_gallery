@@ -1747,5 +1747,16 @@
     "path": "pieces/96-mst-ruth-gleaning/index.html",
     "thumbnail": "pieces/96-mst-ruth-gleaning/thumbnail.svg",
     "essay": "pieces/96-mst-ruth-gleaning/essay.md"
+  },
+  {
+    "id": "96-simulated-annealing-sinai",
+    "title": "The Fire That Does Not Consume",
+    "tagline": "simulated annealing — 2000 particles cool from maximum disorder into a hexagonal crystal lattice, enacting the fire that burned at Sinai: consuming but not consumed",
+    "year": 2026,
+    "theme": "Matan Torah / Har Sinai",
+    "technique": "Simulated annealing with Ising-style particle cooling",
+    "path": "pieces/96-simulated-annealing-sinai/index.html",
+    "thumbnail": "pieces/96-simulated-annealing-sinai/thumbnail.svg",
+    "essay": "pieces/96-simulated-annealing-sinai/essay.md"
   }
 ]

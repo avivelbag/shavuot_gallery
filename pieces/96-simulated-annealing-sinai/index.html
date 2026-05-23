@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Fire That Does Not Consume — Simulated Annealing at Sinai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #050A1A; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 60%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #2A0A00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #temp-display {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: bold;
+      color: #FF4500;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+      text-shadow: 0 0 8px currentColor;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2A1500;
+      overflow-y: auto;
+      color: #b8a890;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #07060f;
+      line-height: 1.75;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2A1500; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 {
+      font-size: 1.4rem; color: #D4A017; margin: 0 0 0.25rem; font-weight: normal;
+    }
+    .essay-panel .tagline {
+      font-size: 0.9rem; color: #7a6a50; margin: 0 0 2rem; font-style: italic;
+    }
+    .essay-panel h2 {
+      font-size: 1rem; color: #D4A017; margin: 2rem 0 0.5rem; font-weight: bold;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { margin: 0 0 1.2rem; }
+    .essay-panel em { color: #c8a060; font-style: italic; }
+    .essay-panel blockquote {
+      border-left: 2px solid #D4A017;
+      margin: 1.5rem 0;
+      padding: 0.5rem 1rem;
+      color: #c8b080;
+      font-style: italic;
+    }
+    .essay-panel a { color: #D4A017; text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="canvas"></canvas>
+    <div id="temp-display">T = 500</div>
+  </div>
+  <div class="essay-panel">
+    <h1>The Fire That Does Not Consume</h1>
+    <p class="tagline">simulated annealing — 2000 particles cooling from chaos into crystal as the mountain burned at Sinai</p>
+
+    <blockquote>
+      "And the mountain burned with fire unto the heart of heaven, with darkness, cloud, and thick darkness. And the LORD spoke to you out of the midst of the fire."
+      <br>— Deuteronomy 4:11–12
+    </blockquote>
+
+    <p>The Torah describes Sinai as a mountain on fire — not merely glowing, not lit by reflected light, but burning with an intensity that reached the very heart of the sky. The Midrash in Shemot Rabbah (5:9) adds a phrase that inverts ordinary physics: the fire of Sinai was <em>consuming but not consumed</em>. It burned, and yet nothing was destroyed. Fire was there, but the fire obeyed no ordinary law of combustion.</p>
+
+    <p>This is the thermodynamic condition that simulated annealing enacts.</p>
+
+    <p>Named for the metallurgical process of <em>annealing</em> — heating a metal until its atoms move freely, then cooling it slowly so they find their lowest-energy arrangement — the algorithm was formalized by Kirkpatrick, Gelatt, and Vecchi in 1983. Their insight was that randomness, properly managed, reaches order. Heat a system enough and every local trap loses its grip; the atoms escape shallow valleys and explore the full landscape of possibility. Cool slowly, and they settle into the deepest valley: the global minimum, the perfect crystal.</p>
+
+    <p>The alternative is <em>quenching</em> — cooling too fast. A quenched metal locks into a glass, frozen in whatever arrangement it occupied when the temperature fell: disordered, brittle, full of internal stress. The cooling schedule is everything. The mathematics of the Kirkpatrick algorithm proves that infinite-time annealing converges to the global minimum with probability one. Any finite schedule accepts risk — the slower the cooling, the lower the final energy, the more perfect the lattice. But no finite schedule is guaranteed. The algorithm is an act of faith: trust the cooling, accept some uncertainty, and the structure will emerge.</p>
+
+    <p>The non-obvious insight is this: the rabbinic insistence that Sinai was experienced <em>in fire</em> — not merely in light or sound — is an intuition about the thermodynamics of transformation. Lasting change requires enough heat to escape local optima. The Israelites at Sinai were not merely warmed; they were disordered — their prior assumptions, their Egyptian habits of mind, their settled identities — all raised to a state of maximum thermal agitation. And then the cooling began.</p>
+
+    <p>The acceptance of Torah as binding covenant is the crystal lattice: a global minimum of obligation, each law locked into place by the acceptance of all the others. To receive Torah too quickly — to quench — is to lock into a disordered glass. Every charismatic moment of partial commitment that hardens before it has fully cooled is quenching. The cooling schedule — forty-nine days of Omer, deliberate and numbered — is everything.</p>
+
+    <p>The 613 commandments are not arbitrary constraints; they are the hexagonal close-packed arrangement toward which slow cooling naturally converges. No single commandment makes sense alone, just as no single atom defines a crystal. The structure is the minimum-energy configuration of all of them taken together.</p>
+
+    <p>Watch the canvas. The fire scatters first: two thousand particles in maximum disorder, each far from its nearest neighbor, energy high, temperature blazing. Then, as temperature falls, particles begin to find each other, to cluster, to lock. The moment the hexagonal lattice snaps into place — every particle drawn to its ordained position by a force barely perceptible at high temperature, overwhelming at low — that is Matan Torah: chaos resolving, of its own thermodynamic necessity, into the structure of law.</p>
+
+    <p>The mountain burned with fire, consuming but not consumed, until the cooling was complete. Then the crystal held.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── Configuration ──────────────────────────────────────────────────────────
+  const N = 2000;          // number of particles
+  const K = 5;             // nearest neighbours for energy
+  const T_MAX = 500;       // starting temperature
+  const COOL = 0.9995;     // per-frame cooling factor
+  const M = 50;            // perturbation attempts per frame
+  const CELL = 60;         // spatial hash grid cell size (px)
+  const R_PARTICLE = 3;    // particle radius (px)
+  const HOLD_MS = 5000;    // hold crystal before reset
+  const SPRING_MAX = 0.05; // max spring stiffness toward lattice target
+
+  // Colour anchors
+  const BG_HOT  = [0x2A, 0x0A, 0x00]; // #2A0A00
+  const BG_MID  = [0x1A, 0x0F, 0x00]; // #1A0F00
+  const BG_COOL = [0x05, 0x0A, 0x1A]; // #050A1A
+
+  // Particle colour anchors (low energy → high energy)
+  const COL_LOW  = [0x1C, 0x18, 0x64]; // #1C1864 deep indigo
+  const COL_MID  = [0xD4, 0xA0, 0x17]; // #D4A017 gold
+  const COL_HIGH = [0xFF, 0x45, 0x00]; // #FF4500 fire red
+
+  // ── Canvas setup ───────────────────────────────────────────────────────────
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const artPanel = document.getElementById('art-panel');
+  const tempDisplay = document.getElementById('temp-display');
+
+  let W, H;
+
+  function resize() {
+    W = artPanel.clientWidth;
+    H = artPanel.clientHeight;
+    canvas.width  = W;
+    canvas.height = H;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); initAll(); });
+
+  // ── Particle state ─────────────────────────────────────────────────────────
+  let px = new Float32Array(N);   // x positions
+  let py = new Float32Array(N);   // y positions
+  let pe = new Float32Array(N);   // local energy (sum of K-NN distances)
+  let pCellKey = new Int32Array(N); // current cell index
+
+  // Lattice targets (assigned once, fixed across resets)
+  let ltx = new Float32Array(N);  // target x
+  let lty = new Float32Array(N);  // target y
+
+  // ── Spatial hash grid ──────────────────────────────────────────────────────
+  // Maps cell key (integer) → Set<particle index>
+  const grid = new Map();
+
+  function cellOf(x, y) {
+    // Pack (cx, cy) into a single int (safe for canvas up to ~32k px)
+    const cx = (x / CELL) | 0;
+    const cy = (y / CELL) | 0;
+    return cx * 10000 + cy; // simple packing assuming cy < 10000
+  }
+
+  function gridAdd(i) {
+    const k = cellOf(px[i], py[i]);
+    pCellKey[i] = k;
+    let cell = grid.get(k);
+    if (!cell) { cell = new Set(); grid.set(k, cell); }
+    cell.add(i);
+  }
+
+  function gridRemove(i) {
+    const cell = grid.get(pCellKey[i]);
+    if (cell) cell.delete(i);
+  }
+
+  // ── Local energy calculation ───────────────────────────────────────────────
+  // Returns sum of distances to K nearest neighbours of point (x,y),
+  // excluding particle excludeIdx.
+  const _dists = new Float32Array(300); // scratch buffer
+
+  function localEnergy(x, y, excludeIdx) {
+    const cx = (x / CELL) | 0;
+    const cy = (y / CELL) | 0;
+    let nFound = 0;
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        const cell = grid.get((cx + dx) * 10000 + (cy + dy));
+        if (!cell) continue;
+        for (const j of cell) {
+          if (j === excludeIdx) continue;
+          const ddx = px[j] - x;
+          const ddy = py[j] - y;
+          _dists[nFound++] = Math.sqrt(ddx * ddx + ddy * ddy);
+        }
+      }
+    }
+    // Partial sort: find K smallest distances
+    let sum = 0;
+    const take = Math.min(K, nFound);
+    // Simple partial selection sort for small K
+    for (let k = 0; k < take; k++) {
+      let minVal = _dists[k], minPos = k;
+      for (let j = k + 1; j < nFound; j++) {
+        if (_dists[j] < minVal) { minVal = _dists[j]; minPos = j; }
+      }
+      if (minPos !== k) {
+        _dists[minPos] = _dists[k];
+        _dists[k] = minVal;
+      }
+      sum += minVal;
+    }
+    return sum;
+  }
+
+  // ── Box-Muller Gaussian random ─────────────────────────────────────────────
+  function gaussRand() {
+    const u = 1 - Math.random();
+    const v = Math.random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  // ── Hexagonal lattice generation and assignment ────────────────────────────
+  // Basis: a1=(d,0), a2=(d/2, d*√3/2), d≈sqrt(W*H/N)
+  function buildLattice() {
+    const d = Math.sqrt(W * H / N);
+    const a2y = d * Math.sqrt(3) / 2;
+
+    // Enumerate all lattice points that cover the canvas
+    const pts = [];
+    const nI = Math.ceil(W / d) + 4;
+    const nJ = Math.ceil(H / a2y) + 4;
+    for (let i = -2; i < nI; i++) {
+      for (let j = -2; j < nJ; j++) {
+        const lx = i * d + j * (d / 2);
+        const ly = j * a2y;
+        if (lx >= -d && lx < W + d && ly >= -d && ly < H + d) {
+          pts.push([lx, ly]);
+        }
+      }
+    }
+
+    // Greedy nearest-unassigned assignment
+    const used = new Uint8Array(pts.length);
+    for (let i = 0; i < N; i++) {
+      let bestDist = Infinity, bestJ = 0;
+      for (let j = 0; j < pts.length; j++) {
+        if (used[j]) continue;
+        const dx = pts[j][0] - px[i];
+        const dy = pts[j][1] - py[i];
+        const d2 = dx * dx + dy * dy;
+        if (d2 < bestDist) { bestDist = d2; bestJ = j; }
+      }
+      used[bestJ] = 1;
+      ltx[i] = Math.max(0, Math.min(W - 1, pts[bestJ][0]));
+      lty[i] = Math.max(0, Math.min(H - 1, pts[bestJ][1]));
+    }
+  }
+
+  // ── Scatter particles randomly ─────────────────────────────────────────────
+  function scatter() {
+    grid.clear();
+    for (let i = 0; i < N; i++) {
+      px[i] = Math.random() * W;
+      py[i] = Math.random() * H;
+      gridAdd(i);
+    }
+    // Initialise local energies
+    for (let i = 0; i < N; i++) {
+      pe[i] = localEnergy(px[i], py[i], i);
+    }
+  }
+
+  // ── Full initialisation ────────────────────────────────────────────────────
+  function initAll() {
+    scatter();
+    buildLattice();
+  }
+  initAll();
+
+  // ── Colour helpers ─────────────────────────────────────────────────────────
+  // Linearly interpolate between two RGB triples at parameter t in [0,1]
+  function lerpRgb(a, b, t) {
+    return [
+      (a[0] + (b[0] - a[0]) * t) | 0,
+      (a[1] + (b[1] - a[1]) * t) | 0,
+      (a[2] + (b[2] - a[2]) * t) | 0,
+    ];
+  }
+
+  function rgbStr(r) { return `rgb(${r[0]},${r[1]},${r[2]})`; }
+  function rgbaStr(r, a) { return `rgba(${r[0]},${r[1]},${r[2]},${a})`; }
+
+  // Background colour based on temperature ratio t = T / T_MAX in [0,1]
+  function bgColour(t) {
+    if (t > 0.5) {
+      return lerpRgb(BG_MID, BG_HOT, (t - 0.5) * 2);
+    } else {
+      return lerpRgb(BG_COOL, BG_MID, t * 2);
+    }
+  }
+
+  // Particle colour based on normalised energy e in [0,1]
+  function particleColour(e) {
+    if (e < 0.5) {
+      return lerpRgb(COL_LOW, COL_MID, e * 2);
+    } else {
+      return lerpRgb(COL_MID, COL_HIGH, (e - 0.5) * 2);
+    }
+  }
+
+  // Temperature readout colour (red → gold → blue as T drops)
+  function tempColour(t) {
+    // t = T / T_MAX, 1 = hot red, 0 = cool blue
+    if (t > 0.5) {
+      const c = lerpRgb([0xFF, 0x45, 0x00], [0xD4, 0xA0, 0x17], (1 - t) * 2);
+      return `rgb(${c[0]},${c[1]},${c[2]})`;
+    } else {
+      const c = lerpRgb([0x20, 0x40, 0xA0], [0xD4, 0xA0, 0x17], t * 2);
+      return `rgb(${c[0]},${c[1]},${c[2]})`;
+    }
+  }
+
+  // ── Animation state ────────────────────────────────────────────────────────
+  let T = T_MAX;
+  let holdStart = null;   // timestamp when crystal-hold began
+  let fadeAlpha = 0;      // overlay alpha for fade-to-black
+  let phase = 'anneal';   // 'anneal' | 'hold' | 'fade' | 'flash' | 'reset'
+  let flashFrames = 0;
+
+  // Track energy range for colour normalisation (exponential moving average)
+  let eMin = 0, eMax = 1;
+
+  // ── Annealing step ─────────────────────────────────────────────────────────
+  function annealStep() {
+    const sigma = T / 10;
+    const springK = SPRING_MAX * (1 - T / T_MAX);
+
+    for (let m = 0; m < M; m++) {
+      const i = (Math.random() * N) | 0;
+      const ox = px[i], oy = py[i];
+      const nx = ox + gaussRand() * sigma;
+      const ny = oy + gaussRand() * sigma;
+
+      // Clamp to canvas
+      if (nx < 0 || nx >= W || ny < 0 || ny >= H) continue;
+
+      const eOld = pe[i];
+      // Must remove from grid before computing neighbour list at new pos
+      gridRemove(i);
+      px[i] = nx; py[i] = ny;
+      const eNew = localEnergy(nx, ny, i);
+      const dE = eNew - eOld;
+
+      if (dE < 0 || Math.random() < Math.exp(-dE / T)) {
+        // Accept: update grid and stored energy
+        gridAdd(i);
+        pe[i] = eNew;
+      } else {
+        // Reject: restore
+        px[i] = ox; py[i] = oy;
+        gridAdd(i);
+      }
+    }
+
+    // Apply spring force toward lattice target (stiffness grows as T falls)
+    if (springK > 0) {
+      for (let i = 0; i < N; i++) {
+        const dx = ltx[i] - px[i];
+        const dy = lty[i] - py[i];
+        const nx = px[i] + springK * dx;
+        const ny = py[i] + springK * dy;
+        if (nx >= 0 && nx < W && ny >= 0 && ny < H) {
+          gridRemove(i);
+          px[i] = nx; py[i] = ny;
+          gridAdd(i);
+          // Update energy after spring nudge
+          pe[i] = localEnergy(px[i], py[i], i);
+        }
+      }
+    }
+
+    // Update energy envelope (exponential moving average)
+    let mn = Infinity, mx = 0;
+    for (let i = 0; i < N; i++) {
+      if (pe[i] < mn) mn = pe[i];
+      if (pe[i] > mx) mx = pe[i];
+    }
+    eMin = eMin * 0.95 + mn * 0.05;
+    eMax = eMax * 0.95 + mx * 0.05;
+  }
+
+  // ── Render ─────────────────────────────────────────────────────────────────
+  function render(ts) {
+    const tRatio = Math.min(T / T_MAX, 1);
+    const bg = bgColour(tRatio);
+
+    // Background
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = rgbStr(bg);
+    ctx.fillRect(0, 0, W, H);
+
+    // Particles with 'lighter' compositing for glow bloom
+    ctx.globalCompositeOperation = 'lighter';
+    const eRange = Math.max(eMax - eMin, 1);
+    for (let i = 0; i < N; i++) {
+      const eNorm = Math.max(0, Math.min(1, (pe[i] - eMin) / eRange));
+      const col = particleColour(eNorm);
+
+      // Glow pass (wide, low opacity)
+      ctx.beginPath();
+      ctx.arc(px[i], py[i], R_PARTICLE * 2.5, 0, 2 * Math.PI);
+      ctx.fillStyle = rgbaStr(col, 0.08);
+      ctx.fill();
+
+      // Core pass (sharp, bright)
+      ctx.beginPath();
+      ctx.arc(px[i], py[i], R_PARTICLE, 0, 2 * Math.PI);
+      ctx.fillStyle = rgbaStr(col, 0.85);
+      ctx.fill();
+    }
+
+    // Fade overlay during transition
+    if (phase === 'fade') {
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = `rgba(0,0,0,${fadeAlpha})`;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    // Fire-orange flash on reset
+    if (phase === 'flash') {
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = `rgba(255,69,0,${Math.max(0, flashFrames / 15)})`;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    // Temperature readout
+    ctx.globalCompositeOperation = 'source-over';
+    const tDisplay = T < 1 ? '< 1' : T.toFixed(0);
+    const tColor = tempColour(tRatio);
+    tempDisplay.style.color = tColor;
+    tempDisplay.style.textShadow = `0 0 8px ${tColor}`;
+    tempDisplay.textContent = `T = ${tDisplay}`;
+  }
+
+  // ── Main loop ──────────────────────────────────────────────────────────────
+  let lastTs = null;
+
+  function frame(ts) {
+    if (!lastTs) lastTs = ts;
+    lastTs = ts;
+
+    if (phase === 'anneal') {
+      T *= COOL;
+      annealStep();
+
+      if (T < 1) {
+        phase = 'hold';
+        holdStart = ts;
+      }
+    } else if (phase === 'hold') {
+      if (ts - holdStart >= HOLD_MS) {
+        phase = 'fade';
+        fadeAlpha = 0;
+      }
+    } else if (phase === 'fade') {
+      fadeAlpha = Math.min(1, fadeAlpha + 0.015);
+      if (fadeAlpha >= 1) {
+        // Re-scatter particles (lattice targets stay fixed)
+        scatter();
+        T = T_MAX;
+        phase = 'flash';
+        flashFrames = 15;
+      }
+    } else if (phase === 'flash') {
+      flashFrames--;
+      if (flashFrames <= 0) {
+        phase = 'anneal';
+        fadeAlpha = 0;
+      }
+    }
+
+    render(ts);
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
