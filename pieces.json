@@ -1054,5 +1054,16 @@
     "path": "pieces/71-circle-packing-chag-hakatzir/index.html",
     "thumbnail": "pieces/71-circle-packing-chag-hakatzir/thumbnail.svg",
     "essay": "pieces/71-circle-packing-chag-hakatzir/essay.md"
+  },
+  {
+    "id": "71-gosper-curve-naaseh-vnishma",
+    "title": "We Will Do and We Will Hear",
+    "tagline": "a Gosper-curve particle traces the flowsnake island — path as covenant, journey as understanding",
+    "year": 2026,
+    "theme": "The Crown of Torah / Naaseh v'Nishma",
+    "technique": "Gosper curve / L-system / animated path tracing",
+    "path": "pieces/71-gosper-curve-naaseh-vnishma/index.html",
+    "thumbnail": "pieces/71-gosper-curve-naaseh-vnishma/thumbnail.svg",
+    "essay": "pieces/71-gosper-curve-naaseh-vnishma/essay.md"
   }
 ]

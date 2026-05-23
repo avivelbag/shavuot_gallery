@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Will Do and We Will Hear — Gosper Curve / Naaseh V'Nishma</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #050A14; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #050A14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #0D1F3A;
+      overflow-y: auto;
+      color: #b8a880;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #040810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #0D1F3A; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #C8A020;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #2A3A5A;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #C8A020;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+    }
+    .essay-panel em { color: #d4c090; font-style: italic; }
+    .essay-panel strong { color: #C8A020; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #0D1F3A; margin: 2rem 0; }
+
+    .passage-block {
+      background: #030608;
+      border: 1px solid #1A3080;
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 0 0 1.8rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.4rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #C8A020;
+      line-height: 2.2;
+      margin: 0 0 0.9rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.88rem;
+      color: #5A7040;
+      font-style: italic;
+    }
+    .source-note {
+      font-size: 0.82rem;
+      color: #2A3A5A;
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #0D1F3A;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c" width="700" height="700"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>We Will Do and We Will Hear</h1>
+    <p class="subtitle">Exodus 24:7 · Gosper curve / L-system / animated path tracing</p>
+
+    <div class="passage-block">
+      <div class="hebrew-text">נַעֲשֶׂה וְנִשְׁמָע</div>
+      <div class="english-text">"We will do and we will hear" — Exodus 24:7</div>
+    </div>
+
+    <p>At the foot of Mount Sinai, Moses read aloud the Book of the Covenant. When he finished, the people answered with a single voice: <em>naaseh v'nishma</em> — נַעֲשֶׂה וְנִשְׁמָע — "we will do and we will hear." The declaration is strikingly out of order. Normally one hears first — gathers information, weighs consequences, deliberates — and only then decides to act. Israel reversed this sequence entirely: we commit first; we understand later.</p>
+
+    <p>The Talmud (Shabbat 88a) names this reversal as a moment of extraordinary spiritual courage. The Sages say that six hundred thousand ministering angels descended and placed two crowns (<em>katarim</em>) on the head of each Israelite — one for <em>naaseh</em> and one for <em>nishma</em>. The angels, who do not face this choice because they perceive clearly before acting, envied Israel for making a commitment they themselves could never make. The double crown is not merely a reward; it marks the structure of the act — two distinct moments, doing and hearing, each deserving its own recognition.</p>
+
+    <h2>The Crown of Nishma</h2>
+
+    <p>But the Talmud's account points toward something deeper than simple obedience preceding comprehension. The word <em>nishma</em> shares its root with <em>shema</em> — the paradigmatic act of Jewish listening that encompasses comprehension, response, and inner transformation. <em>Nishma</em> is not passive hearing; it carries the connotation of ongoing interpretation and study. <em>Lishmoa</em> is to hear in a way that changes you. When Israel said <em>v'nishma</em>, they were not saying "we will hear the rationale afterward." They were saying: "we will study this forever — the practice itself will be our understanding."</p>
+
+    <p>This inverts the usual model of learning. To know first, then do, is the way of philosophical inquiry. To do first, and find understanding <em>inside</em> the doing, is the way of Torah. The Rabbis call the crown of <em>nishma</em> the higher one: sustained study that never finishes, always discovering the covenant's deeper dimensions from within the practice itself. Each commandment is an entry into the text; every performance is also an interpretation.</p>
+
+    <h2>The Flowsnake</h2>
+
+    <p>The Gosper curve — known as the flowsnake — is a single unbroken path that covers every cell of its hexagonal island without repetition or gap. You cannot see its shape from inside the path: at any given moment you are surrounded by turns you cannot anticipate, curves you have just left, and segments yet to come that are indistinguishable from the space around you. The whole shape is only visible in retrospect, from outside, when the path has been completed and the island stands fully traced.</p>
+
+    <p>This is the precise structure of <em>naaseh v'nishma</em>. Israel committed to the whole before seeing the whole. The path — the practice of Torah — is itself the act of understanding. To follow it is to know it. The curve does not lead somewhere else; it covers its own ground completely, and in covering it, reveals itself.</p>
+
+    <p class="source-note"><em>Sources: Exodus 24:7; Babylonian Talmud, Shabbat 88a; Rashi ad loc.; Maimonides, Mishneh Torah, Hilkhot Yesodei HaTorah 2:2.</em></p>
+  </div>
+</div>
+
+<script>
+const W = 700, H = 700;
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+// ── L-system ──────────────────────────────────────────────────────────────
+const RULES = { A: 'A-B--B+A++AA+B-', B: '+A-BB--B-A++A+B' };
+
+function expand(axiom, depth) {
+  let s = axiom;
+  for (let i = 0; i < depth; i++)
+    s = s.split('').map(c => RULES[c] ?? c).join('');
+  return s;
+}
+
+// ── Turtle walk ───────────────────────────────────────────────────────────
+const ANGLE = Math.PI / 3;  // 60 degrees
+
+function turtleWalk(lsystem) {
+  let x = 0, y = 0, dir = 0;
+  const pts = [[x, y]];
+  for (const ch of lsystem) {
+    if (ch === 'A' || ch === 'B') {
+      x += Math.cos(dir);
+      y += Math.sin(dir);
+      pts.push([x, y]);
+    } else if (ch === '+') {
+      dir += ANGLE;
+    } else if (ch === '-') {
+      dir -= ANGLE;
+    }
+  }
+  return pts;
+}
+
+// ── Scale raw unit-step points to fit inside the canvas with margin ────────
+function normalise(rawPts, margin) {
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  for (const [px, py] of rawPts) {
+    if (px < minX) minX = px; if (px > maxX) maxX = px;
+    if (py < minY) minY = py; if (py > maxY) maxY = py;
+  }
+  const drawW = W - 2 * margin, drawH = H - 2 * margin;
+  const scale = Math.min(drawW / (maxX - minX), drawH / (maxY - minY));
+  const offX = margin + (drawW - (maxX - minX) * scale) / 2 - minX * scale;
+  const offY = margin + (drawH - (maxY - minY) * scale) / 2 - minY * scale;
+  return rawPts.map(([px, py]) => [px * scale + offX, py * scale + offY]);
+}
+
+// ── Build point array (computed once on load) ──────────────────────────────
+const lsystem = expand('A', 4);          // 5601-char string
+const rawPts = turtleWalk(lsystem);      // 2402 [x,y] points (unit step)
+const points = normalise(rawPts, 28);    // scaled to 700×700 canvas
+
+// ── Pre-render static background curve onto an offscreen canvas ───────────
+const bgCanvas = document.createElement('canvas');
+bgCanvas.width = W; bgCanvas.height = H;
+const bgCtx = bgCanvas.getContext('2d');
+bgCtx.fillStyle = '#050A14';
+bgCtx.fillRect(0, 0, W, H);
+bgCtx.strokeStyle = '#2A3A5A';
+bgCtx.lineWidth = 0.5;
+bgCtx.beginPath();
+bgCtx.moveTo(points[0][0], points[0][1]);
+for (let i = 1; i < points.length; i++) bgCtx.lineTo(points[i][0], points[i][1]);
+bgCtx.stroke();
+
+// ── Animation constants ────────────────────────────────────────────────────
+// 12-second cycle at 60 fps: ~720 frames for full traversal
+const SPEED = (points.length - 1) / (12 * 60);  // ~3.33 points per frame
+// Trail covers the last 2 seconds of travel in point-index units
+const TRAIL_LEN = Math.round(2 * 60 * SPEED);    // ~400 points
+
+let pos = 0;           // fractional position in points[]
+let pausing = false;
+let pauseFrames = 0;
+
+// ── Draw the fading trail from tailIdx to leadIdx ─────────────────────────
+function drawTrail(leadIdx) {
+  if (leadIdx < 1) return;
+  const startIdx = Math.max(0, leadIdx - TRAIL_LEN);
+  const span = leadIdx - startIdx;
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  for (let i = startIdx; i < leadIdx && i < points.length - 1; i++) {
+    const t = (i - startIdx) / span;  // 0 at tail, 1 at lead
+    // Interpolate from deep-blue #1A3080 at tail to gold #C8A020 at lead
+    const r = Math.round(0x1A + t * (0xC8 - 0x1A));
+    const g = Math.round(0x30 + t * (0xA0 - 0x30));
+    const b = Math.round(0x80 + t * (0x20 - 0x80));
+    ctx.globalAlpha = 0.15 + t * 0.85;
+    ctx.strokeStyle = `rgb(${r},${g},${b})`;
+    ctx.beginPath();
+    ctx.moveTo(points[i][0], points[i][1]);
+    ctx.lineTo(points[i + 1][0], points[i + 1][1]);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ── Draw the glowing leading dot ───────────────────────────────────────────
+function drawDot(idx) {
+  const [x, y] = points[Math.min(idx, points.length - 1)];
+  // Soft glow: radial gradient fading outward
+  const glow = ctx.createRadialGradient(x, y, 0, x, y, 14);
+  glow.addColorStop(0,   'rgba(240,232,208,0.85)');
+  glow.addColorStop(0.35,'rgba(200,160, 32,0.45)');
+  glow.addColorStop(1,   'rgba( 26, 48,128,0.0)');
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(x, y, 14, 0, Math.PI * 2);
+  ctx.fill();
+  // Solid dot core
+  ctx.fillStyle = '#F0E8D0';
+  ctx.beginPath();
+  ctx.arc(x, y, 3, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// ── Animation loop ─────────────────────────────────────────────────────────
+function frame() {
+  // Stamp the pre-rendered background (curve underlay + fill)
+  ctx.drawImage(bgCanvas, 0, 0);
+
+  const leadIdx = Math.floor(pos);
+  drawTrail(leadIdx);
+
+  if (!pausing) {
+    drawDot(leadIdx);
+    pos += SPEED;
+    if (pos >= points.length - 1) {
+      pos = points.length - 1;
+      pausing = true;
+      pauseFrames = 60;  // 1-second pause at full curve
+    }
+  } else {
+    pauseFrames--;
+    if (pauseFrames <= 0) {
+      pausing = false;
+      pos = 0;
+    }
+  }
+
+  requestAnimationFrame(frame);
+}
+
+frame();
+</script>
+</body>
+</html>
