@@ -7,8 +7,6 @@ substance, thumbnail SVG, and pieces.json registration.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "87-double-pendulum-sinai-thunder"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
