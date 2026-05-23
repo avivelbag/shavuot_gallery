@@ -12,9 +12,6 @@ Covers:
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "92-rule110-oral-torah"
@@ -107,9 +104,9 @@ def test_rule110_neighborhood_table():
         (1, 1, 0): 1,
         (1, 1, 1): 0,
     }
-    for (l, c, r), expected_out in expected.items():
-        assert next_cell(l, c, r) == expected_out, (
-            f"next_cell({l},{c},{r}) = {next_cell(l,c,r)}, expected {expected_out}"
+    for (left, c, r), expected_out in expected.items():
+        assert next_cell(left, c, r) == expected_out, (
+            f"next_cell({left},{c},{r}) = {next_cell(left,c,r)}, expected {expected_out}"
         )
 
 
