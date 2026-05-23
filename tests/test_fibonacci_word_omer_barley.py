@@ -8,8 +8,6 @@ thumbnail validity, and pieces.json registration.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "96-fibonacci-word-omer-barley"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
