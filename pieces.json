@@ -22,6 +22,17 @@
     "essay": "pieces/02-fibonacci-word-wheat/essay.md"
   },
   {
+    "id": "03-kuramoto-kol-echad",
+    "title": "All the People Answered with One Voice",
+    "tagline": "וַיַּעַן כָּל-הָעָם קוֹל אֶחָד — 300 coupled oscillators snap from independent rainbow chaos into a single pulsing gold at the moment of kol echad",
+    "year": 2026,
+    "theme": "Matan Torah / collective voice at Sinai",
+    "technique": "Kuramoto model (coupled oscillator synchronization)",
+    "path": "pieces/03-kuramoto-kol-echad/index.html",
+    "thumbnail": "pieces/03-kuramoto-kol-echad/thumbnail.svg",
+    "essay": "pieces/03-kuramoto-kol-echad/essay.md"
+  },
+  {
     "id": "03-logistic-map-omer-bifurcation",
     "title": "Order Hidden Within the Count",
     "tagline": "the logistic map bifurcation diagram — period-doubling chaos as Sefirat HaOmer",

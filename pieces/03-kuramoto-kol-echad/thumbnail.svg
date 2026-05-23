@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <!-- Gradient overlay creates the soft phase-transition boundary in the centre -->
+    <linearGradient id="boundary" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="35%" stop-color="#0a0a14" stop-opacity="0"/>
+      <stop offset="46%" stop-color="#0a0a14" stop-opacity="0.82"/>
+      <stop offset="50%" stop-color="#0a0a14" stop-opacity="0.88"/>
+      <stop offset="54%" stop-color="#0a0a14" stop-opacity="0.82"/>
+      <stop offset="65%" stop-color="#0a0a14" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0a0a14"/>
+
+  <!-- LEFT HALF: asynchronous oscillators — rainbow phases -->
+  <!-- Row 0 (y=30): cols 0-3 at x=25,75,125,175 -->
+  <circle cx="25"  cy="30"  r="10" fill="hsl(0,80%,55%)"/>
+  <circle cx="75"  cy="30"  r="10" fill="hsl(79,80%,55%)"/>
+  <circle cx="125" cy="30"  r="10" fill="hsl(158,80%,55%)"/>
+  <circle cx="175" cy="30"  r="10" fill="hsl(237,80%,55%)"/>
+  <!-- Row 1 (y=87): cols 0-3 -->
+  <circle cx="25"  cy="87"  r="10" fill="hsl(53,80%,55%)"/>
+  <circle cx="75"  cy="87"  r="10" fill="hsl(132,80%,55%)"/>
+  <circle cx="125" cy="87"  r="10" fill="hsl(211,80%,55%)"/>
+  <circle cx="175" cy="87"  r="10" fill="hsl(290,80%,55%)"/>
+  <!-- Row 2 (y=144): cols 0-3 -->
+  <circle cx="25"  cy="144" r="10" fill="hsl(106,80%,55%)"/>
+  <circle cx="75"  cy="144" r="10" fill="hsl(185,80%,55%)"/>
+  <circle cx="125" cy="144" r="10" fill="hsl(264,80%,55%)"/>
+  <circle cx="175" cy="144" r="10" fill="hsl(343,80%,55%)"/>
+  <!-- Row 3 (y=201): cols 0-3 -->
+  <circle cx="25"  cy="201" r="10" fill="hsl(159,80%,55%)"/>
+  <circle cx="75"  cy="201" r="10" fill="hsl(238,80%,55%)"/>
+  <circle cx="125" cy="201" r="10" fill="hsl(317,80%,55%)"/>
+  <circle cx="175" cy="201" r="10" fill="hsl(36,80%,55%)"/>
+  <!-- Row 4 (y=258): cols 0-3 -->
+  <circle cx="25"  cy="258" r="10" fill="hsl(212,80%,55%)"/>
+  <circle cx="75"  cy="258" r="10" fill="hsl(291,80%,55%)"/>
+  <circle cx="125" cy="258" r="10" fill="hsl(10,80%,55%)"/>
+  <circle cx="175" cy="258" r="10" fill="hsl(89,80%,55%)"/>
+  <!-- Row 5 (y=315): cols 0-3 -->
+  <circle cx="25"  cy="315" r="10" fill="hsl(265,80%,55%)"/>
+  <circle cx="75"  cy="315" r="10" fill="hsl(344,80%,55%)"/>
+  <circle cx="125" cy="315" r="10" fill="hsl(63,80%,55%)"/>
+  <circle cx="175" cy="315" r="10" fill="hsl(142,80%,55%)"/>
+  <!-- Row 6 (y=372): cols 0-3 -->
+  <circle cx="25"  cy="372" r="10" fill="hsl(318,80%,55%)"/>
+  <circle cx="75"  cy="372" r="10" fill="hsl(37,80%,55%)"/>
+  <circle cx="125" cy="372" r="10" fill="hsl(116,80%,55%)"/>
+  <circle cx="175" cy="372" r="10" fill="hsl(195,80%,55%)"/>
+
+  <!-- RIGHT HALF: synchronized oscillators — all gold -->
+  <!-- Row 0: cols 4-7 at x=225,275,325,375 -->
+  <circle cx="225" cy="30"  r="10" fill="#D4A017"/>
+  <circle cx="275" cy="30"  r="10" fill="#D4A017"/>
+  <circle cx="325" cy="30"  r="10" fill="#D4A017"/>
+  <circle cx="375" cy="30"  r="10" fill="#D4A017"/>
+  <!-- Row 1 -->
+  <circle cx="225" cy="87"  r="10" fill="#D4A017"/>
+  <circle cx="275" cy="87"  r="10" fill="#D4A017"/>
+  <circle cx="325" cy="87"  r="10" fill="#D4A017"/>
+  <circle cx="375" cy="87"  r="10" fill="#D4A017"/>
+  <!-- Row 2 -->
+  <circle cx="225" cy="144" r="10" fill="#D4A017"/>
+  <circle cx="275" cy="144" r="10" fill="#D4A017"/>
+  <circle cx="325" cy="144" r="10" fill="#D4A017"/>
+  <circle cx="375" cy="144" r="10" fill="#D4A017"/>
+  <!-- Row 3 -->
+  <circle cx="225" cy="201" r="10" fill="#D4A017"/>
+  <circle cx="275" cy="201" r="10" fill="#D4A017"/>
+  <circle cx="325" cy="201" r="10" fill="#D4A017"/>
+  <circle cx="375" cy="201" r="10" fill="#D4A017"/>
+  <!-- Row 4 -->
+  <circle cx="225" cy="258" r="10" fill="#D4A017"/>
+  <circle cx="275" cy="258" r="10" fill="#D4A017"/>
+  <circle cx="325" cy="258" r="10" fill="#D4A017"/>
+  <circle cx="375" cy="258" r="10" fill="#D4A017"/>
+  <!-- Row 5 -->
+  <circle cx="225" cy="315" r="10" fill="#D4A017"/>
+  <circle cx="275" cy="315" r="10" fill="#D4A017"/>
+  <circle cx="325" cy="315" r="10" fill="#D4A017"/>
+  <circle cx="375" cy="315" r="10" fill="#D4A017"/>
+  <!-- Row 6 -->
+  <circle cx="225" cy="372" r="10" fill="#D4A017"/>
+  <circle cx="275" cy="372" r="10" fill="#D4A017"/>
+  <circle cx="325" cy="372" r="10" fill="#D4A017"/>
+  <circle cx="375" cy="372" r="10" fill="#D4A017"/>
+
+  <!-- Gradient overlay: soft boundary suggesting the phase transition -->
+  <rect width="400" height="400" fill="url(#boundary)"/>
+</svg>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All the People Answered with One Voice — Kuramoto Model</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a14;
+      color: #f0e8d0;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      position: sticky;
+      top: 2rem;
+    }
+    canvas {
+      display: block;
+      background: #0a0a14;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #D4A017;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: #b0a070;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+    .blockquote {
+      border-left: 3px solid #D4A017;
+      padding-left: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    .hebrew {
+      direction: rtl;
+      font-size: 1.15rem;
+      color: #D4A017;
+      display: block;
+      margin-bottom: 0.3rem;
+      line-height: 1.9;
+    }
+    .transliteration {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #b0a070;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .translation {
+      font-size: 0.9rem;
+      color: #c8bca8;
+      display: block;
+      font-style: italic;
+    }
+    .essay-pane h2 {
+      font-size: 1rem;
+      color: #D4A017;
+      margin-top: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .essay-pane p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: #e0d8c0;
+      margin-bottom: 0.95rem;
+    }
+    .essay-pane em { color: #D4A017; font-style: italic; }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100%; height: auto; }
+      .art-pane { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="art-pane">
+      <canvas id="c" width="600" height="600"></canvas>
+    </div>
+    <div class="essay-pane">
+      <h1>All the People Answered with One Voice</h1>
+      <p class="subtitle">Exodus 24:3 — Kuramoto model of coupled oscillators</p>
+      <div class="blockquote">
+        <span class="hebrew">וַיַּעַן כָּל-הָעָם קוֹל אֶחָד</span>
+        <span class="transliteration">Va'ya'an kol ha'am kol echad</span>
+        <span class="translation">"And all the people answered with one voice." — Exodus 24:3</span>
+      </div>
+      <p>Exodus 24:3 is a moment after the storm. Moses has come down from the mountain and read aloud the Book of the Covenant — the first formal statement of what Israel has agreed to at Sinai. The people's response is three words in Hebrew: <em>kol echad</em>, one voice. Not "the people agreed" or "the people said yes." One voice. Singular.</p>
+      <p>The Talmud in tractate Shabbat 86b takes the grammatical singularity seriously. The 600,000 souls at Sinai did not take turns, did not deliberate, did not arrive one after another at the same conclusion. They spoke simultaneously. The phrase is not a metaphor for consensus; it is a claim about synchrony. In that one moment, a crowd became a single oscillating system.</p>
+      <p>The Kuramoto model, developed by Yoshiki Kuramoto in 1975, is the mathematical description of exactly this phenomenon. Imagine <em>N</em> oscillators — pendulums, fireflies, neurons, human hearts in a crowd — each spinning at its own natural frequency. Left to themselves, they drift apart: different rhythms, different phases, a kaleidoscope of independent motion. But couple them — let each one feel a faint pull toward the collective mean — and something unexpected happens. Above a critical coupling strength, the oscillators spontaneously synchronize. Not all at once, not by command. The synchrony emerges from the interaction itself.</p>
+      <p>The threshold is precise: <em>K<sub>c</sub> = 2 / πg(0)</em>, where <em>g(0)</em> is the peak of the frequency distribution. For a Lorentzian distribution with half-width Γ, the critical coupling is <em>K<sub>c</sub> = 2Γ</em>. The more diverse the oscillators — the wider the spread of natural frequencies — the higher the coupling required to unite them. A more heterogeneous crowd requires stronger bonds.</p>
+      <p>In this simulation, 300 oscillators begin spinning at their own rates, each drawn from a Lorentzian distribution centered at 1.0 rad/s. The canvas is a rainbow of independent phases. Then the coupling K climbs slowly from zero. At first, small clusters begin to lock. Patches of common color appear and drift. At K ≈ 1.0 — the critical threshold — a cascade: the phases snap together and the canvas turns gold. The order parameter <em>r</em>, measuring the degree of synchrony, rises from near zero to near one in the manner of a true phase transition. This is <em>kol echad</em>.</p>
+      <p>The Midrash asks how 600,000 people can speak simultaneously. The Kuramoto model gives an answer: it is not a miracle of coordination. It is a property of coupled systems above a threshold. No one planned the synchrony. No conductor raised a baton. The unity arose from within — from the coupling between individuals who were already listening to each other. The more they listened, the stronger the coupling. The stronger the coupling, the more inevitable the synchrony.</p>
+      <p>The <em>naaseh v'nishma</em> of Exodus 24:7 — "we will do and we will hear" — is often read as commitment preceding comprehension. But there is another reading: the willingness to couple, to accept influence, is itself what makes collective understanding possible. Without coupling there is only cacophony: 600,000 separate voices, each running at its own frequency, never converging. The covenant at Sinai was first of all an agreement to listen to each other. The synchrony followed.</p>
+      <p>The order parameter <em>r</em> displayed at the bottom of the canvas is a single number between 0 and 1. At full synchrony — <em>r = 1</em> — every oscillator has the same phase and the number ceases to describe individuals at all. The crowd becomes a voice. The voice is one.</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    const W = 600, H = 600;
+    const N = 300;
+    const DT = 0.016;
+    const CYCLE_TOTAL = 30.0;  // 15s ramp-up + 10s hold + 5s ramp-down
+
+    const positions = new Float32Array(N * 2);
+    const omegas = new Float32Array(N);
+    const phases = new Float32Array(N);
+
+    (function initOscillators() {
+      const cols = 20, rows = 15;
+      const cellW = W / cols, cellH = H / rows;
+      for (let i = 0; i < N; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const jx = (Math.random() - 0.5) * cellW * 0.8;
+        const jy = (Math.random() - 0.5) * cellH * 0.8;
+        positions[i * 2]     = (col + 0.5) * cellW + jx;
+        positions[i * 2 + 1] = (row + 0.5) * cellH + jy;
+        // Lorentzian (Cauchy) distribution: omega0=1.0, gamma=0.5
+        // Avoid exact 0 and 1 to prevent tan overflow
+        const u = Math.random() * 0.9998 + 0.0001;
+        let omega = 1.0 + 0.5 * Math.tan(Math.PI * (u - 0.5));
+        omega = Math.max(0.1, Math.min(3.0, omega));
+        omegas[i] = omega;
+        phases[i] = Math.random() * 2 * Math.PI;
+      }
+    })();
+
+    // Precompute neighbor pairs within LINK_DIST px for coupling-line rendering
+    const neighborPairs = [];
+    const LINK_DIST = 80;
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const dx = positions[i * 2] - positions[j * 2];
+        const dy = positions[i * 2 + 1] - positions[j * 2 + 1];
+        if (dx * dx + dy * dy < LINK_DIST * LINK_DIST) {
+          neighborPairs.push(i, j);
+        }
+      }
+    }
+
+    /**
+     * Advance phases by one Euler step using the mean-field Kuramoto formulation.
+     * Mean-field form reduces the O(N^2) coupling sum to O(N) by computing the
+     * complex order parameter once: r*e^(i*psi) = (1/N) * sum(e^(i*phi_j)).
+     * Returns the order parameter r in [0,1].
+     */
+    function kuramotoStep(K) {
+      let sx = 0, sy = 0;
+      for (let j = 0; j < N; j++) {
+        sx += Math.cos(phases[j]);
+        sy += Math.sin(phases[j]);
+      }
+      const r = Math.sqrt(sx * sx + sy * sy) / N;
+      const psi = Math.atan2(sy, sx);
+      for (let i = 0; i < N; i++) {
+        phases[i] += DT * (omegas[i] + K * r * Math.sin(psi - phases[i]));
+        phases[i] = ((phases[i] % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      }
+      return r;
+    }
+
+    /**
+     * Returns K for the given elapsed time t:
+     *   [0, 15s)   — linear ramp from 0 to 3.0
+     *   [15s, 25s) — hold at 3.0
+     *   [25s, 30s) — linear ramp from 3.0 back to 0
+     * Cycle repeats every 30 seconds.
+     */
+    function getK(t) {
+      const tc = t % CYCLE_TOTAL;
+      if (tc < 15) return 3.0 * tc / 15;
+      if (tc < 25) return 3.0;
+      return 3.0 * (CYCLE_TOTAL - tc) / 5;
+    }
+
+    /**
+     * Returns a CSS color for an oscillator based on its phase and the global
+     * order parameter r. Below r=0.5 the color is purely hue-based (rainbow);
+     * above r=0.5 it blends linearly toward gold hsl(43,90%,45%) so that the
+     * whole canvas pulses gold when synchrony is near-complete.
+     */
+    function oscillatorColor(phi, r) {
+      const hue = (phi / (2 * Math.PI)) * 360;
+      if (r <= 0.5) return `hsl(${hue},80%,55%)`;
+      const blend = Math.min(1, (r - 0.5) / 0.5);
+      const h = hue + (43 - hue) * blend;
+      const s = 80 + (90 - 80) * blend;
+      const l = 55 + (45 - 55) * blend;
+      return `hsl(${h.toFixed(1)},${s.toFixed(1)}%,${l.toFixed(1)}%)`;
+    }
+
+    let startTime = null;
+
+    function frame(ts) {
+      if (!startTime) startTime = ts;
+      const elapsed = (ts - startTime) / 1000;
+      const K = getK(elapsed);
+      const r = kuramotoStep(K);
+
+      ctx.fillStyle = '#0a0a14';
+      ctx.fillRect(0, 0, W, H);
+
+      // Coupling lines: faint connections between nearby oscillators
+      // Opacity encodes active coupling direction: sin(phi_j - phi_i) clamped positive
+      ctx.save();
+      ctx.lineWidth = 0.8;
+      for (let k = 0; k < neighborPairs.length; k += 2) {
+        const i = neighborPairs[k];
+        const j = neighborPairs[k + 1];
+        const opacity = Math.max(0, Math.sin(phases[j] - phases[i])) * 0.15;
+        if (opacity < 0.005) continue;
+        ctx.strokeStyle = `rgba(180,180,180,${opacity.toFixed(3)})`;
+        ctx.beginPath();
+        ctx.moveTo(positions[i * 2], positions[i * 2 + 1]);
+        ctx.lineTo(positions[j * 2], positions[j * 2 + 1]);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // Oscillator circles — radius 6px, colored by phase and order parameter
+      for (let i = 0; i < N; i++) {
+        ctx.beginPath();
+        ctx.arc(positions[i * 2], positions[i * 2 + 1], 6, 0, 2 * Math.PI);
+        ctx.fillStyle = oscillatorColor(phases[i], r);
+        ctx.fill();
+      }
+
+      // HUD: K and r values at bottom-left
+      ctx.fillStyle = 'rgba(0,0,0,0.55)';
+      ctx.fillRect(8, H - 44, 165, 36);
+      ctx.fillStyle = '#c8bca8';
+      ctx.font = '13px monospace';
+      ctx.fillText(`K = ${K.toFixed(1)}`, 16, H - 26);
+      ctx.fillText(`r = ${r.toFixed(2)}`, 98, H - 26);
+
+      requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  </script>
+</body>
+</html>
