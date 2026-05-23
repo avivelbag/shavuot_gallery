@@ -150,7 +150,7 @@
 
     <h2>This Piece</h2>
 
-    <p>The tiling is generated in JavaScript by recursive subdivision to depth 4 (625 triangles), each filled by generation depth using a harvest palette — deep wheat gold for the outermost generation, warm amber, field green, and cream for the innermost. The 49 largest tiles by area are highlighted with a luminosity boost and labeled with Hebrew ordinals <strong>א</strong> through <strong>מ״ט</strong>, marking the 49 days of the Omer. Each label is scaled to the tile's inscribed circle radius and rendered in deep blue. The entire tiling rotates continuously at 0.003 radians per frame, completing one full revolution in approximately 35 seconds.</p>
+    <p>The tiling is generated in JavaScript by recursive subdivision to depth 4 (625 triangles), each filled by area-rank using a harvest palette — deep wheat gold for the largest quartile of tiles, warm amber for the next, field green for the next, and cream for the smallest quartile. The 49 largest tiles by area are highlighted with a luminosity boost and labeled with Hebrew ordinals <strong>א</strong> through <strong>מ״ט</strong>, marking the 49 days of the Omer. Each label is scaled to the tile's inscribed circle radius and rendered in deep blue. The entire tiling rotates continuously at 0.003 radians per frame, completing one full revolution in approximately 35 seconds.</p>
   </div>
 </div>
 
@@ -162,7 +162,7 @@
   const CX = 350, CY = 350;
   const SCALE = 280;
 
-  const DEPTH_COLORS = ['#C8A020', '#D4720A', '#5A8A30', '#F0E8D0', '#F0E8D0'];
+  const DEPTH_COLORS = ['#C8A020', '#D4720A', '#5A8A30', '#F0E8D0'];
   const HIGHLIGHT_BOOST = 1.25;
   const LABEL_COLOR = '#1A3080';
 
@@ -349,35 +349,40 @@
     const inv = 1 / Math.sqrt(5);
     const seed = tri(
       vec(0, 0),
-      vec(0, inv),        // short leg tip (length 1/√5)
-      vec(2 * inv, 0),    // long leg tip  (length 2/√5)
+      vec(0, inv),
+      vec(2 * inv, 0),
       false,
       0
     );
 
     const triangles = buildTiling([seed], DEPTH);
 
-    // Sort by area descending; top 49 get Omer labels.
-    const sorted = triangles.slice().sort((a, b) => area(b) - area(a));
-    const top49 = new Set(sorted.slice(0, 49));
+    // All leaf triangles share the same depth, so color by area-rank bucket instead.
+    // Divide area-sorted triangles into 4 equal bands: largest → gold … smallest → cream.
+    const byArea = triangles.slice().sort((a, b) => area(b) - area(a));
+    const n = triangles.length;
+    const colorMap = new Map();
+    byArea.forEach((t, i) => {
+      colorMap.set(t, DEPTH_COLORS[Math.min(3, Math.floor(i * 4 / n))]);
+    });
+
+    const top49 = new Set(byArea.slice(0, 49));
 
     const tilingGroup = document.getElementById('tiling-group');
     const labelsGroup = document.getElementById('labels-group');
 
     for (const t of triangles) {
-      const baseColor = DEPTH_COLORS[Math.min(t.depth, DEPTH_COLORS.length - 1)];
+      const baseColor = colorMap.get(t);
       const fill = top49.has(t) ? lighten(baseColor, HIGHLIGHT_BOOST) : baseColor;
       tilingGroup.appendChild(makePoly(t, fill));
     }
 
-    let ommerIndex = 0;
-    for (const t of sorted.slice(0, 49)) {
+    byArea.slice(0, 49).forEach((t, i) => {
       const c = toSVG(centroid(t));
       const r = inradius(t) * SCALE;
       const fontSize = Math.max(8, r * 0.9);
-      labelsGroup.appendChild(makeText(c.x, c.y, HEBREW_ORDINALS[ommerIndex], fontSize));
-      ommerIndex++;
-    }
+      labelsGroup.appendChild(makeText(c.x, c.y, HEBREW_ORDINALS[i], fontSize));
+    });
   }
 
   buildSVG();

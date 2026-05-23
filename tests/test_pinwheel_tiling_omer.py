@@ -8,7 +8,6 @@ rotation animation, essay content, and pieces.json registration.
 
 import json
 import os
-import re
 
 import pytest
 
@@ -315,3 +314,45 @@ def test_nonexistent_thumbnail_detected(tmp_path):
     """Confirm that a path pointing to a missing file is correctly flagged."""
     missing = tmp_path / "thumbnail.svg"
     assert not missing.exists()
+
+
+# ---------------------------------------------------------------------------
+# Coloring regression guard: area-rank must produce multiple distinct fills
+# ---------------------------------------------------------------------------
+
+def test_html_coloring_uses_color_map(html):
+    """Coloring must use area-rank bucketing (colorMap) not t.depth indexing.
+
+    All leaf triangles share the same depth after buildTiling returns, so
+    indexing DEPTH_COLORS by t.depth collapses every tile to the single
+    deepest palette entry — making the entire tiling monochrome.
+    """
+    assert "colorMap" in html, (
+        "Expected area-rank colorMap in coloring logic; depth-indexed "
+        "coloring makes the tiling monochrome (all leaves at depth=DEPTH)."
+    )
+
+
+def test_html_coloring_not_indexed_by_t_depth(html):
+    """Depth-keyed coloring is incorrect when all leaves share the same depth.
+
+    The two most obvious broken patterns are ruled out here: direct depth
+    indexing on DEPTH_COLORS and the old Math.min guard that still collapsed
+    to a single slot.
+    """
+    assert "DEPTH_COLORS[t.depth]" not in html
+    assert "DEPTH_COLORS[Math.min(t.depth" not in html
+
+
+def test_html_depth_colors_has_four_entries(html):
+    """DEPTH_COLORS must have exactly 4 palette entries mapping to 4 area bands.
+
+    Five entries with the last two identical was the prior bug signature
+    (the duplicate slot meant the deepest two depths got the same color).
+    """
+    assert "DEPTH_COLORS = ['#C8A020', '#D4720A', '#5A8A30', '#F0E8D0']" in html
+
+
+def test_html_area_rank_bucket_formula(html):
+    """The bucket formula i * 4 / n must appear to ensure 4 distinct color bands."""
+    assert "i * 4 / n" in html or "i*4/n" in html
