@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Rule, All Interpretation — Rule 110 / Oral Torah</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #F5EDD6; overflow: hidden; }
+
+    #art-panel {
+      position: fixed;
+      inset: 0;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    #dor-overlay {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: 1rem;
+      color: #C8941A;
+      opacity: 0.7;
+      direction: rtl;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #essay-hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="art-panel">
+  <canvas id="c"></canvas>
+  <div id="dor-overlay">דּוֹר לְדוֹר</div>
+</div>
+
+<div id="essay-hidden">
+<h1>One Rule, All Interpretation</h1>
+<p>The Talmud Yerushalmi (Peah 2:6) records that two Torahs were given at Sinai: the Written Torah and the Oral Torah. Pirkei Avot opens with the same teaching: Moshe kibel Torah miSinai umsarah l'Yehoshua — "Moses received Torah at Sinai and transmitted it to Joshua, Joshua to the Elders, the Elders to the Prophets, and the Prophets transmitted it to the Men of the Great Assembly" (Avot 1:1). From the first moment, Torah was never only a text. It was a text plus the unwritten tradition of how to read it.</p>
+<p>The Written Torah is finite: the Masoretes counted 304,805 letters across the Five Books of Moses, and that count has not changed in a thousand years. The text is sealed, fixed, guarded by tradition with a precision that scribes still honor today — a sefer Torah with a single letter missing is invalid, set aside until corrected. This is Torah she-bikhsav: the Written Torah.</p>
+<p>The Oral Torah is something else entirely. Each generation of rabbis applies the fixed rules to new questions and produces new rulings that could not have been predicted in advance. The Mishnah, the Talmud, the Rishonim, the Acharonim, the contemporary responsa literature — every decade adds another layer. Rabbi Akiva, said the Midrash, was able to derive mountains of law from the decorative crowns on the letters of the Torah. The Written Torah is the seed; the Oral Torah is an open and growing tree.</p>
+<p>In 1983 Stephen Wolfram began cataloguing all 256 elementary cellular automata — systems where each cell in a 1D row updates its state based on its own value and the values of its two neighbors. Every possible such rule maps eight 3-cell neighborhoods to a 0 or 1. The entire rule fits in a single byte. Rule 110 is encoded as binary 01101110.</p>
+<p>In 2004, Matthew Cook (working in Wolfram's group) published a proof that Rule 110 is computationally universal: given the right initial configuration, a Rule 110 grid can simulate any Turing machine, and therefore any computation that any computer can perform. The full power of all software ever written is latent in one byte, eight entries, one rule applied row by row.</p>
+<p>The non-obvious insight is structural. Rule 110 proves that Turing-completeness — the capacity to compute anything — does not require a large or complex rule set. It requires only a rule set rich enough that, when applied repeatedly to new input, it produces output that cannot be predicted without running the rule. The results are undecidable in advance. You must simply run it and see what emerges.</p>
+<p>This is exactly the structure of halakha. The Shulchan Aruch encodes a fixed rule set. But when a new question arrives — a technology the ancients could not have imagined, a situation the Talmud never addressed — the posek applies those fixed rules to the new case and produces a ruling that could not have been read off from the original text. You must run the rule.</p>
+<p>What you see here is Rule 110 operating from a single seed: one ON cell at the center of the first row, everything else OFF. This is Torah she-bikhsav — a single, fixed starting condition. Row by row, the rule applies. Triangular structures emerge, irregular lacunae, glider-like patterns that propagate through the tapestry without ever settling into a regular period. The bottom of the screen is the present; the top is the past, scrolling away as each new generation pushes history upward.</p>
+<p>The label dor l'dor — generation to generation — is the ancient formula for how the Oral Torah travels: not printed but transmitted, not static but alive, one generation handing the ever-growing tradition to the next. The rule is one. The output is inexhaustible.</p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var RULE = 110;
+  var CELL_SIZE = 4;
+
+  var ON_COLOR  = '#1C1864'; // deep indigo: ON cells
+  var OFF_COLOR = '#F5EDD6'; // warm parchment: OFF cells
+  var ON_R = 0x1C, ON_G = 0x18, ON_B = 0x64;
+  var OFF_R = 0xF5, OFF_G = 0xED, OFF_B = 0xD6;
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+
+  var W, H, rows, head, imgData, pixels;
+
+  function nextCell(left, center, right) {
+    var idx = (left << 2) | (center << 1) | right;
+    return (RULE >> idx) & 1;
+  }
+
+  function init() {
+    canvas.width = panel.clientWidth || window.innerWidth;
+    canvas.height = panel.clientHeight || window.innerHeight;
+
+    W = Math.floor(canvas.width / CELL_SIZE);
+    H = Math.floor(canvas.height / CELL_SIZE);
+
+    rows = [];
+    for (var i = 0; i < H; i++) {
+      rows.push(new Uint8Array(W));
+    }
+
+    rows[0][Math.floor(W / 2)] = 1;
+    head = 1;
+
+    for (var g = 1; g < H; g++) {
+      computeNextGeneration();
+    }
+
+    imgData = ctx.createImageData(W * CELL_SIZE, H * CELL_SIZE);
+    pixels = imgData.data;
+
+    for (var p = 3; p < pixels.length; p += 4) {
+      pixels[p] = 255;
+    }
+  }
+
+  function computeNextGeneration() {
+    var prev = rows[(head - 1 + H) % H];
+    var curr = rows[head];
+    for (var c = 0; c < W; c++) {
+      var left = prev[(c - 1 + W) % W];
+      var center = prev[c];
+      var right = prev[(c + 1) % W];
+      curr[c] = nextCell(left, center, right);
+    }
+    head = (head + 1) % H;
+  }
+
+  function render() {
+    for (var row = 0; row < H; row++) {
+      var rowData = rows[(head + row) % H];
+      var yStart = row * CELL_SIZE;
+
+      for (var col = 0; col < W; col++) {
+        var cell = rowData[col];
+        var xStart = col * CELL_SIZE;
+        var r = cell ? ON_R : OFF_R;
+        var g = cell ? ON_G : OFF_G;
+        var b = cell ? ON_B : OFF_B;
+
+        for (var dy = 0; dy < CELL_SIZE; dy++) {
+          var base = ((yStart + dy) * W * CELL_SIZE + xStart) * 4;
+          for (var dx = 0; dx < CELL_SIZE; dx++) {
+            var idx = base + dx * 4;
+            pixels[idx]     = r;
+            pixels[idx + 1] = g;
+            pixels[idx + 2] = b;
+          }
+        }
+      }
+    }
+    ctx.putImageData(imgData, 0, 0);
+  }
+
+  init();
+  render();
+
+  setInterval(function () {
+    computeNextGeneration();
+    render();
+  }, 67);
+}());
+</script>
+</body>
+</html>

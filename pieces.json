@@ -1606,6 +1606,17 @@
     "essay": "pieces/91-spherical-harmonics-voice-sinai/essay.md"
   },
   {
+    "id": "92-rule110-oral-torah",
+    "title": "One Rule, All Interpretation",
+    "tagline": "Rule 110 — the only 1D cellular automaton proven Turing-complete — grows from a single seed as the Oral Torah grows from the Written: one rule, inexhaustible output",
+    "year": 2026,
+    "theme": "Matan Torah / Written and Oral Torah",
+    "technique": "Elementary 1D cellular automaton (Rule 110, Wolfram)",
+    "path": "pieces/92-rule110-oral-torah/index.html",
+    "thumbnail": "pieces/92-rule110-oral-torah/thumbnail.svg",
+    "essay": "pieces/92-rule110-oral-torah/essay.md"
+  },
+  {
     "id": "92-saw-sefirat-haomer",
     "title": "Forty-Nine Steps That Do Not Return",
     "tagline": "forty-nine steps that cannot be repeated, each moving into territory not yet visited — a self-avoiding walk that models the Omer count's irreversibility: seven weeks of days that close behind you, until the fiftieth blazes open",
