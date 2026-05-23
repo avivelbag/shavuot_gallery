@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seven Weeks, Seven Days: The Arctic Circle of the Omer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0C0C0C;
+      color: #c8c0a0;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1280px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    canvas {
+      display: block;
+      border: 1px solid #2a2a1a;
+      background: #0C0C0C;
+    }
+    #status {
+      color: #D4A017;
+      font-size: 1rem;
+      min-height: 1.4em;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+      max-width: 520px;
+    }
+    h1 {
+      font-size: 1.35rem;
+      font-weight: normal;
+      color: #e8d8a0;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: #8a7a50;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+    h2 {
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: #c8b870;
+      margin: 1.2rem 0 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #b0a080;
+      margin-bottom: 0.8rem;
+    }
+    em { color: #d0bc80; font-style: italic; }
+    .sources {
+      font-size: 0.78rem;
+      color: #6a5e3a;
+      margin-top: 1.5rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 860px) {
+      .layout { flex-direction: column; }
+      .essay-pane { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="c"></canvas>
+    <div id="status"></div>
+  </div>
+  <div class="essay-pane">
+    <h1>Seven Weeks, Seven Days: The Arctic Circle of the Omer</h1>
+    <p class="subtitle">Sefirat HaOmer &mdash; Random domino tiling / Aztec diamond shuffling algorithm</p>
+
+    <p><em>"And you shall count for yourselves from the day after the Sabbath, from the day when you bring the wave-offering sheaf — seven complete weeks they shall be; until the day after the seventh Sabbath you shall count fifty days." — Leviticus 23:15–16</em></p>
+
+    <p>The commandment arrives with unusual precision. Not simply "count forty-nine days," but count in weeks — seven times seven — arriving at the fiftieth. The structure is spatial before it is temporal: a square of seven rows and seven columns, each cell a day, the whole grid orienting the wandering people toward Sinai.</p>
+
+    <h2>The Arctic Circle Theorem</h2>
+
+    <p>In 1992, mathematicians William Jockusch, James Propp, and Peter Shor proved a startling theorem about random domino tilings of the Aztec diamond — a stepped square rotated forty-five degrees. If you tile such a shape uniformly at random, something remarkable appears: the boundary between order and disorder is not random. It is a circle, almost perfectly, almost every time. The frozen corners — four regions where dominoes align rigidly — give way at the arctic circle to a temperate zone of genuine randomness. This is the arctic circle theorem.</p>
+
+    <h2>The Merkavah and the Four Corners</h2>
+
+    <p>The Talmud (<em>Hagigah 13a</em>) describes the Merkavah — the divine chariot-throne — as attended by four living creatures stationed at the four compass points. The frozen corners of the Aztec diamond correspond, in an uncanny way, to this vision: four regions of absolute order, each oriented toward a different direction, enclosing a center that cannot be fully seen or described. The chaotic central disk is the divine cloud — the same cloud that led Israel through the wilderness, that descended on Sinai, that the Zohar says surrounds the innermost light.</p>
+
+    <h2>The 49 Central Squares</h2>
+
+    <p>The Zohar maps the forty-nine days of the Omer onto a seven-by-seven grid of sefirot combinations — the seven divine qualities each modulated by all seven in turn: chesed within chesed, gevurah within chesed, and so on through all forty-nine pairings. This is not merely metaphor. The Aztec diamond of order seven contains exactly forty-nine inner unit squares, one for each day of the count. The geometry literalizes what the Zohar abstracts.</p>
+
+    <h2>All Paths Are Valid</h2>
+
+    <p>Every valid tiling of the Aztec diamond is equally likely in a uniform random draw. There is no "best" path through the forty-nine days, no canonical arrangement of the sefirot. Each new tiling is a different but equally legitimate traversal of the same structure — the same four frozen corners, the same arctic circle boundary, a different interior each time. The uniformity of the random tiling is itself a kind of theological statement: all paths through the counting are valid; what is certain is the frame.</p>
+
+    <p>The count of the Omer ends not in the central disk — which remains unmapped, genuinely free — but in the arrival at the fiftieth day, Shavuot, the moment outside the grid. The frozen corners are certainty; the arctic circle is the limit of what can be known; the central disk is freedom.</p>
+
+    <p class="sources"><em>See: Leviticus 23:15–16; Talmud Bavli Hagigah 13a; Zohar, Emor (III:97b); Jockusch, Propp, Shor — "Random Domino Tilings and the Arctic Circle Theorem" (1998).</em></p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const ORDER = 14;
+  const CELL = 25;
+  const SIZE = ORDER * 2;   // grid is (2*ORDER) x (2*ORDER)
+  const CANVAS_PX = SIZE * CELL;
+
+  const COLORS = {
+    N: '#D4A017',
+    S: '#B8860B',
+    E: '#4A7C59',
+    W: '#2D5A3D',
+    empty: '#0C0C0C'
+  };
+
+  const canvas = document.getElementById('c');
+  canvas.width  = CANVAS_PX;
+  canvas.height = CANVAS_PX;
+  const ctx = canvas.getContext('2d');
+  const statusEl = document.getElementById('status');
+
+  // -------------------------------------------------------------------------
+  // Grid utilities
+  // -------------------------------------------------------------------------
+
+  /** Create a blank 2D grid of nulls sized (2*n) x (2*n). */
+  function blankGrid(n) {
+    const sz = n * 2;
+    return Array.from({length: sz}, () => new Array(sz).fill(null));
+  }
+
+  /**
+   * Returns true if cell (r, c) is inside the order-n Aztec diamond.
+   * The diamond occupies cells where |r - n| + |c - n| < n.
+   */
+  function inDiamond(r, c, n) {
+    return Math.abs(r - n) + Math.abs(c - n) < n;
+  }
+
+  /** Place a domino: mark two cells with their direction. */
+  function placeDomino(grid, r1, c1, r2, c2, dir1, dir2, id) {
+    grid[r1][c1] = {id, dir: dir1};
+    grid[r2][c2] = {id, dir: dir2};
+  }
+
+  // -------------------------------------------------------------------------
+  // Shuffling algorithm — one step
+  // -------------------------------------------------------------------------
+
+  let nextId = 1;
+
+  /**
+   * Perform one shuffle step on a grid for an Aztec diamond of order n.
+   *
+   * The algorithm:
+   *   1. Annihilate: find 2x2 blocks containing a matched pair (N+S or E+W
+   *      pointing toward each other); remove both dominoes.
+   *   2. Create: fill every 2x2 block that is entirely empty with a new
+   *      randomly oriented domino (50/50 horizontal vs vertical).
+   *   3. Slide: move every remaining domino one step outward in its direction;
+   *      dominoes that slide off the boundary are removed.
+   */
+  function shuffleStep(grid, n) {
+    const sz = n * 2;
+
+    // Step 1: Annihilate matched pairs in 2x2 blocks
+    for (let r = 0; r < sz - 1; r++) {
+      for (let c = 0; c < sz - 1; c++) {
+        const tl = grid[r][c], tr = grid[r][c+1];
+        const bl = grid[r+1][c], br = grid[r+1][c+1];
+
+        // Vertical pair: N-domino on bottom row, S-domino on top row of block
+        // A "south" domino occupies top cell, "north" occupies bottom cell.
+        // Matched vertical pair: bl.dir==N && tl.dir==S, same domino id pairs.
+        // Actually: a domino occupies 2 cells. N means "north-facing half" (the
+        // cell at bottom of the pair, paired with a cell one step north that is S).
+        // Easier: look for a 2x2 block that has tl.dir==S and bl.dir==N, same ids,
+        // OR tr.dir==S, br.dir==N same ids, OR tl.dir==E and tr.dir==W same ids,
+        // OR bl.dir==E and br.dir==W same ids.
+
+        // Check vertical pair in left column: tl=S (top of vert domino going S),
+        // bl=N (bottom of vert domino going N) — these face each other.
+        if (tl && bl && tl.dir === 'S' && bl.dir === 'N') {
+          grid[r][c]   = null;
+          grid[r+1][c] = null;
+        }
+        // right column
+        if (tr && br && tr.dir === 'S' && br.dir === 'N') {
+          grid[r][c+1]   = null;
+          grid[r+1][c+1] = null;
+        }
+        // Check horizontal pair in top row: tl=E (left half going E), tr=W (right half going W)
+        if (tl && tr && tl.dir === 'E' && tr.dir === 'W') {
+          grid[r][c]   = null;
+          grid[r][c+1] = null;
+        }
+        // bottom row
+        if (bl && br && bl.dir === 'E' && br.dir === 'W') {
+          grid[r+1][c]   = null;
+          grid[r+1][c+1] = null;
+        }
+      }
+    }
+
+    // Step 2: Create new dominoes in fully empty 2x2 blocks
+    for (let r = 0; r < sz - 1; r++) {
+      for (let c = 0; c < sz - 1; c++) {
+        if (grid[r][c] === null && grid[r][c+1] === null &&
+            grid[r+1][c] === null && grid[r+1][c+1] === null) {
+          // Check all four cells are inside the diamond (for the expanded size)
+          // We allow creation anywhere the 2x2 block is empty; out-of-diamond
+          // cells will be removed in the slide step anyway.
+          const id = nextId++;
+          if (Math.random() < 0.5) {
+            // Horizontal: top row E→W, bottom row E→W
+            placeDomino(grid, r,   c, r,   c+1, 'E', 'W', id);
+            const id2 = nextId++;
+            placeDomino(grid, r+1, c, r+1, c+1, 'E', 'W', id2);
+          } else {
+            // Vertical: left column S→N, right column S→N
+            placeDomino(grid, r, c,   r+1, c,   'S', 'N', id);
+            const id2 = nextId++;
+            placeDomino(grid, r, c+1, r+1, c+1, 'S', 'N', id2);
+          }
+        }
+      }
+    }
+
+    // Step 3: Slide every domino one step in its direction; remove if off-boundary
+    const next = blankGrid(n);
+    const placed = new Set();
+
+    for (let r = 0; r < sz; r++) {
+      for (let c = 0; c < sz; c++) {
+        const cell = grid[r][c];
+        if (!cell) continue;
+        const key = `${r},${c},${cell.id}`;
+        if (placed.has(key)) continue;
+
+        let nr = r, nc = c;
+        if      (cell.dir === 'N') nr = r - 1;
+        else if (cell.dir === 'S') nr = r + 1;
+        else if (cell.dir === 'E') nc = c + 1;
+        else if (cell.dir === 'W') nc = c - 1;
+
+        if (nr < 0 || nr >= sz || nc < 0 || nc >= sz) continue;
+        if (!inDiamond(nr, nc, n)) continue;
+
+        next[nr][nc] = cell;
+        placed.add(key);
+      }
+    }
+
+    return next;
+  }
+
+  // -------------------------------------------------------------------------
+  // Build a complete tiling of order n using ORDER shuffle steps
+  // -------------------------------------------------------------------------
+
+  /**
+   * Generate a uniform random tiling of the Aztec diamond of the given order
+   * by running the shuffling algorithm from scratch.
+   * Returns the completed grid.
+   */
+  function generateTiling(order) {
+    nextId = 1;
+    let grid = blankGrid(order);
+    for (let step = 0; step < order; step++) {
+      grid = shuffleStep(grid, order);
+    }
+    return grid;
+  }
+
+  /**
+   * Build the sequence of intermediate grids (one per step) for animation.
+   * Returns array of length order where entry i is the grid after step i+1.
+   */
+  function buildSteps(order) {
+    nextId = 1;
+    const steps = [];
+    let grid = blankGrid(order);
+    for (let step = 0; step < order; step++) {
+      grid = shuffleStep(grid, order);
+      steps.push(grid);
+    }
+    return steps;
+  }
+
+  // -------------------------------------------------------------------------
+  // Drawing
+  // -------------------------------------------------------------------------
+
+  /**
+   * Draw the full diamond for the given grid and order onto the canvas.
+   * Cells outside the diamond are drawn near-black; domino cells colored by dir.
+   */
+  function drawGrid(grid, order, alpha) {
+    const sz = order * 2;
+    ctx.globalAlpha = alpha !== undefined ? alpha : 1;
+    ctx.clearRect(0, 0, CANVAS_PX, CANVAS_PX);
+
+    for (let r = 0; r < sz; r++) {
+      for (let c = 0; c < sz; c++) {
+        const cell = grid[r][c];
+        if (!inDiamond(r, c, order)) {
+          ctx.fillStyle = '#0C0C0C';
+        } else if (cell) {
+          ctx.fillStyle = COLORS[cell.dir] || COLORS.empty;
+        } else {
+          ctx.fillStyle = '#1a1a10';
+        }
+        ctx.fillRect(c * CELL, r * CELL, CELL, CELL);
+      }
+    }
+
+    // Draw thin grid lines only inside the diamond
+    ctx.strokeStyle = 'rgba(0,0,0,0.35)';
+    ctx.lineWidth = 0.5;
+    for (let r = 0; r < sz; r++) {
+      for (let c = 0; c < sz; c++) {
+        if (inDiamond(r, c, order)) {
+          ctx.strokeRect(c * CELL + 0.25, r * CELL + 0.25, CELL - 0.5, CELL - 0.5);
+        }
+      }
+    }
+
+    ctx.globalAlpha = 1;
+  }
+
+  /**
+   * Draw the arctic circle boundary as a faint white dashed circle.
+   * The theoretical radius is ORDER * sqrt(2) / 2 cell-lengths.
+   */
+  function drawArcticCircle(order) {
+    const cx = order * CELL;
+    const cy = order * CELL;
+    const r  = order * Math.SQRT2 / 2 * CELL;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 4]);
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+
+  /**
+   * Return the (row, col) list of the 49 central unit squares for an order-7
+   * sub-diamond centered in the order-14 grid, left-to-right top-to-bottom.
+   * Central squares occupy rows [7..13] and cols [7..13] that are inside the diamond.
+   */
+  function centralSquares(order) {
+    const half = order / 2;   // 7 for order 14
+    const cells = [];
+    const center = order;     // 14
+    for (let r = center - half; r < center + half; r++) {
+      for (let c = center - half; c < center + half; c++) {
+        if (inDiamond(r, c, order)) {
+          cells.push([r, c]);
+        }
+      }
+    }
+    return cells;
+  }
+
+  /**
+   * Pulse a single cell gold for the Omer-day highlight sweep.
+   */
+  function pulseCell(r, c, grid) {
+    const cell = grid[r][c];
+    const baseColor = cell ? COLORS[cell.dir] : '#1a1a10';
+
+    ctx.save();
+    ctx.fillStyle = '#FFD700';
+    ctx.globalAlpha = 0.7;
+    ctx.fillRect(c * CELL + 1, r * CELL + 1, CELL - 2, CELL - 2);
+    ctx.globalAlpha = 1;
+
+    // Show day label
+    ctx.fillStyle = '#0C0C0C';
+    ctx.font = `bold ${Math.floor(CELL * 0.45)}px monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.restore();
+  }
+
+  // -------------------------------------------------------------------------
+  // Animation state machine
+  // -------------------------------------------------------------------------
+
+  const STEP_PAUSE = 400;   // ms between construction steps
+  const OMER_PAUSE = 3000;  // ms between each Omer-day highlight
+  const CROSSFADE_MS = 1500;
+
+  let phase = 'build';      // 'build' | 'circle' | 'omer' | 'crossfade' | 'done'
+  let stepIndex = 0;
+  let steps = [];
+  let finalGrid = null;
+  let nextGrid = null;
+  let omerIndex = 0;
+  let omerCells = [];
+  let lastTime = 0;
+  let phaseStart = 0;
+  let crossfadeStart = 0;
+  let rafId = null;
+
+  function setStatus(txt) {
+    statusEl.textContent = txt;
+  }
+
+  function startBuild() {
+    phase = 'build';
+    stepIndex = 0;
+    steps = buildSteps(ORDER);
+    finalGrid = steps[steps.length - 1];
+    setStatus('Building…');
+    phaseStart = performance.now();
+    lastTime = phaseStart;
+  }
+
+  /**
+   * Main animation loop driven by requestAnimationFrame.
+   */
+  function loop(ts) {
+    rafId = requestAnimationFrame(loop);
+    const dt = ts - lastTime;
+
+    if (phase === 'build') {
+      if (ts - phaseStart >= stepIndex * STEP_PAUSE) {
+        if (stepIndex < steps.length) {
+          drawGrid(steps[stepIndex], ORDER);
+          setStatus(`Step ${stepIndex + 1} of ${ORDER}`);
+          stepIndex++;
+        } else {
+          // Construction complete — show arctic circle then begin Omer sweep
+          drawGrid(finalGrid, ORDER);
+          drawArcticCircle(ORDER);
+          omerCells = centralSquares(ORDER);
+          omerIndex = 0;
+          phase = 'omer';
+          phaseStart = ts;
+          setStatus('Day 1 of 49');
+        }
+      }
+    } else if (phase === 'omer') {
+      const elapsed = ts - phaseStart;
+      const daysDone = Math.floor(elapsed / OMER_PAUSE);
+
+      if (daysDone > omerIndex && omerIndex < omerCells.length) {
+        // Redraw base, arctic circle, then pulse all days up to omerIndex
+        drawGrid(finalGrid, ORDER);
+        drawArcticCircle(ORDER);
+        for (let i = 0; i <= omerIndex && i < omerCells.length; i++) {
+          const [r, c] = omerCells[i];
+          ctx.save();
+          ctx.fillStyle = '#FFD700';
+          ctx.globalAlpha = (i === omerIndex) ? 0.75 : 0.35;
+          ctx.fillRect(c * CELL + 1, r * CELL + 1, CELL - 2, CELL - 2);
+          ctx.restore();
+        }
+        omerIndex = daysDone;
+        setStatus(`Day ${Math.min(omerIndex + 1, 49)} of 49`);
+      }
+
+      if (daysDone >= omerCells.length) {
+        // Omer sweep complete — generate a new tiling and crossfade
+        nextGrid = generateTiling(ORDER);
+        crossfadeStart = ts;
+        phase = 'crossfade';
+        setStatus('New tiling…');
+      }
+    } else if (phase === 'crossfade') {
+      const t = Math.min((ts - crossfadeStart) / CROSSFADE_MS, 1);
+
+      // Draw old tiling fading out
+      drawGrid(finalGrid, ORDER, 1 - t);
+
+      // Draw new tiling fading in on top
+      ctx.save();
+      ctx.globalAlpha = t;
+      const sz = ORDER * 2;
+      for (let r = 0; r < sz; r++) {
+        for (let c = 0; c < sz; c++) {
+          const cell = nextGrid[r][c];
+          if (!inDiamond(r, c, ORDER)) continue;
+          ctx.fillStyle = cell ? COLORS[cell.dir] : '#1a1a10';
+          ctx.fillRect(c * CELL, r * CELL, CELL, CELL);
+        }
+      }
+      ctx.globalAlpha = 1;
+      // Grid lines
+      ctx.strokeStyle = 'rgba(0,0,0,0.35)';
+      ctx.lineWidth = 0.5;
+      for (let r = 0; r < sz; r++) {
+        for (let c = 0; c < sz; c++) {
+          if (inDiamond(r, c, ORDER)) ctx.strokeRect(c*CELL+0.25, r*CELL+0.25, CELL-0.5, CELL-0.5);
+        }
+      }
+      ctx.restore();
+
+      if (t >= 1) {
+        finalGrid = nextGrid;
+        nextGrid = null;
+        // Restart Omer sweep on the new tiling
+        omerCells = centralSquares(ORDER);
+        omerIndex = 0;
+        phase = 'omer';
+        phaseStart = ts;
+        setStatus('Day 1 of 49');
+      }
+    }
+
+    lastTime = ts;
+  }
+
+  startBuild();
+  rafId = requestAnimationFrame(loop);
+}());
+</script>
+</body>
+</html>

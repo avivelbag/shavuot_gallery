@@ -1538,5 +1538,16 @@
     "path": "pieces/88-jfa-voronoi-tikkun-leil/index.html",
     "thumbnail": "pieces/88-jfa-voronoi-tikkun-leil/thumbnail.svg",
     "essay": "pieces/88-jfa-voronoi-tikkun-leil/essay.md"
+  },
+  {
+    "id": "89-aztec-diamond-omer",
+    "title": "Seven Weeks, Seven Days: The Arctic Circle of the Omer",
+    "tagline": "Random domino tiling grows an arctic circle from the counting of the Omer",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / seven weeks",
+    "technique": "Random domino tiling / Aztec diamond shuffling algorithm",
+    "path": "pieces/89-aztec-diamond-omer/index.html",
+    "thumbnail": "pieces/89-aztec-diamond-omer/thumbnail.svg",
+    "essay": "pieces/89-aztec-diamond-omer/essay.md"
   }
 ]
