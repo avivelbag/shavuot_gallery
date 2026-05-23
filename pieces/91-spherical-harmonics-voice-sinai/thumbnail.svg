@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF8E8" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#6B22C8" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0B1440" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF8E8" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#6B22C8" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0B1440" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clip">
+      <rect width="400" height="400"/>
+    </clipPath>
+  </defs>
+
+  <rect width="400" height="400" fill="#0B1440"/>
+
+  <!-- Deformed sphere outline: orthographic projection of a slightly irregular sphere -->
+  <!-- Outer shape: a non-circular closed curve approximating a deformed sphere silhouette -->
+  <ellipse cx="200" cy="200" rx="155" ry="155" fill="url(#bg)" clip-path="url(#clip)"/>
+  <ellipse cx="200" cy="200" rx="155" ry="155" fill="url(#glow)" clip-path="url(#clip)"/>
+
+  <!-- Deformation bumps on outline -->
+  <path d="
+    M 200 45
+    C 240 42, 285 68, 338 110
+    C 368 138, 356 178, 355 200
+    C 354 228, 362 260, 342 292
+    C 318 330, 272 360, 232 358
+    C 208 356, 178 362, 152 352
+    C 118 338, 80 308, 62 272
+    C 44 238, 46 204, 48 182
+    C 50 152, 40 118, 62 90
+    C 88 58, 148 48, 200 45
+    Z
+  " fill="url(#bg)" clip-path="url(#clip)"/>
+
+  <!-- Latitude grid lines (translucent white, 20% opacity) -->
+  <!-- Latitude ring at ~30° -->
+  <ellipse cx="200" cy="130" rx="112" ry="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+  <!-- Latitude ring at ~60° -->
+  <ellipse cx="200" cy="270" rx="112" ry="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+  <!-- Equator -->
+  <ellipse cx="200" cy="200" rx="148" ry="24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+
+  <!-- Longitude curves (2 meridians visible in orthographic projection) -->
+  <!-- Prime meridian (vertical ellipse projected) -->
+  <path d="M 200 47 C 212 90, 216 145, 216 200 C 216 255, 212 310, 200 355" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+  <path d="M 200 47 C 188 90, 184 145, 184 200 C 184 255, 188 310, 200 355" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+  <!-- 90° meridian -->
+  <path d="M 200 47 C 248 80, 340 140, 354 200 C 340 260, 248 320, 200 355" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+  <path d="M 200 47 C 152 80, 60 140, 48 200 C 60 260, 152 320, 200 355" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+
+  <!-- Highlight spot (deformation peak, flame-white) -->
+  <ellipse cx="240" cy="160" rx="38" ry="30" fill="url(#glow)" opacity="0.9"/>
+  <ellipse cx="240" cy="160" rx="18" ry="14" fill="#FFF8E8" opacity="0.55"/>
+</svg>

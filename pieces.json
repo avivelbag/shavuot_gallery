@@ -1582,5 +1582,16 @@
     "path": "pieces/90-vicsek-sinai-unity/index.html",
     "thumbnail": "pieces/90-vicsek-sinai-unity/thumbnail.svg",
     "essay": "pieces/90-vicsek-sinai-unity/essay.md"
+  },
+  {
+    "id": "91-spherical-harmonics-voice-sinai",
+    "title": "The Voice That Filled the World",
+    "tagline": "the divine voice at Sinai split into seventy tongues and radiated to every nation — a sphere deformed by 25 real spherical harmonics, each direction hearing a different face of the same source",
+    "year": 2026,
+    "theme": "Har Sinai / the divine voice radiating to all the earth",
+    "technique": "Spherical harmonics deformation (WebGL triangle mesh)",
+    "path": "pieces/91-spherical-harmonics-voice-sinai/index.html",
+    "thumbnail": "pieces/91-spherical-harmonics-voice-sinai/thumbnail.svg",
+    "essay": "pieces/91-spherical-harmonics-voice-sinai/essay.md"
   }
 ]

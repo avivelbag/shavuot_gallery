@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Voice That Filled the World — Spherical Harmonics</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #030109; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #030109;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a0a4a;
+      overflow-y: auto;
+      color: #b0c4e0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #030109;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a0a4a; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 { font-size: 1.6rem; color: #e0d0ff; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #4a3a6a; margin: 0 0 2rem; }
+    .essay-panel h2 { font-size: 1rem; color: #c0a0ff; margin: 2rem 0 0.6rem; font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase; }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel blockquote { margin: 0 0 1rem 1.2rem; padding-left: 1rem; border-left: 2px solid #2a1a5a; font-style: italic; color: #7060a0; line-height: 1.7; }
+    .essay-panel .hebrew { direction: rtl; font-size: 1.2rem; color: #d0c0f8; line-height: 2; margin: 0 0 0.5rem; }
+    .essay-panel .source { font-size: 0.8rem; color: #4a3a6a; margin: 0 0 1.5rem; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="glCanvas"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>The Voice That Filled the World</h1>
+    <p class="subtitle">Spherical harmonics deformation · WebGL triangle mesh</p>
+
+    <p class="hebrew">וַיְהִי קוֹל הַשֹּׁפָר הוֹלֵךְ וְחָזֵק מְאֹד</p>
+    <p class="source">And the sound of the shofar grew louder and louder. — Exodus 19:19</p>
+
+    <h2>The Voice at Sinai</h2>
+    <p>Shemot Rabbah 5:9 records one of the most remarkable claims in all of Midrashic literature: when the divine voice spoke at Sinai, it did not favor a single direction. It split — into seven voices, each splitting again into seventy tongues — and traveled simultaneously to all the nations of the earth. Every people heard it in their own language. The voice was not broadcast from a point; it radiated spherically, arriving everywhere at once without attenuation, without weakening, without preference.</p>
+
+    <p>Exodus 19:18–19 sets the physical scene. The whole mountain trembled. Dense smoke billowed upward like smoke from a furnace. And the sound of the shofar grew louder and louder, exceeding all natural limits. Moses spoke and God answered him with a voice. What kind of voice fills a mountain and reaches every corner of the earth simultaneously?</p>
+
+    <p>Pirkei DeRabbi Eliezer 41 adds a crucial detail: the divine voice traveled to every corner of the earth without diminishing. It did not suffer the inverse-square law. Every nation heard it at full strength. This is mathematically extraordinary. In physics, a sound wave spreading from a point source weakens as it spreads — its energy distributed across an ever-larger spherical surface. The Sinai voice, the Midrash insists, was different: perfectly spherical and perfectly uniform, the same everywhere.</p>
+
+    <h2>Spherical Harmonics</h2>
+    <p>This piece takes that claim literally. Spherical harmonics are the natural vibration modes of any spherical surface — they are to a sphere what sine waves are to a string. Every function defined on a sphere can be decomposed into a sum of harmonics Y_l^m(θ, φ), where l indexes the number of nodal rings and m the number of nodal meridians. The simplest harmonic, Y₀⁰, is constant across the entire sphere — uniform in every direction. This is the monopole term, the mathematical description of a voice that reaches every nation equally.</p>
+
+    <p>The higher harmonics — l = 1, 2, 3, 4 — are the voice's structure, its articulation. The Midrash says the voice split into 70 languages, each direction hearing a different face of the same source. The l &gt; 0 harmonics are precisely this: variations in intensity and phase across the sphere, each direction hearing something slightly different while the total radiated power remains constant. The 25 basis functions used here (all real harmonics through l = 4) form a complete low-order description of how a complex voice deforms the medium it travels through.</p>
+
+    <h2>The Animation</h2>
+    <p>A sphere of 64 × 64 latitude-longitude segments is deformed each frame by a time-varying sum of these 25 harmonics. Each coefficient oscillates sinusoidally at a frequency ω = 0.3 + l × 0.2 radians per second — lower harmonics pulsing slowly, like the fundamental resonance of the whole earth, higher harmonics flickering faster, like the rapid articulation of speech into distinct languages. The amplitude A = 0.35 allows the sphere to deform up to 35% of its radius.</p>
+
+    <p>The colors map the deformation: midnight blue (#0B1440) where the sphere curves inward — a language not yet formed — electric violet at rest, flame white (#FFF8E8) where it pushes outward in a burst of revelation. A single directional light gives the surface roundness through Blinn-Phong shading. The sphere rotates at 0.15 rad/s around its vertical axis, showing all faces of the world receiving the voice in turn.</p>
+
+    <p>This is not an abstraction of Sinai. It is a model of the voice itself — a spherically radiating, perfectly universal transmission that somehow carried meaning differently in every direction: the mathematical skeleton of revelation.</p>
+  </div>
+</div>
+
+<script>
+// --- WebGL boilerplate ---
+
+const canvas = document.getElementById('glCanvas');
+const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+if (!gl) { canvas.parentElement.innerHTML = '<p style="color:#c0a0ff;padding:2rem">WebGL not supported</p>'; }
+
+// Resize canvas to match CSS size
+function resize() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+    canvas.width  = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    if (gl) gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+}
+resize();
+window.addEventListener('resize', resize);
+
+// --- Vertex shader ---
+// Stores (theta, phi) per vertex; computes all 25 real spherical harmonics inline,
+// deforms the sphere radius by amplitude * sum(c_lm * Y_lm), passes deformation
+// and approximate normal to fragment shader.
+const VS = `
+attribute vec2 aThetaPhi;
+
+uniform float uCoeffs[25];
+uniform mat4  uMVP;
+uniform mat4  uMV;
+uniform float uAmplitude;
+
+varying float vDeform;
+varying vec3  vNormal;
+varying vec3  vViewPos;
+
+void main() {
+  float theta = aThetaPhi.x;
+  float phi   = aThetaPhi.y;
+
+  float sT = sin(theta);
+  float cT = cos(theta);
+  float sP = sin(phi);
+  float cP = cos(phi);
+
+  float s2T = sT * sT;
+  float c2T = cT * cT;
+  float s3T = s2T * sT;
+  float c3T = c2T * cT;
+  float s4T = s3T * sT;
+
+  float s2P = sin(2.0 * phi);
+  float c2P = cos(2.0 * phi);
+  float s3P = sin(3.0 * phi);
+  float c3P = cos(3.0 * phi);
+  float s4P = sin(4.0 * phi);
+  float c4P = cos(4.0 * phi);
+
+  // l=0
+  float y00  = 0.28209;
+
+  // l=1
+  float y1m1 = 0.48860 * sT * sP;
+  float y10  = 0.48860 * cT;
+  float y11  = 0.48860 * sT * cP;
+
+  // l=2
+  float y2m2 = 0.54628 * s2T * s2P;
+  float y2m1 = 1.09255 * sT * cT * sP;
+  float y20  = 0.31539 * (3.0 * c2T - 1.0);
+  float y21  = 1.09255 * sT * cT * cP;
+  float y22  = 0.54628 * s2T * c2P;
+
+  // l=3
+  float y3m3 = 0.59005 * s3T * s3P;
+  float y3m2 = 1.44531 * s2T * cT * s2P;
+  float y3m1 = 0.45705 * sT * (5.0 * c2T - 1.0) * sP;
+  float y30  = 0.37318 * cT * (5.0 * c2T - 3.0);
+  float y31  = 0.45705 * sT * (5.0 * c2T - 1.0) * cP;
+  float y32  = 1.44531 * s2T * cT * c2P;
+  float y33  = 0.59005 * s3T * c3P;
+
+  // l=4
+  float y4m4 = 0.62584 * s4T * s4P;
+  float y4m3 = 1.77013 * s3T * cT * s3P;
+  float y4m2 = 0.47309 * s2T * (7.0 * c2T - 1.0) * s2P;
+  float y4m1 = 0.66905 * sT * cT * (7.0 * c2T - 3.0) * sP;
+  float y40  = 0.10579 * (35.0 * c2T * c2T - 30.0 * c2T + 3.0);
+  float y41  = 0.66905 * sT * cT * (7.0 * c2T - 3.0) * cP;
+  float y42  = 0.47309 * s2T * (7.0 * c2T - 1.0) * c2P;
+  float y43  = 1.77013 * s3T * cT * c3P;
+  float y44  = 0.62584 * s4T * c4P;
+
+  float deform =
+    uCoeffs[0]  * y00  +
+    uCoeffs[1]  * y1m1 + uCoeffs[2]  * y10  + uCoeffs[3]  * y11  +
+    uCoeffs[4]  * y2m2 + uCoeffs[5]  * y2m1 + uCoeffs[6]  * y20  +
+    uCoeffs[7]  * y21  + uCoeffs[8]  * y22  +
+    uCoeffs[9]  * y3m3 + uCoeffs[10] * y3m2 + uCoeffs[11] * y3m1 +
+    uCoeffs[12] * y30  + uCoeffs[13] * y31  + uCoeffs[14] * y32  +
+    uCoeffs[15] * y33  +
+    uCoeffs[16] * y4m4 + uCoeffs[17] * y4m3 + uCoeffs[18] * y4m2 +
+    uCoeffs[19] * y4m1 + uCoeffs[20] * y40  + uCoeffs[21] * y41  +
+    uCoeffs[22] * y42  + uCoeffs[23] * y43  + uCoeffs[24] * y44;
+
+  // Undeformed unit-sphere direction: (sinT cosP, cosT, sinT sinP)
+  vec3 baseDir = vec3(sT * cP, cT, sT * sP);
+  float r = 1.0 + uAmplitude * deform;
+  vec3 pos = r * baseDir;
+
+  vDeform   = deform;
+  vNormal   = baseDir;               // approximate: normal of undeformed sphere
+  vViewPos  = (uMV * vec4(pos, 1.0)).xyz;
+
+  gl_Position = uMVP * vec4(pos, 1.0);
+}
+`;
+
+// --- Fragment shader ---
+// Maps deformation to a 3-stop palette and applies Blinn-Phong lighting.
+const FS = `
+precision mediump float;
+
+varying float vDeform;
+varying vec3  vNormal;
+varying vec3  vViewPos;
+
+uniform vec3 uLightDir;  // normalized, in view space
+
+void main() {
+  // 3-stop color palette based on deformation
+  // deform ~ [-1, 1] (clamped)
+  float t = clamp((vDeform + 1.0) * 0.5, 0.0, 1.0);
+
+  vec3 c0 = vec3(0.04314, 0.07843, 0.25098);  // #0B1440 midnight blue
+  vec3 c1 = vec3(0.41961, 0.13333, 0.78431);  // #6B22C8 electric violet
+  vec3 c2 = vec3(1.00000, 0.97255, 0.90980);  // #FFF8E8 flame white
+
+  vec3 baseColor = t < 0.5
+    ? mix(c0, c1, t * 2.0)
+    : mix(c1, c2, (t - 0.5) * 2.0);
+
+  // Blinn-Phong lighting
+  vec3 N = normalize(vNormal);
+  vec3 L = normalize(uLightDir);
+  vec3 V = normalize(-vViewPos);
+  vec3 H = normalize(L + V);
+
+  float diff = max(dot(N, L), 0.0);
+  float spec = pow(max(dot(N, H), 0.0), 48.0);
+
+  vec3 ambient = 0.18 * baseColor;
+  vec3 diffuse = 0.70 * diff * baseColor;
+  vec3 specular = 0.55 * spec * vec3(1.0, 0.95, 0.88);
+
+  gl_FragColor = vec4(ambient + diffuse + specular, 1.0);
+}
+`;
+
+// --- Shader compilation ---
+function compileShader(type, src) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+    console.error(gl.getShaderInfoLog(s));
+    return null;
+  }
+  return s;
+}
+
+function linkProgram(vs, fs) {
+  const p = gl.createProgram();
+  gl.attachShader(p, vs);
+  gl.attachShader(p, fs);
+  gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+    console.error(gl.getProgramInfoLog(p));
+    return null;
+  }
+  return p;
+}
+
+const prog = linkProgram(
+  compileShader(gl.VERTEX_SHADER,   VS),
+  compileShader(gl.FRAGMENT_SHADER, FS)
+);
+gl.useProgram(prog);
+
+// --- Mesh generation: UV sphere 64×64 segments ---
+// W longitude steps, H latitude steps → (W+1)*(H+1) vertices
+const W = 64, H = 64;
+
+const thetaPhiData = new Float32Array((W + 1) * (H + 1) * 2);
+let vi = 0;
+for (let j = 0; j <= H; j++) {
+  const theta = (Math.PI * j) / H;
+  for (let i = 0; i <= W; i++) {
+    const phi = (2 * Math.PI * i) / W;
+    thetaPhiData[vi++] = theta;
+    thetaPhiData[vi++] = phi;
+  }
+}
+
+const indexData = new Uint16Array(W * H * 6);
+let ii = 0;
+for (let j = 0; j < H; j++) {
+  for (let i = 0; i < W; i++) {
+    const a = j * (W + 1) + i;
+    const b = a + 1;
+    const c = a + (W + 1);
+    const d = c + 1;
+    indexData[ii++] = a; indexData[ii++] = c; indexData[ii++] = b;
+    indexData[ii++] = b; indexData[ii++] = c; indexData[ii++] = d;
+  }
+}
+
+const thetaPhiBuf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, thetaPhiBuf);
+gl.bufferData(gl.ARRAY_BUFFER, thetaPhiData, gl.STATIC_DRAW);
+
+const indexBuf = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuf);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indexData, gl.STATIC_DRAW);
+
+const aLoc = gl.getAttribLocation(prog, 'aThetaPhi');
+gl.enableVertexAttribArray(aLoc);
+gl.vertexAttribPointer(aLoc, 2, gl.FLOAT, false, 0, 0);
+
+// --- Uniform locations ---
+const uCoeffsLoc   = gl.getUniformLocation(prog, 'uCoeffs');
+const uMVPLoc      = gl.getUniformLocation(prog, 'uMVP');
+const uMVLoc       = gl.getUniformLocation(prog, 'uMV');
+const uAmplLoc     = gl.getUniformLocation(prog, 'uAmplitude');
+const uLightDirLoc = gl.getUniformLocation(prog, 'uLightDir');
+
+gl.uniform1f(uAmplLoc, 0.35);
+
+// --- SH coefficient animation setup ---
+// 25 harmonics: ω_lm = 0.3 + l*0.2, random initial phase
+// Order: [Y00, Y1m1, Y10, Y11, Y2m2, Y2m1, Y20, Y21, Y22, ...]
+const SH_COUNT = 25;
+const shOmega = new Float32Array(SH_COUNT);
+const shPhase = new Float32Array(SH_COUNT);
+const shCoeffs = new Float32Array(SH_COUNT);
+
+// Assign l for each index (ordering: all m for l=0, then l=1, etc.)
+const lPerIndex = [0, 1,1,1, 2,2,2,2,2, 3,3,3,3,3,3,3, 4,4,4,4,4,4,4,4,4];
+
+for (let k = 0; k < SH_COUNT; k++) {
+  const l = lPerIndex[k];
+  shOmega[k] = 0.3 + l * 0.2;
+  shPhase[k] = Math.random() * 2 * Math.PI;
+}
+
+// --- Minimal mat4 helpers ---
+function mat4Identity() {
+  return new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]);
+}
+
+function mat4Mul(a, b) {
+  const out = new Float32Array(16);
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 4; c++) {
+      let sum = 0;
+      for (let k = 0; k < 4; k++) sum += a[r + k*4] * b[k + c*4];
+      out[r + c*4] = sum;
+    }
+  }
+  return out;
+}
+
+function mat4RotY(angle) {
+  const c = Math.cos(angle), s = Math.sin(angle);
+  return new Float32Array([c,0,-s,0, 0,1,0,0, s,0,c,0, 0,0,0,1]);
+}
+
+function mat4Translate(x, y, z) {
+  return new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, x,y,z,1]);
+}
+
+function mat4Perspective(fovY, aspect, near, far) {
+  const f = 1.0 / Math.tan(fovY * 0.5);
+  const nf = 1.0 / (near - far);
+  return new Float32Array([
+    f/aspect, 0,  0,                  0,
+    0,        f,  0,                  0,
+    0,        0,  (far+near)*nf,     -1,
+    0,        0,  2*far*near*nf,      0
+  ]);
+}
+
+// --- GL state ---
+gl.enable(gl.DEPTH_TEST);
+gl.enable(gl.CULL_FACE);
+gl.cullFace(gl.BACK);
+gl.clearColor(0.012, 0.004, 0.035, 1.0);
+
+// Light direction in world space (fixed), will be transformed to view space each frame
+const worldLightDir = new Float32Array([0.6, 0.8, 0.5]);
+const wLen = Math.hypot(...worldLightDir);
+worldLightDir[0] /= wLen; worldLightDir[1] /= wLen; worldLightDir[2] /= wLen;
+
+// --- Animation loop ---
+const ROTATION_SPEED = 0.15; // rad/s
+let startTime = null;
+
+function frame(ts) {
+  if (!startTime) startTime = ts;
+  const t = (ts - startTime) * 0.001; // seconds
+
+  resize();
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+  // Update SH coefficients
+  for (let k = 0; k < SH_COUNT; k++) {
+    shCoeffs[k] = Math.sin(shOmega[k] * t + shPhase[k]);
+  }
+  gl.uniform1fv(uCoeffsLoc, shCoeffs);
+
+  // Build matrices
+  const aspect = canvas.width / canvas.height;
+  const proj = mat4Perspective(Math.PI / 3, aspect, 0.1, 100.0);
+  const view = mat4Translate(0, 0, -3.8);
+  const model = mat4RotY(t * ROTATION_SPEED);
+
+  const mv  = mat4Mul(view, model);
+  const mvp = mat4Mul(proj, mv);
+
+  gl.uniformMatrix4fv(uMVPLoc, false, mvp);
+  gl.uniformMatrix4fv(uMVLoc,  false, mv);
+
+  // Transform light direction into view space (upper-left 3×3 of MV)
+  const lx = mv[0]*worldLightDir[0] + mv[4]*worldLightDir[1] + mv[8]*worldLightDir[2];
+  const ly = mv[1]*worldLightDir[0] + mv[5]*worldLightDir[1] + mv[9]*worldLightDir[2];
+  const lz = mv[2]*worldLightDir[0] + mv[6]*worldLightDir[1] + mv[10]*worldLightDir[2];
+  const ll = Math.hypot(lx, ly, lz) || 1;
+  gl.uniform3f(uLightDirLoc, lx/ll, ly/ll, lz/ll);
+
+  gl.drawElements(gl.TRIANGLES, indexData.length, gl.UNSIGNED_SHORT, 0);
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
