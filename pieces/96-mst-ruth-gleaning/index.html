@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>She Went and Gleaned in the Field — MST of Ruth</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #3a2a10;
+      overflow: hidden;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+    #essay-panel {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: min(420px, 38vw);
+      height: 100vh;
+      background: rgba(30, 18, 5, 0.88);
+      color: #e8d8b0;
+      padding: 2rem 1.6rem;
+      overflow-y: auto;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      border-left: 1px solid rgba(200,130,10,0.3);
+    }
+    #essay-panel h1 {
+      font-size: 1.2rem;
+      color: #C8820A;
+      margin-bottom: 0.4rem;
+    }
+    #essay-panel .tagline {
+      font-size: 0.82rem;
+      color: #a08040;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+    #essay-panel blockquote {
+      border-left: 3px solid #C8820A;
+      padding-left: 0.8rem;
+      color: #c8b880;
+      font-style: italic;
+      margin: 0.8rem 0 1rem;
+      font-size: 0.88rem;
+    }
+    #essay-panel p { margin-bottom: 0.85rem; }
+    #essay-panel strong { color: #d4aa60; }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="essay-panel">
+  <h1>She Went and Gleaned in the Field</h1>
+  <p class="tagline">Kruskal's minimum spanning tree — the optimal path through a barley field</p>
+
+  <blockquote>
+    "Let me go to the field and glean among the ears of grain after him in whose sight I shall find favor." And she went and came and gleaned in the field after the reapers; and her chance — <em>מִקְרֶה</em> — brought her to the portion of the field belonging to Boaz, who was of the family of Elimelech.
+    — Ruth 2:2–3
+  </blockquote>
+
+  <p>Ruth asks Naomi's permission to go glean in the barley fields of Bethlehem. She does not choose Boaz's field deliberately. The text says <em>va-yiker mikreha</em> — literally, "her chance happened to her." She wanders and she lands where she lands.</p>
+
+  <p>Yet the Talmud will not let this randomness stand unchallenged. In Megillah 13a, the rabbis read <em>mikreh</em> — "chance" — as providential. What looks like Ruth stumbling into Boaz's field is, in the Talmud's reading, the concealed hand of Providence arranging what appears to be accident into inevitability.</p>
+
+  <p>The minimum spanning tree makes precisely the same argument from the opposite direction.</p>
+
+  <p><strong>The law of peah.</strong> Leviticus 19:9–10 commands every farmer: do not harvest the corners of your field (<em>peah</em>), do not gather the grain that falls (<em>leket</em>). These portions belong to the poor, the stranger, the widow, the orphan. The field is not entirely yours to harvest. Its corners are consecrated to those who have nothing.</p>
+
+  <p>Ruth, the Moabite widow, is exactly this person — the stranger, the widow, the one the law names as the rightful gleaner of what the owner leaves behind.</p>
+
+  <p><strong>What the algorithm shows.</strong> Kruskal's algorithm builds a spanning tree by making purely local decisions: at each step, take the shortest available edge that does not form a cycle. It never plans. It never sees the whole field. Yet when it is done, it has found the global optimum — the unique arrangement of edges with the smallest possible total cost, connecting every point.</p>
+
+  <p>The algorithm wanders and gathers, one edge at a time, just as Ruth wanders and gathers, one stalk at a time. And both arrive, through local choices, at an arrangement that turns out to be optimal.</p>
+
+  <p>Notice the four corner clusters. They are deferred until last — left unharvested while the rest of the field connects. These are the <em>peah</em> points, held back by design. They complete the tree only at the end, when the main harvest is done. Ruth's point — the stranger, the gleaner — sits near the center of its star of edges, connected in all directions, the hub through which the field finds its structure.</p>
+
+  <p>What looks like chance is the field assembling its optimal shape around the one who chose to be there.</p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d");
+
+  // Essay panel takes ~38vw; canvas fills the rest on large screens
+  const PANEL_W = Math.min(420, window.innerWidth * 0.38);
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener("resize", () => { resize(); init(); });
+
+  // ---------------------------------------------------------------------------
+  // Union-Find with path compression and union-by-rank
+  // ---------------------------------------------------------------------------
+  function makeUF(n) {
+    const parent = new Int32Array(n);
+    const rank = new Uint8Array(n);
+    for (let i = 0; i < n; i++) parent[i] = i;
+
+    function find(x) {
+      while (parent[x] !== x) {
+        parent[x] = parent[parent[x]];
+        x = parent[x];
+      }
+      return x;
+    }
+
+    function union(a, b) {
+      const ra = find(a), rb = find(b);
+      if (ra === rb) return false;
+      if (rank[ra] < rank[rb]) { parent[ra] = rb; }
+      else if (rank[ra] > rank[rb]) { parent[rb] = ra; }
+      else { parent[rb] = ra; rank[ra]++; }
+      return true;
+    }
+
+    return { find, union };
+  }
+
+  // ---------------------------------------------------------------------------
+  // State
+  // ---------------------------------------------------------------------------
+  let pts = [];           // {x, y, id, isRuth, isCorner}
+  let edges = [];         // {a, b, dist, status, addedAtStep}
+  // status: 0=pending, 1=accepted, 2=rejected
+  let step = 0;
+  let edgeIdx = 0;        // next edge to process in sorted list
+  let mstDone = false;
+  let holdTimer = 0;
+  let scatterPhase = false;
+  let scatterTargets = [];
+  let scatterProgress = 0;
+  let ruthIdx = -1;
+  let ruthLabelTimer = 0;
+  let ruthConnected = false;
+  let cornerPulses = [];  // {cx, cy, t} — active corner pulse rings
+  let N;
+
+  function init() {
+    const W = canvas.width;
+    const H = canvas.height;
+
+    pts = [];
+    edges = [];
+    step = 0;
+    edgeIdx = 0;
+    mstDone = false;
+    holdTimer = 0;
+    scatterPhase = false;
+    scatterProgress = 0;
+    ruthLabelTimer = 0;
+    ruthConnected = false;
+    cornerPulses = [];
+
+    // --- Generate grain points in slightly irregular rows ---
+    const ROW_SPACING = 40;
+    const COL_SPACING = 40;
+    const JITTER_X = 15;
+    const JITTER_Y = 8;
+    // Leave some margin so peah corners are clearly in the drawable area
+    const MARGIN = 20;
+    let id = 0;
+
+    for (let y = MARGIN; y < H - MARGIN; y += ROW_SPACING) {
+      for (let x = MARGIN; x < W - MARGIN; x += COL_SPACING) {
+        const px = x + (Math.random() * 2 - 1) * JITTER_X;
+        const py = y + (Math.random() * 2 - 1) * JITTER_Y;
+        const CORNER_THRESH = 100;
+        const isCorner = (px < CORNER_THRESH || px > W - CORNER_THRESH) &&
+                         (py < CORNER_THRESH || py > H - CORNER_THRESH);
+        pts.push({ x: px, y: py, id: id++, isRuth: false, isCorner });
+      }
+    }
+
+    N = pts.length;
+
+    // --- Designate Ruth: ~1/3 from left, ~2/3 from top ---
+    const targetX = W / 3;
+    const targetY = (H * 2) / 3;
+    let bestDist = Infinity;
+    for (let i = 0; i < N; i++) {
+      const d = (pts[i].x - targetX) ** 2 + (pts[i].y - targetY) ** 2;
+      if (d < bestDist && !pts[i].isCorner) {
+        bestDist = d;
+        ruthIdx = i;
+      }
+    }
+    pts[ruthIdx].isRuth = true;
+
+    // --- Pre-compute all edges, sort by distance ---
+    // Peah corners: track whether a point is a peah corner
+    // Sort so corner-involving edges sort to end to ensure they're added last.
+    // We achieve this by giving corner edges a distance penalty: add a large
+    // constant so they naturally sort after all non-corner edges.
+    const CORNER_PENALTY = 1e9;
+    const rawEdges = [];
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const dx = pts[i].x - pts[j].x;
+        const dy = pts[i].y - pts[j].y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (pts[i].isCorner || pts[j].isCorner) dist += CORNER_PENALTY;
+        rawEdges.push({ a: i, b: j, dist, status: 0, addedAtStep: -1 });
+      }
+    }
+    rawEdges.sort((a, b) => a.dist - b.dist);
+    edges = rawEdges;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Animation step: advance Kruskal by EDGES_PER_FRAME decisions
+  // ---------------------------------------------------------------------------
+  const EDGES_PER_FRAME = 3;
+  const GROW_FRAMES = 12;      // frames over which a new edge grows
+  const REJECT_FRAMES = 6;     // frames a rejected edge flashes
+  const HOLD_FRAMES = 180;     // 3 s @ 60 fps
+  const SCATTER_FRAMES = 60;   // 1 s scatter transition
+  const RUTH_LABEL_FRAMES = 120; // 2 s
+
+  let uf;
+
+  function resetUF() {
+    uf = makeUF(N);
+  }
+
+  // Track which corner clusters have been pulsed already
+  let cornersClustered = [];
+  const CORNER_PULSE_RADIUS_MAX = 60;
+
+  function advanceKruskal() {
+    let added = 0;
+    while (added < EDGES_PER_FRAME && edgeIdx < edges.length) {
+      const e = edges[edgeIdx];
+      edgeIdx++;
+      const ra = uf.find(e.a), rb = uf.find(e.b);
+      if (ra !== rb) {
+        uf.union(e.a, e.b);
+        e.status = 1;
+        e.addedAtStep = step;
+        added++;
+
+        // Check if this edge involves Ruth's point
+        if (!ruthConnected && (e.a === ruthIdx || e.b === ruthIdx)) {
+          ruthConnected = true;
+          ruthLabelTimer = RUTH_LABEL_FRAMES;
+        }
+
+        // Check if this edge connects a corner point that wasn't connected yet
+        // We pulse the corner cluster centre when its first edge is accepted
+        const checkCorner = (idx) => {
+          if (pts[idx].isCorner && !cornersClustered.includes(idx)) {
+            // Find all corners near this point and group them
+            const cx = pts[idx].x, cy = pts[idx].y;
+            // Mark all nearby corners as done
+            for (let i = 0; i < N; i++) {
+              if (pts[i].isCorner) {
+                const dx = pts[i].x - cx, dy = pts[i].y - cy;
+                if (dx * dx + dy * dy < 200 * 200) {
+                  cornersClustered.push(i);
+                }
+              }
+            }
+            cornerPulses.push({ cx, cy, t: 0 });
+          }
+        };
+        checkCorner(e.a);
+        checkCorner(e.b);
+
+      } else {
+        e.status = 2;
+        e.addedAtStep = step;
+      }
+    }
+
+    // Check if MST is complete (N-1 accepted edges)
+    if (!mstDone) {
+      let acceptedCount = 0;
+      for (const e of edges) {
+        if (e.status === 1) acceptedCount++;
+      }
+      if (acceptedCount >= N - 1) {
+        mstDone = true;
+        holdTimer = 0;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Scatter and re-init
+  // ---------------------------------------------------------------------------
+  let scatterFrom = [];
+
+  function startScatter() {
+    scatterPhase = true;
+    scatterProgress = 0;
+    scatterFrom = pts.map(p => ({ x: p.x, y: p.y }));
+    // Generate new random targets
+    const W = canvas.width, H = canvas.height;
+    scatterTargets = pts.map(() => ({
+      x: Math.random() * W,
+      y: Math.random() * H
+    }));
+  }
+
+  // ---------------------------------------------------------------------------
+  // Draw
+  // ---------------------------------------------------------------------------
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // Background gradient
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, "#B89A50");
+    grad.addColorStop(1, "#5C3D1E");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    // --- Draw edges ---
+    for (const e of edges) {
+      if (e.status === 0) continue;
+      const pa = pts[e.a], pb = pts[e.b];
+      const age = step - e.addedAtStep;
+
+      if (e.status === 1) {
+        // Accepted: grow over GROW_FRAMES
+        const t = Math.min(1, age / GROW_FRAMES);
+        if (t <= 0) continue;
+        const mx = pa.x + (pb.x - pa.x) * t;
+        const my = pa.y + (pb.y - pa.y) * t;
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(pa.x, pa.y);
+        ctx.lineTo(mx, my);
+        ctx.strokeStyle = "#C8820A";
+        ctx.lineWidth = 1.5;
+        ctx.globalAlpha = 0.85;
+        ctx.stroke();
+        ctx.restore();
+
+      } else if (e.status === 2) {
+        // Rejected: flash briefly
+        if (age >= REJECT_FRAMES) continue;
+        const alpha = 0.2 * (1 - age / REJECT_FRAMES);
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(pa.x, pa.y);
+        ctx.lineTo(pb.x, pb.y);
+        ctx.strokeStyle = "#8B2020";
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = alpha;
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    // --- Corner pulse rings ---
+    for (const pulse of cornerPulses) {
+      const t = pulse.t / 40;
+      if (t > 1) continue;
+      const r = CORNER_PULSE_RADIUS_MAX * t;
+      const alpha = (1 - t) * 0.8;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(pulse.cx, pulse.cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = "#FFD060";
+      ctx.lineWidth = 2.5;
+      ctx.globalAlpha = alpha;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // --- Ruth pulse ring when first connected ---
+    if (ruthConnected && ruthLabelTimer > 0) {
+      const age = RUTH_LABEL_FRAMES - ruthLabelTimer;
+      if (age < 30) {
+        const t = age / 30;
+        const r = 30 * t;
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(pts[ruthIdx].x, pts[ruthIdx].y, r, 0, Math.PI * 2);
+        ctx.strokeStyle = "#FFD060";
+        ctx.lineWidth = 2;
+        ctx.globalAlpha = (1 - t) * 0.9;
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    // --- Draw grain points ---
+    const STALK_ANGLE = Math.PI / 12; // 15°
+    for (let i = 0; i < N; i++) {
+      const p = pts[i];
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(STALK_ANGLE);
+      if (p.isRuth) {
+        // Ruth: larger amber circle
+        ctx.beginPath();
+        ctx.arc(0, 0, 9, 0, Math.PI * 2);
+        ctx.fillStyle = "#C8820A";
+        ctx.globalAlpha = 0.95;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(0, 0, 6, 0, Math.PI * 2);
+        ctx.fillStyle = "#E8A030";
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.ellipse(0, 0, 6, 3, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "#E8C870";
+        ctx.globalAlpha = p.isCorner ? 0.7 : 0.9;
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    // --- Ruth label ---
+    if (ruthConnected && ruthLabelTimer > 0 && ruthIdx >= 0) {
+      const alpha = Math.min(1, ruthLabelTimer / 20);
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.font = "bold 16px Georgia, serif";
+      ctx.fillStyle = "#FFD060";
+      ctx.direction = "rtl";
+      ctx.fillText("רות", pts[ruthIdx].x + 16, pts[ruthIdx].y - 12);
+      ctx.restore();
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Main loop
+  // ---------------------------------------------------------------------------
+  function loop() {
+    requestAnimationFrame(loop);
+
+    if (scatterPhase) {
+      scatterProgress = Math.min(1, scatterProgress + 1 / SCATTER_FRAMES);
+      const t = scatterProgress;
+      const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      for (let i = 0; i < N; i++) {
+        pts[i].x = scatterFrom[i].x + (scatterTargets[i].x - scatterFrom[i].x) * ease;
+        pts[i].y = scatterFrom[i].y + (scatterTargets[i].y - scatterFrom[i].y) * ease;
+      }
+      draw();
+      if (scatterProgress >= 1) {
+        scatterPhase = false;
+        init();
+        resetUF();
+      }
+      return;
+    }
+
+    if (mstDone) {
+      holdTimer++;
+      draw();
+      if (holdTimer >= HOLD_FRAMES) {
+        startScatter();
+      }
+      return;
+    }
+
+    // Advance Kruskal
+    advanceKruskal();
+
+    // Age corner pulses
+    for (const p of cornerPulses) p.t++;
+    cornerPulses = cornerPulses.filter(p => p.t <= 40);
+
+    // Age Ruth label
+    if (ruthLabelTimer > 0) ruthLabelTimer--;
+
+    step++;
+    draw();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Boot
+  // ---------------------------------------------------------------------------
+  init();
+  resetUF();
+  loop();
+}());
+</script>
+</body>
+</html>

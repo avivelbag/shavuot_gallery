@@ -1736,5 +1736,16 @@
     "path": "pieces/95-quantum-walk-forty-nine-gates/index.html",
     "thumbnail": "pieces/95-quantum-walk-forty-nine-gates/thumbnail.svg",
     "essay": "pieces/95-quantum-walk-forty-nine-gates/essay.md"
+  },
+  {
+    "id": "96-mst-ruth-gleaning",
+    "title": "She Went and Gleaned in the Field",
+    "tagline": "Kruskal's minimum spanning tree assembles the optimal gleaning path through Ruth's barley field — the algorithm's local choices, like Ruth's wandering, converge on a hidden optimum",
+    "year": 2026,
+    "theme": "Book of Ruth / Bikkurim / harvest",
+    "technique": "Minimum spanning tree (Kruskal's algorithm animated)",
+    "path": "pieces/96-mst-ruth-gleaning/index.html",
+    "thumbnail": "pieces/96-mst-ruth-gleaning/thumbnail.svg",
+    "essay": "pieces/96-mst-ruth-gleaning/essay.md"
   }
 ]
