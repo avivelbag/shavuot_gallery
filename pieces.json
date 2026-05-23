@@ -1329,5 +1329,27 @@
     "path": "pieces/80-sph-torah-as-water/index.html",
     "thumbnail": "pieces/80-sph-torah-as-water/thumbnail.svg",
     "essay": "pieces/80-sph-torah-as-water/essay.md"
+  },
+  {
+    "id": "81-sph-torah-as-water",
+    "title": "Descend as the Rain, Distill as the Dew",
+    "tagline": "Torah is compared to water — it flows downward, into the lowest vessel",
+    "year": 2026,
+    "theme": "Crown of Torah / naaseh v'nishma",
+    "technique": "Smoothed Particle Hydrodynamics / 2D SPH fluid simulation",
+    "path": "pieces/81-sph-torah-as-water/index.html",
+    "thumbnail": "pieces/81-sph-torah-as-water/thumbnail.svg",
+    "essay": "pieces/81-sph-torah-as-water/essay.md"
+  },
+  {
+    "id": "82-superformula-seven-species",
+    "title": "In the Shape of Abundance",
+    "tagline": "the seven species of the Land rendered as Gielis superformula silhouettes — wheat, barley, grapes, figs, pomegranate, olive, dates — morphing from one form to the next",
+    "year": 2026,
+    "theme": "Bikkurim / seven species / Chag HaKatzir",
+    "technique": "Gielis superformula / parametric shape morphing",
+    "path": "pieces/82-superformula-seven-species/index.html",
+    "thumbnail": "pieces/82-superformula-seven-species/thumbnail.svg",
+    "essay": "pieces/82-superformula-seven-species/essay.md"
   }
 ]

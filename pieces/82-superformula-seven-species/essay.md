@@ -1,0 +1,14 @@
+# In the Shape of Abundance
+
+*"A land of wheat and barley, of vines, figs, and pomegranates, a land of olive oil and honey."*
+— Deuteronomy 8:8
+
+These seven plants are the Shivat HaMinim, the seven species with which the Land of Israel is praised in the Torah. They are not merely a list of agricultural products. Deuteronomy 8:7–10 frames them as evidence of a covenantal promise: the abundance of the land is the sign that it is a gift, not a conquest. "You shall eat and be satisfied, and bless the LORD your God for the good land He has given you" (Deuteronomy 8:10). The obligation to give thanks is built into the experience of eating — the land itself demands acknowledgment that it is not earned.
+
+This is the foundation of Bikkurim, the ceremony of first fruits described in Deuteronomy 26:1–11. Each Israelite farmer was commanded to bring the first ripening fruits of these seven species to the Temple in Jerusalem at Shavuot. The offering was not the whole harvest but the first of it — the acknowledgment, before eating any of the abundance, that the land belongs to God and was given, not taken.
+
+The Mishnah describes the Bikkurim procession in vivid detail (Bikkurim 3:1–9). Pilgrims from across the land traveled in caravans toward Jerusalem. Flutes played before them. Oxen with gilded horns and olive-wreath crowns walked at the head of the procession. As the pilgrims entered Jerusalem, craftsmen would rise from their work to greet them. The Levites would sing Psalm 30. The farmers carried their baskets on their shoulders — the wealthy in silver and gold, the poor in wicker — and recited the confession of Deuteronomy 26:3–10, beginning: "I declare this day to the LORD my God that I have come to the land which the LORD swore to our fathers to give us."
+
+Rashi, commenting on Deuteronomy 8:10 — "you shall bless the LORD your God for the good land" — identifies this verse as the Torah's source for Birkat HaMazon, the grace after meals. The seven species are thus not only the content of the Bikkurim offering; they are the origin of the entire rabbinic practice of thanksgiving after eating. Every blessing recited after a meal traces back to this moment: standing in the land, holding the first of its fruit, acknowledging the giver.
+
+This artwork renders each of the seven species as a superformula silhouette: a single mathematical equation, r(θ) = (|cos(mθ/4)/a|ⁿ² + |sin(mθ/4)/b|ⁿ³)^(−1/n1), in which six parameters shape wheat's elongated spikes, the fig's three-lobed roundness, the pomegranate's crown, the olive's elliptical leaf, the grape cluster's swollen curves. All seven forms, so different in taste and texture and season, arise from the same equation with different numbers — just as all seven species together constitute one covenantal gift, one land, one obligation of gratitude. The shapes morph smoothly from one to the next, the parameters interpolating through the mathematical space that holds them all.
