@@ -1769,5 +1769,16 @@
     "path": "pieces/96-simulated-annealing-sinai/index.html",
     "thumbnail": "pieces/96-simulated-annealing-sinai/thumbnail.svg",
     "essay": "pieces/96-simulated-annealing-sinai/essay.md"
+  },
+  {
+    "id": "97-pursuit-curves-ruth-naomi",
+    "title": "Wherever You Go",
+    "tagline": "Ruth's vow enacted as equiangular spirals — two pursuit curves converge on Naomi while Orpah's terracotta spiral peels away and fades at the crossroads of Moab",
+    "year": 2026,
+    "theme": "Book of Ruth",
+    "technique": "Discrete pursuit curves (mice problem)",
+    "path": "pieces/97-pursuit-curves-ruth-naomi/index.html",
+    "thumbnail": "pieces/97-pursuit-curves-ruth-naomi/thumbnail.svg",
+    "essay": "pieces/97-pursuit-curves-ruth-naomi/essay.md"
   }
 ]

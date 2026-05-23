@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a1e0a"/>
+      <stop offset="100%" stop-color="#1a1005"/>
+    </radialGradient>
+    <!-- Glow filters -->
+    <filter id="glow-gold" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-ivory" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <!-- Field-brown warm overlay -->
+  <rect width="400" height="400" fill="#5a3a10" opacity="0.08"/>
+
+  <!-- Wheat stalk motif — top left -->
+  <g transform="translate(28, 28) rotate(-20)" opacity="0.5" stroke="#8a6820" stroke-width="1.2" fill="none">
+    <line x1="0" y1="35" x2="0" y2="0"/>
+    <ellipse cx="-5" cy="-5" rx="4" ry="8" transform="rotate(-30,-5,-5)" fill="#8a6820" stroke="none" opacity="0.7"/>
+    <ellipse cx="5" cy="-8" rx="4" ry="8" transform="rotate(30,5,-8)" fill="#8a6820" stroke="none" opacity="0.7"/>
+    <ellipse cx="0" cy="-14" rx="4" ry="9" fill="#8a6820" stroke="none" opacity="0.8"/>
+  </g>
+  <!-- Wheat stalk motif — top right -->
+  <g transform="translate(372, 28) rotate(20)" opacity="0.5" stroke="#8a6820" stroke-width="1.2" fill="none">
+    <line x1="0" y1="35" x2="0" y2="0"/>
+    <ellipse cx="-5" cy="-5" rx="4" ry="8" transform="rotate(-30,-5,-5)" fill="#8a6820" stroke="none" opacity="0.7"/>
+    <ellipse cx="5" cy="-8" rx="4" ry="8" transform="rotate(30,5,-8)" fill="#8a6820" stroke="none" opacity="0.7"/>
+    <ellipse cx="0" cy="-14" rx="4" ry="9" fill="#8a6820" stroke="none" opacity="0.8"/>
+  </g>
+  <!-- Wheat stalk motif — bottom left -->
+  <g transform="translate(28, 372) rotate(160)" opacity="0.5" stroke="#8a6820" stroke-width="1.2" fill="none">
+    <line x1="0" y1="35" x2="0" y2="0"/>
+    <ellipse cx="-5" cy="-5" rx="4" ry="8" transform="rotate(-30,-5,-5)" fill="#8a6820" stroke="none" opacity="0.7"/>
+    <ellipse cx="5" cy="-8" rx="4" ry="8" transform="rotate(30,5,-8)" fill="#8a6820" stroke="none" opacity="0.7"/>
+    <ellipse cx="0" cy="-14" rx="4" ry="9" fill="#8a6820" stroke="none" opacity="0.8"/>
+  </g>
+  <!-- Wheat stalk motif — bottom right -->
+  <g transform="translate(372, 372) rotate(200)" opacity="0.5" stroke="#8a6820" stroke-width="1.2" fill="none">
+    <line x1="0" y1="35" x2="0" y2="0"/>
+    <ellipse cx="-5" cy="-5" rx="4" ry="8" transform="rotate(-30,-5,-5)" fill="#8a6820" stroke="none" opacity="0.7"/>
+    <ellipse cx="5" cy="-8" rx="4" ry="8" transform="rotate(30,5,-8)" fill="#8a6820" stroke="none" opacity="0.7"/>
+    <ellipse cx="0" cy="-14" rx="4" ry="9" fill="#8a6820" stroke="none" opacity="0.8"/>
+  </g>
+
+  <!-- Orpah spiral arm — faded terracotta, cut off mid-spiral -->
+  <path d="M 200 320
+           C 230 318, 258 308, 275 285
+           C 292 262, 294 232, 282 208
+           C 270 184, 248 168, 224 162
+           C 200 156, 176 160, 158 172"
+        fill="none" stroke="#A05040" stroke-width="2.5" stroke-linecap="round"
+        opacity="0.35"
+        stroke-dasharray="280" stroke-dashoffset="0"/>
+  <!-- Orpah faded end indicator -->
+  <circle cx="148" cy="178" r="4" fill="#A05040" opacity="0.2"/>
+
+  <!-- Naomi ivory center dot (stationary target) -->
+  <circle cx="200" cy="200" r="8" fill="#F5EDE0" opacity="0.9" filter="url(#glow-ivory)"/>
+  <circle cx="200" cy="200" r="14" fill="none" stroke="#F5EDE0" stroke-width="1" opacity="0.25"/>
+
+  <!-- Ruth gold spiral arm — converging on center -->
+  <path d="M 132 280
+           C 118 255, 115 222, 126 196
+           C 137 170, 158 152, 184 146
+           C 210 140, 236 148, 254 165
+           C 272 182, 278 206, 272 228
+           C 266 250, 250 266, 230 272
+           C 210 278, 190 272, 178 258
+           C 166 244, 165 226, 172 213
+           C 179 200, 191 194, 200 196"
+        fill="none" stroke="#C8922A" stroke-width="2.8" stroke-linecap="round"
+        opacity="0.95" filter="url(#glow-gold)"/>
+
+  <!-- Starting point of Ruth -->
+  <circle cx="132" cy="280" r="5" fill="#C8922A" opacity="0.8"/>
+
+  <!-- Title text -->
+  <text x="200" y="360" text-anchor="middle"
+        font-family="Georgia, serif" font-size="15" fill="#C8922A" opacity="0.8">
+    Wherever You Go
+  </text>
+  <text x="200" y="378" text-anchor="middle"
+        font-family="Georgia, serif" font-size="10" fill="#8a6820" opacity="0.6">
+    Pursuit Curves — Ruth 1:16
+  </text>
+</svg>

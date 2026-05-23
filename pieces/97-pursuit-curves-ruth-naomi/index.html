@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wherever You Go — Pursuit Curves of Ruth and Naomi</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      background: #1a1005;
+      color: #d4b483;
+      font-family: Georgia, 'Times New Roman', serif;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0; left: 0;
+    }
+    #essay {
+      position: fixed;
+      right: 0; top: 0;
+      width: min(380px, 35vw);
+      height: 100vh;
+      overflow-y: auto;
+      background: rgba(20, 12, 4, 0.88);
+      border-left: 1px solid #3a2a10;
+      padding: 2rem 1.5rem;
+      z-index: 10;
+      scrollbar-width: thin;
+      scrollbar-color: #5a4020 transparent;
+    }
+    #essay h1 {
+      font-size: 1.2rem;
+      color: #C8922A;
+      margin-bottom: 0.4rem;
+      line-height: 1.35;
+    }
+    #essay .hebrew {
+      font-size: 1.1rem;
+      direction: rtl;
+      color: #d4b483;
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+    }
+    #essay .source {
+      font-style: italic;
+      font-size: 0.82rem;
+      color: #7a6a4a;
+      border-left: 3px solid #4a3010;
+      padding-left: 0.7rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.55;
+    }
+    #essay p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: #c0a870;
+      margin-bottom: 0.9rem;
+    }
+    #essay h2 {
+      font-size: 0.95rem;
+      color: #C8922A;
+      margin: 1rem 0 0.4rem;
+    }
+    #essay .legend {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.7;
+    }
+    #essay .legend span {
+      display: inline-block;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    @media (max-width: 700px) {
+      #essay {
+        width: 100%;
+        height: 45vh;
+        top: auto; bottom: 0;
+        border-left: none;
+        border-top: 1px solid #3a2a10;
+      }
+    }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="essay">
+  <h1>Wherever You Go</h1>
+  <div class="hebrew">עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי</div>
+  <div class="source">
+    "Do not urge me to leave you or to turn back from following you; for where
+    you go, I will go, and where you lodge, I will lodge. Your people shall be
+    my people, and your God my God." — Ruth 1:16
+  </div>
+
+  <p>At the crossroads of Moab, after the death of their husbands, Naomi
+  releases her two daughters-in-law and turns back toward Bethlehem. Orpah
+  weeps, kisses her, and goes home. Ruth clings — <em>davkah</em>, the same
+  root used in Genesis for a man who cleaves to his wife. This is not
+  sentiment. It is a covenant act.</p>
+
+  <p>Ruth's declaration is one of the few voluntary conversions recorded in all
+  of Tanakh. The Rabbis in Yevamot 47b derive from this passage the template
+  for receiving converts: a prospective convert must be informed of the
+  obligations, pressed three times to reconsider, and only then accepted. Ruth
+  enacts every element spontaneously. She does not wait to be asked.</p>
+
+  <h2>The Mathematics of Pursuit</h2>
+
+  <p>In the classic "mice problem," N mice stand at the vertices of a regular
+  polygon. At each moment, every mouse turns directly toward the next and takes
+  a small step. The paths they trace are equiangular spirals — not because
+  anyone planned it, but because always heading straight toward a moving target
+  produces a curve that rotates while converging.</p>
+
+  <p>This is Ruth's path to Bethlehem. She does not steer around obstacles or
+  calculate the destination. She simply faces Naomi and walks. The path curves —
+  through the fields of Boaz, through gleaning and threshing floors, through a
+  redemption story that neither woman could have predicted — and yet the
+  destination was always Bethlehem.</p>
+
+  <h2>The Three Spirals</h2>
+
+  <p>Ruth (gold) always turns toward Naomi (ivory), who is the fixed
+  destination. Orpah (terracotta) begins the same pursuit but at the crossroads
+  deflects — her direction slowly rotates outward, she fades, and vanishes
+  beyond the edge of the canvas. Ruth's spiral completes itself, converging at
+  Naomi.</p>
+
+  <p>The forty-nine four-agent pursuit systems behind the main story are the
+  Omer harvest season: the same convergence pattern repeated forty-nine times,
+  each day bringing the harvest — and Ruth — closer to Bethlehem.</p>
+
+  <div class="legend">
+    <div><span style="background:#C8922A"></span> Ruth — warm gold</div>
+    <div><span style="background:#F5EDE0"></span> Naomi — ivory</div>
+    <div><span style="background:#A05040"></span> Orpah — terracotta, fades</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d");
+
+  // Colors
+  const COLOR_RUTH   = "#C8922A";
+  const COLOR_NAOMI  = "#F5EDE0";
+  const COLOR_ORPAH  = "#A05040";
+  const COLOR_BG     = "#1a1005";
+  const COLOR_WHEAT  = "#C8A840";
+
+  // Essay panel width for canvas sizing
+  function essayWidth() {
+    if (window.innerWidth <= 700) return 0;
+    return Math.min(380, Math.floor(window.innerWidth * 0.35));
+  }
+
+  function resize() {
+    const ew = essayWidth();
+    canvas.width  = window.innerWidth  - ew;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener("resize", () => { resize(); initMain(); initBg(); });
+
+  // -----------------------------------------------------------------------
+  // Background: 7×7 = 49 four-agent pursuit squares
+  // -----------------------------------------------------------------------
+
+  const BG_STEP  = 0.3;  // px per frame
+  const BG_ALPHA = 0.15;
+  const BG_N     = 7;
+  const BG_R     = 20;   // circumradius of initial square
+
+  let bgSystems = [];
+
+  function makeBgSystem(cx, cy) {
+    // Four agents at corners of a square, each pursuing the next (clockwise)
+    const pts = [
+      { x: cx - BG_R, y: cy - BG_R },
+      { x: cx + BG_R, y: cy - BG_R },
+      { x: cx + BG_R, y: cy + BG_R },
+      { x: cx - BG_R, y: cy + BG_R },
+    ];
+    return {
+      cx, cy,
+      agents: pts.map(p => ({ x: p.x, y: p.y, ix: p.x, iy: p.y })),
+      paths: pts.map(p => [{ x: p.x, y: p.y }]),
+    };
+  }
+
+  function initBg() {
+    bgSystems = [];
+    const W = canvas.width;
+    const H = canvas.height;
+    const cellW = W / BG_N;
+    const cellH = H / BG_N;
+    for (let r = 0; r < BG_N; r++) {
+      for (let c = 0; c < BG_N; c++) {
+        const cx = cellW * (c + 0.5);
+        const cy = cellH * (r + 0.5);
+        bgSystems.push(makeBgSystem(cx, cy));
+      }
+    }
+  }
+
+  function stepBg(sys) {
+    const N = sys.agents.length;
+    // Compute all new positions before moving (simultaneous update)
+    const nexts = sys.agents.map((a, i) => {
+      const target = sys.agents[(i + 1) % N];
+      const dx = target.x - a.x;
+      const dy = target.y - a.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < BG_STEP) return { x: target.x, y: target.y };
+      return { x: a.x + (dx / dist) * BG_STEP, y: a.y + (dy / dist) * BG_STEP };
+    });
+    for (let i = 0; i < N; i++) {
+      sys.agents[i].x = nexts[i].x;
+      sys.agents[i].y = nexts[i].y;
+      sys.paths[i].push({ x: nexts[i].x, y: nexts[i].y });
+    }
+    // Reset when all agents converge within 1px of center
+    let converged = true;
+    const ax = sys.agents.reduce((s, a) => s + a.x, 0) / N;
+    const ay = sys.agents.reduce((s, a) => s + a.y, 0) / N;
+    for (const a of sys.agents) {
+      if (Math.hypot(a.x - ax, a.y - ay) > 1) { converged = false; break; }
+    }
+    if (converged) {
+      sys.agents.forEach((a, i) => { a.x = a.ix; a.y = a.iy; });
+      sys.paths = sys.agents.map(a => [{ x: a.x, y: a.y }]);
+    }
+  }
+
+  function drawBg() {
+    ctx.save();
+    ctx.globalAlpha = BG_ALPHA;
+    for (const sys of bgSystems) {
+      stepBg(sys);
+      // Draw paths for each agent (all same wheat color)
+      for (let i = 0; i < sys.agents.length; i++) {
+        const pts = sys.paths[i];
+        if (pts.length < 2) continue;
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (let j = 1; j < pts.length; j++) ctx.lineTo(pts[j].x, pts[j].y);
+        ctx.strokeStyle = COLOR_WHEAT;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  // -----------------------------------------------------------------------
+  // Main three-agent pursuit system
+  // -----------------------------------------------------------------------
+
+  const MAIN_STEP  = 0.8;  // δ px per frame
+  const DEFLECT_FRAMES = 60;
+
+  let ruth, naomi, orpah;
+  let ruthPath, orpahPath;
+  let frameCount;
+  let convergenceFrame;  // estimated frame count when Ruth meets Naomi
+  let phase;             // "running" | "paused" | "fading"
+  let pauseTimer;
+  let globalAlphaMult;
+
+  function initMain() {
+    const W = canvas.width;
+    const H = canvas.height;
+    const R = Math.min(W, H) * 0.35;
+    const cx = W * 0.5;
+    const cy = H * 0.5;
+
+    // Equilateral triangle: Naomi at top, Ruth bottom-left, Orpah bottom-right
+    naomi = { x: cx,                        y: cy - R };
+    ruth  = { x: cx - R * Math.sin(Math.PI / 3), y: cy + R * 0.5 };
+    orpah = { x: cx + R * Math.sin(Math.PI / 3), y: cy + R * 0.5 };
+
+    ruthPath  = [{ x: ruth.x,  y: ruth.y  }];
+    orpahPath = [{ x: orpah.x, y: orpah.y }];
+
+    frameCount = 0;
+    phase = "running";
+    pauseTimer = 0;
+    globalAlphaMult = 1;
+
+    // Estimate frames to convergence: for a stationary target the spiral length
+    // is approximately R / (1 - cos(2π/3)) * ... but a simpler empirical estimate
+    // is distance / step * π/2 for three agents with one stationary.
+    const distRuthToNaomi = Math.hypot(ruth.x - naomi.x, ruth.y - naomi.y);
+    convergenceFrame = Math.floor((distRuthToNaomi / MAIN_STEP) * 1.4);
+  }
+
+  function normalize(dx, dy) {
+    const d = Math.hypot(dx, dy);
+    if (d < 1e-9) return { x: 0, y: 0 };
+    return { x: dx / d, y: dy / d };
+  }
+
+  function lerp2(a, b, t) {
+    return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t };
+  }
+
+  function stepMain() {
+    // Ruth always pursues Naomi (who is stationary)
+    const toNaomiRuth = normalize(naomi.x - ruth.x, naomi.y - ruth.y);
+    const distRuth = Math.hypot(naomi.x - ruth.x, naomi.y - ruth.y);
+
+    if (distRuth > MAIN_STEP) {
+      ruth.x += toNaomiRuth.x * MAIN_STEP;
+      ruth.y += toNaomiRuth.y * MAIN_STEP;
+      ruthPath.push({ x: ruth.x, y: ruth.y });
+    }
+
+    // Orpah: pursue Naomi until deflection threshold, then peel away
+    const deflectStart = Math.floor(convergenceFrame * 0.3);
+    let orpahActive = true;
+
+    if (orpah.x < -100 || orpah.x > canvas.width + 100 ||
+        orpah.y < -100 || orpah.y > canvas.height + 100) {
+      orpahActive = false;
+    }
+
+    if (orpahActive) {
+      const toNaomiOrpah = normalize(naomi.x - orpah.x, naomi.y - orpah.y);
+      let dir = { x: toNaomiOrpah.x, y: toNaomiOrpah.y };
+
+      if (frameCount >= deflectStart) {
+        // Escape direction: away from Naomi
+        const escapeDir = { x: -toNaomiOrpah.x, y: -toNaomiOrpah.y };
+        const t = Math.min((frameCount - deflectStart) / DEFLECT_FRAMES, 1);
+        dir = lerp2(toNaomiOrpah, escapeDir, t);
+        const dlen = Math.hypot(dir.x, dir.y);
+        if (dlen > 1e-9) { dir.x /= dlen; dir.y /= dlen; }
+      }
+
+      orpah.x += dir.x * MAIN_STEP;
+      orpah.y += dir.y * MAIN_STEP;
+      orpahPath.push({ x: orpah.x, y: orpah.y });
+    }
+
+    frameCount++;
+  }
+
+  function orpahOpacity() {
+    const deflectStart = Math.floor(convergenceFrame * 0.3);
+    if (frameCount < deflectStart) return 1;
+    const t = (frameCount - deflectStart) / DEFLECT_FRAMES;
+    return Math.max(0, 1 - t);
+  }
+
+  function drawPolyline(pts, color, lineWidth) {
+    if (pts.length < 2) return;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.stroke();
+  }
+
+  function drawDot(x, y, r, color) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+  function drawGlowDot(x, y, r, color, glowColor, glowBlur) {
+    ctx.save();
+    ctx.shadowBlur = glowBlur;
+    ctx.shadowColor = glowColor;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // -----------------------------------------------------------------------
+  // Animation loop
+  // -----------------------------------------------------------------------
+
+  function draw() {
+    const W = canvas.width;
+    const H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = COLOR_BG;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.save();
+    ctx.globalAlpha = globalAlphaMult;
+
+    // Draw background 49-system field
+    drawBg();
+
+    if (phase === "running" || phase === "paused") {
+      if (phase === "running") stepMain();
+
+      // Orpah path and dot
+      const oa = orpahOpacity() * globalAlphaMult;
+      ctx.save();
+      ctx.globalAlpha = oa;
+      ctx.shadowBlur = 4;
+      ctx.shadowColor = COLOR_ORPAH;
+      drawPolyline(orpahPath, COLOR_ORPAH, 1.8);
+      const lastO = orpahPath[orpahPath.length - 1];
+      drawDot(lastO.x, lastO.y, 4, COLOR_ORPAH);
+      ctx.restore();
+
+      // Ruth path
+      ctx.save();
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = COLOR_RUTH;
+      drawPolyline(ruthPath, COLOR_RUTH, 2.5);
+      ctx.restore();
+      drawGlowDot(ruth.x, ruth.y, 5, COLOR_RUTH, COLOR_RUTH, 12);
+
+      // Naomi center dot
+      drawGlowDot(naomi.x, naomi.y, 7, COLOR_NAOMI, COLOR_NAOMI, 14);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(naomi.x, naomi.y, 14, 0, Math.PI * 2);
+      ctx.strokeStyle = COLOR_NAOMI;
+      ctx.globalAlpha = 0.2;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.restore();
+
+      // Check convergence for phase transition
+      if (phase === "running") {
+        const distRuth = Math.hypot(naomi.x - ruth.x, naomi.y - ruth.y);
+        if (distRuth <= MAIN_STEP) {
+          phase = "paused";
+          pauseTimer = 120; // 2 seconds at 60fps
+        }
+      } else {
+        // paused
+        pauseTimer--;
+        if (pauseTimer <= 0) {
+          phase = "fading";
+        }
+      }
+    } else if (phase === "fading") {
+      // Draw the final state while fading out
+      ctx.save();
+      drawPolyline(orpahPath, COLOR_ORPAH, 1.8);
+      ctx.restore();
+      ctx.save();
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = COLOR_RUTH;
+      drawPolyline(ruthPath, COLOR_RUTH, 2.5);
+      ctx.restore();
+      drawGlowDot(ruth.x, ruth.y, 5, COLOR_RUTH, COLOR_RUTH, 12);
+      drawGlowDot(naomi.x, naomi.y, 7, COLOR_NAOMI, COLOR_NAOMI, 14);
+
+      globalAlphaMult -= 0.033; // ~30 frames to fade out
+      if (globalAlphaMult <= 0) {
+        globalAlphaMult = 0;
+        initMain();
+        // Fade back in
+        globalAlphaMult = 0;
+        phase = "fadein";
+      }
+    } else if (phase === "fadein") {
+      globalAlphaMult += 0.033;
+      if (globalAlphaMult >= 1) {
+        globalAlphaMult = 1;
+        phase = "running";
+      }
+      ctx.save();
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = COLOR_RUTH;
+      drawPolyline(ruthPath, COLOR_RUTH, 2.5);
+      ctx.restore();
+      drawGlowDot(ruth.x, ruth.y, 5, COLOR_RUTH, COLOR_RUTH, 12);
+      drawGlowDot(naomi.x, naomi.y, 7, COLOR_NAOMI, COLOR_NAOMI, 14);
+    }
+
+    ctx.restore();
+
+    requestAnimationFrame(draw);
+  }
+
+  // Kick off
+  initBg();
+  initMain();
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
