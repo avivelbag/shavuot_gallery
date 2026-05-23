@@ -7,9 +7,6 @@ and correctness of the Lyapunov fractal algorithm as expressed in index.html.
 import json
 import math
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "23-lyapunov-omer-boundary"
