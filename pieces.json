@@ -1023,6 +1023,17 @@
     "essay": "pieces/69-differential-growth-bikkurim/essay.md"
   },
   {
+    "id": "70-moire-milk-honey",
+    "title": "Honey and Milk Beneath Your Tongue",
+    "tagline": "two hexagonal grids — cream and gold — at slightly different scales; their moiré interference rings are the covenant that holds milk and honey together",
+    "year": 2026,
+    "theme": "Milk and Honey",
+    "technique": "moiré interference / overlapping hexagonal grids",
+    "path": "pieces/70-moire-milk-honey/index.html",
+    "thumbnail": "pieces/70-moire-milk-honey/thumbnail.svg",
+    "essay": "pieces/70-moire-milk-honey/essay.md"
+  },
+  {
     "id": "70-pinwheel-tiling-omer",
     "title": "Forty-Nine Angles of the Count",
     "tagline": "the only aperiodic tiling with all orientations — 49 tiles numbered for each day of the Omer",

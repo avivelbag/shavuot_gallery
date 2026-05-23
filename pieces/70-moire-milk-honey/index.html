@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Honey and Milk Beneath Your Tongue — Moiré Hexagonal Grids</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #080600; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #080600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a1200;
+      overflow-y: auto;
+      color: #b8a880;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #050400;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a1200; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #C8920A;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #3a2a00;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #C8920A;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+    }
+    .essay-panel em { color: #d4c090; font-style: italic; }
+    .essay-panel strong { color: #C8920A; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #1a1200; margin: 2rem 0; }
+
+    .passage-block {
+      background: #040300;
+      border: 1px solid #2a1e00;
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 0 0 1.8rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.2rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #C8920A;
+      line-height: 2.1;
+      margin: 0 0 0.9rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.88rem;
+      color: #8a7040;
+      font-style: italic;
+    }
+    .source-note {
+      font-size: 0.82rem;
+      color: #3a2a00;
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #1a1200;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c" width="700" height="700"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>Honey and Milk Beneath Your Tongue</h1>
+    <p class="subtitle">Song of Songs 4:11 · moiré interference / overlapping hexagonal grids</p>
+
+    <div class="passage-block">
+      <div class="hebrew-text">דְּבַשׁ וְחָלָב תַּחַת לְשׁוֹנֵךְ</div>
+      <div class="english-text">Honey and milk are beneath your tongue — Song of Songs 4:11</div>
+    </div>
+
+    <p>The phrase <em>eretz zavat chalav u'dvash</em> — "a land flowing with milk and honey" — appears twenty times in the Torah. It first enters the text at Exodus 3:8, in God's first words to Moses at the burning bush: the promise that launches the entire Exodus. From that moment it becomes the verbal signature of the covenant's destination, repeated at every major juncture — at Sinai, in the wilderness, at the edge of Canaan — as if the land must be named before it can be entered. It is the first geographical description in the Torah, spoken before any map is given.</p>
+
+    <p>Rashi, commenting on Exodus 3:8, cites the Midrash to explain why these two foods were chosen. The description is not merely agricultural; it is miraculous. Milk refers not to cattle but to goats, whose udders drip spontaneously as they graze. Honey comes not from hives but from the figs and dates of the land — the fruit so ripe and heavy with sweetness that honey oozes from it without pressing. The land <em>flows</em>; the abundance is not produced by labor but overflows from the ground itself. The promise concerns not normal agricultural output but a state of surplus beyond ordinary cause and effect.</p>
+
+    <h2>Empirical Abundance</h2>
+
+    <p>The Talmud takes this further in a remarkable passage. The tractate Ketubot (111b) records that the Sages of the Talmudic period conducted empirical observations of specific towns in the Land of Israel, verifying the biblical phrase by direct measurement. Rami bar Ezekiel reports seeing in Bnei Brak that goats dripped milk as they grazed beneath fig trees, and the milk mingled with fig-honey on the ground. The verse, the Talmud concludes, spoke truly. The covenantal promise was treated not as poetic metaphor but as a claim subject to empirical verification — a scientific proof of divine faithfulness.</p>
+
+    <h2>Torah as Sweetness</h2>
+
+    <p>Song of Songs 4:11 — "honey and milk beneath your tongue" — is read in the rabbinic tradition as an allegory. The Targum and <em>Midrash Shir HaShirim Rabbah</em> identify the beloved with the People of Israel and the lover with the Holy One. "Honey and milk beneath your tongue" is the sweetness of Torah learning — the words of the Oral Torah carried in the mouth and beneath the tongue, hidden and intimate. This creates the Shavuot connection. At Sinai, Israel received the Torah that is, as Psalm 19:11 declares, "sweeter than honey and the honeycomb." The gift of the land and the gift of the Torah converge at the same covenantal moment. Milk and honey together name both gifts: the fertility of the promised destination and the sweetness of the teaching given on the way.</p>
+
+    <h2>The Emergent Pattern</h2>
+
+    <p>The artwork renders the two gifts as two hexagonal grids — one cream, one gold — overlapping at slightly different scales. The hexagon is the honeycomb; the cream is the milk that flows between the cells. Neither grid alone produces anything remarkable. From their relationship — the slow rotation, the beat frequency between their 28-pixel and 30-pixel spacings — the moiré rings emerge: slowly swelling, dissolving, and reforming across the dark field. The land's abundance is not found in the milk alone, nor in the honey alone. It lives in the covenant that holds both together.</p>
+
+    <p class="source-note"><em>Sources: Exodus 3:8; Rashi ad loc.; Babylonian Talmud, Ketubot 111b; Song of Songs 4:11; Midrash Shir HaShirim Rabbah 4:11; Psalm 19:11.</em></p>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+let honeyAngle = 0;
+let t = 0;
+
+function drawHex(cx, cy, r) {
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const a = Math.PI / 3 * i;
+    const x = cx + r * Math.cos(a);
+    const y = cy + r * Math.sin(a);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+function drawHexGrid(spacing, angle, color, alpha) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.globalAlpha = alpha;
+  ctx.lineWidth = 1.5;
+
+  ctx.translate(350, 350);
+  ctx.rotate(angle);
+  ctx.translate(-350, -350);
+
+  const h = spacing * Math.sqrt(3) / 2;
+  const cols = Math.ceil(800 / spacing) + 4;
+  const rows = Math.ceil(800 / h) + 4;
+  const radius = spacing / Math.sqrt(3);
+
+  ctx.beginPath();
+  for (let row = -3; row < rows; row++) {
+    for (let col = -3; col < cols; col++) {
+      const cx = col * spacing * 1.5;
+      const cy = row * h * 2 + (col % 2 === 0 ? 0 : h);
+      drawHex(cx, cy, radius);
+    }
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawCaption() {
+  ctx.save();
+  ctx.globalAlpha = 0.8;
+  ctx.fillStyle = '#C8920A';
+  ctx.font = '15px "Times New Roman", Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.direction = 'rtl';
+  ctx.fillText('דְּבַשׁ וְחָלָב תַּחַת לְשׁוֹנֵךְ', 350, 678);
+  ctx.restore();
+}
+
+function frame() {
+  ctx.fillStyle = '#080600';
+  ctx.fillRect(0, 0, 700, 700);
+
+  const milkAlpha = Math.sin(t * 0.008) * 0.2 + 0.8;
+  drawHexGrid(28, 0, '#F5EDD5', milkAlpha);
+  drawHexGrid(30, honeyAngle, '#C8920A', 0.75);
+
+  drawCaption();
+
+  honeyAngle += 0.0008;
+  t++;
+  requestAnimationFrame(frame);
+}
+
+frame();
+</script>
+</body>
+</html>
