@@ -280,44 +280,8 @@
       return result;
     }
 
-    /* -----------------------------------------------------------------------
-       Build three seed circles at vertices of an equilateral triangle inscribed
-       in a circle of given radius, then construct Möbius transforms that swap
-       the exterior of each seed with the interior of the next seed (cyclically).
-
-       The canonical transformation swapping exteriors/interiors of two circles
-       C_i (center z_i, radius r_i) and C_j (center z_j, radius r_j) is the
-       inversion-based Möbius map:
-         M(z) = (r_i * r_j / ((z - z_i) * conj(z_j - z_i) / |z_j - z_i|) + z_j
-       We use a numerically direct construction: map z_i → ∞ via inversion,
-       then map back so that the image circle is C_j.
-
-       For a circle C with center p and radius r, the Möbius transform that
-       maps C to the unit circle (center 0, radius 1) is:
-         T(z) = (z - p) / r
-
-       We compose: T_j^{-1} ∘ T_i(z) maps C_i to C_j conformally.
-       T_j^{-1}(w) = r_j * w + p_j,  T_i(z) = (z - p_i) / r_i
-       Composition: M(z) = r_j * (z - p_i) / r_i + p_j
-       This is a linear (non-inversive) Möbius map: a = [r_j/r_i, 0],
-       b = p_j - p_i * r_j/r_i, c = [0,0], d = [1,0].
-       This maps C_i's center to C_j's center, but does not invert interior/exterior.
-
-       For a proper Schottky pair (exterior → interior), use inversive maps.
-       The map that inverts in C_i and then translates to C_j:
-         M(z) = r_i^2 / conj(z - p_i) + p_j   (anti-holomorphic, not Möbius)
-
-       Instead we use the loxodromic form. For a Schottky generator mapping
-       exterior of C_i to interior of C_{i+1}:
-         M(z) = p_{i+1} + r_{i+1}^2 / (z - p_i + r_i^2 / (... ))
-       The simplest valid Möbius map sending C_i's exterior to C_{i+1}'s interior
-       is the conjugate of inversion; but since Möbius maps must be holomorphic,
-       we instead pick: M(z) = p_j + (r_i * r_j) / (z - p_i).
-       This is M(z) = (p_j*(z-p_i) + r_i*r_j) / (z - p_i)
-                    = (p_j*z - p_j*p_i + r_i*r_j) / (z - p_i)
-       so: a = p_j, b = r_i*r_j - p_j*p_i, c = [1,0], d = -p_i.
-       det = a*d - b*c = p_j*(-p_i) - (r_i*r_j - p_j*p_i) = -r_i*r_j ≠ 0.
-    ----------------------------------------------------------------------- */
+    /* Schottky generator: M(z) = p_j + (r_i * r_j) / (z - p_i)
+       Maps ∂C_i to ∂C_j, exterior to interior. det = −r_i·r_j ≠ 0. */
     function buildTransforms(seeds) {
       const transforms = [];
       const n = seeds.length;
