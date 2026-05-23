@@ -523,7 +523,7 @@ function step() {
     dst = 1 - src;
     jacobi(vel[src].tex, velT.tex, vel[dst], alphaD, rBetaD);
   }
-  // After DIFF_ITERS=10 iterations, last write was to vel[0] (10%2=0, dst=0).
+  // After DIFF_ITERS=10 iterations, last write was to vel[0] (i=9: src=1, dst=0).
 
   // 3. Add velocity and dye impulses (Lissajous figure-eight pattern)
   inject();
@@ -538,7 +538,7 @@ function step() {
     dst = 1 - src;
     jacobi(pres[src].tex, divF.tex, pres[dst], -1.0, 0.25);
   }
-  // After PRES_ITERS=20 iterations, last write to pres[0] (20%2=0, dst=0).
+  // After PRES_ITERS=20 iterations, last write to pres[0] (i=19: src=1, dst=0).
 
   // 6. Subtract pressure gradient to make velocity divergence-free
   subtract(vel[0].tex, pres[0].tex, vel[1]);
