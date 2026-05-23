@@ -1738,6 +1738,17 @@
     "essay": "pieces/95-quantum-walk-forty-nine-gates/essay.md"
   },
   {
+    "id": "96-fibonacci-word-omer-barley",
+    "title": "Seven Times Seven, Plus One",
+    "tagline": "the Fibonacci word fractal traces the geometry of the barley harvest — a self-similar curve that counts the 49-day Omer in the same mathematics that packs seeds in a wheat head",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / Bikkurim / harvest",
+    "technique": "Fibonacci word fractal (turtle-graphics substitution curve)",
+    "path": "pieces/96-fibonacci-word-omer-barley/index.html",
+    "thumbnail": "pieces/96-fibonacci-word-omer-barley/thumbnail.svg",
+    "essay": "pieces/96-fibonacci-word-omer-barley/essay.md"
+  },
+  {
     "id": "96-mst-ruth-gleaning",
     "title": "She Went and Gleaned in the Field",
     "tagline": "Kruskal's minimum spanning tree assembles the optimal gleaning path through Ruth's barley field — the algorithm's local choices, like Ruth's wandering, converge on a hidden optimum",

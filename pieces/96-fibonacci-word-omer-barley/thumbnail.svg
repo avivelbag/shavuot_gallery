@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#1A1408"/>
+  <!-- Fibonacci word fractal: 5 substitution iterations (F(7)=13 segments)
+       Rule: 1->10, 0->1, starting from "1"
+       After 5 iters: "1011010110110" (13 chars)
+       Turtle: advance for each char; '0' at even index turns left (-90°), at odd index turns right (+90°)
+       Path visits: (0,0)(1,0)(2,0)(2,1)(2,2)(2,3)(3,3)(4,3)(4,2)(4,1)(4,0)(5,0)(6,0)(7,0)
+       Scaled to fit 400x400 with margin: scale=48.57, offsetX=30, offsetY=127 -->
+  <polyline
+    points="30,127 79,127 127,127 127,176 127,224 127,273 176,273 224,273 224,224 224,176 224,127 273,127 321,127 370,127"
+    fill="none"
+    stroke="#8B6914"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Highlight nodes to show self-similar structure -->
+  <circle cx="127" cy="127" r="5" fill="#D4A200" opacity="0.8"/>
+  <circle cx="224" cy="127" r="5" fill="#D4A200" opacity="0.8"/>
+  <circle cx="127" cy="273" r="4" fill="#6B8C3E" opacity="0.7"/>
+  <circle cx="224" cy="273" r="4" fill="#6B8C3E" opacity="0.7"/>
+  <!-- Hebrew numeral מ״ט (49) in lower-right corner -->
+  <text
+    x="375"
+    y="385"
+    font-family="serif"
+    font-size="30"
+    fill="#D4A200"
+    text-anchor="end"
+    direction="rtl"
+  >מ״ט</text>
+</svg>
