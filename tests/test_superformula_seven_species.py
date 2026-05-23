@@ -6,11 +6,7 @@ edge cases, and explicit failure modes described in the acceptance criteria.
 """
 
 import json
-import math
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "82-superformula-seven-species"
