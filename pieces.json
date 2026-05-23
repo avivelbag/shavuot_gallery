@@ -1516,5 +1516,16 @@
     "path": "pieces/88-cahn-hilliard-milk-honey/index.html",
     "thumbnail": "pieces/88-cahn-hilliard-milk-honey/thumbnail.svg",
     "essay": "pieces/88-cahn-hilliard-milk-honey/essay.md"
+  },
+  {
+    "id": "88-jfa-voronoi-tikkun-leil",
+    "title": "All Night They Learned: The Beit Midrash at Dawn",
+    "tagline": "49 learners' domains of illumination spread outward through the night — each Voronoi cell a scholar's territory, the canvas dark until dawn",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot / all-night Torah study",
+    "technique": "Jump Flooding Algorithm (JFA) Voronoi",
+    "path": "pieces/88-jfa-voronoi-tikkun-leil/index.html",
+    "thumbnail": "pieces/88-jfa-voronoi-tikkun-leil/thumbnail.svg",
+    "essay": "pieces/88-jfa-voronoi-tikkun-leil/essay.md"
   }
 ]

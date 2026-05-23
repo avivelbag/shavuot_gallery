@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Night They Learned: The Beit Midrash at Dawn</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #06090F; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #06090F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a1530;
+      overflow-y: auto;
+      color: #c8c0e0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080610;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a1530; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #E8C87A;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4a3a6a;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #9080C0;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #fdf6b2; font-style: italic; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>All Night They Learned: The Beit Midrash at Dawn</h1>
+    <p class="subtitle">Jump Flooding Algorithm (JFA) Voronoi &middot; Tikkun Leil Shavuot / all-night Torah study</p>
+
+    <h2>The Zohar's Prescription</h2>
+    <p>The practice of staying awake all night on Shavuot — known as <em>Tikkun Leil Shavuot</em>, the "repair of Shavuot night" — traces its earliest textual source to the Zohar. In Parashat Emor (III:98a), the mystical text declares: "The pious ones of old did not sleep that night but engaged in Torah, saying: let us acquire holy inheritance for ourselves and our sons in both worlds." This is the beit midrash before dawn — a room where candles burn through the night, and every learner's voice adds its domain of light to the whole.</p>
+
+    <h2>The Tzfat Circle</h2>
+    <p>The custom was crystallized in the sixteenth century by the kabbalists of Tzfat. R. Joseph Karo, R. Shlomo Alkabetz, and their circle composed the <em>Tikkun</em> anthology — a structured program of passages from Torah, Prophets, Writings, and Mishnah, arranged to carry the learner from darkness to dawn. The Magen Avraham (Orach Chaim 494:1) later codified what Tzfat had practiced: "It is the custom to stay awake all night on Shavuot engaged in Torah." From Tzfat the practice spread across the Jewish world; today it is universal.</p>
+
+    <h2>The Repair of a Drowsy Moment</h2>
+    <p>Here is the non-obvious insight: the word <em>tikkun</em> means "repair." What exactly is being repaired? The Midrash in <em>Shir HaShirim Rabbah</em> (1:12) records a startling detail — Israel fell asleep the night before Matan Torah, and Moses had to wake them when the Divine Presence descended on Sinai. The nation slept through the opening moment of the greatest revelation in history. Every generation's Tikkun Leil Shavuot is a retroactive correction of that original failure. By staying awake — each learner in their own domain of candle-light, each voice adding its illumination — we repair the drowsiness at Sinai. The annual vigil is not merely piety; it is the annual undoing of a collective lapse.</p>
+
+    <h2>The Algorithm as Vigil</h2>
+    <p>The Jump Flooding Algorithm computes Voronoi diagrams in O(log N) passes over the canvas: in each pass, every pixel samples its eight neighbors at an exponentially shrinking step distance and adopts the nearest seed it finds. After log&#8322;(max(W,H)) passes the full Voronoi diagram is complete. The canvas begins in near-total darkness. One by one, over eight seconds representing the night's eight hours, each of the forty-nine seed-learners activates and its Voronoi cell blooms outward — a wave of light spreading from the individual to fill every corner of their domain. Seeds on the left entered study at the depth of night: their cells glow midnight blue and violet. Seeds toward the right arrived as dawn approached: their cells burn deep orange and warm gold. At full illumination, no pixel of the canvas remains in darkness. That, precisely, is the point of the tikkun.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var W = 800, H = 600;
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  canvas.width = W;
+  canvas.height = H;
+
+  // Deterministic PRNG for seed placement — fixed seed gives stable layout
+  var rngState = 0x5A3C9B01;
+  function rng() {
+    rngState = (Math.imul(1664525, rngState) + 1013904223) | 0;
+    return (rngState >>> 0) / 0x100000000;
+  }
+
+  // 49 seeds in a circular arrangement with jitter, clamped to canvas
+  var N = 49;
+  var seeds = [];
+  var cx = W / 2, cy = H / 2;
+  var baseR = Math.min(W, H) * 0.36;
+  for (var i = 0; i < N; i++) {
+    var angle = (i / N) * 2 * Math.PI;
+    var r = baseR * (0.5 + rng() * 0.5);
+    var jx = (rng() - 0.5) * W * 0.1;
+    var jy = (rng() - 0.5) * H * 0.1;
+    seeds.push({
+      x: Math.max(8, Math.min(W - 8, cx + r * Math.cos(angle) + jx)),
+      y: Math.max(8, Math.min(H - 8, cy + r * Math.sin(angle) + jy))
+    });
+  }
+
+  // ---- JFA -----------------------------------------------------------------
+
+  function dist2(ax, ay, bx, by) {
+    var dx = ax - bx, dy = ay - by;
+    return dx * dx + dy * dy;
+  }
+
+  /**
+   * One JFA pass at the given step size.
+   * Each pixel samples its 8 neighbors at distance `step` and adopts the nearest
+   * seed found among them.  Returns a new Int16Array with updated assignments.
+   */
+  function jfaPass(buf, step) {
+    var next = new Int16Array(buf);
+    for (var py = 0; py < H; py++) {
+      for (var px = 0; px < W; px++) {
+        var idx = py * W + px;
+        var best = buf[idx];
+        var bestD = best >= 0 ? dist2(px, py, seeds[best].x, seeds[best].y) : 1e18;
+        for (var dy = -1; dy <= 1; dy++) {
+          for (var dx = -1; dx <= 1; dx++) {
+            var nx = px + dx * step, ny = py + dy * step;
+            if (nx < 0 || nx >= W || ny < 0 || ny >= H) continue;
+            var ns = buf[ny * W + nx];
+            if (ns < 0) continue;
+            var d = dist2(px, py, seeds[ns].x, seeds[ns].y);
+            if (d < bestD) { bestD = d; best = ns; }
+          }
+        }
+        next[idx] = best;
+      }
+    }
+    return next;
+  }
+
+  /**
+   * Run complete JFA for all N seeds.
+   * Initialises each seed pixel then runs passes at step = max(W,H)/2 down to 1.
+   */
+  function runJFA() {
+    var buf = new Int16Array(W * H).fill(-1);
+    for (var i = 0; i < N; i++) {
+      var px = Math.max(0, Math.min(W - 1, seeds[i].x | 0));
+      var py = Math.max(0, Math.min(H - 1, seeds[i].y | 0));
+      buf[py * W + px] = i;
+    }
+    for (var step = Math.max(W, H) >> 1; step >= 1; step >>= 1) {
+      buf = jfaPass(buf, step);
+    }
+    return buf;
+  }
+
+  // Run JFA once at startup — result is reused for the entire animation
+  var jfaBuf = runJFA();
+
+  // Pre-compute edge mask: 1 where this pixel borders a different cell
+  var edgeMask = new Uint8Array(W * H);
+  for (var py = 0; py < H; py++) {
+    for (var px = 0; px < W; px++) {
+      var idx = py * W + px;
+      var s = jfaBuf[idx];
+      if ((px < W - 1 && jfaBuf[idx + 1] !== s) ||
+          (py < H - 1 && jfaBuf[idx + W] !== s)) {
+        edgeMask[idx] = 1;
+      }
+    }
+  }
+
+  // Pre-compute per-pixel Euclidean distance to its seed center
+  var pixelDist = new Float32Array(W * H);
+  // Per-seed maximum distance to any pixel in the cell (used for bloom radius)
+  var maxCellDist = new Float32Array(N);
+  for (var py = 0; py < H; py++) {
+    for (var px = 0; px < W; px++) {
+      var idx = py * W + px;
+      var s = jfaBuf[idx];
+      if (s >= 0) {
+        var d = Math.sqrt(dist2(px, py, seeds[s].x, seeds[s].y));
+        pixelDist[idx] = d;
+        if (d > maxCellDist[s]) maxCellDist[s] = d;
+      }
+    }
+  }
+
+  // Color gradient stops: night → dawn
+  // #0A0F2E midnight blue → #2D1B69 violet → #B85C00 deep orange → #F0A800 warm gold
+  var STOPS = [
+    { t: 0.00, r: 10,  g: 15,  b: 46  },
+    { t: 0.35, r: 45,  g: 27,  b: 105 },
+    { t: 0.65, r: 184, g: 92,  b: 0   },
+    { t: 1.00, r: 240, g: 168, b: 0   }
+  ];
+
+  /**
+   * Interpolate the color gradient at position t in [0,1].
+   * Returns [r,g,b] integers.
+   */
+  function gradColor(t) {
+    var i = 0;
+    while (i < STOPS.length - 2 && STOPS[i + 1].t <= t) i++;
+    var a = STOPS[i], b = STOPS[i + 1];
+    var f = (t - a.t) / (b.t - a.t);
+    return [(a.r + f * (b.r - a.r)) | 0,
+            (a.g + f * (b.g - a.g)) | 0,
+            (a.b + f * (b.b - a.b)) | 0];
+  }
+
+  // Pre-compute cell colors based on each seed's x-position
+  var cellColor = seeds.map(function (s) { return gradColor(s.x / W); });
+
+  // Pre-compute deterministic ±3 LCG noise per pixel per channel
+  // Stored as Int8Array: [r0,g0,b0, r1,g1,b1, ...]
+  var noiseArr = new Int8Array(W * H * 3);
+  (function () {
+    var s = 0xCAFEBABE | 0;
+    for (var i = 0; i < W * H * 3; i++) {
+      s = (Math.imul(1664525, s) + 1013904223) | 0;
+      noiseArr[i] = ((s >>> 0) % 7) - 3;
+    }
+  }());
+
+  // Activation order: seeds sorted left→right (night → dawn)
+  var seedOrder = Array.from({ length: N }, function (_, i) { return i; })
+    .sort(function (a, b) { return seeds[a].x - seeds[b].x; });
+
+  // Activation timestamps: -1 means not yet activated
+  var activationTime = new Float32Array(N).fill(-1);
+  var activeSeedCount = 0;
+  var startTime = null;
+  var allActive = false;
+
+  // 7 batches of 7 seeds, evenly spaced over 8 seconds (6 gaps → 1333 ms each)
+  var BATCH_INTERVAL = 8000 / 6;
+  var BATCH_SIZE = 7;
+  var BLOOM_MS = 500;
+
+  var imgData = ctx.createImageData(W, H);
+  var px4 = imgData.data;
+
+  // Hebrew letters (22 standard, cycled for 49 seeds)
+  var HEBREW = ['א','ב','ג','ד','ה','ו','ז','ח','ט','י','כ','ל','מ','נ','ס','ע','פ','צ','ק','ר','ש','ת'];
+
+  /** Render one animation frame.  Handles activation scheduling, bloom reveals,
+   *  and the dawn-side breathing pulse after full illumination. */
+  function frame(now) {
+    if (startTime === null) startTime = now;
+    var elapsed = now - startTime;
+
+    // Advance activation schedule
+    var targetBatch = Math.min(6, Math.floor(elapsed / BATCH_INTERVAL));
+    var targetCount = Math.min(N, (targetBatch + 1) * BATCH_SIZE);
+    for (var i = activeSeedCount; i < targetCount; i++) {
+      activationTime[seedOrder[i]] = now;
+    }
+    if (targetCount > activeSeedCount) activeSeedCount = targetCount;
+    if (activeSeedCount >= N && !allActive) allActive = true;
+
+    // Dawn pulse: smooth 0→10 oscillation at 0.2 Hz, starts after full illumination
+    var dawnBoost = allActive
+      ? ((1 + Math.sin(2 * Math.PI * 0.0002 * now)) * 0.5) * 10
+      : 0;
+
+    // Render pixel buffer
+    for (var py = 0; py < H; py++) {
+      for (var px = 0; px < W; px++) {
+        var idx = py * W + px;
+        var s = jfaBuf[idx];
+        var o = idx << 2;
+
+        if (s < 0 || activationTime[s] < 0) {
+          // Unassigned or inactive: near-black dark blue
+          px4[o] = 2; px4[o+1] = 3; px4[o+2] = 8; px4[o+3] = 255;
+          continue;
+        }
+
+        // Bloom reveal: pixels beyond current radius stay dark
+        var t = Math.min(1, (now - activationTime[s]) / BLOOM_MS);
+        if (t < 1 && pixelDist[idx] > t * maxCellDist[s]) {
+          px4[o] = 2; px4[o+1] = 3; px4[o+2] = 8; px4[o+3] = 255;
+          continue;
+        }
+
+        // Fully revealed pixel: cell color + per-channel noise + optional dawn boost
+        var col = cellColor[s];
+        var ni = idx * 3;
+        var isDawn = seeds[s].x > W * 0.5;
+        var boost = isDawn ? dawnBoost : 0;
+        var edge = edgeMask[idx];
+        var edgeAdd = edge ? 38 : 0; // 255 * 0.15 ≈ 38
+
+        px4[o]   = Math.min(255, col[0] + noiseArr[ni]     + boost + edgeAdd);
+        px4[o+1] = Math.min(255, col[1] + noiseArr[ni + 1]          + edgeAdd);
+        px4[o+2] = Math.min(255, col[2] + noiseArr[ni + 2]          + edgeAdd);
+        px4[o+3] = 255;
+      }
+    }
+    ctx.putImageData(imgData, 0, 0);
+
+    // Overlay Hebrew letter glyphs at active seed positions
+    ctx.font = '10px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(255,255,200,0.5)';
+    for (var si = 0; si < N; si++) {
+      if (activationTime[si] < 0) continue;
+      ctx.fillText(HEBREW[si % HEBREW.length], seeds[si].x, seeds[si].y);
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

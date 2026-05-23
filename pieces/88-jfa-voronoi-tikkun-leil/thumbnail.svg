@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#0A0F2E"/>
+      <stop offset="35%"  stop-color="#2D1B69"/>
+      <stop offset="65%"  stop-color="#B85C00"/>
+      <stop offset="100%" stop-color="#F0A800"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background gradient: midnight to dawn -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+
+  <!-- Voronoi cells: 12 irregular polygons tiling the canvas, left-to-right color scheme -->
+  <!-- Row 0, Col 0 — top-left, midnight blue -->
+  <polygon points="0,0 102,0 90,142 0,128"
+           fill="#151343" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 0, Col 1 — upper-center-left, violet -->
+  <polygon points="102,0 198,0 212,118 90,142"
+           fill="#2D1B69" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 0, Col 2 — upper-center-right, deep orange -->
+  <polygon points="198,0 298,0 302,132 212,118"
+           fill="#8C3A00" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 0, Col 3 — top-right, gold -->
+  <polygon points="298,0 400,0 400,128 302,132"
+           fill="#D08800" stroke="white" stroke-width="1" opacity="0.85"/>
+
+  <!-- Row 1, Col 0 — left-middle, midnight blue -->
+  <polygon points="0,128 90,142 98,278 0,268"
+           fill="#0A0F2E" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 1, Col 1 — center-left-middle, violet -->
+  <polygon points="90,142 212,118 208,272 98,278"
+           fill="#1E1158" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 1, Col 2 — center-right-middle, orange -->
+  <polygon points="212,118 302,132 312,278 208,272"
+           fill="#B85C00" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 1, Col 3 — right-middle, gold -->
+  <polygon points="302,132 400,128 400,272 312,278"
+           fill="#E09200" stroke="white" stroke-width="1" opacity="0.85"/>
+
+  <!-- Row 2, Col 0 — bottom-left, dark blue -->
+  <polygon points="0,268 98,278 108,400 0,400"
+           fill="#0D1238" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 2, Col 1 — bottom-center-left, violet -->
+  <polygon points="98,278 208,272 202,400 108,400"
+           fill="#3A2078" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 2, Col 2 — bottom-center-right, orange -->
+  <polygon points="208,272 312,278 308,400 202,400"
+           fill="#A05000" stroke="white" stroke-width="1" opacity="0.85"/>
+  <!-- Row 2, Col 3 — bottom-right, gold -->
+  <polygon points="312,278 400,272 400,400 308,400"
+           fill="#F0A800" stroke="white" stroke-width="1" opacity="0.85"/>
+
+  <!-- Seed dots (learner positions at cell centers) -->
+  <circle cx="46"  cy="64"  r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="150" cy="59"  r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="255" cy="59"  r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="352" cy="64"  r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="46"  cy="205" r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="153" cy="198" r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="258" cy="198" r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="354" cy="200" r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="52"  cy="338" r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="154" cy="340" r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="257" cy="340" r="3.5" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="356" cy="338" r="3.5" fill="rgba(255,255,200,0.7)"/>
+</svg>
