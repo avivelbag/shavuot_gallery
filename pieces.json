@@ -1373,5 +1373,16 @@
     "path": "pieces/82-superformula-seven-species/index.html",
     "thumbnail": "pieces/82-superformula-seven-species/thumbnail.svg",
     "essay": "pieces/82-superformula-seven-species/essay.md"
+  },
+  {
+    "id": "83-snowflake-sapphire-throne",
+    "title": "The Essence of a Sapphire Brick",
+    "tagline": "dendritic crystal growth from a single frozen seed — the sapphire pavement of Sinai",
+    "year": 2026,
+    "theme": "Har Sinai / the two tablets / sapphire pavement",
+    "technique": "Dendritic crystal growth / Gravner-Griffeath hexagonal cellular automaton",
+    "path": "pieces/83-snowflake-sapphire-throne/index.html",
+    "thumbnail": "pieces/83-snowflake-sapphire-throne/thumbnail.svg",
+    "essay": "pieces/83-snowflake-sapphire-throne/essay.md"
   }
 ]

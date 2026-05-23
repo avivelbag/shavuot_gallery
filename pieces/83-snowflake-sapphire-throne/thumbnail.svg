@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Gradient from deep sapphire at center to crystal white at tips -->
+    <linearGradient id="arm0" x1="200" y1="200" x2="200" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A2060"/>
+      <stop offset="35%" stop-color="#1040A0"/>
+      <stop offset="70%" stop-color="#40A0E0"/>
+      <stop offset="100%" stop-color="#D8EEFF"/>
+    </linearGradient>
+    <linearGradient id="arm1" x1="200" y1="200" x2="356" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A2060"/>
+      <stop offset="35%" stop-color="#1040A0"/>
+      <stop offset="70%" stop-color="#40A0E0"/>
+      <stop offset="100%" stop-color="#D8EEFF"/>
+    </linearGradient>
+    <linearGradient id="arm2" x1="200" y1="200" x2="356" y2="290" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A2060"/>
+      <stop offset="35%" stop-color="#1040A0"/>
+      <stop offset="70%" stop-color="#40A0E0"/>
+      <stop offset="100%" stop-color="#D8EEFF"/>
+    </linearGradient>
+    <linearGradient id="arm3" x1="200" y1="200" x2="200" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A2060"/>
+      <stop offset="35%" stop-color="#1040A0"/>
+      <stop offset="70%" stop-color="#40A0E0"/>
+      <stop offset="100%" stop-color="#D8EEFF"/>
+    </linearGradient>
+    <linearGradient id="arm4" x1="200" y1="200" x2="44" y2="290" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A2060"/>
+      <stop offset="35%" stop-color="#1040A0"/>
+      <stop offset="70%" stop-color="#40A0E0"/>
+      <stop offset="100%" stop-color="#D8EEFF"/>
+    </linearGradient>
+    <linearGradient id="arm5" x1="200" y1="200" x2="44" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A2060"/>
+      <stop offset="35%" stop-color="#1040A0"/>
+      <stop offset="70%" stop-color="#40A0E0"/>
+      <stop offset="100%" stop-color="#D8EEFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="400" height="400" fill="#030508"/>
+
+  <!-- Six main arms — each a thick spine with branch stubs -->
+  <!-- Arm 0: up (270°) -->
+  <line x1="200" y1="200" x2="200" y2="20" stroke="url(#arm0)" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="200" y1="130" x2="180" y2="110" stroke="url(#arm0)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="200" y1="130" x2="220" y2="110" stroke="url(#arm0)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="200" y1="80" x2="186" y2="66" stroke="url(#arm0)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="200" y1="80" x2="214" y2="66" stroke="url(#arm0)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="200" y1="170" x2="186" y2="156" stroke="url(#arm0)" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="200" y1="170" x2="214" y2="156" stroke="url(#arm0)" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Arm 1: upper-right (30°) -->
+  <line x1="200" y1="200" x2="356" y2="110" stroke="url(#arm1)" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="270" y1="160" x2="280" y2="137" stroke="url(#arm1)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="270" y1="160" x2="257" y2="142" stroke="url(#arm1)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="312" y1="135" x2="322" y2="114" stroke="url(#arm1)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="312" y1="135" x2="301" y2="119" stroke="url(#arm1)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="237" y1="178" x2="245" y2="157" stroke="url(#arm1)" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="237" y1="178" x2="226" y2="163" stroke="url(#arm1)" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Arm 2: lower-right (150°) -->
+  <line x1="200" y1="200" x2="356" y2="290" stroke="url(#arm2)" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="270" y1="240" x2="281" y2="263" stroke="url(#arm2)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="270" y1="240" x2="257" y2="257" stroke="url(#arm2)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="312" y1="265" x2="323" y2="287" stroke="url(#arm2)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="312" y1="265" x2="301" y2="281" stroke="url(#arm2)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="237" y1="222" x2="246" y2="243" stroke="url(#arm2)" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="237" y1="222" x2="225" y2="237" stroke="url(#arm2)" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Arm 3: down (90°) -->
+  <line x1="200" y1="200" x2="200" y2="380" stroke="url(#arm3)" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="200" y1="270" x2="220" y2="290" stroke="url(#arm3)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="200" y1="270" x2="180" y2="290" stroke="url(#arm3)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="200" y1="320" x2="214" y2="334" stroke="url(#arm3)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="200" y1="320" x2="186" y2="334" stroke="url(#arm3)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="200" y1="230" x2="214" y2="244" stroke="url(#arm3)" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="200" y1="230" x2="186" y2="244" stroke="url(#arm3)" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Arm 4: lower-left (210°) -->
+  <line x1="200" y1="200" x2="44" y2="290" stroke="url(#arm4)" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="130" y1="240" x2="119" y2="263" stroke="url(#arm4)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="130" y1="240" x2="143" y2="257" stroke="url(#arm4)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="88" y1="265" x2="77" y2="287" stroke="url(#arm4)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="88" y1="265" x2="99" y2="281" stroke="url(#arm4)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="163" y1="222" x2="154" y2="243" stroke="url(#arm4)" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="163" y1="222" x2="175" y2="237" stroke="url(#arm4)" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Arm 5: upper-left (330°) -->
+  <line x1="200" y1="200" x2="44" y2="110" stroke="url(#arm5)" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="130" y1="160" x2="120" y2="137" stroke="url(#arm5)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="130" y1="160" x2="143" y2="143" stroke="url(#arm5)" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="88" y1="135" x2="78" y2="114" stroke="url(#arm5)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="88" y1="135" x2="99" y2="119" stroke="url(#arm5)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="163" y1="178" x2="155" y2="157" stroke="url(#arm5)" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="163" y1="178" x2="174" y2="163" stroke="url(#arm5)" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Center seed -->
+  <circle cx="200" cy="200" r="5" fill="#6090d8" opacity="0.9"/>
+  <circle cx="200" cy="200" r="2.5" fill="#D8EEFF"/>
+</svg>
