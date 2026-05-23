@@ -324,7 +324,7 @@ function drawTiling(angle) {
     const isCenterTile = (Math.abs(cx - CX) < TILE_W * 0.6 &&
                           Math.abs(cy - CY) < TILE_H * 0.6);
     const starFill = isCenterTile ? COL_CENTER : COL_STAR;
-    const bowFill  = isCenterTile ? COL_BOW    : COL_BOW;
+    const bowFill  = COL_BOW;
     fillGirihStar(cx, cy, R, starFill, bowFill);
   }
 

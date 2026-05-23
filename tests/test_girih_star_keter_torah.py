@@ -8,8 +8,6 @@ and thumbnail SVG validity.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "73-girih-star-keter-torah"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
