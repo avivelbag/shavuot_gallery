@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Whole Mountain Quaked</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0d0a12; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0d0a12;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2a1a2e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0d0a12;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2a1a2e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #e8d4c0;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #6a3a2a;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #c49060;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      border-left: 2px solid #6a3a2a;
+      margin: 1rem 0 1rem 1rem;
+      padding-left: 1rem;
+      color: #a08870;
+      font-style: italic;
+    }
+    .essay-panel strong {
+      color: #e8d4c0;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>The Whole Mountain Quaked</h1>
+    <p class="subtitle">וַיֶּחֱרַד כָּל-הָהָר מְאֹד — Har Sinai / Exodus 19:18</p>
+
+    <h2>Fire, Smoke, and Trembling</h2>
+    <p>Exodus 19:18 reads: "And Mount Sinai was entirely in smoke, because the LORD descended upon it in fire; and its smoke ascended like the smoke of a furnace, and the whole mountain quaked greatly (וַיֶּחֱרַד כָּל-הָהָר מְאֹד)." Three phenomena are layered here: fire below, smoke ascending, and then — as a third, distinct event — the mountain itself trembles. The verse is not a figure of speech. The Torah names each phenomenon separately, and the trembling of the mountain is the last and most specific.</p>
+
+    <h2>Ḥarad — Terror of the Living, Terror of Stone</h2>
+    <p>The verb used for the mountain's shaking is חרד (ḥarad). In the Torah, ḥarad almost always describes the response of conscious beings to overwhelming experience: Isaac trembled greatly when he understood what had happened with the blessing (Genesis 27:33); the Israelites were terrified when they heard of Pharaoh's approach (Exodus 14:10); the people trembled at Sinai in Exodus 19:16, using this same root. The word belongs, in its ordinary Torah usage, to creatures with hearts that pound.</p>
+
+    <p>Exodus 19:18 is the only place in the entire Torah where ḥarad describes inanimate matter. The mountain does what living creatures do when they encounter the unbearable. Stone behaves like flesh. The created order, ordinarily indifferent to revelation, participates in it.</p>
+
+    <h2>The Mechilta: A World That Felt the Weight</h2>
+    <p>The Mechilta de-Rabbi Ishmael (on Exodus 19:18) does not read the mountain's trembling as hyperbole or metaphor. It interprets it as a cosmological event: the entire created order — not Israel alone, not the mountain alone, but the physical world as such — felt the weight of the divine presence descending. The revelation at Sinai was not a private transaction between God and one nation standing at a mountain's foot. It was an event that reorganized the physical world's sense of what it was capable of experiencing. Mountains could tremble. Rock had always had the capacity for terror; Sinai was the moment that capacity was activated.</p>
+
+    <h2>Shabbat 88a: The Israelites Move Backward</h2>
+    <p>The Talmud (Shabbat 88a) adds another layer to the theophany's physical overwhelming. At each of the Ten Commandments, the Israelites — already trembling at the foot of the mountain — recoiled backward 12 mil, approximately ten miles. They fled from the sound of the divine voice. Then the angels who attend the divine presence had to escort them back to their places before the next commandment could be given. This happened ten times: ten flights, ten angelic escorts. The act of receiving Torah was not passive reception. It was physically violent — a body thrown backward by sound, escorted back by celestial hands, thrown again.</p>
+
+    <p>The revelation that shook the mountain also threw the people. The mountain's ḥarad and the people's ḥarad were the same event, felt by stone and by flesh simultaneously.</p>
+
+    <h2>Shavuot: Receiving a Torah That Shook the World</h2>
+    <p>Shavuot commemorates not just the receiving of the commandments but the receiving of a Torah that shook the world when it arrived. The mountain did not stay still and let the law land on it gently. The world reorganized itself around the event. What the festival asks us to remember, year after year, is that the Torah was not received in tranquility. It arrived like a seismic event — physically, cosmologically, in stone and in people simultaneously.</p>
+
+    <h2>This Piece</h2>
+    <p>The animation generates a fractal terrain using the diamond-square algorithm on a 65×65 grid (2⁶+1 nodes). The algorithm recursively subdivides: diamond centers receive the average of their four corners plus a random displacement; square edge midpoints receive the average of their neighbors plus a displacement. Each subdivision pass halves the displacement magnitude (roughness 0.65 — dramatic peaks but not noise). The result is normalized to [0,1].</p>
+
+    <p>Two heightmaps are maintained simultaneously: H_current and H_next. The displayed terrain interpolates between them over 120 frames (two seconds at 60fps): <strong>H_display = H_current·(1−t/T) + H_next·(t/T)</strong>. When t=T, H_current becomes H_next and a new H_next is generated. The mountain never settles. It endlessly restructures its ridges and valleys as if some invisible seismic force is always moving through its substrate — enacting the verse's description of a mountain that could not stop trembling.</p>
+
+    <p>The isometric projection renders each cell as a rhombus with top, left, and right faces at different brightness levels, painted back-to-front (painter's algorithm). Color bands run from deep purple-grey base rock through charcoal brown and warm stone to pale smoke and near-white summit cloud. Eighty smoke particles drift slowly upward from the summit. A translucent red-orange glow runs along the mountain base — the fire in which the LORD descended.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  const N = 65;
+  const CELL_W = 16;
+  const CELL_H = 8;
+  const HEIGHT_SCALE = 60;
+  const T_MORPH = 120;
+  const ROUGHNESS = 0.65;
+  const N_PARTICLES = 80;
+
+  const COLORS = [
+    { threshold: 0.3,  hex: '#2A1A2E' },
+    { threshold: 0.55, hex: '#3D2B1A' },
+    { threshold: 0.75, hex: '#7A5A38' },
+    { threshold: 0.9,  hex: '#B89070' },
+    { threshold: 1.1,  hex: '#F0E8D8' },
+  ];
+
+  /**
+   * Parse a hex color string into [r, g, b] components (0-255).
+   */
+  function hexToRgb(hex) {
+    const v = parseInt(hex.slice(1), 16);
+    return [(v >> 16) & 0xff, (v >> 8) & 0xff, v & 0xff];
+  }
+
+  const COLOR_RGBS = COLORS.map(c => hexToRgb(c.hex));
+
+  /**
+   * Return the [r,g,b] top-face color for height h in [0,1].
+   */
+  function heightColor(h) {
+    for (let i = 0; i < COLORS.length; i++) {
+      if (h < COLORS[i].threshold) return COLOR_RGBS[i];
+    }
+    return COLOR_RGBS[COLOR_RGBS.length - 1];
+  }
+
+  /**
+   * Scale an [r,g,b] array by factor f, clamping to [0,255].
+   */
+  function scaleRgb(rgb, f) {
+    return [
+      Math.max(0, Math.min(255, Math.round(rgb[0] * f))),
+      Math.max(0, Math.min(255, Math.round(rgb[1] * f))),
+      Math.max(0, Math.min(255, Math.round(rgb[2] * f))),
+    ];
+  }
+
+  /**
+   * Format [r,g,b] as a CSS rgb() string.
+   */
+  function rgbStr(rgb) {
+    return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+  }
+
+  /**
+   * Generate a 65×65 diamond-square heightmap normalized to [0,1].
+   * n must be 2^k+1 (use n=65 for 2^6+1).
+   * roughness controls how quickly displacement scales shrink each pass.
+   */
+  function diamondSquare(n, roughness) {
+    const size = n * n;
+    const h = new Float32Array(size);
+    const idx = (x, y) => x * n + y;
+
+    h[idx(0, 0)] = Math.random();
+    h[idx(n - 1, 0)] = Math.random();
+    h[idx(0, n - 1)] = Math.random();
+    h[idx(n - 1, n - 1)] = Math.random();
+
+    let step = n - 1;
+    let scale = 1.0;
+
+    while (step > 1) {
+      const half = step >> 1;
+
+      for (let x = 0; x < n - 1; x += step) {
+        for (let y = 0; y < n - 1; y += step) {
+          const avg = (
+            h[idx(x, y)] +
+            h[idx(x + step, y)] +
+            h[idx(x, y + step)] +
+            h[idx(x + step, y + step)]
+          ) / 4;
+          h[idx(x + half, y + half)] = avg + (Math.random() * 2 - 1) * scale;
+        }
+      }
+
+      for (let x = 0; x < n; x += half) {
+        for (let y = (x + half) % step; y < n; y += step) {
+          let sum = 0, count = 0;
+          if (x - half >= 0) { sum += h[idx(x - half, y)]; count++; }
+          if (x + half < n)  { sum += h[idx(x + half, y)]; count++; }
+          if (y - half >= 0) { sum += h[idx(x, y - half)]; count++; }
+          if (y + half < n)  { sum += h[idx(x, y + half)]; count++; }
+          h[idx(x, y)] = sum / count + (Math.random() * 2 - 1) * scale;
+        }
+      }
+
+      step = half;
+      scale *= Math.pow(2, -roughness);
+    }
+
+    let mn = h[0], mx = h[0];
+    for (let i = 1; i < size; i++) {
+      if (h[i] < mn) mn = h[i];
+      if (h[i] > mx) mx = h[i];
+    }
+    const range = mx - mn || 1;
+    for (let i = 0; i < size; i++) h[i] = (h[i] - mn) / range;
+
+    return h;
+  }
+
+  /**
+   * Collect the screen positions of the top 15% cells (h >= 0.85) for particle spawn.
+   * Returns array of {sx, sy} using the isometric projection formulas.
+   */
+  function collectSummitPositions(hmap, cw, ch) {
+    const positions = [];
+    for (let ix = 0; ix < N - 1; ix++) {
+      for (let iy = 0; iy < N - 1; iy++) {
+        const hv = hmap[ix * N + iy];
+        if (hv >= 0.85) {
+          positions.push({
+            sx: (ix - iy) * CELL_W / 2 + cw / 2,
+            sy: (ix + iy) * CELL_H / 2 - hv * HEIGHT_SCALE + ch * 0.6,
+          });
+        }
+      }
+    }
+    return positions;
+  }
+
+  /**
+   * Initialize one smoke particle, spawning it at a random summit cell position.
+   */
+  function spawnParticle(summitPositions, frameCount) {
+    if (summitPositions.length === 0) {
+      return { x: 0, y: 0, alpha: 0, seed: Math.random() * 100 };
+    }
+    const pos = summitPositions[Math.floor(Math.random() * summitPositions.length)];
+    return {
+      x: pos.sx + (Math.random() - 0.5) * CELL_W * 2,
+      y: pos.sy,
+      alpha: 0.3,
+      seed: Math.random() * 100,
+    };
+  }
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  let W, H_canvas;
+
+  function resize() {
+    const panel = document.getElementById('art-panel');
+    W = panel.clientWidth;
+    H_canvas = panel.clientHeight;
+    canvas.width = W;
+    canvas.height = H_canvas;
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  let hCurrent = diamondSquare(N, ROUGHNESS);
+  let hNext = diamondSquare(N, ROUGHNESS);
+  let hDisplay = new Float32Array(N * N);
+
+  let tMorph = 0;
+  let frameCount = 0;
+
+  let summitPositions = [];
+  const particles = [];
+
+  function rebuildSummit() {
+    summitPositions = collectSummitPositions(hDisplay, W, H_canvas);
+  }
+
+  for (let i = 0; i < N_PARTICLES; i++) {
+    particles.push(spawnParticle(summitPositions, frameCount));
+  }
+
+  /**
+   * Interpolate hCurrent and hNext into hDisplay at blend factor t in [0,1].
+   */
+  function blendHeightmaps(t) {
+    const inv = 1 - t;
+    for (let i = 0; i < N * N; i++) {
+      hDisplay[i] = hCurrent[i] * inv + hNext[i] * t;
+    }
+  }
+
+  /**
+   * Draw a single isometric cell at grid position (ix, iy) with height h.
+   * Paints top face, left face, and right face using the painter's algorithm order.
+   */
+  function drawCell(ix, iy, h) {
+    const sx = (ix - iy) * CELL_W / 2 + W / 2;
+    const sy = (ix + iy) * CELL_H / 2 - h * HEIGHT_SCALE + H_canvas * 0.6;
+
+    const rgb = heightColor(h);
+    const leftRgb = scaleRgb(rgb, 0.7);
+    const rightRgb = scaleRgb(rgb, 0.5);
+
+    const hw = CELL_W / 2;
+    const hh = CELL_H / 2;
+
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(sx + hw, sy + hh);
+    ctx.lineTo(sx + CELL_W, sy);
+    ctx.lineTo(sx + hw, sy - hh);
+    ctx.closePath();
+    ctx.fillStyle = rgbStr(rgb);
+    ctx.fill();
+
+    const baseY = (ix + iy) * CELL_H / 2 + H_canvas * 0.6;
+    const leftBaseY = baseY - hNext[ix * N + iy] * 0 + CELL_H / 2;
+
+    const groundSy = (ix + iy) * CELL_H / 2 + H_canvas * 0.6;
+
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(sx + hw, sy + hh);
+    ctx.lineTo(sx + hw, groundSy + hh);
+    ctx.lineTo(sx, groundSy);
+    ctx.closePath();
+    ctx.fillStyle = rgbStr(leftRgb);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(sx + hw, sy + hh);
+    ctx.lineTo(sx + CELL_W, sy);
+    ctx.lineTo(sx + CELL_W, groundSy);
+    ctx.lineTo(sx + hw, groundSy + hh);
+    ctx.closePath();
+    ctx.fillStyle = rgbStr(rightRgb);
+    ctx.fill();
+  }
+
+  /**
+   * Main animation loop: blend heightmaps, render terrain back-to-front,
+   * draw fire glow strip, update and draw smoke particles.
+   */
+  function frame() {
+    tMorph++;
+    if (tMorph >= T_MORPH) {
+      hCurrent = hNext;
+      hNext = diamondSquare(N, ROUGHNESS);
+      tMorph = 0;
+    }
+
+    blendHeightmaps(tMorph / T_MORPH);
+    rebuildSummit();
+
+    ctx.clearRect(0, 0, W, H_canvas);
+    ctx.fillStyle = '#0d0a12';
+    ctx.fillRect(0, 0, W, H_canvas);
+
+    for (let s = 0; s < 2 * (N - 1); s++) {
+      for (let ix = 0; ix < N - 1; ix++) {
+        const iy = s - ix;
+        if (iy < 0 || iy >= N - 1) continue;
+        const h = hDisplay[ix * N + iy];
+        drawCell(ix, iy, h);
+      }
+    }
+
+    const FIRE_COLOR = '#FF4010';
+    const glowY = H_canvas * 0.6 + (N - 2) * CELL_H / 2 + CELL_H / 2;
+    const grad = ctx.createLinearGradient(0, glowY - 20, 0, glowY);
+    grad.addColorStop(0, FIRE_COLOR + '26');
+    grad.addColorStop(1, FIRE_COLOR + '00');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, glowY - 20, W, 20);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.y -= 0.5;
+      p.x += Math.sin(frameCount * 0.05 + p.seed) * 0.3;
+      p.alpha -= 0.3 / 180;
+
+      if (p.alpha <= 0) {
+        particles[i] = spawnParticle(summitPositions, frameCount);
+        continue;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(192,184,168,${p.alpha.toFixed(3)})`;
+      ctx.fill();
+    }
+
+    frameCount++;
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>
