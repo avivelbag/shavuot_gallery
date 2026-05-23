@@ -5,7 +5,6 @@ Validates file layout, pieces.json registration, essay content, HTML structure,
 thumbnail SVG, and mathematical correctness of the Möbius / circle-inversion
 implementation that drives the Schottky Kleinian limit-set animation.
 """
-import cmath
 import json
 import math
 import os
@@ -423,7 +422,6 @@ def test_generator_orbit_approaches_limit_set():
         orbit.append(z)
 
     # After convergence the variance should be tiny
-    n = len(orbit)
     mean_r = sum(p.real for p in orbit[-10:]) / 10
     mean_i = sum(p.imag for p in orbit[-10:]) / 10
     variance = sum(abs(p - complex(mean_r, mean_i))**2 for p in orbit[-10:]) / 10
