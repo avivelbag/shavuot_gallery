@@ -1670,5 +1670,16 @@
     "path": "pieces/93-wireworld-oral-torah/index.html",
     "thumbnail": "pieces/93-wireworld-oral-torah/thumbnail.svg",
     "essay": "pieces/93-wireworld-oral-torah/essay.md"
+  },
+  {
+    "id": "94-aizawa-attractor-tikkun-leil",
+    "title": "The Night Turns on Its Axis",
+    "tagline": "five trajectories orbit a toroidal strange attractor from midnight blue to pale gold — the star trails of Tikkun Leil Shavuot turning toward dawn",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot",
+    "technique": "Aizawa strange attractor (RK4, 3D projection, fading trails)",
+    "path": "pieces/94-aizawa-attractor-tikkun-leil/index.html",
+    "thumbnail": "pieces/94-aizawa-attractor-tikkun-leil/thumbnail.svg",
+    "essay": "pieces/94-aizawa-attractor-tikkun-leil/essay.md"
   }
 ]

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Night Turns on Its Axis — Aizawa Attractor</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #050510; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #050510;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a0a3a;
+      overflow-y: auto;
+      color: #c8c0e0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #060410;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: relative; height: 65vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a0a3a; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #f0e8b0;
+      margin: 0 0 0.3rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.85rem;
+      color: #3a2a5a;
+      margin: 0 0 2rem;
+      letter-spacing: 0.05em;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #7a5aaa;
+      margin: 2.5rem 0 0.7rem;
+      font-weight: normal;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1.1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #c8a8f0; font-style: italic; }
+    .essay-panel strong { color: #f0e8b0; font-weight: normal; }
+    .essay-panel hr { border: none; border-top: 1px solid #150830; margin: 2rem 0; }
+    .essay-panel .equations {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #8899cc;
+      padding: 0.8rem 1rem;
+      background: #080420;
+      border-radius: 3px;
+      margin: 0 0 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* Bilingual Tanach excerpt block */
+    .tanach-block {
+      margin: 1.5rem 0;
+      padding: 1.2rem 1.4rem;
+      background: #08041a;
+      border-left: 3px solid #2d0a5c;
+      border-radius: 0 4px 4px 0;
+    }
+    .tanach-block .hebrew {
+      direction: rtl;
+      text-align: right;
+      font-size: 1.1rem;
+      line-height: 2.1;
+      color: #d8d0f0;
+      margin: 0 0 0.9rem;
+      font-family: 'Noto Serif Hebrew', 'Times New Roman', serif;
+    }
+    .tanach-block .english-translation {
+      font-style: italic;
+      color: #8a80a8;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .tanach-block cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #5a4a7a;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>The Night Turns on Its Axis</h1>
+    <p class="subtitle">Aizawa Strange Attractor — Tikkun Leil Shavuot</p>
+
+    <p>The practice of <em>Tikkun Leil Shavuot</em> — staying awake all night on the eve
+    of Shavuot to study Torah until dawn — first appears in the Zohar (Introduction) and
+    was codified as widespread custom by the Magen Avraham (<em>Orach Chaim</em> 494). The
+    word <em>tikkun</em> means "repair" or "correction." The night is not merely observed;
+    it is repaired.</p>
+
+    <h2>The Legend Behind the Vigil</h2>
+
+    <p>According to the Midrash (<em>Shir HaShirim Rabbah</em> 1:12), the Israelites at
+    Sinai overslept on the night before the revelation. Moses had to rouse them when the
+    thunder began. The dawn of the third day was the moment of Matan Torah. The Tikkun is
+    a correction of that missed vigil: each year, by staying awake through the night, the
+    community prepares to meet dawn as Israel, that first time, did not.</p>
+
+    <p>The revelation arrived not in the depth of night but at its turning — with the morning:</p>
+
+    <div class="tanach-block">
+      <p class="hebrew" dir="rtl" lang="he">
+        וַיְהִי בַיּוֹם הַשְּׁלִישִׁי בִּהְיֹת הַבֹּקֶר וַיְהִי קֹלֹת וּבְרָקִים
+        וְעָנָן כָּבֵד עַל־הָהָר וְקֹל שֹׁפָר חָזָק מְאֹד וַיֶּחֱרַד כָּל־הָעָם
+        אֲשֶׁר בַּמַּחֲנֶה׃ וַיּוֹצֵא מֹשֶׁה אֶת־הָעָם לִקְרַאת הָאֱלֹהִים
+        מִן־הַמַּחֲנֶה וַיִּתְיַצְּבוּ בְּתַחְתִּית הָהָר׃
+      </p>
+      <p class="english-translation">
+        "And it came to pass on the third day, when it was morning, that there were
+        thunders and lightnings, and a thick cloud upon the mountain, and the voice of
+        the horn exceeding loud; and all the people that were in the camp trembled.
+        And Moses brought forth the people out of the camp to meet God; and they stood
+        at the lower end of the mountain."
+      </p>
+      <cite>— Exodus 19:16–17</cite>
+    </div>
+
+    <p>Dawn, not midnight, is the appointment. The Tikkun is the practice of being
+    already awake — already standing — when that moment returns.</p>
+
+    <h2>The Aizawa Attractor</h2>
+
+    <p>The Aizawa attractor is a strange attractor in three-dimensional space, defined
+    by six parameters (a=0.95, b=0.7, c=0.6, d=3.5, e=0.25, f=0.1) and three
+    differential equations:</p>
+
+    <div class="equations">
+      dx/dt = (z − b)·x − d·y<br>
+      dy/dt = d·x + (z − b)·y<br>
+      dz/dt = c + a·z − z³/3 − (x²+y²)(1+e·z) + f·z·x³
+    </div>
+
+    <p>Unlike the Lorenz attractor's butterfly or the Rössler band, the Aizawa traces a
+    <em>toroidal</em> orbit: each revolution circles the tube of the torus once while also
+    advancing around its central axis. The orbit is bounded and deterministic — obeying
+    exact rules at every moment — yet it never repeats in any finite time. Just as the
+    night sky wheels without exactly repeating from one Shavuot to the next.</p>
+
+    <h2>Structured Time — the Non-Obvious Insight</h2>
+
+    <p>The Tikkun is not merely sleeplessness. The traditional order of all-night study —
+    <em>Tanach</em>, <em>Mishnah</em>, <em>Talmud</em>, <em>Kabbalah</em>, and back —
+    traces a spiral like the attractor. Each pass through the same textual territory reaches
+    a different depth. You cover the same ground; it is not the same ground. The orbit
+    appears closed from a distance. Up close it never retraces a single point.</p>
+
+    <p>Five trajectories — started from nearly identical initial conditions, slowly diverging
+    as all study partners eventually do — spiral through the attractor as the viewpoint
+    rotates slowly (one full revolution every two minutes). Each point is colored by height:
+    <strong>midnight blue</strong> (#0a0a2e) at the bottom of the torus, where the orbit
+    descends into the depth of the night, rising through deep violet, cobalt, and silver-blue
+    to <strong>pale gold</strong> (#f0e8b0) at the top — the color of pre-dawn sky,
+    <em>עלות השחר</em>. When the trajectories climb to the upper reaches of the torus, the
+    word <strong>שַׁחֲרִית</strong> (Shacharit — the dawn prayer) fades into view at the
+    top of the canvas: the prayer that ends the vigil.</p>
+
+    <p>The star trails rotate. The night turns on its axis. Each position is new. The orbit
+    is the same orbit. And it is carrying you toward morning.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------ */
+  /* Aizawa attractor parameters — canonical set                        */
+  /* ------------------------------------------------------------------ */
+  var PA = 0.95, PB = 0.7, PC = 0.6, PD = 3.5, PE = 0.25, PF = 0.1;
+  var DT = 0.01;
+  var STEPS_PER_FRAME = 50;
+  var NUM_TRAJ = 5;
+  var EPS = 0.001;
+
+  var Z_MIN = -1.5, Z_MAX = 2.0;
+
+  /* Color gradient: midnight blue → deep violet → cobalt → silver-blue → pale gold */
+  var COLOR_STOPS = [
+    [10,  10,  46],   /* #0a0a2e  midnight blue */
+    [45,  10,  92],   /* #2d0a5c  deep violet   */
+    [26,  26, 140],   /* #1a1a8c  cobalt        */
+    [136, 153, 204],  /* #8899cc  silver-blue   */
+    [240, 232, 176],  /* #f0e8b0  pale gold     */
+  ];
+
+  /**
+   * Returns an rgb() string for a given z coordinate.
+   * Interpolates through the five color stops over Z_MIN..Z_MAX.
+   * @param {number} z  trajectory z coordinate
+   * @returns {string}  css rgb string
+   */
+  function zToColor(z) {
+    var t = (z - Z_MIN) / (Z_MAX - Z_MIN);
+    t = Math.max(0, Math.min(1, t));
+    var n = COLOR_STOPS.length - 1;
+    var seg = Math.min(Math.floor(t * n), n - 1);
+    var f = t * n - seg;
+    var lo = COLOR_STOPS[seg], hi = COLOR_STOPS[seg + 1];
+    return 'rgb(' +
+      Math.round(lo[0] + (hi[0] - lo[0]) * f) + ',' +
+      Math.round(lo[1] + (hi[1] - lo[1]) * f) + ',' +
+      Math.round(lo[2] + (hi[2] - lo[2]) * f) + ')';
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Aizawa system: derivatives and RK4 step                            */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Returns [dx/dt, dy/dt, dz/dt] for the Aizawa system at (x, y, z).
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
+   * @returns {number[]}
+   */
+  function derivs(x, y, z) {
+    var zm = z - PB;
+    var r2 = x * x + y * y;
+    return [
+      zm * x - PD * y,
+      PD * x + zm * y,
+      PC + PA * z - (z * z * z) / 3.0 - r2 * (1.0 + PE * z) + PF * z * x * x * x,
+    ];
+  }
+
+  /**
+   * Advances the Aizawa state one RK4 step of size DT.
+   * Returns the new [x, y, z].
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
+   * @returns {number[]}
+   */
+  function rk4(x, y, z) {
+    var k1 = derivs(x, y, z);
+    var k2 = derivs(
+      x + 0.5 * DT * k1[0],
+      y + 0.5 * DT * k1[1],
+      z + 0.5 * DT * k1[2]);
+    var k3 = derivs(
+      x + 0.5 * DT * k2[0],
+      y + 0.5 * DT * k2[1],
+      z + 0.5 * DT * k2[2]);
+    var k4 = derivs(
+      x + DT * k3[0],
+      y + DT * k3[1],
+      z + DT * k3[2]);
+    return [
+      x + (DT / 6.0) * (k1[0] + 2*k2[0] + 2*k3[0] + k4[0]),
+      y + (DT / 6.0) * (k1[1] + 2*k2[1] + 2*k3[1] + k4[1]),
+      z + (DT / 6.0) * (k1[2] + 2*k2[2] + 2*k3[2] + k4[2]),
+    ];
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Canvas, projection, state                                           */
+  /* ------------------------------------------------------------------ */
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+  var W, H;
+
+  function resize() {
+    W = panel.clientWidth;
+    H = panel.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+    ctx.fillStyle = 'rgb(5, 5, 16)';
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  /**
+   * Projects 3D attractor coordinates to 2D canvas pixels.
+   * Uses xz-plane projection with slow azimuthal rotation around z-axis.
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
+   * @returns {number[]} [cx, cy]
+   */
+  function project(x, y, z) {
+    var scale = H / 5.0;
+    return [
+      W / 2.0 + scale * (x * Math.cos(theta) - y * Math.sin(theta)),
+      H / 2.0 - scale * z,
+    ];
+  }
+
+  /* Five trajectories, seeded at slightly different x values */
+  var trajectories = [];
+  for (var i = 0; i < NUM_TRAJ; i++) {
+    trajectories.push([0.1 + EPS * i, 0.0, 0.0]);
+  }
+
+  /* Viewpoint rotation angle — incremented 0.0003 rad/frame (~2 min/revolution at 60fps) */
+  var theta = 0.0;
+
+  /* Shacharit text opacity: smoothly tracks whether trajectories are near the torus top */
+  var shacharitAlpha = 0.0;
+
+  /* ------------------------------------------------------------------ */
+  /* Animation loop                                                      */
+  /* ------------------------------------------------------------------ */
+
+  function draw() {
+    /* Fade old trails with a semi-transparent overlay */
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = 'rgba(5, 5, 16, 0.025)';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Plot new trajectory points using additive compositing for bloom */
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.globalAlpha = 0.08;
+
+    var maxZ = Z_MIN;
+    for (var ti = 0; ti < trajectories.length; ti++) {
+      var s = trajectories[ti];
+      for (var step = 0; step < STEPS_PER_FRAME; step++) {
+        var ns = rk4(s[0], s[1], s[2]);
+        s = ns;
+        if (s[2] > maxZ) maxZ = s[2];
+        var pt = project(s[0], s[1], s[2]);
+        ctx.fillStyle = zToColor(s[2]);
+        ctx.beginPath();
+        ctx.arc(pt[0], pt[1], 1, 0, 6.2832);
+        ctx.fill();
+      }
+      trajectories[ti] = s;
+    }
+
+    /* Restore normal compositing for text overlays */
+    ctx.globalCompositeOperation = 'source-over';
+
+    /* Rotate viewpoint slowly */
+    theta += 0.0003;
+
+    /* Shacharit fades in when any trajectory reaches the dawn region (z > 1.5) */
+    var dawnTarget = maxZ > 1.5 ? Math.min(1.0, (maxZ - 1.5) / 0.4) : 0.0;
+    shacharitAlpha += (dawnTarget - shacharitAlpha) * 0.03;
+
+    /* Tikkun Leil Shavuot — fixed label at canvas bottom */
+    ctx.globalAlpha = 0.65;
+    ctx.fillStyle = '#f0e8b0';
+    ctx.font = 'italic 17px "Noto Serif Hebrew", Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('תִּקּוּן לֵיל שָׁבוּעוֹת', W / 2, H - 12);
+
+    /* Shacharit — fades in from top as trajectories approach dawn */
+    if (shacharitAlpha > 0.01) {
+      ctx.globalAlpha = shacharitAlpha * 0.85;
+      ctx.fillStyle = '#f0e8b0';
+      ctx.font = 'italic 21px "Noto Serif Hebrew", Georgia, serif';
+      ctx.textBaseline = 'top';
+      ctx.fillText('שַׁחֲרִית', W / 2, 16);
+    }
+
+    ctx.globalAlpha = 1.0;
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
