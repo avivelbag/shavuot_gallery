@@ -1164,5 +1164,16 @@
     "path": "pieces/75-barkley-spiral-sinai-fire/index.html",
     "thumbnail": "pieces/75-barkley-spiral-sinai-fire/thumbnail.svg",
     "essay": "pieces/75-barkley-spiral-sinai-fire/essay.md"
+  },
+  {
+    "id": "75-ising-one-heart-sinai",
+    "title": "As One Person, With One Heart",
+    "tagline": "כְּאִישׁ אֶחָד בְּלֵב אֶחָד — the Ising phase transition models the moment Israel became one at Sinai",
+    "year": 2026,
+    "theme": "Matan Torah",
+    "technique": "2D Ising model / Metropolis-Hastings phase transition",
+    "path": "pieces/75-ising-one-heart-sinai/index.html",
+    "thumbnail": "pieces/75-ising-one-heart-sinai/thumbnail.svg",
+    "essay": "pieces/75-ising-one-heart-sinai/essay.md"
   }
 ]

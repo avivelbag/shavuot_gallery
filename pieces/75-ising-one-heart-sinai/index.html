@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>כְּאִישׁ אֶחָד בְּלֵב אֶחָד — As One Person, With One Heart</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0A0A14; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0A0A14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .canvas-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas#ising {
+      display: block;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    #temp-display {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #aaa8c8;
+      background: rgba(10, 10, 20, 0.7);
+      padding: 3px 7px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    #hebrew-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: 20px;
+      color: #F5F0E0;
+      direction: rtl;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 2s ease;
+      text-shadow: 0 0 18px rgba(245, 240, 224, 0.5);
+      letter-spacing: 0.08em;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1A2A50;
+      overflow-y: auto;
+      color: #b8bcd8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #07070f;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1A2A50; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 {
+      font-size: 1.4rem; color: #E8C438; margin: 0 0 0.25rem; font-weight: normal;
+      direction: rtl;
+    }
+    .essay-panel .subtitle { font-size: 0.85rem; color: #3A4A70; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 0.95rem; color: #6A82C0; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.85; margin: 0 0 1rem; font-size: 0.93rem; }
+    .essay-panel em { color: #E8C438; font-style: normal; }
+    .essay-panel blockquote {
+      border-left: 3px solid #1A3068;
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      color: #c8ccdf;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <div class="canvas-wrapper" id="canvas-wrapper">
+      <canvas id="ising"></canvas>
+      <div id="hebrew-overlay">כְּאִישׁ אֶחָד בְּלֵב אֶחָד</div>
+      <div id="temp-display">T = 4.50</div>
+    </div>
+  </div>
+
+  <div class="essay-panel">
+    <h1>כְּאִישׁ אֶחָד בְּלֵב אֶחָד</h1>
+    <div class="subtitle">As One Person, With One Heart — 2D Ising Model / Metropolis-Hastings Phase Transition</div>
+
+    <h2>Rashi at the Mountain</h2>
+    <p>"And they journeyed from Rephidim and came to the wilderness of Sinai, and they encamped in the wilderness; and Israel encamped there before the mountain." (Exodus 19:2)</p>
+    <p>Rashi, citing the Mechilta, pauses at the grammar of the last clause. The Hebrew switches from plural to singular — <em>va-yichan</em> — "and he encamped," not "and they encamped." This is not incidental. Rashi writes: <em>ke-ish echad be-lev echad</em> — "as one person with one heart." He continues: "But all their other encampments were in a spirit of complaint and division." Sinai was different. Something happened to the people before they arrived at the foot of the mountain. They became, in some sense, a single being.</p>
+    <p>Midrash Tanchuma (Yitro 9) elaborates: only when Israel became as one were they worthy to receive the Torah. This is a strong claim. Unity was not a pleasant side-note to the revelation — it was its <em>prerequisite</em>. The Torah could not descend until the people had risen into something collectively new.</p>
+
+    <h2>The Snap That Physics Discovered</h2>
+    <p>In the twentieth century, statistical mechanics discovered something strange about matter: phase transitions do not happen gradually. You cannot edge slowly into a ferromagnet. Below a precise critical temperature — for the two-dimensional Ising model, T<sub>c</sub> = 2/ln(1+√2) ≈ 2.269 — something <em>snaps</em>. Spins that were randomly oriented in every direction, pointing this way and that like individual people pursuing individual desires, suddenly align. Large coherent domains crystallize out of noise. The disorder does not smoothly dissolve; it crosses a threshold and collapses.</p>
+    <p>This is the non-obvious teaching of statistical physics: <em>individual components cannot produce collective order by themselves.</em> There is a critical threshold, and either you are above it (disorder, independence, fragmentation) or below it (unity, coherence, a single emergent direction). There is no gradual middle path.</p>
+
+    <h2>The Mode of Reception</h2>
+    <p>Shavuot celebrates not merely the content of the Torah — the commandments, the narratives, the legislation — but the <em>mode of its reception</em>. Exodus 24:7 records the moment: <em>naaseh v'nishma</em> — "we will do and we will hear," spoken, according to the Talmud (Shabbat 88a), as a single voice. Not as individuals negotiating terms. As one.</p>
+    <p>The Ising phase transition is a mathematical model of the moment Rashi describes. At T=4.5, the spins are noise — a salt-and-pepper image of individual, uncorrelated choices. As temperature descends through the critical point, fractal domains of aligned spins emerge: regions of gold and blue, tentative at first, then sweeping, then overwhelming. At T=1.5, nearly all spins point in one direction. The people have become one.</p>
+    <p>The model does not tell them which direction to align. Gold or blue — it does not matter. What matters is the alignment itself. That, the Rabbis teach, is what made the Torah possible.</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const N = 200;
+
+  // Spin array: +1 (gold) or -1 (blue)
+  const spins = new Int8Array(N * N);
+
+  // Pre-computed exp(-dE/T) lookup — dE values are -8,-4,0,4,8 only
+  // Recomputed when T changes significantly.
+  let expTable = new Float64Array(17); // index = dE+8 (0..16, step 4 → indices 0,4,8,12,16)
+
+  let currentT = 4.5;
+  let lastExpT = -1;
+
+  const T_START   = 4.5;
+  const T_PAUSE1  = 2.4;   // pause near critical point
+  const T_STOP    = 1.5;
+  const T_TEXT    = 1.8;   // show Hebrew text below this
+
+  const FRAMES_PER_TICK = 60;        // T decreases every 60 frames
+  const T_STEP = 0.001;              // decrease per tick
+  const PAUSE1_FRAMES = 300;         // frames to hold at T_PAUSE1
+  const HOLD_FRAMES   = 300;         // frames to hold at T_STOP
+  const STEPS_PER_FRAME = 40000;     // Metropolis steps per animation frame (~1 sweep)
+
+  // State machine
+  const STATE_COOLING  = 0;
+  const STATE_PAUSE1   = 1;
+  const STATE_COOLING2 = 2;
+  const STATE_HOLD     = 3;
+
+  let state = STATE_COOLING;
+  let frameCount = 0;
+  let pauseFrames = 0;
+  let holdFrames  = 0;
+  let textOpacity = 0;
+
+  const canvas = document.getElementById('ising');
+  const tempDisplay = document.getElementById('temp-display');
+  const hebrewOverlay = document.getElementById('hebrew-overlay');
+
+  // Offscreen canvas for the 200×200 pixel image
+  const offscreen = document.createElement('canvas');
+  offscreen.width  = N;
+  offscreen.height = N;
+  const octx = offscreen.getContext('2d');
+  const imgData = octx.createImageData(N, N);
+  const pixels = imgData.data;
+
+  // Gold (#E8C438): R=232 G=196 B=56
+  // Blue (#1A3068): R=26  G=48  B=104
+  const GOLD_R = 232, GOLD_G = 196, GOLD_B = 56;
+  const BLUE_R = 26,  BLUE_G = 48,  BLUE_B = 104;
+
+  /**
+   * Randomly initialize all spins to ±1.
+   */
+  function initSpins() {
+    for (let i = 0; i < N * N; i++) {
+      spins[i] = Math.random() < 0.5 ? 1 : -1;
+    }
+  }
+
+  /**
+   * Rebuild exp(-dE/T) lookup table for the given temperature T.
+   * dE ∈ {-8,-4,0,4,8}. For dE ≤ 0 acceptance is always 1.
+   * We only store the cases where dE > 0 (4 and 8).
+   */
+  function buildExpTable(T) {
+    // Index mapping: dE+8 → position 0,4,8,12,16
+    // dE=-8 → idx 0 (always accept, exp≥1)
+    // dE=-4 → idx 4 (always accept)
+    // dE=0  → idx 8 (always accept)
+    // dE=4  → idx 12
+    // dE=8  → idx 16
+    expTable[0]  = 1;
+    expTable[4]  = 1;
+    expTable[8]  = 1;
+    expTable[12] = Math.exp(-4 / T);
+    expTable[16] = Math.exp(-8 / T);
+    lastExpT = T;
+  }
+
+  /**
+   * Perform one Metropolis-Hastings update on a randomly chosen spin.
+   * Uses periodic boundary conditions and the precomputed exp table.
+   */
+  function metropolisStep() {
+    const idx = (Math.random() * N * N) | 0;
+    const x = idx % N;
+    const y = (idx / N) | 0;
+    const s = spins[idx];
+
+    const yUp   = ((y - 1 + N) % N) * N;
+    const yDown = ((y + 1)     % N) * N;
+    const xLeft  = (x - 1 + N) % N;
+    const xRight = (x + 1)     % N;
+
+    const neighborSum = spins[yUp + x] + spins[yDown + x]
+                      + spins[y * N + xLeft] + spins[y * N + xRight];
+    const dE = 2 * s * neighborSum;
+
+    // Accept if dE ≤ 0 or with probability exp(-dE/T)
+    if (dE <= 0 || Math.random() < expTable[dE + 8]) {
+      spins[idx] = -s;
+    }
+  }
+
+  /**
+   * Write current spin state into the offscreen ImageData buffer.
+   */
+  function renderSpins() {
+    for (let i = 0; i < N * N; i++) {
+      const p = i * 4;
+      if (spins[i] === 1) {
+        pixels[p]     = GOLD_R;
+        pixels[p + 1] = GOLD_G;
+        pixels[p + 2] = GOLD_B;
+      } else {
+        pixels[p]     = BLUE_R;
+        pixels[p + 1] = BLUE_G;
+        pixels[p + 2] = BLUE_B;
+      }
+      pixels[p + 3] = 255;
+    }
+    octx.putImageData(imgData, 0, 0);
+  }
+
+  /**
+   * Measure the absolute magnetization (order parameter): |sum(spins)| / N².
+   * Returns a value in [0, 1] where 1 = fully ordered.
+   */
+  function magnetization() {
+    let sum = 0;
+    for (let i = 0; i < N * N; i++) sum += spins[i];
+    return Math.abs(sum) / (N * N);
+  }
+
+  /**
+   * Resize the visible canvas to fill the art panel while keeping pixel art sharp.
+   * The 200×200 model is drawn at 4× scale (800×800 or smaller if panel is smaller).
+   */
+  function resizeCanvas() {
+    const wrapper = document.getElementById('canvas-wrapper');
+    const w = wrapper.clientWidth;
+    const h = wrapper.clientHeight;
+    const scale = Math.min(Math.floor(w / N), Math.floor(h / N));
+    const size = Math.max(scale * N, N); // at least 1× if panel is tiny
+    canvas.width  = N;
+    canvas.height = N;
+    canvas.style.width  = size + 'px';
+    canvas.style.height = size + 'px';
+  }
+
+  const ctx = canvas.getContext('2d');
+
+  /**
+   * Main animation loop. Advances the temperature schedule, runs Metropolis
+   * steps, renders the spin lattice, and updates the UI overlays.
+   */
+  function frame() {
+    // Rebuild exp table when T changes meaningfully (avoids per-step Math.exp)
+    if (Math.abs(currentT - lastExpT) > 0.0005) {
+      buildExpTable(currentT);
+    }
+
+    // Run Metropolis steps
+    for (let k = 0; k < STEPS_PER_FRAME; k++) {
+      metropolisStep();
+    }
+
+    // Advance temperature schedule
+    frameCount++;
+
+    if (state === STATE_COOLING) {
+      if (frameCount % FRAMES_PER_TICK === 0) {
+        currentT -= T_STEP;
+      }
+      if (currentT <= T_PAUSE1) {
+        currentT = T_PAUSE1;
+        state = STATE_PAUSE1;
+        pauseFrames = 0;
+      }
+    } else if (state === STATE_PAUSE1) {
+      pauseFrames++;
+      if (pauseFrames >= PAUSE1_FRAMES) {
+        state = STATE_COOLING2;
+      }
+    } else if (state === STATE_COOLING2) {
+      if (frameCount % FRAMES_PER_TICK === 0) {
+        currentT -= T_STEP;
+      }
+      if (currentT <= T_STOP) {
+        currentT = T_STOP;
+        state = STATE_HOLD;
+        holdFrames = 0;
+      }
+    } else if (state === STATE_HOLD) {
+      holdFrames++;
+      if (holdFrames >= HOLD_FRAMES) {
+        // Reset cycle
+        currentT = T_START;
+        state = STATE_COOLING;
+        initSpins();
+      }
+    }
+
+    // Hebrew text overlay: fade in at T < T_TEXT with |m| > 0.5, fade out on reset
+    const m = magnetization();
+    const showText = currentT < T_TEXT && m > 0.5;
+    const targetOpacity = showText ? 0.75 : 0;
+    textOpacity += (targetOpacity - textOpacity) * 0.04;
+    hebrewOverlay.style.opacity = textOpacity.toFixed(3);
+
+    // Temperature readout
+    tempDisplay.textContent = 'T = ' + currentT.toFixed(2);
+
+    // Render lattice to offscreen canvas and blit to display canvas
+    renderSpins();
+    ctx.drawImage(offscreen, 0, 0);
+
+    requestAnimationFrame(frame);
+  }
+
+  // Initialize and start
+  initSpins();
+  buildExpTable(currentT);
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
