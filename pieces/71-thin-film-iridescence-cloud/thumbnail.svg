@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="iridescent" cx="50%" cy="50%" r="70%" fx="38%" fy="42%">
+      <stop offset="0%"   stop-color="#9060e0"/>
+      <stop offset="18%"  stop-color="#4080d0"/>
+      <stop offset="35%"  stop-color="#20a080"/>
+      <stop offset="52%"  stop-color="#c8a020"/>
+      <stop offset="68%"  stop-color="#d45a10"/>
+      <stop offset="84%"  stop-color="#9020a0"/>
+      <stop offset="100%" stop-color="#050510"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="0%"   stop-color="#050510" stop-opacity="0"/>
+      <stop offset="70%"  stop-color="#050510" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050510" stop-opacity="0.85"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" fill="#050510"/>
+  <rect width="400" height="400" fill="url(#iridescent)"/>
+  <rect width="400" height="400" fill="url(#vignette)"/>
+</svg>

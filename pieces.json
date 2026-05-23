@@ -1065,5 +1065,16 @@
     "path": "pieces/71-gosper-curve-naaseh-vnishma/index.html",
     "thumbnail": "pieces/71-gosper-curve-naaseh-vnishma/thumbnail.svg",
     "essay": "pieces/71-gosper-curve-naaseh-vnishma/essay.md"
+  },
+  {
+    "id": "71-thin-film-iridescence-cloud",
+    "title": "The Cloud That Would Not Lift",
+    "tagline": "Thin-film interference colors a slowly-undulating cloud of glory",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "thin-film interference / WebGL fragment shader",
+    "path": "pieces/71-thin-film-iridescence-cloud/index.html",
+    "thumbnail": "pieces/71-thin-film-iridescence-cloud/thumbnail.svg",
+    "essay": "pieces/71-thin-film-iridescence-cloud/essay.md"
   }
 ]

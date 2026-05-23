@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cloud That Would Not Lift — Thin-Film Iridescence</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #050510; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #050510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #0d0d2a;
+      overflow-y: auto;
+      color: #a0a8c8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #040410;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #0d0d2a; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #9060e0;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #2a2a50;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #9060e0;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+    }
+    .essay-panel em { color: #c0c8e8; font-style: italic; }
+    .essay-panel strong { color: #9060e0; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #0d0d2a; margin: 2rem 0; }
+
+    .passage-block {
+      background: #030310;
+      border: 1px solid #1a1a40;
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 0 0 1.8rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.2rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #9060e0;
+      line-height: 2.1;
+      margin: 0 0 0.9rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.88rem;
+      color: #505080;
+      font-style: italic;
+    }
+    .source-note {
+      font-size: 0.82rem;
+      color: #2a2a50;
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #0d0d2a;
+    }
+
+    #webgl-error {
+      display: none;
+      color: #9060e0;
+      font-family: Georgia, serif;
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c" width="700" height="700"></canvas>
+    <div id="webgl-error">WebGL not available in this browser.</div>
+  </div>
+
+  <div class="essay-panel">
+    <h1>The Cloud That Would Not Lift</h1>
+    <p class="subtitle">Exodus 19:16–19, 24:15–18 · thin-film interference / WebGL fragment shader</p>
+
+    <div class="passage-block">
+      <div class="hebrew-text">וַיְהִי בַיּוֹם הַשְּׁלִישִׁי בִּהְיֹת הַבֹּקֶר וַיְהִי קֹלֹת וּבְרָקִים וְעָנָן כָּבֵד עַל-הָהָר</div>
+      <div class="english-text">On the third day, as morning dawned, there was thunder and lightning and a heavy cloud upon the mountain — Exodus 19:16</div>
+    </div>
+
+    <p>On the third day of Israel's preparation at Sinai — the day God had appointed for revelation — a thick cloud descended on the mountain. Exodus 19:16–19 records what happened at dawn: thunder, lightning, and a dense cloud over the mountain; then the sound of a shofar, loud and growing louder, so that all the people in the camp trembled. God descended onto Sinai in fire, and the smoke of the mountain rose like the smoke of a furnace. The shofar blast continued to intensify. The whole mountain quaked violently.</p>
+
+    <p>Then Moses ascended. And the cloud received him.</p>
+
+    <p>Exodus 24:15–18 gives the second account, slower and stranger. The cloud covered the mountain for six days. Six days of waiting. On the seventh day, God called to Moses from within the cloud — and Moses entered it and went up the mountain. He remained there forty days and forty nights. To the Israelites watching from below, the cloud appeared as <em>esh ochelet</em>, consuming fire, at the summit of the mountain.</p>
+
+    <h2>Concealing and Revealing</h2>
+
+    <p>The theological paradox of the cloud is this: it conceals and reveals at the same moment. Moses cannot see God's face and live (Exodus 33:20), so the cloud functions as a screen. But it is precisely this screen that Moses must enter to receive the Torah. The cloud is not an obstacle to the revelation — it is the medium of the revelation. The Presence dwells within it (Exodus 40:34: the cloud fills the Tabernacle and the glory of God fills it entirely). God tells Moses explicitly in Exodus 19:9: "I will come to you in a thick cloud so that the people will hear when I speak with you." The cloud is chosen — not as a substitute for direct encounter but as the form that direct encounter takes under the conditions of mortal existence.</p>
+
+    <h2>Color Without Pigment</h2>
+
+    <p>The iridescence of thin-film interference is the correct physical metaphor for this. An iridescent surface — a soap bubble, an oil slick, the wing of a morpho butterfly — produces its colors not from any pigment or dye. There is no substance in the film that is violet, or gold, or green. The color emerges entirely from the interference of light with itself: waves reflecting from the top and bottom surfaces of the film, arriving slightly out of phase, canceling some wavelengths and reinforcing others. The color is in the light, not in any material thing, exactly as the Presence was in the cloud without the cloud being divine.</p>
+
+    <p>The shifting colors are driven by the film's thickness — a spatial variation invisible to the naked eye. Thicker regions cancel different wavelengths than thinner ones, producing a continuously flowing spectrum across the surface. The beauty comes from a structure you cannot see directly. This is precisely how the cloud worked: the revelation was real, the Presence was genuine, but the structure behind it was hidden — accessible only to the one who entered, and even then only partially, in smoke and fire and the growing sound of the shofar.</p>
+
+    <h2>The Physics of the Artwork</h2>
+
+    <p>The artwork renders this: a thickness field slowly undulating in time, each pixel's color determined by which wavelengths of visible light constructively interfere at that film depth. Constructive interference occurs when 2·n·d·cos(θ) = m·λ, where <em>d</em> is the film thickness, <em>n</em> is the refractive index (1.45, that of water and soap), and <em>λ</em> is the wavelength. A fragment shader evaluates this across eight wavelength samples spanning the visible spectrum, converts the resulting intensities to CIE XYZ color space using precomputed observer weights, and then to sRGB for display. The thickness field is driven by two octaves of sinusoidal harmonics — a Perlin-like noise computed entirely in the shader, no library required.</p>
+
+    <p>Violet pools thicken into blue, green edges warm to gold, orange drifts toward red and back again. The cloud would not lift. The fire at the summit was consuming and illuminating at once. The colors shift because the structure shifts — and the structure you cannot see.</p>
+
+    <p class="source-note"><em>Sources: Exodus 19:9, 19:16–19, 24:15–18, 33:20, 40:34; CIE 1931 standard colorimetric observer (2°).</em></p>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const errorDiv = document.getElementById('webgl-error');
+const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+if (!gl) {
+  canvas.style.display = 'none';
+  errorDiv.style.display = 'block';
+} else {
+  const VS = `
+    attribute vec2 a_position;
+    void main() {
+      gl_Position = vec4(a_position, 0.0, 1.0);
+    }
+  `;
+
+  const FS = `
+    precision highp float;
+    uniform float u_time;
+    uniform vec2 u_resolution;
+
+    const float PI = 3.14159265358979;
+    const float N_FILM = 1.45;
+
+    /* Normalized CIE 1931 2-degree observer weights at 8 wavelengths:
+       380, 426, 472, 518, 564, 610, 656, 702 nm (step ~46 nm).
+       Each vec3 is (x_bar, y_bar, z_bar) normalized so that a flat
+       equal-energy spectrum integrates to Y = 1. */
+    const vec3 cie0 = vec3(0.0006, 0.0000, 0.0028);
+    const vec3 cie1 = vec3(0.0976, 0.0035, 0.4731);
+    const vec3 cie2 = vec3(0.0743, 0.0425, 0.5076);
+    const vec3 cie3 = vec3(0.0212, 0.2857, 0.0391);
+    const vec3 cie4 = vec3(0.2824, 0.4191, 0.0012);
+    const vec3 cie5 = vec3(0.4279, 0.2147, 0.0001);
+    const vec3 cie6 = vec3(0.0887, 0.0331, 0.0000);
+    const vec3 cie7 = vec3(0.0043, 0.0015, 0.0000);
+
+    /* CIE XYZ (D65) to linear sRGB, column-major for GLSL mat3. */
+    const mat3 XYZ_TO_SRGB = mat3(
+       3.2406, -0.9689,  0.0557,
+      -1.5372,  1.8758, -0.2040,
+      -0.4986,  0.0415,  1.0570
+    );
+
+    /* Thin-film intensity for a single wavelength (in nm). */
+    float filmIntensity(float d_nm, float lambda_nm) {
+      float phase = PI * 2.0 * N_FILM * d_nm / lambda_nm;
+      float c = cos(phase);
+      return c * c;
+    }
+
+    /* Two-octave sinusoidal noise field driving film thickness (nm).
+       f1 = 0.004, f2 = 0.009 per the specification; amplitudes 1:0.5.
+       A gentle vertical gradient makes the top of the canvas slightly
+       thicker, simulating a cloud that is denser overhead. */
+    float filmThickness(vec2 coord, float t) {
+      float n1 = sin(coord.x * 0.004 + t) * cos(coord.y * 0.0052 + t * 0.7);
+      float n2 = sin(coord.x * 0.009 + t * 1.3) * cos(coord.y * 0.011 - t * 0.5);
+      float vertGrad = (1.0 - coord.y / u_resolution.y) * 80.0;
+      return 500.0 + 300.0 * (0.667 * n1 + 0.333 * n2) + vertGrad;
+    }
+
+    void main() {
+      vec2 coord = gl_FragCoord.xy;
+      float t = u_time * 0.3;
+      float d = filmThickness(coord, t);
+
+      /* Accumulate CIE XYZ from 8 wavelength samples. */
+      vec3 xyz = vec3(0.0);
+      xyz += cie0 * filmIntensity(d, 380.0);
+      xyz += cie1 * filmIntensity(d, 426.0);
+      xyz += cie2 * filmIntensity(d, 472.0);
+      xyz += cie3 * filmIntensity(d, 518.0);
+      xyz += cie4 * filmIntensity(d, 564.0);
+      xyz += cie5 * filmIntensity(d, 610.0);
+      xyz += cie6 * filmIntensity(d, 656.0);
+      xyz += cie7 * filmIntensity(d, 702.0);
+
+      /* XYZ → linear sRGB → gamma-compressed sRGB (sqrt ≈ gamma 2.0). */
+      vec3 rgb = XYZ_TO_SRGB * xyz;
+      rgb = clamp(rgb, 0.0, 1.0);
+      rgb = sqrt(rgb);
+
+      /* Dark oval vignette framing the piece. */
+      vec2 center = (coord / u_resolution) - 0.5;
+      center.x *= u_resolution.x / u_resolution.y;
+      float vignette = 1.0 - smoothstep(0.33, 0.65, length(center));
+
+      gl_FragColor = vec4(rgb * vignette, 1.0);
+    }
+  `;
+
+  function compileShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, VS));
+  gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, FS));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1, -1,  1, -1,  -1, 1,
+    -1,  1,  1, -1,   1, 1
+  ]), gl.STATIC_DRAW);
+
+  const posLoc = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(posLoc);
+  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes  = gl.getUniformLocation(prog, 'u_resolution');
+  gl.uniform2f(uRes, canvas.width, canvas.height);
+
+  let startTime = null;
+
+  function render(now) {
+    if (startTime === null) startTime = now;
+    gl.uniform1f(uTime, (now - startTime) * 0.001);
+    gl.clearColor(0.02, 0.02, 0.063, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+</script>
+</body>
+</html>
