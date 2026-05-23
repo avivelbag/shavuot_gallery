@@ -1131,5 +1131,16 @@
     "path": "pieces/74-heat-equation-engraved-freedom/index.html",
     "thumbnail": "pieces/74-heat-equation-engraved-freedom/thumbnail.svg",
     "essay": "pieces/74-heat-equation-engraved-freedom/essay.md"
+  },
+  {
+    "id": "74-verlet-wheat-harvest",
+    "title": "The Standing Grain",
+    "tagline": "a field of wheat sways on the last day before harvest — Verlet chains, Perlin wind, Chag HaKatzir",
+    "year": 2026,
+    "theme": "Chag HaKatzir / The Wheat Harvest",
+    "technique": "Verlet spring-mass chain / procedural wheat stalks",
+    "path": "pieces/74-verlet-wheat-harvest/index.html",
+    "thumbnail": "pieces/74-verlet-wheat-harvest/thumbnail.svg",
+    "essay": "pieces/74-verlet-wheat-harvest/essay.md"
   }
 ]

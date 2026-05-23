@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B8D4E8"/>
+      <stop offset="100%" stop-color="#E8D8A0"/>
+    </linearGradient>
+    <linearGradient id="stalk1" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#6B8C3A"/>
+      <stop offset="65%" stop-color="#6B8C3A"/>
+      <stop offset="100%" stop-color="#C8A020"/>
+    </linearGradient>
+    <linearGradient id="stalk2" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#6B8C3A"/>
+      <stop offset="65%" stop-color="#6B8C3A"/>
+      <stop offset="100%" stop-color="#C8A020"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="400" height="400" fill="url(#sky)"/>
+
+  <!-- Ground strip -->
+  <rect x="0" y="370" width="400" height="30" fill="#6B4A20"/>
+
+  <!-- Stalk 1 — tall wheat, leaning slightly right -->
+  <path d="M80,370 Q88,280 100,200 Q108,160 118,130" stroke="url(#stalk1)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- wheat head 1 -->
+  <ellipse cx="114" cy="122" rx="5" ry="12" fill="#D4A800" transform="rotate(15,114,122)"/>
+  <ellipse cx="122" cy="118" rx="4" ry="11" fill="#D4A800" transform="rotate(5,122,118)"/>
+  <ellipse cx="108" cy="118" rx="4" ry="11" fill="#9A6A10" transform="rotate(-10,108,118)"/>
+  <ellipse cx="118" cy="110" rx="3" ry="9" fill="#D4A800" transform="rotate(20,118,110)"/>
+  <ellipse cx="112" cy="112" rx="3" ry="8" fill="#C89818" transform="rotate(-5,112,112)"/>
+  <ellipse cx="120" cy="114" rx="3" ry="8" fill="#9A6A10" transform="rotate(8,120,114)"/>
+
+  <!-- Stalk 2 — slightly shorter barley -->
+  <path d="M155,370 Q160,295 168,230 Q172,195 176,170" stroke="url(#stalk1)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- wheat head 2 -->
+  <ellipse cx="173" cy="163" rx="4" ry="10" fill="#D4A800" transform="rotate(10,173,163)"/>
+  <ellipse cx="179" cy="160" rx="4" ry="9" fill="#C89818" transform="rotate(3,179,160)"/>
+  <ellipse cx="168" cy="161" rx="3" ry="9" fill="#9A6A10" transform="rotate(-8,168,161)"/>
+  <ellipse cx="175" cy="155" rx="3" ry="7" fill="#D4A800" transform="rotate(15,175,155)"/>
+  <ellipse cx="170" cy="157" rx="3" ry="7" fill="#C89818" transform="rotate(-3,170,157)"/>
+
+  <!-- Stalk 3 — tall wheat center, leaning left -->
+  <path d="M230,370 Q222,278 210,195 Q202,155 196,125" stroke="url(#stalk2)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- wheat head 3 -->
+  <ellipse cx="194" cy="117" rx="5" ry="12" fill="#D4A800" transform="rotate(-12,194,117)"/>
+  <ellipse cx="200" cy="114" rx="4" ry="11" fill="#C89818" transform="rotate(-3,200,114)"/>
+  <ellipse cx="188" cy="115" rx="4" ry="10" fill="#9A6A10" transform="rotate(-18,188,115)"/>
+  <ellipse cx="196" cy="107" rx="3" ry="9" fill="#D4A800" transform="rotate(-8,196,107)"/>
+  <ellipse cx="191" cy="109" rx="3" ry="8" fill="#C89818" transform="rotate(-15,191,109)"/>
+  <ellipse cx="199" cy="111" rx="3" ry="8" fill="#9A6A10" transform="rotate(-5,199,111)"/>
+
+  <!-- Stalk 4 — shorter, right side -->
+  <path d="M295,370 Q302,300 312,235 Q318,200 322,175" stroke="url(#stalk1)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- wheat head 4 -->
+  <ellipse cx="320" cy="168" rx="4" ry="10" fill="#D4A800" transform="rotate(12,320,168)"/>
+  <ellipse cx="326" cy="165" rx="4" ry="9" fill="#C89818" transform="rotate(5,326,165)"/>
+  <ellipse cx="315" cy="166" rx="3" ry="9" fill="#9A6A10" transform="rotate(-6,315,166)"/>
+  <ellipse cx="322" cy="160" rx="3" ry="8" fill="#D4A800" transform="rotate(18,322,160)"/>
+  <ellipse cx="317" cy="162" rx="3" ry="7" fill="#C89818" transform="rotate(2,317,162)"/>
+
+  <!-- Stalk 5 — far right, tall -->
+  <path d="M360,370 Q355,285 348,205 Q342,165 338,138" stroke="url(#stalk2)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <!-- wheat head 5 -->
+  <ellipse cx="337" cy="130" rx="4" ry="11" fill="#D4A800" transform="rotate(-8,337,130)"/>
+  <ellipse cx="343" cy="127" rx="4" ry="10" fill="#C89818" transform="rotate(2,343,127)"/>
+  <ellipse cx="332" cy="128" rx="3" ry="10" fill="#9A6A10" transform="rotate(-15,332,128)"/>
+  <ellipse cx="338" cy="120" rx="3" ry="8" fill="#D4A800" transform="rotate(-4,338,120)"/>
+  <ellipse cx="334" cy="122" rx="3" ry="7" fill="#C89818" transform="rotate(-12,334,122)"/>
+  <ellipse cx="342" cy="123" rx="3" ry="8" fill="#9A6A10" transform="rotate(5,342,123)"/>
+
+  <!-- Background stalk (desaturated, smaller) -->
+  <path d="M200,370 Q205,310 208,260 Q210,235 212,218" stroke="#A09060" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <ellipse cx="211" cy="212" rx="3" ry="7" fill="#C8A840" opacity="0.6" transform="rotate(6,211,212)"/>
+  <ellipse cx="215" cy="210" rx="2" ry="6" fill="#C8A840" opacity="0.6" transform="rotate(12,215,210)"/>
+</svg>

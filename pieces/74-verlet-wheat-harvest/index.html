@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Standing Grain — Chag HaKatzir</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #B8D4E8; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 60%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #c8b888;
+      overflow-y: auto;
+      color: #3a2e18;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #f5edd8;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #c8b888; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #5a3a10;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #a08050;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #7a5020;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>The Standing Grain</h1>
+    <p class="subtitle">Chag HaKatzir — the Festival of the Harvest</p>
+
+    <h2>Three Names, One Day</h2>
+    <p>Shavuot has three names in the Torah, and each one unlocks a different layer of the holiday.
+    The most famous is Chag HaShavuot — the Festival of Weeks — from Exodus 34:22, which fixes the
+    date by counting seven weeks from Passover. The most mystical is Chag HaBikkurim — the Festival
+    of First Fruits — from Numbers 28:26, which names the day as the culmination of the priestly
+    offering cycle. But the oldest, the one that fixes the holiday to the earth itself, is Chag
+    HaKatzir: the Festival of the Harvest.</p>
+
+    <p>Exodus 23:16 states it plainly: "the festival of the harvest, of the first fruits of your labor,
+    of what you sow in the field." The barley harvest opened at Passover; the wheat harvest closed at
+    Shavuot. The holiday was born as an agricultural boundary marker, a day when the farmers of
+    ancient Israel stopped work, gathered at the Temple, and acknowledged that the land had given
+    what it promised.</p>
+
+    <h2>The Count That Runs Through the Field</h2>
+    <p>The Omer count — Leviticus 23:15–16, forty-nine days from the day after the first day of
+    Passover to Shavuot — is primarily an agricultural measure. It tracks the grain harvest cycle
+    with the precision of a farmer who cannot afford to be wrong. Only in Rabbinic tradition did the
+    count acquire its second meaning: the forty-nine days from the Exodus to the giving of the Torah
+    at Sinai. Both meanings are present and intentional. The people who left Egypt were farmers, and
+    the counting was also a counting of days until the wheat could be brought to the Temple. The
+    journey from bondage to covenant ran through the fields.</p>
+
+    <h2>Ruth in the Field of Boaz</h2>
+    <p>The Book of Ruth — read on Shavuot in every Jewish community — is set precisely during this
+    harvest. Boaz owns the field. Ruth gleans from it. Naomi times her instructions by the rhythms
+    of the reaping. The barley harvest frames the opening of the story; the wheat harvest closes it.
+    The entire arc of hesed — of Boaz's loyalty to a stranger, of Ruth's loyalty to Naomi, of God's
+    loyalty to both — plays out against the background of grain ripening in the sun.</p>
+
+    <h2>This Piece</h2>
+    <p>The stalks in this piece sway on the last day before harvest begins. They are full and heavy,
+    bowed with wheat, moving in the summer wind. A coherent Perlin-noise wind field — scrolling
+    slowly across the whole field — drives each stalk through Verlet integration: gravity bows them
+    downward, distance and angular constraints spring them back toward vertical, and the wind
+    determines which way they lean. Every 8–12 seconds a gust sweeps through, multiplying the wind
+    force and sending a ripple across the field. The counting is over. The journey from Egypt is
+    complete. The field is ready.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+
+  var W, H;
+  var stalks = [];
+  var time = 0;
+
+  /* ------------------------------------------------------------------ */
+  /* Perlin noise — standard permutation-table 2D implementation         */
+  /* ------------------------------------------------------------------ */
+
+  var perm = (function () {
+    var p = [];
+    for (var i = 0; i < 256; i++) p[i] = i;
+    /* deterministic Fisher-Yates with fixed seed for reproducibility */
+    var seed = 31337;
+    function rng() { seed = (seed * 1664525 + 1013904223) & 0xffffffff; return (seed >>> 0) / 4294967296; }
+    for (var i = 255; i > 0; i--) {
+      var j = Math.floor(rng() * (i + 1));
+      var tmp = p[i]; p[i] = p[j]; p[j] = tmp;
+    }
+    var perm = new Uint8Array(512);
+    for (var i = 0; i < 512; i++) perm[i] = p[i & 255];
+    return perm;
+  })();
+
+  function fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+  function lerp(a, b, t) { return a + t * (b - a); }
+
+  function grad(h, x, y) {
+    h = h & 3;
+    var u = h < 2 ? x : y;
+    var v = h < 2 ? y : x;
+    return (h & 1 ? -u : u) + (h & 2 ? -v : v);
+  }
+
+  /**
+   * Standard 2D Perlin noise returning value in [-1, 1].
+   */
+  function noise2(x, y) {
+    var xi = Math.floor(x) & 255;
+    var yi = Math.floor(y) & 255;
+    var xf = x - Math.floor(x);
+    var yf = y - Math.floor(y);
+    var u = fade(xf);
+    var v = fade(yf);
+    var aa = perm[perm[xi    ] + yi    ];
+    var ab = perm[perm[xi    ] + yi + 1];
+    var ba = perm[perm[xi + 1] + yi    ];
+    var bb = perm[perm[xi + 1] + yi + 1];
+    return lerp(
+      lerp(grad(aa, xf,     yf    ), grad(ba, xf - 1, yf    ), u),
+      lerp(grad(ab, xf,     yf - 1), grad(bb, xf - 1, yf - 1), u),
+      v
+    );
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Wind force — samples Perlin noise at scrolling coordinates          */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Returns [wx, wy] wind force at position x, current time t.
+   * gustMult > 1 during gust events.
+   */
+  function windForce(x, t, gustMult) {
+    var nx = x * 0.003 + t * 0.12;
+    var ny = t * 0.08;
+    var wx = noise2(nx, ny) * 6 * gustMult;
+    var wy = noise2(x * 0.003 + t * 0.09 + 100, t * 0.06) * 2 * gustMult;
+    return [wx, wy];
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Stalk data                                                           */
+  /* ------------------------------------------------------------------ */
+
+  var GRAVITY = 0.4;
+  var DAMPING = 0.98;
+  var CONSTRAINT_ITERS = 3;
+  var ANGULAR_STIFFNESS = 0.3;
+
+  /**
+   * A single particle in a Verlet chain.
+   */
+  function Particle(x, y) {
+    this.x = x;
+    this.y = y;
+    this.px = x;
+    this.py = y;
+    this.pinned = false;
+  }
+
+  /**
+   * A wheat stalk: chain of particles, base pinned to ground.
+   * segLen: rest distance between consecutive particles.
+   * scale: drawing scale (< 1 for background stalks).
+   * isWheat: true = tall wheat head, false = shorter barley silhouette.
+   */
+  function Stalk(baseX, baseY, segments, segLen, scale, isWheat) {
+    this.scale = scale;
+    this.isWheat = isWheat;
+    this.baseY = baseY;
+    this.particles = [];
+    for (var i = 0; i < segments; i++) {
+      var p = new Particle(baseX, baseY - i * segLen);
+      if (i === 0) p.pinned = true;
+      this.particles.push(p);
+    }
+    this.segLen = segLen;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Stalk placement — jitter grid across bottom third                   */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Place stalks on a jitter grid covering the bottom 33% of the canvas.
+   * Columns and rows are evenly spaced; each cell center is randomly
+   * offset by up to half the cell size to prevent uniform grids while
+   * still avoiding heavy clumping.
+   */
+  function buildStalks() {
+    stalks = [];
+
+    var groundY = H;
+    var fieldTop = H * 0.67;
+
+    /* target ~150 stalks; derive grid from canvas dimensions */
+    var cols = 18;
+    var rows = 9;
+    var cellW = W / cols;
+    var cellH = (groundY - fieldTop) / rows;
+
+    /* seeded RNG so layout is deterministic per canvas size */
+    var rs = 42;
+    function rng() { rs = (rs * 6364136223846793005 + 1442695040888963407) & 0x7fffffff; return rs / 0x7fffffff; }
+
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var cx = c * cellW + cellW * 0.5 + (rng() - 0.5) * cellW * 0.8;
+        var cy = fieldTop + r * cellH + cellH * 0.5 + (rng() - 0.5) * cellH * 0.6;
+
+        /* depth scale: stalks near the horizon (smaller y) appear smaller */
+        var depthT = (cy - fieldTop) / (groundY - fieldTop);
+        var scale = 0.5 + depthT * 0.5;
+
+        var isWheat = rng() > 0.3;
+        /* wheat ~160px tall, barley ~120px; scale by depth */
+        var totalHeight = (isWheat ? 160 : 120) * scale;
+        var segments = isWheat ? (rng() > 0.5 ? 9 : 8) : 7;
+        var segLen = totalHeight / (segments - 1);
+
+        stalks.push(new Stalk(cx, cy, segments, segLen, scale, isWheat));
+      }
+    }
+
+    /* sort back-to-front so background stalks draw first */
+    stalks.sort(function (a, b) { return a.baseY - b.baseY; });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Gust state                                                           */
+  /* ------------------------------------------------------------------ */
+
+  var gustActive = false;
+  var gustEnd = 0;
+  var nextGust = 8 + Math.random() * 4;
+
+  /* ------------------------------------------------------------------ */
+  /* Simulation step                                                      */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Advance simulation by one frame.
+   * dt: time step in seconds (typically 1/60).
+   */
+  function step(dt) {
+    time += dt;
+
+    /* gust scheduling */
+    var gustMult = 1;
+    if (!gustActive && time > nextGust) {
+      gustActive = true;
+      gustEnd = time + 2;
+    }
+    if (gustActive) {
+      gustMult = 2.5;
+      if (time > gustEnd) {
+        gustActive = false;
+        nextGust = time + 8 + Math.random() * 4;
+      }
+    }
+
+    for (var s = 0; s < stalks.length; s++) {
+      var stalk = stalks[s];
+      var particles = stalk.particles;
+
+      /* 1. Verlet integrate — apply gravity + wind */
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        if (p.pinned) continue;
+
+        /* lateral gust ripple: stalks at smaller x feel gust slightly earlier */
+        var localGust = gustActive ? Math.max(0, Math.min(gustMult,
+          1 + (gustMult - 1) * (1 - (particles[0].x / W)))) : 1;
+
+        var w = windForce(p.x, time, localGust);
+        var vx = (p.x - p.px) * DAMPING;
+        var vy = (p.y - p.py) * DAMPING;
+        p.px = p.x;
+        p.py = p.y;
+        p.x += vx + w[0] * dt * dt;
+        p.y += vy + (w[1] + GRAVITY) * dt * dt;
+      }
+
+      /* 2. Distance constraints — Jakobsen relaxation */
+      for (var iter = 0; iter < CONSTRAINT_ITERS; iter++) {
+        for (var i = 0; i < particles.length - 1; i++) {
+          var a = particles[i];
+          var b = particles[i + 1];
+          var dx = b.x - a.x;
+          var dy = b.y - a.y;
+          var len = Math.sqrt(dx * dx + dy * dy);
+          if (len < 1e-6) continue;
+          var diff = (len - stalk.segLen) / len * 0.5;
+          var ox = dx * diff;
+          var oy = dy * diff;
+          if (!a.pinned) { a.x += ox; a.y += oy; }
+          if (!b.pinned) { b.x -= ox; b.y -= oy; }
+        }
+      }
+
+      /* 3. Angular constraints — push segments toward vertical (rest angle 0°) */
+      for (var i = 1; i < particles.length - 1; i++) {
+        var prev = particles[i - 1];
+        var cur  = particles[i];
+        var next = particles[i + 1];
+        /* direction of current segment */
+        var dx1 = cur.x - prev.x;
+        var dy1 = cur.y - prev.y;
+        /* direction of next segment */
+        var dx2 = next.x - cur.x;
+        var dy2 = next.y - cur.y;
+        /* angle bisector correction: nudge next toward aligned with current */
+        var midX = (dx1 + dx2) * 0.5;
+        var midY = (dy1 + dy2) * 0.5;
+        if (!next.pinned) {
+          next.x += (midX - dx2) * ANGULAR_STIFFNESS;
+          next.y += (midY - dy2) * ANGULAR_STIFFNESS;
+        }
+        if (!cur.pinned) {
+          cur.x -= (midX - dx1) * ANGULAR_STIFFNESS * 0.5;
+          cur.y -= (midY - dy1) * ANGULAR_STIFFNESS * 0.5;
+        }
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Drawing                                                              */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Interpolate hex color between two RGB triples by t in [0,1].
+   */
+  function lerpColor(c1, c2, t) {
+    var r = (c1[0] + (c2[0] - c1[0]) * t) | 0;
+    var g = (c1[1] + (c2[1] - c1[1]) * t) | 0;
+    var b = (c1[2] + (c2[2] - c1[2]) * t) | 0;
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  var COL_STEM_GREEN = [107, 140, 58];
+  var COL_STEM_GOLD  = [200, 160, 32];
+
+  /**
+   * Draw a single stalk as a tapered quadratic bezier with wheat head.
+   */
+  function drawStalk(stalk) {
+    var ps = stalk.particles;
+    var n = ps.length;
+    var scale = stalk.scale;
+    var depthAlpha = 0.5 + scale * 0.5;
+
+    /* color tinting: background stalks are slightly desaturated */
+    var satMix = scale;
+    var stemGreen = [
+      (COL_STEM_GREEN[0] * satMix + 160 * (1 - satMix)) | 0,
+      (COL_STEM_GREEN[1] * satMix + 140 * (1 - satMix)) | 0,
+      (COL_STEM_GREEN[2] * satMix + 100 * (1 - satMix)) | 0
+    ];
+    var stemGold = [
+      (COL_STEM_GOLD[0] * satMix + 160 * (1 - satMix)) | 0,
+      (COL_STEM_GOLD[1] * satMix + 140 * (1 - satMix)) | 0,
+      (COL_STEM_GOLD[2] * satMix + 100 * (1 - satMix)) | 0
+    ];
+
+    /* draw stalk segments with lineWidth tapering base→tip */
+    for (var i = 0; i < n - 1; i++) {
+      var a = ps[i];
+      var b = ps[i + 1];
+      var t = i / (n - 1);
+      /* color: green in lower 2/3, gold in upper 1/3 */
+      var colorT = Math.max(0, (t - 0.33) / 0.67);
+      var segColor = lerpColor(stemGreen, stemGold, colorT);
+      var lw = (2.0 - t * 1.2) * scale;
+
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = segColor;
+      ctx.lineWidth = Math.max(0.4, lw);
+      ctx.globalAlpha = depthAlpha;
+      ctx.stroke();
+    }
+
+    /* wheat head at tip particle */
+    var tip = ps[n - 1];
+    var prev = ps[n - 2];
+    /* angle of tip segment */
+    var angle = Math.atan2(tip.y - prev.y, tip.x - prev.x) + Math.PI / 2;
+
+    var headCount = stalk.isWheat ? 7 : 5;
+    var ellW = 2.2 * scale;
+    var ellH = (stalk.isWheat ? 5.5 : 4) * scale;
+
+    ctx.save();
+    ctx.translate(tip.x, tip.y);
+    ctx.rotate(angle);
+    ctx.globalAlpha = depthAlpha;
+
+    for (var k = 0; k < headCount; k++) {
+      var frac = k / (headCount - 1);
+      /* spread ellipses in a fan around tip */
+      var spreadAngle = (frac - 0.5) * 0.7;
+      var offsetX = Math.sin(spreadAngle) * ellH * 0.8;
+      var offsetY = -Math.cos(spreadAngle) * ellH * 0.5 + k * 1.5 * scale;
+      ctx.beginPath();
+      ctx.ellipse(offsetX, offsetY - ellH, ellW, ellH, spreadAngle, 0, Math.PI * 2);
+      /* alternate between warm gold and deeper amber */
+      ctx.fillStyle = k % 2 === 0 ? '#D4A800' : '#9A6A10';
+      ctx.fill();
+    }
+    ctx.restore();
+
+    ctx.globalAlpha = 1;
+  }
+
+  function draw() {
+    /* sky gradient */
+    var skyGrad = ctx.createLinearGradient(0, 0, 0, H);
+    skyGrad.addColorStop(0,    '#B8D4E8');
+    skyGrad.addColorStop(0.72, '#E8D8A0');
+    ctx.fillStyle = skyGrad;
+    ctx.fillRect(0, 0, W, H);
+
+    /* ground strip */
+    ctx.fillStyle = '#6B4A20';
+    ctx.fillRect(0, H * 0.97, W, H * 0.03);
+
+    /* thin haze line at horizon */
+    ctx.fillStyle = 'rgba(232,216,160,0.4)';
+    ctx.fillRect(0, H * 0.67, W, 2);
+
+    ctx.lineJoin = 'round';
+    ctx.lineCap  = 'round';
+
+    for (var s = 0; s < stalks.length; s++) {
+      drawStalk(stalks[s]);
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Resize / init                                                        */
+  /* ------------------------------------------------------------------ */
+
+  function resize() {
+    W = canvas.width  = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+    buildStalks();
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  /* ------------------------------------------------------------------ */
+  /* Animation loop                                                       */
+  /* ------------------------------------------------------------------ */
+
+  var last = null;
+
+  function frame(ts) {
+    if (last === null) last = ts;
+    var dt = Math.min((ts - last) / 1000, 0.05);
+    last = ts;
+
+    step(dt);
+    draw();
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
