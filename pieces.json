@@ -1265,6 +1265,17 @@
     "essay": "pieces/79-diamond-square-sinai-trembles/essay.md"
   },
   {
+    "id": "79-mobius-chain-of-tradition",
+    "title": "Moses Received and Transmitted",
+    "tagline": "מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי — the chain of Pirkei Avot 1:1 as a Schottky cascade of Möbius-image circles",
+    "year": 2026,
+    "theme": "Crown of Torah / naaseh v'nishma",
+    "technique": "Möbius transformations / Schottky group / inversive geometry",
+    "path": "pieces/79-mobius-chain-of-tradition/index.html",
+    "thumbnail": "pieces/79-mobius-chain-of-tradition/thumbnail.svg",
+    "essay": "pieces/79-mobius-chain-of-tradition/essay.md"
+  },
+  {
     "id": "79-wave-function-collapse-seven-species",
     "title": "The Fruit of the Land",
     "tagline": "Wave Function Collapse tiles the seven species of Bikkurim — constraint by constraint, the mosaic assembles itself from entropy to order",

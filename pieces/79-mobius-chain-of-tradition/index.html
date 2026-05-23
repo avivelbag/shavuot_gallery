@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moses Received and Transmitted — Möbius Chain of Tradition</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #06090F;
+      color: #a89860;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      background: #06090F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #mobiusCanvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2rem 1.8rem 2rem 1.6rem;
+      background: #08090F;
+      border-left: 1px solid rgba(212, 160, 48, 0.15);
+    }
+    .essay h1 {
+      font-size: 1.05rem;
+      color: #D4A030;
+      margin: 0 0 1.2rem 0;
+      font-weight: normal;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+    .essay h2 {
+      font-size: 0.92rem;
+      color: #C07020;
+      margin: 1.4rem 0 0.7rem 0;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+    }
+    .essay p {
+      font-size: 0.85rem;
+      line-height: 1.82;
+      margin: 0 0 0.9rem 0;
+      color: #907848;
+    }
+    .essay blockquote {
+      margin: 0.3rem 0 0.9rem 0.8rem;
+      padding-left: 0.9rem;
+      border-left: 2px solid rgba(212, 160, 48, 0.25);
+    }
+    .essay blockquote p {
+      font-style: italic;
+      color: #806838;
+      margin: 0 0 0.4rem 0;
+    }
+    .essay .citation {
+      font-size: 1.05rem;
+      color: #D4A030;
+      direction: rtl;
+      text-align: right;
+      margin: 0.1rem 0 0.15rem 0;
+      line-height: 1.8;
+    }
+    .essay strong { color: #D4A030; }
+    .essay em { color: #b8902a; }
+    .essay hr {
+      border: none;
+      border-top: 1px solid rgba(212, 160, 48, 0.1);
+      margin: 1.2rem 0;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; height: auto; }
+      .artwork { flex: none; height: 90vw; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(212,160,48,0.15); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="artwork">
+      <canvas id="mobiusCanvas"></canvas>
+    </div>
+    <div class="essay">
+      <h1>Moses Received and Transmitted — The Möbius Chain of Tradition</h1>
+
+      <p class="citation">מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי</p>
+
+      <p><strong>Pirkei Avot 1:1</strong></p>
+
+      <p class="citation">מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי, וּמְסָרָהּ לִיהוֹשֻׁעַ, וִיהוֹשֻׁעַ לִזְקֵנִים, וּזְקֵנִים לִנְבִיאִים, וּנְבִיאִים מְסָרוּהָ לְאַנְשֵׁי כְנֶסֶת הַגְּדוֹלָה</p>
+
+      <p>"Moses received the Torah from Sinai and transmitted it to Joshua; Joshua to the Elders; the Elders to the Prophets; and the Prophets transmitted it to the Men of the Great Assembly."</p>
+
+      <p>These are the first words of Pirkei Avot, the tractate of rabbinic wisdom that every community has read on the Shabbatot between Pesach and Shavuot — one chapter per week — since the early medieval period. The timing is not incidental. By the time Shavuot arrives, recalling the moment of original revelation at Sinai, one has just spent six weeks rehearsing the chain that stretches from that moment to the present. Avot 1:1 is the opening of that rehearsal: here is where it all began; here is the first link.</p>
+
+      <p>The chain names five links explicitly: Moses, Joshua, the Elders, the Prophets, the Men of the Great Assembly. The Men of the Great Assembly — the <em>Anshei Knesset HaGedolah</em> — represent the period of Ezra and Nehemiah, the return from Babylonian exile, the reconstitution of Jewish communal life in the Land. They receive the tradition and hand it on to specific named individuals: Shimon HaTzaddik, then Antigonus of Socho, then the pairs (<em>zugot</em>). From there the chain continues unbroken into the Mishnaic period, through the Talmudic period, down to the present.</p>
+
+      <hr>
+
+      <h2>The Epistemological Claim</h2>
+
+      <p>The claim of Avot 1:1 is not merely historical. It is epistemological. The chain asserts that the Oral Torah — the tradition of interpretation, application, and extension that was never written down at Sinai — carries the same authority as the Written Torah because both derive from the same moment of revelation. Moses received <em>Torah</em>, not merely the written text; he received instruction in its meaning, application, and unfolding. This fuller reception is what he transmitted to Joshua.</p>
+
+      <p>This claim was deeply contested. The Sadducees rejected the authority of oral tradition entirely, insisting only on the written text. Later, the Karaites made the same argument. Avot opens with the chain of transmission precisely to establish the warrant: if you can trace an unbroken line from the present back to Sinai, the authority is original, not derived. The chain <em>is</em> the argument. Shavuot celebrates not merely the gift of the written text but the far more fragile and precious gift of oral tradition — the living interpretation that makes the text inhabitable across every change of circumstance.</p>
+
+      <hr>
+
+      <h2>Möbius Transformations and the Schottky Group</h2>
+
+      <p>A Möbius transformation is a map of the form <em>f(z) = (az + b) / (cz + d)</em> on the Riemann sphere of complex numbers, with <em>ad − bc ≠ 0</em>. These are the conformal maps of the sphere: they preserve angles, map circles to circles, and compose to form a group. Three points determine a Möbius transformation uniquely, just as three points determine a circle.</p>
+
+      <p>The Schottky group construction begins with seed circles whose interiors are pairwise disjoint. For each circle, one defines a Möbius transformation that maps the exterior of that circle to the interior of a paired circle. Iterating all transformations and their inverses generates an infinite cascade of image circles: each original circle maps to a copy, each copy to further copies, the copies of copies shrinking and accumulating toward the <em>limit set</em> of the group — the fractal boundary where circles converge to points.</p>
+
+      <p>The depth of the cascade is the generation count: seed circles at depth 0, their first images at depth 1, and so on. At each generation the circles are smaller and more numerous. The limit points — where circles shrink to dust — are the horizon of history: the generations too distant to name, the anonymous transmitters who carried the tradition through exile and dispersion.</p>
+
+      <hr>
+
+      <h2>Transmission as Conformal Mapping</h2>
+
+      <p>Each generation in the chain of tradition is a conformal copy of what preceded it. The shape is preserved — the angles of interpretation, the structure of argument, the methods of derivation — but the position shifts: a new time, a new place, a new community. Moses' reception at Sinai is the seed circle. Joshua's reception from Moses is its first Möbius image: conformally equivalent, positionally displaced. The Elders receive from Joshua; the Prophets from the Elders; the Men of the Great Assembly from the Prophets. Each generation is mapped to the next by a transformation that preserves form.</p>
+
+      <p>The animation rotates the entire configuration slowly — one full turn every thirty-five seconds — and regenerates the cascade at each frame. The shape does not change. The circles breathe and wheel. The chain continues without end.</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('mobiusCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const SIZE = 600;
+    const MAX_DEPTH = 5;
+    const MIN_RADIUS = 1.0;
+    const dTHETA = 0.003;
+
+    /* Depth colors: warm gold → amber → deep orange → dark red */
+    const DEPTH_COLORS = [
+      '#D4A030',
+      '#C07020',
+      '#8B3A10',
+      '#5A1A04',
+      '#3A0A00',
+      '#2A0500',
+    ];
+
+    function depthColor(d) {
+      return DEPTH_COLORS[Math.min(d, DEPTH_COLORS.length - 1)];
+    }
+
+    function depthLineWidth(d) {
+      if (d === 0) return 2.0;
+      if (d === 1) return 1.6;
+      if (d === 2) return 1.2;
+      return 0.8;
+    }
+
+    /* -----------------------------------------------------------------------
+       Complex number arithmetic — arrays [re, im]
+    ----------------------------------------------------------------------- */
+    const C = {
+      add:  ([ar, ai], [br, bi]) => [ar + br, ai + bi],
+      sub:  ([ar, ai], [br, bi]) => [ar - br, ai - bi],
+      mul:  ([ar, ai], [br, bi]) => [ar * br - ai * bi, ar * bi + ai * br],
+      div:  ([ar, ai], [br, bi]) => {
+        const d = br * br + bi * bi;
+        return [(ar * br + ai * bi) / d, (ai * br - ar * bi) / d];
+      },
+      scale: ([r, i], s) => [r * s, i * s],
+      abs:  ([r, i]) => Math.sqrt(r * r + i * i),
+      conj: ([r, i]) => [r, -i],
+    };
+
+    /* -----------------------------------------------------------------------
+       Apply a Möbius transform M = {a,b,c,d} to a complex point z.
+       M(z) = (a*z + b) / (c*z + d)
+    ----------------------------------------------------------------------- */
+    function mobiusPoint(M, z) {
+      const num = C.add(C.mul(M.a, z), M.b);
+      const den = C.add(C.mul(M.c, z), M.d);
+      return C.div(num, den);
+    }
+
+    /* -----------------------------------------------------------------------
+       Apply a Möbius transform to a circle defined by {cx, cy, r}.
+       Method: map three points on the circle boundary through M, then
+       fit a circle to the three image points.
+       Three points: center + (r,0), center + (-r,0), center + (0,r).
+    ----------------------------------------------------------------------- */
+    function circleThruThreePoints(p1, p2, p3) {
+      const [x1, y1] = p1;
+      const [x2, y2] = p2;
+      const [x3, y3] = p3;
+
+      const ax = x2 - x1, ay = y2 - y1;
+      const bx = x3 - x1, by = y3 - y1;
+
+      const D = 2 * (ax * by - ay * bx);
+      if (Math.abs(D) < 1e-12) return null;
+
+      const ux = (by * (ax * ax + ay * ay) - ay * (bx * bx + by * by)) / D;
+      const uy = (ax * (bx * bx + by * by) - bx * (ax * ax + ay * ay)) / D;
+
+      const cx = x1 + ux;
+      const cy = y1 + uy;
+      const r = Math.hypot(x1 - cx, y1 - cy);
+      return { cx, cy, r };
+    }
+
+    function applyMobiusToCircle(M, circle) {
+      const { cx, cy, r } = circle;
+      const z0 = [cx, cy];
+
+      const p1 = mobiusPoint(M, C.add(z0, [r, 0]));
+      const p2 = mobiusPoint(M, C.add(z0, [-r, 0]));
+      const p3 = mobiusPoint(M, C.add(z0, [0, r]));
+
+      return circleThruThreePoints(p1, p2, p3);
+    }
+
+    /* -----------------------------------------------------------------------
+       Inverse of Möbius transform M(z) = (az+b)/(cz+d):
+       M^{-1}(z) = (dz - b) / (-cz + a)
+    ----------------------------------------------------------------------- */
+    function mobiusInverse(M) {
+      return { a: M.d, b: C.scale(M.b, -1), c: C.scale(M.c, -1), d: M.a };
+    }
+
+    /* -----------------------------------------------------------------------
+       Build the Schottky cascade via BFS.
+       seeds: array of {cx, cy, r, depth}
+       transforms: array of {M (forward), Minv (inverse)}
+       Returns all generated circles including seeds.
+    ----------------------------------------------------------------------- */
+    function generateSchottky(seeds, transforms, maxDepth) {
+      const result = [];
+
+      /* Each queue entry: {circle, depth, lastTransformIdx} */
+      const queue = seeds.map(c => ({ circle: c, depth: 0, lastT: -1 }));
+
+      for (const s of seeds) {
+        result.push({ ...s, depth: 0 });
+      }
+
+      while (queue.length > 0) {
+        const { circle, depth, lastT } = queue.shift();
+        if (depth >= maxDepth) continue;
+
+        for (let i = 0; i < transforms.length; i++) {
+          if (i === lastT) continue;
+
+          for (const mKey of ['M', 'Minv']) {
+            const img = applyMobiusToCircle(transforms[i][mKey], circle);
+            if (!img || !isFinite(img.r) || img.r < MIN_RADIUS) continue;
+
+            const newDepth = depth + 1;
+            result.push({ cx: img.cx, cy: img.cy, r: img.r, depth: newDepth });
+            queue.push({ circle: img, depth: newDepth, lastT: i });
+          }
+        }
+      }
+
+      return result;
+    }
+
+    /* -----------------------------------------------------------------------
+       Build three seed circles at vertices of an equilateral triangle inscribed
+       in a circle of given radius, then construct Möbius transforms that swap
+       the exterior of each seed with the interior of the next seed (cyclically).
+
+       The canonical transformation swapping exteriors/interiors of two circles
+       C_i (center z_i, radius r_i) and C_j (center z_j, radius r_j) is the
+       inversion-based Möbius map:
+         M(z) = (r_i * r_j / ((z - z_i) * conj(z_j - z_i) / |z_j - z_i|) + z_j
+       We use a numerically direct construction: map z_i → ∞ via inversion,
+       then map back so that the image circle is C_j.
+
+       For a circle C with center p and radius r, the Möbius transform that
+       maps C to the unit circle (center 0, radius 1) is:
+         T(z) = (z - p) / r
+
+       We compose: T_j^{-1} ∘ T_i(z) maps C_i to C_j conformally.
+       T_j^{-1}(w) = r_j * w + p_j,  T_i(z) = (z - p_i) / r_i
+       Composition: M(z) = r_j * (z - p_i) / r_i + p_j
+       This is a linear (non-inversive) Möbius map: a = [r_j/r_i, 0],
+       b = p_j - p_i * r_j/r_i, c = [0,0], d = [1,0].
+       This maps C_i's center to C_j's center, but does not invert interior/exterior.
+
+       For a proper Schottky pair (exterior → interior), use inversive maps.
+       The map that inverts in C_i and then translates to C_j:
+         M(z) = r_i^2 / conj(z - p_i) + p_j   (anti-holomorphic, not Möbius)
+
+       Instead we use the loxodromic form. For a Schottky generator mapping
+       exterior of C_i to interior of C_{i+1}:
+         M(z) = p_{i+1} + r_{i+1}^2 / (z - p_i + r_i^2 / (... ))
+       The simplest valid Möbius map sending C_i's exterior to C_{i+1}'s interior
+       is the conjugate of inversion; but since Möbius maps must be holomorphic,
+       we instead pick: M(z) = p_j + (r_i * r_j) / (z - p_i).
+       This is M(z) = (p_j*(z-p_i) + r_i*r_j) / (z - p_i)
+                    = (p_j*z - p_j*p_i + r_i*r_j) / (z - p_i)
+       so: a = p_j, b = r_i*r_j - p_j*p_i, c = [1,0], d = -p_i.
+       det = a*d - b*c = p_j*(-p_i) - (r_i*r_j - p_j*p_i) = -r_i*r_j ≠ 0.
+    ----------------------------------------------------------------------- */
+    function buildTransforms(seeds) {
+      const transforms = [];
+      const n = seeds.length;
+
+      for (let i = 0; i < n; i++) {
+        const ci = seeds[i];
+        const cj = seeds[(i + 1) % n];
+
+        const pi = [ci.cx, ci.cy];
+        const pj = [cj.cx, cj.cy];
+        const ri = ci.r;
+        const rj = cj.r;
+
+        /* M(z) = (pj*(z - pi) + ri*rj) / (z - pi)
+           a = pj, b = ri*rj - pj*pi, c = [1,0], d = -pi */
+        const a = pj;
+        const b = C.sub([ri * rj, 0], C.mul(pj, pi));
+        const c = [1, 0];
+        const d = C.scale(pi, -1);
+
+        const M = { a, b, c, d };
+        transforms.push({ M, Minv: mobiusInverse(M) });
+      }
+
+      return transforms;
+    }
+
+    /* -----------------------------------------------------------------------
+       Build seed circles at vertices of an equilateral triangle.
+       armRadius: radius of circumscribed circle for center positions.
+       seedRadius: radius of each seed circle.
+       theta: rotation angle.
+       cx, cy: canvas center.
+    ----------------------------------------------------------------------- */
+    function buildSeeds(cx, cy, armRadius, seedRadius, theta) {
+      return [0, 1, 2].map(i => {
+        const angle = theta + (i * 2 * Math.PI) / 3;
+        return {
+          cx: cx + armRadius * Math.cos(angle),
+          cy: cy + armRadius * Math.sin(angle),
+          r: seedRadius,
+        };
+      });
+    }
+
+    /* -----------------------------------------------------------------------
+       Canvas setup
+    ----------------------------------------------------------------------- */
+    function resize() {
+      const container = canvas.parentElement;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      const s = Math.min(w, h);
+      canvas.style.width  = s + 'px';
+      canvas.style.height = s + 'px';
+      canvas.width  = SIZE;
+      canvas.height = SIZE;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    /* -----------------------------------------------------------------------
+       Animation loop
+    ----------------------------------------------------------------------- */
+    let frame = 0;
+
+    function draw() {
+      const theta = (frame * dTHETA) % (2 * Math.PI);
+      frame++;
+
+      const cx = SIZE / 2;
+      const cy = SIZE / 2;
+      const ARM = 155;
+      const SR  = 75;
+
+      ctx.clearRect(0, 0, SIZE, SIZE);
+      ctx.fillStyle = '#06090F';
+      ctx.fillRect(0, 0, SIZE, SIZE);
+
+      /* Hebrew watermark */
+      ctx.save();
+      ctx.font = '18px Georgia, serif';
+      ctx.fillStyle = '#8A7040';
+      ctx.textAlign = 'right';
+      ctx.direction = 'rtl';
+      ctx.fillText('מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי', SIZE - 18, 32);
+      ctx.restore();
+
+      const seeds = buildSeeds(cx, cy, ARM, SR, theta);
+      const transforms = buildTransforms(seeds);
+      const circles = generateSchottky(seeds, transforms, MAX_DEPTH);
+
+      for (const { cx: ccx, cy: ccy, r, depth } of circles) {
+        if (r < MIN_RADIUS) continue;
+        if (!isFinite(ccx) || !isFinite(ccy) || !isFinite(r)) continue;
+
+        ctx.beginPath();
+        ctx.arc(ccx, ccy, r, 0, 2 * Math.PI);
+        ctx.strokeStyle = depthColor(depth);
+        ctx.lineWidth   = depthLineWidth(depth);
+        ctx.globalAlpha = depth === 0 ? 1.0 : Math.max(0.15, 1.0 - depth * 0.15);
+        ctx.stroke();
+      }
+
+      ctx.globalAlpha = 1.0;
+      requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+  </script>
+</body>
+</html>
