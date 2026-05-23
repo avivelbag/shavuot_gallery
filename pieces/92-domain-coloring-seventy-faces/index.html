@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seventy Faces of the One — Domain Coloring of z⁷⁰ − 1</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #060610;
+      color: #e8e0f0;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas { display: block; max-width: 100%; cursor: default; }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #c8a0ff;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #8860c0;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #8860c0;
+      padding-left: 0.75rem;
+    }
+    .essay-pane p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+      color: #d0c8e0;
+    }
+    .essay-pane strong { color: #c8a0ff; }
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100% !important; height: auto !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-pane">
+    <h1>Seventy Faces of the One</h1>
+    <div class="source">שִׁבְעִים פָּנִים לַתּוֹרָה — Bamidbar Rabbah 13:15</div>
+
+    <p>When Moses ascended Sinai, he did not go alone. Exodus 24:1 records that
+    seventy elders accompanied him — Aaron, Nadab, Abihu, and the seventy who
+    "saw the God of Israel" at the covenant meal on the mountain. This number
+    echoes throughout the Shavuot tradition: the seventy nations of the world
+    listed in Genesis 10, the seventy members of the Great Sanhedrin, the divine
+    voice said by the Midrash to have split at Sinai into seventy languages
+    (Shemot Rabbah 5:9), reaching every nation simultaneously in its own tongue.</p>
+
+    <p>The rabbinic generalization is stated most starkly in Bamidbar Rabbah 13:15:
+    the Torah has seventy faces. Not seventy chapters, or seventy verses —
+    seventy faces of every verse, every word, every letter. The Talmud
+    (Sanhedrin 34a) goes further: "Is not my word like fire, says the Lord, and
+    like a hammer that breaks the rock in pieces?" — and as a hammer strikes a
+    rock and sends sparks flying in every direction, so a single verse yields
+    many senses simultaneously. Multiple, even mutually contradictory, halakhic
+    conclusions can each be drawn from a single text, and both are considered the
+    word of the living God.</p>
+
+    <p>This is not relativism. The verse does not mean different things to different
+    people; it means all things to all people at once, the way a single wave
+    front carries different frequencies to different ears.</p>
+
+    <p><strong>The mathematics makes this precise.</strong> The complex polynomial
+    f(z) = z⁷⁰ − 1 has exactly seventy zeros — the 70th roots of unity —
+    evenly spaced on the unit circle in the complex plane at angles 2πk/70.
+    Domain coloring maps f(z) to a color at each point: the <em>argument</em>
+    (angle) of f(z) determines hue, cycling through the full color wheel. As
+    you orbit the origin once, the hue winds around 70 times — 70 distinct
+    faces of the same function. Modular shading — concentric bright rings
+    wherever |f(z)| is a power of ten — adds depth: magnitude growing in
+    logarithmic bands, each ring a different scale of the same truth.</p>
+
+    <p>The 70 roots themselves appear as dark points on the unit circle: wherever
+    f(z) = 0, there is no argument to assign, no color, only silence — the
+    zero before interpretation begins.</p>
+
+    <p><strong>The animation rotates the view.</strong> Multiplying each point z by
+    e^{−iθ} before evaluating f(z) rotates the color pattern slowly. Same
+    function, same seventy zeros — but each frame shows a slightly different
+    face. The Torah is not moving; the reader is. One full rotation takes
+    roughly 35 seconds, long enough to sit with any single face before the next
+    begins to emerge.</p>
+
+    <p>The Zohar teaches that the Torah existed before creation, written in black
+    fire on white fire. Domain coloring reveals the structure underneath: one
+    analytic function, continuous and entire, wearing seventy distinct faces —
+    not in sequence, not by contradiction, but simultaneously, at every point,
+    all at once.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  const SIZE = Math.min(window.innerWidth, 560);
+  const W = SIZE;
+  const H = SIZE;
+  canvas.width = W;
+  canvas.height = H;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+
+  // Phase angle incremented each frame to rotate the pattern.
+  let theta = 0;
+  const DTHETA = 0.003; // rad/frame → full turn in ~2094 frames ≈ 35 s at 60 fps
+
+  // Precomputed sin/cos of theta updated once per frame.
+  let cosT = 1, sinT = 0;
+
+  // Compute z^70 via repeated squaring: z^70 = z^64 * z^4 * z^2.
+  // This uses 7 squarings + 2 multiplications instead of 69 multiplications.
+  function cpow70(re, im) {
+    const sq  = (a, b) => [a * a - b * b, 2 * a * b];
+    const mul = (a, b, c, d) => [a * c - b * d, a * d + b * c];
+    const z2  = sq(re, im);
+    const z4  = sq(...z2);
+    const z8  = sq(...z4);
+    const z16 = sq(...z8);
+    const z32 = sq(...z16);
+    const z64 = sq(...z32);
+    // z^70 = z^64 * z^4 * z^2
+    return mul(...mul(...z64, ...z4), ...z2);
+  }
+
+  // Convert HSL (h in [0,1], s in [0,1], l in [0,1]) to [R, G, B] in [0,255].
+  function hslToRgb(h, s, l) {
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    const hue2rgb = (t) => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1/6) return p + (q - p) * 6 * t;
+      if (t < 1/2) return q;
+      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+      return p;
+    };
+    return [
+      Math.round(hue2rgb(h + 1/3) * 255),
+      Math.round(hue2rgb(h)       * 255),
+      Math.round(hue2rgb(h - 1/3) * 255),
+    ];
+  }
+
+  // Render one frame into an ImageData pixel buffer.
+  function renderFrame() {
+    const imgData = ctx.createImageData(W, H);
+    const data = imgData.data;
+
+    // View window: [-1.5, 1.5] x [-1.5, 1.5] in the complex plane.
+    const scale = 3.0;
+    const eps = 0.001; // avoid log(0) in modular shading
+
+    for (let py = 0; py < H; py++) {
+      for (let px = 0; px < W; px++) {
+        // Map pixel to complex coordinate z.
+        const zRe0 = (px / W - 0.5) * scale;
+        const zIm0 = (0.5 - py / H) * scale;
+
+        // Rotate z by -theta: multiply by e^{-i*theta} = cosT - i*sinT.
+        const zRe = zRe0 * cosT + zIm0 * sinT;
+        const zIm = -zRe0 * sinT + zIm0 * cosT;
+
+        // f(z) = z^70 - 1.
+        const [p70re, p70im] = cpow70(zRe, zIm);
+        const fRe = p70re - 1;
+        const fIm = p70im;
+
+        const arg = Math.atan2(fIm, fRe);
+        const mag = Math.sqrt(fRe * fRe + fIm * fIm);
+
+        // Hue from argument: map [-π, π] to [0, 1].
+        const hue = ((arg / (2 * Math.PI)) + 1) % 1;
+
+        let r, g, b;
+        if (mag < 0.05) {
+          // Darken pixels near any root (where |f(z)| < 0.05) to near-black.
+          r = g = b = Math.round(mag / 0.05 * 18);
+        } else {
+          // Modular shading: bright rings at |f| = 1, 10, 100, …
+          const light = 0.5 + 0.15 * Math.sin(2 * Math.PI * Math.log(mag + eps));
+          [r, g, b] = hslToRgb(hue, 0.85, light);
+        }
+
+        const idx = (py * W + px) * 4;
+        data[idx]     = r;
+        data[idx + 1] = g;
+        data[idx + 2] = b;
+        data[idx + 3] = 255;
+      }
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+  }
+
+  let lastTime = null;
+  let frameSkipped = false;
+
+  function loop(ts) {
+    requestAnimationFrame(loop);
+
+    if (lastTime !== null) {
+      const elapsed = ts - lastTime;
+      // Skip rendering if the previous frame took > 16 ms to avoid runaway lag.
+      if (elapsed > 16 && frameSkipped) {
+        frameSkipped = false;
+        lastTime = ts;
+        return;
+      }
+      frameSkipped = elapsed > 16;
+    }
+    lastTime = ts;
+
+    theta += DTHETA;
+    cosT = Math.cos(theta);
+    sinT = Math.sin(theta);
+
+    renderFrame();
+  }
+
+  // Render one static frame before the animation starts to avoid blank canvas.
+  renderFrame();
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

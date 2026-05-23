@@ -1606,6 +1606,17 @@
     "essay": "pieces/91-spherical-harmonics-voice-sinai/essay.md"
   },
   {
+    "id": "92-domain-coloring-seventy-faces",
+    "title": "Seventy Faces of the One",
+    "tagline": "שִׁבְעִים פָּנִים לַתּוֹרָה — domain coloring of z⁷⁰ − 1 reveals 70 simultaneous faces of the same analytic function, spinning slowly as the 70 petals of Torah interpretation",
+    "year": 2026,
+    "theme": "Matan Torah / shivim panim laTorah",
+    "technique": "Domain coloring of complex analytic function (z^70 − 1)",
+    "path": "pieces/92-domain-coloring-seventy-faces/index.html",
+    "thumbnail": "pieces/92-domain-coloring-seventy-faces/thumbnail.svg",
+    "essay": "pieces/92-domain-coloring-seventy-faces/essay.md"
+  },
+  {
     "id": "92-rule110-oral-torah",
     "title": "One Rule, All Interpretation",
     "tagline": "Rule 110 — the only 1D cellular automaton proven Turing-complete — grows from a single seed as the Oral Torah grows from the Written: one rule, inexhaustible output",
