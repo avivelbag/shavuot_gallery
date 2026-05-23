@@ -1197,5 +1197,16 @@
     "path": "pieces/76-pendulum-wave-sefirat-haomer/index.html",
     "thumbnail": "pieces/76-pendulum-wave-sefirat-haomer/thumbnail.svg",
     "essay": "pieces/76-pendulum-wave-sefirat-haomer/essay.md"
+  },
+  {
+    "id": "77-caustics-sapphire-pavement",
+    "title": "Like the Very Sky for Purity",
+    "tagline": "וּכְעֶצֶם הַשָּׁמַיִם לָטֹהַר — the sapphire pavement beneath the divine presence, rendered as caustics",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "caustics simulation / ray refraction / height-field surface",
+    "path": "pieces/77-caustics-sapphire-pavement/index.html",
+    "thumbnail": "pieces/77-caustics-sapphire-pavement/thumbnail.svg",
+    "essay": "pieces/77-caustics-sapphire-pavement/essay.md"
   }
 ]
