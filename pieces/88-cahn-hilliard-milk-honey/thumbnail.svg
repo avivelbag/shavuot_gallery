@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Amber-gold background — honey phase -->
+  <rect width="400" height="400" fill="#C8860A"/>
+
+  <!-- Irregular cream-white milk blobs evocative of late-stage Cahn–Hilliard coarsening -->
+  <!-- Large central blob -->
+  <ellipse cx="195" cy="190" rx="72" ry="58" fill="#FFF5E6" opacity="0.95"/>
+
+  <!-- Upper-left medium blob -->
+  <ellipse cx="78" cy="95" rx="48" ry="42" fill="#FFF5E6" opacity="0.93"/>
+  <!-- Extend with a lobe -->
+  <ellipse cx="95" cy="118" rx="30" ry="22" fill="#FFF5E6" opacity="0.93"/>
+
+  <!-- Lower-right large blob -->
+  <ellipse cx="318" cy="308" rx="62" ry="50" fill="#FFF5E6" opacity="0.92"/>
+
+  <!-- Upper-right small blob -->
+  <ellipse cx="340" cy="78" rx="34" ry="30" fill="#FFF5E6" opacity="0.90"/>
+
+  <!-- Left-center medium blob -->
+  <ellipse cx="52" cy="245" rx="38" ry="32" fill="#FFF5E6" opacity="0.91"/>
+
+  <!-- Lower-left small blob -->
+  <ellipse cx="110" cy="345" rx="44" ry="30" fill="#FFF5E6" opacity="0.89"/>
+
+  <!-- Upper-center small blob -->
+  <ellipse cx="265" cy="55" rx="28" ry="22" fill="#FFF5E6" opacity="0.88"/>
+
+  <!-- Right-center small blob -->
+  <ellipse cx="372" cy="195" rx="22" ry="28" fill="#FFF5E6" opacity="0.87"/>
+
+  <!-- Blend/feather the edges of blobs with soft overlay -->
+  <ellipse cx="195" cy="190" rx="72" ry="58" fill="none" stroke="#EDD57A" stroke-width="6" opacity="0.35"/>
+  <ellipse cx="318" cy="308" rx="62" ry="50" fill="none" stroke="#EDD57A" stroke-width="5" opacity="0.30"/>
+  <ellipse cx="78" cy="95" rx="48" ry="42" fill="none" stroke="#EDD57A" stroke-width="4" opacity="0.30"/>
+</svg>

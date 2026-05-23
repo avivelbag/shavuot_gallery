@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flowing Together: The Separation That Makes Sweetness</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #2a1800; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #2a1800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #4a3000;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #1a0e00;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #4a3000; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #e8c870; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #705030; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #c8a048; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #e8c870; font-style: normal; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Flowing Together</h1>
+    <div class="subtitle">The Separation That Makes Sweetness — Cahn–Hilliard spinodal decomposition</div>
+
+    <h2>The Most Repeated Promise</h2>
+    <p>
+      <em>וַיֹּאמֶר יְהוָה... אֶל-אֶרֶץ זָבַת חָלָב וּדְבַשׁ</em> — "I will bring them up out of that land to a good and broad land, a land flowing with milk and honey" (Exodus 3:17). This is the canonical statement of the promise, but it is far from the only one. The phrase <em>זָבַת חָלָב וּדְבַשׁ</em> recurs more than twenty times in the Torah, from Exodus through Deuteronomy. No other geographical description of the Promised Land appears so insistently in all of scripture. It is the phrase Israel carries through forty years of wilderness.
+    </p>
+
+    <h2>What "Flowing" Actually Means</h2>
+    <p>
+      The Hebrew root <em>זוב</em> does not mean flowing in the sense of a river current. It means dripping, oozing, seeping — the kind of motion implying overabundance rather than velocity. A land <em>zevet chalav u'dvash</em> is a land from which milk and honey drip out of their own weight. The word choice implies that the land does not merely support milk and honey — it produces them the way a saturated sponge produces moisture, through the sheer pressure of fullness.
+    </p>
+
+    <h2>The Cahn–Hilliard Equation</h2>
+    <p>
+      Milk and honey are immiscible: they do not spontaneously combine into a uniform solution. When mixed, they separate — not because of a barrier imposed from outside, but because their thermodynamic free energy is lower in the separated state. The Cahn–Hilliard equation, developed by John Cahn and John Hilliard in 1958, describes exactly this process: the spontaneous separation of a binary mixture into distinct phases through spinodal decomposition.
+    </p>
+    <p>
+      The equation governs how a field φ (representing local composition: −1 for milk, +1 for honey) evolves over time. The chemical potential μ = φ³ − φ − ε²∇²φ encodes the free energy landscape: the cubic term φ³ − φ creates a double-well potential with minima at ±1, driving phase separation; the gradient term ε²∇²φ penalizes sharp interfaces. The field evolves as ∂φ/∂t = ∇²μ — flowing downhill in chemical potential — causing domains to form, grow, and coarsen.
+    </p>
+    <p>
+      What you are watching is the arithmetic of the promise. The simulation begins in near-perfect mixture — the wilderness, where nothing is yet resolved — and evolves spontaneously toward separation. Creamy pools of milk grow and merge. The amber field of honey consolidates. This is not imposed order. It is the thermodynamically inevitable outcome of the system's own energy minimization.
+    </p>
+
+    <h2>The Promise Fulfils Itself</h2>
+    <p>
+      After domains have grown large and coarsening slows, the simulation resets to noise and the spontaneous ordering begins again. Each cycle, the same inevitable physics plays out: disorder to order, mixture to separation, wilderness to abundance. The promise is not maintained by effort — it is renewed by physics, frame by frame, as it always was.
+    </p>
+  </div>
+</div>
+<script>
+  const W = 300, H = 300;
+  const EPS2 = 6.25;   // ε² = (2.5)²
+  const DT = 0.25;
+  const STEPS_PER_FRAME = 8;
+  const COARSEN_FRAMES = 2000;  // ~33 seconds at 60 fps
+  const FADE_FRAMES = 120;      // 2-second crossfade at 60 fps
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  canvas.width = W;
+  canvas.height = H;
+
+  let phi = new Float32Array(W * H);
+  const lapPhi = new Float32Array(W * H);
+  const mu     = new Float32Array(W * H);
+  const lapMu  = new Float32Array(W * H);
+  const imgData = ctx.createImageData(W, H);
+
+  let prevImageData = null;
+  let frameCount = 0;
+  let fadeFrame = 0;
+  let fading = false;
+
+  /** Fill arr with uniform random noise in [-0.1, 0.1]. */
+  function randomize(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = (Math.random() - 0.5) * 0.2;
+    }
+  }
+
+  /**
+   * Compute the 5-point discrete Laplacian of f with periodic boundaries,
+   * writing results into out. Grid spacing Δx = 1.
+   */
+  function laplacian(f, out) {
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const c = f[y * W + x];
+        const n = f[((y - 1 + H) % H) * W + x];
+        const s = f[((y + 1) % H) * W + x];
+        const e = f[y * W + (x + 1) % W];
+        const w = f[y * W + (x - 1 + W) % W];
+        out[y * W + x] = n + s + e + w - 4 * c;
+      }
+    }
+  }
+
+  /** Advance phi by one Cahn–Hilliard explicit finite-difference step. */
+  function chStep() {
+    laplacian(phi, lapPhi);
+    for (let i = 0; i < phi.length; i++) {
+      const p = phi[i];
+      mu[i] = p * p * p - p - EPS2 * lapPhi[i];
+    }
+    laplacian(mu, lapMu);
+    for (let i = 0; i < phi.length; i++) {
+      phi[i] = Math.max(-1, Math.min(1, phi[i] + DT * lapMu[i]));
+    }
+  }
+
+  /**
+   * Map phi values to RGBA pixels in imgData.
+   * φ = -1 → milk #FFF5E6 (R255, G245, B230)
+   * φ = +1 → honey #C8860A (R200, G134, B10)
+   * Linear interpolation between them.
+   */
+  function phiToRGBA() {
+    const d = imgData.data;
+    for (let i = 0; i < phi.length; i++) {
+      const t = (phi[i] + 1) * 0.5;
+      d[i * 4]     = Math.round(255 * (1 - t) + 200 * t);
+      d[i * 4 + 1] = Math.round(245 * (1 - t) + 134 * t);
+      d[i * 4 + 2] = Math.round(230 * (1 - t) +  10 * t);
+      d[i * 4 + 3] = 255;
+    }
+  }
+
+  randomize(phi);
+
+  function frame() {
+    for (let s = 0; s < STEPS_PER_FRAME; s++) chStep();
+
+    if (!fading) {
+      phiToRGBA();
+      ctx.putImageData(imgData, 0, 0);
+      frameCount++;
+
+      if (frameCount >= COARSEN_FRAMES) {
+        // Snapshot current rendered state for the crossfade
+        prevImageData = ctx.getImageData(0, 0, W, H);
+        randomize(phi);
+        fadeFrame = 0;
+        fading = true;
+        frameCount = 0;
+      }
+    } else {
+      // Crossfade: blend snapshot of old coarsened state into new random start
+      phiToRGBA();
+      const alpha = fadeFrame / FADE_FRAMES;
+      const blended = ctx.createImageData(W, H);
+      const src = prevImageData.data;
+      const dst = imgData.data;
+      const out = blended.data;
+      for (let i = 0; i < out.length; i++) {
+        out[i] = Math.round(src[i] * (1 - alpha) + dst[i] * alpha);
+      }
+      ctx.putImageData(blended, 0, 0);
+
+      fadeFrame++;
+      if (fadeFrame >= FADE_FRAMES) {
+        fading = false;
+        prevImageData = null;
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+</script>
+</body>
+</html>

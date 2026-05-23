@@ -1505,5 +1505,16 @@
     "path": "pieces/88-arnold-cat-map-tablets/index.html",
     "thumbnail": "pieces/88-arnold-cat-map-tablets/thumbnail.svg",
     "essay": "pieces/88-arnold-cat-map-tablets/essay.md"
+  },
+  {
+    "id": "88-cahn-hilliard-milk-honey",
+    "title": "Flowing Together: The Separation That Makes Sweetness",
+    "tagline": "זָבַת חָלָב וּדְבַשׁ — milk and honey spontaneously separate from disorder into abundance, as the Cahn–Hilliard equation says they must",
+    "year": 2026,
+    "theme": "Milk and honey / promised land",
+    "technique": "Cahn-Hilliard equation (spinodal decomposition)",
+    "path": "pieces/88-cahn-hilliard-milk-honey/index.html",
+    "thumbnail": "pieces/88-cahn-hilliard-milk-honey/thumbnail.svg",
+    "essay": "pieces/88-cahn-hilliard-milk-honey/essay.md"
   }
 ]
