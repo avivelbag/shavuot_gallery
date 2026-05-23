@@ -7,8 +7,6 @@ index.html completeness, and thumbnail SVG validity.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "96-simulated-annealing-sinai"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
