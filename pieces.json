@@ -1571,5 +1571,16 @@
     "path": "pieces/90-gierer-meinhardt-seven-species/index.html",
     "thumbnail": "pieces/90-gierer-meinhardt-seven-species/thumbnail.svg",
     "essay": "pieces/90-gierer-meinhardt-seven-species/essay.md"
+  },
+  {
+    "id": "90-vicsek-sinai-unity",
+    "title": "As One Person, with One Heart",
+    "tagline": "the Vicsek model — a phase transition from scattered chaos to unified flow, as Israel encamped at Sinai as one person with one heart",
+    "year": 2026,
+    "theme": "Matan Torah / unity at Sinai",
+    "technique": "Vicsek model (active-matter phase transition)",
+    "path": "pieces/90-vicsek-sinai-unity/index.html",
+    "thumbnail": "pieces/90-vicsek-sinai-unity/thumbnail.svg",
+    "essay": "pieces/90-vicsek-sinai-unity/essay.md"
   }
 ]

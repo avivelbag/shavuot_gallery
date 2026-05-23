@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>As One Person, with One Heart</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0a0a18; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e1e2e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e1e2e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #d0c8a0;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #505060;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #a0a8d0;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em {
+      color: #c8a860;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>As One Person, with One Heart</h1>
+    <p class="subtitle">Matan Torah / unity at Sinai</p>
+
+    <p>"Va'yichan sham Yisrael neged hahar" — Israel encamped there, opposite the mountain. (Exodus 19:2)</p>
+
+    <p>The verb is singular. Not <em>va'yachanu</em>, they encamped, but <em>va'yichan</em>, he encamped — as if all of Israel were one person arriving at one destination with one motion. Rashi notices this immediately. He writes that Israel encamped <em>ke'ish echad be'lev echad</em> — as one person, with one heart. It is, he notes, a unity without parallel in the biblical narrative: not commanded, not coerced, simply there. And the Mechilta draws a sharp inference from the verse order: Israel encamped <em>before</em> God spoke. The unity was a precondition, not a result.</p>
+
+    <h2>The Model</h2>
+
+    <p>Tamás Vicsek published his model in 1995 to explain a puzzle in the physics of living systems: how do thousands of starlings, with no leader and no blueprint, wheel together as a single body? His answer was minimal to the point of provocation. Give each particle a position, a speed, and a heading. At each step, let it align its heading with the average heading of its neighbors within radius <em>r</em>, then add a small random noise <em>η</em>. That is all.</p>
+
+    <p>No cohesion force pulling particles together. No separation force pushing them apart. No memory of where the flock has been. Just: look at your neighbors, point where they point, add a little randomness, move. The surprising result — and what makes Vicsek a genuine discovery rather than a simulation trick — is that this minimal rule produces a genuine phase transition. Above a critical noise level, the swarm is disordered: particles scatter, no coherent motion emerges. Below it, the swarm spontaneously orders into a single flowing body, all pointing the same direction, moving together. The transition is sharp. It is not gradual persuasion. It is physics.</p>
+
+    <h2>This Piece</h2>
+
+    <p>The animation begins at high noise — the swarm is scattered, chaotic, each particle going its own way. As the noise slowly drops, nothing seems to change — until suddenly it does. The disorder snaps into coherent flow. Hundreds of particles, each aware only of its nearest neighbors, become one river.</p>
+
+    <p>This is the moment Rashi describes. Not a miracle imposed from outside, but a phase transition arising from within. Each person looked at the neighbors closest to them and aligned. No one directed the whole. No center held it. And yet, below the threshold of noise, they became <em>ke'ish echad</em> — as one person.</p>
+
+    <p>Color encodes local alignment: particles that move with their neighbors glow wheat gold (<em>#D4A017</em>); those partly aligned fade through twilight violet; those disordered burn deep indigo. At the moment of the phase transition, the canvas shifts from mostly indigo to mostly gold — the visual signal that coherence has arrived.</p>
+
+    <p>The mountain does not move. The particles flow above it.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+
+  var W, H;
+  var N = 500;
+  var SPEED = 1.5;
+  var RADIUS = 40;
+  var particles = [];
+
+  // Noise schedule constants (seconds)
+  var T_DESCEND = 12;   // 0→12s: η 0.85 → 0.05
+  var T_HOLD    = 8;    // 12→20s: η = 0.05
+  var T_SPIKE   = 2;    // 20→22s: η 0.05 → 0.85
+  var T_TOTAL   = T_DESCEND + T_HOLD + T_SPIKE;
+
+  // Mountain vertices as fractions of W/H; computed in resize()
+  var mtn = { ax: 0, ay: 0, bx: 0, by: 0, cx: 0, cy: 0 };
+
+  function resize() {
+    W = panel.clientWidth;
+    H = panel.clientHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    mtn.ax = W * 0.35; mtn.ay = H;
+    mtn.bx = W * 0.50; mtn.by = H * 0.80;
+    mtn.cx = W * 0.65; mtn.cy = H;
+  }
+
+  function initParticles() {
+    particles = [];
+    for (var i = 0; i < N; i++) {
+      particles.push({
+        x:     Math.random() * W,
+        y:     Math.random() * H,
+        theta: Math.random() * 2 * Math.PI,
+        meanTheta: 0,
+        alignScore: 0
+      });
+    }
+  }
+
+  /**
+   * Compute toroidal distance components between two particles.
+   * Returns the shortest-path dx/dy on a torus of size W×H.
+   */
+  function toroidalDelta(ax, ay, bx, by) {
+    var dx = bx - ax;
+    var dy = by - ay;
+    if (dx >  W * 0.5) dx -= W;
+    if (dx < -W * 0.5) dx += W;
+    if (dy >  H * 0.5) dy -= H;
+    if (dy < -H * 0.5) dy += H;
+    return { dx: dx, dy: dy };
+  }
+
+  /**
+   * Test whether point (px, py) lies inside the mountain triangle
+   * using the sign of cross products.
+   */
+  function insideMountain(px, py) {
+    var d1 = cross(mtn.ax, mtn.ay, mtn.bx, mtn.by, px, py);
+    var d2 = cross(mtn.bx, mtn.by, mtn.cx, mtn.cy, px, py);
+    var d3 = cross(mtn.cx, mtn.cy, mtn.ax, mtn.ay, px, py);
+    var hasNeg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+    var hasPos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+    return !(hasNeg && hasPos);
+  }
+
+  function cross(x1, y1, x2, y2, px, py) {
+    return (x2 - x1) * (py - y1) - (y2 - y1) * (px - x1);
+  }
+
+  /**
+   * Reflect heading theta across the outward normal of the nearest mountain edge.
+   * The three edges are AB, BC, CA. We pick the one closest to the particle
+   * and reflect theta across its normal.
+   */
+  function reflectOffMountain(p) {
+    var edges = [
+      { x1: mtn.ax, y1: mtn.ay, x2: mtn.bx, y2: mtn.by },
+      { x1: mtn.bx, y1: mtn.by, x2: mtn.cx, y2: mtn.cy },
+      { x1: mtn.cx, y1: mtn.cy, x2: mtn.ax, y2: mtn.ay }
+    ];
+
+    var bestDist = Infinity, bestEdge = edges[0];
+    for (var i = 0; i < edges.length; i++) {
+      var e = edges[i];
+      var dist = pointSegmentDist(p.x, p.y, e.x1, e.y1, e.x2, e.y2);
+      if (dist < bestDist) {
+        bestDist = dist;
+        bestEdge = e;
+      }
+    }
+
+    // Edge direction vector and outward normal
+    var ex = bestEdge.x2 - bestEdge.x1;
+    var ey = bestEdge.y2 - bestEdge.y1;
+    var len = Math.sqrt(ex * ex + ey * ey);
+    ex /= len; ey /= len;
+
+    // Reflect velocity direction across edge normal
+    var vx = Math.cos(p.theta);
+    var vy = Math.sin(p.theta);
+    var dot = vx * ex + vy * ey;
+    var rx = vx - 2 * dot * ex;
+    var ry = vy - 2 * dot * ey;
+    p.theta = Math.atan2(ry, rx);
+
+    // Nudge particle outside mountain along outward normal
+    var nx = -ey; var ny = ex; // one candidate normal
+    // Ensure normal points away from mountain centroid
+    var cx = (mtn.ax + mtn.bx + mtn.cx) / 3;
+    var cy = (mtn.ay + mtn.by + mtn.cy) / 3;
+    if (nx * (p.x - cx) + ny * (p.y - cy) < 0) { nx = -nx; ny = -ny; }
+    p.x += nx * (bestDist + 2);
+    p.y += ny * (bestDist + 2);
+  }
+
+  function pointSegmentDist(px, py, ax, ay, bx, by) {
+    var dx = bx - ax, dy = by - ay;
+    var lenSq = dx * dx + dy * dy;
+    if (lenSq === 0) return Math.hypot(px - ax, py - ay);
+    var t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / lenSq));
+    return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+  }
+
+  /**
+   * One Vicsek update step.
+   * Phase 1: for each particle, accumulate mean-heading of neighbors.
+   * Phase 2: apply noise and move; handle mountain collision.
+   */
+  function vicsekStep(eta) {
+    var r2 = RADIUS * RADIUS;
+
+    for (var i = 0; i < N; i++) {
+      var p = particles[i];
+      var sx = 0, sy = 0, count = 0;
+      for (var j = 0; j < N; j++) {
+        var q = particles[j];
+        var d = toroidalDelta(p.x, p.y, q.x, q.y);
+        if (d.dx * d.dx + d.dy * d.dy < r2) {
+          sx += Math.cos(q.theta);
+          sy += Math.sin(q.theta);
+          count++;
+        }
+      }
+      if (count === 0) {
+        p.meanTheta = p.theta;
+        p.alignScore = 1;
+      } else {
+        p.meanTheta = Math.atan2(sy / count, sx / count);
+        // alignScore in [-1, 1]: 1 = perfectly aligned with neighborhood
+        p.alignScore = Math.cos(p.theta - p.meanTheta);
+      }
+    }
+
+    for (var i = 0; i < N; i++) {
+      var p = particles[i];
+      p.theta = p.meanTheta + eta * (Math.random() * 2 * Math.PI - Math.PI);
+
+      // Toroidal move (only x wraps; y wraps only away from mountain base)
+      p.x = (p.x + Math.cos(p.theta) * SPEED + W) % W;
+      p.y = (p.y + Math.sin(p.theta) * SPEED + H) % H;
+
+      // Mountain collision: if inside the triangle, reflect and nudge
+      if (p.y > mtn.by && insideMountain(p.x, p.y)) {
+        reflectOffMountain(p);
+        p.x = (p.x + W) % W;
+        p.y = Math.max(0, Math.min(H, p.y));
+      }
+    }
+  }
+
+  /**
+   * Compute the Vicsek order parameter φ = |Σ e^(iθ)| / N.
+   * φ ≈ 1 means fully ordered; φ ≈ 0 means disordered.
+   */
+  function orderParameter() {
+    var sx = 0, sy = 0;
+    for (var i = 0; i < N; i++) {
+      sx += Math.cos(particles[i].theta);
+      sy += Math.sin(particles[i].theta);
+    }
+    return Math.sqrt(sx * sx + sy * sy) / N;
+  }
+
+  /**
+   * Interpolate between two hex colors by t ∈ [0, 1].
+   */
+  function lerpColor(c1, c2, t) {
+    var r1 = (c1 >> 16) & 0xff, g1 = (c1 >> 8) & 0xff, b1 = c1 & 0xff;
+    var r2 = (c2 >> 16) & 0xff, g2 = (c2 >> 8) & 0xff, b2 = c2 & 0xff;
+    var r = Math.round(r1 + (r2 - r1) * t);
+    var g = Math.round(g1 + (g2 - g1) * t);
+    var b = Math.round(b1 + (b2 - b1) * t);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  var COL_GOLD   = 0xD4A017;
+  var COL_VIOLET = 0x6B3FA0;
+  var COL_INDIGO = 0x1A1A4E;
+
+  /**
+   * Map alignScore ∈ [-1, 1] to a blended color:
+   * -1 → indigo, 0 → violet, +1 → gold.
+   */
+  function alignColor(score) {
+    if (score >= 0) {
+      return lerpColor(COL_VIOLET, COL_GOLD, score);
+    } else {
+      return lerpColor(COL_INDIGO, COL_VIOLET, score + 1);
+    }
+  }
+
+  function drawMountain() {
+    ctx.beginPath();
+    ctx.moveTo(mtn.ax, mtn.ay);
+    ctx.lineTo(mtn.bx, mtn.by);
+    ctx.lineTo(mtn.cx, mtn.cy);
+    ctx.closePath();
+    ctx.fillStyle = '#2A2A2A';
+    ctx.fill();
+  }
+
+  function drawParticles() {
+    var half = 3; // half-length of particle line (total 6px)
+    for (var i = 0; i < N; i++) {
+      var p = particles[i];
+      var cos = Math.cos(p.theta);
+      var sin = Math.sin(p.theta);
+      ctx.beginPath();
+      ctx.moveTo(p.x - cos * half, p.y - sin * half);
+      ctx.lineTo(p.x + cos * half, p.y + sin * half);
+      ctx.strokeStyle = alignColor(p.alignScore);
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
+
+  /**
+   * Compute current η from elapsed time.
+   * Phase A (0→T_DESCEND): linear 0.85 → 0.05
+   * Phase B (T_DESCEND → T_DESCEND+T_HOLD): constant 0.05
+   * Phase C (T_DESCEND+T_HOLD → T_TOTAL): linear 0.05 → 0.85
+   */
+  function etaAtTime(t) {
+    var phase = t % T_TOTAL;
+    if (phase < T_DESCEND) {
+      return 0.85 - (0.85 - 0.05) * (phase / T_DESCEND);
+    } else if (phase < T_DESCEND + T_HOLD) {
+      return 0.05;
+    } else {
+      var s = (phase - T_DESCEND - T_HOLD) / T_SPIKE;
+      return 0.05 + (0.85 - 0.05) * s;
+    }
+  }
+
+  var startTime = null;
+
+  function drawHUD(eta, phi) {
+    ctx.font = '12px system-ui, sans-serif';
+    ctx.fillStyle = 'rgba(180,170,150,0.5)';
+    ctx.fillText('η = ' + eta.toFixed(2), 12, H - 28);
+    ctx.fillText('Alignment: ' + Math.round(phi * 100) + '%', 12, H - 12);
+  }
+
+  function frame(ts) {
+    if (startTime === null) startTime = ts;
+    var elapsed = (ts - startTime) / 1000;
+
+    var eta = etaAtTime(elapsed);
+
+    vicsekStep(eta);
+    var phi = orderParameter();
+
+    // Clear with slight trail fade for motion blur effect
+    ctx.fillStyle = 'rgba(10,10,24,0.55)';
+    ctx.fillRect(0, 0, W, H);
+
+    drawParticles();
+    drawMountain();
+    drawHUD(eta, phi);
+
+    requestAnimationFrame(frame);
+  }
+
+  function init() {
+    resize();
+    initParticles();
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', function () {
+    resize();
+    // Re-clamp particles that are now outside the resized canvas
+    for (var i = 0; i < N; i++) {
+      particles[i].x = particles[i].x % W;
+      particles[i].y = particles[i].y % H;
+    }
+  });
+
+  init();
+}());
+</script>
+</body>
+</html>
