@@ -1,0 +1,14 @@
+# The Bush That Was Not Consumed
+
+*וְהִנֵּה הַסְּנֶה בֹּעֵר בָּאֵשׁ וְהַסְּנֶה אֵינֶנּוּ אֻכָּל*
+"And behold, the bush was burning with fire, yet the bush was not consumed." — Exodus 3:2
+
+Moses is tending the flock of his father-in-law Jethro near Horeb, the mountain of God, when he sees something that stops him: a thorn-bush ablaze, a fire that gives off light but takes away nothing. The bush does not shrink. The branches do not blacken. The fire is real — it casts heat, it casts light — but it does not consume. Moses turns aside to see. And it is only when he turns aside — *וַיַּסֵּר מֹשֶׁה לִרְאוֹת* — that God speaks.
+
+This is the first theophany, the first moment the divine breaks into human experience in the Exodus story. God calls Moses by name from within the bush. Moses answers: *Hineni* — Here I am. And then God speaks the divine name: *EHYEH ASHER EHYEH* — I Will Be What I Will Be (Exodus 3:14). A name that is not a noun but a verb. Not a fixed identity but an ongoing becoming. The fire that does not consume is the right vessel for this name.
+
+The Rabbis of the Midrash (Exodus Rabbah 2:5) ask the obvious question: why a thorn-bush? Of all possible theophanies — cedar, palm, great spreading oak — why the *sneh*, the lowly, thorny, tangled shrub? One answer: the thorn-bush represents the people of Israel in Egypt, lowly and despised and thorny and wild, and God's presence within it is the announcement that the divine does not dwell only in magnificent places. Revelation meets people where they are. The other answer comes from Rashi, who reads a linguistic sign: the word *sneh* and the word *Sinai* share the same root letters, ס-נ-ה. The burning bush and the burning mountain are not separate events. They are one event at different scales. Horeb and Sinai are the same mountain (Exodus 3:1, Deuteronomy 4:10). The bush is Sinai in miniature. The private revelation of Moses is the prologue to the public revelation of all Israel.
+
+This is the chain that leads to Shavuot. The fire in the bush at Horeb → the Exodus from Egypt → the march to Sinai → the giving of Torah → Shavuot. The festival is the anniversary of the public revelation whose first word was spoken at a burning bush. The same fire that did not consume the thorns did not consume the mountain. The same fire that did not consume the mountain did not consume the people who stood at its base. Divine fire enters the physical world and the physical world survives it. This is the paradox at the center of revelation.
+
+The fractal flame you see was computed by a chaos game: one point, five transforms, eight million iterations. The histogram accumulates but never empties. Each zoom level of the attractor reveals new detail — more filaments, more tendrils, more structure — without ever reaching a bottom. The fire burns and is not consumed. The computation runs and is not exhausted. The bush stands.

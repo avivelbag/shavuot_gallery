@@ -1089,6 +1089,17 @@
     "essay": "pieces/72-gosper-curve-naaseh-vnishma/essay.md"
   },
   {
+    "id": "73-fractal-flame-burning-bush",
+    "title": "The Bush That Was Not Consumed",
+    "tagline": "the burning bush of Exodus — a fractal flame that burns but is not consumed",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "fractal flames / IFS accumulation histogram",
+    "path": "pieces/73-fractal-flame-burning-bush/index.html",
+    "thumbnail": "pieces/73-fractal-flame-burning-bush/thumbnail.svg",
+    "essay": "pieces/73-fractal-flame-burning-bush/essay.md"
+  },
+  {
     "id": "73-girih-star-keter-torah",
     "title": "The Crown Woven in Geometry",
     "tagline": "a girih star tiling that tiles the plane forever — Keter Torah at the center",

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bush That Was Not Consumed — Fractal Flame</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: #030202;
+      color: #c8a870;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+    .artwork {
+      flex: 1 1 60%;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      background: #030202;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #flameCanvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: 700px;
+      height: 700px;
+    }
+    .progress-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: rgba(3,2,2,0.82);
+      pointer-events: none;
+    }
+    .progress-label {
+      font-size: 1rem;
+      color: #C84010;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .progress-bar {
+      width: 260px;
+      height: 4px;
+      background: rgba(128,0,16,0.35);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #800010 0%, #C84010 40%, #FFB020 100%);
+      border-radius: 2px;
+      transition: width 0.1s linear;
+    }
+    .essay {
+      flex: 0 0 38%;
+      overflow-y: auto;
+      padding: 2rem 1.8rem 2rem 1.6rem;
+      background: #030202;
+      border-left: 1px solid rgba(200, 64, 16, 0.15);
+    }
+    .essay h1 {
+      font-size: 1.12rem;
+      color: #FFB020;
+      margin: 0 0 0.3rem 0;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+    .essay .tagline {
+      font-size: 0.82rem;
+      color: #804010;
+      margin: 0 0 1.4rem 0;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .essay .hebrew {
+      font-size: 1.05rem;
+      color: #C84010;
+      direction: rtl;
+      text-align: right;
+      margin: 0 0 0.25rem 0;
+      line-height: 1.7;
+    }
+    .essay .citation-en {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: #8a6030;
+      margin: 0 0 1.1rem 0;
+      line-height: 1.6;
+    }
+    .essay p {
+      font-size: 0.86rem;
+      line-height: 1.80;
+      margin: 0 0 0.95rem 0;
+      color: #b09060;
+    }
+    .essay .section-title {
+      font-size: 0.78rem;
+      color: #C84010;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      margin: 1.4rem 0 0.5rem 0;
+    }
+    @media (max-width: 700px) {
+      .layout { flex-direction: column; }
+      .essay { flex: none; border-left: none; border-top: 1px solid rgba(200,64,16,0.15); }
+      #flameCanvas { width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- Artwork panel -->
+  <div class="artwork">
+    <canvas id="flameCanvas" width="700" height="700"></canvas>
+    <div class="progress-overlay" id="progressOverlay">
+      <div class="progress-label" id="progressLabel">Igniting the Bush&#8230;</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Essay panel -->
+  <div class="essay">
+    <h1>The Bush That Was Not Consumed</h1>
+    <div class="tagline">the burning bush of Exodus — a fractal flame that burns but is not consumed</div>
+
+    <div class="hebrew">וְהִנֵּה הַסְּנֶה בֹּעֵר בָּאֵשׁ וְהַסְּנֶה אֵינֶנּוּ אֻכָּל</div>
+    <div class="citation-en">"And behold, the bush was burning with fire, yet the bush was not consumed." — Exodus 3:2</div>
+
+    <p>Moses is tending the flock of his father-in-law Jethro near Horeb, the mountain of God, when he sees something that stops him: a thorn-bush ablaze, a fire that gives off light but takes away nothing. The bush does not shrink. The branches do not blacken. The fire is real — it casts heat, it casts light — but it does not consume. Moses turns aside to see. And it is only when he turns aside — <em>וַיַּסֵּר מֹשֶׁה לִרְאוֹת</em> — that God speaks.</p>
+
+    <p>This is the first theophany, the first moment the divine breaks into human experience in the Exodus story. God calls Moses by name from within the bush. Moses answers: <em>Hineni</em> — Here I am. And then God speaks the divine name: <em>EHYEH ASHER EHYEH</em> — I Will Be What I Will Be (Exodus 3:14). A name that is not a noun but a verb. Not a fixed identity but an ongoing becoming. The fire that does not consume is the right vessel for this name.</p>
+
+    <div class="section-title">Why a Thorn-Bush?</div>
+
+    <p>The Rabbis of the Midrash (Exodus Rabbah 2:5) ask the obvious question: why a thorn-bush? Of all possible theophanies — cedar, palm, great spreading oak — why the <em>sneh</em>, the lowly, thorny, tangled shrub? One answer: the thorn-bush represents the people of Israel in Egypt, lowly and despised and thorny and wild, and God's presence within it is the announcement that the divine does not dwell only in magnificent places. Revelation meets people where they are.</p>
+
+    <p>The other answer comes from Rashi, who reads a linguistic sign: the word <em>sneh</em> and the word <em>Sinai</em> share the same root letters, ס–נ–ה. The burning bush and the burning mountain are not separate events. They are one event at different scales. Horeb and Sinai are the same mountain (Exodus 3:1, Deuteronomy 4:10). The bush is Sinai in miniature. The private revelation of Moses is the prologue to the public revelation of all Israel.</p>
+
+    <div class="section-title">The Chain to Shavuot</div>
+
+    <p>This is the chain that leads to Shavuot. The fire in the bush at Horeb → the Exodus from Egypt → the march to Sinai → the giving of Torah → Shavuot. The festival is the anniversary of the public revelation whose first word was spoken at a burning bush. The same fire that did not consume the thorns did not consume the mountain. The same fire that did not consume the mountain did not consume the people who stood at its base. Divine fire enters the physical world and the physical world survives it. This is the paradox at the center of revelation.</p>
+
+    <div class="section-title">The Algorithm and the Bush</div>
+
+    <p>The fractal flame you see was computed by a chaos game: one point, five affine transforms, eight million iterations. Each iteration randomly selects one of the five transforms — weighted by probability — applies it to the current point, and accumulates the result in a histogram. After all iterations, each histogram cell is mapped to a color using log-density tonemapping: brighter where more iterations landed. The swirl and sinusoidal variation functions create the curling tendrils characteristic of fractal flames.</p>
+
+    <p>The histogram accumulates but never empties. Each zoom level of the attractor reveals new detail — more filaments, more tendrils, more structure — without ever reaching a bottom. The fire burns and is not consumed. The computation runs and is not exhausted. The bush stands.</p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const W = 700, H = 700;
+  const TOTAL_ITERS = 8_000_000;
+  const FRAMES = 10;
+  const ITERS_PER_FRAME = TOTAL_ITERS / FRAMES; // 800 000 per frame
+  const SKIP = 20;
+
+  // Viewport: attractor designed to sit in the lower portion of the canvas.
+  // fractal y increases downward in canvas coords:
+  //   y = YMIN (-2.0) → canvas top;  y = YMAX (1.8) → canvas bottom
+  const XMIN = -1.3, XMAX = 1.3;
+  const YMIN = -2.0, YMAX = 1.8;
+
+  // Five affine transforms:  x' = ax + by + e,  y' = cx + dy + f
+  // Color 0=crimson (halo/outer), 1=cream (core/dense) — matches fire palette direction.
+  // T0 contracts toward (0, ~1.5) = lower-center of canvas (the flame base).
+  // T1/T2 swirl left and right from the base, creating curling tendrils.
+  // T3 sinusoidal: wavy filaments in the mid-section.
+  // T4 wide scatter: diffuse outer glow and upper halo.
+  const transforms = [
+    { a: 0.45, b:  0.05, c: -0.05, d: 0.35, e:  0.00, f:  0.95, variation: 'swirl',      color: 0.90, weight: 0.28 },
+    { a: 0.38, b: -0.28, c:  0.28, d: 0.38, e: -0.05, f:  0.68, variation: 'swirl',      color: 0.65, weight: 0.22 },
+    { a: 0.38, b:  0.28, c: -0.28, d: 0.38, e:  0.05, f:  0.68, variation: 'swirl',      color: 0.45, weight: 0.20 },
+    { a: 0.30, b:  0.35, c: -0.35, d: 0.30, e:  0.00, f:  0.08, variation: 'sinusoidal', color: 0.22, weight: 0.18 },
+    { a: 0.52, b:  0.00, c:  0.00, d: 0.52, e:  0.00, f: -0.42, variation: 'sinusoidal', color: 0.05, weight: 0.12 },
+  ];
+
+  // Precompute cumulative weights for O(n) random transform selection.
+  const totalWeight = transforms.reduce((s, t) => s + t.weight, 0);
+  const cumWeights = [];
+  let cw = 0;
+  for (const t of transforms) {
+    cw += t.weight / totalWeight;
+    cumWeights.push(cw);
+  }
+
+  function pickTransform() {
+    const r = Math.random();
+    for (let i = 0; i < cumWeights.length; i++) {
+      if (r < cumWeights[i]) return transforms[i];
+    }
+    return transforms[transforms.length - 1];
+  }
+
+  // Swirl variation: rotation by angle r² (squared distance from origin).
+  // x' = x·cos(r²) - y·sin(r²),  y' = x·sin(r²) + y·cos(r²)
+  function applySwirl(x, y) {
+    const r2 = x * x + y * y;
+    const cs = Math.cos(r2), sn = Math.sin(r2);
+    return [x * cs - y * sn, x * sn + y * cs];
+  }
+
+  // Sinusoidal variation: maps each axis through sin independently.
+  function applySinusoidal(x, y) {
+    return [Math.sin(x), Math.sin(y)];
+  }
+
+  function applyVariation(t, x, y) {
+    if (t.variation === 'swirl')      return applySwirl(x, y);
+    if (t.variation === 'sinusoidal') return applySinusoidal(x, y);
+    return [x, y]; // linear
+  }
+
+  // Float32 histogram: W*H cells, each cell is [count, colorAccum].
+  const hist = new Float32Array(W * H * 2);
+
+  // Fire palette stops (hex strings for clarity):
+  //   #800010 deep crimson → #C84010 deep orange → #FFB020 hot gold → #FFFFF0 near-white
+  // Background: #030202 near-black.
+  const FIRE_STOPS = [
+    { h: 0.00, hex: '#800010' },
+    { h: 0.35, hex: '#C84010' },
+    { h: 0.65, hex: '#FFB020' },
+    { h: 1.00, hex: '#FFFFF0' },
+  ];
+
+  function hexToRgb(hex) {
+    const v = parseInt(hex.slice(1), 16);
+    return [(v >> 16) & 0xff, (v >> 8) & 0xff, v & 0xff];
+  }
+
+  function sampleFirePalette(hue) {
+    if (hue <= 0) return hexToRgb(FIRE_STOPS[0].hex);
+    if (hue >= 1) return hexToRgb(FIRE_STOPS[FIRE_STOPS.length - 1].hex);
+    for (let i = 1; i < FIRE_STOPS.length; i++) {
+      if (hue <= FIRE_STOPS[i].h) {
+        const lo = hexToRgb(FIRE_STOPS[i - 1].hex);
+        const hi = hexToRgb(FIRE_STOPS[i].hex);
+        const t  = (hue - FIRE_STOPS[i - 1].h) / (FIRE_STOPS[i].h - FIRE_STOPS[i - 1].h);
+        return [
+          Math.round(lo[0] + t * (hi[0] - lo[0])),
+          Math.round(lo[1] + t * (hi[1] - lo[1])),
+          Math.round(lo[2] + t * (hi[2] - lo[2])),
+        ];
+      }
+    }
+    return hexToRgb(FIRE_STOPS[FIRE_STOPS.length - 1].hex);
+  }
+
+  // Map (log-density brightness, average transform hue) to an RGB pixel.
+  // brightness multiplies the palette color; gamma 0.55 boosts dim halo glow.
+  function firePalette(brightness, hue) {
+    const [r0, g0, b0] = sampleFirePalette(hue);
+    const b = Math.pow(brightness, 0.55); // gamma-correct for luminous halo
+    return [
+      Math.min(255, Math.round(b * r0)),
+      Math.min(255, Math.round(b * g0)),
+      Math.min(255, Math.round(b * b0)),
+    ];
+  }
+
+  // Chaos game state.
+  let cx = 0, cy = 0;
+  let globalIter = 0;
+  let framesDone = 0;
+
+  function step(n) {
+    for (let i = 0; i < n; i++) {
+      const t = pickTransform();
+      let nx = t.a * cx + t.b * cy + t.e;
+      let ny = t.c * cx + t.d * cy + t.f;
+      const vxy = applyVariation(t, nx, ny);
+      cx = vxy[0]; cy = vxy[1];
+      globalIter++;
+
+      // Skip first SKIP iterations while the orbit converges onto the attractor.
+      if (globalIter <= SKIP) continue;
+
+      const px = Math.floor((cx - XMIN) / (XMAX - XMIN) * W);
+      const py = Math.floor((cy - YMIN) / (YMAX - YMIN) * H);
+      if (px >= 0 && px < W && py >= 0 && py < H) {
+        const idx = (py * W + px) * 2;
+        hist[idx]++;
+        hist[idx + 1] += t.color;
+      }
+    }
+  }
+
+  function render() {
+    // Find the maximum hit count for log-density normalisation.
+    let maxCount = 0;
+    for (let i = 0; i < W * H * 2; i += 2) {
+      if (hist[i] > maxCount) maxCount = hist[i];
+    }
+    if (maxCount === 0) return;
+    const logMax = Math.log1p(maxCount);
+
+    const canvas = document.getElementById('flameCanvas');
+    const ctx = canvas.getContext('2d');
+    const imgData = ctx.createImageData(W, H);
+
+    for (let i = 0; i < W * H; i++) {
+      const count    = hist[i * 2];
+      const colorSum = hist[i * 2 + 1];
+
+      if (count === 0) {
+        // Background: near-black #030202
+        imgData.data[i * 4]     = 3;
+        imgData.data[i * 4 + 1] = 2;
+        imgData.data[i * 4 + 2] = 2;
+        imgData.data[i * 4 + 3] = 255;
+        continue;
+      }
+
+      // Log-density brightness: log(1+count) / log(1+max_count)
+      const brightness = Math.log1p(count) / logMax;
+      const hue        = colorSum / count; // average transform color for this pixel
+
+      const rgb = firePalette(brightness, hue);
+      imgData.data[i * 4]     = rgb[0];
+      imgData.data[i * 4 + 1] = rgb[1];
+      imgData.data[i * 4 + 2] = rgb[2];
+      imgData.data[i * 4 + 3] = 255;
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+  }
+
+  function computeFrame() {
+    step(ITERS_PER_FRAME);
+    framesDone++;
+
+    const pct = framesDone / FRAMES;
+    document.getElementById('progressFill').style.width = (pct * 100).toFixed(1) + '%';
+    document.getElementById('progressLabel').textContent =
+      'Igniting the Bush… ' + Math.round(pct * 100) + '%';
+
+    if (framesDone < FRAMES) {
+      requestAnimationFrame(computeFrame);
+    } else {
+      render();
+      document.getElementById('progressOverlay').style.display = 'none';
+    }
+  }
+
+  // Start computation on the next frame so the browser can paint the initial UI.
+  requestAnimationFrame(computeFrame);
+
+})();
+</script>
+</body>
+</html>

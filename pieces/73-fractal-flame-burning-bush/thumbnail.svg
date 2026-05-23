@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <!-- Base glow: hot core at bottom center -->
+    <radialGradient id="gBase" cx="50%" cy="82%" r="38%" fx="50%" fy="86%">
+      <stop offset="0%"   stop-color="#FFFFF0" stop-opacity="0.95"/>
+      <stop offset="15%"  stop-color="#FFB020" stop-opacity="0.88"/>
+      <stop offset="40%"  stop-color="#C84010" stop-opacity="0.70"/>
+      <stop offset="75%"  stop-color="#800010" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#030202" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Mid flame body -->
+    <radialGradient id="gMid" cx="50%" cy="55%" r="32%" fx="50%" fy="62%">
+      <stop offset="0%"   stop-color="#FFD060" stop-opacity="0.90"/>
+      <stop offset="35%"  stop-color="#FF7018" stop-opacity="0.72"/>
+      <stop offset="70%"  stop-color="#901010" stop-opacity="0.40"/>
+      <stop offset="100%" stop-color="#030202" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Upper glow / halo -->
+    <radialGradient id="gTop" cx="50%" cy="28%" r="30%" fx="50%" fy="32%">
+      <stop offset="0%"   stop-color="#FF8830" stop-opacity="0.55"/>
+      <stop offset="50%"  stop-color="#801010" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#030202" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Left tendril -->
+    <radialGradient id="gLeft" cx="30%" cy="42%" r="22%" fx="32%" fy="46%">
+      <stop offset="0%"   stop-color="#FF9020" stop-opacity="0.60"/>
+      <stop offset="60%"  stop-color="#800010" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#030202" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Right tendril -->
+    <radialGradient id="gRight" cx="70%" cy="38%" r="20%" fx="68%" fy="42%">
+      <stop offset="0%"   stop-color="#FF9020" stop-opacity="0.55"/>
+      <stop offset="60%"  stop-color="#800010" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#030202" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Inner core spark -->
+    <radialGradient id="gCore" cx="50%" cy="72%" r="14%" fx="50%" fy="74%">
+      <stop offset="0%"   stop-color="#FFFFFF"  stop-opacity="1.00"/>
+      <stop offset="40%"  stop-color="#FFFFF0"  stop-opacity="0.90"/>
+      <stop offset="100%" stop-color="#FFB020"  stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur1" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="blur2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#030202"/>
+
+  <!-- Outermost halo -->
+  <ellipse cx="200" cy="328" rx="130" ry="68" fill="url(#gBase)" filter="url(#blur1)" opacity="0.7"/>
+
+  <!-- Upper diffuse glow -->
+  <ellipse cx="200" cy="112" rx="95" ry="90" fill="url(#gTop)" filter="url(#blur1)" opacity="0.8"/>
+
+  <!-- Left curling tendril -->
+  <path d="M200,310 Q160,250 120,180 Q105,140 125,100 Q118,150 148,200 Q170,248 200,310 Z"
+        fill="url(#gLeft)" filter="url(#blur2)" opacity="0.75"/>
+
+  <!-- Right curling tendril -->
+  <path d="M200,310 Q240,245 275,172 Q292,130 272,90 Q279,142 252,192 Q230,244 200,310 Z"
+        fill="url(#gRight)" filter="url(#blur2)" opacity="0.72"/>
+
+  <!-- Main flame body -->
+  <path d="M155,335 Q178,240 196,140 Q200,100 204,140 Q222,240 245,335 Z"
+        fill="url(#gMid)" filter="url(#blur2)" opacity="0.90"/>
+
+  <!-- Base glow -->
+  <ellipse cx="200" cy="332" rx="88" ry="44" fill="url(#gBase)" opacity="0.85"/>
+
+  <!-- Bright core -->
+  <ellipse cx="200" cy="316" rx="36" ry="42" fill="url(#gCore)" opacity="0.95"/>
+  <ellipse cx="200" cy="312" rx="14" ry="16" fill="url(#gCore)" opacity="1.0"/>
+</svg>
