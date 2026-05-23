@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="s0" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E8C547"/>
+      <stop offset="100%" stop-color="#E8C54700"/>
+    </radialGradient>
+    <radialGradient id="s1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C4A35A"/>
+      <stop offset="100%" stop-color="#C4A35A00"/>
+    </radialGradient>
+    <radialGradient id="s2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6B2D8B"/>
+      <stop offset="100%" stop-color="#6B2D8B00"/>
+    </radialGradient>
+    <radialGradient id="s3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8B4513"/>
+      <stop offset="100%" stop-color="#8B451300"/>
+    </radialGradient>
+    <radialGradient id="s4" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C0392B"/>
+      <stop offset="100%" stop-color="#C0392B00"/>
+    </radialGradient>
+    <radialGradient id="s5" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5D7A2A"/>
+      <stop offset="100%" stop-color="#5D7A2A00"/>
+    </radialGradient>
+    <radialGradient id="s6" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4890A"/>
+      <stop offset="100%" stop-color="#D4890A00"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="360" fill="#1a1000"/>
+
+  <!-- Spiral wave fronts: concentric arcs in the 7 species colors -->
+  <!-- Center spiral 1 at (120, 140) -->
+  <circle cx="120" cy="140" r="90" fill="none" stroke="#E8C547" stroke-width="8" opacity="0.7"/>
+  <circle cx="120" cy="140" r="77" fill="none" stroke="#C4A35A" stroke-width="7" opacity="0.7"/>
+  <circle cx="120" cy="140" r="64" fill="none" stroke="#6B2D8B" stroke-width="7" opacity="0.7"/>
+  <circle cx="120" cy="140" r="51" fill="none" stroke="#8B4513" stroke-width="7" opacity="0.7"/>
+  <circle cx="120" cy="140" r="38" fill="none" stroke="#C0392B" stroke-width="7" opacity="0.7"/>
+  <circle cx="120" cy="140" r="25" fill="none" stroke="#5D7A2A" stroke-width="7" opacity="0.7"/>
+  <circle cx="120" cy="140" r="12" fill="#D4890A" opacity="0.85"/>
+
+  <!-- Center spiral 2 at (270, 110) -->
+  <circle cx="270" cy="110" r="75" fill="none" stroke="#6B2D8B" stroke-width="7" opacity="0.65"/>
+  <circle cx="270" cy="110" r="62" fill="none" stroke="#8B4513" stroke-width="7" opacity="0.65"/>
+  <circle cx="270" cy="110" r="49" fill="none" stroke="#C0392B" stroke-width="7" opacity="0.65"/>
+  <circle cx="270" cy="110" r="36" fill="none" stroke="#5D7A2A" stroke-width="7" opacity="0.65"/>
+  <circle cx="270" cy="110" r="23" fill="none" stroke="#D4890A" stroke-width="7" opacity="0.65"/>
+  <circle cx="270" cy="110" r="11" fill="#E8C547" opacity="0.85"/>
+
+  <!-- Center spiral 3 at (210, 250) -->
+  <circle cx="210" cy="250" r="80" fill="none" stroke="#C0392B" stroke-width="7" opacity="0.6"/>
+  <circle cx="210" cy="250" r="67" fill="none" stroke="#5D7A2A" stroke-width="7" opacity="0.6"/>
+  <circle cx="210" cy="250" r="54" fill="none" stroke="#D4890A" stroke-width="7" opacity="0.6"/>
+  <circle cx="210" cy="250" r="41" fill="none" stroke="#E8C547" stroke-width="7" opacity="0.6"/>
+  <circle cx="210" cy="250" r="28" fill="none" stroke="#C4A35A" stroke-width="7" opacity="0.6"/>
+  <circle cx="210" cy="250" r="15" fill="#6B2D8B" opacity="0.85"/>
+
+  <!-- Scattered background cells suggesting a CA field -->
+  <rect x="0" y="0" width="14" height="14" fill="#E8C547" opacity="0.4"/>
+  <rect x="14" y="0" width="14" height="14" fill="#C4A35A" opacity="0.4"/>
+  <rect x="350" y="0" width="14" height="14" fill="#6B2D8B" opacity="0.4"/>
+  <rect x="364" y="0" width="14" height="14" fill="#8B4513" opacity="0.4"/>
+  <rect x="0" y="320" width="14" height="14" fill="#C0392B" opacity="0.4"/>
+  <rect x="386" y="14" width="14" height="14" fill="#5D7A2A" opacity="0.4"/>
+  <rect x="0" y="14" width="14" height="14" fill="#D4890A" opacity="0.4"/>
+
+  <!-- Legend strip background -->
+  <rect x="0" y="360" width="400" height="40" fill="#0d0900"/>
+
+  <!-- Legend labels in species colors -->
+  <text x="8" y="386" font-family="serif" font-size="13" fill="#E8C547" direction="rtl">חִטָּה</text>
+  <text x="63" y="386" font-family="serif" font-size="13" fill="#C4A35A" direction="rtl">שְׂעֹרָה</text>
+  <text x="126" y="386" font-family="serif" font-size="13" fill="#6B2D8B" direction="rtl">גֶּפֶן</text>
+  <text x="172" y="386" font-family="serif" font-size="13" fill="#8B4513" direction="rtl">תְּאֵנָה</text>
+  <text x="232" y="386" font-family="serif" font-size="13" fill="#C0392B" direction="rtl">רִמּוֹן</text>
+  <text x="284" y="386" font-family="serif" font-size="13" fill="#5D7A2A" direction="rtl">זַיִת</text>
+  <text x="330" y="386" font-family="serif" font-size="13" fill="#D4890A" direction="rtl">תָּמָר</text>
+</svg>

@@ -1681,5 +1681,16 @@
     "path": "pieces/94-aizawa-attractor-tikkun-leil/index.html",
     "thumbnail": "pieces/94-aizawa-attractor-tikkun-leil/thumbnail.svg",
     "essay": "pieces/94-aizawa-attractor-tikkun-leil/essay.md"
+  },
+  {
+    "id": "94-cyclic-ca-seven-species",
+    "title": "Seven Waves Across the Field",
+    "tagline": "שִׁבְעַת הַמִּינִים — seven species as seven states in a cyclic cellular automaton: from random noise, spiral harvest wave fronts self-organize, each state converting neighbors to the next species in perpetual bloom",
+    "year": 2026,
+    "theme": "Bikkurim / seven species",
+    "technique": "Cyclic cellular automaton (7-state Moore neighborhood, threshold K=3)",
+    "path": "pieces/94-cyclic-ca-seven-species/index.html",
+    "thumbnail": "pieces/94-cyclic-ca-seven-species/thumbnail.svg",
+    "essay": "pieces/94-cyclic-ca-seven-species/essay.md"
   }
 ]
