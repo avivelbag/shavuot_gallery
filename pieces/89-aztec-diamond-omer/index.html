@@ -395,27 +395,6 @@
     return cells;
   }
 
-  /**
-   * Pulse a single cell gold for the Omer-day highlight sweep.
-   */
-  function pulseCell(r, c, grid) {
-    const cell = grid[r][c];
-    const baseColor = cell ? COLORS[cell.dir] : '#1a1a10';
-
-    ctx.save();
-    ctx.fillStyle = '#FFD700';
-    ctx.globalAlpha = 0.7;
-    ctx.fillRect(c * CELL + 1, r * CELL + 1, CELL - 2, CELL - 2);
-    ctx.globalAlpha = 1;
-
-    // Show day label
-    ctx.fillStyle = '#0C0C0C';
-    ctx.font = `bold ${Math.floor(CELL * 0.45)}px monospace`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.restore();
-  }
-
   // -------------------------------------------------------------------------
   // Animation state machine
   // -------------------------------------------------------------------------

@@ -7,9 +7,6 @@ and content-level checks for the arctic circle and shuffling algorithm text.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "89-aztec-diamond-omer"
