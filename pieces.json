@@ -1637,5 +1637,16 @@
     "path": "pieces/92-saw-sefirat-haomer/index.html",
     "thumbnail": "pieces/92-saw-sefirat-haomer/thumbnail.svg",
     "essay": "pieces/92-saw-sefirat-haomer/essay.md"
+  },
+  {
+    "id": "93-wireworld-oral-torah",
+    "title": "Moses Received and Transmitted",
+    "tagline": "מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי — a Wireworld electron pulse fired at Sinai branches through five generations of the chain of tradition, splitting at each Y-junction as the Oral Torah split from one teacher into many",
+    "year": 2026,
+    "theme": "Oral Torah / chain of tradition (Pirkei Avot)",
+    "technique": "Wireworld cellular automaton (electron signal propagation)",
+    "path": "pieces/93-wireworld-oral-torah/index.html",
+    "thumbnail": "pieces/93-wireworld-oral-torah/thumbnail.svg",
+    "essay": "pieces/93-wireworld-oral-torah/essay.md"
   }
 ]

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moses Received and Transmitted — Wireworld / Oral Torah</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #1A1208; overflow: hidden; }
+    canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+    #essay-hidden { display: none; }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="essay-hidden">
+<h1>Moses Received and Transmitted</h1>
+
+<h2>Pirkei Avot 1:1</h2>
+
+<p>מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי וּמְסָרָהּ לִיהוֹשֻׁעַ, וִיהוֹשֻׁעַ לִזְקֵנִים, וּזְקֵנִים לִנְבִיאִים, וּנְבִיאִים מְסָרוּהָ לְאַנְשֵׁי כְנֶסֶת הַגְּדוֹלָה.</p>
+
+<p>Moshe kibel Torah miSinai u'mesarah l'Yehoshua; v'Yehoshua la'Zekenim; u'Zekenim la'Nevi'im; v'Nevi'im mesaruha l'Anshei Knesset HaGedolah.</p>
+
+<p>"Moses received the Torah from Sinai and transmitted it to Joshua; Joshua to the Elders; the Elders to the Prophets; and the Prophets transmitted it to the Men of the Great Assembly."</p>
+
+<p>This is the opening verse of Pirkei Avot — Ethics of the Fathers — a tractate unlike any other in the Mishnah. Where the rest of rabbinic literature addresses legal questions, Pirkei Avot collects the ethical maxims and wisdom teachings of every major rabbinic figure from the Second Temple period onward. It is read on Shabbat afternoons between Pesach and Shavuot, one chapter each Shabbat during the weeks of the Omer count. This makes it the literary companion of the counting: as the seven weeks of the Omer measure the distance from Egypt to Sinai, Pirkei Avot traces the chain of transmission that carries what was received at Sinai into every subsequent generation.</p>
+
+<h2>Receive and Transmit</h2>
+
+<p>The Hebrew is precise in a way that translations often flatten. The text does not say Moses taught (limmad) Torah. It says he received (kibel) it and transmitted (mesarah) it. These are relay verbs. Moses is not the originator — he is a link. Sinai is the source. Moses received something intact and passed it on intact. The chain is the point.</p>
+
+<p>Each generation is named by a collective, not an individual: Joshua, the Elders, the Prophets, the Men of the Great Assembly. The tradition belongs to no single mind. It is held by a community and handed forward as a living object, not a document. A document can be copied; this tradition requires a person to carry it.</p>
+
+<h2>The Fragility of the Chain</h2>
+
+<p>Wireworld — a cellular automaton devised by Brian Silverman in 1987 — enacts this chain with uncanny literalness. Each cell exists in one of four states: Empty, Conductor (amber wire), Electron Head (white-gold leading edge), or Electron Tail (ember-red trailing edge). A single transition rule governs everything: a Conductor cell becomes an Electron Head if and only if exactly one or two of its neighboring cells are currently Electron Heads. Not zero. Not three or more. Exactly one or two.</p>
+
+<p>This condition is the non-obvious heart of the piece. Too few neighboring heads — the signal dies. Too many — the conductor stays dark, overwhelmed, the signal absorbed. Only the precise range of one or two triggers propagation. The tradition's transmission conditions are as exact as a logic gate: the right number of living teachers, handing on to the right number of students. Fewer, and the signal fades. More, and the competing authorities cancel each other.</p>
+
+<p>The Talmud records near-extinctions of the chain: the Roman execution of the Ten Martyrs, the destruction of the academies, the repeated exile of the Jewish people across continents. At each rupture the chain nearly broke. That it did not is because in each generation the exact transmission conditions were met — not by miracle alone, but by people who found exactly one or two teachers and transmitted to exactly one or two students.</p>
+
+<h2>The Branching Tree</h2>
+
+<p>What you see is a single pulse injected at Sinai — the top of the wire tree. It propagates down the trunk and at each generation splits at a Y-junction, duplicating into both child branches. One tradition at Sinai becomes two at Moses, four at the Elders, eight at the Prophets, expanding into the 120 members of the Great Assembly. From there the Tannaim, the Amoraim, the Geonim, and onward — the branching continues beyond the canvas, beyond history, into every beit midrash where the electron still flows.</p>
+
+<p>The viewer watches a single pulse from Sinai multiply through the generations indefinitely. This is the Oral Torah as circuit: not stored, but propagating; not contained, but transmitted; not taught once but relayed without end.</p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // Wireworld cell states
+  var EMPTY     = 0;
+  var CONDUCTOR = 1;
+  var E_HEAD    = 2;
+  var E_TAIL    = 3;
+
+  // Colors
+  var BG_COLOR   = '#1A1208';
+  var COND_COLOR = '#C8881A';
+  var HEAD_COLOR = '#FFFAF0';
+  var TAIL_COLOR = '#8B2500';
+
+  var CELL = 8; // pixels per cell
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+
+  var W, H, cols, rows;
+  var grid, next;
+  var frameCount = 0;
+  var PULSE_INTERVAL = 80;
+  var STEP_EVERY = 3; // advance CA every N animation frames
+
+  // Generation labels in Hebrew, from top to bottom
+  var GENERATIONS = [
+    { label: 'סיני', sublabel: 'Sinai' },
+    { label: 'משה', sublabel: 'Moses' },
+    { label: 'יהושע', sublabel: 'Joshua' },
+    { label: 'זקנים', sublabel: 'Elders' },
+    { label: 'נביאים', sublabel: 'Prophets' },
+    { label: 'כנסת הגדולה', sublabel: 'Great Assembly' }
+  ];
+
+  // Branch node records: {x, y} in cell coordinates
+  // Built by buildWireLayout()
+  var branchNodes = [];
+  var trunkTop = 0;
+  var trunkX = 0;
+
+  function cellIdx(cx, cy) {
+    return cy * cols + cx;
+  }
+
+  function getCell(g, cx, cy) {
+    if (cx < 0 || cy < 0 || cx >= cols || cy >= rows) return EMPTY;
+    return g[cy * cols + cx];
+  }
+
+  function setCell(g, cx, cy, val) {
+    if (cx < 0 || cy < 0 || cx >= cols || cy >= rows) return;
+    g[cy * cols + cx] = val;
+  }
+
+  /**
+   * Paint a horizontal or vertical wire segment of conductor cells.
+   * dx/dy must be -1, 0, or 1 (direction vector).
+   */
+  function paintWire(g, cx, cy, dx, dy, length) {
+    for (var i = 0; i < length; i++) {
+      setCell(g, cx + dx * i, cy + dy * i, CONDUCTOR);
+    }
+  }
+
+  /**
+   * Paint a diagonal wire from (cx,cy) in direction (dx,dy) for `length` steps.
+   * Uses a Bresenham-style approach: for steep diagonals we add one cell
+   * horizontally and one vertically each step so the wire is connected
+   * (8-connected neighbors) and the Wireworld rules will propagate signals.
+   */
+  function paintDiag(g, cx, cy, dx, dy, length) {
+    for (var i = 0; i < length; i++) {
+      var nx = cx + dx * i;
+      var ny = cy + dy * i;
+      setCell(g, nx, ny, CONDUCTOR);
+      // Fill the "corner" cell so the diagonal is fully 8-connected
+      if (i > 0) {
+        setCell(g, cx + dx * (i - 1), cy + dy * i, CONDUCTOR);
+      }
+    }
+  }
+
+  /**
+   * Build the branching wire tree on grid g.
+   * Returns the y-row of each generation branch level.
+   */
+  function buildWireLayout(g) {
+    branchNodes = [];
+
+    var cx0 = Math.floor(cols / 2);
+    // Leave room at top for the Sinai label and some margin
+    var topMargin = Math.floor(rows * 0.06);
+    var trunkLen = Math.floor(rows * 0.05);
+
+    trunkX = cx0;
+    trunkTop = topMargin;
+
+    // Draw the trunk
+    paintWire(g, cx0, topMargin, 0, 1, trunkLen);
+
+    // Level y-positions (top of each branch level)
+    var genY = [];
+    genY.push(topMargin); // Sinai (trunk injection point)
+
+    // We have 5 branching generations. Distribute them evenly.
+    var numGens = 5;
+    // Available vertical space after trunk and before bottom margin
+    var usableHeight = rows - topMargin - trunkLen - Math.floor(rows * 0.05);
+    var genSpacing = Math.floor(usableHeight / numGens);
+
+    // Start of first generation (Moses) after trunk
+    var firstGenY = topMargin + trunkLen;
+
+    // Build each generation level as a list of branch positions
+    // Level 0: trunk point (cx0, firstGenY)
+    var currentLevel = [{ x: cx0, y: firstGenY }];
+
+    for (var gen = 0; gen < numGens; gen++) {
+      var nextY = firstGenY + (gen + 1) * genSpacing;
+      genY.push(firstGenY + gen * genSpacing);
+      var nextLevel = [];
+
+      for (var b = 0; b < currentLevel.length; b++) {
+        var node = currentLevel[b];
+        var spread = Math.floor(cols / (2 * Math.pow(2, gen + 1)));
+        if (spread < 3) spread = 3;
+
+        var lx = node.x - spread;
+        var rx = node.x + spread;
+        // Clamp to canvas
+        if (lx < 2) lx = 2;
+        if (rx > cols - 3) rx = cols - 3;
+
+        var dy = nextY - node.y;
+
+        // Draw left branch: diagonal from node to (lx, nextY)
+        paintDiagLine(g, node.x, node.y, lx, nextY);
+        // Draw right branch
+        paintDiagLine(g, node.x, node.y, rx, nextY);
+
+        nextLevel.push({ x: lx, y: nextY });
+        nextLevel.push({ x: rx, y: nextY });
+      }
+
+      branchNodes.push({ level: gen + 1, nodes: currentLevel, y: firstGenY + gen * genSpacing });
+      currentLevel = nextLevel;
+    }
+
+    // Final leaves
+    branchNodes.push({ level: numGens + 1, nodes: currentLevel, y: firstGenY + numGens * genSpacing });
+
+    return genY;
+  }
+
+  /**
+   * Draw a wire line from (x0,y0) to (x1,y1) in cell coordinates using
+   * Bresenham's line algorithm, marking every cell as CONDUCTOR.
+   * This ensures clean 8-connected conductor paths for Wireworld propagation.
+   */
+  function paintDiagLine(g, x0, y0, x1, y1) {
+    var dx = Math.abs(x1 - x0);
+    var dy = Math.abs(y1 - y0);
+    var sx = x0 < x1 ? 1 : -1;
+    var sy = y0 < y1 ? 1 : -1;
+    var err = dx - dy;
+    var cx = x0, cy = y0;
+    while (true) {
+      setCell(g, cx, cy, CONDUCTOR);
+      if (cx === x1 && cy === y1) break;
+      var e2 = 2 * err;
+      if (e2 > -dy) { err -= dy; cx += sx; }
+      if (e2 < dx)  { err += dx; cy += sy; }
+    }
+  }
+
+  /**
+   * Count Electron Head neighbors (Moore neighborhood, 8 cells).
+   */
+  function countHeadNeighbors(g, cx, cy) {
+    var count = 0;
+    for (var dy = -1; dy <= 1; dy++) {
+      for (var dx = -1; dx <= 1; dx++) {
+        if (dx === 0 && dy === 0) continue;
+        if (getCell(g, cx + dx, cy + dy) === E_HEAD) count++;
+      }
+    }
+    return count;
+  }
+
+  /**
+   * Advance the Wireworld CA by one generation.
+   * Rules:
+   *   EMPTY    → EMPTY
+   *   E_HEAD   → E_TAIL
+   *   E_TAIL   → CONDUCTOR
+   *   CONDUCTOR→ E_HEAD if 1 or 2 neighbors are E_HEAD, else CONDUCTOR
+   */
+  function stepCA() {
+    var size = cols * rows;
+    for (var cy = 0; cy < rows; cy++) {
+      for (var cx = 0; cx < cols; cx++) {
+        var state = grid[cy * cols + cx];
+        if (state === EMPTY) {
+          next[cy * cols + cx] = EMPTY;
+        } else if (state === E_HEAD) {
+          next[cy * cols + cx] = E_TAIL;
+        } else if (state === E_TAIL) {
+          next[cy * cols + cx] = CONDUCTOR;
+        } else { // CONDUCTOR
+          var n = countHeadNeighbors(grid, cx, cy);
+          next[cy * cols + cx] = (n === 1 || n === 2) ? E_HEAD : CONDUCTOR;
+        }
+      }
+    }
+    // Swap buffers
+    var tmp = grid;
+    grid = next;
+    next = tmp;
+  }
+
+  /**
+   * Inject a new electron head at the top of the trunk.
+   * Sets the top two cells: head at trunkTop, tail at trunkTop+1.
+   * Only injects if those cells are not already active (to avoid
+   * disrupting in-flight signals when they are near the injection point).
+   */
+  function injectPulse() {
+    var topState = getCell(grid, trunkX, trunkTop);
+    if (topState === CONDUCTOR) {
+      setCell(grid, trunkX, trunkTop, E_HEAD);
+    }
+  }
+
+  /**
+   * Draw the full grid onto the canvas using fillRect per cell.
+   * Also draws bloom effect for E_HEAD cells and Hebrew generation labels.
+   */
+  function draw(genY) {
+    // Background
+    ctx.fillStyle = BG_COLOR;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw all non-empty cells
+    for (var cy = 0; cy < rows; cy++) {
+      for (var cx = 0; cx < cols; cx++) {
+        var state = grid[cy * cols + cx];
+        if (state === EMPTY) continue;
+        var px = cx * CELL;
+        var py = cy * CELL;
+        if (state === CONDUCTOR) {
+          ctx.fillStyle = COND_COLOR;
+          ctx.fillRect(px, py, CELL, CELL);
+        } else if (state === E_HEAD) {
+          ctx.fillStyle = HEAD_COLOR;
+          ctx.fillRect(px, py, CELL, CELL);
+        } else if (state === E_TAIL) {
+          ctx.fillStyle = TAIL_COLOR;
+          ctx.fillRect(px, py, CELL, CELL);
+        }
+      }
+    }
+
+    // Bloom glow for Electron Heads
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    for (var cy2 = 0; cy2 < rows; cy2++) {
+      for (var cx2 = 0; cx2 < cols; cx2++) {
+        if (grid[cy2 * cols + cx2] !== E_HEAD) continue;
+        var bx = cx2 * CELL + CELL / 2;
+        var by = cy2 * CELL + CELL / 2;
+        var grad = ctx.createRadialGradient(bx, by, 0, bx, by, CELL * 3);
+        grad.addColorStop(0, 'rgba(255,250,240,0.55)');
+        grad.addColorStop(1, 'rgba(255,250,240,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(bx, by, CELL * 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    ctx.restore();
+
+    // Draw generation labels
+    drawLabels(genY);
+  }
+
+  /**
+   * Draw Hebrew generation labels beside each branch level.
+   * Labels are positioned to the right of the rightmost branch at each level.
+   */
+  function drawLabels(genY) {
+    ctx.save();
+    ctx.font = 'bold 14px serif';
+    ctx.direction = 'rtl';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#C8881A';
+
+    var labels = [
+      'סיני',             // Sinai (trunk top)
+      'משה',              // Moses
+      'יהושע',            // Joshua
+      'זקנים',            // Elders
+      'נביאים',           // Prophets
+      'כנסת הגדולה'       // Great Assembly
+    ];
+
+    for (var i = 0; i < Math.min(labels.length, branchNodes.length + 1); i++) {
+      var yCell;
+      if (i === 0) {
+        yCell = trunkTop;
+      } else {
+        var bn = branchNodes[i - 1];
+        if (!bn) continue;
+        yCell = bn.y;
+      }
+      var py = yCell * CELL + CELL / 2;
+      // Position label at right edge with small margin
+      var labelX = canvas.width - 8;
+      ctx.fillText(labels[i], labelX, py);
+    }
+    ctx.restore();
+  }
+
+  var genYCache = null;
+
+  function init() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    cols = Math.floor(W / CELL);
+    rows = Math.floor(H / CELL);
+
+    grid = new Uint8Array(cols * rows);
+    next = new Uint8Array(cols * rows);
+
+    genYCache = buildWireLayout(grid);
+    injectPulse();
+  }
+
+  function loop() {
+    frameCount++;
+
+    // Inject a new pulse every PULSE_INTERVAL frames
+    if (frameCount % PULSE_INTERVAL === 0) {
+      injectPulse();
+    }
+
+    // Step the CA every STEP_EVERY frames (so ~20 CA steps/s at 60fps)
+    if (frameCount % STEP_EVERY === 0) {
+      stepCA();
+    }
+
+    draw(genYCache);
+    requestAnimationFrame(loop);
+  }
+
+  init();
+  window.addEventListener('resize', function () {
+    init();
+    frameCount = 0;
+  });
+
+  loop();
+}());
+</script>
+</body>
+</html>
