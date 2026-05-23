@@ -12,8 +12,6 @@ import json
 import os
 import re
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "92-saw-sefirat-haomer"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
