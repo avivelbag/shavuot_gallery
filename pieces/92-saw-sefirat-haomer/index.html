@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forty-Nine Steps That Do Not Return — Self-Avoiding Walk / Sefirat HaOmer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #0D1B2A; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0D1B2A;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a2a3a;
+      overflow-y: auto;
+      color: #b0c0d0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0D1B2A;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a2a3a; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 { font-size: 1.55rem; color: #e8d8a0; margin: 0 0 0.25rem; font-weight: normal; line-height: 1.3; }
+    .essay-panel .subtitle { font-size: 0.85rem; color: #5a6a4a; margin: 0 0 2rem; font-style: italic; }
+    .essay-panel h2 { font-size: 0.95rem; color: #c8a840; margin: 2rem 0 0.6rem; font-weight: normal; letter-spacing: 0.07em; text-transform: uppercase; }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.92rem; }
+    .essay-panel blockquote {
+      margin: 0 0 1rem 0;
+      padding: 0.8rem 1.2rem;
+      border-left: 2px solid #2a4a2a;
+      font-style: italic;
+      color: #7a9a7a;
+      line-height: 1.7;
+    }
+    .essay-panel .hebrew {
+      direction: rtl;
+      font-size: 1.15rem;
+      color: #d0bc80;
+      line-height: 2;
+      margin: 0 0 0.25rem;
+      text-align: right;
+    }
+    .essay-panel .source { font-size: 0.8rem; color: #4a5a3a; margin: 0 0 1.5rem; }
+    .essay-panel em { color: #d0bc80; font-style: italic; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Forty-Nine Steps That Do Not Return</h1>
+    <p class="subtitle">Sefirat HaOmer &mdash; Self-avoiding walk (backtracking SAW generator)</p>
+
+    <p class="hebrew">וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת... שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה... וּסְפַרְתֶּם חֲמִשִּׁים יוֹם</p>
+    <p class="source">"You shall count for yourselves from the day after the Sabbath... seven complete weeks they shall be... and you shall count fifty days." — Leviticus 23:15–16</p>
+
+    <p>The commandment of Sefirat HaOmer — the counting of the Omer — occupies forty-nine days of the Jewish year. Beginning on the second night of Passover and ending on the eve of Shavuot, the count is performed after dark, one day at a time, announced aloud: "Today is the Nth day of the Omer." Each evening adds exactly one step. No day can be recounted; no day may be skipped without consequence. The Shulchan Aruch (Orach Chaim 489:8) rules that one who misses a single day loses the blessing for the remaining count — may continue numbering, but without the accompanying benediction. The count is irreversible. Each step is a door that closes behind you.</p>
+
+    <h2>The Self-Avoiding Walk</h2>
+
+    <p>A self-avoiding walk (SAW) is one of the simplest objects in mathematical physics: a path on a lattice that visits no point twice. Starting from an origin, the walker chooses a neighboring lattice site at each step, subject to one rule — never return to a cell already visited. The path must always move forward into new territory.</p>
+
+    <p>Polymer physicists use SAWs to model the conformations of long-chain molecules. A polymer cannot fold back through itself; the excluded-volume constraint forces it into ever-expanding configurations. The mathematics of SAWs governs everything from the radius of gyration of a DNA strand to the thermodynamic behavior of proteins in solution. In two dimensions, the scaling exponent of the SAW — the relationship between path length and end-to-end distance — is exactly 3/4, one of the few exact results in the statistical mechanics of disordered systems.</p>
+
+    <p>The constraint is not only physical. It is, unexpectedly, moral.</p>
+
+    <h2>Forty-Nine Combinations</h2>
+
+    <p>Kabbalistic tradition, drawing on Zohar Emor and codified in the works of R. Chaim Vital (<em>Sefer ha-Omer</em>), maps the forty-nine days of the Omer to the forty-nine combinations of the seven lower sefirot — divine qualities — with themselves: Chesed within Chesed, Gevurah within Chesed, Tiferet within Chesed, and so on through all seven-times-seven pairings. Each day is assigned a unique pair; each pair refines a different facet of character. The walk must reach every node of spiritual work without doubling back. A day repeated is a sefirah uncleaned.</p>
+
+    <p>The self-avoiding walk models this with mathematical precision. The lattice is the space of possible refinements. The path is the count. The rule — no cell twice — is not a technical constraint but a spiritual one: each day must be genuinely new, genuinely distinct, a step into unexplored territory. <em>"Self-avoiding" is not merely a geometric description. It is the shape of integrity.</em></p>
+
+    <h2>The Fiftieth Day</h2>
+
+    <p>This piece uses a backtracking depth-first search to guarantee the walk always reaches step 49 — the algorithm explores forward, retreats when trapped, and finds a valid path before the animation begins. The backtracking is invisible to the viewer. The path still appears to grow forward, one step per second, without hesitation. This, too, is a model: the count of the Omer requires no visible effort. One simply counts, night after night, trusting that the path exists.</p>
+
+    <p>The walk grows one step per second. It meanders, it turns, it finds new ground — but it never returns. When the forty-ninth step is taken, the path blazes white: all forty-nine segments lit at once, irreversible and complete. Then the fiftieth day arrives: <em>יום חמישים</em>, the day outside the count, the day that cannot be numbered because it was always beyond the lattice. Shavuot — the fiftieth — is not the end of the walk. It is what the walk was always moving toward.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const STEP_INTERVAL_MS = 1000;
+  const TOTAL_STEPS = 49;
+  const CELL = 20;
+  const FLASH_MS = 500;
+  const CELEBRATE_MS = 4000;
+
+  const HEBREW_DAYS = [
+    'יום א׳','יום ב׳','יום ג׳','יום ד׳','יום ה׳',
+    'יום ו׳','יום ז׳','יום ח׳','יום ט׳','יום י׳',
+    'יום י״א','יום י״ב','יום י״ג','יום י״ד','יום ט״ו',
+    'יום ט״ז','יום י״ז','יום י״ח','יום י״ט','יום כ׳',
+    'יום כ״א','יום כ״ב','יום כ״ג','יום כ״ד','יום כ״ה',
+    'יום כ״ו','יום כ״ז','יום כ״ח','יום כ״ט','יום ל׳',
+    'יום ל״א','יום ל״ב','יום ל״ג','יום ל״ד','יום ל״ה',
+    'יום ל״ו','יום ל״ז','יום ל״ח','יום ל״ט','יום מ׳',
+    'יום מ״א','יום מ״ב','יום מ״ג','יום מ״ד','יום מ״ה',
+    'יום מ״ו','יום מ״ז','יום מ״ח','יום מ״ט'
+  ];
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let dpr = 1;
+  let W = 0, H = 0;
+  let path = null;
+  let currentStep = 0;
+  let phase = 'walking'; // 'walking' | 'flash' | 'celebrate'
+  let phaseStart = 0;
+  let lastStepTime = 0;
+
+  /**
+   * Backtracking DFS self-avoiding walk generator.
+   * Returns an array of [x, y] pairs of length steps+1, or null if no path
+   * exists (should not happen on a sufficiently large grid).
+   */
+  function generateSAW(gridW, gridH, steps) {
+    const visited = new Set();
+    const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+
+    function dfs(x, y, p) {
+      if (p.length === steps + 1) return p;
+      const shuffled = dirs.slice().sort(() => Math.random() - 0.5);
+      for (const [dx, dy] of shuffled) {
+        const nx = x + dx, ny = y + dy;
+        const key = nx + ',' + ny;
+        if (nx >= 0 && nx < gridW && ny >= 0 && ny < gridH && !visited.has(key)) {
+          visited.add(key);
+          const result = dfs(nx, ny, p.concat([[nx, ny]]));
+          if (result) return result;
+          visited.delete(key);
+        }
+      }
+      return null;
+    }
+
+    const sx = Math.floor(gridW / 2);
+    const sy = Math.floor(gridH / 2);
+    visited.add(sx + ',' + sy);
+    return dfs(sx, sy, [[sx, sy]]);
+  }
+
+  /** Pick a random starting cell within the interior of the grid. */
+  function randomStart(gridW, gridH) {
+    const margin = 5;
+    const x = Math.floor(Math.random() * (gridW - 2 * margin) + margin);
+    const y = Math.floor(Math.random() * (gridH - 2 * margin) + margin);
+    return [x, y];
+  }
+
+  /**
+   * Generate a new path, trying up to 5 random starting positions before
+   * falling back to the grid center.
+   */
+  function newPath(gridW, gridH) {
+    for (let attempt = 0; attempt < 5; attempt++) {
+      const [sx, sy] = attempt === 0
+        ? [Math.floor(gridW / 2), Math.floor(gridH / 2)]
+        : randomStart(gridW, gridH);
+      const visited = new Set([sx + ',' + sy]);
+      const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+
+      function dfs(x, y, p) {
+        if (p.length === TOTAL_STEPS + 1) return p;
+        const shuffled = dirs.slice().sort(() => Math.random() - 0.5);
+        for (const [dx, dy] of shuffled) {
+          const nx = x + dx, ny = y + dy;
+          const key = nx + ',' + ny;
+          if (nx >= 0 && nx < gridW && ny >= 0 && ny < gridH && !visited.has(key)) {
+            visited.add(key);
+            const result = dfs(nx, ny, p.concat([[nx, ny]]));
+            if (result) return result;
+            visited.delete(key);
+          }
+        }
+        return null;
+      }
+
+      const result = dfs(sx, sy, [[sx, sy]]);
+      if (result) return result;
+    }
+    // Guaranteed fallback: the grid is always large enough for 49 steps.
+    return generateSAW(gridW, gridH, TOTAL_STEPS);
+  }
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const logicalW = canvas.clientWidth;
+    const logicalH = canvas.clientHeight;
+    canvas.width  = Math.round(logicalW * dpr);
+    canvas.height = Math.round(logicalH * dpr);
+    ctx.scale(dpr, dpr);
+    W = Math.floor(logicalW / CELL);
+    H = Math.floor(logicalH / CELL);
+    reset();
+  }
+
+  function reset() {
+    path = newPath(W, H);
+    currentStep = 0;
+    phase = 'walking';
+    lastStepTime = performance.now();
+    phaseStart = lastStepTime;
+  }
+
+  /** Draw the dot lattice across the full canvas. */
+  function drawDots(logicalW, logicalH) {
+    ctx.save();
+    ctx.fillStyle = '#8A6A1A';
+    ctx.globalAlpha = 0.25;
+    for (let gx = 0; gx <= W; gx++) {
+      for (let gy = 0; gy <= H; gy++) {
+        ctx.beginPath();
+        ctx.arc(gx * CELL, gy * CELL, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+
+  /**
+   * Compute per-segment opacity: oldest segment is 0.15, newest is 1.0.
+   * segIdx is 0-based index into the visible segments (0 = tail, currentStep-1 = head).
+   */
+  function segmentOpacity(segIdx) {
+    if (currentStep <= 1) return 1.0;
+    return 0.15 + 0.85 * segIdx / (TOTAL_STEPS - 1);
+  }
+
+  /** Draw the path segments up to currentStep. */
+  function drawPath(flashAlpha) {
+    if (!path || currentStep === 0) return;
+    for (let i = 0; i < currentStep; i++) {
+      const [x1, y1] = path[i];
+      const [x2, y2] = path[i + 1];
+      const alpha = flashAlpha !== undefined ? flashAlpha : segmentOpacity(i);
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = flashAlpha !== undefined ? '#FFFFFF' : '#D4A017';
+      ctx.lineWidth = 6;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(x1 * CELL, y1 * CELL);
+      ctx.lineTo(x2 * CELL, y2 * CELL);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  /** Draw the glowing head circle at the current position. */
+  function drawHead() {
+    if (!path) return;
+    const [hx, hy] = path[currentStep];
+    ctx.save();
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = '#F0C040';
+    ctx.fillStyle = '#FFFFFF';
+    ctx.beginPath();
+    ctx.arc(hx * CELL, hy * CELL, 10, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  /** Draw the Hebrew day counter in the top-right corner. */
+  function drawDayLabel() {
+    if (currentStep < 1) return;
+    const label = HEBREW_DAYS[currentStep - 1];
+    const logicalW = canvas.clientWidth;
+    ctx.save();
+    ctx.font = '1.2rem sans-serif';
+    ctx.fillStyle = '#F0C040';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'top';
+    ctx.fillText(label, logicalW - 16, 16);
+    ctx.restore();
+  }
+
+  /** Draw the "יום חמישים" celebration text at canvas center. */
+  function drawFiftiethDay() {
+    const logicalW = canvas.clientWidth;
+    const logicalH = canvas.clientHeight;
+    ctx.save();
+    ctx.font = 'bold 2.5rem serif';
+    ctx.fillStyle = '#F0C040';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = '#F0C040';
+    ctx.fillText('יום חמישים', logicalW / 2, logicalH / 2);
+    ctx.restore();
+  }
+
+  function drawBackground() {
+    const logicalW = canvas.clientWidth;
+    const logicalH = canvas.clientHeight;
+    ctx.fillStyle = '#0D1B2A';
+    ctx.fillRect(0, 0, logicalW, logicalH);
+  }
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+
+    const logicalW = canvas.clientWidth;
+    const logicalH = canvas.clientHeight;
+    drawBackground();
+    drawDots(logicalW, logicalH);
+
+    if (phase === 'walking') {
+      if (ts - lastStepTime >= STEP_INTERVAL_MS && currentStep < TOTAL_STEPS) {
+        currentStep++;
+        lastStepTime = ts;
+        if (currentStep === TOTAL_STEPS) {
+          phase = 'flash';
+          phaseStart = ts;
+        }
+      }
+      drawPath();
+      if (currentStep < TOTAL_STEPS) drawHead();
+      drawDayLabel();
+
+    } else if (phase === 'flash') {
+      const t = (ts - phaseStart) / FLASH_MS;
+      drawPath(Math.min(t * 2, 1.0));
+      drawDayLabel();
+      if (ts - phaseStart >= FLASH_MS) {
+        phase = 'celebrate';
+        phaseStart = ts;
+      }
+
+    } else if (phase === 'celebrate') {
+      drawPath(1.0);
+      drawFiftiethDay();
+      if (ts - phaseStart >= CELEBRATE_MS) {
+        reset();
+      }
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

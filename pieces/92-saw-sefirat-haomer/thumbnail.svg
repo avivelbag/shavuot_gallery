@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <!-- navy background -->
+  <rect width="400" height="400" fill="#0D1B2A"/>
+
+  <!-- dot lattice (36px grid, anchored at 74,56) -->
+  <defs>
+    <pattern id="dots" x="74" y="56" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="0" cy="0" r="1.5" fill="#8A6A1A" opacity="0.25"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#dots)"/>
+
+  <!-- 49-step SAW path in wheat gold -->
+  <!-- path: (10,10)→(11,10)→(12,10)→(13,10)→(14,10)→(14,9)→(14,8)→(13,8)→
+             (12,8)→(11,8)→(10,8)→(9,8)→(8,8)→(8,9)→(8,10)→(8,11)→(9,11)→
+             (10,11)→(11,11)→(12,11)→(12,12)→(11,12)→(10,12)→(9,12)→(8,12)→
+             (7,12)→(7,11)→(7,10)→(7,9)→(7,8)→(7,7)→(8,7)→(9,7)→(10,7)→
+             (11,7)→(12,7)→(13,7)→(13,6)→(12,6)→(11,6)→(10,6)→(9,6)→(8,6)→
+             (8,5)→(9,5)→(10,5)→(11,5)→(12,5)→(13,5)→(13,4)
+       cell size=36, offset x: (col-7)*36+74, y: (row-4)*36+56 -->
+  <polyline
+    points="182,272 218,272 254,272 290,272 326,272 326,236 326,200 290,200 254,200 218,200 182,200 146,200 110,200 110,236 110,272 110,308 146,308 182,308 218,308 254,308 254,344 218,344 182,344 146,344 110,344 74,344 74,308 74,272 74,236 74,200 74,164 110,164 146,164 182,164 218,164 254,164 290,164 290,128 254,128 218,128 182,128 146,128 110,128 110,92 146,92 182,92 218,92 254,92 290,92 290,56"
+    fill="none"
+    stroke="#D4A017"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.9"
+  />
+
+  <!-- tail dot at start (182,272) -->
+  <circle cx="182" cy="272" r="5" fill="#D4A017" opacity="0.7"/>
+
+  <!-- head glow at end (290,56) -->
+  <circle cx="290" cy="56" r="10" fill="white" opacity="0.9"/>
+  <circle cx="290" cy="56" r="16" fill="none" stroke="#F0C040" stroke-width="2" opacity="0.5"/>
+
+  <!-- tail label: מ״ט at (182,272) -->
+  <text x="162" y="295" font-family="serif" font-size="13" fill="#D4A017" text-anchor="middle" direction="rtl">מ״ט</text>
+
+  <!-- head label: נ at (290,56) -->
+  <text x="290" y="42" font-family="serif" font-size="16" fill="#F0C040" text-anchor="middle" direction="rtl" opacity="0.95">נ</text>
+</svg>

@@ -1604,5 +1604,16 @@
     "path": "pieces/91-spherical-harmonics-voice-sinai/index.html",
     "thumbnail": "pieces/91-spherical-harmonics-voice-sinai/thumbnail.svg",
     "essay": "pieces/91-spherical-harmonics-voice-sinai/essay.md"
+  },
+  {
+    "id": "92-saw-sefirat-haomer",
+    "title": "Forty-Nine Steps That Do Not Return",
+    "tagline": "forty-nine steps that cannot be repeated, each moving into territory not yet visited — a self-avoiding walk that models the Omer count's irreversibility: seven weeks of days that close behind you, until the fiftieth blazes open",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / the 49-day count",
+    "technique": "Self-avoiding walk (backtracking SAW generator)",
+    "path": "pieces/92-saw-sefirat-haomer/index.html",
+    "thumbnail": "pieces/92-saw-sefirat-haomer/thumbnail.svg",
+    "essay": "pieces/92-saw-sefirat-haomer/essay.md"
   }
 ]
