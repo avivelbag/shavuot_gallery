@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Fifty Gates: A Prime Spiral</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #06060f;
+      color: #b8b8d8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane { flex: 0 0 auto; position: relative; }
+    canvas {
+      display: block;
+      border: 1px solid #18183a;
+      background: #06060f;
+    }
+    #counter {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #c8c860;
+      background: rgba(6, 6, 15, 0.88);
+      padding: 4px 8px;
+      border-radius: 3px;
+      border: 1px solid #28284a;
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 0.02em;
+    }
+    .essay-pane {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.3rem;
+      color: #d4a840;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #7878a8;
+      margin-bottom: 1.1rem;
+      line-height: 1.5;
+    }
+    .essay-pane p {
+      font-size: 0.92rem;
+      line-height: 1.72;
+      margin-bottom: 0.9rem;
+      color: #a8a8c8;
+    }
+    .essay-pane .citation {
+      font-size: 0.8rem;
+      color: #505080;
+      margin-top: 1.2rem;
+      border-top: 1px solid #18183a;
+      padding-top: 0.7rem;
+    }
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="c"></canvas>
+    <div id="counter">Day 0 of 49 / Gate 0 of 50</div>
+  </div>
+  <div class="essay-pane">
+    <h1>The Fifty Gates: A Prime Spiral</h1>
+    <div class="source">Rosh Hashanah 21b · Psalm 8:6 · Leviticus 23:15–16 · Zohar, Parashat Emor</div>
+
+    <p>"Fifty gates of understanding were created in the world and all were given to Moses except one, as it is said: 'You have made him a little less than divine'" (Talmud Bavli, Rosh Hashanah 21b, citing Psalm 8:6).</p>
+
+    <p>The Talmud frames Moses' greatness through a single absence. All fifty gates of Binah — divine understanding — were within his reach except the last. He traversed forty-nine; the fiftieth belongs to God alone. This asymmetry is not a failure. It is the structure of the human encounter with the infinite: you may approach the threshold endlessly, but the threshold itself is not yours to cross.</p>
+
+    <p>The commandment of Sefirat HaOmer embeds this structure in time. Leviticus 23:15–16 instructs: "You shall count for yourselves from the day after the sabbath, from the day you bring the wave-offering sheaf — seven complete sabbaths they shall be — until the day after the seventh sabbath you shall count fifty days." Forty-nine days are counted by human hands; the fiftieth arrives unbidden. Shavuot is not the climax of a human count. It is what the count points toward but cannot contain.</p>
+
+    <p>The Zohar (Parashat Emor) reads the forty-nine days as a structural map. Each day corresponds to a unique combination of the seven lower sefirot — chesed, gevurah, tiferet, netzach, hod, yesod, malkhut — taken seven times over: 7×7=49. The count is a complete traversal of a spiritual lattice. Every pairing of divine qualities is visited once, in sequence, until the lattice is exhausted. Then the fiftieth day opens — not another node in the lattice, but a gate beyond it, a category of experience that no combination of the forty-nine can earn.</p>
+
+    <p>The Ulam prime spiral enacts this mathematically. Numbers spiral outward from a center point; primes are lit where they appear. The primes look scattered — and yet diagonal alignments emerge with startling clarity. The structure was always there, invisible until counting revealed it.</p>
+
+    <p>The 50th prime is 229. No formula predicts its exact position in the spiral. You cannot arrive at it by reasoning about patterns; you can only arrive by counting every prime that precedes it, one by one. Each prime the sieve reveals is a gate: the first forty-nine glow in wheat-gold, the color of the Omer harvest. The 50th glows alone in white.</p>
+
+    <p>In this piece, each cell of the spiral is uncovered in order. The counter tracks days and gates. When the 50th prime appears, the reveal pauses — then three pulses of white light radiate outward. After the full 49×49 grid is placed, the 50th prime breathes on at its own frequency: the gate that stays open while all the counted days settle into darkness around it.</p>
+
+    <div class="citation">Sources: Leviticus 23:15–16 · Talmud Bavli, Rosh Hashanah 21b · Psalm 8:6 · Zohar, Parashat Emor · Sefer HaChinuch, Mitzvah 306</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const CELL = 12;
+  const GRID = 49;
+  const HALF = Math.floor(GRID / 2); // 24
+  const CANVAS_SIZE = GRID * CELL;   // 588
+  const N_MAX = GRID * GRID;          // 2401
+  const CELLS_PER_FRAME = 40;
+  const FLASH_FRAMES = 3;
+
+  const canvas = document.getElementById('c');
+  canvas.width = CANVAS_SIZE;
+  canvas.height = CANVAS_SIZE;
+  const ctx = canvas.getContext('2d');
+  const counterEl = document.getElementById('counter');
+
+  // Sieve of Eratosthenes
+  const MAX_SIEVE = 2500;
+  const isPrime = new Uint8Array(MAX_SIEVE + 1);
+  isPrime.fill(1);
+  isPrime[0] = isPrime[1] = 0;
+  for (let i = 2; i * i <= MAX_SIEVE; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j <= MAX_SIEVE; j += i) isPrime[j] = 0;
+    }
+  }
+
+  // Prime rank: primeRank[n] = k means n is the k-th prime (1-indexed), 0 = not prime
+  const primeRank = new Int32Array(MAX_SIEVE + 1);
+  let rankCounter = 0;
+  for (let n = 2; n <= MAX_SIEVE; n++) {
+    if (isPrime[n]) primeRank[n] = ++rankCounter;
+  }
+
+  // Precompute Ulam spiral positions for n = 1..N_MAX
+  // spiralNum[pos] = number n at spiral index pos (0-based)
+  // spiralCX[pos] = canvas left-edge x of that cell
+  // spiralCY[pos] = canvas top-edge y of that cell
+  const spiralNum = new Int32Array(N_MAX);
+  const spiralCX = new Int16Array(N_MAX);
+  const spiralCY = new Int16Array(N_MAX);
+  const numToPos = new Int32Array(N_MAX + 1); // numToPos[n] = pos index
+
+  (function buildSpiral() {
+    let mx = 0, my = 0, pos = 0;
+
+    function store() {
+      spiralNum[pos] = pos + 1;
+      spiralCX[pos] = (HALF + mx) * CELL;
+      spiralCY[pos] = (HALF - my) * CELL;
+      numToPos[pos + 1] = pos;
+      pos++;
+    }
+
+    store(); // n=1 at (0,0)
+    let step = 1;
+    while (pos < N_MAX) {
+      for (let i = 0; i < step && pos < N_MAX; i++) { mx++; store(); }
+      for (let i = 0; i < step && pos < N_MAX; i++) { my--; store(); }
+      step++;
+      for (let i = 0; i < step && pos < N_MAX; i++) { mx--; store(); }
+      for (let i = 0; i < step && pos < N_MAX; i++) { my++; store(); }
+      step++;
+    }
+  })();
+
+  // Precompute spiral path as a Path2D for cheap overlay drawing
+  const spiralPath = new Path2D();
+  spiralPath.moveTo(spiralCX[0] + CELL / 2, spiralCY[0] + CELL / 2);
+  for (let i = 1; i < N_MAX; i++) {
+    spiralPath.lineTo(spiralCX[i] + CELL / 2, spiralCY[i] + CELL / 2);
+  }
+
+  // pos of the 50th prime (229)
+  const pos229 = numToPos[229];
+
+  // Animation state
+  let revealed = 0;
+  let primesSeen = 0;
+  let done = false;
+
+  // flashMap: pos -> frames remaining for the flash highlight
+  const flashMap = new Map();
+
+  // Special 229 handling
+  let pauseUntil = null;    // epoch ms when pause ends, or null
+  let pulseStart = null;    // epoch ms when pulse sequence started, or null
+  let waiting229 = false;   // true while paused or pulsing after 229
+
+  function cellBaseColor(n) {
+    if (!isPrime[n]) return '#0A0A14';
+    const r = primeRank[n];
+    if (r <= 49) return '#D4A840';
+    if (r === 50) return '#FFFFFF';
+    return '#303060';
+  }
+
+  function cellFlashColor(n) {
+    if (!isPrime[n]) return '#1e1e30';
+    const r = primeRank[n];
+    if (r <= 49) return '#f0c860';
+    if (r === 50) return '#FFFFFF';
+    return '#5858b0';
+  }
+
+  function updateCounter() {
+    const days = Math.min(primesSeen, 49);
+    const gates = Math.min(primesSeen, 50);
+    counterEl.textContent = `Day ${days} of 49 / Gate ${gates} of 50`;
+  }
+
+  function drawCell(pos, color, glowStrength) {
+    const cx = spiralCX[pos];
+    const cy = spiralCY[pos];
+    if (glowStrength > 0) {
+      ctx.shadowBlur = 16 * glowStrength;
+      ctx.shadowColor = '#FFFBE0';
+    }
+    ctx.fillStyle = color;
+    ctx.fillRect(cx + 0.5, cy + 0.5, CELL - 1, CELL - 1);
+    if (glowStrength > 0) ctx.shadowBlur = 0;
+  }
+
+  function draw229Halo(intensity) {
+    if (pos229 >= revealed) return;
+    const cx = spiralCX[pos229] + CELL / 2;
+    const cy = spiralCY[pos229] + CELL / 2;
+    ctx.save();
+    ctx.shadowBlur = 28 * intensity;
+    ctx.shadowColor = '#FFFFFF';
+    ctx.strokeStyle = `rgba(255, 252, 220, ${0.85 * intensity})`;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, CELL * 1.15, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function render(timestamp) {
+    // Background
+    ctx.fillStyle = '#06060f';
+    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+    // Faint spiral path overlay
+    ctx.save();
+    ctx.globalAlpha = 0.07;
+    ctx.strokeStyle = '#4444aa';
+    ctx.lineWidth = 0.6;
+    ctx.stroke(spiralPath);
+    ctx.restore();
+
+    // Draw all revealed cells
+    for (let i = 0; i < revealed; i++) {
+      const n = spiralNum[i];
+      const flashing = flashMap.get(i) > 0;
+      const color = flashing ? cellFlashColor(n) : cellBaseColor(n);
+      let glow = flashing && isPrime[n] ? 0.4 : 0;
+      if (i === pos229) {
+        if (done) {
+          glow = 0.45 + 0.3 * Math.sin(2 * Math.PI * 0.3 * timestamp / 1000);
+        } else if (pulseStart !== null) {
+          const elapsed = timestamp - pulseStart;
+          glow = Math.max(0, Math.sin(Math.PI * elapsed / 500));
+        } else {
+          glow = 1;
+        }
+      }
+      drawCell(i, color, glow);
+    }
+
+    // Pulse halo ring during pulse sequence
+    if (pulseStart !== null) {
+      const elapsed = timestamp - pulseStart;
+      const intensity = Math.max(0, Math.sin(Math.PI * elapsed / 500));
+      draw229Halo(intensity);
+    }
+
+    // Breathing halo after done
+    if (done) {
+      const intensity = 0.35 + 0.25 * Math.sin(2 * Math.PI * 0.3 * timestamp / 1000);
+      draw229Halo(intensity);
+    }
+
+    // Decrement flash timers
+    for (const [pos, frames] of flashMap) {
+      if (frames <= 1) flashMap.delete(pos);
+      else flashMap.set(pos, frames - 1);
+    }
+
+    // State machine
+    if (!done) {
+      if (waiting229) {
+        // Progress through the 229 pause → pulse → resume sequence
+        if (pauseUntil !== null && timestamp >= pauseUntil) {
+          pauseUntil = null;
+          pulseStart = timestamp;
+        } else if (pulseStart !== null && timestamp - pulseStart >= 1500) {
+          // 3 pulses × 500 ms complete
+          pulseStart = null;
+          waiting229 = false;
+        }
+      } else {
+        // Normal reveal: place up to CELLS_PER_FRAME cells
+        const limit = Math.min(CELLS_PER_FRAME, N_MAX - revealed);
+        for (let k = 0; k < limit; k++) {
+          const pos = revealed;
+          revealed++;
+          const n = spiralNum[pos];
+          if (isPrime[n]) {
+            primesSeen++;
+            flashMap.set(pos, FLASH_FRAMES);
+            updateCounter();
+            if (pos === pos229) {
+              waiting229 = true;
+              pauseUntil = timestamp + 1000;
+              break;
+            }
+          }
+        }
+        if (revealed === N_MAX && !waiting229) {
+          done = true;
+          updateCounter();
+        }
+      }
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  updateCounter();
+  requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>

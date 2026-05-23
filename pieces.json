@@ -1472,5 +1472,16 @@
     "path": "pieces/87-double-pendulum-sinai-thunder/index.html",
     "thumbnail": "pieces/87-double-pendulum-sinai-thunder/thumbnail.svg",
     "essay": "pieces/87-double-pendulum-sinai-thunder/essay.md"
+  },
+  {
+    "id": "87-ulam-prime-spiral-omer",
+    "title": "The Fifty Gates: A Prime Spiral",
+    "tagline": "the Ulam spiral of primes — forty-nine in wheat gold, the fiftieth in white, found only by counting",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / 49 gates of understanding",
+    "technique": "Ulam prime spiral / Sieve of Eratosthenes",
+    "path": "pieces/87-ulam-prime-spiral-omer/index.html",
+    "thumbnail": "pieces/87-ulam-prime-spiral-omer/thumbnail.svg",
+    "essay": "pieces/87-ulam-prime-spiral-omer/essay.md"
   }
 ]
