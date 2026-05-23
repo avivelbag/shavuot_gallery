@@ -73,8 +73,6 @@ def draw_domain_motif(svg, cx, cy, angle, flip):
         wy = cy + sx * sin_a + ly * cos_a
         return wx, wy
 
-    stem_r = R * 0.5   # distance along local x-axis for stem centre
-
     # Stem: two anchor points in local space (x-axis is the main axis)
     p_inner = local_to_world(R * 0.15, 0)
     p_outer = local_to_world(R * 0.70, 0)
