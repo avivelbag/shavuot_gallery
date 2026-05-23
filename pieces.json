@@ -1153,5 +1153,16 @@
     "path": "pieces/74-verlet-wheat-harvest/index.html",
     "thumbnail": "pieces/74-verlet-wheat-harvest/thumbnail.svg",
     "essay": "pieces/74-verlet-wheat-harvest/essay.md"
+  },
+  {
+    "id": "75-barkley-spiral-sinai-fire",
+    "title": "Fire That Does Not Consume",
+    "tagline": "Barkley spiral waves in a Sinai fire palette — the excitable medium that burns but is not consumed",
+    "year": 2026,
+    "theme": "Har Sinai",
+    "technique": "Barkley excitable medium / reaction-diffusion spiral waves",
+    "path": "pieces/75-barkley-spiral-sinai-fire/index.html",
+    "thumbnail": "pieces/75-barkley-spiral-sinai-fire/thumbnail.svg",
+    "essay": "pieces/75-barkley-spiral-sinai-fire/essay.md"
   }
 ]

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#120805"/>
+
+  <!-- Spiral arm 1: expanding arcs from center-left, warm fire tones -->
+  <!-- Outermost arc segment - pale flame tip -->
+  <path d="M 200 200 m -120 0 a 120 120 0 0 1 85 -85" stroke="#FFE8B0" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9"/>
+  <!-- Second arc segment - bright flame -->
+  <path d="M 200 200 m -95 0 a 95 95 0 0 1 67 -67" stroke="#FF8C00" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <!-- Third arc segment - volcanic orange -->
+  <path d="M 200 200 m -70 0 a 70 70 0 0 1 50 -50" stroke="#E83A00" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <!-- Inner arc - deep ember -->
+  <path d="M 200 200 m -45 0 a 45 45 0 0 1 32 -32" stroke="#5C1800" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.75"/>
+
+  <!-- Spiral arm 2: opposing rotation, shifted arc set -->
+  <path d="M 200 200 m 110 20 a 112 112 0 0 0 -80 80" stroke="#FFE8B0" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 200 200 m 85 16 a 87 87 0 0 0 -62 62" stroke="#FF8C00" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 200 200 m 60 12 a 62 62 0 0 0 -44 44" stroke="#E83A00" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.75"/>
+  <path d="M 200 200 m 38 8 a 39 39 0 0 0 -28 28" stroke="#5C1800" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Third spiral arm - upper right quadrant -->
+  <path d="M 200 200 m 20 -110 a 112 112 0 0 1 60 90" stroke="#FF8C00" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 200 200 m 16 -85 a 87 87 0 0 1 46 70" stroke="#E83A00" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.65"/>
+  <path d="M 200 200 m 12 -60 a 62 62 0 0 1 33 50" stroke="#5C1800" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Recovery blue-gray wisps around outer edge -->
+  <path d="M 50 180 a 155 155 0 0 0 30 -60" stroke="#2A3050" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 340 250 a 145 145 0 0 0 -20 60" stroke="#2A3050" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.45"/>
+  <path d="M 170 350 a 155 155 0 0 0 60 -20" stroke="#2A3050" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Central glow hot spot -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="15%">
+    <stop offset="0%" stop-color="#FFE8B0" stop-opacity="0.9"/>
+    <stop offset="60%" stop-color="#FF8C00" stop-opacity="0.5"/>
+    <stop offset="100%" stop-color="#120805" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="200" cy="200" r="30" fill="url(#glow)"/>
+
+  <!-- Outer glow ring -->
+  <radialGradient id="outerGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="70%" stop-color="#120805" stop-opacity="0"/>
+    <stop offset="85%" stop-color="#E83A00" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#120805" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="200" cy="200" r="180" fill="url(#outerGlow)"/>
+
+  <!-- Hebrew text label -->
+  <text x="200" y="390" text-anchor="middle" font-family="serif" font-size="14"
+        fill="#FFF8F0" opacity="0.6" direction="rtl">וְהַהָר בֹּעֵר בָּאֵשׁ</text>
+</svg>

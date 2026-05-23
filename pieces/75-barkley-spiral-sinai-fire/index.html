@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fire That Does Not Consume</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #120805; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #120805;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #3a1200;
+      overflow-y: auto;
+      color: #c8a890;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0e0603;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #3a1200; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #ff8c00; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #604030; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #e83a00; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #ffe8b0; font-style: normal; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Fire That Does Not Consume</h1>
+    <p class="subtitle">Har Sinai / Barkley excitable medium / reaction-diffusion spiral waves</p>
+
+    <h2>Sinai</h2>
+    <p>"And you came near and stood at the foot of the mountain, and the mountain was burning with fire to the very heart of heaven — darkness, cloud, and thick gloom. And the LORD spoke to you out of the midst of the fire; you heard the sound of words, but saw no form; there was only a voice." (Deuteronomy 4:11–12)</p>
+    <p>No single image in the Torah concentrates more force than the mountain on fire. Darkness and fire together. A voice emerging from flames. The people standing at the foot, trembling. This is the theophany — the direct appearance of the divine — and it is described not as light but as burning: the mountain itself igniting from within, the fire climbing to the heart of heaven, the smoke ascending like the smoke of a furnace.</p>
+    <p>Yet no one is consumed. The mountain burns but is not destroyed. The people hear and survive. This is the same paradox introduced forty years earlier, at the burning bush of Exodus 3:2: "And the angel of the LORD appeared to him in a flame of fire out of the midst of a bush; and he looked, and behold, the bush was burning, yet it was not consumed." The Hebrew phrase is emphatic — <em>ha-sneh einenu ukal</em>, the bush is not being consumed. The fire burns without destroying. It is a fire that leaves the medium intact.</p>
+
+    <h2>The Paradox</h2>
+    <p>The burning bush and the burning mountain share the same structure: fire as divine presence that does not exhaust its fuel. This is not ordinary combustion. Ordinary fire proceeds by converting substrate into ash and gas. Once the fuel is gone, the fire dies. But divine fire, in Torah's grammar, is self-sustaining — it reorganizes without destroying, illuminates without consuming.</p>
+    <p>The Talmud records (Shabbat 88b) that at Sinai, when the Israelites heard each of the Ten Commandments, their souls fled their bodies from the overwhelming force of the revelation. Each time, God revived them with the dew of resurrection. The Torah was lethal in its intensity and life-giving in its structure — it killed and restored, again and again, through all ten words. This is another form of the same paradox: a force that overwhelms without ending what it overwhelms.</p>
+
+    <h2>The Chemistry of the Unquenched</h2>
+    <p>The Belousov-Zhabotinsky (BZ) reaction, discovered in the 1950s, is the chemical version of fire that does not consume. A solution of malonic acid and bromate in acid produces rotating spiral waves of oxidation — rings of chemical activation that sweep outward, leaving the medium chemically refreshed and ready for the next wave. Nothing is used up. The reactants are replenished by the excitable chemistry of the medium itself. The wave passes, the medium recovers, the wave returns.</p>
+    <p>Dmitri Barkley formalized this in 1991 with a two-variable model — an activator field <em>u</em> and a recovery field <em>v</em> — that reproduces the spiral-wave dynamics of BZ with minimal parameters. A small perturbation propagates outward as a wave of activation. Where the wave passes, recovery begins. Where recovery completes, the medium can be excited again. The pattern is self-organizing and self-sustaining: it does not run down, does not burn out, does not exhaust its medium.</p>
+
+    <h2>This Piece</h2>
+    <p>The spiraling wavefronts on this canvas are mathematically identical to BZ chemical waves. They arise spontaneously from a few small perturbations seeded in a 200×200 excitable medium. They rotate, collide, and reorganize — perpetually. The color palette follows the fire of Sinai: unexcited cells are near-black charcoal, rising activation moves through deep ember and volcanic orange to bright flame-tip white-gold. Recovering cells — the cells that have just been swept by a wave and are returning to readiness — are given a cool blue-gray tint, the shadow left behind by the fire's passing.</p>
+    <p>This is the fire that does not consume: a rotating excitation that sweeps the medium and leaves it whole. Not destruction but transformation. Not ending but return. The same structure as Sinai — overwhelming, luminous, and ultimately life-sustaining.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var W = 200, H = 200, N = W * H;
+  var a = 0.75, b = 0.06, eps = 0.02, D = 1.0, dt = 0.1;
+  var STEPS_PER_FRAME = 3;
+
+  // Double-buffered Float32Arrays for u and v fields
+  var u = new Float32Array(N);
+  var v = new Float32Array(N);
+  var u2 = new Float32Array(N);
+  var v2 = new Float32Array(N);
+
+  // Initialize all cells to quiescent state (u=0, v=0)
+  for (var i = 0; i < N; i++) {
+    u[i] = 0.0;
+    v[i] = 0.0;
+  }
+
+  // Seed 4 broken wavefronts at random-ish positions spread across the grid.
+  // Each seed sets u=1 in a 3x3 patch and v=0 in half the patch to create the
+  // asymmetry that causes the wavefront to curl into a persistent spiral arm.
+  var seeds = [
+    [40, 40],
+    [160, 60],
+    [60, 150],
+    [140, 140]
+  ];
+
+  seeds.forEach(function(seed) {
+    var sx = seed[0], sy = seed[1];
+    for (var dy = 0; dy < 3; dy++) {
+      for (var dx = 0; dx < 3; dx++) {
+        var px = (sx + dx) % W;
+        var py = (sy + dy) % H;
+        u[py * W + px] = 1.0;
+        // Only set v=0 in the left half of the patch so the wavefront is broken
+        if (dx < 2) {
+          v[py * W + px] = 0.0;
+        } else {
+          v[py * W + px] = 0.5;
+        }
+      }
+    }
+  });
+
+  // 5-stop fire gradient stops: [u_value, r, g, b]
+  var GRADIENT = [
+    [0.00,  18,   8,   5],   // #120805 deep charcoal
+    [0.30,  92,  24,   0],   // #5C1800 deep ember
+    [0.60, 232,  58,   0],   // #E83A00 volcanic orange
+    [0.85, 255, 140,   0],   // #FF8C00 bright flame
+    [1.00, 255, 232, 176]    // #FFE8B0 pale flame-tip
+  ];
+
+  // Blue-gray tint for recovering cells (u<0.1, v>0.3): #2A3050
+  var RECOVER_R = 42, RECOVER_G = 48, RECOVER_B = 80;
+
+  function lerpColor(t) {
+    // Find the two gradient stops bracketing t and linearly interpolate
+    for (var i = 0; i < GRADIENT.length - 1; i++) {
+      var t0 = GRADIENT[i][0], t1 = GRADIENT[i + 1][0];
+      if (t <= t1) {
+        var f = (t - t0) / (t1 - t0);
+        var r = Math.round(GRADIENT[i][1] + f * (GRADIENT[i + 1][1] - GRADIENT[i][1]));
+        var g = Math.round(GRADIENT[i][2] + f * (GRADIENT[i + 1][2] - GRADIENT[i][2]));
+        var b = Math.round(GRADIENT[i][3] + f * (GRADIENT[i + 1][3] - GRADIENT[i][3]));
+        return [r, g, b];
+      }
+    }
+    return [255, 232, 176];
+  }
+
+  function step() {
+    for (var y = 0; y < H; y++) {
+      for (var x = 0; x < W; x++) {
+        var i = y * W + x;
+        // 5-point Laplacian with periodic boundary conditions
+        var xm = y * W + (x - 1 + W) % W;
+        var xp = y * W + (x + 1) % W;
+        var ym = ((y - 1 + H) % H) * W + x;
+        var yp = ((y + 1) % H) * W + x;
+        var lap = u[xm] + u[xp] + u[ym] + u[yp] - 4 * u[i];
+        // Barkley excitable medium update rules
+        var f = u[i] * (1 - u[i]) * (u[i] - (v[i] + b) / a);
+        u2[i] = u[i] + dt * (f / eps + D * lap);
+        v2[i] = v[i] + dt * (u[i] - v[i]);
+        // Clamp both fields to [0, 1]
+        if (u2[i] < 0) u2[i] = 0;
+        if (u2[i] > 1) u2[i] = 1;
+        if (v2[i] < 0) v2[i] = 0;
+        if (v2[i] > 1) v2[i] = 1;
+      }
+    }
+    // Swap buffers
+    var tmp = u; u = u2; u2 = tmp;
+    tmp = v; v = v2; v2 = tmp;
+  }
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+  var imgData = null;
+  var pixels = null;
+
+  function resize() {
+    canvas.width = panel.clientWidth;
+    canvas.height = panel.clientHeight;
+    imgData = ctx.createImageData(W, H);
+    pixels = imgData.data;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  function render() {
+    for (var i = 0; i < N; i++) {
+      var uv = u[i];
+      var vv = v[i];
+      var r, g, b;
+      // Recovering cells: low activation but significant recovery variable
+      if (uv < 0.1 && vv > 0.3) {
+        // Blend fire color with blue-gray recovery tint
+        var fireColor = lerpColor(uv);
+        var blend = (vv - 0.3) / 0.7;
+        if (blend > 1) blend = 1;
+        r = Math.round(fireColor[0] * (1 - blend) + RECOVER_R * blend);
+        g = Math.round(fireColor[1] * (1 - blend) + RECOVER_G * blend);
+        b = Math.round(fireColor[2] * (1 - blend) + RECOVER_B * blend);
+      } else {
+        var c = lerpColor(uv);
+        r = c[0]; g = c[1]; b = c[2];
+      }
+      var p = i * 4;
+      pixels[p]     = r;
+      pixels[p + 1] = g;
+      pixels[p + 2] = b;
+      pixels[p + 3] = 255;
+    }
+
+    // Draw simulation pixels upscaled to fill the canvas via drawImage
+    ctx.putImageData(imgData, 0, 0);
+    ctx.drawImage(canvas, 0, 0, W, H, 0, 0, canvas.width, canvas.height);
+
+    // Hebrew text overlay: וְהַהָר בֹּעֵר בָּאֵשׁ (Deuteronomy 4:11)
+    ctx.save();
+    ctx.globalAlpha = 0.7;
+    ctx.font = '18px Georgia, serif';
+    ctx.direction = 'rtl';
+    ctx.fillStyle = '#FFF8F0';
+    ctx.shadowColor = '#FF6000';
+    ctx.shadowBlur = 12;
+    ctx.textAlign = 'center';
+    ctx.fillText('וְהַהָר בֹּעֵר בָּאֵשׁ', canvas.width / 2, 36);
+    ctx.restore();
+  }
+
+  var lastT = null;
+  var MAX_DT = 50;
+
+  function loop(t) {
+    if (lastT === null) lastT = t;
+    var elapsed = t - lastT;
+    if (elapsed > MAX_DT) elapsed = MAX_DT;
+    lastT = t;
+
+    for (var s = 0; s < STEPS_PER_FRAME; s++) {
+      step();
+    }
+    render();
+    requestAnimationFrame(loop);
+  }
+
+  requestAnimationFrame(loop);
+}());
+</script>
+</body>
+</html>
