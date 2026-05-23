@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0A2E"/>
+      <stop offset="50%" stop-color="#1A3A6E"/>
+      <stop offset="100%" stop-color="#4A90D9"/>
+    </linearGradient>
+    <linearGradient id="bg-red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B1A00"/>
+      <stop offset="50%" stop-color="#E8621A"/>
+      <stop offset="100%" stop-color="#C8941A"/>
+    </linearGradient>
+    <clipPath id="left-clip">
+      <polygon points="0,0 220,0 220,10 200,30 215,50 190,70 210,90 185,110 205,130 180,150 200,170 175,190 195,210 170,230 195,250 168,270 192,290 165,310 188,330 160,350 180,370 155,390 0,400"/>
+    </clipPath>
+    <clipPath id="right-clip">
+      <polygon points="220,0 400,0 400,400 155,390 180,370 160,350 188,330 165,310 192,290 168,270 195,250 170,230 195,210 175,190 200,170 180,150 205,130 185,110 210,90 190,70 215,50 200,30 220,10"/>
+    </clipPath>
+  </defs>
+
+  <!-- Blue (stable) region — left side -->
+  <rect x="0" y="0" width="400" height="400" fill="url(#bg-blue)" clip-path="url(#left-clip)"/>
+
+  <!-- Gold-red (chaotic) region — right side -->
+  <rect x="0" y="0" width="400" height="400" fill="url(#bg-red)" clip-path="url(#right-clip)"/>
+
+  <!-- Fractal boundary — jagged white line -->
+  <polyline
+    points="220,0 220,10 200,30 215,50 190,70 210,90 185,110 205,130 180,150 200,170 175,190 195,210 170,230 195,250 168,270 192,290 165,310 188,330 160,350 180,370 155,390"
+    fill="none"
+    stroke="white"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+  />
+
+  <!-- Subtle glow on boundary -->
+  <polyline
+    points="220,0 220,10 200,30 215,50 190,70 210,90 185,110 205,130 180,150 200,170 175,190 195,210 170,230 195,250 168,270 192,290 165,310 188,330 160,350 180,370 155,390"
+    fill="none"
+    stroke="rgba(255,255,255,0.25)"
+    stroke-width="7"
+    stroke-linejoin="round"
+  />
+
+  <!-- "λ" label on blue side -->
+  <text x="80" y="80" font-family="Georgia, serif" font-size="28" fill="#4A90D9" opacity="0.8" font-style="italic">λ &lt; 0</text>
+  <text x="80" y="112" font-family="Georgia, serif" font-size="13" fill="#4A90D9" opacity="0.6">stable · ordered</text>
+
+  <!-- "λ" label on red side -->
+  <text x="270" y="320" font-family="Georgia, serif" font-size="28" fill="#E8621A" opacity="0.8" font-style="italic">λ &gt; 0</text>
+  <text x="265" y="350" font-family="Georgia, serif" font-size="13" fill="#E8621A" opacity="0.6">chaotic · enslaved</text>
+
+  <!-- Dark strip at bottom for Hebrew text -->
+  <rect x="0" y="354" width="400" height="46" fill="rgba(6,6,15,0.75)"/>
+
+  <!-- Hebrew text: "מִמָּחֳרַת הַשַּׁבָּת" in gold -->
+  <text
+    x="200"
+    y="384"
+    font-family="'Times New Roman', serif"
+    font-size="22"
+    fill="#FFD700"
+    text-anchor="middle"
+    direction="rtl"
+  >מִמָּחֳרַת הַשַּׁבָּת</text>
+</svg>

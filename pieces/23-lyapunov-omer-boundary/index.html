@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Between Slavery and Sinai — Lyapunov Fractal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #06060f;
+      color: #c8c8f8;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1300px;
+      width: 100%;
+      padding: 2rem;
+    }
+    .art-pane {
+      flex: 0 0 auto;
+      position: relative;
+    }
+    canvas {
+      display: block;
+      border: 1px solid #1a1a3a;
+    }
+    #status {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #aaaadd;
+      font-size: 1rem;
+      pointer-events: none;
+      text-align: center;
+    }
+    .essay-pane {
+      flex: 1 1 340px;
+      min-width: 0;
+    }
+    .essay-pane h1 {
+      font-size: 1.4rem;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .essay-pane .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #8888bb;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #2a2a6a;
+      padding-left: 0.75rem;
+      line-height: 1.6;
+    }
+    .essay-pane p {
+      font-size: 0.93rem;
+      line-height: 1.8;
+      color: #b8b8e8;
+      margin-bottom: 1rem;
+    }
+    .essay-pane em { color: #ffd700; font-style: normal; }
+    .essay-pane strong { color: #e8e8ff; }
+    .essay-pane .citations {
+      font-size: 0.82rem;
+      color: #6060a0;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-top: 1px solid #1a1a4a;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; padding: 1rem; }
+      canvas { width: 100% !important; height: auto !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-pane">
+    <canvas id="c" width="800" height="800"></canvas>
+    <div id="status">Computing fractal…</div>
+  </div>
+  <div class="essay-pane">
+    <h1>Between Slavery and Sinai</h1>
+    <div class="source">
+      "You shall count for yourselves — from the morrow of the rest day, from the day when you bring
+      the Omer of the wave offering — seven weeks, they shall be complete. Until the morrow of the
+      seventh week you shall count fifty days." — <em>Leviticus 23:15–16</em>
+    </div>
+
+    <p>The Torah does not merely command a countdown. It commands a <em>traversal</em> — forty-nine
+    days moving, as the Zohar explains in Parashat Emor, from the forty-nine levels of
+    <em>tumah</em> (impurity) that Israel absorbed in Egypt to the forty-nine gates of
+    <em>binah</em> (understanding) that open at Sinai. Each day of the Omer ascends one rung of a
+    ladder connecting the most chaotic extreme of human experience to its most ordered: slavery
+    to revelation.</p>
+
+    <p>The <strong>Lyapunov exponent</strong> is a single real number that measures the same journey
+    in any dynamical system. Given a rule that maps one state to the next — the logistic map
+    x → rx(1−x), say — the Lyapunov exponent λ measures whether small uncertainties shrink or
+    grow over time. If λ &lt; 0, nearby trajectories converge: the system is <em>stable</em>,
+    ordered, predictable. If λ &gt; 0, they diverge exponentially: <em>chaos</em>, every small
+    error amplified without bound. The exponent is literally the measure of order against chaos.</p>
+
+    <p>The Lyapunov fractal displayed here maps the full parameter plane of a two-parameter logistic
+    system using the sequence AABAB — a rhythm that alternates between two growth rates, <em>a</em>
+    and <em>b</em>. Each pixel encodes a different regime: deep blue for the most stable regions
+    (λ ≪ 0), shifting through indigo as stability weakens, crossing a luminous white boundary near
+    λ = 0, then warming through harvest gold into fire-red as chaos intensifies (λ ≫ 0).</p>
+
+    <p>The non-obvious discovery: that boundary between blue and gold is not a smooth curve. It is a
+    <strong>fractal</strong> — an edge of infinite complexity that reveals new structure at every
+    magnification, with no point at which you can say "here is precisely where order ends."</p>
+
+    <p>This is mathematically precise, and it is also theologically precise. The Omer does not cross
+    a clean threshold from chaos to order. It traverses forty-nine days <em>on the edge itself</em>:
+    no longer the slaves who cannot conceive of Sinai, not yet the nation that has stood before it,
+    suspended in a liminal space of infinite depth. The Zohar calls this <em>sefiras ha'omer</em> —
+    the <em>counting</em>, not the crossing. The work is in the traversal.</p>
+
+    <p>The golden line in the animation traces the Omer's path — from the fire-red of
+    <em>Mitzrayim</em>, through the white fractal boundary of infinite intricacy, into the deep blue
+    of <em>Matan Torah</em>. The path does not arrive cleanly. It passes through the edge, which is
+    the whole point.</p>
+
+    <div class="citations">
+      Leviticus 23:15–16 · Zohar, Parashat Emor · Sefer HaChinuch 306 ·
+      Markus &amp; Hess, "Lyapunov Exponents of the Logistic Map" (1989)
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const W = 800, H = 800;
+  const A_MIN = 2.5, A_MAX = 4.0;
+  const B_MIN = 2.5, B_MAX = 4.0;
+  const SEQ = [0, 0, 1, 0, 1]; // AABAB: 0→use a, 1→use b
+  const WARMUP = 50, ITERS = 200;
+  const BOUNDARY = 0.02;
+
+  // Color stops for stable (blue) side: |λ| small → sky blue, |λ| large → midnight blue
+  const C_BLUE_NEAR = [74, 144, 217];   // #4A90D9  λ near 0
+  const C_BLUE_MID  = [26,  58, 110];   // #1A3A6E  |λ| ~ 1
+  const C_BLUE_FAR  = [10,  10,  46];   // #0A0A2E  |λ| >= 2
+
+  // Color stops for chaotic (gold/red) side: λ small → harvest gold, λ large → deep red
+  const C_GOLD_NEAR = [200, 148,  26];  // #C8941A  λ near 0
+  const C_GOLD_MID  = [232,  98,  26];  // #E8621A  λ ~ 1
+  const C_RED_FAR   = [139,  26,   0];  // #8B1A00  λ >= 2
+
+  /**
+   * Linearly interpolate two RGB triples, clamping t to [0,1].
+   */
+  function lerp3(c1, c2, t) {
+    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return [
+      (c1[0] + (c2[0] - c1[0]) * t) | 0,
+      (c1[1] + (c2[1] - c1[1]) * t) | 0,
+      (c1[2] + (c2[2] - c1[2]) * t) | 0
+    ];
+  }
+
+  /**
+   * Map a Lyapunov exponent value to an [r,g,b] color triple.
+   * Stable (λ < 0): blue-indigo palette scaled by |λ|.
+   * Chaotic (λ > 0): gold-red palette scaled by λ.
+   * Boundary (|λ| < BOUNDARY): white.
+   * NaN / diverged: black.
+   */
+  function lyapunovToColor(lambda) {
+    if (lambda !== lambda) return [0, 0, 0]; // NaN
+    if (Math.abs(lambda) < BOUNDARY) return [255, 255, 255];
+    if (lambda < 0) {
+      const t = Math.min(Math.abs(lambda) / 2, 1);
+      return t < 0.5 ? lerp3(C_BLUE_NEAR, C_BLUE_MID, t * 2)
+                     : lerp3(C_BLUE_MID, C_BLUE_FAR, (t - 0.5) * 2);
+    }
+    const t = Math.min(lambda / 2, 1);
+    return t < 0.5 ? lerp3(C_GOLD_NEAR, C_GOLD_MID, t * 2)
+                   : lerp3(C_GOLD_MID, C_RED_FAR, (t - 0.5) * 2);
+  }
+
+  /**
+   * Compute the Lyapunov exponent for a two-parameter logistic system at (a, b)
+   * using the given parameter sequence. Returns NaN if the orbit diverges.
+   *
+   * Formula: λ = (1/N) Σ log|r_n(1 − 2x_n)|  over N accumulation steps.
+   */
+  function computeLyapunov(a, b) {
+    let x = 0.5;
+    // Discard warmup transients
+    for (let n = 0; n < WARMUP; n++) {
+      const r = SEQ[n % 5] === 0 ? a : b;
+      x = r * x * (1 - x);
+      if (x <= 0 || x >= 1) return NaN;
+    }
+    let lambda = 0;
+    for (let n = 0; n < ITERS; n++) {
+      const r = SEQ[n % 5] === 0 ? a : b;
+      x = r * x * (1 - x);
+      if (x <= 0 || x >= 1) return NaN;
+      const deriv = r * (1 - 2 * x);
+      // deriv = 0 only at x = 0.5 exactly; log(0) → -∞, treated as highly stable
+      lambda += deriv === 0 ? -10 : Math.log(Math.abs(deriv));
+    }
+    return lambda / ITERS;
+  }
+
+  // -------------------------------------------------------------------------
+  // Inline Web Worker to compute the full fractal off the main thread.
+  // The worker receives the grid dimensions and parameter bounds, computes
+  // all pixel λ values, and transfers back a Float32Array as an ArrayBuffer.
+  // -------------------------------------------------------------------------
+  const workerSrc = `
+    const SEQ = [0, 0, 1, 0, 1];
+    const WARMUP = 50, ITERS = 200;
+
+    function computeLyapunov(a, b) {
+      let x = 0.5;
+      for (let n = 0; n < WARMUP; n++) {
+        const r = SEQ[n % 5] === 0 ? a : b;
+        x = r * x * (1 - x);
+        if (x <= 0 || x >= 1) return NaN;
+      }
+      let lambda = 0;
+      for (let n = 0; n < ITERS; n++) {
+        const r = SEQ[n % 5] === 0 ? a : b;
+        x = r * x * (1 - x);
+        if (x <= 0 || x >= 1) return NaN;
+        const deriv = r * (1 - 2 * x);
+        lambda += deriv === 0 ? -10 : Math.log(Math.abs(deriv));
+      }
+      return lambda / ITERS;
+    }
+
+    self.onmessage = function(e) {
+      const { W, H, A_MIN, A_MAX, B_MIN, B_MAX } = e.data;
+      const buf = new Float32Array(W * H);
+      for (let py = 0; py < H; py++) {
+        // b increases bottom-to-top; py=0 is the top of the canvas
+        const b = B_MIN + (B_MAX - B_MIN) * (1 - py / (H - 1));
+        for (let px = 0; px < W; px++) {
+          const a = A_MIN + (A_MAX - A_MIN) * (px / (W - 1));
+          buf[py * W + px] = computeLyapunov(a, b);
+        }
+      }
+      self.postMessage({ lambdaBuf: buf.buffer }, [buf.buffer]);
+    };
+  `;
+
+  const blob = new Blob([workerSrc], { type: 'application/javascript' });
+  const workerUrl = URL.createObjectURL(blob);
+  const worker = new Worker(workerUrl);
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const statusEl = document.getElementById('status');
+
+  // Bezier control points through parameter space:
+  //   P0 = (3.9, 2.7)  deeply chaotic (fire red)
+  //   P1 = (3.5, 3.5)  fractal boundary region
+  //   P2 = (2.8, 3.8)  stable (deep blue)
+  const P0 = [3.9, 2.7], P1 = [3.5, 3.5], P2 = [2.8, 3.8];
+
+  /**
+   * Evaluate the quadratic Bezier curve at parameter t ∈ [0,1].
+   */
+  function bezier(t) {
+    const mt = 1 - t;
+    return [
+      mt * mt * P0[0] + 2 * mt * t * P1[0] + t * t * P2[0],
+      mt * mt * P0[1] + 2 * mt * t * P1[1] + t * t * P2[1]
+    ];
+  }
+
+  /**
+   * Convert parameter-space coordinates (a, b) to canvas pixel coordinates.
+   * b increases upward in math space, but downward in canvas pixel space.
+   */
+  function paramToPixel(a, b) {
+    return [
+      ((a - A_MIN) / (A_MAX - A_MIN) * (W - 1)) | 0,
+      ((1 - (b - B_MIN) / (B_MAX - B_MIN)) * (H - 1)) | 0
+    ];
+  }
+
+  let offscreen = null; // rendered fractal image as ImageData
+  let animating = false;
+
+  /**
+   * Draw one animation frame: static fractal background, animated golden
+   * trail from t=0 to current t, current-position dot, and HUD overlay.
+   */
+  function drawFrame() {
+    if (!animating) return;
+
+    const t = (performance.now() % 20000) / 20000;
+    const [a, b] = bezier(t);
+    const lambda = computeLyapunov(a, b);
+
+    // Composite the pre-rendered fractal onto the canvas
+    ctx.putImageData(offscreen, 0, 0);
+
+    // Draw the golden trail from t=0 up to t=current (100 segments)
+    const TRAIL_STEPS = 120;
+    ctx.beginPath();
+    for (let i = 0; i <= TRAIL_STEPS; i++) {
+      const tt = (i / TRAIL_STEPS) * t;
+      const [pa, pb] = bezier(tt);
+      const [px, py] = paramToPixel(pa, pb);
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.strokeStyle = 'rgba(255, 215, 0, 0.85)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Draw current-position marker
+    const [px, py] = paramToPixel(a, b);
+    ctx.beginPath();
+    ctx.arc(px, py, 5, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFD700';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(px, py, 8, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255, 215, 0, 0.4)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // HUD: bottom strip with (a, b) and λ value
+    const sign = lambda >= 0 ? '+' : '';
+    const lambdaStr = lambda !== lambda ? 'undefined'
+                    : `${sign}${lambda.toFixed(3)}`;
+    const hudText = `a = ${a.toFixed(3)}   b = ${b.toFixed(3)}   λ = ${lambdaStr}`;
+    ctx.fillStyle = 'rgba(6, 6, 15, 0.7)';
+    ctx.fillRect(0, H - 28, W, 28);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '13px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(hudText, W / 2, H - 10);
+
+    requestAnimationFrame(drawFrame);
+  }
+
+  /**
+   * Colorize the Float32Array of Lyapunov values into an ImageData object.
+   */
+  function colorize(lambdaBuf) {
+    const imgData = ctx.createImageData(W, H);
+    const pixels = imgData.data;
+    for (let i = 0; i < W * H; i++) {
+      const [r, g, b] = lyapunovToColor(lambdaBuf[i]);
+      const off = i * 4;
+      pixels[off]     = r;
+      pixels[off + 1] = g;
+      pixels[off + 2] = b;
+      pixels[off + 3] = 255;
+    }
+    return imgData;
+  }
+
+  worker.onmessage = function (e) {
+    URL.revokeObjectURL(workerUrl);
+    const lambdaBuf = new Float32Array(e.data.lambdaBuf);
+    offscreen = colorize(lambdaBuf);
+    statusEl.style.display = 'none';
+    animating = true;
+    requestAnimationFrame(drawFrame);
+  };
+
+  worker.postMessage({ W, H, A_MIN, A_MAX, B_MIN, B_MAX });
+}());
+</script>
+</body>
+</html>

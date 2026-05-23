@@ -253,6 +253,17 @@
     "essay": "pieces/22-akdamut/essay.md"
   },
   {
+    "id": "23-lyapunov-omer-boundary",
+    "title": "Between Slavery and Sinai",
+    "tagline": "the Lyapunov fractal — a landscape of stability and chaos measuring the 49-day Omer traversal from the disorder of Egypt to the order of Sinai",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / order and chaos",
+    "technique": "Lyapunov fractal (logistic map stability landscape)",
+    "path": "pieces/23-lyapunov-omer-boundary/index.html",
+    "thumbnail": "pieces/23-lyapunov-omer-boundary/thumbnail.svg",
+    "essay": "pieces/23-lyapunov-omer-boundary/essay.md"
+  },
+  {
     "id": "25-sinai-bloom",
     "title": "The Mountain in Bloom",
     "tagline": "the mountain that burst into flower at the moment of revelation",
