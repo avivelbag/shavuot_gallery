@@ -11,6 +11,17 @@
     "essay": "pieces/01-thunder-at-sinai/essay.md"
   },
   {
+    "id": "02-fibonacci-word-wheat",
+    "title": "The Grain That Counts Itself",
+    "tagline": "the Fibonacci word fractal — the mathematical DNA of the wheat field, counting the Omer in seventeen thousand steps",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / wheat harvest / Chag HaKatzir",
+    "technique": "Fibonacci word fractal (substitution walk)",
+    "path": "pieces/02-fibonacci-word-wheat/index.html",
+    "thumbnail": "pieces/02-fibonacci-word-wheat/thumbnail.svg",
+    "essay": "pieces/02-fibonacci-word-wheat/essay.md"
+  },
+  {
     "id": "03-logistic-map-omer-bifurcation",
     "title": "Order Hidden Within the Count",
     "tagline": "the logistic map bifurcation diagram — period-doubling chaos as Sefirat HaOmer",
