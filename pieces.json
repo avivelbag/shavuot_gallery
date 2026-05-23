@@ -1441,6 +1441,17 @@
     "essay": "pieces/85-poisson-bikkurim-grain-field/essay.md"
   },
   {
+    "id": "86-ant-colony-forty-nine-gates",
+    "title": "Forty-Nine Gates of Understanding",
+    "tagline": "two hundred ants converge on Sinai through 49 generations of pheromone stigmergy — on the fiftieth step the optimal path blazes gold",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / 49 gates of understanding",
+    "technique": "Ant-colony stigmergy / pheromone reinforcement",
+    "path": "pieces/86-ant-colony-forty-nine-gates/index.html",
+    "thumbnail": "pieces/86-ant-colony-forty-nine-gates/thumbnail.svg",
+    "essay": "pieces/86-ant-colony-forty-nine-gates/essay.md"
+  },
+  {
     "id": "86-gyroid-milk-honey",
     "title": "A Land Flowing: The Geometry of Milk and Honey",
     "tagline": "the gyroid minimal surface IS the microstructure of honeycomb and milk fat — the promised land has a shape",

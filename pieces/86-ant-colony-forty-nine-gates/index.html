@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forty-Nine Gates of Understanding</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #090818; overflow: hidden; width: 100vw; height: 100vh; }
+canvas { display: block; position: absolute; top: 0; left: 0; }
+#counter {
+  position: absolute; top: 18px; left: 22px;
+  font-family: serif; font-size: 2.4rem; color: #C8A828;
+  text-shadow: 0 0 14px #F0C04099;
+  pointer-events: none; user-select: none; direction: rtl;
+}
+#label {
+  position: absolute; top: 64px; left: 22px;
+  font-family: serif; font-size: 0.88rem; color: #5848A8;
+  pointer-events: none; user-select: none; direction: rtl;
+}
+#essay-btn {
+  position: absolute; bottom: 12px; right: 16px;
+  background: none; border: 1px solid #3020A0;
+  color: #7060C0; padding: 3px 10px;
+  font-size: 0.75rem; cursor: pointer; border-radius: 3px;
+}
+#essay-panel {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  max-height: 42vh; overflow-y: auto;
+  background: rgba(9,8,24,0.88);
+  padding: 1.3rem 2rem 2.5rem;
+  color: #afa8d8; font-size: 0.82rem; line-height: 1.68;
+  font-family: Georgia, serif;
+  border-top: 1px solid #3020A044;
+  display: none;
+}
+#essay-panel h2 { font-size: 1rem; color: #F0C040; margin-bottom: 0.7rem; }
+#essay-panel p { margin-bottom: 0.75rem; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="counter">א</div>
+<div id="label">יום א׳ של העומר</div>
+<button id="essay-btn" onclick="toggleEssay()">essay ▲</button>
+<div id="essay-panel">
+<h2>Forty-Nine Gates of Understanding</h2>
+<p>The Talmud in Rosh Hashanah 21b records a tradition that shimmers at the edge of the sayable:
+"Fifty gates of understanding were created in the world, and all were given to Moses except one,
+as it is said: 'You have made him slightly less than divine'" (Psalm 8:6). Moses, the greatest
+prophet who ever lived, stood at the forty-ninth gate — one step short of a threshold that no
+human effort could cross.</p>
+<p>Nedarim 38a reinforces this portrait: God chose Moses because he surpassed all other prophets in
+understanding, yet even Moses could not receive the fiftieth gate. The fifty gates of Binah
+(Understanding) form the upper limit of human intellectual and spiritual capacity. Forty-nine are,
+in principle, accessible. The fiftieth is a gift that can only be given, not attained.</p>
+<p>The Zohar (Parashat Emor) and the practice of Sefirat HaOmer make the structure explicit. The
+forty-nine days between Pesach and Shavuot are not merely a countdown — each is an ascent through
+one of the forty-nine combinations of the seven lower sefirot. Seven sefirot, each paired with
+itself and with every other, yields 7×7 = 49: a complete architecture of the divine attributes as
+they manifest in human experience. Chesed within Chesed on the first day; Gevurah within Chesed on
+the second; Malkhut within Malkhut on the forty-ninth. The Omer count is a structured walk through
+the full design of the soul.</p>
+<p>On the fiftieth day — Shavuot, Matan Torah — the gate that no human effort could open was opened
+by divine gift. Israel had done the work of forty-nine days of self-examination and spiritual
+preparation. That preparation was the necessary precondition, but it was not sufficient. The fiftieth
+gate opened from the other side.</p>
+<p>This piece renders that tradition through ant-colony stigmergy: the mathematical model of how
+insect colonies discover optimal paths through pheromone-based reinforcement. Two hundred virtual
+ants begin each generation wandering a 120×120 grid from a source node at the left (the Israelite
+camp) toward a destination at the right (Har Sinai). Each ant chooses its next step with probability
+proportional to pheromone strength and proximity to the destination. When an ant arrives, it deposits
+pheromone inversely proportional to its path length — shorter paths receive more reinforcement. After
+each generation, all pheromone evaporates by fifteen percent, preventing early paths from dominating.</p>
+<p>Over forty-nine generations, the colony converges. What begins as diffuse, random wandering
+gradually resolves into a handful of illuminated corridors. No path is predetermined; no single ant
+plans the route. The optimal path emerges from accumulated incremental choices, each building on the
+pheromone traces left by those who searched before. The colony discovers the route through the same
+mechanism by which the Omer count works: structured accumulation, generation by generation, gate
+by gate.</p>
+<p>On the fiftieth step — generation נ, Shavuot — the single path of maximum pheromone concentration
+blazes into full gold. All other trails dim to near-black. The path that required forty-nine
+generations of searching to make possible becomes, in that moment, unmistakably visible. It was
+always there in potential. It could only be seen after the preparation was complete.</p>
+<p>The fifty-first gate does not exist in the mathematics, and it does not exist in the Talmud. There
+is only the blazing of what accumulated searching makes possible, and the silence beyond the last
+gate that was given.</p>
+</div>
+<script>
+// Ant-colony stigmergy: 120×120 grid, N_ANTS=200, 49 generations + Shavuot reveal
+const COLS = 120, ROWS = 120;
+const N_ANTS = 200;
+const ALPHA = 1, BETA = 2;  // distance and pheromone exponents
+const EVAP = 0.85;           // pheromone retention per generation
+const MAX_GEN = 49;
+const FRAMES_PER_GEN = 90;   // ~1.5 s at 60 fps
+const PAUSE_FRAMES = 60;     // 1 s pause after gen 49
+
+const pheromone = new Float32Array(COLS * ROWS).fill(0.01);
+const SRC = { c: 10, r: ROWS >> 1 };
+const DST = { c: COLS - 10, r: ROWS >> 1 };
+
+// Hebrew numerals for days 1–50
+const HEB_ONES = ['', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט'];
+const HEB_TENS = ['', 'י', 'כ', 'ל', 'מ', 'נ'];
+
+function hebrewNumeral(n) {
+  if (n === 50) return 'נ';
+  if (n === 16) return 'טז';
+  if (n === 15) return 'טו';
+  return HEB_TENS[Math.floor(n / 10)] + HEB_ONES[n % 10];
+}
+
+function hebrewLabel(n) {
+  if (n === 50) return 'יום חמישים — שבועות';
+  return 'יום ' + hebrewNumeral(n) + '׳ של העומר';
+}
+
+function idx(c, r) { return r * COLS + c; }
+
+function getNeighbors(c, r) {
+  const ns = [];
+  if (c > 0)        ns.push([c - 1, r]);
+  if (c < COLS - 1) ns.push([c + 1, r]);
+  if (r > 0)        ns.push([c, r - 1]);
+  if (r < ROWS - 1) ns.push([c, r + 1]);
+  return ns;
+}
+
+// Run one ACO generation: all N_ANTS ants walk, deposit pheromone, then evaporate
+function runGeneration() {
+  const successPaths = [];
+  for (let a = 0; a < N_ANTS; a++) {
+    const ant = { c: SRC.c, r: SRC.r, path: [[SRC.c, SRC.r]] };
+    let steps = 0;
+    let reached = false;
+    // Max steps prevents infinite loops on early generations when ants wander far
+    const maxSteps = COLS * ROWS * 2;
+    while (steps < maxSteps && !reached) {
+      const ns = getNeighbors(ant.c, ant.r);
+      const weights = ns.map(([nc, nr]) => {
+        const ph = Math.pow(pheromone[idx(nc, nr)], BETA);
+        const dist = Math.hypot(nc - DST.c, nr - DST.r) + 1;
+        return ph / Math.pow(dist, ALPHA);
+      });
+      const total = weights.reduce((s, w) => s + w, 0);
+      if (total === 0) break;
+      let pick = Math.random() * total;
+      let chosen = ns[ns.length - 1];
+      for (let i = 0; i < ns.length; i++) {
+        pick -= weights[i];
+        if (pick <= 0) { chosen = ns[i]; break; }
+      }
+      ant.c = chosen[0];
+      ant.r = chosen[1];
+      ant.path.push([ant.c, ant.r]);
+      if (ant.c === DST.c && ant.r === DST.r) reached = true;
+      steps++;
+    }
+    if (reached) successPaths.push(ant.path);
+  }
+  // Deposit pheromone for successful ants, weighted inversely by path length
+  for (const path of successPaths) {
+    const deposit = 1 / path.length;
+    for (const [c, r] of path) pheromone[idx(c, r)] += deposit;
+  }
+  // Evaporate all pheromone by factor EVAP
+  for (let i = 0; i < pheromone.length; i++) pheromone[i] *= EVAP;
+}
+
+// Greedy best-path extraction: follow maximum-pheromone neighbors toward DST
+function findBestPath() {
+  const path = [[SRC.c, SRC.r]];
+  const visited = new Set([idx(SRC.c, SRC.r)]);
+  let c = SRC.c, r = SRC.r;
+  let steps = 0;
+  while ((c !== DST.c || r !== DST.r) && steps < COLS * ROWS * 3) {
+    const ns = getNeighbors(c, r).filter(([nc, nr]) => !visited.has(idx(nc, nr)));
+    if (ns.length === 0) break;
+    // Sort by pheromone descending, pick the best unvisited neighbor
+    ns.sort((a, b) => pheromone[idx(b[0], b[1])] - pheromone[idx(a[0], a[1])]);
+    const [nc, nr] = ns[0];
+    visited.add(idx(nc, nr));
+    c = nc; r = nr;
+    path.push([c, r]);
+    steps++;
+  }
+  return path;
+}
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Interpolate cell color: t=0 → dim violet #3020A0; t=1 → bright gold #F0C040
+function lerpColor(t) {
+  const rv = Math.round(0x30 + t * (0xF0 - 0x30));
+  const gv = Math.round(0x20 + t * (0xC0 - 0x20));
+  const bv = Math.round(0xA0 + t * (0x40 - 0xA0));
+  return `rgb(${rv},${gv},${bv})`;
+}
+
+function render(genNum, shavuotPath) {
+  const cw = canvas.width / COLS;
+  const ch = canvas.height / ROWS;
+
+  ctx.fillStyle = '#090818';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Normalise pheromone values for display
+  let maxPh = 0.01;
+  for (let i = 0; i < pheromone.length; i++) {
+    if (pheromone[i] > maxPh) maxPh = pheromone[i];
+  }
+
+  if (genNum < 50) {
+    // Draw pheromone cells
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const ph = pheromone[idx(c, r)];
+        const t = Math.min(ph / maxPh, 1);
+        if (t < 0.025) continue;
+        ctx.globalAlpha = t * 0.9;
+        ctx.fillStyle = lerpColor(t);
+        ctx.fillRect(c * cw, r * ch, cw + 0.5, ch + 0.5);
+      }
+    }
+    ctx.globalAlpha = 1;
+  } else {
+    // Shavuot: dim background then draw faint trails, then blaze best path
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const ph = pheromone[idx(c, r)];
+        const t = Math.min(ph / maxPh, 1);
+        if (t < 0.025) continue;
+        ctx.globalAlpha = t * 0.12;  // dim all other trails
+        ctx.fillStyle = lerpColor(t);
+        ctx.fillRect(c * cw, r * ch, cw + 0.5, ch + 0.5);
+      }
+    }
+    ctx.globalAlpha = 1;
+    // Blaze the best path in full gold
+    if (shavuotPath && shavuotPath.length > 1) {
+      ctx.save();
+      ctx.strokeStyle = '#F0C040';
+      ctx.lineWidth = Math.max(cw, ch) * 2.8;
+      ctx.shadowColor = '#F0C040';
+      ctx.shadowBlur = 22;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.beginPath();
+      ctx.moveTo((shavuotPath[0][0] + 0.5) * cw, (shavuotPath[0][1] + 0.5) * ch);
+      for (let i = 1; i < shavuotPath.length; i++) {
+        ctx.lineTo((shavuotPath[i][0] + 0.5) * cw, (shavuotPath[i][1] + 0.5) * ch);
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  // Source node — green glow (Israelite camp)
+  ctx.save();
+  ctx.shadowColor = '#40FF80';
+  ctx.shadowBlur = 24;
+  ctx.fillStyle = '#40FF80';
+  ctx.beginPath();
+  ctx.arc((SRC.c + 0.5) * cw, (SRC.r + 0.5) * ch, Math.max(cw, ch) * 2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+
+  // Destination node — white star glow (Sinai)
+  ctx.save();
+  ctx.shadowColor = '#FFFFFF';
+  ctx.shadowBlur = 32;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath();
+  ctx.arc((DST.c + 0.5) * cw, (DST.r + 0.5) * ch, Math.max(cw, ch) * 2.4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+const counterEl = document.getElementById('counter');
+const labelEl = document.getElementById('label');
+
+let gen = 0;
+let frame = 0;
+let phase = 'running';  // 'running' | 'pause' | 'shavuot'
+let pauseCount = 0;
+let shavuotPath = null;
+
+function loop() {
+  requestAnimationFrame(loop);
+  frame++;
+
+  if (phase === 'running') {
+    if (frame % FRAMES_PER_GEN === 0) {
+      gen++;
+      runGeneration();
+      counterEl.textContent = hebrewNumeral(gen);
+      labelEl.textContent = hebrewLabel(gen);
+      if (gen === MAX_GEN) {
+        phase = 'pause';
+        pauseCount = 0;
+      }
+    }
+  } else if (phase === 'pause') {
+    pauseCount++;
+    if (pauseCount >= PAUSE_FRAMES) {
+      phase = 'shavuot';
+      gen = 50;
+      shavuotPath = findBestPath();
+      counterEl.textContent = hebrewNumeral(50);
+      labelEl.textContent = hebrewLabel(50);
+    }
+  }
+  // phase === 'shavuot' → just keep rendering
+
+  render(gen, gen === 50 ? shavuotPath : null);
+}
+
+function toggleEssay() {
+  const ep = document.getElementById('essay-panel');
+  const btn = document.getElementById('essay-btn');
+  if (ep.style.display === 'none') {
+    ep.style.display = 'block';
+    btn.textContent = 'essay ▼';
+  } else {
+    ep.style.display = 'none';
+    btn.textContent = 'essay ▲';
+  }
+}
+
+render(0, null);
+loop();
+</script>
+</body>
+</html>
