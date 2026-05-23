@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Given in the Wilderness</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0e0a06; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #C4A882;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2a1e0e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0e0a06;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2a1e0e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #e8d4a0;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #604828;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #c4a864;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel blockquote {
+      border-left: 2px solid #604828;
+      margin: 1rem 0 1rem 1rem;
+      padding-left: 1rem;
+      color: #a89878;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Given in the Wilderness</h1>
+    <p class="subtitle">מִדְבָּר — Matan Torah / Har Sinai</p>
+
+    <h2>The Ownerless Desert</h2>
+    <p>Exodus 19:1 begins: "In the third month after the children of Israel went forth from the land of Egypt, on the same day, they came into the wilderness of Sinai." The Mechilta de-Rabbi Ishmael (Yitro, Bachodesh §1) stops at this verse to ask: why was the Torah given in the wilderness, specifically? The answer it offers has been turning in rabbinic thought ever since:</p>
+
+    <blockquote>The Torah was given in the wilderness, in fire, and in water. Just as these three things are free to all who come into the world, so too are words of Torah free to all who come into the world.</blockquote>
+
+    <p>And then the famous conclusion: <strong>כָּל הָרוֹצֶה לְקַבֵּל יָבֹא וְיְקַבֵּל</strong> — "whoever wishes to receive it, let them come and receive it."</p>
+
+    <h2>No One's Land</h2>
+    <p>This is not merely a legal convenience. The Torah could not have been given inside the borders of any tribe, any land, any people's home. A gift that arrives inside someone's house already belongs to them. The wilderness — the midbar (מִדְבָּר) — is the one space that belongs to no one: no tribe claims it, no king rules it, no community settles it. By giving the Torah in that ownerless expanse, God ensured that it would always remain, in some theological sense, unclaimed: the inheritance of all who wish to receive it.</p>
+
+    <p>Bamidbar Rabbah (1:7) elaborates on this theme, listing the three things given freely to the world — wilderness, fire, and water — and connecting each to the giving of Torah. The wilderness is first because it is the primary stage. Only the midbar is purely and permanently ownerless — not abandoned but simply never possessed.</p>
+
+    <p>Rashi, commenting on Numbers 1:1 — "God spoke to Moses in the wilderness of Sinai" — notes that the wilderness context is explicitly significant: the Torah was given in the desert, publicly, in the open, for free, <em>befarhesya</em>, so that no single nation could monopolize it. The desert is not a backdrop; it is a precondition. A Torah given in Jerusalem would be Jerusalem's. A Torah given in the Sinai belongs to whoever can find it there.</p>
+
+    <h2>The Place of the Word</h2>
+    <p>There is a subtler resonance, noted by commentators across the centuries. The word מִדְבָּר (midbar, wilderness) shares its root — ד-ב-ר — with the word דָּבָר (davar), meaning <em>word</em> or <em>thing</em>. The midbar is, etymologically, the place of the word. The wilderness is the terrain where speech is stripped of all ambient noise — political, social, economic — and can be heard in its pure form. The desert is not empty. It is a different kind of fullness: the fullness of undivided attention, the silence that makes hearing possible.</p>
+
+    <h2>This Piece</h2>
+    <p>The simulation runs a cellular automaton of sand transport across a 300×200 grid. Each grain hops downwind with probability 0.3 each step — saltation, the fundamental mechanism by which desert sands migrate. When a slope between adjacent cells exceeds the angle of repose (three grain-heights), grains avalanche downhill until the slope stabilizes. From this simple local physics, barchan dunes — crescent-shaped formations — emerge and slowly migrate across the field, splitting and merging without any global coordination. The sand does not know it is making dunes.</p>
+
+    <p>After three hundred frames, the Hebrew word מִדְבָּר is stamped into the field at maximum height — the letters raised above the landscape like a monument inscribed in sand. Then the wind continues, and the grains redistribute, and the letters erode — grain by grain, frame by frame — until only the dune field remains. The wilderness receives the word and returns it to itself. That erasure is not loss. It is exactly what the Mechilta promises: the Torah dissolves into the landscape precisely because it belongs there, to everyone, already, always.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  const W = 300, H = 200;
+  const sand = new Uint8Array(W * H);
+
+  sand.fill(2);
+
+  /**
+   * Raise a circular mound of sand at (cx, cy) with given radius and height.
+   * Wraps toroidally so mounds near edges are handled correctly.
+   */
+  function addMound(cx, cy, radius, h) {
+    for (let dy = -radius; dy <= radius; dy++) {
+      for (let dx = -radius; dx <= radius; dx++) {
+        if (dx * dx + dy * dy <= radius * radius) {
+          const nx = ((cx + dx) % W + W) % W;
+          const ny = ((cy + dy) % H + H) % H;
+          sand[ny * W + nx] = h;
+        }
+      }
+    }
+  }
+
+  addMound(60, 80, 10, 6);
+  addMound(150, 120, 10, 6);
+  addMound(240, 50, 10, 6);
+
+  let windAngle = 0;
+  let windX = 1, windY = 0;
+  let windRotFrames = 0;
+  let frame = 0;
+  let textStamped = false;
+
+  function updateWind() {
+    if (frame > 0 && frame % 600 === 0) {
+      windRotFrames = 60;
+    }
+    if (windRotFrames > 0) {
+      windAngle += (15 / 60) * (Math.PI / 180);
+      windX = Math.cos(windAngle);
+      windY = Math.sin(windAngle);
+      windRotFrames--;
+    }
+  }
+
+  /**
+   * Saltation: each non-zero cell has a 0.3 chance of moving one grain
+   * one step in the current wind direction, wrapping toroidally.
+   */
+  function saltate() {
+    const dx = Math.round(windX);
+    const dy = Math.round(windY);
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        if (sand[y * W + x] > 0 && Math.random() < 0.3) {
+          const nx = (x + dx + W) % W;
+          const ny = (y + dy + H) % H;
+          sand[y * W + x]--;
+          sand[ny * W + nx] = Math.min(8, sand[ny * W + nx] + 1);
+        }
+      }
+    }
+  }
+
+  /**
+   * Avalanche: if slope from a cell to its downwind neighbor exceeds
+   * threshold T=3, transfer grains to equalize the slope.
+   */
+  function avalanche() {
+    const dx = Math.round(windX);
+    const dy = Math.round(windY);
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const nx = (x + dx + W) % W;
+        const ny = (y + dy + H) % H;
+        const diff = sand[y * W + x] - sand[ny * W + nx];
+        if (diff > 3) {
+          const move = (diff - 3) >> 1;
+          sand[y * W + x] -= move;
+          sand[ny * W + nx] = Math.min(8, sand[ny * W + nx] + move);
+        }
+      }
+    }
+  }
+
+  /**
+   * Stamp the letters מִדְבָּר into the sand at maximum height (8).
+   * Uses an offscreen canvas to rasterize the text, then reads pixel alpha
+   * to find which sand cells should be raised.
+   */
+  function stampText() {
+    const oc = document.createElement('canvas');
+    oc.width = W;
+    oc.height = H;
+    const octx = oc.getContext('2d');
+    octx.clearRect(0, 0, W, H);
+    octx.fillStyle = '#fff';
+    octx.font = 'bold 60px serif';
+    octx.textAlign = 'center';
+    octx.textBaseline = 'middle';
+    octx.direction = 'rtl';
+    octx.fillText('מִדְבָּר', W / 2, H / 2);
+    const imgData = octx.getImageData(0, 0, W, H);
+    for (let i = 0; i < W * H; i++) {
+      if (imgData.data[i * 4 + 3] > 128) {
+        sand[i] = 8;
+      }
+    }
+  }
+
+  /**
+   * Map a sand height (0–8) to an RGB color triple.
+   * Height 0: bare desert (#C4A882)
+   * Height 1–2: sand shadow (#B8956A)
+   * Height 3–5: mid sand (#D4AA70)
+   * Height 6–8: dune crest highlight (#F2D9A0)
+   */
+  function heightToRGB(h) {
+    if (h === 0) return [196, 168, 130];
+    if (h <= 2) return [184, 149, 106];
+    if (h <= 5) return [212, 170, 112];
+    return [242, 217, 160];
+  }
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  const offCanvas = document.createElement('canvas');
+  offCanvas.width = W;
+  offCanvas.height = H;
+  const offCtx = offCanvas.getContext('2d');
+
+  const panel = document.getElementById('art-panel');
+
+  function resize() {
+    canvas.width = panel.clientWidth;
+    canvas.height = panel.clientHeight;
+    ctx.imageSmoothingEnabled = false;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  function render() {
+    const img = offCtx.createImageData(W, H);
+    for (let i = 0; i < W * H; i++) {
+      const h = sand[i];
+      const [r, g, b] = heightToRGB(h);
+      img.data[i * 4] = r;
+      img.data[i * 4 + 1] = g;
+      img.data[i * 4 + 2] = b;
+      img.data[i * 4 + 3] = 255;
+    }
+    offCtx.putImageData(img, 0, 0);
+    ctx.drawImage(offCanvas, 0, 0, canvas.width, canvas.height);
+  }
+
+  function tick() {
+    updateWind();
+    if (frame === 300 && !textStamped) {
+      stampText();
+      textStamped = true;
+    }
+    for (let p = 0; p < 3; p++) {
+      saltate();
+      avalanche();
+    }
+    render();
+    frame++;
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

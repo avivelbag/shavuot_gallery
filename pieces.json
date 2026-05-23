@@ -1232,6 +1232,17 @@
     "essay": "pieces/77-thomas-attractor-tikkun-leil/essay.md"
   },
   {
+    "id": "78-sand-dune-midbar-sinai",
+    "title": "Given in the Wilderness",
+    "tagline": "a cellular automaton dune field where the word מִדְבָּר forms and dissolves",
+    "year": 2026,
+    "theme": "Matan Torah: given in the wilderness / Midbar",
+    "technique": "Cellular automaton sand transport / barchan dune formation",
+    "path": "pieces/78-sand-dune-midbar-sinai/index.html",
+    "thumbnail": "pieces/78-sand-dune-midbar-sinai/thumbnail.svg",
+    "essay": "pieces/78-sand-dune-midbar-sinai/essay.md"
+  },
+  {
     "id": "78-turmites-talmud-torah",
     "title": "The Highways of the Night",
     "tagline": "five turmites trace highways from darkness — the all-night study session as multi-agent emergence",
