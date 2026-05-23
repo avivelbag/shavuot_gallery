@@ -7,7 +7,6 @@ index.html implementation requirements, and thumbnail validity.
 import json
 import math
 import os
-import re
 
 import pytest
 
