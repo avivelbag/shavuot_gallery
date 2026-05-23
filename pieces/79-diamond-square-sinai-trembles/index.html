@@ -338,9 +338,6 @@
     ctx.fillStyle = rgbStr(rgb);
     ctx.fill();
 
-    const baseY = (ix + iy) * CELL_H / 2 + H_canvas * 0.6;
-    const leftBaseY = baseY - hNext[ix * N + iy] * 0 + CELL_H / 2;
-
     const groundSy = (ix + iy) * CELL_H / 2 + H_canvas * 0.6;
 
     ctx.beginPath();

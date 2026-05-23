@@ -8,8 +8,6 @@ acceptance criteria.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "79-diamond-square-sinai-trembles"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
