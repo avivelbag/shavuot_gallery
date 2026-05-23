@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>חֵרוּת — Engraved and Free</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1A1410; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #1A1410;
+    }
+    canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #3D1A08;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #130e00;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #3D1A08; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 {
+      font-size: 1.6rem; color: #E8A020; margin: 0 0 0.25rem; font-weight: normal;
+    }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #605030; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #C84A08; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #E8A020; font-style: normal; }
+    .essay-panel blockquote {
+      border-left: 3px solid #7A2C0A;
+      margin: 1rem 0 1rem 0;
+      padding: 0.5rem 1rem;
+      color: #d4b880;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>חָרוּת / חֵרוּת</h1>
+    <div class="subtitle">Engraved and Free — 2D Heat Equation / FTCS Diffusion</div>
+
+    <h2>The Tablets at Sinai</h2>
+    <p>"And the tablets were the work of God, and the writing was the writing of God, engraved
+    (<em>charut</em> — חָרוּת) upon the tablets." (Exodus 32:16)</p>
+    <p>The Ten Commandments were not written on the tablets. They were <em>engraved</em> — carved
+    from the stone itself, so that the letters and the material became one. The Torah uses a precise
+    word: <em>charut</em>, from a root meaning to cut deeply, to incise. This was not ink on
+    parchment. This was fire on stone.</p>
+    <p>Exodus 32:15–16 adds two further details, remarkable even by the Torah's standards. The
+    tablets were written "on both their sides" — <em>mishney evreihem</em> — and the writing was
+    legible from either direction. The Talmud (Shabbat 104a) pushes further still: the Hebrew
+    letters <em>mem</em> (מ) and <em>samech</em> (ס) are closed forms. Carved through stone, they
+    would lose their interior islands. So the Talmud teaches that those islands floated — the stone
+    within the closed letters hung in place by miracle, as if even the physics of inscription
+    required divine intervention.</p>
+
+    <h2>The Wordplay That Opens a World</h2>
+    <p>Centuries later, the Mishnah (Avot 6:2) rereads Exodus 32:16 and pauses at a single word:</p>
+    <blockquote>"Do not read <em>charut</em> (חָרוּת, engraved) but <em>cherut</em> (חֵרוּת,
+    freedom) — for no one is truly free except one who engages in Torah study."</blockquote>
+    <p>One vowel changed. A world of meaning unlocked. This is among the most compressed and
+    provocative interpretations in rabbinic literature: the very symbol of divine law — commandments
+    carved in stone — is reread as the symbol of freedom.</p>
+    <p>The paradox is real and intended. How does accepting 613 obligations constitute freedom?
+    The rabbinic answer distinguishes between freedom <em>from</em> and freedom <em>into</em>.
+    Freedom from obligation is merely the absence of constraint — the blank liberty of the reed
+    that bends in every wind. Freedom through Torah is emancipation from the tyranny of impulse,
+    circumstance, and the opinions of others. The person who has internalized Torah's values is no
+    longer subject to fortune's reversals; their core is stable. True freedom is not permission to
+    do anything. It is capacity to choose what matters.</p>
+
+    <h2>Heat as Metaphor</h2>
+    <p>The heat equation is itself a metaphor for this kind of knowledge. Heat diffuses from a
+    source and warms everything around it <em>without diminishing the source</em>. Maimonides
+    articulates the same principle about Torah transmission (Laws of Torah Study 4:1): "just as a
+    candle is not diminished when it kindles another candle, so too one who teaches Torah is not
+    diminished."</p>
+    <p>In this piece, the letters of <em>cherut</em> — חֵרוּת — are seared white-hot into the dark
+    stone. Over time, the heat diffuses outward: a warm amber halo grows around the letters,
+    spreading its glow into the surrounding surface. The letters, held at a slowly decaying source
+    temperature, remain as the origin of the warmth while the stone around them radiates outward.
+    At the longest timescales, the inscribed letters cool to a faint residual glow — an inscription
+    that endures but does not blaze.</p>
+    <p>The dark shapes of the letters are the <em>charut</em> — the carved-out text, the physical
+    law, the stone fact. The warmth that radiates from them and warms the surrounding world is the
+    <em>cherut</em> — the freedom, the teaching, the warmth that Torah study diffuses into the
+    world without ever consuming the source.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Simulation grid dimensions (downsampled for performance)
+  var GW = 400, GH = 300;
+
+  // Build the letter mask by rendering חֵרוּת onto an offscreen canvas
+  var offscreen = document.createElement('canvas');
+  offscreen.width = GW;
+  offscreen.height = GH;
+  var ctx2 = offscreen.getContext('2d');
+  ctx2.fillStyle = '#000';
+  ctx2.fillRect(0, 0, GW, GH);
+  ctx2.fillStyle = '#fff';
+  ctx2.font = 'bold 160px serif';
+  ctx2.direction = 'rtl';
+  ctx2.textAlign = 'center';
+  ctx2.textBaseline = 'middle';
+  ctx2.fillText('חֵרוּת', GW / 2, GH / 2);
+  var pixels = ctx2.getImageData(0, 0, GW, GH).data;
+  var mask = new Uint8Array(GW * GH);
+  for (var i = 0; i < GW * GH; i++) {
+    mask[i] = pixels[i * 4] > 128 ? 1 : 0;
+  }
+
+  // Heat grid and swap buffer
+  var T = new Float32Array(GW * GH);
+  var T2 = new Float32Array(GW * GH);
+
+  // Initialize: letter pixels hot, stone cold
+  for (var j = 0; j < GW * GH; j++) {
+    T[j] = mask[j] ? 1.0 : 0.0;
+  }
+
+  var ALPHA = 0.24; // stability constant, below 0.25 limit
+  var STEPS_PER_FRAME = 3;
+  var CYCLE_SECONDS = 90; // period before re-engraving
+
+  var startTime = performance.now();
+
+  // Color palette: 5 stops from cold stone to incandescent peak
+  // t:   0.00  0.15       0.45       0.75       1.00
+  // col: #1A1410  #3D1A08  #C84A08  #E8A020  #FFF0C0
+  var STOPS = [0.00, 0.15, 0.45, 0.75, 1.00];
+  var COLORS = [
+    [26, 20, 16],
+    [61, 26, 8],
+    [200, 74, 8],
+    [232, 160, 32],
+    [255, 240, 192]
+  ];
+
+  function tempToRGB(t, out, base) {
+    // Linear search through palette stops; writes r,g,b into out[base..base+2]
+    for (var s = 0; s < 4; s++) {
+      if (t <= STOPS[s + 1]) {
+        var f = (t - STOPS[s]) / (STOPS[s + 1] - STOPS[s]);
+        var a = COLORS[s], b = COLORS[s + 1];
+        out[base]     = (a[0] + (b[0] - a[0]) * f) | 0;
+        out[base + 1] = (a[1] + (b[1] - a[1]) * f) | 0;
+        out[base + 2] = (a[2] + (b[2] - a[2]) * f) | 0;
+        return;
+      }
+    }
+    // At or above top stop
+    out[base]     = COLORS[4][0];
+    out[base + 1] = COLORS[4][1];
+    out[base + 2] = COLORS[4][2];
+  }
+
+  // Offscreen render canvas (GW x GH), scaled to display canvas each frame
+  var renderCanvas = document.createElement('canvas');
+  renderCanvas.width = GW;
+  renderCanvas.height = GH;
+  var rctx = renderCanvas.getContext('2d');
+  var imgData = rctx.createImageData(GW, GH);
+  var imgBytes = imgData.data;
+
+  // Pre-fill alpha channel once
+  for (var k = 3; k < GW * GH * 4; k += 4) imgBytes[k] = 255;
+
+  function heatStep(sourceTemp) {
+    // FTCS update: interior pixels only; boundary stays at 0
+    var i;
+    for (var y = 1; y < GH - 1; y++) {
+      for (var x = 1; x < GW - 1; x++) {
+        i = y * GW + x;
+        if (mask[i]) {
+          T2[i] = sourceTemp;
+          continue;
+        }
+        T2[i] = T[i] + ALPHA * (T[i - 1] + T[i + 1] + T[i - GW] + T[i + GW] - 4.0 * T[i]);
+      }
+    }
+    // Zero boundary rows/columns
+    for (var x2 = 0; x2 < GW; x2++) {
+      T2[x2] = 0.0;
+      T2[(GH - 1) * GW + x2] = 0.0;
+    }
+    for (var y2 = 0; y2 < GH; y2++) {
+      T2[y2 * GW] = 0.0;
+      T2[y2 * GW + GW - 1] = 0.0;
+    }
+    // Swap
+    T.set(T2);
+  }
+
+  function renderGrid() {
+    var n = GW * GH;
+    for (var idx = 0; idx < n; idx++) {
+      tempToRGB(T[idx], imgBytes, idx * 4);
+    }
+    rctx.putImageData(imgData, 0, 0);
+  }
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    var panel = document.getElementById('art-panel');
+    canvas.width = panel.clientWidth;
+    canvas.height = panel.clientHeight;
+  }
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  var lastCycleIndex = -1;
+
+  function frame() {
+    var elapsed = (performance.now() - startTime) / 1000.0;
+
+    // Source temperature: slow decay from 1.0 to floor 0.05 over many hours
+    var sourceTemp = Math.max(0.05, 1.0 - elapsed * 0.0002);
+
+    // Every CYCLE_SECONDS, re-engrave: push letter pixels back toward 1.0
+    var cycleIndex = Math.floor(elapsed / CYCLE_SECONDS);
+    if (cycleIndex > lastCycleIndex && elapsed > 1.0) {
+      lastCycleIndex = cycleIndex;
+      for (var i = 0; i < GW * GH; i++) {
+        if (mask[i]) T[i] = 1.0;
+      }
+    }
+
+    // Simulate
+    for (var s = 0; s < STEPS_PER_FRAME; s++) heatStep(sourceTemp);
+
+    renderGrid();
+
+    // Scale the low-res render canvas up to the full display canvas
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(renderCanvas, 0, 0, canvas.width, canvas.height);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

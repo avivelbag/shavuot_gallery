@@ -1120,5 +1120,16 @@
     "path": "pieces/73-wallpaper-group-sinai-covenant/index.html",
     "thumbnail": "pieces/73-wallpaper-group-sinai-covenant/thumbnail.svg",
     "essay": "pieces/73-wallpaper-group-sinai-covenant/essay.md"
+  },
+  {
+    "id": "74-heat-equation-engraved-freedom",
+    "title": "Engraved and Free",
+    "tagline": "חָרוּת / חֵרוּת — the word for engraved is the word for freedom; heat diffuses from the divine inscription into the stone",
+    "year": 2026,
+    "theme": "The Tablets / Luchot / Matan Torah",
+    "technique": "2D heat equation / FTCS finite-difference diffusion",
+    "path": "pieces/74-heat-equation-engraved-freedom/index.html",
+    "thumbnail": "pieces/74-heat-equation-engraved-freedom/thumbnail.svg",
+    "essay": "pieces/74-heat-equation-engraved-freedom/essay.md"
   }
 ]

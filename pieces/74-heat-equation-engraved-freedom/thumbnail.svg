@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="halo" cx="50%" cy="52%" r="48%">
+      <stop offset="0%"   stop-color="#E8A020" stop-opacity="0.95"/>
+      <stop offset="25%"  stop-color="#C84A08" stop-opacity="0.85"/>
+      <stop offset="55%"  stop-color="#7A2C0A" stop-opacity="0.70"/>
+      <stop offset="80%"  stop-color="#3D1A08" stop-opacity="0.50"/>
+      <stop offset="100%" stop-color="#1A1410" stop-opacity="0.00"/>
+    </radialGradient>
+    <radialGradient id="outerGlow" cx="50%" cy="52%" r="60%">
+      <stop offset="0%"   stop-color="#C84A08" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#1A1410" stop-opacity="0.00"/>
+    </radialGradient>
+    <filter id="soften" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="letterSoften" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+
+  <!-- Stone background -->
+  <rect width="400" height="400" fill="#1A1410"/>
+
+  <!-- Outer warm glow (blurred ellipse behind letters) -->
+  <ellipse cx="200" cy="208" rx="200" ry="155" fill="url(#outerGlow)" filter="url(#soften)"/>
+
+  <!-- Main amber halo -->
+  <ellipse cx="200" cy="208" rx="175" ry="130" fill="url(#halo)" filter="url(#soften)"/>
+
+  <!-- Hebrew letters as dark voids on the glowing ground.
+       The text is dark stone colour — the carved valleys that hold no heat. -->
+  <text
+    x="200" y="235"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="'Times New Roman', 'FreeSerif', serif"
+    font-size="148"
+    font-weight="bold"
+    fill="#12100E"
+    filter="url(#letterSoften)"
+    direction="rtl"
+    unicode-bidi="bidi-override"
+  >חֵרוּת</text>
+
+  <!-- Faint amber edge framing -->
+  <rect width="400" height="400" fill="none" stroke="#3D1A08" stroke-width="2"/>
+</svg>
