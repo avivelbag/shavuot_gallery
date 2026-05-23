@@ -1461,5 +1461,16 @@
     "path": "pieces/86-gyroid-milk-honey/index.html",
     "thumbnail": "pieces/86-gyroid-milk-honey/thumbnail.svg",
     "essay": "pieces/86-gyroid-milk-honey/essay.md"
+  },
+  {
+    "id": "87-double-pendulum-sinai-thunder",
+    "title": "And All the People Saw the Thunder",
+    "tagline": "seven pendulums, seven revelations — chaos theory maps the Sinai experience",
+    "year": 2026,
+    "theme": "Har Sinai / Matan Torah",
+    "technique": "Double pendulum chaos / RK4 numerical integration",
+    "path": "pieces/87-double-pendulum-sinai-thunder/index.html",
+    "thumbnail": "pieces/87-double-pendulum-sinai-thunder/thumbnail.svg",
+    "essay": "pieces/87-double-pendulum-sinai-thunder/essay.md"
   }
 ]

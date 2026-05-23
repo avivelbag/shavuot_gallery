@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>And All the People Saw the Thunder</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #07080F; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #07080F;
+    }
+    #c {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #overlay-ui {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      text-align: right;
+      font: 11px/1.8 monospace;
+      color: rgba(255,255,255,0.35);
+      pointer-events: none;
+    }
+    #verse {
+      display: block;
+      direction: rtl;
+      unicode-bidi: bidi-override;
+    }
+    #sim-time {
+      display: block;
+      direction: ltr;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a1c2e;
+      overflow-y: auto;
+      color: #b0b8d0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #07080F;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a1c2e; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #7EC8D4; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #2a3050; margin: 0 0 2rem; }
+    .essay-panel .hebrew-verse {
+      font-size: 1.3rem;
+      direction: rtl;
+      color: #4B8FD4;
+      margin: 0 0 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    .essay-panel h2 {
+      font-size: 1rem; color: #8B5CF6; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #7EC8D4; font-style: normal; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+    <div id="overlay-ui">
+      <span id="verse">&#x05D5;&#x05B0;&#x05DB;&#x05B8;&#x05DC;&#x002D;&#x05D4;&#x05B8;&#x05E2;&#x05B8;&#x05DD;&#x0020;&#x05E8;&#x05B9;&#x05D0;&#x05B4;&#x05D9;&#x05DD;&#x0020;&#x05D0;&#x05B6;&#x05EA;&#x002D;&#x05D4;&#x05B7;&#x05E7;&#x05BC;&#x05D5;&#x05DC;&#x05B9;&#x05EA;</span>
+      <span id="sim-time">t = 0.00s</span>
+    </div>
+  </div>
+  <div class="essay-panel">
+    <h1>And All the People Saw the Thunder</h1>
+    <div class="subtitle">Double-pendulum chaos / RK4 numerical integration &mdash; Har Sinai / Matan Torah</div>
+
+    <p class="hebrew-verse">וְכָל-הָעָם רֹאִים אֶת-הַקּוֹלֹת</p>
+
+    <p>"And all the people <em>saw</em> the thunders" (Exodus 20:15).</p>
+
+    <p>The Hebrew is grammatically impossible. Thunder &mdash; <em>ha-kolot</em>, the voices &mdash; is something you hear. Sight requires light; sound requires nothing but air and distance. Yet the verse insists: <em>ro'im</em>, they <em>saw</em>. The Septuagint translates it conventionally, flattening the strangeness. But the rabbis take the impossibility literally, and what they find there is one of the most extraordinary claims in classical Jewish theology.</p>
+
+    <h2>The Mekhilta</h2>
+
+    <p>The Mekhilta deRabbi Yishmael (Parashat Bachodesh, chapter 9) asks directly: how did they <em>see</em> what should only be <em>heard</em>? Its answer: God's voice subdivided at Sinai. Each Israelite received the revelation individually, calibrated to their capacity &mdash; the elders heard what elders could bear, the young heard what youth could absorb, and so on across the entire nation. The single divine voice was not broadcast uniformly but arrived at each soul as a personal transmission.</p>
+
+    <p>This is not a modern pluralist reading projected backward. It is the classical rabbinic interpretation, preserved in the oldest Tannaitic midrash. The strangeness of the verse &mdash; seeing thunder &mdash; is the textual trigger for a claim about individuation: revelation does not flatten its recipients into a uniform audience. Six hundred thousand people stood at the same mountain and heard different things.</p>
+
+    <h2>Chaos</h2>
+
+    <p>Here is the physical analogue. A double pendulum is a deterministic system &mdash; its equations are perfectly known, its motion is fully caused. But two pendulums that begin from states indistinguishably close will, within seconds, trace wildly different paths. This is not randomness. It is sensitive dependence on initial conditions: the microscopic differences that no measurement can eliminate compound exponentially until the trajectories bear no resemblance to each other.</p>
+
+    <p>Seven pendulums begin from nearly the same angle &mdash; differing by just 0.002 radians each. Within the first cycle they are already diverging; by the third they trace entirely distinct paths &mdash; seven separate calligraphies of light written by the same initial motion.</p>
+
+    <h2>The Piece</h2>
+
+    <p>What you see is seven revelations. They begin as one &mdash; the same starting angle, the same equations, the same moment of release &mdash; and become seven distinct signatures accumulating on the canvas until the image is a dense, luminous tangle. The same divine voice, arriving at seven hundred thousand receivers, each shaped by their own infinitesimally different initial conditions, each tracing their own unrepeatable path through the space of possible understanding.</p>
+
+    <p>The verse says <em>saw</em>. The Mekhilta says: each one according to their capacity. The mathematics says: divergence was inevitable from the first instant.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const COLORS = ['#4B8FD4', '#8B5CF6', '#F0EFEA', '#D4A017', '#C8702A', '#C2547A', '#7EC8D4'];
+  const N = 7;
+  const G = 9.8;
+  const L = 1.0;
+  const DT = 0.02;
+  const STEPS_PER_FRAME = 8;
+  const RESET_SIM_TIME = 20.0;
+  const FADE_FRAMES = 60;
+
+  const canvas = document.getElementById('c');
+  const artPanel = document.getElementById('art-panel');
+  const simTimeEl = document.getElementById('sim-time');
+
+  const traceCanvas = document.createElement('canvas');
+  const traceCtx = traceCanvas.getContext('2d');
+  let ctx;
+
+  let W, H, CX, CY, PX;
+  let states = [];
+  let prevBob2 = [];
+  let simTime = 0;
+  let fading = false;
+  let fadeCount = 0;
+
+  /**
+   * Compute derivatives of the double-pendulum state vector.
+   * State: [θ₁, ω₁, θ₂, ω₂] where angles are measured from downward vertical.
+   * Uses the standard equations of motion for m₁=m₂=1, L₁=L₂=L.
+   */
+  function derivatives(s) {
+    const [t1, w1, t2, w2] = s;
+    const delta = t1 - t2;
+    const den = 2 - Math.cos(2 * delta);
+    const dw1 = (
+      -G * 2 * Math.sin(t1)
+      - G * Math.sin(t1 - 2 * t2)
+      - 2 * Math.sin(delta) * (w2 * w2 * L + w1 * w1 * L * Math.cos(delta))
+    ) / (L * den);
+    const dw2 = (
+      2 * Math.sin(delta) * (
+        w1 * w1 * L * 2
+        + G * 2 * Math.cos(t1)
+        + w2 * w2 * L * Math.cos(delta)
+      )
+    ) / (L * den);
+    return [w1, dw1, w2, dw2];
+  }
+
+  /**
+   * Advance the state vector by one time step dt using 4th-order Runge-Kutta.
+   */
+  function rk4Step(s) {
+    const k1 = derivatives(s);
+    const k2 = derivatives(s.map((v, i) => v + k1[i] * DT / 2));
+    const k3 = derivatives(s.map((v, i) => v + k2[i] * DT / 2));
+    const k4 = derivatives(s.map((v, i) => v + k3[i] * DT));
+    return s.map((v, i) => v + (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]) * DT / 6);
+  }
+
+  /**
+   * Return canvas pixel coordinates of the second (lower) bob.
+   * pivot is at (CX, CY); each arm contributes L*PX pixels.
+   */
+  function bob2Pos(s) {
+    const [t1, , t2] = s;
+    return {
+      x: CX + PX * (Math.sin(t1) + Math.sin(t2)),
+      y: CY + PX * (Math.cos(t1) + Math.cos(t2))
+    };
+  }
+
+  function initStates() {
+    states = [];
+    prevBob2 = [];
+    simTime = 0;
+    for (let k = 0; k < N; k++) {
+      const s = [2.4 + k * 0.002, 0, 1.8, 0];
+      states.push(s);
+      prevBob2.push(bob2Pos(s));
+    }
+  }
+
+  function resize() {
+    W = artPanel.clientWidth;
+    H = artPanel.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+    traceCanvas.width = W;
+    traceCanvas.height = H;
+    ctx = canvas.getContext('2d');
+    CX = W / 2;
+    CY = H / 2;
+    PX = H * 0.22;
+    traceCtx.clearRect(0, 0, W, H);
+    initStates();
+    fading = false;
+    fadeCount = 0;
+  }
+
+  function frame() {
+    requestAnimationFrame(frame);
+
+    for (let step = 0; step < STEPS_PER_FRAME; step++) {
+      for (let k = 0; k < N; k++) {
+        states[k] = rk4Step(states[k]);
+      }
+      simTime += DT;
+    }
+
+    if (simTime >= RESET_SIM_TIME && !fading) {
+      fading = true;
+      fadeCount = FADE_FRAMES;
+      initStates();
+    }
+
+    if (fading) {
+      traceCtx.save();
+      traceCtx.globalAlpha = 0.05;
+      traceCtx.fillStyle = '#07080F';
+      traceCtx.fillRect(0, 0, W, H);
+      traceCtx.restore();
+      fadeCount--;
+      if (fadeCount <= 0) {
+        fading = false;
+        traceCtx.clearRect(0, 0, W, H);
+      }
+    }
+
+    traceCtx.save();
+    traceCtx.globalAlpha = 0.7;
+    traceCtx.lineWidth = 1;
+    for (let k = 0; k < N; k++) {
+      const pos = bob2Pos(states[k]);
+      const prev = prevBob2[k];
+      traceCtx.strokeStyle = COLORS[k];
+      traceCtx.beginPath();
+      traceCtx.moveTo(prev.x, prev.y);
+      traceCtx.lineTo(pos.x, pos.y);
+      traceCtx.stroke();
+      prevBob2[k] = pos;
+    }
+    traceCtx.restore();
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(traceCanvas, 0, 0);
+
+    simTimeEl.textContent = 't = ' + simTime.toFixed(2) + 's';
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>
