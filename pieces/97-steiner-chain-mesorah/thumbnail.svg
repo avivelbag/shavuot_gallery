@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="white"/>
+
+  <!-- Outer bounding circle -->
+  <circle cx="200" cy="200" r="168" fill="none" stroke="#BF9B30" stroke-width="2"/>
+  <!-- Inner bounding circle (offset, non-concentric) -->
+  <circle cx="225" cy="200" r="58.8" fill="none" stroke="#BF9B30" stroke-width="2"/>
+
+  <!-- Steiner chain: 7 circles computed analytically for this config.
+       Outer center (200,200) r=168, inner center (225,200) r=58.8, offset=25.
+       Approximate positions for a static thumbnail placed in the annular gap. -->
+
+  <!-- Circle 0: top — Moses (#1A3A6B) -->
+  <circle cx="200" cy="84" r="42" fill="#1A3A6B"/>
+  <text x="200" y="84" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif" font-size="14" fill="white">משה</text>
+
+  <!-- Circle 1: upper-right — Joshua (#8B2020) -->
+  <circle cx="292" cy="123" r="36" fill="#8B2020"/>
+  <text x="292" y="123" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif" font-size="12" fill="white">יהושע</text>
+
+  <!-- Circle 2: lower-right — Elders (#2A5E2A) -->
+  <circle cx="302" cy="252" r="40" fill="#2A5E2A"/>
+  <text x="302" y="252" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif" font-size="11" fill="white">הזקנים</text>
+
+  <!-- Circle 3: bottom-right — Prophets (#C87020) -->
+  <circle cx="215" cy="330" r="38" fill="#C87020"/>
+  <text x="215" y="330" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif" font-size="11" fill="white">הנביאים</text>
+
+  <!-- Circle 4: bottom-left — Men of Great Assembly (#5A2080) -->
+  <circle cx="112" cy="312" r="44" fill="#5A2080"/>
+  <text x="112" y="312" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif" font-size="8" fill="white">אנשי כנסת הגדולה</text>
+
+  <!-- Circle 5: left — Shimon HaTzaddik (#1A6060) -->
+  <circle cx="88" cy="185" r="42" fill="#1A6060"/>
+  <text x="88" y="185" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif" font-size="10" fill="white">שמעון הצדיק</text>
+
+  <!-- Circle 6: upper-left — Antigonus (#E8DFC0, dark text) -->
+  <circle cx="138" cy="104" r="36" fill="#E8DFC0"/>
+  <text x="138" y="104" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif" font-size="10" fill="#333">אנטיגנוס</text>
+</svg>

@@ -1780,5 +1780,16 @@
     "path": "pieces/97-pursuit-curves-ruth-naomi/index.html",
     "thumbnail": "pieces/97-pursuit-curves-ruth-naomi/thumbnail.svg",
     "essay": "pieces/97-pursuit-curves-ruth-naomi/essay.md"
+  },
+  {
+    "id": "97-steiner-chain-mesorah",
+    "title": "Links That Never Break",
+    "tagline": "a Steiner chain of seven circles — one per generation of Pirkei Avot 1:1 — orbiting perpetually in the annular gap between two golden circles, closing by Steiner's porism no matter where the chain begins",
+    "year": 2026,
+    "theme": "Matan Torah / Chain of Tradition",
+    "technique": "Steiner chain (inversion to concentric circles + rotation)",
+    "path": "pieces/97-steiner-chain-mesorah/index.html",
+    "thumbnail": "pieces/97-steiner-chain-mesorah/thumbnail.svg",
+    "essay": "pieces/97-steiner-chain-mesorah/essay.md"
   }
 ]
