@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#0A0A14"/>
+
+  <!-- Background grey bonds (dim) -->
+  <!-- Row 0 -->
+  <line x1="40" y1="40" x2="90" y2="40" stroke="#333" stroke-width="1.5"/>
+  <line x1="140" y1="40" x2="190" y2="40" stroke="#333" stroke-width="1.5"/>
+  <line x1="240" y1="40" x2="290" y2="40" stroke="#333" stroke-width="1.5"/>
+  <!-- Row 1 -->
+  <line x1="40" y1="90" x2="90" y2="90" stroke="#333" stroke-width="1.5"/>
+  <line x1="190" y1="90" x2="240" y2="90" stroke="#333" stroke-width="1.5"/>
+  <line x1="290" y1="90" x2="340" y2="90" stroke="#333" stroke-width="1.5"/>
+  <!-- Row 2 -->
+  <line x1="90" y1="140" x2="140" y2="140" stroke="#333" stroke-width="1.5"/>
+  <line x1="240" y1="140" x2="290" y2="140" stroke="#333" stroke-width="1.5"/>
+  <line x1="340" y1="140" x2="390" y2="140" stroke="#333" stroke-width="1.5"/>
+  <!-- Row 3 -->
+  <line x1="40" y1="190" x2="90" y2="190" stroke="#333" stroke-width="1.5"/>
+  <line x1="140" y1="190" x2="190" y2="190" stroke="#333" stroke-width="1.5"/>
+  <line x1="290" y1="190" x2="340" y2="190" stroke="#333" stroke-width="1.5"/>
+  <!-- Row 4 -->
+  <line x1="90" y1="240" x2="140" y2="240" stroke="#333" stroke-width="1.5"/>
+  <line x1="190" y1="240" x2="240" y2="240" stroke="#333" stroke-width="1.5"/>
+  <!-- Row 5 -->
+  <line x1="40" y1="290" x2="90" y2="290" stroke="#333" stroke-width="1.5"/>
+  <line x1="240" y1="290" x2="290" y2="290" stroke="#333" stroke-width="1.5"/>
+  <line x1="340" y1="290" x2="390" y2="290" stroke="#333" stroke-width="1.5"/>
+  <!-- Row 6 -->
+  <line x1="90" y1="340" x2="140" y2="340" stroke="#333" stroke-width="1.5"/>
+  <line x1="190" y1="340" x2="240" y2="340" stroke="#333" stroke-width="1.5"/>
+  <line x1="290" y1="340" x2="340" y2="340" stroke="#333" stroke-width="1.5"/>
+  <!-- Row 7 -->
+  <line x1="40" y1="390" x2="90" y2="390" stroke="#333" stroke-width="1.5"/>
+  <line x1="140" y1="390" x2="190" y2="390" stroke="#333" stroke-width="1.5"/>
+  <line x1="290" y1="390" x2="340" y2="390" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Vertical grey bonds -->
+  <line x1="40" y1="40" x2="40" y2="90" stroke="#333" stroke-width="1.5"/>
+  <line x1="140" y1="40" x2="140" y2="90" stroke="#333" stroke-width="1.5"/>
+  <line x1="340" y1="40" x2="340" y2="90" stroke="#333" stroke-width="1.5"/>
+  <line x1="90" y1="90" x2="90" y2="140" stroke="#333" stroke-width="1.5"/>
+  <line x1="390" y1="90" x2="390" y2="140" stroke="#333" stroke-width="1.5"/>
+  <line x1="40" y1="140" x2="40" y2="190" stroke="#333" stroke-width="1.5"/>
+  <line x1="290" y1="140" x2="290" y2="190" stroke="#333" stroke-width="1.5"/>
+  <line x1="190" y1="190" x2="190" y2="240" stroke="#333" stroke-width="1.5"/>
+  <line x1="340" y1="190" x2="340" y2="240" stroke="#333" stroke-width="1.5"/>
+  <line x1="90" y1="240" x2="90" y2="290" stroke="#333" stroke-width="1.5"/>
+  <line x1="390" y1="240" x2="390" y2="290" stroke="#333" stroke-width="1.5"/>
+  <line x1="140" y1="290" x2="140" y2="340" stroke="#333" stroke-width="1.5"/>
+  <line x1="240" y1="290" x2="240" y2="340" stroke="#333" stroke-width="1.5"/>
+  <line x1="40" y1="340" x2="40" y2="390" stroke="#333" stroke-width="1.5"/>
+  <line x1="290" y1="340" x2="290" y2="390" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Gold spanning path: left edge (40,190) -> right edge (390,190) via center -->
+  <line x1="40" y1="190" x2="90" y2="190" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="90" y1="190" x2="90" y2="140" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="90" y1="140" x2="140" y2="140" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="140" y1="140" x2="140" y2="190" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="140" y1="190" x2="190" y2="190" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="190" y1="190" x2="190" y2="140" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="190" y1="140" x2="240" y2="140" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="240" y1="140" x2="240" y2="190" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="240" y1="190" x2="290" y2="190" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="290" y1="190" x2="290" y2="240" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="290" y1="240" x2="340" y2="240" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="340" y1="240" x2="340" y2="190" stroke="#F0C040" stroke-width="2.5"/>
+  <line x1="340" y1="190" x2="390" y2="190" stroke="#F0C040" stroke-width="2.5"/>
+
+  <!-- Dim grey nodes (all non-gold) -->
+  <!-- Row 0 -->
+  <circle cx="40" cy="40" r="5" fill="#444"/>
+  <circle cx="90" cy="40" r="5" fill="#444"/>
+  <circle cx="140" cy="40" r="5" fill="#444"/>
+  <circle cx="190" cy="40" r="5" fill="#444"/>
+  <circle cx="240" cy="40" r="5" fill="#444"/>
+  <circle cx="290" cy="40" r="5" fill="#444"/>
+  <circle cx="340" cy="40" r="5" fill="#444"/>
+  <circle cx="390" cy="40" r="5" fill="#444"/>
+  <!-- Row 1 -->
+  <circle cx="40" cy="90" r="5" fill="#444"/>
+  <circle cx="90" cy="90" r="5" fill="#444"/>
+  <circle cx="140" cy="90" r="5" fill="#444"/>
+  <circle cx="190" cy="90" r="5" fill="#444"/>
+  <circle cx="240" cy="90" r="5" fill="#444"/>
+  <circle cx="290" cy="90" r="5" fill="#444"/>
+  <circle cx="340" cy="90" r="5" fill="#444"/>
+  <circle cx="390" cy="90" r="5" fill="#444"/>
+  <!-- Row 2 -->
+  <circle cx="40" cy="140" r="5" fill="#444"/>
+  <circle cx="90" cy="140" r="5" fill="#F0C040"/>
+  <circle cx="140" cy="140" r="5" fill="#F0C040"/>
+  <circle cx="190" cy="140" r="5" fill="#F0C040"/>
+  <circle cx="240" cy="140" r="5" fill="#F0C040"/>
+  <circle cx="290" cy="140" r="5" fill="#444"/>
+  <circle cx="340" cy="140" r="5" fill="#444"/>
+  <circle cx="390" cy="140" r="5" fill="#444"/>
+  <!-- Row 3 (gold spanning row) -->
+  <circle cx="40" cy="190" r="5" fill="#F0C040"/>
+  <circle cx="90" cy="190" r="5" fill="#F0C040"/>
+  <circle cx="140" cy="190" r="5" fill="#F0C040"/>
+  <circle cx="190" cy="190" r="5" fill="#F0C040"/>
+  <circle cx="240" cy="190" r="5" fill="#F0C040"/>
+  <circle cx="290" cy="190" r="5" fill="#F0C040"/>
+  <circle cx="340" cy="190" r="5" fill="#F0C040"/>
+  <circle cx="390" cy="190" r="5" fill="#F0C040"/>
+  <!-- Row 4 -->
+  <circle cx="40" cy="240" r="5" fill="#444"/>
+  <circle cx="90" cy="240" r="5" fill="#444"/>
+  <circle cx="140" cy="240" r="5" fill="#444"/>
+  <circle cx="190" cy="240" r="5" fill="#444"/>
+  <circle cx="240" cy="240" r="5" fill="#444"/>
+  <circle cx="290" cy="240" r="5" fill="#F0C040"/>
+  <circle cx="340" cy="240" r="5" fill="#F0C040"/>
+  <circle cx="390" cy="240" r="5" fill="#444"/>
+  <!-- Row 5 -->
+  <circle cx="40" cy="290" r="5" fill="#444"/>
+  <circle cx="90" cy="290" r="5" fill="#444"/>
+  <circle cx="140" cy="290" r="5" fill="#444"/>
+  <circle cx="190" cy="290" r="5" fill="#444"/>
+  <circle cx="240" cy="290" r="5" fill="#444"/>
+  <circle cx="290" cy="290" r="5" fill="#444"/>
+  <circle cx="340" cy="290" r="5" fill="#444"/>
+  <circle cx="390" cy="290" r="5" fill="#444"/>
+  <!-- Row 6 -->
+  <circle cx="40" cy="340" r="5" fill="#444"/>
+  <circle cx="90" cy="340" r="5" fill="#444"/>
+  <circle cx="140" cy="340" r="5" fill="#444"/>
+  <circle cx="190" cy="340" r="5" fill="#444"/>
+  <circle cx="240" cy="340" r="5" fill="#444"/>
+  <circle cx="290" cy="340" r="5" fill="#444"/>
+  <circle cx="340" cy="340" r="5" fill="#444"/>
+  <circle cx="390" cy="340" r="5" fill="#444"/>
+  <!-- Row 7 -->
+  <circle cx="40" cy="390" r="5" fill="#444"/>
+  <circle cx="90" cy="390" r="5" fill="#444"/>
+  <circle cx="140" cy="390" r="5" fill="#444"/>
+  <circle cx="190" cy="390" r="5" fill="#444"/>
+  <circle cx="240" cy="390" r="5" fill="#444"/>
+  <circle cx="290" cy="390" r="5" fill="#444"/>
+  <circle cx="340" cy="390" r="5" fill="#444"/>
+  <circle cx="390" cy="390" r="5" fill="#444"/>
+</svg>

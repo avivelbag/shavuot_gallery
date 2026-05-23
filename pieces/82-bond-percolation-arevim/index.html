@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guarantors for One Another — Bond Percolation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0A0A14;
+      color: #C8C0A0;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: #C09040;
+      letter-spacing: 0.05em;
+      padding: 1.4rem 2rem 0.3rem;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: #7060A0;
+      text-align: center;
+      padding-bottom: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1300px;
+      width: 100%;
+      padding: 0 2rem 2rem;
+    }
+    .art-pane { flex: 0 0 auto; }
+    canvas {
+      display: block;
+      background: #0A0A14;
+    }
+    .essay-pane {
+      flex: 1 1 0;
+      max-width: 480px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #B8B0A0;
+    }
+    .essay-pane h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: #C09040;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+    .essay-pane p { margin-bottom: 0.9rem; }
+    .source-note {
+      font-size: 0.75rem;
+      color: #504848;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guarantors for One Another</h1>
+  <div class="subtitle">כָּל יִשְׂרָאֵל עֲרֵבִים זֶה בָּזֶה &nbsp;·&nbsp; Bond percolation / union-find phase transition</div>
+
+  <div class="layout">
+    <div class="art-pane">
+      <canvas id="c"></canvas>
+    </div>
+    <div class="essay-pane">
+      <h2>Guarantors for One Another</h2>
+
+      <p>"All Israel are guarantors for one another" (<em>kol Yisrael arevim zeh bazeh</em>) — Shevuot 39a.</p>
+
+      <p>The Talmud does not offer this as a moral aspiration. It states it as a legal fact. An <em>arev</em> — a guarantor — in Jewish law takes on the debt of another: if the borrower defaults, the guarantor is liable in full. The Talmud extends this structure to the entire Jewish people and to every commandment: if one Jew fails to perform a mitzvah that was within his power to fulfill, every other Jew shares in that failure. Conversely, one Jew's fulfillment of a commandment contributes something real to every other Jew's account. The obligation is not merely communal in a soft sociological sense. It is juridically entangled.</p>
+
+      <p>The verse the Talmud cites as the source is Leviticus 26:37 — <em>ve-khashlu ish be-achiv</em> — "and they shall stumble, each man upon his brother." The Talmud reads this: one stumbles because of the sin of his brother; the individual's fate is literally caused by the other's failure. This is <em>arvut</em> — mutual guarantorship — as a description of how obligation is actually distributed in the world.</p>
+
+      <p>What makes this doctrine theologically non-obvious is its causal story. Arvut is not simply a ruling the Rabbis imposed. It is presented as a direct consequence of Matan Torah, the giving of the Torah at Sinai. At the moment of revelation, Exodus 19:8 says: <em>va-ya'an kol ha-am yachdav</em> — "and all the people answered together." Not "each person answered." <em>Together.</em> The Talmud understands this joint acceptance as creating a legal-metaphysical entanglement: because Israel accepted the Torah as a single unit, the obligation of each is now bound to the obligation of every other. One person's mitzvah is another's; one person's failure is shared. Sinai did not merely give Israel a law — it made each Jew the guarantor of every other.</p>
+
+      <p>The animation renders this mathematically. A 60×60 grid of nodes begins as scattered, isolated individuals. One by one, random bonds form between neighbors. Below the percolation threshold, the grid is a landscape of small disconnected clusters — each person alone, each obligation separate. Then, near the critical point (roughly half of all possible bonds), something sudden happens: a single connected component spans the entire grid from top to bottom or side to side. Every node in it is reachable from every other.</p>
+
+      <p>That moment — the frame when spanning first occurs — is the Sinai moment. The spanning component ignites gold. The others fade. What had been isolated clusters becomes one people, mutually reachable, mutually responsible. Arvut is not a metaphor for togetherness. It is the mathematical structure that emerges, irreversibly, at the moment of the covenant.</p>
+
+      <p class="source-note">Shevuot 39a · Leviticus 26:37 · Exodus 19:8 · Bond percolation on Z² (critical threshold p<sub>c</sub> ≈ 0.5) · Union-find with path compression and union by rank</p>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    const ROWS = 60, COLS = 60;
+    const CELL = 10;
+    const PAD = 40;
+    const NODE_R = 4;
+
+    const W = COLS * CELL + PAD * 2;
+    const H = ROWS * CELL + PAD * 2;
+
+    const canvas = document.getElementById('c');
+    canvas.width  = W;
+    canvas.height = H;
+    const ctx = canvas.getContext('2d');
+
+    const N = ROWS * COLS;
+
+    /* ---------- Union-Find (path-compressed, union by rank) ---------- */
+    class UF {
+      /**
+       * Initialise a union-find for n nodes.
+       * touchesTop / touchesBottom: per-root spanning flags for detecting
+       * the moment a component first spans the grid vertically.
+       * touchesLeft / touchesRight: corresponding flags for horizontal span.
+       */
+      constructor(n) {
+        this.p   = Int32Array.from({length: n}, (_, i) => i);
+        this.sz  = new Int32Array(n).fill(1);
+        this.top = new Uint8Array(n);
+        this.bot = new Uint8Array(n);
+        this.lft = new Uint8Array(n);
+        this.rgt = new Uint8Array(n);
+        for (let c = 0; c < COLS; c++) {
+          this.top[c] = 1;                       /* row 0 */
+          this.bot[(ROWS - 1) * COLS + c] = 1;   /* row ROWS-1 */
+        }
+        for (let r = 0; r < ROWS; r++) {
+          this.lft[r * COLS] = 1;                /* col 0 */
+          this.rgt[r * COLS + COLS - 1] = 1;     /* col COLS-1 */
+        }
+      }
+
+      find(x) {
+        while (this.p[x] !== x) {
+          this.p[x] = this.p[this.p[x]]; /* path splitting */
+          x = this.p[x];
+        }
+        return x;
+      }
+
+      /**
+       * Unite nodes a and b.
+       * Returns true iff this union creates the first spanning component.
+       * spanningRoot is set to the new root when spanning occurs.
+       */
+      union(a, b) {
+        a = this.find(a); b = this.find(b);
+        if (a === b) return false;
+        if (this.sz[a] < this.sz[b]) { const t = a; a = b; b = t; }
+        /* merge b into a */
+        this.p[b] = a;
+        this.sz[a] += this.sz[b];
+        this.top[a] = this.top[a] | this.top[b];
+        this.bot[a] = this.bot[a] | this.bot[b];
+        this.lft[a] = this.lft[a] | this.lft[b];
+        this.rgt[a] = this.rgt[a] | this.rgt[b];
+        return true;
+      }
+
+      size(x) { return this.sz[this.find(x)]; }
+
+      /** True if the root's component spans top-to-bottom or left-to-right. */
+      spans(root) {
+        return (this.top[root] && this.bot[root]) ||
+               (this.lft[root] && this.rgt[root]);
+      }
+    }
+
+    /* ---------- PRNG (xorshift32, determinism across sessions) ---------- */
+    let seed = 0xDEADBEEF;
+    function rand() {
+      seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5;
+      return (seed >>> 0) / 0xFFFFFFFF;
+    }
+
+    /* ---------- Bond list ---------- */
+    /**
+     * Generate every possible bond on the ROWS×COLS lattice then shuffle.
+     * A bond is [node_a, node_b].  We include only horizontal and vertical
+     * nearest-neighbour bonds; no diagonals.
+     */
+    function makeBonds() {
+      const bonds = [];
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          if (c + 1 < COLS) bonds.push([r * COLS + c, r * COLS + c + 1]);
+          if (r + 1 < ROWS) bonds.push([r * COLS + c, (r + 1) * COLS + c]);
+        }
+      }
+      /* Fisher-Yates shuffle */
+      for (let i = bonds.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        const t = bonds[i]; bonds[i] = bonds[j]; bonds[j] = t;
+      }
+      return bonds;
+    }
+
+    /* ---------- State ---------- */
+    let uf, bonds, bondIdx, spanningRoot;
+    let sinaiTriggered, fadeFrames, holdFrames;
+    let nodeColor;   /* Int32Array: packed 0xRRGGBB per node */
+    let edges;       /* list of [a, b] bonds already added */
+
+    const COL_BG      = '#0A0A14';
+    const COL_SMALL   = 0x444444;  /* < 5 nodes */
+    const COL_SMALL2  = 0x4060A0;  /* small giant */
+    const COL_GROWING = 0x2060E0;  /* growing giant */
+    const COL_GOLD    = 0xF0C040;  /* Sinai moment */
+    const COL_FADE    = 0x111111;  /* others after Sinai */
+
+    const FADE_FRAMES = 60;
+    const HOLD_FRAMES = 180; /* 3 s at 60 fps */
+
+    function init() {
+      uf           = new UF(N);
+      bonds        = makeBonds();
+      bondIdx      = 0;
+      spanningRoot = -1;
+      sinaiTriggered = false;
+      fadeFrames   = 0;
+      holdFrames   = 0;
+      nodeColor    = new Int32Array(N).fill(COL_SMALL);
+      edges        = [];
+    }
+
+    /* ---------- Color helpers ---------- */
+    function hexToRgb(h) {
+      return [(h >> 16) & 0xff, (h >> 8) & 0xff, h & 0xff];
+    }
+
+    /** Lerp an Int32 colour toward target over t in [0,1]. */
+    function lerpColor(src, dst, t) {
+      const [sr, sg, sb] = hexToRgb(src);
+      const [dr, dg, db] = hexToRgb(dst);
+      const r = (sr + (dr - sr) * t) | 0;
+      const g = (sg + (dg - sg) * t) | 0;
+      const b = (sb + (db - sb) * t) | 0;
+      return (r << 16) | (g << 8) | b;
+    }
+
+    function colorStr(col) {
+      return '#' + (col & 0xFFFFFF).toString(16).padStart(6, '0');
+    }
+
+    /** Recompute non-spanning component colours based on current largest root. */
+    function recolorComponents() {
+      /* find largest root */
+      let maxSize = 0, maxRoot = -1;
+      for (let i = 0; i < N; i++) {
+        if (uf.find(i) === i && uf.sz[i] > maxSize) {
+          maxSize = uf.sz[i]; maxRoot = i;
+        }
+      }
+      for (let i = 0; i < N; i++) {
+        const root = uf.find(i);
+        const sz = uf.sz[root];
+        let col;
+        if (sz < 5) {
+          col = COL_SMALL;
+        } else if (root === maxRoot) {
+          col = sz < N * 0.1 ? COL_SMALL2 : COL_GROWING;
+        } else {
+          col = COL_SMALL;
+        }
+        nodeColor[i] = col;
+      }
+    }
+
+    /* ---------- Draw ---------- */
+    function nodeXY(idx) {
+      const r = (idx / COLS) | 0;
+      const c = idx % COLS;
+      return [PAD + c * CELL + CELL / 2, PAD + r * CELL + CELL / 2];
+    }
+
+    function draw() {
+      ctx.fillStyle = COL_BG;
+      ctx.fillRect(0, 0, W, H);
+
+      /* draw bonds */
+      ctx.lineWidth = 1.5;
+      for (const [a, b] of edges) {
+        const colA = nodeColor[a], colB = nodeColor[b];
+        const col = colA === COL_GOLD || colB === COL_GOLD ? COL_GOLD : colA;
+        ctx.strokeStyle = colorStr(col);
+        ctx.globalAlpha = col === COL_GOLD ? 0.7 : 0.4;
+        const [ax, ay] = nodeXY(a);
+        const [bx, by] = nodeXY(b);
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(bx, by);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+
+      /* draw nodes */
+      for (let i = 0; i < N; i++) {
+        const col = nodeColor[i];
+        const [x, y] = nodeXY(i);
+        ctx.fillStyle = colorStr(col);
+        ctx.beginPath();
+        ctx.arc(x, y, NODE_R, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    /* ---------- Animation ---------- */
+    function step() {
+      if (holdFrames > 0) {
+        holdFrames--;
+        if (holdFrames === 0) init();
+        return;
+      }
+
+      if (sinaiTriggered && fadeFrames < FADE_FRAMES) {
+        /* fade non-spanning nodes toward #111 */
+        const t = (fadeFrames + 1) / FADE_FRAMES;
+        for (let i = 0; i < N; i++) {
+          if (uf.find(i) !== spanningRoot) {
+            nodeColor[i] = lerpColor(nodeColor[i], COL_FADE, t);
+          }
+        }
+        fadeFrames++;
+        if (fadeFrames === FADE_FRAMES) holdFrames = HOLD_FRAMES;
+        return;
+      }
+
+      if (sinaiTriggered) return; /* waiting for hold to start (shouldn't reach here) */
+
+      /* add one bond per frame */
+      if (bondIdx < bonds.length) {
+        const [a, b] = bonds[bondIdx++];
+        const merged = uf.union(a, b);
+        edges.push([a, b]);
+
+        if (merged) {
+          const root = uf.find(a);
+          /* check for spanning */
+          if (uf.spans(root) && !sinaiTriggered) {
+            sinaiTriggered = true;
+            spanningRoot   = root;
+            /* color spanning component gold */
+            for (let i = 0; i < N; i++) {
+              if (uf.find(i) === spanningRoot) nodeColor[i] = COL_GOLD;
+            }
+            /* start fade on next tick */
+          } else {
+            recolorComponents();
+          }
+        }
+      } else {
+        /* all bonds added without triggering — shouldn't happen on a 60×60 grid */
+        sinaiTriggered = true;
+        spanningRoot   = 0;
+        for (let i = 0; i < N; i++) nodeColor[i] = COL_FADE;
+        holdFrames = HOLD_FRAMES;
+      }
+    }
+
+    function loop() {
+      step();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    init();
+    loop();
+  })();
+  </script>
+</body>
+</html>

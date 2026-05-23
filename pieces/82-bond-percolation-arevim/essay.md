@@ -1,0 +1,13 @@
+# Guarantors for One Another
+
+"All Israel are guarantors for one another" (*kol Yisrael arevim zeh bazeh*) — Shevuot 39a.
+
+The Talmud does not offer this as a moral aspiration. It states it as a legal fact. An *arev* — a guarantor — in Jewish law takes on the debt of another: if the borrower defaults, the guarantor is liable in full. The Talmud extends this structure to the entire Jewish people and to every commandment: if one Jew fails to perform a mitzvah that was within his power to fulfill, every other Jew shares in that failure. Conversely, one Jew's fulfillment of a commandment contributes something real to every other Jew's account. The obligation is not merely communal in a soft sociological sense. It is juridically entangled.
+
+The verse the Talmud cites as the source is Leviticus 26:37 — *ve-khashlu ish be-achiv* — "and they shall stumble, each man upon his brother." The Talmud reads this: one stumbles because of the sin of his brother; the individual's fate is literally caused by the other's failure. This is *arvut* — mutual guarantorship — as a description of how obligation is actually distributed in the world.
+
+What makes this doctrine theologically non-obvious is its causal story. Arvut is not simply a ruling the Rabbis imposed. It is presented as a direct consequence of Matan Torah, the giving of the Torah at Sinai. At the moment of revelation, Exodus 19:8 says: *va-ya'an kol ha-am yachdav* — "and all the people answered together." Not "each person answered." *Together.* The Talmud understands this joint acceptance as creating a legal-metaphysical entanglement: because Israel accepted the Torah as a single unit, the obligation of each is now bound to the obligation of every other. One person's mitzvah is another's; one person's failure is shared. Sinai did not merely give Israel a law — it made each Jew the guarantor of every other.
+
+The animation renders this mathematically. A 60×60 grid of nodes begins as scattered, isolated individuals. One by one, random bonds form between neighbors. Below the percolation threshold, the grid is a landscape of small disconnected clusters — each person alone, each obligation separate. Then, near the critical point (roughly half of all possible bonds), something sudden happens: a single connected component spans the entire grid from top to bottom or side to side. Every node in it is reachable from every other.
+
+That moment — the frame when spanning first occurs — is the Sinai moment. The spanning component ignites gold. The others fade. What had been isolated clusters becomes one people, mutually reachable, mutually responsible. Arvut is not a metaphor for togetherness. It is the mathematical structure that emerges, irreversibly, at the moment of the covenant.

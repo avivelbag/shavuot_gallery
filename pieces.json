@@ -1342,6 +1342,17 @@
     "essay": "pieces/81-sph-torah-as-water/essay.md"
   },
   {
+    "id": "82-bond-percolation-arevim",
+    "title": "Guarantors for One Another",
+    "tagline": "כָּל יִשְׂרָאֵל עֲרֵבִים זֶה בָּזֶה — bond percolation reaches its critical threshold and a single spanning community appears",
+    "year": 2026,
+    "theme": "Matan Torah / kol Yisrael arevim",
+    "technique": "Bond percolation / union-find phase transition",
+    "path": "pieces/82-bond-percolation-arevim/index.html",
+    "thumbnail": "pieces/82-bond-percolation-arevim/thumbnail.svg",
+    "essay": "pieces/82-bond-percolation-arevim/essay.md"
+  },
+  {
     "id": "82-superformula-seven-species",
     "title": "In the Shape of Abundance",
     "tagline": "the seven species of the Land rendered as Gielis superformula silhouettes — wheat, barley, grapes, figs, pomegranate, olive, dates — morphing from one form to the next",
