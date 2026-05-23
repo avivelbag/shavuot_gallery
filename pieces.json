@@ -1175,5 +1175,16 @@
     "path": "pieces/75-ising-one-heart-sinai/index.html",
     "thumbnail": "pieces/75-ising-one-heart-sinai/thumbnail.svg",
     "essay": "pieces/75-ising-one-heart-sinai/essay.md"
+  },
+  {
+    "id": "75-mandelbrot-infinite-torah",
+    "title": "Turn It and Turn It Again",
+    "tagline": "the Mandelbrot set zooms forever into its own boundary — as Torah has infinite depth at every scale",
+    "year": 2026,
+    "theme": "The Crown of Torah / Naaseh v’Nishma",
+    "technique": "Mandelbrot set / WebGL smooth escape-time coloring",
+    "path": "pieces/75-mandelbrot-infinite-torah/index.html",
+    "thumbnail": "pieces/75-mandelbrot-infinite-torah/thumbnail.png",
+    "essay": "pieces/75-mandelbrot-infinite-torah/essay.md"
   }
 ]
