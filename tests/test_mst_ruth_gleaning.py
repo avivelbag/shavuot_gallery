@@ -7,8 +7,6 @@ all satisfy the acceptance criteria for the MST / Ruth gleaning piece.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "96-mst-ruth-gleaning"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
