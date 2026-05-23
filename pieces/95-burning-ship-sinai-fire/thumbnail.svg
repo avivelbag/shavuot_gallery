@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="fire-glow" cx="50%" cy="58%" r="62%" gradientUnits="objectBoundingBox">
+      <stop offset="0%"   stop-color="#FFFAF0" stop-opacity="1"/>
+      <stop offset="12%"  stop-color="#FFD700" stop-opacity="1"/>
+      <stop offset="38%"  stop-color="#FF4500" stop-opacity="1"/>
+      <stop offset="68%"  stop-color="#8B0000" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="flame-tip" cx="50%" cy="70%" r="50%">
+      <stop offset="0%"   stop-color="#FFFAF0"/>
+      <stop offset="60%"  stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FF4500" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow-filter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Black background -->
+  <rect width="400" height="400" fill="#000000"/>
+
+  <!-- Outer fire field -->
+  <ellipse cx="200" cy="230" rx="182" ry="155" fill="url(#fire-glow)"/>
+
+  <!-- The Burning Ship / mountain body (black interior — the unconsumed core) -->
+  <path d="M 108 305
+           C 108 285 112 265 122 248
+           C 133 230 148 216 165 209
+           L 178 204 L 188 200 L 200 198
+           L 212 200 L 222 204 L 235 209
+           C 252 216 267 230 278 248
+           C 288 265 292 285 292 305 Z"
+        fill="#000000"/>
+
+  <!-- Sub-hull darkening at base -->
+  <rect x="108" y="288" width="184" height="17" rx="2" fill="#000000" opacity="0.9"/>
+
+  <!-- Central mast flame filament (glowing gold spike) -->
+  <path d="M 196 198 L 192 152 L 196 170 L 200 118 L 204 170 L 208 152 L 204 198 Z"
+        fill="#FFFAF0" filter="url(#glow-filter)"/>
+
+  <!-- Secondary mast spikes -->
+  <path d="M 174 207 L 169 168 L 173 184 L 176 148 L 179 184 L 176 207 Z"
+        fill="#FFD700" filter="url(#glow-filter)" opacity="0.9"/>
+  <path d="M 226 207 L 221 168 L 224 184 L 227 148 L 230 184 L 227 207 Z"
+        fill="#FFD700" filter="url(#glow-filter)" opacity="0.9"/>
+
+  <!-- Tertiary filaments -->
+  <path d="M 156 212 L 149 182 L 153 196 L 157 168 L 160 196 L 157 212 Z"
+        fill="#FF4500" opacity="0.75"/>
+  <path d="M 244 212 L 237 182 L 241 196 L 245 168 L 248 196 L 244 212 Z"
+        fill="#FF4500" opacity="0.75"/>
+
+  <!-- Hull-edge detail (fractal-suggesting jagged boundary) -->
+  <polyline points="123,248 119,238 126,245 122,232 128,242 125,226 131,238"
+            stroke="#FF4500" stroke-width="1.2" fill="none" opacity="0.7"/>
+  <polyline points="277,248 281,238 274,245 278,232 272,242 275,226 269,238"
+            stroke="#FF4500" stroke-width="1.2" fill="none" opacity="0.7"/>
+
+  <!-- Side micro-spires at hull shoulders -->
+  <path d="M 165 208 L 158 192 L 162 200 L 165 188 Z" fill="#FFD700" opacity="0.6"/>
+  <path d="M 235 208 L 242 192 L 238 200 L 235 188 Z" fill="#FFD700" opacity="0.6"/>
+
+  <!-- Keel extension (dark detail below hull) -->
+  <path d="M 155 305 L 160 320 L 200 328 L 240 320 L 245 305 Z"
+        fill="#000000" opacity="0.85"/>
+
+  <!-- Hebrew text: דברים ד:יא -->
+  <text x="200" y="380"
+        text-anchor="middle"
+        font-family="'Times New Roman', 'Noto Serif Hebrew', serif"
+        font-size="17"
+        fill="#FFD700"
+        direction="rtl"
+        unicode-bidi="bidi-override"
+        letter-spacing="1">דברים ד:יא</text>
+</svg>

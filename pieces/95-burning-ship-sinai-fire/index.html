@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mountain Burning to the Heart of Heaven — Burning Ship Fractal</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #000; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+      cursor: crosshair;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #3a0a00;
+      overflow-y: auto;
+      color: #c8b090;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0a0400;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel {
+        position: relative;
+        height: 65vw;
+        min-height: 300px;
+        flex: none;
+      }
+      .essay-panel {
+        border-left: none;
+        border-top: 1px solid #3a0a00;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.55rem;
+      color: #FFD700;
+      margin: 0 0 0.3rem;
+      font-weight: normal;
+    }
+
+    .essay-panel .subtitle {
+      font-size: 0.85rem;
+      color: #5a3010;
+      margin: 0 0 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #FF4500;
+      margin: 2.5rem 0 0.7rem;
+      font-weight: normal;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1.1rem;
+      font-size: 0.95rem;
+    }
+
+    .essay-panel em { color: #FFD700; font-style: italic; }
+    .essay-panel strong { color: #FFFAF0; font-weight: normal; }
+
+    .essay-panel .math-block {
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+      color: #FF8C40;
+      padding: 0.8rem 1.1rem;
+      background: #100500;
+      border-radius: 3px;
+      margin: 0 0 1.1rem;
+      line-height: 1.7;
+      border-left: 2px solid #8B0000;
+    }
+
+    /* Bilingual Tanach excerpt block */
+    .tanach-block {
+      margin: 1.5rem 0 2rem;
+      padding: 1.3rem 1.5rem;
+      background: #0c0200;
+      border-left: 3px solid #8B0000;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .tanach-block .hebrew {
+      direction: rtl;
+      text-align: right;
+      font-size: 1.15rem;
+      line-height: 2.2;
+      color: #FFD700;
+      margin: 0 0 1rem;
+      font-family: 'Noto Serif Hebrew', 'Times New Roman', serif;
+    }
+
+    .tanach-block .english-translation {
+      font-style: italic;
+      color: #a08060;
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .tanach-block cite {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: #6a4020;
+      font-style: normal;
+    }
+
+    .hint {
+      font-size: 0.78rem;
+      color: #3a1800;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1a0800;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>Mountain Burning to the Heart of Heaven</h1>
+    <p class="subtitle">Burning Ship Fractal — Har Sinai</p>
+
+    <h2>Deuteronomy 4:11–12</h2>
+
+    <div class="tanach-block">
+      <p class="hebrew" dir="rtl" lang="he">
+        וַתִּקְרְבוּן וַתַּעַמְדוּן תַּחַת הָהָר וְהָהָר בֹּעֵר בָּאֵשׁ
+        עַד-לֵב הַשָּׁמַיִם חֹשֶׁךְ עָנָן וַעֲרָפֶל׃
+        וַיְדַבֵּר יְהוָה אֲלֵיכֶם מִתּוֹךְ הָאֵשׁ קוֹל דְּבָרִים
+        אַתֶּם שֹׁמְעִים וּתְמוּנָה אֵינְכֶם רֹאִים זוּלָתִי קוֹל׃
+      </p>
+      <p class="english-translation">
+        "And you came near and stood at the foot of the mountain, and the mountain
+        burned with fire to the heart of heaven — darkness, cloud, and thick darkness.
+        And the LORD spoke to you from the midst of the fire; you heard the voice of
+        words, but you saw no form — only a voice."
+      </p>
+      <cite>— Deuteronomy 4:11–12</cite>
+    </div>
+
+    <p>This description has perplexed readers for millennia. Fire <em>and</em> darkness —
+    not fire replacing darkness, but fire coexisting with darkness at Sinai's peak. The
+    mountain burned with fire "to the heart of heaven" while thick darkness still surrounded
+    it. Light consuming, but darkness persisting. A fire that burned without destroying.</p>
+
+    <h2>The Burning Ship Fractal</h2>
+
+    <p>First described mathematically by Linas Vepstas in 1991, the Burning Ship fractal
+    differs from the Mandelbrot set by exactly one modification. In the Mandelbrot
+    iteration — z² + c, repeated from z = 0 — the complex number z is free to rotate and
+    grow in all directions symmetrically. The Burning Ship forces a fold before each
+    squaring: the absolute values of both the real and imaginary parts of z are taken
+    first. The iteration becomes:</p>
+
+    <div class="math-block">
+      z&#x2099;₊₁ = (|Re(z&#x2099;)| + i|Im(z&#x2099;)|)² + c
+    </div>
+
+    <p>That single change — insisting on absolute values — collapses the complex plane's
+    rotational symmetry. The smooth, circular orbits of the Mandelbrot set give way to
+    jagged, asymmetric structures. The result is unmistakable: a solid dark hull, and
+    rising from it, flame-like filaments extending in self-similar cascades toward the sky.
+    Rotate the image 180 degrees. The ship becomes a mountain.</p>
+
+    <h2>The Unconsumed Core</h2>
+
+    <p>The non-obvious mathematical insight lies in the <strong>interior</strong> — the
+    black region at the center of the image. Every point in that dark region has been
+    iterated 512 times and has <em>not</em> escaped to infinity. No matter how many times
+    you apply the Burning Ship formula to those points, they remain bounded. The interior
+    is unconsumed. It persists within the fire.</p>
+
+    <p>This is the fractal's correspondence with Sinai. The exterior pixels — those outside
+    the black region — escape in varying numbers of iterations, producing the graduated
+    glow of fire: deep <strong>ember red</strong> (#8B0000) at the outer fringes through
+    <strong>flame orange</strong> (#FF4500), bright <strong>gold</strong> (#FFD700), to
+    <strong>white-hot</strong> (#FFFAF0) at the mountain's edge. They are the fire spreading
+    outward. The interior, the mountain's mass, never escapes. It burns but is not consumed.</p>
+
+    <p>The boundary between interior and exterior is infinitely detailed. Zoom into any edge
+    and you find smaller ships, smaller mountains, smaller fires — the same structure at
+    every scale. This is the fire that never ends, just as the Talmud (Megillah 15b) says
+    the words of Torah are like fire: inexhaustible, self-renewing, revealing new depth
+    with each approach.</p>
+
+    <h2>Standing at the Foot of the Mountain</h2>
+
+    <p>The viewer now stands where Israel stood: at the foot of the mountain, looking up at
+    fire rising toward heaven, surrounded by darkness and cloud, hearing a voice but seeing
+    no form. Zoom freely into any filament and you will find another mountain burning within
+    it. There is no bottom to the fractal, just as there is no bottom to the text. The fire
+    is the same fire. The darkness is the same darkness. And the voice speaks from the
+    midst of it.</p>
+
+    <p class="hint">Drag to pan · Scroll or pinch to zoom · Animation settles after 8 s</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------ */
+  /* Constants                                                           */
+  /* ------------------------------------------------------------------ */
+
+  var MAX_ITER = 512;
+
+  /* Full-ship initial viewport: Re ∈ [−2.0, 1.2], Im ∈ [−1.8, 0.2]  */
+  var START_CENTER_X = -0.4;
+  var START_CENTER_Y = -0.8;
+  var START_WIDTH    = 3.2;
+
+  /* Target close-up: dramatic mast/flame filament                       */
+  var TARGET_CENTER_X = -0.4;
+  var TARGET_CENTER_Y = -0.55;
+  var TARGET_WIDTH    = 0.08;
+
+  var ANIM_DURATION = 8000; /* ms */
+
+  /* ------------------------------------------------------------------ */
+  /* State                                                               */
+  /* ------------------------------------------------------------------ */
+
+  var centerX = START_CENTER_X;
+  var centerY = START_CENTER_Y;
+  var viewWidth = START_WIDTH;
+
+  var animating     = true;
+  var animStartTime = null;
+
+  var dragging       = false;
+  var dragStartX     = 0;
+  var dragStartY     = 0;
+  var dragCenterX    = 0;
+  var dragCenterY    = 0;
+
+  var needsRender = true;
+
+  /* ------------------------------------------------------------------ */
+  /* Canvas / GL setup                                                   */
+  /* ------------------------------------------------------------------ */
+
+  var canvas = document.getElementById('c');
+  var gl     = null;
+  var program;
+  var positionBuffer;
+  var uResolution, uCenter, uWidth;
+
+  /* ------------------------------------------------------------------ */
+  /* GLSL shaders                                                        */
+  /* ------------------------------------------------------------------ */
+
+  var VS_SRC = [
+    'attribute vec2 a_position;',
+    'void main() {',
+    '  gl_Position = vec4(a_position, 0.0, 1.0);',
+    '}'
+  ].join('\n');
+
+  /* Fragment shader: Burning Ship iteration with smooth coloring.
+     The y-axis is in WebGL convention (y=0 at bottom), so Im increases
+     upward on screen — flame filaments point toward the top, reading
+     as a mountain with fire rising to heaven.                           */
+  var FS_SRC = [
+    'precision highp float;',
+    'uniform vec2 u_resolution;',
+    'uniform vec2 u_center;',
+    'uniform float u_width;',
+    '',
+    'const int MAX_ITER = 512;',
+    '',
+    /* Fire palette: ember red → flame orange → bright gold → white-hot */
+    'vec3 fireColor(float t) {',
+    '  t = clamp(t, 0.0, 1.0);',
+    '  vec3 c0 = vec3(0.545, 0.000, 0.000);',  /* #8B0000 ember red  */
+    '  vec3 c1 = vec3(1.000, 0.271, 0.000);',  /* #FF4500 flame orange */
+    '  vec3 c2 = vec3(1.000, 0.843, 0.000);',  /* #FFD700 bright gold  */
+    '  vec3 c3 = vec3(1.000, 0.980, 0.941);',  /* #FFFAF0 white-hot    */
+    '  if (t < 0.333) {',
+    '    return mix(c0, c1, t * 3.0);',
+    '  } else if (t < 0.667) {',
+    '    return mix(c1, c2, (t - 0.333) * 3.0);',
+    '  } else {',
+    '    return mix(c2, c3, (t - 0.667) * 3.0);',
+    '  }',
+    '}',
+    '',
+    'void main() {',
+    '  vec2 uv = gl_FragCoord.xy / u_resolution;',
+    '  float aspect = u_resolution.x / u_resolution.y;',
+    /* Map screen UV to complex plane; WebGL y=0 is bottom so Im naturally
+       increases upward — flame filaments appear pointing toward the top. */
+    '  float re = u_center.x + (uv.x - 0.5) * u_width;',
+    '  float im = u_center.y + (uv.y - 0.5) * u_width / aspect;',
+    '',
+    '  vec2 c = vec2(re, im);',
+    '  vec2 z = vec2(0.0, 0.0);',
+    '  float escapeIter = -1.0;',
+    '  vec2 ez = vec2(0.0);',
+    '',
+    /* Burning Ship: z_{n+1} = (|Re(z)| + i|Im(z)|)^2 + c              */
+    '  for (int i = 0; i < MAX_ITER; i++) {',
+    '    z = vec2(abs(z.x), abs(z.y));',
+    '    float zx = z.x * z.x - z.y * z.y + c.x;',
+    '    float zy = 2.0 * z.x * z.y + c.y;',
+    '    z = vec2(zx, zy);',
+    '    if (dot(z, z) > 4.0) {',
+    '      escapeIter = float(i);',
+    '      ez = z;',
+    '      break;',
+    '    }',
+    '  }',
+    '',
+    /* Interior — the unconsumed mountain core                           */
+    '  if (escapeIter < 0.0) {',
+    '    gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);',
+    '    return;',
+    '  }',
+    '',
+    /* Smooth coloring: fractional escape count via log(log(|z|))       */
+    /* smooth_iter = i + 1 - log2(log2(|z|))                           */
+    '  float logZn = log(max(dot(ez, ez), 1e-10)) * 0.5;',
+    '  float nu    = log(max(logZn / log(2.0), 1e-10)) / log(2.0);',
+    '  float smooth = max(0.0, escapeIter + 1.0 - nu);',
+    '',
+    /* sqrt-scale maps iteration count to fire palette:                 */
+    /* low counts (far exterior) = dark ember; high counts (boundary)   */
+    /* = white-hot                                                       */
+    '  float t = sqrt(clamp(smooth / float(MAX_ITER), 0.0, 1.0));',
+    '  gl_FragColor = vec4(fireColor(t), 1.0);',
+    '}'
+  ].join('\n');
+
+  /* ------------------------------------------------------------------ */
+  /* WebGL initialisation                                                */
+  /* ------------------------------------------------------------------ */
+
+  function compileShader(type, src) {
+    var shader = gl.createShader(type);
+    gl.shaderSource(shader, src);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      throw new Error('Shader compile: ' + gl.getShaderInfoLog(shader));
+    }
+    return shader;
+  }
+
+  function initGL() {
+    gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) { return false; }
+
+    try {
+      var vs = compileShader(gl.VERTEX_SHADER, VS_SRC);
+      var fs = compileShader(gl.FRAGMENT_SHADER, FS_SRC);
+      program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        throw new Error('Program link: ' + gl.getProgramInfoLog(program));
+      }
+    } catch (e) {
+      console.warn('WebGL shader error:', e.message);
+      gl = null;
+      return false;
+    }
+
+    /* Full-screen quad (two triangles covering clip space [−1,1]²)     */
+    positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      -1, -1,  1, -1,  -1,  1,
+      -1,  1,  1, -1,   1,  1
+    ]), gl.STATIC_DRAW);
+
+    uResolution = gl.getUniformLocation(program, 'u_resolution');
+    uCenter     = gl.getUniformLocation(program, 'u_center');
+    uWidth      = gl.getUniformLocation(program, 'u_width');
+
+    return true;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Canvas 2D fallback (lower resolution, CPU rendering)               */
+  /* ------------------------------------------------------------------ */
+
+  var ctx2d = null;
+  var FB_W  = 512;
+  var FB_H  = 512;
+
+  function fireColorJS(t) {
+    t = Math.max(0, Math.min(1, t));
+    var c0 = [139, 0,   0];
+    var c1 = [255, 69,  0];
+    var c2 = [255, 215, 0];
+    var c3 = [255, 250, 240];
+    var a, b, f;
+    if (t < 0.333) { a = c0; b = c1; f = t * 3; }
+    else if (t < 0.667) { a = c1; b = c2; f = (t - 0.333) * 3; }
+    else { a = c2; b = c3; f = (t - 0.667) * 3; }
+    return [
+      Math.round(a[0] + (b[0] - a[0]) * f),
+      Math.round(a[1] + (b[1] - a[1]) * f),
+      Math.round(a[2] + (b[2] - a[2]) * f)
+    ];
+  }
+
+  function initCanvas2D() {
+    ctx2d = canvas.getContext('2d');
+    canvas.width  = FB_W;
+    canvas.height = FB_H;
+    canvas.style.imageRendering = 'pixelated';
+  }
+
+  function renderCanvas2D() {
+    if (!ctx2d) { return; }
+    var aspect   = FB_W / FB_H;
+    var imgData  = ctx2d.createImageData(FB_W, FB_H);
+    var data     = imgData.data;
+    var LN2      = Math.LN2;
+
+    for (var py = 0; py < FB_H; py++) {
+      /* y=0 is top in 2D canvas; flip to match WebGL convention        */
+      var uvY = (FB_H - py) / FB_H;
+      var im  = centerY + (uvY - 0.5) * viewWidth / aspect;
+
+      for (var px = 0; px < FB_W; px++) {
+        var uvX = px / FB_W;
+        var re  = centerX + (uvX - 0.5) * viewWidth;
+
+        var zx = 0, zy = 0;
+        var escaped = false;
+        var ei = -1;
+        var ezx = 0, ezy = 0;
+
+        for (var i = 0; i < MAX_ITER; i++) {
+          var ax = Math.abs(zx);
+          var ay = Math.abs(zy);
+          var nx = ax * ax - ay * ay + re;
+          var ny = 2 * ax * ay + im;
+          zx = nx; zy = ny;
+          if (zx * zx + zy * zy > 4) {
+            ei = i; ezx = zx; ezy = zy;
+            escaped = true;
+            break;
+          }
+        }
+
+        var idx = (py * FB_W + px) * 4;
+        data[idx + 3] = 255;
+
+        if (!escaped) {
+          data[idx] = data[idx + 1] = data[idx + 2] = 0;
+          continue;
+        }
+
+        var logZn   = Math.log(Math.max(ezx * ezx + ezy * ezy, 1e-10)) * 0.5;
+        var nu      = Math.log(Math.max(logZn / LN2, 1e-10)) / LN2;
+        var smooth  = Math.max(0, ei + 1 - nu);
+        var t       = Math.sqrt(Math.min(smooth / MAX_ITER, 1));
+        var rgb     = fireColorJS(t);
+        data[idx]     = rgb[0];
+        data[idx + 1] = rgb[1];
+        data[idx + 2] = rgb[2];
+      }
+    }
+    ctx2d.putImageData(imgData, 0, 0);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Resize handling                                                     */
+  /* ------------------------------------------------------------------ */
+
+  function resize() {
+    if (!gl) { return; }
+    var dpr   = window.devicePixelRatio || 1;
+    var panel = document.getElementById('art-panel');
+    var w     = Math.floor(panel.clientWidth  * dpr);
+    var h     = Math.floor(panel.clientHeight * dpr);
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+      gl.viewport(0, 0, w, h);
+      needsRender = true;
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Render                                                              */
+  /* ------------------------------------------------------------------ */
+
+  function render() {
+    if (!gl) { renderCanvas2D(); return; }
+
+    resize();
+
+    gl.useProgram(program);
+
+    var posLoc = gl.getAttribLocation(program, 'a_position');
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    gl.uniform2f(uResolution, canvas.width, canvas.height);
+    gl.uniform2f(uCenter, centerX, centerY);
+    gl.uniform1f(uWidth, viewWidth);
+
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Easing                                                              */
+  /* ------------------------------------------------------------------ */
+
+  /* Cubic ease-in-out: slow start, accelerate, slow end                */
+  function easeInOut(t) {
+    t = Math.max(0, Math.min(1, t));
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Animation loop                                                      */
+  /* ------------------------------------------------------------------ */
+
+  function loop(timestamp) {
+    if (animating) {
+      if (!animStartTime) { animStartTime = timestamp; }
+      var elapsed = timestamp - animStartTime;
+      var progress = Math.min(1, elapsed / ANIM_DURATION);
+      var e = easeInOut(progress);
+
+      /* Interpolate center linearly, width exponentially (natural zoom) */
+      centerX   = START_CENTER_X + (TARGET_CENTER_X - START_CENTER_X) * e;
+      centerY   = START_CENTER_Y + (TARGET_CENTER_Y - START_CENTER_Y) * e;
+      viewWidth = Math.exp(
+        Math.log(START_WIDTH) +
+        (Math.log(TARGET_WIDTH) - Math.log(START_WIDTH)) * e
+      );
+
+      if (progress >= 1) { animating = false; }
+      needsRender = true;
+    }
+
+    if (needsRender) {
+      render();
+      needsRender = false;
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Coordinate helpers                                                  */
+  /* ------------------------------------------------------------------ */
+
+  /* Convert a screen pixel position to complex plane coords.
+     mouseY is in CSS pixels from the top of the canvas element.        */
+  function screenToComplex(mouseX, mouseY, rectW, rectH) {
+    var aspect = canvas.width / canvas.height;
+    var uvX    = mouseX / rectW;
+    /* Flip y: screen y=0 is top, WebGL y=0 is bottom                  */
+    var uvY    = 1.0 - mouseY / rectH;
+    return {
+      re: centerX + (uvX - 0.5) * viewWidth,
+      im: centerY + (uvY - 0.5) * viewWidth / aspect
+    };
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Mouse interaction                                                   */
+  /* ------------------------------------------------------------------ */
+
+  canvas.addEventListener('mousedown', function (e) {
+    if (animating) { animating = false; }
+    dragging    = true;
+    dragStartX  = e.clientX;
+    dragStartY  = e.clientY;
+    dragCenterX = centerX;
+    dragCenterY = centerY;
+    e.preventDefault();
+  });
+
+  window.addEventListener('mousemove', function (e) {
+    if (!dragging) { return; }
+    var rect   = canvas.getBoundingClientRect();
+    var aspect = canvas.width / canvas.height;
+    var dx     = e.clientX - dragStartX;
+    var dy     = e.clientY - dragStartY;
+    /* Drag right → Re decreases (we reveal content to the left)        */
+    centerX = dragCenterX - dx / rect.width  * viewWidth;
+    /* Drag down  → Im increases (screen y is inverted vs Im)           */
+    centerY = dragCenterY + dy / rect.height * viewWidth / aspect;
+    needsRender = true;
+  });
+
+  window.addEventListener('mouseup', function () { dragging = false; });
+
+  canvas.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    if (animating) { animating = false; }
+
+    var factor = Math.exp(e.deltaY * 0.001);
+    var rect   = canvas.getBoundingClientRect();
+    var pt     = screenToComplex(
+      e.clientX - rect.left,
+      e.clientY - rect.top,
+      rect.width,
+      rect.height
+    );
+    var aspect = canvas.width / canvas.height;
+    var uvX    = (e.clientX - rect.left) / rect.width;
+    var uvY    = 1.0 - (e.clientY - rect.top) / rect.height;
+
+    viewWidth *= factor;
+    /* Keep the complex point under the cursor fixed                     */
+    centerX = pt.re - (uvX - 0.5) * viewWidth;
+    centerY = pt.im - (uvY - 0.5) * viewWidth / aspect;
+    needsRender = true;
+  }, { passive: false });
+
+  /* ------------------------------------------------------------------ */
+  /* Touch interaction (single-finger pan, two-finger pinch)            */
+  /* ------------------------------------------------------------------ */
+
+  var lastPinchDist = null;
+  var pinchCenterX  = 0;
+  var pinchCenterY  = 0;
+
+  canvas.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    if (animating) { animating = false; }
+    if (e.touches.length === 1) {
+      dragging    = true;
+      dragStartX  = e.touches[0].clientX;
+      dragStartY  = e.touches[0].clientY;
+      dragCenterX = centerX;
+      dragCenterY = centerY;
+    } else if (e.touches.length === 2) {
+      dragging = false;
+      lastPinchDist = Math.hypot(
+        e.touches[1].clientX - e.touches[0].clientX,
+        e.touches[1].clientY - e.touches[0].clientY
+      );
+      pinchCenterX = centerX;
+      pinchCenterY = centerY;
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+    var rect   = canvas.getBoundingClientRect();
+    var aspect = canvas.width / canvas.height;
+
+    if (e.touches.length === 1 && dragging) {
+      var dx  = e.touches[0].clientX - dragStartX;
+      var dy  = e.touches[0].clientY - dragStartY;
+      centerX = dragCenterX - dx / rect.width  * viewWidth;
+      centerY = dragCenterY + dy / rect.height * viewWidth / aspect;
+      needsRender = true;
+    } else if (e.touches.length === 2 && lastPinchDist !== null) {
+      var dist = Math.hypot(
+        e.touches[1].clientX - e.touches[0].clientX,
+        e.touches[1].clientY - e.touches[0].clientY
+      );
+      var midX   = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      var midY   = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      var factor = lastPinchDist / dist;
+      var uvX    = (midX - rect.left) / rect.width;
+      var uvY    = 1.0 - (midY - rect.top) / rect.height;
+      var ptRe   = pinchCenterX + (uvX - 0.5) * viewWidth;
+      var ptIm   = pinchCenterY + (uvY - 0.5) * viewWidth / aspect;
+
+      viewWidth    *= factor;
+      centerX       = ptRe - (uvX - 0.5) * viewWidth;
+      centerY       = ptIm - (uvY - 0.5) * viewWidth / aspect;
+      pinchCenterX  = centerX;
+      pinchCenterY  = centerY;
+      lastPinchDist = dist;
+      needsRender   = true;
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', function () {
+    dragging      = false;
+    lastPinchDist = null;
+  });
+
+  /* ------------------------------------------------------------------ */
+  /* Window resize                                                       */
+  /* ------------------------------------------------------------------ */
+
+  window.addEventListener('resize', function () {
+    resize();
+    needsRender = true;
+  });
+
+  /* ------------------------------------------------------------------ */
+  /* Bootstrap                                                           */
+  /* ------------------------------------------------------------------ */
+
+  if (!initGL()) {
+    console.warn('WebGL unavailable — falling back to Canvas 2D');
+    initCanvas2D();
+  } else {
+    resize();
+  }
+
+  requestAnimationFrame(loop);
+
+}());
+</script>
+</body>
+</html>

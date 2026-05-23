@@ -1705,6 +1705,17 @@
     "essay": "pieces/94-streamline-two-tablets/essay.md"
   },
   {
+    "id": "95-burning-ship-sinai-fire",
+    "title": "Mountain Burning to the Heart of Heaven",
+    "tagline": "the Burning Ship fractal — a single absolute-value fold that transforms the Mandelbrot iteration into jagged flame-like spires, rendering Deuteronomy 4:11 in mathematics: the mountain that burned with fire to the heart of heaven while darkness surrounded it, its unconsumed interior the black heart of Sinai",
+    "year": 2026,
+    "theme": "Har Sinai / consuming fire",
+    "technique": "Burning Ship fractal (smooth escape-time coloring)",
+    "path": "pieces/95-burning-ship-sinai-fire/index.html",
+    "thumbnail": "pieces/95-burning-ship-sinai-fire/thumbnail.svg",
+    "essay": "pieces/95-burning-ship-sinai-fire/essay.md"
+  },
+  {
     "id": "95-cellular-potts-twelve-tribes",
     "title": "As One Person, With One Heart",
     "tagline": "the cellular Potts model: twelve cell types — the twelve tribes — sort from random chaos into coherent territories around the Tabernacle void, enacting k'ish echad b'lev echad",
