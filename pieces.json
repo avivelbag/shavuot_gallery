@@ -1219,5 +1219,16 @@
     "path": "pieces/77-game-of-life-living-letters/index.html",
     "thumbnail": "pieces/77-game-of-life-living-letters/thumbnail.svg",
     "essay": "pieces/77-game-of-life-living-letters/essay.md"
+  },
+  {
+    "id": "77-thomas-attractor-tikkun-leil",
+    "title": "Until the Dawn Rises",
+    "tagline": "A Thomas attractor orbit trail winding from midnight darkness to golden dawn",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot",
+    "technique": "Thomas attractor / RK4 integration / orbit trail",
+    "path": "pieces/77-thomas-attractor-tikkun-leil/index.html",
+    "thumbnail": "pieces/77-thomas-attractor-tikkun-leil/thumbnail.svg",
+    "essay": "pieces/77-thomas-attractor-tikkun-leil/essay.md"
   }
 ]

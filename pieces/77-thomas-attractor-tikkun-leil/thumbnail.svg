@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#060408"/>
+
+  <!-- Outer indigo glow rings suggesting the attractor's double-lobe structure -->
+  <ellipse cx="155" cy="200" rx="85" ry="60" fill="none" stroke="#1A1060" stroke-width="18" opacity="0.7"/>
+  <ellipse cx="245" cy="200" rx="85" ry="60" fill="none" stroke="#1A1060" stroke-width="18" opacity="0.7"/>
+
+  <!-- Mid indigo loops -->
+  <ellipse cx="155" cy="200" rx="68" ry="46" fill="none" stroke="#2A2080" stroke-width="10" opacity="0.8"/>
+  <ellipse cx="245" cy="200" rx="68" ry="46" fill="none" stroke="#2A2080" stroke-width="10" opacity="0.8"/>
+
+  <!-- Inner amber rings -->
+  <ellipse cx="155" cy="200" rx="50" ry="34" fill="none" stroke="#C87020" stroke-width="5" opacity="0.9"/>
+  <ellipse cx="245" cy="200" rx="50" ry="34" fill="none" stroke="#C87020" stroke-width="5" opacity="0.9"/>
+
+  <!-- Connecting path between lobes — the trajectory crossing the saddle -->
+  <path d="M 155,166 Q 200,140 245,166" fill="none" stroke="#C87020" stroke-width="3" opacity="0.7"/>
+  <path d="M 155,234 Q 200,260 245,234" fill="none" stroke="#C87020" stroke-width="3" opacity="0.7"/>
+
+  <!-- Golden core of left lobe -->
+  <ellipse cx="155" cy="200" rx="30" ry="20" fill="none" stroke="#F5D080" stroke-width="2.5" opacity="1.0"/>
+  <!-- Golden core of right lobe -->
+  <ellipse cx="245" cy="200" rx="30" ry="20" fill="none" stroke="#F5D080" stroke-width="2.5" opacity="1.0"/>
+
+  <!-- Bright gold inner highlights -->
+  <ellipse cx="155" cy="200" rx="14" ry="9" fill="#F5D080" opacity="0.5"/>
+  <ellipse cx="245" cy="200" rx="14" ry="9" fill="#F5D080" opacity="0.5"/>
+
+  <!-- Central crossing filament -->
+  <path d="M 175,192 Q 200,200 225,192" fill="none" stroke="#F5D080" stroke-width="1.5" opacity="0.6"/>
+  <path d="M 175,208 Q 200,200 225,208" fill="none" stroke="#F5D080" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Faint outer spiral suggestions -->
+  <path d="M 90,200 Q 100,135 155,130 Q 200,125 245,130 Q 300,135 310,200 Q 300,265 245,270 Q 200,275 155,270 Q 100,265 90,200"
+        fill="none" stroke="#3A2080" stroke-width="2" opacity="0.5"/>
+
+  <!-- Tiny apex dots — trail-head glow -->
+  <circle cx="155" cy="166" r="3.5" fill="#F5D080" opacity="0.9"/>
+  <circle cx="245" cy="166" r="3.5" fill="#F5D080" opacity="0.9"/>
+</svg>

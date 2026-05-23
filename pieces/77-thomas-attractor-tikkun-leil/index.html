@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Until the Dawn Rises — Tikkun Leil Shavuot</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #060408; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #060408;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas#attractor {
+      display: block;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1A1060;
+      overflow-y: auto;
+      color: #b8bcd8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #060408;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1A1060; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 {
+      font-size: 1.4rem; color: #F5D080; margin: 0 0 0.25rem; font-weight: normal;
+    }
+    .essay-panel .subtitle { font-size: 0.85rem; color: #3A3060; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 0.95rem; color: #8880C0; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.85; margin: 0 0 1rem; font-size: 0.93rem; }
+    .essay-panel em { color: #F5D080; font-style: normal; }
+    .essay-panel blockquote {
+      border-left: 3px solid #1A1060;
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      color: #c8ccdf;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="attractor"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>Until the Dawn Rises</h1>
+    <div class="subtitle">Tikkun Leil Shavuot — Thomas Attractor / RK4 Integration / Orbit Trail</div>
+
+    <h2>The Night Vigil</h2>
+    <p>On the eve of every Shavuot, Jews around the world do something unusual: they do not sleep. From nightfall until dawn — and in many communities until the morning prayers — they sit in study houses, synagogues, and living rooms, learning Torah through the dark hours. This is Tikkun Leil Shavuot, the "rectification of Shavuot night," one of the most distinctive Jewish practices of the year.</p>
+    <p>Its origins are ancient and layered. The Zohar (Parashat Emor) describes the righteous as adorning the Shekhinah — the Divine Presence — with Torah throughout the night before the giving of the Torah at Sinai. The Arizal — Rabbi Isaac Luria of Safed, sixteenth century — formalized the practice with a specific sequence of texts called the Tikkun: passages from Torah, Prophets, Writings, and Mishnah interwoven, ensuring every section of sacred literature is represented before the morning star rises.</p>
+
+    <h2>The Debt of Sleep</h2>
+    <p>Two midrashic sources — Shir HaShirim Rabbah and Pirkei de-Rabbi Eliezer (chapter 41) — preserve a startling tradition: the Israelites fell asleep the night before the revelation at Sinai. They were tired. God had to rouse them; Moses had to shake the people awake before the divine voice spoke. On every Shavuot eve, Jews repair this ancient debt by remaining awake to greet the Torah their ancestors received in a half-woken state. The vigil is an act of teshuvah reaching back across three thousand years.</p>
+
+    <h2>Endless, Restless Motion</h2>
+    <p>René Thomas discovered his attractor in 1999. Its equations are cyclically symmetric: dx/dt = sin(y) − b·x, dy/dt = sin(z) − b·y, dz/dt = sin(x) − b·z. At b ≈ 0.208, the trajectory never settles and never exactly repeats. It wanders forever through the same region of space, filling it without ever tracing the same path twice — a mathematical portrait of the endless, restless movement of Torah study. The Talmud (Eruvin 54a) teaches: "The words of Torah are compared to water — just as water flows from high places to low, Torah endures only with one who makes himself lowly." Both the attractor and the student move without final destination, always finding new territory in a familiar space.</p>
+
+    <h2>Dawn from Darkness</h2>
+    <p>This animation renders the Thomas attractor as a luminous orbit trail. The newest points gleam pale gold — the color of first light. They cool through amber and sienna, deepening into indigo, then fade into near-black as age takes them from the buffer. The canvas records not a finished picture but a living process: the trajectory spiraling through the dark, the golden edge always moving forward, the night yielding at its margins to dawn.</p>
+    <p>By dawn, nothing has settled. The orbit is still moving, still discovering. That is the practice.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const ATTRACTOR_B = 0.208;
+  const DT = 0.05;
+  const BUFFER_SIZE = 6000;
+  const POINTS_PER_FRAME = 200;
+  const TRANSIENT_STEPS = 5000;
+  const ROTATION_RATE = 0.002;
+
+  /*
+   * Thomas attractor derivatives: cyclically symmetric system.
+   * dx/dt = sin(y) - b*x, dy/dt = sin(z) - b*y, dz/dt = sin(x) - b*z
+   */
+  function deriv(x, y, z) {
+    return [
+      Math.sin(y) - ATTRACTOR_B * x,
+      Math.sin(z) - ATTRACTOR_B * y,
+      Math.sin(x) - ATTRACTOR_B * z,
+    ];
+  }
+
+  /**
+   * Advance the Thomas attractor state by one RK4 step of size DT.
+   * Returns the new [x, y, z] triple.
+   */
+  function rk4Step(x, y, z) {
+    const [k1x, k1y, k1z] = deriv(x, y, z);
+    const [k2x, k2y, k2z] = deriv(
+      x + DT / 2 * k1x, y + DT / 2 * k1y, z + DT / 2 * k1z
+    );
+    const [k3x, k3y, k3z] = deriv(
+      x + DT / 2 * k2x, y + DT / 2 * k2y, z + DT / 2 * k2z
+    );
+    const [k4x, k4y, k4z] = deriv(
+      x + DT * k3x, y + DT * k3y, z + DT * k3z
+    );
+    return [
+      x + DT / 6 * (k1x + 2 * k2x + 2 * k3x + k4x),
+      y + DT / 6 * (k1y + 2 * k2y + 2 * k3y + k4y),
+      z + DT / 6 * (k1z + 2 * k2z + 2 * k3z + k4z),
+    ];
+  }
+
+  /**
+   * Map trail age to an RGBA color string.
+   * age=0 is the newest point (pale gold #F5D080, alpha 0.9).
+   * age=1 is the oldest point (near-black #08060F, alpha 0.02).
+   * The blue channel uses a quadratic to produce a warm-to-indigo arc in the middle.
+   */
+  function trailColor(age) {
+    const r = Math.round(245 * (1 - age) + 8 * age);
+    const g = Math.round(208 * (1 - age) + 6 * age);
+    const bVal = Math.round(128 * (1 - age * 0.8) * (1 - age) + 4 * age);
+    const a = 0.9 * (1 - age) + 0.02 * age;
+    return `rgba(${r},${g},${bVal},${a.toFixed(3)})`;
+  }
+
+  // Attractor state — initial condition as specified
+  let sx = 0.1, sy = 0.0, sz = 0.0;
+
+  // Discard the transient; put the trajectory on the attractor before displaying
+  for (let i = 0; i < TRANSIENT_STEPS; i++) {
+    [sx, sy, sz] = rk4Step(sx, sy, sz);
+  }
+
+  // Circular buffer storing 3D attractor coordinates.
+  // Projection is recomputed each frame so resize is handled without clearing.
+  const buf3X = new Float32Array(BUFFER_SIZE);
+  const buf3Y = new Float32Array(BUFFER_SIZE);
+  const buf3Z = new Float32Array(BUFFER_SIZE);
+  let writeHead = 0;
+  let totalPts = 0;
+
+  let angle = 0;
+
+  const canvas = document.getElementById('attractor');
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0;
+
+  function resizeCanvas() {
+    const panel = canvas.parentElement;
+    W = panel.clientWidth;
+    H = panel.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+  }
+
+  /**
+   * Project a 3D attractor point onto the canvas using slow isometric rotation.
+   * The (x,z) plane rotates by `angle`; y maps directly to the vertical axis.
+   * The attractor occupies roughly [-5,5]^3, so scale = min(W,H)/12 gives margin.
+   */
+  function project(x, y, z) {
+    const cosA = Math.cos(angle);
+    const sinA = Math.sin(angle);
+    const px = x * cosA - z * sinA;
+    const py = y;
+    const scale = Math.min(W, H) / 12;
+    return [W / 2 + px * scale, H / 2 + py * scale];
+  }
+
+  function frame() {
+    angle += ROTATION_RATE;
+
+    for (let i = 0; i < POINTS_PER_FRAME; i++) {
+      [sx, sy, sz] = rk4Step(sx, sy, sz);
+      buf3X[writeHead] = sx;
+      buf3Y[writeHead] = sy;
+      buf3Z[writeHead] = sz;
+      writeHead = (writeHead + 1) % BUFFER_SIZE;
+      totalPts++;
+    }
+
+    ctx.fillStyle = '#060408';
+    ctx.fillRect(0, 0, W, H);
+
+    const count = Math.min(totalPts, BUFFER_SIZE);
+    if (count < 2) {
+      requestAnimationFrame(frame);
+      return;
+    }
+
+    // Draw from oldest (high age) to newest (age=0) so new points render on top
+    const cosA = Math.cos(angle);
+    const sinA = Math.sin(angle);
+    const scale = Math.min(W, H) / 12;
+    const oldestStart = (writeHead - count + BUFFER_SIZE * 2) % BUFFER_SIZE;
+    const countM1 = count - 1;
+
+    for (let j = 0; j < count; j++) {
+      const bufIdx = (oldestStart + j) % BUFFER_SIZE;
+      const age = (countM1 - j) / countM1;
+
+      const x3 = buf3X[bufIdx];
+      const y3 = buf3Y[bufIdx];
+      const z3 = buf3Z[bufIdx];
+      const px = W / 2 + (x3 * cosA - z3 * sinA) * scale;
+      const py = H / 2 + y3 * scale;
+
+      ctx.fillStyle = trailColor(age);
+      ctx.beginPath();
+      ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>
