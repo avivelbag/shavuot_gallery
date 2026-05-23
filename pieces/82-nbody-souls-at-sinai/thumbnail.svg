@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#04030A"/>
+
+  <!-- Central Sinai glow -->
+  <radialGradient id="sinai" cx="50%" cy="50%" r="6%">
+    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+    <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="200" cy="200" r="24" fill="url(#sinai)"/>
+  <circle cx="200" cy="200" r="6" fill="#FFFFFF"/>
+
+  <!-- Generation 1: gold ring, 8 particles, r≈60 -->
+  <g fill="#E8C060" opacity="0.8">
+    <circle cx="260" cy="200" r="3"/>
+    <circle cx="242" cy="242" r="3"/>
+    <circle cx="200" cy="260" r="3"/>
+    <circle cx="158" cy="242" r="3"/>
+    <circle cx="140" cy="200" r="3"/>
+    <circle cx="158" cy="158" r="3"/>
+    <circle cx="200" cy="140" r="3"/>
+    <circle cx="242" cy="158" r="3"/>
+  </g>
+
+  <!-- Generation 2: blue ring, 12 particles, r≈110 -->
+  <g fill="#6090D0" opacity="0.6">
+    <circle cx="310" cy="200" r="2.5"/>
+    <circle cx="295" cy="255" r="2.5"/>
+    <circle cx="255" cy="295" r="2.5"/>
+    <circle cx="200" cy="310" r="2.5"/>
+    <circle cx="145" cy="295" r="2.5"/>
+    <circle cx="105" cy="255" r="2.5"/>
+    <circle cx="90"  cy="200" r="2.5"/>
+    <circle cx="105" cy="145" r="2.5"/>
+    <circle cx="145" cy="105" r="2.5"/>
+    <circle cx="200" cy="90"  r="2.5"/>
+    <circle cx="255" cy="105" r="2.5"/>
+    <circle cx="295" cy="145" r="2.5"/>
+  </g>
+
+  <!-- Generation 3: violet ring, 16 particles, r≈160 -->
+  <g fill="#9060C0" opacity="0.4">
+    <circle cx="360" cy="200" r="2"/>
+    <circle cx="346" cy="261" r="2"/>
+    <circle cx="313" cy="313" r="2"/>
+    <circle cx="261" cy="346" r="2"/>
+    <circle cx="200" cy="360" r="2"/>
+    <circle cx="139" cy="346" r="2"/>
+    <circle cx="87"  cy="313" r="2"/>
+    <circle cx="54"  cy="261" r="2"/>
+    <circle cx="40"  cy="200" r="2"/>
+    <circle cx="54"  cy="139" r="2"/>
+    <circle cx="87"  cy="87"  r="2"/>
+    <circle cx="139" cy="54"  r="2"/>
+    <circle cx="200" cy="40"  r="2"/>
+    <circle cx="261" cy="54"  r="2"/>
+    <circle cx="313" cy="87"  r="2"/>
+    <circle cx="346" cy="139" r="2"/>
+  </g>
+
+  <!-- Faint orbital ring guides -->
+  <circle cx="200" cy="200" r="60"  fill="none" stroke="#E8C060" stroke-width="0.4" opacity="0.2"/>
+  <circle cx="200" cy="200" r="110" fill="none" stroke="#6090D0" stroke-width="0.4" opacity="0.15"/>
+  <circle cx="200" cy="200" r="160" fill="none" stroke="#9060C0" stroke-width="0.4" opacity="0.1"/>
+</svg>

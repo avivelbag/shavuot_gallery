@@ -1353,6 +1353,17 @@
     "essay": "pieces/82-bond-percolation-arevim/essay.md"
   },
   {
+    "id": "82-nbody-souls-at-sinai",
+    "title": "Every Soul That Ever Was",
+    "tagline": "every Jewish soul across all generations orbits the same center of gravity — Sinai",
+    "year": 2026,
+    "theme": "Matan Torah / all souls at Sinai",
+    "technique": "N-body gravitational simulation / leapfrog integration",
+    "path": "pieces/82-nbody-souls-at-sinai/index.html",
+    "thumbnail": "pieces/82-nbody-souls-at-sinai/thumbnail.svg",
+    "essay": "pieces/82-nbody-souls-at-sinai/essay.md"
+  },
+  {
     "id": "82-superformula-seven-species",
     "title": "In the Shape of Abundance",
     "tagline": "the seven species of the Land rendered as Gielis superformula silhouettes — wheat, barley, grapes, figs, pomegranate, olive, dates — morphing from one form to the next",

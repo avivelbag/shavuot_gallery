@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Every Soul That Ever Was</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #04030A; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #04030A;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a1020;
+      overflow-y: auto;
+      color: #c0b8d8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #03020A;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a1020; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #E8C060;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #5a4870;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #9060C0;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.75;
+      margin: 0 0 1.2rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em {
+      color: #a09ab8;
+    }
+    .essay-panel .sources {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #2a1840;
+      font-size: 0.82rem;
+      color: #5a4870;
+    }
+
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin: 1.5rem 0;
+      font-size: 0.82rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>Every Soul That Ever Was</h1>
+    <p class="subtitle">N-body gravitational simulation — leapfrog integration · Matan Torah / all souls at Sinai</p>
+
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#E8C060;"></div>
+        <span>Generation 1 — those present at Sinai</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#6090D0; opacity:0.8;"></div>
+        <span>Generation 2 — later generations</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#9060C0; opacity:0.7;"></div>
+        <span>Generation 3 — far-future souls</span>
+      </div>
+    </div>
+
+    <p>The verse in Deuteronomy 29:14 contains one of the Torah's most disorienting claims: "Not with you alone do I make this covenant and this oath, but with those who are standing here with us today before the LORD our God, and also with those who are not here with us today." The plain meaning appears to cover absentees. But the Talmud in Shevuot (39a) reads it differently. "Those who are not here" are not the merely absent; they are those who do not yet exist. Every Jewish soul that would ever be born was present at Sinai, bound by the covenant, a party to the original agreement.</p>
+
+    <p>Midrash Tanchuma (Nitzavim 3) develops the thought: when God gave the Torah at Sinai, all the souls of Israel were gathered — not only the six hundred thousand physically present, but every soul of every generation that would follow. The revelation was not a local, temporal event that happened once and whose effects ripple forward through history. It was, the midrash insists, an event outside time, touching every Jewish soul at the source. The giving of Torah reached past and future simultaneously.</p>
+
+    <p>This teaching answers a genuine theological problem: how can descendants be morally and covenantally obligated by a commitment their ancestors made? The usual answers — inherited obligation, tacit consent, benefits received — all have serious weaknesses. The Torah's answer is more radical: the descendants were there. Not as legal inheritors. Not as silent beneficiaries. As direct parties, present in potential, their souls gathered in full covenantal assembly at the foot of the mountain. The obligation is personal because the person was there.</p>
+
+    <p>This is why Shavuot is called <em>Zman Matan Torateinu</em> — the time of the giving of our Torah. Not "the anniversary of." Not "the day we commemorate." The present tense is deliberate. Each Shavuot is not a memorial to a completed event; it is a re-experiencing of a revelation that, having occurred outside linear time, is perpetually occurring. When a community gathers to study Torah through the night on Shavuot, it is not performing a historical re-enactment. It is returning to an assembly it never left.</p>
+
+    <p>The three orbital shells in this animation represent the three generations of that assembly. The innermost ring — warm gold, nearly circular orbits — represents souls physically present at Sinai. The middle ring — sky blue, more eccentric ellipses — represents the generations of the rabbinic era and the long diaspora. The outermost ring — violet, long elliptical and nearly radial paths — represents the souls yet to come, arriving from great distance, their orbits sweeping wide before curving inevitably inward. All three shells are drawn toward the same center of gravity. None escapes.</p>
+
+    <p>The gravitational metaphor is precise. Gravity is not a push; it is a pull that operates across any distance without visible mechanism. A soul in the outermost ring, moving away from center, is still in orbit. Distance changes the shape of the orbit; it does not change the fact of the binding. The far-future soul is as bound as the soul standing at the foot of the mountain, because both were present at the same moment of revelation, experienced at different distances.</p>
+
+    <div class="sources">
+      <em>Sources: Talmud Bavli Shevuot 39a; Midrash Tanchuma, Nitzavim 3; Deuteronomy 29:13–14.</em>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('c');
+  const ctx    = canvas.getContext('2d');
+
+  const G          = 500;
+  const SINAI_MASS = 1e6;
+  const SOFTENING  = 15;
+  const DT         = 0.016;
+  const N_PER_GEN  = 100;
+  const TRAIL_LEN  = 30;
+  const ESCAPE_R   = 500;
+
+  const GENS = [
+    { rMin: 80,  rMax: 120, color: '#E8C060', alpha: 0.8 },
+    { rMin: 180, rMax: 240, color: '#6090D0', alpha: 0.6 },
+    { rMin: 300, rMax: 380, color: '#9060C0', alpha: 0.4 },
+  ];
+
+  let W, H, SINAI_X, SINAI_Y;
+  let particles = [];
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    W = canvas.width  = rect.width  * devicePixelRatio;
+    H = canvas.height = rect.height * devicePixelRatio;
+    SINAI_X = W / 2;
+    SINAI_Y = H / 2;
+    initParticles();
+  }
+
+  /**
+   * Spawn 300 particles in three generations with orbital initial conditions.
+   * Each generation gets initial speed v = sqrt(G*M/r) plus ±20% random perturbation,
+   * with a random perpendicular direction so orbits are varied.
+   */
+  function initParticles() {
+    particles = [];
+    for (let g = 0; g < GENS.length; g++) {
+      const gen = GENS[g];
+      for (let i = 0; i < N_PER_GEN; i++) {
+        const r     = gen.rMin + Math.random() * (gen.rMax - gen.rMin);
+        const angle = Math.random() * 2 * Math.PI;
+        const x     = SINAI_X + r * Math.cos(angle);
+        const y     = SINAI_Y + r * Math.sin(angle);
+
+        const vCirc = Math.sqrt(G * SINAI_MASS / r);
+        const vMag  = vCirc * (0.8 + Math.random() * 0.4);
+
+        // Perpendicular to radial direction (tangential)
+        const vx = -vMag * Math.sin(angle);
+        const vy =  vMag * Math.cos(angle);
+
+        particles.push({
+          x, y, vx, vy,
+          gen: g,
+          trail: [],
+        });
+      }
+    }
+  }
+
+  /**
+   * Leapfrog (Verlet velocity) integration step.
+   * For each particle:
+   *   1. Half-kick velocity using force at current position
+   *   2. Full drift position
+   *   3. Recompute force at new position
+   *   4. Half-kick velocity using new force
+   *
+   * Softened gravity: F = G * M / (r² + ε²), directed toward Sinai.
+   * If a particle escapes beyond ESCAPE_R, reflect velocity toward center.
+   */
+  function stepParticles() {
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      let dx = SINAI_X - p.x;
+      let dy = SINAI_Y - p.y;
+      let r2 = dx * dx + dy * dy + SOFTENING * SOFTENING;
+      let r  = Math.sqrt(r2);
+      let f  = G * SINAI_MASS / r2;
+
+      p.vx += 0.5 * f * (dx / r) * DT;
+      p.vy += 0.5 * f * (dy / r) * DT;
+
+      p.x += p.vx * DT;
+      p.y += p.vy * DT;
+
+      const dx2 = SINAI_X - p.x;
+      const dy2 = SINAI_Y - p.y;
+      const r2b = dx2 * dx2 + dy2 * dy2 + SOFTENING * SOFTENING;
+      const rb  = Math.sqrt(r2b);
+      const f2  = G * SINAI_MASS / r2b;
+
+      p.vx += 0.5 * f2 * (dx2 / rb) * DT;
+      p.vy += 0.5 * f2 * (dy2 / rb) * DT;
+
+      // Every soul returns — reflect toward center if too far
+      const dist2 = (p.x - SINAI_X) ** 2 + (p.y - SINAI_Y) ** 2;
+      if (dist2 > ESCAPE_R * ESCAPE_R) {
+        const dist    = Math.sqrt(dist2);
+        const nx      = (p.x - SINAI_X) / dist;
+        const ny      = (p.y - SINAI_Y) / dist;
+        const vDotN   = p.vx * nx + p.vy * ny;
+        if (vDotN > 0) {
+          p.vx -= 2 * vDotN * nx;
+          p.vy -= 2 * vDotN * ny;
+        }
+      }
+
+      p.trail.push({ x: p.x, y: p.y });
+      if (p.trail.length > TRAIL_LEN) p.trail.shift();
+    }
+  }
+
+  /**
+   * Draw one animation frame.
+   * Background fade creates persistent afterimage trails.
+   * Sinai attractor is a radial gradient white glow.
+   * Each particle is a 2px filled circle at its generation color.
+   * Trail is drawn as fading circles at alpha = 0.05 * (age/TRAIL_LEN).
+   */
+  function draw() {
+    ctx.fillStyle = 'rgba(4,3,10,0.15)';
+    ctx.fillRect(0, 0, W, H);
+
+    // Sinai central glow
+    const grad = ctx.createRadialGradient(SINAI_X, SINAI_Y, 0, SINAI_X, SINAI_Y, 8);
+    grad.addColorStop(0,   'rgba(255,255,255,1)');
+    grad.addColorStop(0.5, 'rgba(255,255,255,0.5)');
+    grad.addColorStop(1,   'rgba(255,255,255,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(SINAI_X, SINAI_Y, 8, 0, 2 * Math.PI);
+    ctx.fill();
+
+    for (let i = 0; i < particles.length; i++) {
+      const p   = particles[i];
+      const gen = GENS[p.gen];
+
+      // Draw orbital trail
+      for (let t = 0; t < p.trail.length; t++) {
+        const age  = t / TRAIL_LEN;
+        const a    = 0.05 * age;
+        ctx.globalAlpha = a;
+        ctx.fillStyle   = gen.color;
+        ctx.beginPath();
+        ctx.arc(p.trail[t].x, p.trail[t].y, 1, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+
+      // Draw particle
+      ctx.globalAlpha = gen.alpha;
+      ctx.fillStyle   = gen.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+  }
+
+  function loop() {
+    stepParticles();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
