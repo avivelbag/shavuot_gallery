@@ -1705,6 +1705,17 @@
     "essay": "pieces/94-streamline-two-tablets/essay.md"
   },
   {
+    "id": "95-cellular-potts-twelve-tribes",
+    "title": "As One Person, With One Heart",
+    "tagline": "the cellular Potts model: twelve cell types — the twelve tribes — sort from random chaos into coherent territories around the Tabernacle void, enacting k'ish echad b'lev echad",
+    "year": 2026,
+    "theme": "Matan Torah / the twelve tribes at Sinai",
+    "technique": "Cellular Potts model (Graner-Glazier, Metropolis Monte Carlo)",
+    "path": "pieces/95-cellular-potts-twelve-tribes/index.html",
+    "thumbnail": "pieces/95-cellular-potts-twelve-tribes/thumbnail.svg",
+    "essay": "pieces/95-cellular-potts-twelve-tribes/essay.md"
+  },
+  {
     "id": "95-quantum-walk-forty-nine-gates",
     "title": "The Gate That No Creature May Enter",
     "tagline": "a 2D quantum walk on a 49×49 grid — interference fringes bloom gold across the 49 attainable gates while the corner absorbs all amplitude into silence: the fiftieth gate no creature may enter",

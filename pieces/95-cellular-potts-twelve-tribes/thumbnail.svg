@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#1a1a2e"/>
+
+  <!-- 12 tribe sectors, 30° each, clockwise from top (-90°) -->
+  <!-- Boundary points at r=185: P0=(200,15) P1=(292.5,39.8) P2=(360.2,107.5) P3=(385,200)
+       P4=(360.2,292.5) P5=(292.5,360.2) P6=(200,385) P7=(107.5,360.2) P8=(39.8,292.5)
+       P9=(15,200) P10=(39.8,107.5) P11=(107.5,39.8)                                    -->
+
+  <!-- 0: Reuben — deep red -->
+  <path d="M200 200 L200 15 A185 185 0 0 1 292.5 39.8 Z" fill="#C0392B"/>
+  <text x="234" y="78" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">ראובן</text>
+
+  <!-- 1: Simeon — royal purple -->
+  <path d="M200 200 L292.5 39.8 A185 185 0 0 1 360.2 107.5 Z" fill="#8E44AD"/>
+  <text x="292" y="108" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">שמעון</text>
+
+  <!-- 2: Levi — priestly blue -->
+  <path d="M200 200 L360.2 107.5 A185 185 0 0 1 385 200 Z" fill="#2E86AB"/>
+  <text x="326" y="166" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">לוי</text>
+
+  <!-- 3: Judah — lion gold -->
+  <path d="M200 200 L385 200 A185 185 0 0 1 360.2 292.5 Z" fill="#F39C12"/>
+  <text x="326" y="234" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="#1a1a2e">יהודה</text>
+
+  <!-- 4: Issachar — field green -->
+  <path d="M200 200 L360.2 292.5 A185 185 0 0 1 292.5 360.2 Z" fill="#27AE60"/>
+  <text x="292" y="292" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">יששכר</text>
+
+  <!-- 5: Zebulun — sea teal -->
+  <path d="M200 200 L292.5 360.2 A185 185 0 0 1 200 385 Z" fill="#1ABC9C"/>
+  <text x="234" y="326" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">זבולון</text>
+
+  <!-- 6: Dan — iron grey -->
+  <path d="M200 200 L200 385 A185 185 0 0 1 107.5 360.2 Z" fill="#7F8C8D"/>
+  <text x="166" y="326" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">דן</text>
+
+  <!-- 7: Naphtali — swift red-orange -->
+  <path d="M200 200 L107.5 360.2 A185 185 0 0 1 39.8 292.5 Z" fill="#E74C3C"/>
+  <text x="108" y="292" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">נפתלי</text>
+
+  <!-- 8: Gad — warrior orange -->
+  <path d="M200 200 L39.8 292.5 A185 185 0 0 1 15 200 Z" fill="#D35400"/>
+  <text x="74" y="234" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">גד</text>
+
+  <!-- 9: Asher — olive gold -->
+  <path d="M200 200 L15 200 A185 185 0 0 1 39.8 107.5 Z" fill="#F1C40F"/>
+  <text x="74" y="166" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="#1a1a2e">אשר</text>
+
+  <!-- 10: Ephraim — sky blue -->
+  <path d="M200 200 L39.8 107.5 A185 185 0 0 1 107.5 39.8 Z" fill="#3498DB"/>
+  <text x="108" y="108" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">אפרים</text>
+
+  <!-- 11: Benjamin — wolf violet -->
+  <path d="M200 200 L107.5 39.8 A185 185 0 0 1 200 15 Z" fill="#9B59B6"/>
+  <text x="166" y="74" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="serif" fill="white">בנימין</text>
+
+  <!-- Central void (Tabernacle courtyard) -->
+  <rect x="158" y="158" width="84" height="84" fill="#1A1A1A"/>
+
+  <!-- Central text -->
+  <text x="200" y="194" text-anchor="middle" dominant-baseline="middle" font-size="13" font-family="serif" fill="white" direction="rtl">כאיש אחד</text>
+  <text x="200" y="214" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="serif" fill="#aaa" direction="rtl">בלב אחד</text>
+</svg>

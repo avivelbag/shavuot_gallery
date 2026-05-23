@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>כְּאִישׁ אֶחָד בְּלֵב אֶחָד — Cellular Potts Model / Twelve Tribes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0d0d1a; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0d0d1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .canvas-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    canvas#potts {
+      display: block;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      max-width: 100%;
+      max-height: 100vh;
+    }
+
+    #status-display {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #8a8aaa;
+      background: rgba(13, 13, 26, 0.75);
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a1f4a;
+      overflow-y: auto;
+      color: #b2b6d4;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080812;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel {
+        position: static;
+        height: 60vw;
+        min-height: 300px;
+        flex: none;
+      }
+      .essay-panel {
+        border-left: none;
+        border-top: 1px solid #1a1f4a;
+        padding: 2rem 1.25rem;
+      }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.4rem;
+      color: #E8C438;
+      margin: 0 0 0.4rem;
+      font-weight: normal;
+      direction: rtl;
+      font-style: italic;
+    }
+
+    .essay-panel .subtitle {
+      font-size: 0.85rem;
+      color: #6a7090;
+      margin: 0 0 1.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #C4A35A;
+      margin: 1.6rem 0 0.5rem;
+      letter-spacing: 0.03em;
+      font-weight: normal;
+    }
+
+    .essay-panel p {
+      font-size: 0.92rem;
+      margin: 0 0 0.9rem;
+      color: #b2b6d4;
+    }
+
+    .quote-block {
+      border-right: 3px solid #C4A35A;
+      padding: 0.8rem 1rem 0.8rem 0.8rem;
+      margin: 1rem 0 1.2rem;
+      background: rgba(196, 163, 90, 0.06);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .quote-block .hebrew {
+      font-size: 1.1rem;
+      direction: rtl;
+      text-align: right;
+      color: #E8D59A;
+      line-height: 1.9;
+      margin: 0 0 0.5rem;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    .quote-block .english {
+      font-size: 0.88rem;
+      color: #9a9ec0;
+      font-style: italic;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .quote-block .source {
+      font-size: 0.78rem;
+      color: #6a7090;
+      margin: 0.4rem 0 0;
+    }
+
+    .unity-phrase {
+      display: block;
+      text-align: center;
+      direction: rtl;
+      font-size: 1.25rem;
+      color: #F1C40F;
+      margin: 1.5rem auto 0.3rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      letter-spacing: 0.06em;
+    }
+
+    .unity-trans {
+      display: block;
+      text-align: center;
+      font-size: 0.83rem;
+      color: #8a8aaa;
+      font-style: italic;
+      margin: 0 auto 1.4rem;
+    }
+
+    .color-swatch {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ── Art panel ── -->
+  <div class="art-panel">
+    <div class="canvas-wrapper">
+      <canvas id="potts" width="800" height="800"></canvas>
+      <div id="status-display">T = 10.0000</div>
+    </div>
+  </div>
+
+  <!-- ── Essay panel ── -->
+  <div class="essay-panel">
+    <h1>כְּאִישׁ אֶחָד בְּלֵב אֶחָד</h1>
+    <p class="subtitle">As One Person, With One Heart — Cellular Potts Model / Twelve Tribes at Sinai</p>
+
+    <h2>The Singular Verb at Sinai</h2>
+    <p>
+      When the Israelites arrived at Mount Sinai, the Torah deploys a grammatical anomaly.
+      Throughout the desert wanderings the people travel in the plural — <em>va-yisu</em>,
+      "they journeyed"; <em>va-yachanu</em>, "they camped." But at the moment of arrival,
+      Exodus 19:2 suddenly uses the singular:
+    </p>
+
+    <div class="quote-block">
+      <div class="hebrew">וַיִּסְעוּ מֵרְפִידִים וַיָּבֹאוּ מִדְבַּר סִינַי וַיַּחֲנוּ בַּמִּדְבָּר וַיִּחַן-שָׁם יִשְׂרָאֵל נֶגֶד הָהָר.</div>
+      <div class="english">"They journeyed from Rephidim, and they came to the wilderness of Sinai and they camped
+        in the wilderness — and Israel camped there, opposite the mountain."</div>
+      <div class="source">— Exodus / שמות 19:2</div>
+    </div>
+
+    <p>
+      The closing verb, <em>va-yichan</em>, is singular: "and <em>he</em> camped." Rashi,
+      following the Mechilta d'Rabbi Ishmael, reads this as the Torah's mark that Israel
+      arrived at Sinai כְּאִישׁ אֶחָד בְּלֵב אֶחָד — <em>k'ish echad b'lev echad</em>,
+      "as one person with one heart." Twelve tribes, each with a distinct genealogy, banner,
+      and encampment direction, achieved momentary perfect unity at the foot of the mountain.
+    </p>
+
+    <h2>Twelve Pillars at the Mountain</h2>
+
+    <div class="quote-block">
+      <div class="hebrew">וַיִּכְתֹּב מֹשֶׁה אֵת כָּל-דִּבְרֵי יְהוָה, וַיַּשְׁכֵּם בַּבֹּקֶר, וַיִּבֶן מִזְבֵּחַ תַּחַת הָהָר, וּשְׁתֵּים עֶשְׂרֵה מַצֵּבָה לִשְׁנֵים עָשָׂר שִׁבְטֵי יִשְׂרָאֵל.</div>
+      <div class="english">"Moses then wrote down all the words of the LORD. Early in the morning he arose
+        and built an altar at the foot of the mountain, with twelve pillars for the twelve
+        tribes of Israel."</div>
+      <div class="source">— Exodus / שמות 24:4</div>
+    </div>
+
+    <p>
+      Twelve distinct pillars stood together at the mountain's base — not merged into one,
+      but each present, each oriented toward the same center. Numbers 2 specifies the geometry
+      of the camp: Judah's three-tribe division faced east; Reuben's anchored the south;
+      Ephraim commanded the west; Dan's division closed the rear to the north. The Levites
+      and the Tabernacle occupied the exact center. The wilderness camp was not a crowd but
+      an ordered cosmos — each tribe in its place, all twelve faces turned inward.
+    </p>
+
+    <h2>The Cellular Potts Model</h2>
+    <p>
+      François Graner and James Glazier developed the cellular Potts model in 1992 to simulate
+      cell sorting in biological tissues — the process by which embryonic cells of different
+      types spontaneously segregate into coherent layers. Unlike the Ising model (two states),
+      the Potts model supports any number of distinguishable cell types.
+    </p>
+    <p>
+      Here the lattice is 200×200. Each cell holds a tribe type (1–12) or zero for the
+      Tabernacle void. The energy function penalizes unlike-neighbor contact:
+      <em>J</em>(same type) = 0; <em>J</em>(tribe, void) = 2;
+      <em>J</em>(different tribes) = 5. The Metropolis algorithm drives sorting: at each
+      step, propose copying a neighbor's type into a cell; accept if ΔE ≤ 0, or with
+      probability exp(−ΔE/T) otherwise. Temperature T begins at 10 and decreases by a
+      factor of 0.9999 each frame, freezing the system as it approaches T = 0.01.
+    </p>
+
+    <h2>The Twelve Tribes</h2>
+    <p style="font-size:0.85rem; line-height:2;">
+      <span class="color-swatch" style="background:#C0392B"></span>ראובן Reuben ·
+      <span class="color-swatch" style="background:#8E44AD"></span>שמעון Simeon ·
+      <span class="color-swatch" style="background:#2E86AB"></span>לוי Levi ·
+      <span class="color-swatch" style="background:#F39C12"></span>יהודה Judah ·
+      <span class="color-swatch" style="background:#27AE60"></span>יששכר Issachar ·
+      <span class="color-swatch" style="background:#1ABC9C"></span>זבולון Zebulun ·
+      <span class="color-swatch" style="background:#7F8C8D"></span>דן Dan ·
+      <span class="color-swatch" style="background:#E74C3C"></span>נפתלי Naphtali ·
+      <span class="color-swatch" style="background:#D35400"></span>גד Gad ·
+      <span class="color-swatch" style="background:#F1C40F"></span>אשר Asher ·
+      <span class="color-swatch" style="background:#3498DB"></span>אפרים Ephraim ·
+      <span class="color-swatch" style="background:#9B59B6"></span>בנימין Benjamin
+    </p>
+
+    <h2>The Non-Obvious Insight</h2>
+    <p>
+      The twelve tribes did not achieve <em>k'ish echad b'lev echad</em> by dissolving into
+      each other. Each kept its color, its banner, its genealogy. The Potts model explains
+      why this is not a contradiction: sorting into coherent domains <em>is</em> the mechanism
+      that makes genuine unity possible. A randomly mixed lattice has no spatial structure —
+      no tribe knows where it stands relative to the others, or relative to the center. Only
+      when each tribe consolidates into its own territory, touching adjacent tribes at clean
+      boundaries, does the entire camp become oriented around the Tabernacle. The moment of
+      unity is the moment the domains form and hold — each tribe present, distinct, and in
+      its place.
+    </p>
+    <p>
+      The simulation begins in maximum disorder — twelve colors scattered randomly across
+      40,000 cells. Temperature falls. Domains coalesce. The tribal names emerge over each
+      territory. When the system finally freezes, twelve distinct colored regions radiate
+      outward from the dark central void — an aerial view of the camp described in Numbers 2.
+    </p>
+
+    <span class="unity-phrase">כְּאִישׁ אֶחָד בְּלֵב אֶחָד</span>
+    <span class="unity-trans">as one person, with one heart</span>
+  </div><!-- essay-panel -->
+
+</div><!-- layout -->
+
+<script>
+(function () {
+  'use strict';
+
+  const W = 200, H = 200, CELL = 4;
+  const CW = W * CELL;  // canvas width  = 800
+  const CH = H * CELL;  // canvas height = 800
+
+  // Void region: central 20×20 block (rows 90–109, cols 90–109)
+  const VOID_X1 = 90, VOID_X2 = 110;
+  const VOID_Y1 = 90, VOID_Y2 = 110;
+
+  // RGBA palette for types 0–12 (flat Uint8Array, 4 bytes each)
+  const PALETTE = new Uint8Array([
+     26,  26,  26, 255,  // 0: void (#1A1A1A)
+    192,  57,  43, 255,  // 1: Reuben   (#C0392B)
+    142,  68, 173, 255,  // 2: Simeon   (#8E44AD)
+     46, 134, 171, 255,  // 3: Levi     (#2E86AB)
+    243, 156,  18, 255,  // 4: Judah    (#F39C12)
+     39, 174,  96, 255,  // 5: Issachar (#27AE60)
+     26, 188, 156, 255,  // 6: Zebulun  (#1ABC9C)
+    127, 140, 141, 255,  // 7: Dan      (#7F8C8D)
+    231,  76,  60, 255,  // 8: Naphtali (#E74C3C)
+    211,  84,   0, 255,  // 9: Gad      (#D35400)
+    241, 196,  15, 255,  // 10: Asher   (#F1C40F)
+     52, 152, 219, 255,  // 11: Ephraim (#3498DB)
+    155,  89, 182, 255,  // 12: Benjamin(#9B59B6)
+  ]);
+
+  const NAMES = [
+    '', 'ראובן', 'שמעון', 'לוי', 'יהודה', 'יששכר', 'זבולון',
+    'דן', 'נפתלי', 'גד', 'אשר', 'אפרים', 'בנימין',
+  ];
+
+  // J(a, b) — surface-tension energy between types a and b
+  function J(a, b) {
+    if (a === b) return 0;
+    if (a === 0 || b === 0) return 2;  // tribe borders void
+    return 5;                           // unlike tribes
+  }
+
+  // Energy change when copying lattice[j] into lattice[i] (copy update)
+  function deltaE(i, j) {
+    const si = lattice[i], sj = lattice[j];
+    if (si === sj) return 0;
+    const x = i % W, y = (i / W) | 0;
+    let dE = 0;
+    if (x > 0)     dE += J(sj, lattice[i - 1]) - J(si, lattice[i - 1]);
+    if (x < W - 1) dE += J(sj, lattice[i + 1]) - J(si, lattice[i + 1]);
+    if (y > 0)     dE += J(sj, lattice[i - W]) - J(si, lattice[i - W]);
+    if (y < H - 1) dE += J(sj, lattice[i + W]) - J(si, lattice[i + W]);
+    return dE;
+  }
+
+  const lattice = new Uint8Array(W * H);
+
+  function initLattice() {
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const i = y * W + x;
+        if (x >= VOID_X1 && x < VOID_X2 && y >= VOID_Y1 && y < VOID_Y2) {
+          lattice[i] = 0;
+        } else {
+          // Equal proportion of the 12 types
+          lattice[i] = 1 + ((Math.random() * 12) | 0);
+        }
+      }
+    }
+  }
+
+  // One frame of Metropolis Monte Carlo: N attempted copy updates
+  function step(N) {
+    const total = W * H;
+    for (let k = 0; k < N; k++) {
+      const i = (Math.random() * total) | 0;
+      const x = i % W, y = (i / W) | 0;
+
+      // Skip void cells — they are fixed throughout
+      if (x >= VOID_X1 && x < VOID_X2 && y >= VOID_Y1 && y < VOID_Y2) continue;
+
+      const si = lattice[i];
+
+      // Collect non-void unlike neighbors (candidates to copy from)
+      let nbCount = 0;
+      const nbs = _nbBuf;
+      if (x > 0      && lattice[i - 1] !== si && lattice[i - 1] !== 0) nbs[nbCount++] = i - 1;
+      if (x < W - 1  && lattice[i + 1] !== si && lattice[i + 1] !== 0) nbs[nbCount++] = i + 1;
+      if (y > 0      && lattice[i - W] !== si && lattice[i - W] !== 0) nbs[nbCount++] = i - W;
+      if (y < H - 1  && lattice[i + W] !== si && lattice[i + W] !== 0) nbs[nbCount++] = i + W;
+
+      if (nbCount === 0) continue;
+
+      const j = nbs[(Math.random() * nbCount) | 0];
+      const dE = deltaE(i, j);
+
+      if (dE <= 0 || Math.random() < Math.exp(-dE / T)) {
+        lattice[i] = lattice[j];
+      }
+    }
+  }
+
+  // Reusable small buffer for neighbor indices (max 4)
+  const _nbBuf = new Int32Array(4);
+
+  // Centroid accumulators for tribal name placement
+  const cx  = new Float64Array(13);
+  const cy  = new Float64Array(13);
+  const cnt = new Uint32Array(13);
+
+  function render(imgData) {
+    const pixels = imgData.data;
+    cx.fill(0); cy.fill(0); cnt.fill(0);
+
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const t = lattice[y * W + x];
+        if (t > 0) { cx[t] += x; cy[t] += y; cnt[t]++; }
+
+        const pi = t << 2;  // t * 4
+        const pr = PALETTE[pi], pg = PALETTE[pi + 1], pb = PALETTE[pi + 2];
+
+        // Write a CELL×CELL block of pixels
+        const py0 = y * CELL, px0 = x * CELL;
+        for (let dy = 0; dy < CELL; dy++) {
+          let idx = ((py0 + dy) * CW + px0) << 2;
+          for (let dx = 0; dx < CELL; dx++, idx += 4) {
+            pixels[idx]     = pr;
+            pixels[idx + 1] = pg;
+            pixels[idx + 2] = pb;
+            pixels[idx + 3] = 255;
+          }
+        }
+      }
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+
+    // Overlay tribal names when sorting is well advanced (T < 0.5)
+    if (T < 0.5) {
+      ctx.font = '11px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      for (let t = 1; t <= 12; t++) {
+        if (cnt[t] > 100) {
+          const px = (cx[t] / cnt[t]) * CELL;
+          const py = (cy[t] / cnt[t]) * CELL;
+          ctx.strokeStyle = 'rgba(0,0,0,0.75)';
+          ctx.lineWidth = 2.5;
+          ctx.strokeText(NAMES[t], px, py);
+          ctx.fillStyle = '#ffffff';
+          ctx.fillText(NAMES[t], px, py);
+        }
+      }
+    }
+  }
+
+  function drawConvergedOverlay(alpha) {
+    if (alpha <= 0) return;
+    // "כאיש אחד בלב אחד" fades in gold over the Tabernacle void
+    const voidCX = (VOID_X1 + 10) * CELL;  // = 400
+    const voidCY = (VOID_Y1 + 10) * CELL;  // = 400
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    ctx.font = 'bold 15px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#F1C40F';
+    ctx.fillText('כאיש אחד', voidCX, voidCY - 9);
+    ctx.font = '12px serif';
+    ctx.fillText('בלב אחד', voidCX, voidCY + 9);
+
+    ctx.restore();
+  }
+
+  // ── Bootstrap ──────────────────────────────────────────────────────────
+  const canvas = document.getElementById('potts');
+  const ctx    = canvas.getContext('2d');
+  const imgData = ctx.createImageData(CW, CH);
+  const statusEl = document.getElementById('status-display');
+
+  let T = 10.0;
+  let convergedAlpha  = 0;
+  let convergedHold   = 0;
+  const HOLD_FRAMES   = 180;  // ~3 seconds at 60 fps
+
+  initLattice();
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    step(2000);
+
+    if (T > 0.01) {
+      T *= 0.9999;
+      if (T < 0.01) T = 0.01;
+    } else {
+      // Temperature frozen — fade in the unity inscription
+      convergedAlpha = Math.min(1.0, convergedAlpha + 1 / 60);
+      if (convergedAlpha >= 1.0) {
+        convergedHold++;
+        if (convergedHold >= HOLD_FRAMES) {
+          // Reset and loop
+          T = 10.0;
+          convergedAlpha = 0;
+          convergedHold  = 0;
+          initLattice();
+        }
+      }
+    }
+
+    render(imgData);
+    drawConvergedOverlay(convergedAlpha);
+
+    statusEl.textContent = 'T = ' + T.toFixed(4);
+  }
+
+  animate();
+}());
+</script>
+</body>
+</html>
