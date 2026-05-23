@@ -1395,5 +1395,16 @@
     "path": "pieces/83-snowflake-sapphire-throne/index.html",
     "thumbnail": "pieces/83-snowflake-sapphire-throne/thumbnail.svg",
     "essay": "pieces/83-snowflake-sapphire-throne/essay.md"
+  },
+  {
+    "id": "83-worley-noise-pomegranate",
+    "title": "Full as a Pomegranate",
+    "tagline": "220 Voronoi arils, each labeled with a letter of Torah — the pomegranate as a living text, each seed a commandment",
+    "year": 2026,
+    "theme": "Bikkurim / seven species / full as a pomegranate",
+    "technique": "Worley noise / F1 cellular distance field",
+    "path": "pieces/83-worley-noise-pomegranate/index.html",
+    "thumbnail": "pieces/83-worley-noise-pomegranate/thumbnail.svg",
+    "essay": "pieces/83-worley-noise-pomegranate/essay.md"
   }
 ]

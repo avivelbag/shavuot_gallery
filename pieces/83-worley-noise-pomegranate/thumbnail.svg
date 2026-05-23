@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <clipPath id="pomClip">
+      <circle cx="200" cy="215" r="160"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0A0208"/>
+
+  <!-- Pomegranate cross-section clipped to circle -->
+  <g clip-path="url(#pomClip)">
+    <!-- Base fill -->
+    <circle cx="200" cy="215" r="160" fill="#7A1520"/>
+
+    <!-- Voronoi-like seed cells: ~30 irregular polygons in crimson with garnet borders -->
+    <polygon points="200,215 130,150 100,200 150,250" fill="#6A1018" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="200,215 150,250 170,310 220,290" fill="#82181E" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="200,215 220,290 270,280 260,220" fill="#721420" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="200,215 260,220 280,160 230,140" fill="#7E1622" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="200,215 230,140 180,120 130,150" fill="#6C1019" stroke="#C0103A" stroke-width="1.5"/>
+
+    <polygon points="130,150 80,120 60,170 100,200" fill="#78141E" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="100,200 60,170 50,230 90,260" fill="#841822" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="100,200 90,260 150,250" fill="#6E121C" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="150,250 90,260 110,320 170,310" fill="#7C1620" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="170,310 110,320 150,370 220,360" fill="#80161E" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="170,310 220,360 270,350 220,290" fill="#741220" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="220,290 270,350 320,310 270,280" fill="#881A22" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="270,280 320,310 340,250 300,220" fill="#7A1420" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="260,220 300,220 340,250 330,190 290,160" fill="#701220" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="260,220 290,160 280,160" fill="#801820" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="280,160 290,160 330,130 300,90 250,100 230,140" fill="#6E1018" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="230,140 250,100 200,80 180,120" fill="#7C1622" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="180,120 200,80 150,70 110,100 130,150" fill="#72141C" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="130,150 110,100 80,120" fill="#841A20" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="80,120 110,100 90,60 60,90 60,120" fill="#781620" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="60,170 80,120 60,120 40,160" fill="#6C1018" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="50,230 40,160 20,210 30,270" fill="#7E1820" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="90,260 50,230 30,270 60,320 110,320" fill="#741220" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="330,130 350,90 320,60 280,80 250,100 290,160" fill="#80161E" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="330,190 330,130 290,160" fill="#6E141C" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="340,250 330,190 360,200 370,260" fill="#7A1820" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="320,310 370,260 360,320 330,350 270,350" fill="#821620" stroke="#C0103A" stroke-width="1.5"/>
+    <polygon points="150,370 130,390 200,395 260,390 220,360" fill="#701420" stroke="#C0103A" stroke-width="1.5"/>
+
+    <!-- Hebrew letters in cells -->
+    <text x="145" y="205" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">א</text>
+    <text x="185" y="275" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ב</text>
+    <text x="245" y="255" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ג</text>
+    <text x="250" y="180" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ד</text>
+    <text x="200" y="145" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ה</text>
+    <text x="90" y="165" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ו</text>
+    <text x="75" y="220" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ז</text>
+    <text x="115" y="230" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ח</text>
+    <text x="140" y="295" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ט</text>
+    <text x="185" y="340" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">י</text>
+    <text x="245" y="320" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">כ</text>
+    <text x="300" y="290" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ל</text>
+    <text x="315" y="230" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">מ</text>
+    <text x="295" y="185" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">נ</text>
+    <text x="250" y="120" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ס</text>
+    <text x="200" y="100" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ע</text>
+    <text x="155" y="100" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">פ</text>
+    <text x="100" y="110" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">צ</text>
+    <text x="75" y="105" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ק</text>
+    <text x="330" y="120" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ר</text>
+    <text x="345" y="225" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ש</text>
+    <text x="330" y="300" font-family="Times New Roman,serif" font-size="11" fill="#FFD090" opacity="0.75" text-anchor="middle">ת</text>
+
+    <!-- Seed centre dots -->
+    <circle cx="145" cy="200" r="2" fill="#FFD700"/>
+    <circle cx="185" cy="270" r="2" fill="#FFD700"/>
+    <circle cx="245" cy="250" r="2" fill="#FFD700"/>
+    <circle cx="250" cy="175" r="2" fill="#FFD700"/>
+    <circle cx="200" cy="140" r="2" fill="#FFD700"/>
+    <circle cx="90" cy="160" r="2" fill="#FFD700"/>
+    <circle cx="75" cy="215" r="2" fill="#FFD700"/>
+    <circle cx="115" cy="225" r="2" fill="#FFD700"/>
+    <circle cx="140" cy="290" r="2" fill="#FFD700"/>
+    <circle cx="185" cy="335" r="2" fill="#FFD700"/>
+    <circle cx="245" cy="315" r="2" fill="#FFD700"/>
+    <circle cx="300" cy="285" r="2" fill="#FFD700"/>
+    <circle cx="315" cy="225" r="2" fill="#FFD700"/>
+    <circle cx="295" cy="180" r="2" fill="#FFD700"/>
+    <circle cx="250" cy="115" r="2" fill="#FFD700"/>
+    <circle cx="200" cy="95" r="2" fill="#FFD700"/>
+    <circle cx="155" cy="95" r="2" fill="#FFD700"/>
+    <circle cx="100" cy="105" r="2" fill="#FFD700"/>
+  </g>
+
+  <!-- Circle border -->
+  <circle cx="200" cy="215" r="160" fill="none" stroke="#5A1018" stroke-width="2"/>
+
+  <!-- Crown (atara) — 5 points at top -->
+  <path d="M140,55 L140,63 L152,56 L164,47 L176,56 L188,47 L200,37 L212,47 L224,56 L236,47 L248,56 L260,63 L260,55 Z"
+        fill="#5A1015" stroke="#9A2530" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Title text -->
+  <text x="200" y="392" font-family="Georgia,serif" font-size="11" fill="#C09070" text-anchor="middle" opacity="0.8">Full as a Pomegranate</text>
+</svg>

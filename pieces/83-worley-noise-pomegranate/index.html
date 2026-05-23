@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full as a Pomegranate</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0A0208; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 60%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2A0810;
+      overflow-y: auto;
+      color: #C8AFA0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #08020A;
+      max-height: 100vh;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 75vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2A0810; padding: 2rem 1.5rem; max-height: none; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.55rem;
+      color: #E8C0A8;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.82rem;
+      color: #603838;
+      margin: 0 0 2rem;
+      letter-spacing: 0.04em;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #C09070;
+      margin: 1.6rem 0 0.5rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+    }
+
+    .hebrew-quote {
+      display: block;
+      direction: rtl;
+      font-family: 'Times New Roman', 'David', 'Noto Serif Hebrew', serif;
+      font-size: 1.2rem;
+      color: #D4904A;
+      line-height: 1.7;
+      margin: 0.9rem 0 0.3rem;
+      text-align: right;
+    }
+    .english-quote {
+      display: block;
+      font-style: italic;
+      color: #A08070;
+      margin: 0 0 0.3rem;
+      font-size: 0.87rem;
+    }
+    .source-note {
+      display: block;
+      font-size: 0.73rem;
+      color: #504030;
+      font-style: italic;
+      margin-bottom: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="art-panel">
+      <canvas id="c"></canvas>
+    </div>
+
+    <div class="essay-panel">
+      <h1>Full as a Pomegranate</h1>
+      <div class="subtitle">Worley noise / F1 cellular distance field &nbsp;·&nbsp; Bikkurim / seven species</div>
+
+      <h2>The Seven Species</h2>
+      <p>
+        Deuteronomy 8:8 names the fruits of the Promised Land — the signs by which Israel
+        would know it had arrived in abundance:
+      </p>
+      <span class="hebrew-quote">אֶרֶץ חִטָּה וּשְׂעֹרָה וְגֶפֶן וּתְאֵנָה וְרִמּוֹן אֶרֶץ-זֵית שֶׁמֶן וּדְבָשׁ</span>
+      <span class="english-quote">"A land of wheat and barley, of vines and fig trees and pomegranates,
+        a land of olive oil and honey."</span>
+      <span class="source-note">Deuteronomy 8:8</span>
+
+      <p>
+        These are the Sheva Minim — the seven species of the Land — brought as Bikkurim,
+        first-fruits, to the Temple on Shavuot. Of the seven, the pomegranate carries the
+        heaviest symbolic weight in rabbinic thought, and not because of its taste.
+      </p>
+
+      <h2>Full of Mitzvot</h2>
+      <p>
+        Twice in the Talmud — Eruvin 19a and Sanhedrin 37a — the same phrase appears,
+        presented as God's defense of Israel before the divine attribute of justice:
+      </p>
+      <span class="hebrew-quote">אֲפִילּוּ רֵיקָנִין שֶׁבָּךְ מְלֵאִין מִצְווֹת כָּרִמּוֹן</span>
+      <span class="english-quote">"Even the empty ones among you are full of mitzvot like a pomegranate."</span>
+      <span class="source-note">Eruvin 19a; Sanhedrin 37a</span>
+
+      <p>
+        The context in Eruvin 19a is the fate of Israel in Gehinnom, the place of purification.
+        The seemingly empty Jew — the one who appears to have fallen short of Torah — is defended
+        on the grounds of interior fullness invisible from the outside. The image is the
+        pomegranate because of its seeds. In rabbinic tradition, a pomegranate was understood
+        to contain approximately 613 seeds — precisely the number of commandments in the Torah.
+        The Baal HaTurim (Rabbi Jacob ben Asher, 13th–14th century) draws this connection
+        explicitly in his commentary on Deuteronomy 8:8: the pomegranate stands among the seven
+        species precisely because tradition held its seed count to be 613, one for each mitzvah.
+      </p>
+
+      <p>
+        Whether real pomegranates contain exactly 613 seeds is an empirical question — actual
+        counts vary from under two hundred to over a thousand depending on variety and growing
+        conditions. The theological point is not botanical accuracy but structural correspondence:
+        the pomegranate's inner architecture — hundreds of seeds packed tightly in crimson
+        chambers, each seed distinct yet part of an organic whole — became an image for the
+        soul's hidden architecture. Every person, even one who seems unlearned or spiritually
+        thin, carries within them the full lattice of Torah's potential, as seeds already
+        exist inside a pomegranate long before it is opened.
+      </p>
+
+      <h2>A Kingdom of Priests</h2>
+      <p>
+        This theology is not incidental to Shavuot — it defines what Matan Torah means.
+        The revelation at Sinai was addressed to the entire people, not only its scholars.
+        Exodus 19:6 states the scope before a single commandment is given:
+      </p>
+      <span class="hebrew-quote">וְאַתֶּם תִּהְיוּ-לִי מַמְלֶכֶת כֹּהֲנִים וְגוֹי קָדוֹשׁ</span>
+      <span class="english-quote">"And you shall be to me a kingdom of priests and a holy nation."</span>
+      <span class="source-note">Exodus 19:6</span>
+
+      <p>
+        Not a kingdom <em>with</em> a priestly caste — a kingdom <em>of</em> priests.
+        Universal holiness, distributed without remainder. The proof the Rabbis offered for
+        the worth of every Jew was the pomegranate: before a single word of Torah was learned,
+        the capacity for all of it was already present in each soul. The receiving of the Torah
+        at Sinai did not deposit holiness only into the scholars. It revealed what was already
+        there.
+      </p>
+
+      <h2>The Artwork</h2>
+      <p>
+        This piece renders 220 Voronoi seed points as the cross-section of a pomegranate.
+        Each cell is colored in the warm crimsons and garnets of the aril — the fleshy,
+        jewel-like chambers of a cut pomegranate — with thin bright-line boundaries
+        separating cell from cell. Each seed center is marked with a letter of the Hebrew
+        alphabet (and two-letter combinations continuing the count toward 613): the pomegranate
+        as a living Torah, each chamber a commandment, each seed a mitzvah waiting to be opened.
+      </p>
+      <p>
+        The animation reveals the pomegranate in a radial sweep — as one might slice through
+        the fruit — over two seconds. Afterward, each cell breathes slowly at its own rhythm,
+        lighter and darker at a random phase: 220 independent heartbeats, all within the one
+        fruit.
+      </p>
+      <p class="source-note">
+        Technique: Worley F1 cellular noise — for each pixel within the pomegranate circle,
+        find the nearest of 220 seed points using a 22×22 spatial grid; color by wall distance
+        (second-nearest minus nearest) to produce crisp aril boundaries. Precomputed as an
+        ImageData offscreen canvas; animated by radial-sweep clip and per-cell radial-gradient
+        pulse. Canvas 2D API; no external dependencies.
+      </p>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    const N_POINTS = 220;
+    const REVEAL_MS = 2000;
+    const GRID_N = 22;
+    const ALEPH = 0x05D0;
+
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+
+    let state = null;
+
+    /**
+     * Returns a Hebrew label for seed index i.
+     * i 0-21: single letters alef-tav.
+     * i 22+: two-letter combinations cycling through the alphabet,
+     * representing the extended mitzvot numbering beyond the base 22.
+     */
+    function hebrewLabel(i) {
+      if (i < 22) return String.fromCodePoint(ALEPH + i);
+      const n = i - 22;
+      return (
+        String.fromCodePoint(ALEPH + Math.floor(n / 22) % 22) +
+        String.fromCodePoint(ALEPH + n % 22)
+      );
+    }
+
+    /**
+     * Initialise the piece: resize canvas, generate seed points, compute
+     * Worley F1 distance field via spatial grid, render base RGBA to an
+     * offscreen canvas, and set up per-cell phase offsets for the pulse.
+     */
+    function init() {
+      const panel = canvas.parentElement;
+      const W = canvas.width = panel.clientWidth || window.innerWidth;
+      const H = canvas.height = panel.clientHeight || window.innerHeight;
+      const cx = W / 2;
+      const cy = H / 2;
+      const R = 0.42 * Math.min(W, H);
+
+      /* --- Generate N_POINTS seed points uniformly within the circle --- */
+      const seeds = [];
+      const phases = [];
+      while (seeds.length < N_POINTS) {
+        const a = Math.random() * Math.PI * 2;
+        const r = Math.sqrt(Math.random()) * (R - 5);
+        const sx = cx + r * Math.cos(a);
+        const sy = cy + r * Math.sin(a);
+        seeds.push({ x: sx, y: sy, angle: Math.atan2(sy - cy, sx - cx) });
+        phases.push(Math.random() * Math.PI * 2);
+      }
+
+      /* --- Build 22×22 spatial grid for O(1) nearest-neighbour search --- */
+      const gcw = W / GRID_N;
+      const gch = H / GRID_N;
+      const grid = Array.from({ length: GRID_N * GRID_N }, () => []);
+      seeds.forEach((s, i) => {
+        const gx = Math.min(Math.floor(s.x / gcw), GRID_N - 1);
+        const gy = Math.min(Math.floor(s.y / gch), GRID_N - 1);
+        grid[gy * GRID_N + gx].push(i);
+      });
+
+      /* --- Precompute Worley F1 distance field --- */
+      const cellMap = new Int32Array(W * H).fill(-1);
+      const wallMap = new Float32Array(W * H); /* d2 - d1 per pixel */
+
+      /* Restrict iteration to the bounding box of the circle for speed. */
+      const bx0 = Math.max(0, Math.floor(cx - R));
+      const bx1 = Math.min(W - 1, Math.ceil(cx + R));
+      const by0 = Math.max(0, Math.floor(cy - R));
+      const by1 = Math.min(H - 1, Math.ceil(cy + R));
+
+      for (let py = by0; py <= by1; py++) {
+        for (let px = bx0; px <= bx1; px++) {
+          const ddx = px - cx, ddy = py - cy;
+          if (ddx * ddx + ddy * ddy > R * R) continue;
+
+          const gx = Math.min(Math.floor(px / gcw), GRID_N - 1);
+          const gy = Math.min(Math.floor(py / gch), GRID_N - 1);
+
+          let d1 = Infinity, nearIdx = -1, d2 = Infinity;
+
+          for (let dgy = -1; dgy <= 1; dgy++) {
+            for (let dgx = -1; dgx <= 1; dgx++) {
+              const nx = gx + dgx, ny = gy + dgy;
+              if (nx < 0 || nx >= GRID_N || ny < 0 || ny >= GRID_N) continue;
+              const bucket = grid[ny * GRID_N + nx];
+              for (let k = 0; k < bucket.length; k++) {
+                const si = bucket[k];
+                const sdx = px - seeds[si].x, sdy = py - seeds[si].y;
+                const d = sdx * sdx + sdy * sdy;
+                if (d < d1) { d2 = d1; d1 = d; nearIdx = si; }
+                else if (d < d2) { d2 = d; }
+              }
+            }
+          }
+
+          const pi = py * W + px;
+          cellMap[pi] = nearIdx;
+          wallMap[pi] = Math.sqrt(d2) - Math.sqrt(d1);
+        }
+      }
+
+      /* --- Render Worley texture to an ImageData --- */
+      const imgData = new ImageData(W, H);
+      const data = imgData.data;
+
+      /* Fill entire canvas with background first. */
+      for (let i = 0; i < W * H; i++) {
+        const b = i * 4;
+        data[b] = 10; data[b + 1] = 2; data[b + 2] = 8; data[b + 3] = 255;
+      }
+
+      for (let i = 0; i < W * H; i++) {
+        const ci = cellMap[i];
+        if (ci < 0) continue;
+
+        const b = i * 4;
+        const wd = wallMap[i];
+
+        if (wd < 0.35) {
+          /* Bright highlight at cell centre of boundary */
+          data[b] = 0xFC; data[b + 1] = 0xEB; data[b + 2] = 0xD5;
+        } else if (wd < 1.5) {
+          /* Garnet border */
+          data[b] = 0xC0; data[b + 1] = 0x10; data[b + 2] = 0x3A;
+        } else {
+          /* Interior crimson with subtle per-cell variation so cells are distinct */
+          const v = ((ci * 53 + 17) % 30) - 15;
+          data[b]     = Math.max(90,  Math.min(200, 0x7A + v));
+          data[b + 1] = Math.max(0,   Math.min(40,  0x15 + Math.round(v * 0.2)));
+          data[b + 2] = Math.max(10,  Math.min(60,  0x20 + Math.round(v * 0.4)));
+        }
+        data[b + 3] = 255;
+      }
+
+      /* Bake to an offscreen canvas so we can use drawImage (clip-aware). */
+      const off = document.createElement('canvas');
+      off.width = W; off.height = H;
+      off.getContext('2d').putImageData(imgData, 0, 0);
+
+      /* Average Voronoi cell radius used for pulse gradients. */
+      const avgCellR = (R / Math.sqrt(N_POINTS)) * 2.0;
+
+      state = { W, H, cx, cy, R, seeds, phases, off, avgCellR, t0: null };
+    }
+
+    /**
+     * Draw the stylised 5-point pomegranate crown (atara) at the top of
+     * the circle. The crown sits just above the circle boundary.
+     */
+    function drawCrown(cx, cy, R) {
+      const cw = R * 0.38;
+      const bL = cx - cw / 2;
+      const bR = cx + cw / 2;
+      const topCircle = cy - R;
+      const peakY   = topCircle - R * 0.075; /* crown peak above circle */
+      const valleyY = topCircle + R * 0.015; /* crown valley just inside circle */
+      const botY    = topCircle + R * 0.11;  /* crown base */
+
+      ctx.save();
+      ctx.fillStyle = '#5A1015';
+      ctx.strokeStyle = '#9A2530';
+      ctx.lineWidth = 1.5;
+
+      ctx.beginPath();
+      ctx.moveTo(bL, botY);
+      ctx.lineTo(bL, valleyY);
+      for (let i = 0; i < 5; i++) {
+        const peakX = bL + (i + 0.5) * cw / 5;
+        const nextX = bL + (i + 1) * cw / 5;
+        ctx.lineTo(peakX, peakY);
+        ctx.lineTo(nextX, valleyY);
+      }
+      ctx.lineTo(bR, botY);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    /**
+     * Draw gold seed-centre dots and Hebrew letter labels.
+     * During reveal, only seeds whose angular position from the canvas centre
+     * is within the swept fraction are shown.
+     * During pulse, all seeds are shown with slightly varying alpha.
+     *
+     * @param {number|null} revealFrac  0..1 during reveal, null during pulse
+     * @param {number}      pulseT      seconds elapsed since reveal completed
+     */
+    function drawSeedOverlays(revealFrac, pulseT) {
+      const { cx, cy, R, seeds, phases } = state;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.clip();
+
+      ctx.font = '9px Georgia, serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      for (let i = 0; i < seeds.length; i++) {
+        const s = seeds[i];
+
+        if (revealFrac !== null) {
+          /* Sweep starts at 12 o'clock (angle = -PI/2) going clockwise.
+             Normalise each seed's angle to [0, 2PI) relative to 12 o'clock. */
+          const normalised = (s.angle + Math.PI / 2 + Math.PI * 2) % (Math.PI * 2);
+          if (normalised > revealFrac * Math.PI * 2) continue;
+        }
+
+        /* Gold centre dot */
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = '#FFD700';
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        /* Hebrew letter label */
+        const alpha = revealFrac !== null
+          ? 0.7
+          : 0.7 * (0.85 + 0.15 * Math.sin(pulseT * 0.65 + phases[i]));
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = '#FFD090';
+        ctx.fillText(hebrewLabel(i), s.x, s.y);
+      }
+
+      ctx.globalAlpha = 1;
+      ctx.restore();
+    }
+
+    /** Main animation loop — called via requestAnimationFrame. */
+    function frame(ts) {
+      if (!state) { requestAnimationFrame(frame); return; }
+
+      const { W, H, cx, cy, R, seeds, phases, off, avgCellR } = state;
+
+      if (!state.t0) state.t0 = ts;
+      const elapsed = ts - state.t0;
+
+      /* Background */
+      ctx.fillStyle = '#0A0208';
+      ctx.fillRect(0, 0, W, H);
+
+      if (elapsed < REVEAL_MS) {
+        /* --- Reveal phase: growing radial wedge from 12 o'clock --- */
+        const frac = elapsed / REVEAL_MS;
+
+        if (frac > 0.001) {
+          const endAngle = -Math.PI / 2 + frac * Math.PI * 2;
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.arc(cx, cy, R * 1.05, -Math.PI / 2, endAngle);
+          ctx.closePath();
+          ctx.clip();
+          ctx.drawImage(off, 0, 0);
+          ctx.restore();
+        }
+
+        drawSeedOverlays(frac, 0);
+
+      } else {
+        /* --- Pulse phase: full pomegranate with per-cell breathing --- */
+        const t = (elapsed - REVEAL_MS) / 1000;
+
+        /* Draw full Worley texture clipped to circle */
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx, cy, R, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.drawImage(off, 0, 0);
+
+        /* Per-cell radial-gradient pulse overlaid in screen mode for
+           a subtle brightening that respects the dark background. */
+        ctx.globalCompositeOperation = 'screen';
+        for (let i = 0; i < seeds.length; i++) {
+          const s = seeds[i];
+          const pulse = (Math.sin(t * 0.65 + phases[i]) + 1) * 0.5 * 0.09;
+          if (pulse < 0.004) continue;
+          const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, avgCellR);
+          g.addColorStop(0, `rgba(180, 50, 50, ${pulse.toFixed(3)})`);
+          g.addColorStop(1, 'rgba(180, 50, 50, 0)');
+          ctx.fillStyle = g;
+          ctx.fillRect(s.x - avgCellR, s.y - avgCellR, avgCellR * 2, avgCellR * 2);
+        }
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.restore();
+
+        drawSeedOverlays(null, t);
+      }
+
+      /* Crown always visible */
+      drawCrown(cx, cy, R);
+
+      requestAnimationFrame(frame);
+    }
+
+    init();
+    requestAnimationFrame(frame);
+
+    window.addEventListener('resize', () => {
+      init();
+    });
+  }());
+  </script>
+</body>
+</html>
