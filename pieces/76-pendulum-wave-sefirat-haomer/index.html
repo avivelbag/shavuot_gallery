@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forty-Nine Voices in Time — Sefirat HaOmer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0A0A1A; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0A0A1A;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e1e2e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e1e2e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #F5F0E0;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #505060;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #c8a060;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #d0c0a0; font-style: italic; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Forty-Nine Voices in Time</h1>
+    <p class="subtitle">Sefirat HaOmer — pendulum wave / simple harmonic oscillator ensemble</p>
+
+    <h2>The Commandment to Count</h2>
+    <p>"You shall count for yourselves from the day after the Sabbath, from the day when you bring the Omer of the wave offering; seven complete weeks shall there be; until the day after the seventh week you shall count fifty days, and you shall bring a new meal offering to the Lord." (Leviticus 23:15–16)</p>
+    <p>The Omer period — Sefirat HaOmer — is the forty-nine-day span between Passover and Shavuot. The Torah commands not merely to observe it but to <em>count</em> it: each day must be enumerated aloud, by name. The Talmud (Menachot 65b) derives from the word <em>temimot</em> ("complete") that the count must be done by night, because a day missed breaks the chain of wholeness.</p>
+
+    <h2>Counting Up, Not Down</h2>
+    <p>The non-obvious detail is the direction. Sefirat HaOmer does not count <em>down</em> to Shavuot — it counts <em>up</em> toward it. Each day's formula is accumulative: "Today is one day of the Omer." "Today is eight days, which is one week and one day of the Omer." The number grows; nothing is subtracted.</p>
+    <p>This is not a countdown to a finish line. It is the construction of something. Kabbalistic tradition, developed by the Arizal in his <em>Sha'ar haKavanot</em> (16th century, Safed) and now printed in most siddurim, maps each of the forty-nine days onto one of the forty-nine combinations of the seven lower Sefirot: seven weeks for the seven attributes (Chesed, Gevurah, Tiferet, Netzach, Hod, Yesod, Malkhut), each week subdivided into seven days by the same set of attributes. Day one is Chesed of Chesed. Day forty-nine is Malkhut of Malkhut. The forty-nine days are not identical; they are forty-nine distinct spiritual qualities being visited and cultivated in sequence.</p>
+    <p>The Sefat Emet (R. Yehudah Leib Alter, Ger, 19th century) observed that the Torah commands <em>you</em> to count — not the court, not the community, but each individual person. The spiritual work is in the counting itself, not in what lies at the end.</p>
+
+    <h2>Seven by Seven</h2>
+    <p>The structure is a seven-by-seven grid: seven weeks of seven days each. The tradition associates the seven weeks with the seven lower Sefirot, and the entire Omer as the time given to Israel to refine those attributes after the raw freedom of Exodus. Shavuot, on the fiftieth day, is when that refinement is complete enough to stand at Sinai again.</p>
+    <p>The pendulum wave makes this visible in time rather than space. The forty-nine pendulums are organized into seven columns of seven, one column per week of the Omer. Within each column the pendulums have successively shorter periods. The arrangement is the structure of the count itself.</p>
+
+    <h2>The Physics of Re-Synchronization</h2>
+    <p>A pendulum wave is built from a simple constraint: pendulum <em>k</em> completes exactly <em>k</em> full oscillations in the time it takes the slowest pendulum to complete one. This means all forty-nine pendulums begin synchronized, fan out into interference patterns — waves, spirals, apparent chaos — and then, at exactly the period of the slowest pendulum, all return simultaneously to the starting position.</p>
+    <p>The apparent chaos in the middle of the sequence is not disorder. Every pendulum is executing its own precise, predetermined arc. The "chaos" is in the <em>relationship</em> between the pendulums while each individual pendulum moves in perfect simple harmonic motion throughout.</p>
+
+    <h2>This Piece</h2>
+    <p>The animation runs forty-nine pendulums across the canvas. Each pendulum is assigned a hue cycling from deep violet through amber-gold — the forty-nine days moving through the color spectrum as the Omer moves through the Sefirot. Each bob leaves a fading trail of its last hundred positions; as the ensemble fans out and returns, the trails form ribbons of light that expand and contract like breath.</p>
+    <p>The day counter at the top shows the current position in the Omer count. As the final pendulums converge on day forty-nine, the word שָׁבוּעוֹת — Shavuot — appears. It is not a reward appended to the end. It is what the count, fully completed, reveals.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+
+  var N = 49;
+  var T1 = 3.0;      // period of slowest pendulum (seconds)
+  var G = 9.8;
+  var THETA0 = 0.3;  // initial angle (radians)
+  var TRAIL_LEN = 120;
+
+  /* ω_k = k * 2π / T1, L_k = g / ω_k² */
+  var omegas = new Float64Array(N);
+  var physLengths = new Float64Array(N);
+  for (var k = 1; k <= N; k++) {
+    omegas[k - 1] = k * 2 * Math.PI / T1;
+    physLengths[k - 1] = G / (omegas[k - 1] * omegas[k - 1]);
+  }
+
+  /* pixel-space pendulum lengths: longest fills 80% canvas height, shortest ≥ 20px */
+  var MIN_PX = 20;
+  var pixLengths = new Float64Array(N);
+
+  /* trail ring buffers: [N][TRAIL_LEN][2] stored flat */
+  var trailX = [];
+  var trailY = [];
+  var trailHead = new Int32Array(N);  // index of most-recent entry
+  var trailCount = new Int32Array(N); // how many entries are filled
+
+  for (var i = 0; i < N; i++) {
+    trailX.push(new Float32Array(TRAIL_LEN));
+    trailY.push(new Float32Array(TRAIL_LEN));
+  }
+
+  var pivotY;
+  var pivotXs = new Float64Array(N);
+  var W, H;
+
+  function resize() {
+    W = panel.clientWidth;
+    H = panel.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+
+    /* pivot bar sits 6% from top */
+    pivotY = H * 0.06;
+
+    var maxPx = H * 0.80;
+
+    /* L[0] is the longest (k=1, slowest), L[N-1] is shortest */
+    var L1 = physLengths[0];
+    for (var i = 0; i < N; i++) {
+      var fraction = physLengths[i] / L1;   /* 1/k² for pendulum k */
+      pixLengths[i] = MIN_PX + (maxPx - MIN_PX) * fraction;
+    }
+
+    /* evenly space pivots across canvas */
+    var margin = W * 0.03;
+    var span = W - 2 * margin;
+    for (var i = 0; i < N; i++) {
+      pivotXs[i] = margin + (i / (N - 1)) * span;
+    }
+
+    /* invalidate trails on resize */
+    trailCount.fill(0);
+    trailHead.fill(0);
+  }
+
+  function bobPosition(k, t) {
+    /* k is 1-indexed; index into arrays is k-1 */
+    var omega = omegas[k - 1];
+    var len   = pixLengths[k - 1];
+    var theta = THETA0 * Math.cos(omega * t);
+    var bx = pivotXs[k - 1] + len * Math.sin(theta);
+    var by = pivotY            + len * Math.cos(theta);
+    return { x: bx, y: by };
+  }
+
+  function pushTrail(i, x, y) {
+    var head = (trailHead[i] + 1) % TRAIL_LEN;
+    trailHead[i] = head;
+    trailX[i][head] = x;
+    trailY[i][head] = y;
+    if (trailCount[i] < TRAIL_LEN) trailCount[i]++;
+  }
+
+  function pendulumColor(k) {
+    /* hue cycles purple → gold: h = (k/N)*300 */
+    var h = (k / N) * 300;
+    return 'hsl(' + h.toFixed(1) + ',80%,60%)';
+  }
+
+  function drawTrail(i) {
+    var count = trailCount[i];
+    if (count < 2) return;
+    var head  = trailHead[i];
+    var color = pendulumColor(i + 1);
+
+    /* draw segments from newest (head) to oldest, fading out */
+    ctx.lineWidth = 1.5;
+    ctx.lineCap = 'round';
+
+    for (var s = 0; s < count - 1; s++) {
+      var idx0 = ((head - s) + TRAIL_LEN) % TRAIL_LEN;
+      var idx1 = ((head - s - 1) + TRAIL_LEN) % TRAIL_LEN;
+      var alpha = 0.8 * (1 - s / count);
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(trailX[i][idx0], trailY[i][idx0]);
+      ctx.lineTo(trailX[i][idx1], trailY[i][idx1]);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1.0;
+  }
+
+  function drawBar() {
+    ctx.strokeStyle = '#3a3a6a';
+    ctx.lineWidth = 2;
+    ctx.globalAlpha = 1.0;
+    ctx.beginPath();
+    ctx.moveTo(0, pivotY);
+    ctx.lineTo(W, pivotY);
+    ctx.stroke();
+  }
+
+  function drawPendulum(k, t) {
+    var pos   = bobPosition(k, t);
+    var color = pendulumColor(k);
+    var px    = pivotXs[k - 1];
+
+    /* rod */
+    ctx.globalAlpha = 0.5;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(px, pivotY);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+
+    /* bob */
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, 5, 0, 2 * Math.PI);
+    ctx.fill();
+
+    return pos;
+  }
+
+  function drawDayOverlay(t) {
+    /* day = round(t / T1 * 49) clamped to 1-49 */
+    var raw = Math.round((t / T1) * N);
+    var day = Math.max(1, Math.min(N, raw));
+
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = '#F5F0E0';
+    ctx.font = '18px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+
+    var label = 'Day ' + day + ' of the Omer';
+    ctx.fillText(label, W / 2, 12);
+
+    /* fade in Shavuot text as day approaches 49 */
+    if (day >= 44) {
+      var alpha = (day - 44) / 5;  /* 0 at day 44, 1 at day 49 */
+      ctx.globalAlpha = Math.min(1, alpha);
+      ctx.font = 'bold 32px Georgia, serif';
+      ctx.fillStyle = '#FFD700';
+      ctx.fillText('שָׁבוּעוֹת', W / 2, 36);
+    }
+    ctx.globalAlpha = 1.0;
+  }
+
+  var startTs = null;
+
+  function frame(ts) {
+    if (startTs === null) startTs = ts;
+    var elapsed = (ts - startTs) / 1000;
+    var t = elapsed % T1;
+
+    ctx.fillStyle = '#0A0A1A';
+    ctx.fillRect(0, 0, W, H);
+
+    drawBar();
+
+    for (var k = 1; k <= N; k++) {
+      var pos = bobPosition(k, t);
+      pushTrail(k - 1, pos.x, pos.y);
+      drawTrail(k - 1);
+      drawPendulum(k, t);
+    }
+
+    drawDayOverlay(t);
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

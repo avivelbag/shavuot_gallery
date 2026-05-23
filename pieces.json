@@ -1186,5 +1186,16 @@
     "path": "pieces/75-mandelbrot-infinite-torah/index.html",
     "thumbnail": "pieces/75-mandelbrot-infinite-torah/thumbnail.png",
     "essay": "pieces/75-mandelbrot-infinite-torah/essay.md"
+  },
+  {
+    "id": "76-pendulum-wave-sefirat-haomer",
+    "title": "Forty-Nine Voices in Time",
+    "tagline": "49 pendulums counting the Omer — chaos resolves into Shavuot",
+    "year": 2026,
+    "theme": "Sefirat HaOmer",
+    "technique": "pendulum wave / simple harmonic oscillator ensemble",
+    "path": "pieces/76-pendulum-wave-sefirat-haomer/index.html",
+    "thumbnail": "pieces/76-pendulum-wave-sefirat-haomer/thumbnail.svg",
+    "essay": "pieces/76-pendulum-wave-sefirat-haomer/essay.md"
   }
 ]
