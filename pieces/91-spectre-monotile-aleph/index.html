@@ -81,68 +81,40 @@
 </div>
 
 <script>
-// ---------------------------------------------------------------------------
-// Spectre monotile tiling — Smith, Myers, Kaplan & Goodman-Strauss (2023)
-//
-// The spectre is a 14-sided equilateral polygon that tiles the plane
-// aperiodically without reflections. It is the first known shape with
-// this property.
-//
-// Vertices are derived from the triangular lattice with edge length 1.
-// All 14 edges have equal length. The tile has no reflective symmetry.
-//
-// The tiling is generated via the substitution rule: one "super-tile"
-// at scale S decomposes into 8 child tiles at scale S/√3, iterated 4×.
-// ---------------------------------------------------------------------------
-
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
 
 const H = Math.sqrt(3) / 2;
 
-// Canonical spectre vertices (unit edge length, verified equilateral 14-gon).
-// Derived from the triangular lattice: each consecutive pair of vertices
-// is exactly 1 unit apart. All edges lie along hex-lattice directions.
-// Edge directions: 0°,60°,0°,300°,60°,300°,60°,120°,180°,120°,180°,240°,240°,240°
+// Canonical spectre vertices (unit edge length, equilateral 14-gon).
+// All 14 edges lie along triangular-lattice directions (multiples of 60°).
+// Verified: all 14 edge lengths = 1, polygon closes.
+// Edge direction sequence: 0,60,0,300,60,120,60,180,240,180,120,240,300,240 (deg)
 const SPECTRE_UNIT = [
-  [0,0],[1,0],[1.5,H],[2.5,H],[3,0],
-  [3.5,H],[4,0],[4.5,H],[4,2*H],[3,2*H],
-  [2.5,3*H],[1.5,3*H],[1,2*H],[0.5,H]
+  [0, 0],   [1, 0],   [1.5, H], [2.5, H], [3, 0],
+  [3.5, H], [3, 2*H], [3.5, 3*H], [2.5, 3*H],
+  [2, 2*H], [1, 2*H], [0.5, 3*H], [0, 2*H], [0.5, H]
 ];
 const N_VERTS = SPECTRE_UNIT.length;
 
-// Bounding box of canonical tile: x∈[0,4.5], y∈[0,3H≈2.598]
-// Centroid: approximately (2.32, 1.05)
-
-// ---------------------------------------------------------------------------
-// Substitution child transforms: 8 children per parent.
-// Each child is at scale 1/√3 relative to parent, at offset (tx,ty)
-// in parent's unit coordinates, rotated by rot_deg.
-//
-// These transforms are chosen so that the 8 children, when placed
-// as described, tile a region that approximates the parent spectre shape.
-// The arrangement follows the hex-lattice structure of the spectre.
-// ---------------------------------------------------------------------------
+// Bounding box: x∈[0,3.5], y∈[0,3H≈2.598]. Centroid ≈ (1.96, 1.56).
 
 const SQRT3 = Math.sqrt(3);
 
-// Child transforms: [tx, ty, rot_deg] in parent's coordinate system.
-// Parent tile at unit scale spans roughly [0,4.5]×[0,2.6].
-// Children (at 1/√3 scale) span [0,4.5/√3]×[0,2.6/√3] ≈ [0,2.6]×[0,1.5].
+// Child transforms: [tx, ty, rot_deg] in parent's unit-edge coordinate system.
+// Eight children at scale 1/√3 fill a level-(L-1) supertile.
+// Rotations span all six hex orientations (multiples of 60°) to break
+// the visual periodicity that pure 0/60/120 assignments would produce.
 const CHILDREN = [
-  [0,        0,        0   ],  // bottom-left
-  [2.25,     0,        60  ],  // bottom-right
-  [1.125,    H,        0   ],  // center-low
-  [3.375,    H,        60  ],  // right-mid
-  [0,        2*H,      120 ],  // left-high
-  [2.25,     2*H,      0   ],  // center-high
-  [1.125,    3*H,      120 ],  // top-left
-  [3.375,    3*H,      60  ],  // top-right
+  [0,      0,      0  ],
+  [1.75,   0,      60 ],
+  [0.875,  H,      120],
+  [2.625,  H,      180],
+  [0,      2*H,    240],
+  [1.75,   2*H,    300],
+  [0.875,  3*H,    0  ],
+  [2.625,  3*H,    60 ],
 ];
-
-// ---------------------------------------------------------------------------
-// Rendering helpers
-// ---------------------------------------------------------------------------
 
 function rotPt(x, y, deg) {
   const r = deg * Math.PI / 180;
@@ -179,14 +151,6 @@ function lerpHex(a, b, t) {
   return `#${r}${g}${bv}`;
 }
 
-// ---------------------------------------------------------------------------
-// Tile collection via substitution rule
-//
-// collectTiles recurses down the substitution tree. At level 0 it records
-// the leaf tile. At higher levels it applies each child transform
-// (in the parent's coordinate frame) and recurses.
-// ---------------------------------------------------------------------------
-
 /**
  * Recursively collect leaf spectre tile transforms.
  * @param {number} tx - world x of this (super-)tile's reference vertex
@@ -213,10 +177,6 @@ function collectTiles(tx, ty, scale, rot, level, colorIdx, out) {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Animation state
-// ---------------------------------------------------------------------------
-
 let tiles = [];
 let pulseIdx = -1;
 let pulseT0 = 0;
@@ -235,10 +195,6 @@ function pulseWeight(now) {
   return 0;
 }
 
-// ---------------------------------------------------------------------------
-// Canvas setup and rendering
-// ---------------------------------------------------------------------------
-
 function resize() {
   canvas.width  = canvas.clientWidth  * devicePixelRatio;
   canvas.height = canvas.clientHeight * devicePixelRatio;
@@ -252,13 +208,12 @@ function buildTiling() {
 
   // Leaf tiles at scale so that 4 substitution levels span the canvas.
   // Each level multiplies spatial extent by √3, so 4 levels → √3^4 = 9×.
-  // Tile width ≈ 4.5 units → leaf scale = dim / (4.5 × 9) ≈ dim/40.
-  const leafScale = dim / 40;
+  // Tile width = 3.5 units → leaf scale = dim / (3.5 × 9) ≈ dim/31.5.
+  const leafScale = dim / 31.5;
 
-  // Root tile centered on canvas — slightly above center to account
-  // for the tile's asymmetric bounding box
-  const rootTx = W * 0.5 - leafScale * 4.5 * 4.5;   // rough horizontal center
-  const rootTy = H_px * 0.5 - leafScale * 2.6 * 4.5;  // rough vertical center
+  // Root tile centered — subtract half the root's bounding box (3.5 × 9 wide, 3H × 9 tall).
+  const rootTx = W   * 0.5 - leafScale * 3.5 * 4.5;
+  const rootTy = H_px * 0.5 - leafScale * 3 * H * 4.5;
 
   collectTiles(rootTx, rootTy, leafScale * SQRT3 * SQRT3 * SQRT3 * SQRT3,
                0, 4, 0, tiles);
@@ -272,7 +227,7 @@ function drawAleph(W, H_px) {
   ctx.font = `bold ${size}px serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('א', W / 2, H_px / 2);  // א
+  ctx.fillText('א', W / 2, H_px / 2);
   ctx.restore();
 }
 

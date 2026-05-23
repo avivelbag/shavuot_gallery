@@ -7,8 +7,6 @@ essay word count, SVG thumbnail validity, and edge cases.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "91-spectre-monotile-aleph"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
