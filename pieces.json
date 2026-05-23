@@ -1494,5 +1494,16 @@
     "path": "pieces/87-ulam-prime-spiral-omer/index.html",
     "thumbnail": "pieces/87-ulam-prime-spiral-omer/thumbnail.svg",
     "essay": "pieces/87-ulam-prime-spiral-omer/essay.md"
+  },
+  {
+    "id": "88-arnold-cat-map-tablets",
+    "title": "Shattered and Restored: The Two Tablets",
+    "tagline": "the Arnold cat map scrambles the Hebrew text of the first commandment and — inevitably — restores it; chaos is periodic, the original always recoverable",
+    "year": 2026,
+    "theme": "Luchot / the two tablets",
+    "technique": "Arnold cat map (discrete area-preserving chaotic map)",
+    "path": "pieces/88-arnold-cat-map-tablets/index.html",
+    "thumbnail": "pieces/88-arnold-cat-map-tablets/thumbnail.svg",
+    "essay": "pieces/88-arnold-cat-map-tablets/essay.md"
   }
 ]

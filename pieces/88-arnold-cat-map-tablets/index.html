@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shattered and Restored: The Two Tablets</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0B1220; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e1e2e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e1e2e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #d0e8ff;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #505060;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #a0b8d8;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Shattered and Restored: The Two Tablets</h1>
+    <p class="subtitle">Luchot / the two tablets — Arnold cat map (discrete area-preserving chaotic map)</p>
+
+    <h2>Yasher Koach She'Shibbarta</h2>
+    <p>"And it came to pass, as soon as Moses drew near to the camp, that he saw the calf and the dancing; and Moses' anger burned, and he threw the tablets out of his hands and shattered them at the foot of the mountain." (Exodus 32:19)</p>
+    <p>The tablets had been written by the finger of God (Exodus 31:18). Inscribed on them: <em>Anochi Hashem Elohecha</em> — I am the LORD your God. Moses carried them down from Sinai for forty days only to shatter them on the plain below. The most sacred object in Israelite history destroyed by the person who received it.</p>
+    <p>The Talmud (Shabbat 87a) records something remarkable: God praised Moses for breaking the tablets. The phrase <em>yasher koach she'shibbarta</em> — "well done for shattering them" — appears as divine endorsement. The people had broken the covenant by worshipping the golden calf; Moses, seeing this, broke the tablets in kind. The two ruptures mirrored each other. The covenant could not be merely continued; it had to be renewed from the beginning, on the same terms, with the same words.</p>
+
+    <h2>The Letters That Did Not Perish</h2>
+    <p>The Midrash (Shemot Rabbah 46:1) teaches something stranger still. When Moses shattered the tablets, the letters did not perish — they flew back up to heaven. The stone was destroyed; the text was not. The vessel broke; the content endured. The divine words, having been inscribed, could not be unmade. Only the medium was lost.</p>
+
+    <h2>The Arnold Cat Map</h2>
+    <p>The Arnold cat map makes this literal in a precise mathematical sense. When you apply the map to a 256×256 pixel image — sending each pixel at (x, y) to ((x + y) mod 256, (x + 2y) mod 256) — the pixels are rearranged but not one bit of information is lost. The transformation is a bijection on the discrete torus Z_N × Z_N: every pixel goes somewhere unique, and every destination receives exactly one pixel. Apply the map once and the image appears scrambled. Apply it again: more so. Apply it P times, where P is the finite period of the map for that grid size, and the original image is restored exactly.</p>
+    <p>For N = 256, the period P is 192. Chaos is periodic. The letters always come back.</p>
+
+    <h2>This Piece</h2>
+    <p>The animation applies the Arnold cat map once every 120 milliseconds, letting you watch the tablets — the Hebrew text אָנֹכִי יְהוָה on the right, לֹא יִהְיֶה לְךָ on the left — disintegrate into visual noise over 96 iterations, then reconstitute letter by letter over the next 96. A warm-red fire tint rises and falls during the scrambled phase, evoking the golden calf. The full loop takes roughly 23 seconds.</p>
+    <p>The second set of tablets, Moses was told, would contain exactly the same words as the first (Exodus 34:1). The medium changed; the message did not. Every information system, it turns out, tells the same story: chaos is temporary, and the original is always recoverable.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var N = 256;
+  var P = 192; // Arnold cat map period for N=256 (verified: 192 iterations returns to identity)
+
+  var offscreen = document.createElement('canvas');
+  offscreen.width = N;
+  offscreen.height = N;
+  var oCtx = offscreen.getContext('2d');
+
+  function drawTablets() {
+    oCtx.fillStyle = '#0B1220';
+    oCtx.fillRect(0, 0, N, N);
+
+    var tW = 98, tH = 130, tY = 30, r = 10;
+    var rightX = 138, leftX = 18;
+
+    function roundedRect(x, y) {
+      oCtx.beginPath();
+      oCtx.moveTo(x + r, y);
+      oCtx.lineTo(x + tW - r, y);
+      oCtx.arcTo(x + tW, y, x + tW, y + r, r);
+      oCtx.lineTo(x + tW, y + tH - r);
+      oCtx.arcTo(x + tW, y + tH, x + tW - r, y + tH, r);
+      oCtx.lineTo(x + r, y + tH);
+      oCtx.arcTo(x, y + tH, x, y + tH - r, r);
+      oCtx.lineTo(x, y + r);
+      oCtx.arcTo(x, y, x + r, y, r);
+      oCtx.closePath();
+    }
+
+    roundedRect(rightX, tY);
+    oCtx.fillStyle = '#F5E6C8';
+    oCtx.fill();
+
+    roundedRect(leftX, tY);
+    oCtx.fillStyle = '#F5E6C8';
+    oCtx.fill();
+
+    oCtx.fillStyle = '#1A0A00';
+    oCtx.font = '18px serif';
+    oCtx.direction = 'rtl';
+    oCtx.textAlign = 'center';
+
+    // Right tablet: first commandment (אָנֹכִי יְהוָה)
+    oCtx.fillText('אָנֹכִי יְהוָה', rightX + tW / 2, tY + 45);
+    oCtx.fillText('אֱלֹהֶיך', rightX + tW / 2, tY + 68);
+
+    // Left tablet: second commandment (לֹא יִהְיֶה לְךָ)
+    oCtx.fillText('לֹא יִהְיֶה', leftX + tW / 2, tY + 45);
+    oCtx.fillText('לְךָ', leftX + tW / 2, tY + 68);
+
+    // Counter text at bottom (becomes part of the scrambled/restored image)
+    oCtx.font = '11px sans-serif';
+    oCtx.direction = 'ltr';
+    oCtx.fillStyle = '#888899';
+    oCtx.textAlign = 'center';
+    oCtx.fillText('Iteration: 0 / ' + P, N / 2, N - 10);
+  }
+
+  drawTablets();
+
+  var imgData = oCtx.getImageData(0, 0, N, N);
+  // origBuf holds the unmodified tablet image for resets
+  var origBuf = new Uint32Array(N * N);
+  var srcView = new Uint32Array(imgData.data.buffer);
+  origBuf.set(srcView);
+
+  var bufA = new Uint32Array(origBuf);
+  var bufB = new Uint32Array(N * N);
+
+  // Apply one Arnold cat map step: (x,y) -> ((x+y) mod N, (x+2y) mod N)
+  function arnoldStep(src, dst) {
+    for (var y = 0; y < N; y++) {
+      for (var x = 0; x < N; x++) {
+        var nx = (x + y) % N;
+        var ny = (x + 2 * y) % N;
+        dst[ny * N + nx] = src[y * N + x];
+      }
+    }
+  }
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+
+  function resize() {
+    canvas.width = panel.clientWidth;
+    canvas.height = panel.clientHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var STEP_MS = 120;
+
+  // Phase constants
+  var SHATTERING = 0;
+  var PAUSE_MID = 1;
+  var RESTORATION = 2;
+  var PAUSE_END = 3;
+
+  var phase = SHATTERING;
+  var iteration = 0;
+  var pauseStart = 0;
+  var lastStepTime = 0;
+
+  // Compute fire tint alpha for current iteration.
+  // Peaks at 0.15 between P/4 and 3P/4, fading over 10 iterations at each edge.
+  function fireTintAlpha(iter) {
+    var P4 = P / 4;       // 48
+    var P3_4 = 3 * P / 4; // 144
+    var fadeLen = 10;
+    if (iter <= P4 || iter >= P3_4) return 0;
+    if (iter < P4 + fadeLen) return 0.15 * (iter - P4) / fadeLen;
+    if (iter > P3_4 - fadeLen) return 0.15 * (P3_4 - iter) / fadeLen;
+    return 0.15;
+  }
+
+  function renderCurrent(timestamp) {
+    var W = canvas.width;
+    var H = canvas.height;
+
+    // Copy bufA into offscreen canvas for drawImage scaling
+    var put = ctx.createImageData(N, N);
+    var putBytes = new Uint8Array(put.data.buffer);
+    var srcBytes = new Uint8Array(bufA.buffer);
+    putBytes.set(srcBytes);
+    oCtx.putImageData(put, 0, 0);
+
+    // Scale up to main canvas with nearest-neighbor sampling for crisp pixels
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(offscreen, 0, 0, W, H);
+
+    // Fire tint overlay
+    var alpha = fireTintAlpha(iteration);
+    if (alpha > 0) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = '#FF3300';
+      ctx.fillRect(0, 0, W, H);
+      ctx.restore();
+    }
+
+    // Current iteration counter overlay (always legible)
+    ctx.save();
+    ctx.font = '13px sans-serif';
+    ctx.fillStyle = 'rgba(160,160,180,0.85)';
+    ctx.textAlign = 'center';
+    var label = phase === PAUSE_END ? 'Restored — Iteration: ' + P + ' / ' + P
+               : 'Iteration: ' + iteration + ' / ' + P;
+    ctx.fillText(label, W / 2, H - 14);
+    ctx.restore();
+  }
+
+  function advance() {
+    arnoldStep(bufA, bufB);
+    var tmp = bufA; bufA = bufB; bufB = tmp;
+    iteration++;
+  }
+
+  function frame(timestamp) {
+    if (phase === SHATTERING) {
+      if (timestamp - lastStepTime >= STEP_MS) {
+        lastStepTime = timestamp;
+        advance();
+        if (iteration >= P / 2) {
+          phase = PAUSE_MID;
+          pauseStart = timestamp;
+        }
+      }
+      renderCurrent(timestamp);
+    } else if (phase === PAUSE_MID) {
+      renderCurrent(timestamp);
+      if (timestamp - pauseStart >= 1500) {
+        phase = RESTORATION;
+        lastStepTime = timestamp;
+      }
+    } else if (phase === RESTORATION) {
+      if (timestamp - lastStepTime >= STEP_MS) {
+        lastStepTime = timestamp;
+        advance();
+        if (iteration >= P) {
+          phase = PAUSE_END;
+          pauseStart = timestamp;
+        }
+      }
+      renderCurrent(timestamp);
+    } else if (phase === PAUSE_END) {
+      renderCurrent(timestamp);
+      if (timestamp - pauseStart >= 2000) {
+        // Reset: restore original pixel buffer and restart
+        bufA.set(origBuf);
+        iteration = 0;
+        phase = SHATTERING;
+        lastStepTime = timestamp;
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
