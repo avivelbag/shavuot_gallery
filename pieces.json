@@ -11,6 +11,17 @@
     "essay": "pieces/01-thunder-at-sinai/essay.md"
   },
   {
+    "id": "03-logistic-map-omer-bifurcation",
+    "title": "Order Hidden Within the Count",
+    "tagline": "the logistic map bifurcation diagram — period-doubling chaos as Sefirat HaOmer",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / the 49-day count",
+    "technique": "Logistic map bifurcation diagram / density-estimation rendering",
+    "path": "pieces/03-logistic-map-omer-bifurcation/index.html",
+    "thumbnail": "pieces/03-logistic-map-omer-bifurcation/thumbnail.svg",
+    "essay": "pieces/03-logistic-map-omer-bifurcation/essay.md"
+  },
+  {
     "id": "04-until-dawn",
     "title": "Until Dawn",
     "tagline": "Torah letters falling through the night until dawn",

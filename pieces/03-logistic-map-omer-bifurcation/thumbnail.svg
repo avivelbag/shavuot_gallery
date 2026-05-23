@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#0A0820"/>
+
+  <!-- Stylized bifurcation tree: single stem forks into doubling branches -->
+  <!-- Main stem -->
+  <path d="M 60,200 L 160,200" stroke="#C09040" stroke-width="2.5" fill="none" opacity="0.9"/>
+
+  <!-- First bifurcation at x=160 -->
+  <path d="M 160,200 Q 180,200 200,160" stroke="#C09040" stroke-width="2" fill="none" opacity="0.85"/>
+  <path d="M 160,200 Q 180,200 200,240" stroke="#C09040" stroke-width="2" fill="none" opacity="0.85"/>
+
+  <!-- Upper branch second fork at x=200,y=160 -->
+  <path d="M 200,160 Q 218,160 236,138" stroke="#C09040" stroke-width="1.6" fill="none" opacity="0.8"/>
+  <path d="M 200,160 Q 218,160 236,178" stroke="#C09040" stroke-width="1.6" fill="none" opacity="0.8"/>
+
+  <!-- Lower branch second fork at x=200,y=240 -->
+  <path d="M 200,240 Q 218,240 236,222" stroke="#C09040" stroke-width="1.6" fill="none" opacity="0.8"/>
+  <path d="M 200,240 Q 218,240 236,262" stroke="#C09040" stroke-width="1.6" fill="none" opacity="0.8"/>
+
+  <!-- Third level forks -->
+  <path d="M 236,138 Q 252,138 268,126" stroke="#B07830" stroke-width="1.2" fill="none" opacity="0.75"/>
+  <path d="M 236,138 Q 252,138 268,148" stroke="#B07830" stroke-width="1.2" fill="none" opacity="0.75"/>
+
+  <path d="M 236,178 Q 252,178 268,168" stroke="#B07830" stroke-width="1.2" fill="none" opacity="0.75"/>
+  <path d="M 236,178 Q 252,178 268,188" stroke="#B07830" stroke-width="1.2" fill="none" opacity="0.75"/>
+
+  <path d="M 236,222 Q 252,222 268,212" stroke="#B07830" stroke-width="1.2" fill="none" opacity="0.75"/>
+  <path d="M 236,222 Q 252,222 268,232" stroke="#B07830" stroke-width="1.2" fill="none" opacity="0.75"/>
+
+  <path d="M 236,262 Q 252,262 268,252" stroke="#B07830" stroke-width="1.2" fill="none" opacity="0.75"/>
+  <path d="M 236,262 Q 252,262 268,272" stroke="#B07830" stroke-width="1.2" fill="none" opacity="0.75"/>
+
+  <!-- Fourth level forks — very fine -->
+  <path d="M 268,126 Q 282,126 296,118" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,126 Q 282,126 296,132" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,148 Q 282,148 296,142" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,148 Q 282,148 296,154" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,168 Q 282,168 296,162" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,168 Q 282,168 296,174" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,188 Q 282,188 296,182" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,188 Q 282,188 296,194" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,212 Q 282,212 296,206" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,212 Q 282,212 296,218" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,232 Q 282,232 296,226" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,232 Q 282,232 296,238" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,252 Q 282,252 296,246" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,252 Q 282,252 296,258" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,272 Q 282,272 296,266" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+  <path d="M 268,272 Q 282,272 296,278" stroke="#907028" stroke-width="0.9" fill="none" opacity="0.65"/>
+
+  <!-- Chaos zone: scattered vertical dots suggesting density cloud -->
+  <rect x="300" y="80" width="2" height="240" fill="#6050A0" opacity="0.5"/>
+  <rect x="310" y="60" width="1" height="280" fill="#5040A0" opacity="0.4"/>
+  <rect x="318" y="100" width="1" height="200" fill="#6050A0" opacity="0.45"/>
+  <rect x="326" y="90" width="1" height="220" fill="#4838A0" opacity="0.4"/>
+  <rect x="333" y="50" width="1" height="300" fill="#5848A0" opacity="0.45"/>
+  <rect x="340" y="110" width="1" height="180" fill="#4838A0" opacity="0.4"/>
+
+  <!-- Period-3 window hint: brief bright fork in chaos -->
+  <path d="M 346,200 Q 352,200 358,182" stroke="#C09040" stroke-width="1.1" fill="none" opacity="0.6"/>
+  <path d="M 346,200 Q 352,200 358,200" stroke="#C09040" stroke-width="1.1" fill="none" opacity="0.6"/>
+  <path d="M 346,200 Q 352,200 358,218" stroke="#C09040" stroke-width="1.1" fill="none" opacity="0.6"/>
+
+  <!-- Continue chaos -->
+  <rect x="362" y="60" width="1" height="280" fill="#5848A0" opacity="0.45"/>
+  <rect x="370" y="80" width="1" height="240" fill="#4838A0" opacity="0.4"/>
+  <rect x="378" y="50" width="1" height="300" fill="#5040A0" opacity="0.4"/>
+  <rect x="385" y="100" width="1" height="200" fill="#4030A0" opacity="0.35"/>
+
+  <!-- r-axis label at bottom -->
+  <line x1="60" y1="340" x2="395" y2="340" stroke="#3A3060" stroke-width="0.8"/>
+  <text x="60" y="355" fill="#6A5880" font-size="11" font-family="Georgia, serif">r = 2.5</text>
+  <text x="355" y="355" fill="#6A5880" font-size="11" font-family="Georgia, serif">4.0</text>
+
+  <!-- Hebrew nun label -->
+  <text x="388" y="336" fill="#C09040" font-size="13" font-family="Georgia, serif" text-anchor="middle">נ</text>
+
+  <!-- Title -->
+  <text x="200" y="38" fill="#C09040" font-size="14" font-family="Georgia, serif" text-anchor="middle">Order Hidden Within the Count</text>
+  <text x="200" y="56" fill="#6A5880" font-size="10" font-family="Georgia, serif" text-anchor="middle">Sefirat HaOmer · logistic map bifurcation</text>
+</svg>

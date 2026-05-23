@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Hidden Within the Count — Logistic Map Bifurcation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0A0820;
+      color: #C8C0A0;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: #C09040;
+      letter-spacing: 0.05em;
+      padding: 1.4rem 2rem 0.3rem;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: #7060A0;
+      text-align: center;
+      padding-bottom: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1300px;
+      width: 100%;
+      padding: 0 2rem 2rem;
+    }
+    .art-pane { flex: 0 0 auto; position: relative; }
+    canvas {
+      display: block;
+      cursor: pointer;
+      border: 1px solid #2A1860;
+    }
+    .hint {
+      font-size: 0.72rem;
+      color: #5A4890;
+      text-align: center;
+      margin-top: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+    .essay-pane {
+      flex: 1 1 340px;
+      min-width: 0;
+      max-width: 460px;
+    }
+    .essay-pane h2 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      color: #C09040;
+      margin-bottom: 0.7rem;
+    }
+    .essay-pane p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #B8B0A0;
+      margin-bottom: 0.9rem;
+    }
+    .essay-pane em {
+      color: #8878B0;
+      font-style: italic;
+    }
+    .essay-pane .sources {
+      font-size: 0.76rem;
+      color: #6A6080;
+      border-top: 1px solid #2A1860;
+      padding-top: 0.6rem;
+      margin-top: 0.4rem;
+    }
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; align-items: center; }
+      .essay-pane { max-width: 800px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Order Hidden Within the Count</h1>
+  <div class="subtitle">Sefirat HaOmer · the logistic map bifurcation diagram</div>
+
+  <div class="layout">
+    <div class="art-pane">
+      <canvas id="canvas" width="800" height="600"></canvas>
+      <div class="hint">click to re-render with a new starting point</div>
+    </div>
+
+    <div class="essay-pane">
+      <h2>Order Hidden Within the Count</h2>
+
+      <p><em>Leviticus 23:15–16: "You shall count for yourselves from the day after the Sabbath, from the day when you bring the wave-offering sheaf — seven complete weeks they shall be; until the day after the seventh Sabbath you shall count fifty days, and you shall present a new grain offering to the LORD."</em></p>
+
+      <p>Among biblical commandments, Sefirat HaOmer is unusual in that its medium is not space but time. You do not build something, eat something, or go somewhere. You count. Forty-nine times you name the day — and the name matters: not "another day has passed" but "today is the fourteenth day, which is two weeks." Each day is individually numbered, cumulatively situated. Unlike most biblical countdowns, which count toward zero (seven days of illness, seven days of impurity), the Omer counts upward. The direction is forward and ascending, building toward Shavuot — the fiftieth day when Torah was received.</p>
+
+      <p>The Kabbalistic tradition, particularly in the Tanya of Rabbi Schneur Zalman of Liadi and the Sefat Emet of the Gerrer Rebbe, heard a deeper structure in these forty-nine days. The seven weeks correspond to the seven lower sefirot — Chesed, Gevurah, Tiferet, Netzach, Hod, Yesod, Malkhut — and each week's seven days explore each sefirah's interior: the Chesed within Chesed, the Gevurah within Chesed, and so on through all forty-nine pairings. The counting is not a linear wait but a combinatorial curriculum. The grid contains every possible pairing of the seven qualities; each day is a node in a structure more intricate than a simple sequence suggests.</p>
+
+      <p>This is precisely what the logistic map bifurcation diagram shows.</p>
+
+      <p>The recurrence x&#x2099;&#x208A;&#x2081; = r · x&#x2099; · (1 − x&#x2099;) seems simple: a single parameter r governing a single quantity x. As r increases from 2.5 to 4.0, the long-term behavior transforms. For low r the system settles to a fixed point. Then it bifurcates — two attractors, then four, then eight — each doubling happening faster than the last, at intervals governed by the Feigenbaum constant δ ≈ 4.669. Then: chaos. And yet within the chaos, windows of perfect order re-emerge. A period-3 window at r ≈ 3.83. Smaller windows nested inside. Self-similarity at every scale, forever.</p>
+
+      <p>The diagram draws itself column by column, from left to right — as if counting. Each vertical slice is one value of r, one iteration of the map run to its long-term fate. The harvest-gold palette connects the abstract dynamics to the wheat fields of Shavuot. The 49 faint tick marks overlaid on the diagram mark one Omer day per interval of r; the fiftieth mark at r = 4.0 is labeled with the Hebrew letter נ (nun, fifty), the edge of full chaos, the gate that can be approached but not entered.</p>
+
+      <p>The Kabbalistic claim and the mathematical fact rhyme exactly: what looks like a simple parameter scan conceals fractal depth at every scale. The period-doubling route to chaos has structure nested within structure nested within structure, without end. The 49 days are not merely sequential — they are combinatorially rich, each containing echoes of all the others, just as the diagram contains order within chaos within order.</p>
+
+      <p>The fiftieth day — Torah, Shavuot, the 50th gate of Binah — is not part of the counting. It is what the counting was for.</p>
+
+      <p class="sources"><em>Sources: Leviticus 23:15–16; Tanya, Iggeret HaTeshuvah; Sefat Emet, Shavuot; Mitchell Feigenbaum, "Quantitative Universality for a Class of Nonlinear Transformations," 1978.</em></p>
+    </div>
+  </div>
+
+  <script>
+    const W = 800, H = 600;
+    const R_MIN = 2.5, R_MAX = 4.0;
+    const TRANSIENT = 300, SAMPLES = 200;
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const density = new Uint16Array(W * H);
+    const imgData = ctx.createImageData(W, H);
+
+    let currentCol = 0;
+    let x0 = 0.5;
+    let animFrameId = null;
+
+    /**
+     * Linear interpolation between two values.
+     */
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    /**
+     * Map a density ratio t in [0, 1] to an RGB color via a four-stop gradient:
+     *   t=0    → #0A0820 (deep indigo — empty)
+     *   t=0.08 → #2040A0 (blue — sparse)
+     *   t=0.45 → #C09040 (wheat gold — medium)
+     *   t=1    → #F8F0D8 (off-white — high density)
+     */
+    function colorAt(t) {
+      if (t <= 0) return [0x0A, 0x08, 0x20];
+      if (t < 0.08) {
+        const s = t / 0.08;
+        return [
+          Math.round(lerp(0x0A, 0x20, s)),
+          Math.round(lerp(0x08, 0x40, s)),
+          Math.round(lerp(0x20, 0xA0, s))
+        ];
+      }
+      if (t < 0.45) {
+        const s = (t - 0.08) / (0.45 - 0.08);
+        return [
+          Math.round(lerp(0x20, 0xC0, s)),
+          Math.round(lerp(0x40, 0x90, s)),
+          Math.round(lerp(0xA0, 0x40, s))
+        ];
+      }
+      const s = (t - 0.45) / (1 - 0.45);
+      return [
+        Math.round(lerp(0xC0, 0xF8, s)),
+        Math.round(lerp(0x90, 0xF0, s)),
+        Math.round(lerp(0x40, 0xD8, s))
+      ];
+    }
+
+    /**
+     * Compute density for a batch of columns [startCol, startCol+count).
+     * Iterates the logistic map: burn TRANSIENT steps, then accumulate SAMPLES
+     * hits into density[], mapping x in [0,1] to pixel rows in [0, H-1].
+     */
+    function computeColumns(startCol, count) {
+      const endCol = Math.min(startCol + count, W);
+      for (let col = startCol; col < endCol; col++) {
+        const r = R_MIN + (col / W) * (R_MAX - R_MIN);
+        let x = x0;
+        for (let i = 0; i < TRANSIENT; i++) x = r * x * (1 - x);
+        for (let i = 0; i < SAMPLES; i++) {
+          x = r * x * (1 - x);
+          const row = H - 1 - Math.floor(x * H);
+          if (row >= 0 && row < H) density[row * W + col]++;
+        }
+      }
+    }
+
+    /**
+     * Render columns [0, upToCol) into imgData from the accumulated density array.
+     * Each column is normalized independently so sparse regions are still visible.
+     */
+    function renderColumns(upToCol) {
+      const data = imgData.data;
+      for (let col = 0; col < upToCol; col++) {
+        let maxD = 0;
+        for (let row = 0; row < H; row++) {
+          const d = density[row * W + col];
+          if (d > maxD) maxD = d;
+        }
+        for (let row = 0; row < H; row++) {
+          const t = maxD > 0 ? density[row * W + col] / maxD : 0;
+          const [r, g, b] = colorAt(t);
+          const idx = (row * W + col) * 4;
+          data[idx]     = r;
+          data[idx + 1] = g;
+          data[idx + 2] = b;
+          data[idx + 3] = 255;
+        }
+      }
+      // fill remaining columns with background
+      for (let col = upToCol; col < W; col++) {
+        for (let row = 0; row < H; row++) {
+          const idx = (row * W + col) * 4;
+          data[idx]     = 0x0A;
+          data[idx + 1] = 0x08;
+          data[idx + 2] = 0x20;
+          data[idx + 3] = 255;
+        }
+      }
+      ctx.putImageData(imgData, 0, 0);
+    }
+
+    /**
+     * Draw the Omer overlay: 49 faint vertical lines at evenly-spaced r values,
+     * plus a "נ" (nun = 50) label at r = 4.0.
+     */
+    function drawOmerOverlay() {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+      ctx.lineWidth = 1;
+      for (let day = 1; day <= 49; day++) {
+        const col = Math.round((day / 50) * W);
+        ctx.beginPath();
+        ctx.moveTo(col + 0.5, 0);
+        ctx.lineTo(col + 0.5, H);
+        ctx.stroke();
+      }
+      // The 50th mark at r=4.0 (col = W - 1)
+      ctx.strokeStyle = 'rgba(192,144,64,0.25)';
+      ctx.beginPath();
+      ctx.moveTo(W - 0.5, 0);
+      ctx.lineTo(W - 0.5, H);
+      ctx.stroke();
+      ctx.font = '12px Georgia, serif';
+      ctx.fillStyle = '#C09040';
+      ctx.textAlign = 'right';
+      ctx.fillText('נ', W - 4, H - 6);
+      ctx.restore();
+    }
+
+    const COLS_PER_FRAME = 20;
+
+    function animate() {
+      if (currentCol >= W) {
+        drawOmerOverlay();
+        return;
+      }
+      computeColumns(currentCol, COLS_PER_FRAME);
+      currentCol += COLS_PER_FRAME;
+      renderColumns(currentCol);
+      animFrameId = requestAnimationFrame(animate);
+    }
+
+    function startRender(newX0) {
+      if (animFrameId !== null) cancelAnimationFrame(animFrameId);
+      density.fill(0);
+      currentCol = 0;
+      x0 = newX0;
+      animFrameId = requestAnimationFrame(animate);
+    }
+
+    canvas.addEventListener('click', () => {
+      startRender(0.01 + Math.random() * 0.98);
+    });
+
+    startRender(0.5);
+  </script>
+</body>
+</html>
