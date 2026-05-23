@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Gate That No Creature May Enter — Quantum Walk on 49 Gates</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #050510; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050510;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100vh;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a0840;
+      overflow-y: auto;
+      color: #c0b0d8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #060412;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a0840; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.55rem;
+      color: #D4A017;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+      line-height: 1.3;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4a2888;
+      margin: 0 0 2rem;
+      font-style: italic;
+      direction: rtl;
+      text-align: right;
+      font-family: 'Noto Serif Hebrew', 'David', 'Frank Ruehl', 'Times New Roman', serif;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #9060d0;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #b090e8; font-style: italic; }
+
+    .tanach-block {
+      margin: 1.5rem 0;
+      padding: 1.2rem 1.4rem;
+      background: #080320;
+      border-left: 3px solid #4a1080;
+      border-radius: 0 4px 4px 0;
+    }
+    .tanach-block .hebrew {
+      direction: rtl;
+      text-align: right;
+      font-size: 1.15rem;
+      line-height: 2.1;
+      color: #e8deff;
+      margin: 0 0 0.9rem;
+      font-family: 'Noto Serif Hebrew', 'David', 'Frank Ruehl', 'Times New Roman', serif;
+    }
+    .tanach-block .english-translation {
+      font-style: italic;
+      color: #8878b0;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .tanach-block cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #4a3070;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+
+  <div class="essay-panel" lang="en">
+    <h1>The Gate That No Creature May Enter</h1>
+    <p class="subtitle" lang="he">שַׁעֲרֵי בִינָה — Gates of Understanding</p>
+
+    <h2>Fifty Gates of Understanding</h2>
+
+    <p>The Talmud (Rosh Hashanah 21b) teaches:</p>
+
+    <div class="tanach-block">
+      <p class="hebrew" dir="rtl" lang="he">
+        חֲמִשִּׁים שַׁעֲרֵי בִינָה נִבְרְאוּ בָּעוֹלָם, וְכֻלָּן נִתְּנוּ לְמֹשֶׁה
+        חוּץ מֵאֶחָד, שֶׁנֶּאֱמַר: "וַתְּחַסְּרֵהוּ מְעַט מֵאֱלֹהִים"
+      </p>
+      <p class="english-translation">
+        "Fifty gates of understanding were created in the world, and all of them
+        were given to Moses except one, as it is said: 'You have made him slightly
+        less than divine.'" (Psalm 8:6)
+      </p>
+      <cite>— Talmud Bavli, Rosh Hashanah 21b (ראש השנה כ״א ע״ב)</cite>
+    </div>
+
+    <p>Moses, who spoke to God face to face and who led Israel through forty years
+    of wilderness, reached forty-nine of the fifty gates of understanding. The
+    fiftieth gate belongs to God alone. It is the gate of <em>bina</em> — deep
+    understanding — that no creature may enter.</p>
+
+    <h2>Counting the Omer</h2>
+
+    <p>Shavuot falls on the fiftieth day of the Omer count, which begins the
+    second night of Passover. The Torah commands (Leviticus 23:15–16):</p>
+
+    <div class="tanach-block">
+      <p class="hebrew" dir="rtl" lang="he">
+        וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת־עֹמֶר
+        הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה׃ עַד מִמָּחֳרַת
+        הַשַּׁבָּת הַשְּׁבִיעִית תִּסְפְּרוּ חֲמִשִּׁים יוֹם
+      </p>
+      <p class="english-translation">
+        "You shall count for yourselves from the morrow after the sabbath, from
+        the day that you brought the sheaf of the wave-offering; seven complete
+        sabbaths shall there be; until the morrow after the seventh sabbath you
+        shall count fifty days."
+      </p>
+      <cite>— Leviticus 23:15–16 (ויקרא כ״ג:ט״ו–ט״ז)</cite>
+    </div>
+
+    <p>Kabbalistic tradition names the forty-nine days by the 7×7 structure of
+    the Sefirot: seven attributes (<em>Hesed, Gevurah, Tiferet, Netzach, Hod,
+    Yesod, Malkhut</em>) each multiplied through the same seven. Day one is
+    <em>Hesed she-b'Hesed</em> — loving-kindness within loving-kindness. Day
+    forty-nine is <em>Malkhut she-b'Malkhut</em> — sovereignty within
+    sovereignty. Day fifty falls outside the count entirely.</p>
+
+    <h2>A Walk That Interferes with Itself</h2>
+
+    <p>A classical random walker spreads like ink in water — probability diffusing
+    outward as a Gaussian, reaching distance <em>r</em> from the origin in
+    roughly √<em>t</em> steps. A quantum walker is categorically different. The
+    walker's amplitude travels in two directions simultaneously, and those two
+    copies are in quantum superposition; when they meet at the same grid position
+    from different directions, their amplitudes add or cancel depending on their
+    relative phase. The result is <em>ballistic spreading</em> — the probability
+    front advances linearly in time — with sharp interference fringes inside.
+    Certain positions accumulate high probability not because they are closer to
+    the start, but because many paths arrive there in phase.</p>
+
+    <p>This piece implements a 2D discrete-time quantum walk on a 49×49 grid.
+    At each step, the Grover coin — the four-dimensional mixing matrix with
+    entries C(d,d) = −½ and C(d,d′) = ½ for d ≠ d′ — is applied to the
+    four-component amplitude at each node, mixing the directional components
+    before the shift operator moves each component one step in its assigned
+    direction. The walk begins at the center node (24,24) in equal superposition
+    across all four coin states and spreads outward over 49 steps.</p>
+
+    <h2>The Fiftieth Gate as Boundary Condition</h2>
+
+    <p>The corner position (48,48) — the 49th index in each dimension, the gate
+    that would be the fiftieth — carries an absorbing boundary: its amplitude is
+    set to zero after every step. This is not a reflecting wall but a <em>drain</em>.
+    Probability that flows toward the corner simply vanishes. The mathematical
+    consequence is constructive interference outside the boundary: the fringes
+    intensify in the ring of cells that border the gate, as though the probability
+    distribution were straining against a wall it cannot breach.</p>
+
+    <p>The gold interference pattern that builds over 49 steps is the mathematical
+    trace of Moses at the gates of understanding — all paths explored, all
+    forty-nine positions lit with amplitude, one corner permanently dark. The piece
+    resets on the fiftieth moment and begins again: there is no Shavuot without
+    the count, and no count without the limit that gives it meaning.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const N = 49;
+  const SIZE = N * N * 4;
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  let psiR = new Float64Array(SIZE);
+  let psiI = new Float64Array(SIZE);
+  let tmpR = new Float64Array(SIZE);
+  let tmpI = new Float64Array(SIZE);
+
+  /**
+   * Returns the flat index for position (x, y) with coin direction c.
+   * coin: 0=up(+y), 1=down(-y), 2=left(-x), 3=right(+x)
+   */
+  function idx(x, y, c) {
+    return (x * N + y) * 4 + c;
+  }
+
+  /** Initialise the walk at centre (24,24) in equal coin superposition. */
+  function reset() {
+    psiR.fill(0);
+    psiI.fill(0);
+    for (let c = 0; c < 4; c++) {
+      psiR[idx(24, 24, c)] = 0.5;
+    }
+    step = 0;
+    phase = 'running';
+  }
+
+  /**
+   * Advance one step of the quantum walk.
+   *
+   * Apply Grover coin at every cell, then shift each coin component one step
+   * in its assigned direction.  Zero out (48,48) — the absorbing 50th gate.
+   *
+   * Grover coin: C[d][d'] = -delta(d,d') + 1/2
+   *   newCoin[d] = -oldCoin[d] + (1/2) * sum_d' oldCoin[d']
+   *
+   * Shift (pull convention):
+   *   ψ'[x][y][up]    = coin[x][y-1][up]    (up moves particle in +y)
+   *   ψ'[x][y][down]  = coin[x][y+1][down]  (down moves particle in -y)
+   *   ψ'[x][y][left]  = coin[x+1][y][left]  (left moves particle in -x)
+   *   ψ'[x][y][right] = coin[x-1][y][right] (right moves particle in +x)
+   */
+  function applyStep() {
+    // --- coin pass: compute after-coin amplitudes into tmp arrays ---
+    for (let x = 0; x < N; x++) {
+      for (let y = 0; y < N; y++) {
+        let sR = 0, sI = 0;
+        for (let c = 0; c < 4; c++) {
+          const i = idx(x, y, c);
+          sR += psiR[i];
+          sI += psiI[i];
+        }
+        sR *= 0.5; sI *= 0.5;
+        for (let c = 0; c < 4; c++) {
+          const i = idx(x, y, c);
+          tmpR[i] = -psiR[i] + sR;
+          tmpI[i] = -psiI[i] + sI;
+        }
+      }
+    }
+
+    // --- shift pass: pull from tmp (after-coin) into psi ---
+    psiR.fill(0);
+    psiI.fill(0);
+    for (let x = 0; x < N; x++) {
+      for (let y = 0; y < N; y++) {
+        // up (c=0): pull from (x, y-1)
+        if (y > 0) {
+          const src = idx(x, y - 1, 0);
+          const dst = idx(x, y, 0);
+          psiR[dst] = tmpR[src];
+          psiI[dst] = tmpI[src];
+        }
+        // down (c=1): pull from (x, y+1)
+        if (y < N - 1) {
+          const src = idx(x, y + 1, 1);
+          const dst = idx(x, y, 1);
+          psiR[dst] = tmpR[src];
+          psiI[dst] = tmpI[src];
+        }
+        // left (c=2): pull from (x+1, y)
+        if (x < N - 1) {
+          const src = idx(x + 1, y, 2);
+          const dst = idx(x, y, 2);
+          psiR[dst] = tmpR[src];
+          psiI[dst] = tmpI[src];
+        }
+        // right (c=3): pull from (x-1, y)
+        if (x > 0) {
+          const src = idx(x - 1, y, 3);
+          const dst = idx(x, y, 3);
+          psiR[dst] = tmpR[src];
+          psiI[dst] = tmpI[src];
+        }
+      }
+    }
+
+    // absorbing boundary at (48,48) — the 50th gate no creature may enter
+    for (let c = 0; c < 4; c++) {
+      psiR[idx(48, 48, c)] = 0;
+      psiI[idx(48, 48, c)] = 0;
+    }
+  }
+
+  /** Interpolate colour between deep indigo → violet → gold based on t in [0,1]. */
+  function probColor(t) {
+    let r, g, b;
+    if (t < 0.4) {
+      const s = t / 0.4;
+      r = Math.round(0x1E + s * (0x6B - 0x1E));
+      g = Math.round(0x0D + s * (0x21 - 0x0D));
+      b = Math.round(0x5C + s * (0xA8 - 0x5C));
+    } else {
+      const s = (t - 0.4) / 0.6;
+      r = Math.round(0x6B + s * (0xD4 - 0x6B));
+      g = Math.round(0x21 + s * (0xA0 - 0x21));
+      b = Math.round(0xA8 + s * (0x17 - 0xA8));
+    }
+    return `rgb(${r},${g},${b})`;
+  }
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    const panel = canvas.parentElement;
+    const w = panel.clientWidth;
+    const h = panel.clientHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+    panelW = w;
+    panelH = h;
+  }
+
+  let panelW = 0, panelH = 0;
+  let step = 0;
+  let phase = 'running';
+  let phaseStart = 0;
+
+  /** Draw the current probability distribution to the canvas. */
+  function render() {
+    const w = panelW, h = panelH;
+    const pad = 48;
+    const gridPx = Math.min(w, h) - pad * 2;
+    const cell = gridPx / N;
+
+    const gx = (w - gridPx) / 2;
+    const gy = (h - gridPx) / 2;
+
+    // background
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = '#050510';
+    ctx.fillRect(0, 0, w, h);
+
+    // compute marginal probabilities
+    let pMax = 0;
+    const prob = new Float64Array(N * N);
+    for (let x = 0; x < N; x++) {
+      for (let y = 0; y < N; y++) {
+        let p = 0;
+        for (let c = 0; c < 4; c++) {
+          const i = idx(x, y, c);
+          p += psiR[i] * psiR[i] + psiI[i] * psiI[i];
+        }
+        prob[x * N + y] = p;
+        if (p > pMax) pMax = p;
+      }
+    }
+
+    // draw cells with additive blending
+    ctx.globalCompositeOperation = 'lighter';
+    if (pMax > 0) {
+      for (let x = 0; x < N; x++) {
+        for (let y = 0; y < N; y++) {
+          const t = prob[x * N + y] / pMax;
+          if (t < 0.002) continue;
+          ctx.fillStyle = probColor(t);
+          const px = gx + x * cell;
+          const py = gy + y * cell;
+          ctx.fillRect(px + 0.5, py + 0.5, cell - 1, cell - 1);
+        }
+      }
+    }
+
+    // border and labels in normal blending
+    ctx.globalCompositeOperation = 'source-over';
+
+    // gold border around the 49×49 grid
+    ctx.strokeStyle = '#D4A017';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(gx, gy, gridPx, gridPx);
+
+    // label "מ״ט" above the grid
+    ctx.fillStyle = '#D4A017';
+    ctx.font = `bold ${Math.round(cell * 1.2)}px 'Noto Serif Hebrew', serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('מ״ט', gx + gridPx / 2, gy - 4);
+
+    // step counter
+    ctx.font = `${Math.round(cell * 0.7)}px Georgia, serif`;
+    ctx.fillStyle = '#6040a0';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(`step ${step} / 49`, gx, gy - 4);
+
+    // gate shape at (48,48) — two vertical posts + lintel
+    const gateX = gx + 48 * cell;
+    const gateY = gy + 48 * cell;
+    const gw = cell;
+    const gh = cell;
+    ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+    ctx.lineWidth = 1;
+    const postW = gw * 0.18;
+    const lintH = gh * 0.22;
+    ctx.beginPath();
+    // left post
+    ctx.moveTo(gateX + postW, gateY + gh);
+    ctx.lineTo(gateX + postW, gateY + lintH);
+    // lintel
+    ctx.lineTo(gateX + gw - postW, gateY + lintH);
+    // right post
+    ctx.lineTo(gateX + gw - postW, gateY + gh);
+    ctx.stroke();
+    // faint fill for the gate cell
+    ctx.fillStyle = 'rgba(255,255,255,0.04)';
+    ctx.fillRect(gateX, gateY, gw, gh);
+
+    // label "שער החמישים" inside gate cell
+    const labelSize = Math.max(5, Math.round(cell * 0.28));
+    ctx.font = `${labelSize}px 'Noto Serif Hebrew', serif`;
+    ctx.fillStyle = 'rgba(255,255,255,0.45)';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('שער החמישים', gateX + gw / 2, gateY + gh - 2);
+  }
+
+  /** Draw the Shavuot label centred on the canvas. */
+  function drawShavuotLabel() {
+    const w = panelW, h = panelH;
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'rgba(5,5,16,0.7)';
+    ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#D4A017';
+    ctx.font = `bold ${Math.round(Math.min(w, h) / 14)}px 'Noto Serif Hebrew', Georgia, serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('יום חמישים — שבועות', w / 2, h / 2);
+  }
+
+  function animate(ts) {
+    requestAnimationFrame(animate);
+
+    if (phase === 'running') {
+      applyStep();
+      step++;
+      render();
+      if (step >= N) {
+        phase = 'paused';
+        phaseStart = ts;
+      }
+    } else if (phase === 'paused') {
+      render();
+      if (ts - phaseStart >= 2000) {
+        phase = 'label';
+        phaseStart = ts;
+      }
+    } else if (phase === 'label') {
+      render();
+      drawShavuotLabel();
+      if (ts - phaseStart >= 1000) {
+        reset();
+      }
+    }
+  }
+
+  window.addEventListener('resize', () => {
+    ctx.resetTransform();
+    resize();
+  });
+
+  resize();
+  reset();
+  requestAnimationFrame(animate);
+}());
+</script>
+</body>
+</html>
