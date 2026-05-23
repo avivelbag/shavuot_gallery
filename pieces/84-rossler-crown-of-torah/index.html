@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Crown That Never Ceases Turning — Rössler Attractor / Keter Torah</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #05040F; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #05040F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas#crown {
+      display: block;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1A1060;
+      overflow-y: auto;
+      color: #b8bcd8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #05040F;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1A1060; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.4rem; color: #F0C040; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.85rem; color: #3A3060; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 0.95rem; color: #4040CC; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.85; margin: 0 0 1rem; font-size: 0.93rem; }
+    .essay-panel em { color: #F0C040; font-style: normal; }
+    .essay-panel blockquote {
+      border-left: 3px solid #1A1060;
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      color: #c8ccdf;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="crown"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>The Crown That Never Ceases Turning</h1>
+    <div class="subtitle">Keter Torah / Perpetual Torah Study — Rössler Strange Attractor / Particle System</div>
+
+    <h2>Keter Torah — The Crown of Torah</h2>
+    <p>The Mishnah in Avot 4:13 names three crowns: <em>Keter Torah</em>, the Crown of Torah; <em>Keter Kehunah</em>, the Crown of Priesthood; and <em>Keter Malkhut</em>, the Crown of Royalty. Of the three, only Keter Torah is open to everyone. Ben Azzai said: "The crown of priesthood is inherited by birth; the crown of kingship by lineage. But the crown of Torah? Whoever wishes, let them come and take it." It is the one crown that no accident of birth can confer — and none can foreclose.</p>
+
+    <h2>Ben Bag Bag and the Endless Turn</h2>
+    <p>Pirkei Avot 5:22 preserves the teaching of Ben Bag Bag, a student of Hillel who converted to Judaism: <em>Hafokh bah vahafokh bah, d'khola bah</em> — "Turn it and turn it again, for everything is in it." The verb <em>hafokh</em> means to rotate, to invert, to overturn. Ben Bag Bag does not say that Torah contains much, or even everything one needs. He says that the turning itself — the ceaseless act of return and rereading — is the crown. Every rotation reveals a face that was hidden on the previous pass.</p>
+
+    <h2>The Rössler Attractor and Perpetual Discovery</h2>
+    <p>Otto Rössler described his attractor in 1976. Its equations are the simplest known chaotic system: dx/dt = −y − z, dy/dt = x + ay, dz/dt = b + z(x − c). At the classical parameters a = 0.2, b = 0.2, c = 5.7, the trajectory spirals outward through a wide, nearly flat disc — like a crown viewed from below — then folds sharply upward at the rim, swoops back to the center, and begins again. It never repeats. The fold at the top of the orbit — the golden rim in this visualization — is the mathematical signature of chaos: the point where the system could go two ways and always chooses slightly differently.</p>
+    <p>The Zohar teaches that the Torah contains four layers of meaning — <em>peshat</em> (plain sense), <em>remez</em> (allusion), <em>derash</em> (interpretive expansion), <em>sod</em> (mystery). Together these form PaRDeS, the orchard. Each layer is accessible, each is inexhaustible, and the deeper one goes, the more one finds that the surface remains alive. Chaos theory and Torah study share this structure: both are deterministic — governed by precise rules — yet perpetually generative. The Rössler system obeys exact differential equations; Torah follows exact textual constraints. Neither repeats. Both reward the returning student with territory they have never mapped before.</p>
+
+    <h2>The Crown Emerges from the Ensemble</h2>
+    <p>This piece renders 800 particles, each released near the origin with a tiny perturbation of ±0.001. After a warm-up of 500 integration steps to settle onto the attractor, each particle is advanced three RK4 steps per frame and leaves a trail of its last 60 projected positions. The particles are colored by their current height (z-value): the base of the attractor is sapphire; the middle arc royal blue; the high fold — the crown's rim — brilliant gold.</p>
+    <p>No single particle traces the crown. The gold rim is the collective envelope of all eight hundred trajectories, each charting a unique orbit through the same attractor basin. Keter emerges from the ensemble. The crown of Torah is not held by any one person; it is the shape traced by everyone who has ever turned the text and turned it again.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const N_PARTICLES = 800;
+  const TRAIL = 60;
+  const STEPS_PER_FRAME = 3;
+  const WARMUP_STEPS = 500;
+  const DT = 0.01;
+  const TILT = 0.55;
+  const ROT_RATE = 0.001;
+
+  /* Rössler parameters (classic) */
+  const A = 0.2, B = 0.2, C = 5.7;
+
+  /**
+   * Rössler vector field.
+   * dx/dt = -y - z
+   * dy/dt = x + A*y
+   * dz/dt = B + z*(x - C)
+   */
+  function rossler(p) {
+    const [x, y, z] = p;
+    return [
+      -y - z,
+      x + A * y,
+      B + z * (x - C),
+    ];
+  }
+
+  /**
+   * Advance state p one RK4 step of size DT.
+   */
+  function rk4(p) {
+    const k1 = rossler(p);
+    const k2 = rossler(p.map((v, i) => v + 0.5 * DT * k1[i]));
+    const k3 = rossler(p.map((v, i) => v + 0.5 * DT * k2[i]));
+    const k4 = rossler(p.map((v, i) => v + DT * k3[i]));
+    return p.map((v, i) => v + DT * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]) / 6);
+  }
+
+  /**
+   * Map a normalized z-fraction [0,1] to an RGB color triple.
+   * tz < 0.7: sapphire #1A1A8A → royal blue #4040CC
+   * tz >= 0.7: royal blue #4040CC → gold #F0C040
+   */
+  function zColor(tz) {
+    if (tz < 0.7) {
+      const t = tz / 0.7;
+      return [
+        Math.round(0x1A + t * (0x40 - 0x1A)),
+        Math.round(0x1A + t * (0x40 - 0x1A)),
+        Math.round(0x8A + t * (0xCC - 0x8A)),
+      ];
+    } else {
+      const t = (tz - 0.7) / 0.3;
+      return [
+        Math.round(0x40 + t * (0xF0 - 0x40)),
+        Math.round(0x40 + t * (0xC0 - 0x40)),
+        Math.round(0xCC + t * (0x40 - 0xCC)),
+      ];
+    }
+  }
+
+  /* Known attractor bounds for normalization: x∈[-10,12], y∈[-12,3], z∈[0,30] */
+  const Z_MIN = 0, Z_MAX = 30;
+
+  /* Particle state: pos[3], ring buffer of TRAIL projected 2D positions */
+  const positions = [];   /* Float64Array[3] per particle */
+  const trailX = [];      /* Float32Array[TRAIL] per particle — projected canvas x */
+  const trailY = [];      /* Float32Array[TRAIL] per particle — projected canvas y */
+  const trailZ = [];      /* Float32Array[TRAIL] per particle — z at trail point */
+  const heads = [];       /* ring buffer write head per particle */
+  const fills = [];       /* how many trail slots are filled per particle */
+
+  let theta = 0;
+  const canvas = document.getElementById('crown');
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, scale = 1;
+
+  function resizeCanvas() {
+    const panel = canvas.parentElement;
+    W = panel.clientWidth;
+    H = panel.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+    /* Scale so the attractor (x∈[-10,12], y∈[-12,3]) fits with margin.
+       Effective half-width of x-range ≈ 11; target 80% of half-min(W,H). */
+    scale = Math.min(W, H) * 0.4 / 11;
+  }
+
+  /**
+   * Project a 3D Rössler coordinate to 2D canvas.
+   * px = cx + scale*(x*cos(θ) - y*sin(θ))
+   * py = cy + scale*(x*sin(θ)*tilt + y*cos(θ)*tilt - z*0.4)
+   */
+  function project(x, y, z) {
+    const cosT = Math.cos(theta);
+    const sinT = Math.sin(theta);
+    const cx = W * 0.45;
+    const cy = H * 0.55;
+    return [
+      cx + scale * (x * cosT - y * sinT),
+      cy + scale * (x * sinT * TILT + y * cosT * TILT - z * 0.4),
+    ];
+  }
+
+  /* Initialise particles at slightly varied positions near (0, 0, 0.1) */
+  for (let i = 0; i < N_PARTICLES; i++) {
+    const perturb = () => (Math.random() * 2 - 1) * 0.001;
+    let pos = [perturb(), perturb(), 0.1 + perturb()];
+
+    for (let s = 0; s < WARMUP_STEPS; s++) pos = rk4(pos);
+
+    positions.push(new Float64Array(pos));
+    trailX.push(new Float32Array(TRAIL));
+    trailY.push(new Float32Array(TRAIL));
+    trailZ.push(new Float32Array(TRAIL));
+    heads.push(0);
+    fills.push(0);
+  }
+
+  function frame() {
+    theta += ROT_RATE;
+
+    /* Advance each particle and record trail position */
+    for (let i = 0; i < N_PARTICLES; i++) {
+      let p = Array.from(positions[i]);
+      for (let s = 0; s < STEPS_PER_FRAME; s++) p = rk4(p);
+      positions[i][0] = p[0];
+      positions[i][1] = p[1];
+      positions[i][2] = p[2];
+
+      const [px, py] = project(p[0], p[1], p[2]);
+      const h = heads[i];
+      trailX[i][h] = px;
+      trailY[i][h] = py;
+      trailZ[i][h] = p[2];
+      heads[i] = (h + 1) % TRAIL;
+      if (fills[i] < TRAIL) fills[i]++;
+    }
+
+    /* Clear canvas */
+    ctx.fillStyle = '#05040F';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Draw Hebrew letter כ (kaf) as a faint gold watermark at center-right */
+    ctx.save();
+    ctx.font = `bold ${Math.round(Math.min(W, H) * 0.35)}px serif`;
+    ctx.fillStyle = 'rgba(240,192,64,0.045)';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('כ', W * 0.72, H * 0.5);
+    ctx.restore();
+
+    /* Draw trails for each particle */
+    for (let i = 0; i < N_PARTICLES; i++) {
+      const fill = fills[i];
+      if (fill < 2) continue;
+      const head = heads[i];
+
+      /* Iterate oldest→newest so newer trail points overdraw older ones */
+      for (let j = 0; j < fill - 1; j++) {
+        const idxA = (head - fill + j + TRAIL * 2) % TRAIL;
+        const idxB = (idxA + 1) % TRAIL;
+
+        const age = j / (fill - 1);        /* 0 = oldest, 1 = newest */
+        const alpha = 0.08 + 0.5 * age;    /* alpha proportional to trail age */
+
+        const zVal = trailZ[i][idxB];
+        const tz = Math.max(0, Math.min(1, (zVal - Z_MIN) / (Z_MAX - Z_MIN)));
+        const [r, g, b] = zColor(tz);
+
+        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha.toFixed(3)})`;
+        ctx.lineWidth = 0.8 + age * 0.7;
+        ctx.beginPath();
+        ctx.moveTo(trailX[i][idxA], trailY[i][idxA]);
+        ctx.lineTo(trailX[i][idxB], trailY[i][idxB]);
+        ctx.stroke();
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

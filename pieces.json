@@ -1406,5 +1406,16 @@
     "path": "pieces/83-worley-noise-pomegranate/index.html",
     "thumbnail": "pieces/83-worley-noise-pomegranate/thumbnail.svg",
     "essay": "pieces/83-worley-noise-pomegranate/essay.md"
+  },
+  {
+    "id": "84-rossler-crown-of-torah",
+    "title": "The Crown That Never Ceases Turning",
+    "tagline": "800 particles trace the Rössler strange attractor — the crown that turns and turns, for everything is in it",
+    "year": 2026,
+    "theme": "Keter Torah / perpetual Torah study",
+    "technique": "Rössler strange attractor / particle system",
+    "path": "pieces/84-rossler-crown-of-torah/index.html",
+    "thumbnail": "pieces/84-rossler-crown-of-torah/thumbnail.svg",
+    "essay": "pieces/84-rossler-crown-of-torah/essay.md"
   }
 ]
