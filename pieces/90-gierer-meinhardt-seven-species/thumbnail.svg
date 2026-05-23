@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <clipPath id="upper-left">
+      <polygon points="0,0 400,0 0,400"/>
+    </clipPath>
+    <clipPath id="lower-right">
+      <polygon points="400,0 400,400 0,400"/>
+    </clipPath>
+  </defs>
+
+  <!-- Upper-left: spot pattern (pomegranate seeds) on dark green -->
+  <g clip-path="url(#upper-left)">
+    <rect width="400" height="400" fill="#2D5016"/>
+    <!-- Spot grid: hexagonally arranged circles in pomegranate red/gold -->
+    <circle cx="30" cy="30" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="80" cy="30" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="130" cy="30" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="180" cy="30" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="230" cy="30" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="280" cy="30" r="10" fill="#C8A84B" opacity="0.85"/>
+
+    <circle cx="55" cy="68" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="105" cy="68" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="155" cy="68" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="205" cy="68" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="255" cy="68" r="10" fill="#C8A84B" opacity="0.85"/>
+
+    <circle cx="30" cy="106" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="80" cy="106" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="130" cy="106" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="180" cy="106" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="230" cy="106" r="10" fill="#8B1A1A" opacity="0.9"/>
+
+    <circle cx="55" cy="144" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="105" cy="144" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="155" cy="144" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="205" cy="144" r="10" fill="#8B1A1A" opacity="0.9"/>
+
+    <circle cx="30" cy="182" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="80" cy="182" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="130" cy="182" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="180" cy="182" r="10" fill="#C8A84B" opacity="0.85"/>
+
+    <circle cx="55" cy="220" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="105" cy="220" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="155" cy="220" r="10" fill="#C8A84B" opacity="0.85"/>
+
+    <circle cx="30" cy="258" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="80" cy="258" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="130" cy="258" r="10" fill="#8B1A1A" opacity="0.9"/>
+
+    <circle cx="55" cy="296" r="10" fill="#C8A84B" opacity="0.85"/>
+    <circle cx="105" cy="296" r="10" fill="#8B1A1A" opacity="0.9"/>
+
+    <circle cx="30" cy="334" r="10" fill="#8B1A1A" opacity="0.9"/>
+    <circle cx="80" cy="334" r="10" fill="#C8A84B" opacity="0.85"/>
+
+    <circle cx="30" cy="372" r="10" fill="#8B1A1A" opacity="0.9"/>
+  </g>
+
+  <!-- Lower-right: stripe pattern (wheat rows) harvest gold on dark green -->
+  <g clip-path="url(#lower-right)">
+    <rect width="400" height="400" fill="#2D5016"/>
+    <!-- Horizontal stripes at regular intervals -->
+    <rect x="0" y="0"   width="400" height="22" fill="#C8A84B" opacity="0.85"/>
+    <rect x="0" y="38"  width="400" height="22" fill="#C8A84B" opacity="0.80"/>
+    <rect x="0" y="76"  width="400" height="22" fill="#C8A84B" opacity="0.85"/>
+    <rect x="0" y="114" width="400" height="22" fill="#C8A84B" opacity="0.80"/>
+    <rect x="0" y="152" width="400" height="22" fill="#C8A84B" opacity="0.85"/>
+    <rect x="0" y="190" width="400" height="22" fill="#C8A84B" opacity="0.80"/>
+    <rect x="0" y="228" width="400" height="22" fill="#C8A84B" opacity="0.85"/>
+    <rect x="0" y="266" width="400" height="22" fill="#C8A84B" opacity="0.80"/>
+    <rect x="0" y="304" width="400" height="22" fill="#C8A84B" opacity="0.85"/>
+    <rect x="0" y="342" width="400" height="22" fill="#C8A84B" opacity="0.80"/>
+    <rect x="0" y="380" width="400" height="20" fill="#C8A84B" opacity="0.85"/>
+  </g>
+
+  <!-- Diagonal boundary line -->
+  <line x1="0" y1="0" x2="400" y2="400" stroke="#6a8030" stroke-width="2" opacity="0.7"/>
+</svg>

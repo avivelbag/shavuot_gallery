@@ -1549,5 +1549,16 @@
     "path": "pieces/89-aztec-diamond-omer/index.html",
     "thumbnail": "pieces/89-aztec-diamond-omer/thumbnail.svg",
     "essay": "pieces/89-aztec-diamond-omer/essay.md"
+  },
+  {
+    "id": "90-gierer-meinhardt-seven-species",
+    "title": "Spotted Fig, Striped Field",
+    "tagline": "the seven species of Bikkurim are one mathematical family — a Gierer-Meinhardt bifurcation sweeping from pomegranate spots to wheat stripes",
+    "year": 2026,
+    "theme": "Bikkurim / seven species",
+    "technique": "Gierer-Meinhardt reaction-diffusion (morphogenesis, spot-stripe bifurcation)",
+    "path": "pieces/90-gierer-meinhardt-seven-species/index.html",
+    "thumbnail": "pieces/90-gierer-meinhardt-seven-species/thumbnail.svg",
+    "essay": "pieces/90-gierer-meinhardt-seven-species/essay.md"
   }
 ]

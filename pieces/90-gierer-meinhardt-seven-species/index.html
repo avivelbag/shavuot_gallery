@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotted Fig, Striped Field</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0e1300; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0e1300;
+    }
+    canvas#display { display: block; width: 100%; height: 100%; }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2a3010;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0a0f00;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2a3010; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #c8a84b; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #50601a; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #8b9a30; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #c8a84b; font-style: normal; }
+    .essay-panel blockquote {
+      border-left: 2px solid #4a5a10;
+      margin: 1rem 0 1rem 1rem;
+      padding: 0.5rem 1rem;
+      color: #a8b870;
+      font-style: italic;
+    }
+    .essay-panel cite { font-size: 0.85rem; color: #607020; font-style: normal; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="display"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Spotted Fig, Striped Field</h1>
+    <p class="subtitle">Gierer-Meinhardt reaction-diffusion &mdash; spot-stripe morphological bifurcation</p>
+
+    <blockquote>
+      &ldquo;A land of wheat and barley, of vines, figs, and pomegranates, a land of olive trees and date-honey.&rdquo; &mdash; Deuteronomy 8:8
+    </blockquote>
+
+    <p>
+      The verse is usually read as an inventory &mdash; seven agricultural products that certify
+      the abundance of the Promised Land. But the Mishna (Bikkurim 1:3) reveals a deeper structure:
+      only these seven species qualify as first-fruit offerings brought to the Temple on Shavuot.
+      The bikkurim ceremony required the pilgrim to carry the basket aloft and recite the passage
+      from Deuteronomy 26:3 &mdash; &ldquo;I declare today to the LORD your God.&rdquo; The seven
+      species were not merely provisions; they were the Land&rsquo;s testimony of itself, the
+      physical evidence of the covenant made at Sinai.
+    </p>
+
+    <h2>Turing&rsquo;s Pattern</h2>
+
+    <p>
+      The non-obvious insight belongs to Alan Turing. In 1952, he published
+      <em>&ldquo;The Chemical Basis of Morphogenesis,&rdquo;</em> proposing that a pair of reacting
+      and diffusing chemicals &mdash; an activator that promotes itself and an inhibitor that
+      suppresses the activator at range &mdash; could spontaneously generate ordered spatial patterns
+      from perfectly uniform initial conditions. The mechanism is counterintuitive: it is instability,
+      not order, that creates structure. A small perturbation grows where activation is local and fast;
+      it is suppressed at distance by inhibition that diffuses further. From this tension, form emerges.
+    </p>
+
+    <p>
+      Spots on figs, striations in pomegranate flesh, the veining of grape leaves, the orderly rows of
+      seeds in a wheat head &mdash; all are candidate expressions of this single mathematical principle.
+      The Gierer-Meinhardt model, formulated in 1972, is the mathematical distillation of Turing&rsquo;s
+      idea. Its activator-inhibitor equations contain one critical parameter: the ratio of inhibitor
+      diffusion speed to activator diffusion speed.
+    </p>
+
+    <h2>The Bifurcation</h2>
+
+    <p>
+      Below a threshold, the inhibitor cannot travel far enough to suppress activator peaks, and
+      <em>spots</em> form &mdash; isolated islands of high activator concentration, like the seeds
+      of a pomegranate or the arils of a fig. Above the threshold, the inhibitor spreads widely,
+      suppressing all spots except long parallel bands: <em>stripes</em> emerge, like the rows of
+      a wheat field seen from above. The same two equations, the same two chemicals, the same
+      canvas &mdash; only one number changes, and the pattern transforms from pomegranate seeds to
+      wheat rows.
+    </p>
+
+    <p>
+      This is the unity the verse encodes. The seven species are not seven separate phenomena. They
+      are seven expressions of a single generative principle: the tension between local activation
+      and long-range inhibition. Spots and stripes are not different patterns. They are the same
+      pattern at different parameter values. The Torah, in naming wheat and pomegranate in a single
+      breath, was pointing toward a topology that science would not formalize for three thousand years.
+    </p>
+
+    <h2>The Canvas</h2>
+
+    <p>
+      The animation above runs the Gierer-Meinhardt equations on a 256&times;256 grid with periodic
+      boundary conditions. The inhibitor diffusion coefficient sweeps slowly from low (spots) to high
+      (stripes) and back over forty seconds, morphing the texture continuously from pomegranate-seed
+      spots through fig cross-sections and olive-grove mottling into wheat-row stripes.
+    </p>
+
+    <p>
+      Watch the transition zone: the pattern becomes briefly disordered as the old structure
+      dissolves before the new one assembles. That is the mathematical equivalent of Shavuot &mdash;
+      the moment between the old form and the new covenant, when the pattern does not yet know
+      what it will become.
+    </p>
+
+    <p>
+      <cite>
+        Deuteronomy 8:8; Mishna Bikkurim 1:3; Turing, A.M. &mdash; &ldquo;The Chemical Basis of
+        Morphogenesis,&rdquo; Philosophical Transactions of the Royal Society B, 237:641 (1952);
+        Gierer, A. and Meinhardt, H. &mdash; &ldquo;A theory of biological pattern formation,&rdquo;
+        Kybernetik 12:30&ndash;39 (1972).
+      </cite>
+    </p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const N = 256;
+
+  // GM parameters (from acceptance criteria)
+  const rho  = 0.02;   // production rate
+  const mu   = 0.03;   // activator decay
+  const nu   = 0.03;   // inhibitor decay
+  const Da   = 0.005;  // activator diffusivity
+  const rho0 = 0.001;  // basal activator production
+  const dt   = 0.1;    // Euler time step
+
+  // D_h sweep range and timing
+  const DH_MIN      = 0.2;   // inhibitor diffusivity at spots extreme
+  const DH_MAX      = 2.0;   // inhibitor diffusivity at stripes extreme
+  const SWEEP_SECS  = 20.0;  // seconds per half-cycle (spots -> stripes or back)
+  const STEPS_FRAME = 10;    // simulation steps per animation frame
+
+  // Homogeneous steady state: from da/dt=0, dh/dt=0 with zero Laplacians
+  // dh/dt=0 => h0 = rho*a0^2/nu
+  // da/dt=0 => rho*a0^2/h0 - mu*a0 + rho0 = 0 => nu - mu*a0 + rho0 = 0
+  const a0 = (nu + rho0) / mu;        // ≈ 1.0333
+  const h0 = rho * a0 * a0 / nu;      // ≈ 0.712
+
+  // Ping-pong buffers
+  let aA = new Float32Array(N * N);
+  let hA = new Float32Array(N * N);
+  let aB = new Float32Array(N * N);
+  let hB = new Float32Array(N * N);
+  let useA = true;
+
+  // Seed with small noise around the homogeneous steady state
+  for (let i = 0; i < N * N; i++) {
+    aA[i] = a0 * (1.0 + 0.01 * (Math.random() - 0.5));
+    hA[i] = h0 * (1.0 + 0.01 * (Math.random() - 0.5));
+  }
+
+  /**
+   * Advances all cells by one Euler step.
+   * Uses a 5-point Laplacian stencil with periodic (wrap-around) boundary conditions.
+   * Writes results to aOut/hOut; caller swaps buffers afterwards.
+   *
+   * @param {Float32Array} aIn   - current activator field
+   * @param {Float32Array} hIn   - current inhibitor field
+   * @param {Float32Array} aOut  - output activator field
+   * @param {Float32Array} hOut  - output inhibitor field
+   * @param {number}       Dh    - inhibitor diffusivity for this step
+   */
+  function simStep(aIn, hIn, aOut, hOut, Dh) {
+    for (let y = 0; y < N; y++) {
+      const yn = ((y - 1 + N) % N) * N;
+      const ys = ((y + 1) % N) * N;
+      const yc = y * N;
+      for (let x = 0; x < N; x++) {
+        const xw = (x - 1 + N) % N;
+        const xe = (x + 1) % N;
+        const idx = yc + x;
+        const ai  = aIn[idx];
+        const hi  = hIn[idx];
+
+        // 5-point Laplacian with periodic BC
+        const la = aIn[yn + x] + aIn[ys + x] + aIn[yc + xw] + aIn[yc + xe] - 4.0 * ai;
+        const lh = hIn[yn + x] + hIn[ys + x] + hIn[yc + xw] + hIn[yc + xe] - 4.0 * hi;
+
+        // GM reaction terms
+        const da = rho * ai * ai / hi - mu * ai + Da * la + rho0;
+        const dh = rho * ai * ai        - nu * hi + Dh * lh;
+
+        // Forward Euler; clamp to avoid negative concentrations
+        aOut[idx] = Math.max(1e-6, ai + dt * da);
+        hOut[idx] = Math.max(1e-6, hi + dt * dh);
+      }
+    }
+  }
+
+  /** Runs one step and swaps the ping-pong buffers. */
+  function step(Dh) {
+    if (useA) {
+      simStep(aA, hA, aB, hB, Dh);
+    } else {
+      simStep(aB, hB, aA, hA, Dh);
+    }
+    useA = !useA;
+  }
+
+  /** Returns the current activator buffer. */
+  function currentA() { return useA ? aA : aB; }
+
+  // ---- Canvas and rendering ------------------------------------------------
+
+  const display  = document.getElementById('display');
+  const ctx      = display.getContext('2d');
+
+  const offscreen = document.createElement('canvas');
+  offscreen.width  = N;
+  offscreen.height = N;
+  const offCtx    = offscreen.getContext('2d');
+  const imgData   = offCtx.createImageData(N, N);
+
+  function resize() {
+    const panel    = display.parentElement;
+    display.width  = panel.clientWidth;
+    display.height = panel.clientHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Colour palette constants (RGB)
+  const C_GREEN = [0x2D, 0x50, 0x16];   // deep field green  #2D5016
+  const C_GOLD  = [0xC8, 0xA8, 0x4B];   // harvest gold      #C8A84B
+  const C_RED   = [0x8B, 0x1A, 0x1A];   // pomegranate red   #8B1A1A
+
+  /**
+   * Maps an activator value and current D_h to an RGB triple.
+   * Low a -> green; mid a -> gold; high a -> red (spots) or gold (stripes).
+   * A slight hue shift reinforces the wheat-vs-pomegranate visual metaphor.
+   *
+   * @param {number} a   - activator concentration
+   * @param {number} Dh  - current inhibitor diffusivity
+   * @returns {[number, number, number]} RGB bytes in [0..255]
+   */
+  function toColor(a, Dh) {
+    const MAX_A = 5.0;
+    const t  = Math.min(1.0, Math.max(0.0, a / MAX_A));
+
+    // When Dh is small (spots), high regions lean red; when large (stripes), gold
+    const dhT  = (Dh - DH_MIN) / (DH_MAX - DH_MIN); // 0 -> 1
+    const rH   = C_RED[0]  + (C_GOLD[0]  - C_RED[0])  * dhT;
+    const gH   = C_RED[1]  + (C_GOLD[1]  - C_RED[1])  * dhT;
+    const bH   = C_RED[2]  + (C_GOLD[2]  - C_RED[2])  * dhT;
+
+    let r, g, b;
+    if (t < 0.5) {
+      const s = t * 2.0;
+      r = C_GREEN[0] + (C_GOLD[0] - C_GREEN[0]) * s;
+      g = C_GREEN[1] + (C_GOLD[1] - C_GREEN[1]) * s;
+      b = C_GREEN[2] + (C_GOLD[2] - C_GREEN[2]) * s;
+    } else {
+      const s = (t - 0.5) * 2.0;
+      r = C_GOLD[0] + (rH - C_GOLD[0]) * s;
+      g = C_GOLD[1] + (gH - C_GOLD[1]) * s;
+      b = C_GOLD[2] + (bH - C_GOLD[2]) * s;
+    }
+    return [r, g, b];
+  }
+
+  /** Renders the activator field to the offscreen canvas then blits to display. */
+  function render(Dh) {
+    const a    = currentA();
+    const data = imgData.data;
+    for (let i = 0; i < N * N; i++) {
+      const [r, g, b] = toColor(a[i], Dh);
+      const p = i * 4;
+      data[p]     = r + 0.5 | 0;
+      data[p + 1] = g + 0.5 | 0;
+      data[p + 2] = b + 0.5 | 0;
+      data[p + 3] = 255;
+    }
+    offCtx.putImageData(imgData, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(offscreen, 0, 0, display.width, display.height);
+  }
+
+  // ---- Overlay label system ------------------------------------------------
+
+  const LABELS = [
+    { maxDh: 0.5,      en: 'pomegranate seeds',  he: 'רִמּוֹן' },
+    { maxDh: 1.0,      en: 'fig cross-section',  he: 'תְאֵנָה' },
+    { maxDh: 1.5,      en: 'olive grove',         he: 'זַיִת' },
+    { maxDh: Infinity, en: 'rows of wheat',       he: 'חִטָּה' },
+  ];
+
+  function getLabelIdx(Dh) {
+    if (Dh < 0.5)  return 0;
+    if (Dh < 1.0)  return 1;
+    if (Dh < 1.5)  return 2;
+    return 3;
+  }
+
+  let labelIdx    = 0;
+  let labelAlpha  = 0.0;
+  let fadingIdx   = -1;
+  let fadingAlpha = 0.0;
+  const FADE_RATE = 0.025;
+
+  /** Updates fade state when D_h crosses a threshold. */
+  function tickLabel(Dh) {
+    const newIdx = getLabelIdx(Dh);
+    if (newIdx !== labelIdx) {
+      fadingIdx   = labelIdx;
+      fadingAlpha = labelAlpha;
+      labelIdx    = newIdx;
+      labelAlpha  = 0.0;
+    }
+    labelAlpha  = Math.min(1.0, labelAlpha  + FADE_RATE);
+    fadingAlpha = Math.max(0.0, fadingAlpha - FADE_RATE);
+    if (fadingAlpha <= 0.0) fadingIdx = -1;
+  }
+
+  /** Draws a single label at the given alpha. */
+  function drawOneLabel(idx, alpha) {
+    if (idx < 0 || alpha <= 0) return;
+    const l = LABELS[idx];
+    const y = display.height - 28;
+    const cx = display.width / 2;
+    ctx.save();
+    ctx.globalAlpha = alpha * 0.72;
+    ctx.fillStyle   = '#c8a84b';
+    ctx.font        = '13px sans-serif';
+    ctx.textAlign   = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(l.en + '  —  ' + l.he, cx, y);
+    ctx.restore();
+  }
+
+  function renderLabel() {
+    drawOneLabel(fadingIdx, fadingAlpha);
+    drawOneLabel(labelIdx,  labelAlpha);
+  }
+
+  // ---- Animation loop ------------------------------------------------------
+
+  let startTime = null;
+
+  function animate(ts) {
+    if (!startTime) startTime = ts;
+    const elapsed = (ts - startTime) / 1000.0;
+
+    // D_h sweeps: 0.2 -> 2.0 in SWEEP_SECS, then 2.0 -> 0.2 in SWEEP_SECS
+    const phase = (elapsed % (2.0 * SWEEP_SECS)) / SWEEP_SECS;
+    const Dh = phase < 1.0
+      ? DH_MIN + (DH_MAX - DH_MIN) * phase
+      : DH_MIN + (DH_MAX - DH_MIN) * (2.0 - phase);
+
+    for (let i = 0; i < STEPS_FRAME; i++) {
+      step(Dh);
+    }
+
+    render(Dh);
+    tickLabel(Dh);
+    renderLabel();
+
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+}());
+</script>
+</body>
+</html>
