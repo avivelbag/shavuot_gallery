@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Land Flowing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0D0802; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0D0802;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2a1a08;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0a0601;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2a1a08; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #E8C080;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #5a4020;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #D4890A;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1.1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #a89878; }
+
+    .heb {
+      direction: rtl;
+      font-family: 'Frank Ruhl Libre', 'David Libre', 'Times New Roman', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: #e8d4a8;
+      display: block;
+      margin: 0.8rem 0;
+      padding: 0.6rem 0.8rem;
+      border-right: 3px solid #D4890A;
+      background: rgba(212, 137, 10, 0.05);
+    }
+
+    .sources {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #2a1a08;
+      font-size: 0.82rem;
+      color: #5a4020;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>A Land Flowing</h1>
+    <p class="subtitle">Bikkurim / milk and honey / the Promised Land</p>
+
+    <h2>The Farmer's Declaration</h2>
+
+    <p>The farmer stood at the Temple gate in Jerusalem with a basket of first fruits — figs, dates, pomegranates, wheat, barley, olives — and recited a liturgical narrative that compressed the entire history of Israel into eleven verses. From "my father was a wandering Aramean" (Deuteronomy 26:5) to the climactic arrival:</p>
+
+    <span class="heb">וַיְבִאֵנוּ אֶל-הַמָּקוֹם הַזֶּה וַיִּתֶּן-לָנוּ אֶת-הָאָרֶץ הַזֹּאת אֶרֶץ זָבַת חָלָב וּדְבָשׁ</span>
+
+    <p>"He brought us to this place and gave us this land, a land flowing with milk and honey." (Deuteronomy 26:9)</p>
+
+    <p>This declaration — the Bikkurim formula — was recited by every farmer on Shavuot when presenting first fruits at the Temple. The Mishna (Bikkurim 3:6) records that the farmer recited the full narrative of Deuteronomy 26:5–10, placing his own harvest within the sweep of history from Egypt to the Promised Land. The basket of produce was evidence that the promise was keeping itself.</p>
+
+    <h2>Promise and Fulfillment</h2>
+
+    <p>The phrase "a land flowing with milk and honey" appears approximately twenty-one times in the Torah — more than any other geographical description in all of Tanakh. Its first use is Exodus 3:8, at the Burning Bush, spoken by God to Moses before a single step toward Canaan had been taken:</p>
+
+    <span class="heb">לְהַעֲלֹתוֹ מִן-הָאָרֶץ הַהִוא אֶל-אֶרֶץ טוֹבָה וּרְחָבָה אֶל-אֶרֶץ זָבַת חָלָב וּדְבָשׁ</span>
+
+    <p>"To bring them up out of that land to a good and spacious land, a land flowing with milk and honey." (Exodus 3:8)</p>
+
+    <p>At the Burning Bush it is a promise. At Deuteronomy 26:9 it is a fulfillment spoken by thousands of farmers, year after year. The same words travel the entire length of the narrative — from the mouth of God at the Burning Bush to the mouth of the farmer at the Temple gate — and their meaning transforms in transit from prophecy to presence.</p>
+
+    <h2>The Literal Galilee</h2>
+
+    <p>The Talmud (Ketubot 111b) records that Rabbi Shimon bar Yochai went to the Galilee and identified specific valleys where goats grazing on fig trees would drip milk and the dates would flow with honey in the summer heat. The phrase had a geographical address. But it is also conditional: the land flows when the people inhabit it faithfully. The abundance is covenantal, not merely climatic.</p>
+
+    <p>The Bikkurim offering on Shavuot fused theology and agriculture into a single gesture. The dairy custom that Shavuot observes — eating milk and cheese — echoes, in domestic form, the flowing milk of that ancient declaration.</p>
+
+    <h2>This Piece</h2>
+
+    <p>Two fluid streams enter from the left: cream-white from the upper half of the inlet, amber-gold from the lower half. They flow through the same D2Q9 lattice, passing around the two ה obstacles — the final letter of <span dir="rtl" style="font-family: serif;">אֶרֶץ</span>, "land" — and creating swirling Kármán vortex streets in their wakes. The streams never fully merge; their distinct colors blend and re-separate as they travel through the obstacle field. Milk and honey share the same channel without collapsing into a single undifferentiated stream. This is the Promised Land: a place of two kinds of abundance flowing together, each preserving its nature, neither diminishing the other.</p>
+
+    <p class="sources">Sources: Exodus 3:8; Deuteronomy 26:1–11; Mishna Bikkurim 3:6; Talmud Bavli Ketubot 111b.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Grid constants ── */
+  var COLS = 300, ROWS = 150, N = COLS * ROWS;
+  var TAU = 0.6;
+  var U_IN = 0.10;
+  var STEPS_PER_FRAME = 5;
+
+  /* ── D2Q9 velocity set ── */
+  var ex  = [0, 1, 0,-1, 0, 1,-1,-1, 1];
+  var ey  = [0, 0, 1, 0,-1, 1, 1,-1,-1];
+  var w   = [4/9, 1/9, 1/9, 1/9, 1/9, 1/36, 1/36, 1/36, 1/36];
+  /* bounce-back opposite index pairs: 1↔3, 2↔4, 5↔7, 6↔8 */
+  var opp = [0, 3, 4, 1, 2, 7, 8, 5, 6];
+
+  /* ── Typed-array buffers ── */
+  var f     = new Float32Array(9 * N);  /* post-stream distribution */
+  var fNew  = new Float32Array(9 * N);  /* post-collision buffer     */
+  var solid = new Uint8Array(N);        /* 1 = solid obstacle/wall   */
+  var dye   = new Float32Array(N);      /* dye: 0 = cream, 1 = amber */
+  var dyeNew = new Float32Array(N);
+  var velX  = new Float32Array(N);      /* velocity x at each cell   */
+  var velY  = new Float32Array(N);      /* velocity y at each cell   */
+
+  /* ── Canvas setup ── */
+  var canvas   = document.getElementById('c');
+  var ctx      = canvas.getContext('2d');
+  var offCanvas = document.createElement('canvas');
+  offCanvas.width  = COLS;
+  offCanvas.height = ROWS;
+  var offCtx  = offCanvas.getContext('2d');
+  var imgData = offCtx.createImageData(COLS, ROWS);
+  var px      = imgData.data;
+  var W = 0, H = 0;
+
+  /* ── Colour constants (RGB) ── */
+  var CR = 255, CG = 248, CB = 231;  /* cream  #FFF8E7 */
+  var AR = 212, AG = 137, AB = 10;   /* amber  #D4890A */
+  var SR =  26, SG =  18, SB =   8;  /* stone  #1A1208 */
+
+  /* ── Equilibrium distribution for a given direction ── */
+  function feqFn(i, rho, ux, uy) {
+    var eu = ex[i] * ux + ey[i] * uy;
+    return w[i] * rho * (1 + 3 * eu + 4.5 * eu * eu - 1.5 * (ux * ux + uy * uy));
+  }
+
+  /* ── Draw the Hebrew letter ה as solid cells ──
+   *  Bounding box: H_H rows tall × H_W cols wide; strokes S cells thick.
+   *  Top bar spans full width; right bar descends full height;
+   *  left leg starts at row H_H/2 (gap distinguishes ה from ח). */
+  function drawHe(r0, c0) {
+    var H_H = 50, H_W = 36, S = 4;
+    var r, c, dr, dc;
+    /* top bar */
+    for (dr = 0; dr < S; dr++) {
+      for (dc = 0; dc < H_W; dc++) {
+        r = r0 + dr; c = c0 + dc;
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS) solid[r * COLS + c] = 1;
+      }
+    }
+    /* right bar — full height */
+    for (dr = 0; dr < H_H; dr++) {
+      for (dc = H_W - S; dc < H_W; dc++) {
+        r = r0 + dr; c = c0 + dc;
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS) solid[r * COLS + c] = 1;
+      }
+    }
+    /* left leg — starts at half height, no connection to top bar */
+    for (dr = (H_H >> 1); dr < H_H; dr++) {
+      for (dc = 0; dc < S; dc++) {
+        r = r0 + dr; c = c0 + dc;
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS) solid[r * COLS + c] = 1;
+      }
+    }
+  }
+
+  /* ── Initialise simulation ── */
+  function init() {
+    var r, c, i, idx;
+
+    /* top and bottom walls */
+    for (c = 0; c < COLS; c++) {
+      solid[c] = 1;
+      solid[(ROWS - 1) * COLS + c] = 1;
+    }
+
+    /* ה at ~1/3 and ~2/3 of grid width, vertically centred */
+    var r0 = (ROWS - 50) >> 1;   /* = 50, centering 50-row letter in 150-row grid */
+    drawHe(r0, 82);               /* cols 82-117, ~1/3 */
+    drawHe(r0, 182);              /* cols 182-217, ~2/3 */
+
+    /* initialise all cells to equilibrium at inlet conditions */
+    for (r = 0; r < ROWS; r++) {
+      for (c = 0; c < COLS; c++) {
+        idx = r * COLS + c;
+        for (i = 0; i < 9; i++) {
+          f[i * N + idx] = feqFn(i, 1.0, U_IN, 0);
+        }
+      }
+    }
+
+    /* dye: top half cream (0), bottom half amber (1) */
+    for (r = 0; r < ROWS; r++) {
+      for (c = 0; c < COLS; c++) {
+        dye[r * COLS + c] = r < (ROWS >> 1) ? 0.0 : 1.0;
+      }
+    }
+  }
+
+  /* ── Single LBM time step ── */
+  function lbmStep() {
+    var r, c, i, idx, nr, nc, rho, ux, uy, fi, eu, usq, feqi;
+
+    /* ── collision: BGK relaxation ── */
+    for (r = 0; r < ROWS; r++) {
+      for (c = 0; c < COLS; c++) {
+        idx = r * COLS + c;
+        if (solid[idx]) continue;
+        rho = 0; ux = 0; uy = 0;
+        for (i = 0; i < 9; i++) {
+          fi = f[i * N + idx];
+          rho += fi;
+          ux  += ex[i] * fi;
+          uy  += ey[i] * fi;
+        }
+        if (rho < 1e-10) continue;
+        ux /= rho; uy /= rho;
+        velX[idx] = ux; velY[idx] = uy;
+        usq = ux * ux + uy * uy;
+        for (i = 0; i < 9; i++) {
+          eu = ex[i] * ux + ey[i] * uy;
+          feqi = w[i] * rho * (1 + 3 * eu + 4.5 * eu * eu - 1.5 * usq);
+          fNew[i * N + idx] = f[i * N + idx] + (feqi - f[i * N + idx]) / TAU;
+        }
+      }
+    }
+
+    /* ── streaming with bounce-back at walls and solid obstacles ──
+     *  Push semantics: each fluid cell pushes its post-collision
+     *  distributions to its D2Q9 neighbours, or bounces back to
+     *  itself in the opposite direction if the neighbour is solid. */
+    for (r = 0; r < ROWS; r++) {
+      for (c = 0; c < COLS; c++) {
+        idx = r * COLS + c;
+        if (solid[idx]) continue;  /* solid cells carry no distributions */
+        for (i = 0; i < 9; i++) {
+          nr = r + ey[i];
+          nc = c + ex[i];
+          if (nr < 0 || nr >= ROWS || nc < 0 || nc >= COLS || solid[nr * COLS + nc]) {
+            /* bounce-back: reverse direction, stay in same cell */
+            f[opp[i] * N + idx] = fNew[i * N + idx];
+          } else {
+            f[i * N + nr * COLS + nc] = fNew[i * N + idx];
+          }
+        }
+      }
+    }
+
+    /* ── left inlet: constant-velocity equilibrium inflow ── */
+    for (r = 1; r < ROWS - 1; r++) {
+      idx = r * COLS;
+      if (solid[idx]) continue;
+      for (i = 0; i < 9; i++) {
+        f[i * N + idx] = feqFn(i, 1.0, U_IN, 0);
+      }
+      velX[idx] = U_IN; velY[idx] = 0;
+    }
+
+    /* ── right outlet: zero-gradient extrapolation ── */
+    for (r = 1; r < ROWS - 1; r++) {
+      idx = r * COLS + (COLS - 1);
+      if (solid[idx]) continue;
+      for (i = 0; i < 9; i++) {
+        f[i * N + idx] = f[i * N + r * COLS + (COLS - 2)];
+      }
+    }
+  }
+
+  /* ── Semi-Lagrangian dye advection ──
+   *  For each fluid cell, back-trace by one time step using the
+   *  velocity field, then bilinearly interpolate the dye there. */
+  function advectDye() {
+    var r, c, idx, srcR, srcC;
+    for (r = 1; r < ROWS - 1; r++) {
+      for (c = 0; c < COLS; c++) {
+        idx = r * COLS + c;
+        if (solid[idx]) { dyeNew[idx] = 0.5; continue; }
+        if (c === 0) {
+          /* inlet: top half cream, bottom half amber */
+          dyeNew[idx] = r < (ROWS >> 1) ? 0.0 : 1.0;
+          continue;
+        }
+        srcR = r - velY[idx];
+        srcC = c - velX[idx];
+        dyeNew[idx] = bilerp(srcR, srcC);
+      }
+    }
+    /* top and bottom solid rows: set neutral */
+    for (c = 0; c < COLS; c++) {
+      dyeNew[c] = 0.5;
+      dyeNew[(ROWS - 1) * COLS + c] = 0.5;
+    }
+    dye.set(dyeNew);
+  }
+
+  function bilerp(r, c) {
+    var r0 = r | 0, c0 = c | 0;
+    var dr = r - r0, dc = c - c0;
+    var r1 = r0 + 1, c1 = c0 + 1;
+    var cr0 = r0 < 0 ? 0 : r0 >= ROWS ? ROWS - 1 : r0;
+    var cr1 = r1 < 0 ? 0 : r1 >= ROWS ? ROWS - 1 : r1;
+    var cc0 = c0 < 0 ? 0 : c0 >= COLS ? COLS - 1 : c0;
+    var cc1 = c1 < 0 ? 0 : c1 >= COLS ? COLS - 1 : c1;
+    var d00 = dye[cr0 * COLS + cc0];
+    var d01 = dye[cr0 * COLS + cc1];
+    var d10 = dye[cr1 * COLS + cc0];
+    var d11 = dye[cr1 * COLS + cc1];
+    return d00 * (1 - dr) * (1 - dc) + d01 * (1 - dr) * dc +
+           d10 * dr * (1 - dc)       + d11 * dr * dc;
+  }
+
+  /* ── Render simulation grid to canvas ── */
+  function render() {
+    var r, c, idx, p, t, grad;
+
+    for (r = 0; r < ROWS; r++) {
+      for (c = 0; c < COLS; c++) {
+        idx = r * COLS + c;
+        p   = idx << 2;
+        if (solid[idx]) {
+          px[p]     = SR;
+          px[p + 1] = SG;
+          px[p + 2] = SB;
+        } else {
+          t = dye[idx];
+          if (t < 0) t = 0; else if (t > 1) t = 1;
+          px[p]     = (CR + (AR - CR) * t + 0.5) | 0;
+          px[p + 1] = (CG + (AG - CG) * t + 0.5) | 0;
+          px[p + 2] = (CB + (AB - CB) * t + 0.5) | 0;
+        }
+        px[p + 3] = 255;
+      }
+    }
+
+    offCtx.putImageData(imgData, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    /* scale the 300×150 simulation up to fill the art panel */
+    ctx.drawImage(offCanvas, 0, 0, W, H);
+
+    /* vignette overlay */
+    grad = ctx.createRadialGradient(W * 0.5, H * 0.5, Math.min(W, H) * 0.25,
+                                    W * 0.5, H * 0.5, Math.max(W, H) * 0.75);
+    grad.addColorStop(0, 'rgba(0,0,0,0)');
+    grad.addColorStop(1, 'rgba(10,5,1,0.55)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    /* Hebrew inscription: אֶרֶץ זָבַת חָלָב וּדְבַשׁ */
+    var fontSize = Math.max(12, Math.round(H * 0.038));
+    ctx.save();
+    ctx.fillStyle = 'rgba(255,248,231,0.60)';
+    ctx.font = fontSize + 'px "Frank Ruhl Libre","David Libre","Times New Roman",serif';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('אֶרֶץ זָבַת חָלָב וּדְבשׁ',
+                 W - W * 0.018, H - H * 0.025);
+    ctx.restore();
+  }
+
+  /* ── Resize handler ── */
+  function resize() {
+    var panel = document.getElementById('art-panel');
+    W = canvas.width  = panel.clientWidth;
+    H = canvas.height = panel.clientHeight;
+  }
+
+  /* ── Animation loop ── */
+  function frame() {
+    var s;
+    for (s = 0; s < STEPS_PER_FRAME; s++) {
+      lbmStep();
+      advectDye();
+    }
+    render();
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  init();
+  requestAnimationFrame(frame);
+}());
+</script>
+</body>
+</html>

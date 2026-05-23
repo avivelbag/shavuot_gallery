@@ -1375,6 +1375,17 @@
     "essay": "pieces/82-superformula-seven-species/essay.md"
   },
   {
+    "id": "83-lattice-boltzmann-milk-honey",
+    "title": "A Land Flowing",
+    "tagline": "two fluid streams — cream-white and amber-gold — swirl around ה obstacles in a D2Q9 lattice Boltzmann simulation of the Promised Land",
+    "year": 2026,
+    "theme": "Bikkurim / milk and honey / the Promised Land",
+    "technique": "Lattice Boltzmann Method D2Q9 fluid simulation",
+    "path": "pieces/83-lattice-boltzmann-milk-honey/index.html",
+    "thumbnail": "pieces/83-lattice-boltzmann-milk-honey/thumbnail.svg",
+    "essay": "pieces/83-lattice-boltzmann-milk-honey/essay.md"
+  },
+  {
     "id": "83-snowflake-sapphire-throne",
     "title": "The Essence of a Sapphire Brick",
     "tagline": "dendritic crystal growth from a single frozen seed — the sapphire pavement of Sinai",
