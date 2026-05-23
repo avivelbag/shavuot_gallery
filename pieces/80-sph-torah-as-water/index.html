@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descend as the Rain, Distill as the Dew</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0A0C14; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e1e2e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e1e2e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #d0e8ff;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #505060;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #a0b8d8;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Descend as the Rain, Distill as the Dew</h1>
+    <p class="subtitle">Crown of Torah / naaseh v'nishma</p>
+
+    <h2>The Three Waters of Moses</h2>
+    <p>"May my teaching drop as the rain, my speech distill as the dew, as the drizzle upon the tender grass, and as the showers upon the herb." (Deuteronomy 32:2)</p>
+    <p>This is Moses speaking in the last days of his life, composing the great song that the Torah calls <em>Ha'azinu</em> — Listen. He does not compare his teaching to fire, or light, or stone. He compares it to water. Three kinds of water, in fact: <em>matar</em> (rain), <em>tal</em> (dew), and <em>se'irim</em> (drizzling mist). The Sifre Devarim (306) noticed the distinction and refused to let it collapse into a single metaphor. Rain is abundant and public — it falls on every field, nourishes and also overwhelms. Dew is intimate and precise — it arrives in the night, touches each blade of grass separately, and is gone by morning. Mist is the finest of the three: almost invisible, pervasive, the moisture that soaks in slowly over years without anyone noticing. The rabbis read these as three modes of receiving Torah: the public lecture hall, the private study session, and the quiet absorption of a lifetime — the learning that happens almost unconsciously, the way a language eventually stops being translated and simply <em>is</em>.</p>
+
+    <h2>Water Seeks Its Lowest Point</h2>
+    <p>The Talmud in Ta'anit 7a takes the water comparison further and makes it structural: "Why is Torah compared to water? Just as water flows from a high place to a low place, so too Torah is retained only by one whose mind is humble." The comparison is not about abundance or fertility — it is about direction. Water cannot flow uphill. It does not choose the most impressive vessel. It finds, under the simple compulsion of gravity, the lowest available point, and it stays there.</p>
+    <p>This is a physics lesson about humility. Ibn Ezra, commenting on the same verse (Deut. 32:2), notes that Moses chose water deliberately, because water in scripture is always associated with life and with the capacity to receive. The proud scholar, the one whose mind is already full, is like a vessel tilted at the wrong angle — the water pours past rather than in. The humble learner is like a vessel set correctly: it fills.</p>
+
+    <h2>This Piece</h2>
+    <p>The simulation models a 2D fluid using Smoothed Particle Hydrodynamics, the same technique used in computational physics to simulate oceans, rivers, and star formation. Each particle carries its own mass, velocity, pressure, and density — a small, independent unit of fluid that interacts with its neighbors through kernel-weighted forces. Under gravity, the particles fall. They compress against each other and against the floor. They push back, slosh, settle. They find the lowest point and rest there.</p>
+    <p>The physics is a demonstration of the metaphor. Water does not argue about where to go. It responds to forces larger than itself, flows toward the available depth, and pools where the ground receives it. Torah, Moses suggests in his final song, works the same way — not into the highest vessel, but the lowest one. The three liquids in Deuteronomy 32:2 are not synonyms. They are a teaching about the three ways that wisdom enters: overwhelmingly, tenderly, and almost imperceptibly. All three are water. All three find their way down.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  // --- seeded LCG for deterministic initial state ---
+  var seed = 0x2A6F3C1D;
+  function rand() {
+    seed = (Math.imul(seed, 1664525) + 1013904223) | 0;
+    return ((seed >>> 0) / 0xFFFFFFFF);
+  }
+
+  // --- canvas setup ---
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('art-panel');
+  var W, H;
+
+  function resize() {
+    W = panel.clientWidth;
+    H = panel.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+  }
+  resize();
+  window.addEventListener('resize', function () { resize(); initParticles(); });
+
+  // --- SPH constants ---
+  var N = 400;
+  var H_RADIUS = 30;
+  var H2 = H_RADIUS * H_RADIUS;
+  var REST_DENSITY = 1000;
+  var GAS_K = 2000;
+  var VISC = 250;
+  var GRAVITY = 600;
+  var DAMPING = 0.3;
+  var DT = 1 / 60;
+  var PARTICLE_RADIUS = 8;
+  var MASS = 3500000;
+
+  // kernel normalisations
+  var POLY6_COEFF = 315 / (64 * Math.PI * Math.pow(H_RADIUS, 9));
+  var SPIKY_COEFF = 45 / (Math.PI * Math.pow(H_RADIUS, 6));
+  var VISC_COEFF  = 45 / (Math.PI * Math.pow(H_RADIUS, 6));
+
+  // --- particle arrays (flat, for cache efficiency) ---
+  var px = new Float64Array(N); // position x
+  var py = new Float64Array(N); // position y
+  var vx = new Float64Array(N); // velocity x
+  var vy = new Float64Array(N); // velocity y
+  var ax = new Float64Array(N); // acceleration x
+  var ay = new Float64Array(N); // acceleration y
+  var den = new Float64Array(N); // density ρ
+  var prs = new Float64Array(N); // pressure p
+
+  // --- spatial hash ---
+  var TABLE_SIZE = 4096; // must be power of 2
+  var hashHead = new Int32Array(TABLE_SIZE).fill(-1);
+  var hashNext = new Int32Array(N).fill(-1);
+
+  function cellKey(cx, cy) {
+    return (((cx * 73856093) ^ (cy * 19349663)) & 0x7FFFFFFF) & (TABLE_SIZE - 1);
+  }
+
+  function buildHash() {
+    hashHead.fill(-1);
+    var inv = 1 / H_RADIUS;
+    for (var i = 0; i < N; i++) {
+      var cx = Math.floor(px[i] * inv);
+      var cy = Math.floor(py[i] * inv);
+      var k = cellKey(cx, cy);
+      hashNext[i] = hashHead[k];
+      hashHead[k] = i;
+    }
+  }
+
+  // --- SPH kernels ---
+  function wPoly6(r2) {
+    if (r2 >= H2) return 0;
+    var x = H2 - r2;
+    return POLY6_COEFF * x * x * x;
+  }
+
+  // returns scalar dW/dr / r (already divided by r); caller multiplies by (dx,dy)
+  function gradWSpiky(r) {
+    if (r >= H_RADIUS || r < 1e-5) return 0;
+    var x = H_RADIUS - r;
+    return -SPIKY_COEFF * x * x / r;
+  }
+
+  function lapWVisc(r) {
+    if (r >= H_RADIUS) return 0;
+    return VISC_COEFF * (H_RADIUS - r);
+  }
+
+  // --- init particles in a rectangular block in the upper half ---
+  function initParticles() {
+    seed = 0x2A6F3C1D;
+    var cols = Math.ceil(Math.sqrt(N * 1.4));
+    var rows = Math.ceil(N / cols);
+    var blockW = Math.min(W * 0.5, cols * 14);
+    var blockH = Math.min(H * 0.35, rows * 14);
+    var startX = (W - blockW) / 2;
+    var startY = H * 0.05;
+    var dx = blockW / (cols + 1);
+    var dy = blockH / (rows + 1);
+    for (var i = 0; i < N; i++) {
+      var col = i % cols;
+      var row = Math.floor(i / cols);
+      px[i] = startX + (col + 1) * dx + (rand() - 0.5) * 4;
+      py[i] = startY + (row + 1) * dy + (rand() - 0.5) * 4;
+      vx[i] = (rand() - 0.5) * 20;
+      vy[i] = (rand() - 0.5) * 20;
+    }
+  }
+
+  // --- SPH step ---
+  function sphStep() {
+    buildHash();
+    var inv = 1 / H_RADIUS;
+
+    // pass 1: density + pressure
+    for (var i = 0; i < N; i++) {
+      var d = 0;
+      var icx = Math.floor(px[i] * inv);
+      var icy = Math.floor(py[i] * inv);
+      for (var nx = icx - 1; nx <= icx + 1; nx++) {
+        for (var ny = icy - 1; ny <= icy + 1; ny++) {
+          var k = cellKey(nx, ny);
+          var j = hashHead[k];
+          while (j !== -1) {
+            var ddx = px[i] - px[j];
+            var ddy = py[i] - py[j];
+            var r2 = ddx * ddx + ddy * ddy;
+            d += MASS * wPoly6(r2);
+            j = hashNext[j];
+          }
+        }
+      }
+      den[i] = Math.max(d, REST_DENSITY * 0.001);
+      prs[i] = GAS_K * (den[i] - REST_DENSITY);
+    }
+
+    // pass 2: forces
+    for (var i = 0; i < N; i++) {
+      var fx = 0, fy = GRAVITY * den[i];
+      var icx = Math.floor(px[i] * inv);
+      var icy = Math.floor(py[i] * inv);
+      for (var nx = icx - 1; nx <= icx + 1; nx++) {
+        for (var ny = icy - 1; ny <= icy + 1; ny++) {
+          var k = cellKey(nx, ny);
+          var j = hashHead[k];
+          while (j !== -1) {
+            if (j !== i) {
+              var ddx = px[i] - px[j];
+              var ddy = py[i] - py[j];
+              var r = Math.sqrt(ddx * ddx + ddy * ddy);
+              // pressure force
+              var gw = gradWSpiky(r);
+              var pf = -MASS * (prs[i] + prs[j]) / (2 * den[j]) * gw;
+              fx += pf * ddx;
+              fy += pf * ddy;
+              // viscosity force
+              var lw = lapWVisc(r);
+              var vf = VISC * MASS / den[j] * lw;
+              fx += vf * (vx[j] - vx[i]);
+              fy += vf * (vy[j] - vy[i]);
+            }
+            j = hashNext[j];
+          }
+        }
+      }
+      ax[i] = fx / den[i];
+      ay[i] = fy / den[i];
+    }
+
+    // integrate + boundary
+    for (var i = 0; i < N; i++) {
+      vx[i] += ax[i] * DT;
+      vy[i] += ay[i] * DT;
+      px[i] += vx[i] * DT;
+      py[i] += vy[i] * DT;
+      enforceBoundary(i);
+    }
+  }
+
+  function enforceBoundary(i) {
+    if (px[i] < PARTICLE_RADIUS) { px[i] = PARTICLE_RADIUS; vx[i] = Math.abs(vx[i]) * DAMPING; }
+    if (px[i] > W - PARTICLE_RADIUS) { px[i] = W - PARTICLE_RADIUS; vx[i] = -Math.abs(vx[i]) * DAMPING; }
+    if (py[i] < PARTICLE_RADIUS) { py[i] = PARTICLE_RADIUS; vy[i] = Math.abs(vy[i]) * DAMPING; }
+    if (py[i] > H - PARTICLE_RADIUS) { py[i] = H - PARTICLE_RADIUS; vy[i] = -Math.abs(vy[i]) * DAMPING; }
+  }
+
+  // --- marching squares surface ---
+  var GRID_COLS = 80;
+  var GRID_ROWS = 60;
+  var FIELD_SIGMA2 = H_RADIUS * H_RADIUS * 0.5;
+  var FIELD_THRESH = 0.5;
+  var field = new Float32Array((GRID_COLS + 1) * (GRID_ROWS + 1));
+
+  // marching squares edge table: for each of 16 cases, lists pairs of edge indices to connect
+  // edges: 0=top, 1=right, 2=bottom, 3=left; midpoints stored as (fx,fy) fractions in [0,1]
+  var MS_EDGES = [
+    null,         // 0000
+    [[3,0]],      // 0001
+    [[0,1]],      // 0010
+    [[3,1]],      // 0011
+    [[1,2]],      // 0100
+    [[3,0],[1,2]],// 0101 (ambiguous, pick one)
+    [[0,2]],      // 0110
+    [[3,2]],      // 0111
+    [[2,3]],      // 1000
+    [[2,0]],      // 1001
+    [[0,1],[2,3]],// 1010
+    [[2,1]],      // 1011
+    [[1,3]],      // 1100
+    [[1,0]],      // 1101
+    [[0,3]],      // 1110
+    null          // 1111
+  ];
+
+  // for each edge index, the two corner indices (row-major, 0=TL,1=TR,2=BL,3=BR)
+  // and the lerp parameter direction
+  var EDGE_LERP = [
+    {a:0, b:1, axis:'x', fixed:'y', fixedV:0},  // top
+    {a:1, b:3, axis:'y', fixed:'x', fixedV:1},  // right
+    {a:2, b:3, axis:'x', fixed:'y', fixedV:1},  // bottom
+    {a:0, b:2, axis:'y', fixed:'x', fixedV:0}   // left
+  ];
+
+  function computeField() {
+    field.fill(0);
+    var gw = W / GRID_COLS;
+    var gh = H / GRID_ROWS;
+    var inv = 1 / H_RADIUS;
+    for (var i = 0; i < N; i++) {
+      var gcx = Math.floor(px[i] / gw);
+      var gcy = Math.floor(py[i] / gh);
+      var spread = Math.ceil(H_RADIUS / Math.min(gw, gh)) + 1;
+      for (var gy = Math.max(0, gcy - spread); gy <= Math.min(GRID_ROWS, gcy + spread); gy++) {
+        for (var gx = Math.max(0, gcx - spread); gx <= Math.min(GRID_COLS, gcx + spread); gx++) {
+          var wx = gx * gw - px[i];
+          var wy = gy * gh - py[i];
+          var r2 = wx * wx + wy * wy;
+          field[gy * (GRID_COLS + 1) + gx] += Math.exp(-r2 / FIELD_SIGMA2);
+        }
+      }
+    }
+  }
+
+  function drawSurface() {
+    var gw = W / GRID_COLS;
+    var gh = H / GRID_ROWS;
+
+    // fill interior with gradient
+    var grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, 'rgba(60,80,180,0.12)');
+    grad.addColorStop(1, 'rgba(60,80,180,0.22)');
+
+    ctx.beginPath();
+    for (var row = 0; row < GRID_ROWS; row++) {
+      for (var col = 0; col < GRID_COLS; col++) {
+        var f00 = field[row       * (GRID_COLS+1) + col    ];
+        var f10 = field[row       * (GRID_COLS+1) + col + 1];
+        var f01 = field[(row + 1) * (GRID_COLS+1) + col    ];
+        var f11 = field[(row + 1) * (GRID_COLS+1) + col + 1];
+        var x0 = col * gw, y0 = row * gh;
+        var x1 = x0 + gw,  y1 = y0 + gh;
+        if (f00 >= FIELD_THRESH && f10 >= FIELD_THRESH && f01 >= FIELD_THRESH && f11 >= FIELD_THRESH) {
+          ctx.rect(x0, y0, gw, gh);
+        }
+      }
+    }
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // draw contour lines
+    ctx.beginPath();
+    ctx.strokeStyle = '#D8E8F0';
+    ctx.lineWidth = 1.5;
+    for (var row = 0; row < GRID_ROWS; row++) {
+      for (var col = 0; col < GRID_COLS; col++) {
+        var vals = [
+          field[row       * (GRID_COLS+1) + col    ],
+          field[row       * (GRID_COLS+1) + col + 1],
+          field[(row + 1) * (GRID_COLS+1) + col    ],
+          field[(row + 1) * (GRID_COLS+1) + col + 1]
+        ];
+        var sq = ((vals[0] >= FIELD_THRESH) ? 8 : 0)
+               | ((vals[1] >= FIELD_THRESH) ? 4 : 0)
+               | ((vals[2] >= FIELD_THRESH) ? 2 : 0)
+               | ((vals[3] >= FIELD_THRESH) ? 1 : 0);
+        if (sq === 0 || sq === 15) continue;
+        var segs = MS_EDGES[sq];
+        if (!segs) continue;
+        var x0 = col * (W / GRID_COLS), y0 = row * (H / GRID_ROWS);
+        var cw = W / GRID_COLS, ch = H / GRID_ROWS;
+        var corners = [
+          [x0,      y0     ], // TL
+          [x0 + cw, y0     ], // TR
+          [x0,      y0 + ch], // BL
+          [x0 + cw, y0 + ch]  // BR
+        ];
+        for (var s = 0; s < segs.length; s++) {
+          var edgePair = segs[s];
+          var pts = [];
+          for (var e = 0; e < 2; e++) {
+            var ei = edgePair[e];
+            var lerp = EDGE_LERP[ei];
+            var va = vals[lerp.a], vb = vals[lerp.b];
+            var t = (va === vb) ? 0.5 : (FIELD_THRESH - va) / (vb - va);
+            t = Math.max(0, Math.min(1, t));
+            var ca = corners[lerp.a], cb = corners[lerp.b];
+            pts.push([ca[0] + (cb[0] - ca[0]) * t, ca[1] + (cb[1] - ca[1]) * t]);
+          }
+          ctx.moveTo(pts[0][0], pts[0][1]);
+          ctx.lineTo(pts[1][0], pts[1][1]);
+        }
+      }
+    }
+    ctx.stroke();
+  }
+
+  // --- render ---
+  function draw() {
+    ctx.fillStyle = '#0A0C14';
+    ctx.fillRect(0, 0, W, H);
+
+    computeField();
+    drawSurface();
+
+    // draw particles
+    for (var i = 0; i < N; i++) {
+      ctx.beginPath();
+      ctx.arc(px[i], py[i], PARTICLE_RADIUS, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(100,130,220,0.4)';
+      ctx.fill();
+    }
+  }
+
+  // --- animation loop ---
+  function loop() {
+    sphStep();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  initParticles();
+  loop();
+}());
+</script>
+</body>
+</html>

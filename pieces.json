@@ -1318,5 +1318,16 @@
     "path": "pieces/80-logistic-map-omer-bifurcation/index.html",
     "thumbnail": "pieces/80-logistic-map-omer-bifurcation/thumbnail.svg",
     "essay": "pieces/80-logistic-map-omer-bifurcation/essay.md"
+  },
+  {
+    "id": "80-sph-torah-as-water",
+    "title": "Descend as the Rain, Distill as the Dew",
+    "tagline": "Torah is compared to water — it flows downward, into the lowest vessel",
+    "year": 2026,
+    "theme": "Crown of Torah / naaseh v'nishma",
+    "technique": "Smoothed Particle Hydrodynamics / 2D SPH fluid simulation",
+    "path": "pieces/80-sph-torah-as-water/index.html",
+    "thumbnail": "pieces/80-sph-torah-as-water/thumbnail.svg",
+    "essay": "pieces/80-sph-torah-as-water/essay.md"
   }
 ]
