@@ -1771,6 +1771,17 @@
     "essay": "pieces/96-simulated-annealing-sinai/essay.md"
   },
   {
+    "id": "97-kleinian-group-pardes",
+    "title": "Four Entered the Orchard",
+    "tagline": "the Schottky Kleinian limit set — four spiral arms turning through the night of Tikkun Leil Shavuot, converging toward the fractal boundary of Pardes that can be approached but never reached",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot / Pardes",
+    "technique": "Kleinian group Schottky limit set (iterated Möbius transformations)",
+    "path": "pieces/97-kleinian-group-pardes/index.html",
+    "thumbnail": "pieces/97-kleinian-group-pardes/thumbnail.svg",
+    "essay": "pieces/97-kleinian-group-pardes/essay.md"
+  },
+  {
     "id": "97-pursuit-curves-ruth-naomi",
     "title": "Wherever You Go",
     "tagline": "Ruth's vow enacted as equiangular spirals — two pursuit curves converge on Naomi while Orpah's terracotta spiral peels away and fades at the crossroads of Moab",
