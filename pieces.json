@@ -1298,6 +1298,17 @@
     "essay": "pieces/79-wave-function-collapse-seven-species/essay.md"
   },
   {
+    "id": "80-lenia-sinai-in-bloom",
+    "title": "And the Mountain Blossomed",
+    "tagline": "the mountain that burst into flower at the moment of revelation — Lenia gliders bloom on a green field",
+    "year": 2026,
+    "theme": "Greenery and flowers / Har Sinai in bloom",
+    "technique": "Lenia continuous cellular automaton / smooth kernel convolution",
+    "path": "pieces/80-lenia-sinai-in-bloom/index.html",
+    "thumbnail": "pieces/80-lenia-sinai-in-bloom/thumbnail.svg",
+    "essay": "pieces/80-lenia-sinai-in-bloom/essay.md"
+  },
+  {
     "id": "80-logistic-map-omer-bifurcation",
     "title": "Order Hidden Within the Count",
     "tagline": "the logistic map bifurcation diagram — period-doubling chaos as Sefirat HaOmer",

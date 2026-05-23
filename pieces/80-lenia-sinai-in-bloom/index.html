@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>And the Mountain Blossomed — Lenia / Sinai in Bloom</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0e1a10; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0e1a10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e301e;
+      overflow-y: auto;
+      color: #b8ccb0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0b160d;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: relative; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e301e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #e8ddb0;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #405040;
+      margin: 0 0 2rem;
+    }
+    .essay-panel .source {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #506050;
+      border-left: 3px solid #2a4030;
+      padding-left: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .essay-panel p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin: 0 0 1.1rem;
+    }
+    .essay-panel p.hebrew {
+      font-size: 1.2rem;
+      direction: rtl;
+      color: #d4c060;
+      text-align: right;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>And the Mountain Blossomed</h1>
+    <div class="subtitle">Lenia continuous cellular automaton &mdash; Sinai in bloom</div>
+    <div class="source">Sources: Pirkei de-Rabbi Eliezer ch. 41; Shir HaShirim Rabbah 1:2; Shabbat 88b; Shulchan Aruch Orach Chayyim 494.</div>
+
+    <p>Pirkei de-Rabbi Eliezer, chapter forty-one, records what most tellings omit: when God descended upon Sinai to give the Torah, the mountain did not merely burn and tremble. It blossomed. The text is precise — at the moment of the giving, the mountain filled with blooms and fragrance, as it is written in the Song of Songs (2:6): "His left hand is under my head." Shir HaShirim Rabbah (1:2) draws the same connection, reading the lover's fragrant garden as the mountain of revelation. Sinai, the most humble of mountains — rejected by Tabor and Carmel as too small — received the Torah and erupted into flower.</p>
+
+    <p>This Midrash is the direct source of the Ashkenazi custom of decorating the synagogue with cut flowers and green boughs on Shavuot eve. The Magen Avraham (Orach Chayyim 494) codifies it. The Vilna Gaon later discouraged the practice, fearing it imitated non-Jewish harvest celebrations; centuries of custom disagreed. On Shavuot eve, across a hundred communities, the sanctuary still smells of lilacs and roses — a landscape encoded in scent, a re-enactment of the mountain's flowering.</p>
+
+    <p>The non-obvious reading: the blooming is not decoration. A desert mountain erupting into flower at the moment of revelation signals transformation — the sterile made alive, the indifferent made welcoming. The Talmud (Shabbat 88b) records that the mountain was held over the Israelites like a barrel, &#x05DB;&#x05B0;&#x05D2;&#x05B4;&#x05D9;&#x05D2;&#x05B4;&#x05D9;&#x05EA; — a threat. The flowers contradict the threat. They signal not coercion but hospitality: a host that dressed itself in welcome. Sinai prepared for its guest the way a bride prepares for a wedding. The Torah came not to a wasteland but to a garden.</p>
+
+    <p>Lenia, the continuous cellular automaton developed by Bert Chan in 2019, enacts this dynamic precisely. Unlike Conway's Game of Life with its binary on/off cells, Lenia evolves real-valued states — a field of values between zero and one — through a smooth, rotationally symmetric ring kernel. With the Orbium parameters (&mu;=0.15, &sigma;=0.017), the simulation behaves like living soil: seeded with a few circular patches of activity, the grid either collapses to silence or crystallizes into gliders — stable, rotating, flower-like structures that drift across the field, self-sustaining, unrepeating, alive.</p>
+
+    <p>Each glider arose from nothing but the initial conditions and the growth function. No designer placed the flowers. The rules, applied uniformly to an indifferent field, produced them. That is precisely what Pirkei de-Rabbi Eliezer describes: a mountain that, for one moment, grew flowers no one planted, because the conditions were right and the occasion demanded it.</p>
+
+    <p>The green field in this simulation is the mountain before the Torah came. The golden blooms that crystallize from random seeds are what the mountain became. Watch the simulation long enough and a structure will form, drift, and persist — alive in the way the Midrash says the mountain was alive: spontaneously, without explanation, at the moment it was needed.</p>
+
+    <p class="hebrew">&#x05D4;&#x05B7;&#x05E8; &#x05E1;&#x05B4;&#x05D9;&#x05E0;&#x05B7;&#x05D9; &#x05E4;&#x05B8;&#x05E8;&#x05B7;&#x05D7;. The mountain of Sinai bloomed.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  // Lenia grid size and kernel radius
+  const N = 128;
+  const R = 7;
+  const SZ = 2 * R + 1; // 15
+
+  // Orbium growth parameters
+  const MU = 0.15;
+  const SIGMA = 0.017;
+  const DT = 0.1;
+
+  // State grids
+  const A = new Float32Array(N * N);
+  const Anext = new Float32Array(N * N);
+
+  // Precomputed kernel (ring kernel, normalized)
+  const K = new Float32Array(SZ * SZ);
+
+  // Offscreen canvas for ImageData → upscaled rendering
+  const offCanvas = document.createElement('canvas');
+  offCanvas.width = N;
+  offCanvas.height = N;
+  const offCtx = offCanvas.getContext('2d');
+  const imgData = offCtx.createImageData(N, N);
+
+  let frameCount = 0;
+
+  /**
+   * Build the normalized ring kernel K once at startup.
+   * K(r) = exp(4 - 4/(r*(1-r))) for r in [0.5, 1.0] (normalized ring),
+   * zero elsewhere. r = distance / R, rn = (r - 0.5) / 0.5 remaps ring to [0,1].
+   */
+  function buildKernel() {
+    let kSum = 0;
+    for (let dy = -R; dy <= R; dy++) {
+      for (let dx = -R; dx <= R; dx++) {
+        const r = Math.sqrt(dx * dx + dy * dy) / R;
+        let val = 0;
+        if (r >= 0.5 && r <= 1.0) {
+          const rn = (r - 0.5) / 0.5;
+          // Smooth bump: zero at rn=0 and rn=1, peak in middle
+          val = Math.exp(4 - 4 / (rn * (1 - rn) + 1e-9));
+        }
+        K[(dy + R) * SZ + (dx + R)] = val;
+        kSum += val;
+      }
+    }
+    for (let i = 0; i < K.length; i++) K[i] /= kSum;
+  }
+
+  /**
+   * Growth function G(u) = 2*exp(-(u-mu)^2/(2*sigma^2)) - 1.
+   * Returns values in (-1, 1]; near zero when u is far from mu.
+   */
+  function G(u) {
+    const d = u - MU;
+    return 2 * Math.exp(-(d * d) / (2 * SIGMA * SIGMA)) - 1;
+  }
+
+  /**
+   * Place circular spores of random [0.5, 1.0] values on the grid.
+   * n: number of spores, radius 7 each, at random positions.
+   */
+  function seed(n) {
+    const sporeR = 7;
+    for (let s = 0; s < n; s++) {
+      const cx = Math.floor(Math.random() * N);
+      const cy = Math.floor(Math.random() * N);
+      for (let dy = -sporeR; dy <= sporeR; dy++) {
+        for (let dx = -sporeR; dx <= sporeR; dx++) {
+          if (dx * dx + dy * dy <= sporeR * sporeR) {
+            const ax = (cx + dx + N) % N;
+            const ay = (cy + dy + N) % N;
+            A[ay * N + ax] = 0.5 + Math.random() * 0.5;
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * One Lenia update step: convolve A with K, apply growth function,
+   * integrate with DT, clip to [0,1].
+   */
+  function leniaStep() {
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < N; x++) {
+        let conv = 0;
+        for (let ky = 0; ky < SZ; ky++) {
+          for (let kx = 0; kx < SZ; kx++) {
+            const ay = (y + ky - R + N) % N;
+            const ax = (x + kx - R + N) % N;
+            conv += K[ky * SZ + kx] * A[ay * N + ax];
+          }
+        }
+        const g = G(conv);
+        const next = A[y * N + x] + DT * g;
+        Anext[y * N + x] = next < 0 ? 0 : next > 1 ? 1 : next;
+      }
+    }
+    A.set(Anext);
+  }
+
+  /**
+   * Map a cell value v in [0,1] to an RGB triple using the Sinai bloom palette:
+   * v=0   → #1A3020 (deep forest green)
+   * v=0.3 → #5A8060 (sage green)
+   * v=0.6 → #D4C060 (pale gold)
+   * v=1.0 → #FEFEF0 (near-white)
+   * Uses three linear segments between the four stops.
+   */
+  function colorize(v, out, i) {
+    let r, g, b;
+    if (v < 0.3) {
+      const t = v / 0.3;
+      r = 26 + t * (90 - 26);
+      g = 48 + t * (128 - 48);
+      b = 32 + t * (96 - 32);
+    } else if (v < 0.6) {
+      const t = (v - 0.3) / 0.3;
+      r = 90 + t * (212 - 90);
+      g = 128 + t * (192 - 128);
+      b = 96 + t * (96 - 96);
+    } else {
+      const t = (v - 0.6) / 0.4;
+      r = 212 + t * (254 - 212);
+      g = 192 + t * (254 - 192);
+      b = 96 + t * (240 - 96);
+    }
+    out[i] = r + 0.5 | 0;
+    out[i + 1] = g + 0.5 | 0;
+    out[i + 2] = b + 0.5 | 0;
+    out[i + 3] = 255;
+  }
+
+  /**
+   * Render the current state A into the offscreen canvas then upscale to fill
+   * the main canvas with nearest-neighbor interpolation (pixelated look).
+   */
+  function render() {
+    const d = imgData.data;
+    for (let i = 0; i < N * N; i++) {
+      colorize(A[i], d, i * 4);
+    }
+    offCtx.putImageData(imgData, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(offCanvas, 0, 0, canvas.width, canvas.height);
+  }
+
+  /**
+   * Resize the main canvas to fill its CSS container while preserving integer
+   * scaling of the 128×128 grid.
+   */
+  function resize() {
+    const panel = canvas.parentElement;
+    canvas.width = panel.clientWidth;
+    canvas.height = panel.clientHeight;
+  }
+
+  function countNonZero() {
+    let n = 0;
+    for (let i = 0; i < A.length; i++) {
+      if (A[i] > 0.01) n++;
+    }
+    return n;
+  }
+
+  function loop() {
+    leniaStep();
+    render();
+    frameCount++;
+
+    // Auto-reseed if population collapses after frame 300
+    if (frameCount >= 300) {
+      const live = countNonZero();
+      if (live < 0.05 * N * N) {
+        A.fill(0);
+        seed(3 + Math.floor(Math.random() * 3));
+        frameCount = 0;
+      }
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  function init() {
+    buildKernel();
+    resize();
+    A.fill(0);
+    seed(3 + Math.floor(Math.random() * 3)); // 3–5 spores
+    window.addEventListener('resize', resize);
+    requestAnimationFrame(loop);
+  }
+
+  init();
+}());
+</script>
+</body>
+</html>
