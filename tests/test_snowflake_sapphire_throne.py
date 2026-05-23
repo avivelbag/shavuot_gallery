@@ -6,9 +6,6 @@ and HTML implementation requirements for the Gravner-Griffeath snowflake piece.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "83-snowflake-sapphire-throne"
