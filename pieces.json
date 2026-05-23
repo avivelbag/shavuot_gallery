@@ -1252,5 +1252,16 @@
     "path": "pieces/78-turmites-talmud-torah/index.html",
     "thumbnail": "pieces/78-turmites-talmud-torah/thumbnail.svg",
     "essay": "pieces/78-turmites-talmud-torah/essay.md"
+  },
+  {
+    "id": "79-wave-function-collapse-seven-species",
+    "title": "The Fruit of the Land",
+    "tagline": "Wave Function Collapse tiles the seven species of Bikkurim — constraint by constraint, the mosaic assembles itself from entropy to order",
+    "year": 2026,
+    "theme": "Bikkurim / Seven Species",
+    "technique": "Wave Function Collapse / constraint propagation",
+    "path": "pieces/79-wave-function-collapse-seven-species/index.html",
+    "thumbnail": "pieces/79-wave-function-collapse-seven-species/thumbnail.svg",
+    "essay": "pieces/79-wave-function-collapse-seven-species/essay.md"
   }
 ]
