@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F4ECD8"/>
+
+  <!-- Large blocks top-left — undifferentiated parchment/light areas -->
+  <rect x="0"   y="0"   width="100" height="100" fill="#F8F0E2" stroke="#D4C4A0" stroke-width="0.5"/>
+  <rect x="100" y="0"   width="100" height="100" fill="#F5EDD9" stroke="#D2C09E" stroke-width="0.5"/>
+  <rect x="0"   y="100" width="100" height="100" fill="#F6EED8" stroke="#D3C19F" stroke-width="0.5"/>
+  <rect x="100" y="100" width="100" height="100" fill="#F4ECD5" stroke="#D1BFAD" stroke-width="0.5"/>
+
+  <!-- Medium blocks mid-left -->
+  <rect x="0"   y="200" width="50" height="50"  fill="#F2E9D2" stroke="#CEBC9A" stroke-width="0.5"/>
+  <rect x="50"  y="200" width="50" height="50"  fill="#F5ECCF" stroke="#D0BF9C" stroke-width="0.5"/>
+  <rect x="0"   y="250" width="50" height="50"  fill="#F3EAD0" stroke="#CFBD9B" stroke-width="0.5"/>
+  <rect x="50"  y="250" width="50" height="50"  fill="#F1E7CE" stroke="#CDBB98" stroke-width="0.5"/>
+
+  <!-- Medium blocks mid-center top -->
+  <rect x="200" y="0"   width="50" height="50"  fill="#F3EAD1" stroke="#D0BE9D" stroke-width="0.5"/>
+  <rect x="250" y="0"   width="50" height="50"  fill="#F6EDD3" stroke="#D2C09F" stroke-width="0.5"/>
+  <rect x="200" y="50"  width="50" height="50"  fill="#F4EBCF" stroke="#D1BF9C" stroke-width="0.5"/>
+  <rect x="250" y="50"  width="50" height="50"  fill="#EFE5CA" stroke="#CCBA97" stroke-width="0.5"/>
+
+  <!-- Large block top-right -->
+  <rect x="300" y="0"   width="100" height="100" fill="#F2E8CC" stroke="#CFBD9A" stroke-width="0.5"/>
+  <rect x="300" y="100" width="50"  height="50"  fill="#EEE3C7" stroke="#CBB894" stroke-width="0.5"/>
+  <rect x="350" y="100" width="50"  height="50"  fill="#E8DCC2" stroke="#C7B38F" stroke-width="0.5"/>
+
+  <!-- Mid-right areas — starting to show some gold -->
+  <rect x="200" y="100" width="50" height="50"  fill="#E9DDC3" stroke="#C8B490" stroke-width="0.5"/>
+  <rect x="250" y="100" width="50" height="50"  fill="#DDD0B0" stroke="#BEA87E" stroke-width="0.5"/>
+  <rect x="200" y="150" width="25" height="25"  fill="#CFC49E" stroke="#B3A175" stroke-width="0.5"/>
+  <rect x="225" y="150" width="25" height="25"  fill="#C4BA93" stroke="#A9987C" stroke-width="0.5"/>
+  <rect x="250" y="150" width="25" height="25"  fill="#D4C4A2" stroke="#B5A47A" stroke-width="0.5"/>
+  <rect x="275" y="150" width="25" height="25"  fill="#E0D1AD" stroke="#BDAB84" stroke-width="0.5"/>
+
+  <!-- Bottom-left medium -->
+  <rect x="0"   y="300" width="50" height="50"  fill="#F0E7CE" stroke="#CDBB98" stroke-width="0.5"/>
+  <rect x="50"  y="300" width="50" height="50"  fill="#EEE5CC" stroke="#CBB996" stroke-width="0.5"/>
+  <rect x="0"   y="350" width="50" height="50"  fill="#F1E8CF" stroke="#CEBC99" stroke-width="0.5"/>
+  <rect x="50"  y="350" width="50" height="50"  fill="#EFE6CC" stroke="#CCBA97" stroke-width="0.5"/>
+
+  <!-- Bottom center — finer grid, transitioning gold -->
+  <rect x="100" y="200" width="25" height="25"  fill="#E5D9B8" stroke="#C3B18A" stroke-width="0.5"/>
+  <rect x="125" y="200" width="25" height="25"  fill="#D8CCAB" stroke="#B8A47E" stroke-width="0.5"/>
+  <rect x="100" y="225" width="25" height="25"  fill="#CFC3A0" stroke="#B09C74" stroke-width="0.5"/>
+  <rect x="125" y="225" width="25" height="25"  fill="#C5B896" stroke="#A8916C" stroke-width="0.5"/>
+  <rect x="100" y="250" width="25" height="25"  fill="#D2C6A3" stroke="#B29C77" stroke-width="0.5"/>
+  <rect x="125" y="250" width="25" height="25"  fill="#CCBF9D" stroke="#AE9873" stroke-width="0.5"/>
+  <rect x="100" y="275" width="25" height="25"  fill="#C8BA98" stroke="#AB9470" stroke-width="0.5"/>
+  <rect x="125" y="275" width="25" height="25"  fill="#C3B492" stroke="#A68F6A" stroke-width="0.5"/>
+
+  <!-- Fine grid bottom-right — ש (shin) region resolving in gold -->
+  <!-- Shin has three vertical strokes connected at top with a base -->
+  <!-- Small 12.5px blocks showing the letter shape -->
+  <!-- Row 300-400, col 150-300: fine grid -->
+
+  <!-- Parchment background blocks in fine area -->
+  <rect x="150" y="300" width="12" height="12" fill="#F0E6CC" stroke="#CDB992" stroke-width="0.5"/>
+  <rect x="162" y="300" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="174" y="300" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="186" y="300" width="12" height="12" fill="#EDE2C8" stroke="#C9B58E" stroke-width="0.5"/>
+  <rect x="198" y="300" width="12" height="12" fill="#F0E6CC" stroke="#CDB992" stroke-width="0.5"/>
+  <rect x="210" y="300" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="222" y="300" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="234" y="300" width="12" height="12" fill="#F0E5CB" stroke="#CDB991" stroke-width="0.5"/>
+  <rect x="246" y="300" width="12" height="12" fill="#EFE4CA" stroke="#CCB890" stroke-width="0.5"/>
+  <rect x="258" y="300" width="12" height="12" fill="#EDE2C8" stroke="#CAB68E" stroke-width="0.5"/>
+  <rect x="270" y="300" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="282" y="300" width="12" height="12" fill="#F0E6CB" stroke="#CDB891" stroke-width="0.5"/>
+
+  <!-- Shin top bar — gold -->
+  <rect x="150" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="162" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="174" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="186" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="198" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="210" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="222" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="234" y="312" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="246" y="312" width="12" height="12" fill="#EFE4CA" stroke="#CCB890" stroke-width="0.5"/>
+  <rect x="258" y="312" width="12" height="12" fill="#EDE2C8" stroke="#CAB68E" stroke-width="0.5"/>
+  <rect x="270" y="312" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="282" y="312" width="12" height="12" fill="#F0E6CB" stroke="#CDB891" stroke-width="0.5"/>
+
+  <!-- Shin left stroke -->
+  <rect x="150" y="324" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="162" y="324" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="174" y="324" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="186" y="324" width="12" height="12" fill="#EDE2C8" stroke="#C9B58E" stroke-width="0.5"/>
+  <rect x="198" y="324" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="210" y="324" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="222" y="324" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="234" y="324" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="246" y="324" width="12" height="12" fill="#EFE4CA" stroke="#CCB890" stroke-width="0.5"/>
+  <rect x="258" y="324" width="12" height="12" fill="#EDE2C8" stroke="#CAB68E" stroke-width="0.5"/>
+  <rect x="270" y="324" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="282" y="324" width="12" height="12" fill="#F0E6CB" stroke="#CDB891" stroke-width="0.5"/>
+
+  <rect x="150" y="336" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="162" y="336" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="174" y="336" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="186" y="336" width="12" height="12" fill="#EDE2C8" stroke="#C9B58E" stroke-width="0.5"/>
+  <rect x="198" y="336" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="210" y="336" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="222" y="336" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="234" y="336" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="246" y="336" width="12" height="12" fill="#EFE4CA" stroke="#CCB890" stroke-width="0.5"/>
+  <rect x="258" y="336" width="12" height="12" fill="#EDE2C8" stroke="#CAB68E" stroke-width="0.5"/>
+  <rect x="270" y="336" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="282" y="336" width="12" height="12" fill="#F0E6CB" stroke="#CDB891" stroke-width="0.5"/>
+
+  <!-- Shin base row -->
+  <rect x="150" y="348" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="162" y="348" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="174" y="348" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="186" y="348" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="198" y="348" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="210" y="348" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="222" y="348" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="234" y="348" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="246" y="348" width="12" height="12" fill="#EFE4CA" stroke="#CCB890" stroke-width="0.5"/>
+  <rect x="258" y="348" width="12" height="12" fill="#EDE2C8" stroke="#CAB68E" stroke-width="0.5"/>
+  <rect x="270" y="348" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="282" y="348" width="12" height="12" fill="#F0E6CB" stroke="#CDB891" stroke-width="0.5"/>
+
+  <!-- Bottom row parchment -->
+  <rect x="150" y="360" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="162" y="360" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="174" y="360" width="12" height="12" fill="#F0E6CC" stroke="#CDB992" stroke-width="0.5"/>
+  <rect x="186" y="360" width="12" height="12" fill="#EDE2C8" stroke="#C9B58E" stroke-width="0.5"/>
+  <rect x="198" y="360" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="210" y="360" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="222" y="360" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="234" y="360" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="246" y="360" width="12" height="12" fill="#EFE4CA" stroke="#CCB890" stroke-width="0.5"/>
+  <rect x="258" y="360" width="12" height="12" fill="#EDE2C8" stroke="#CAB68E" stroke-width="0.5"/>
+  <rect x="270" y="360" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="282" y="360" width="12" height="12" fill="#F0E6CB" stroke="#CDB891" stroke-width="0.5"/>
+
+  <!-- Fill remaining right side with medium blocks -->
+  <rect x="300" y="150" width="50" height="50"  fill="#EDE0C4" stroke="#CAAE90" stroke-width="0.5"/>
+  <rect x="350" y="150" width="50" height="50"  fill="#F0E3C7" stroke="#CDB193" stroke-width="0.5"/>
+  <rect x="300" y="200" width="25" height="25"  fill="#E6DAB9" stroke="#C3B186" stroke-width="0.5"/>
+  <rect x="325" y="200" width="25" height="25"  fill="#D9CEAA" stroke="#B8A67B" stroke-width="0.5"/>
+  <rect x="350" y="200" width="25" height="25"  fill="#DBD0AC" stroke="#BAA87D" stroke-width="0.5"/>
+  <rect x="375" y="200" width="25" height="25"  fill="#E0D5B0" stroke="#BEAD81" stroke-width="0.5"/>
+  <rect x="300" y="225" width="25" height="25"  fill="#D5C9A5" stroke="#B5A177" stroke-width="0.5"/>
+  <rect x="325" y="225" width="25" height="25"  fill="#CCB99A" stroke="#AC966C" stroke-width="0.5"/>
+  <rect x="350" y="225" width="25" height="25"  fill="#CFC0A0" stroke="#AD9A72" stroke-width="0.5"/>
+  <rect x="375" y="225" width="25" height="25"  fill="#D6C8A4" stroke="#B5A076" stroke-width="0.5"/>
+  <rect x="300" y="250" width="25" height="25"  fill="#C9BB97" stroke="#AA9469" stroke-width="0.5"/>
+  <rect x="325" y="250" width="25" height="25"  fill="#C0B18D" stroke="#A28B60" stroke-width="0.5"/>
+  <rect x="350" y="250" width="25" height="25"  fill="#C3B390" stroke="#A48E63" stroke-width="0.5"/>
+  <rect x="375" y="250" width="25" height="25"  fill="#CCBF9B" stroke="#AC9A6E" stroke-width="0.5"/>
+  <rect x="300" y="275" width="25" height="25"  fill="#C5B793" stroke="#A69165" stroke-width="0.5"/>
+  <rect x="325" y="275" width="25" height="25"  fill="#BDB08A" stroke="#9E8A5D" stroke-width="0.5"/>
+  <rect x="350" y="275" width="25" height="25"  fill="#C0B28C" stroke="#A28C5F" stroke-width="0.5"/>
+  <rect x="375" y="275" width="25" height="25"  fill="#C8BB96" stroke="#A89568" stroke-width="0.5"/>
+
+  <!-- Lower right fine gold grid -->
+  <rect x="300" y="300" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="312" y="300" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="324" y="300" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="336" y="300" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="348" y="300" width="12" height="12" fill="#EFE4CA" stroke="#CCB890" stroke-width="0.5"/>
+  <rect x="360" y="300" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="372" y="300" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="384" y="300" width="16" height="12" fill="#EDE2C8" stroke="#CAB68E" stroke-width="0.5"/>
+
+  <rect x="300" y="312" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="312" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="324" y="312" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="336" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="348" y="312" width="12" height="12" fill="#EDE2C8" stroke="#C9B58E" stroke-width="0.5"/>
+  <rect x="360" y="312" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="372" y="312" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="384" y="312" width="16" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+
+  <rect x="300" y="324" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="312" y="324" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="324" y="324" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="336" y="324" width="12" height="12" fill="#EDE2C8" stroke="#C9B58E" stroke-width="0.5"/>
+  <rect x="348" y="324" width="12" height="12" fill="#EFE4CA" stroke="#CCB890" stroke-width="0.5"/>
+  <rect x="360" y="324" width="12" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+  <rect x="372" y="324" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="384" y="324" width="16" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+
+  <rect x="300" y="336" width="100" height="12" fill="#C8941A" stroke="#AB7E16" stroke-width="0.5"/>
+
+  <rect x="300" y="348" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="312" y="348" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="324" y="348" width="12" height="12" fill="#F0E6CC" stroke="#CDB992" stroke-width="0.5"/>
+  <rect x="336" y="348" width="12" height="12" fill="#EDE2C8" stroke="#C9B58E" stroke-width="0.5"/>
+  <rect x="348" y="348" width="12" height="12" fill="#EFE5CB" stroke="#CBB891" stroke-width="0.5"/>
+  <rect x="360" y="348" width="12" height="12" fill="#EEE4CA" stroke="#CBB790" stroke-width="0.5"/>
+  <rect x="372" y="348" width="12" height="12" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+  <rect x="384" y="348" width="16" height="12" fill="#F0E6CB" stroke="#CDB891" stroke-width="0.5"/>
+
+  <rect x="300" y="360" width="100" height="40" fill="#EDE3C9" stroke="#CAB68F" stroke-width="0.5"/>
+</svg>

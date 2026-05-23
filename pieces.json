@@ -1650,6 +1650,17 @@
     "essay": "pieces/92-saw-sefirat-haomer/essay.md"
   },
   {
+    "id": "93-quadtree-shavuot-revelation",
+    "title": "From Undivided Light, the Word",
+    "tagline": "שְׁבוּעוֹת emerges from a single undivided square of light through adaptive quadtree decomposition — revelation as recursive articulation of the undivided",
+    "year": 2026,
+    "theme": "Matan Torah / revelation as articulation",
+    "technique": "Adaptive quadtree decomposition (priority-queue driven)",
+    "path": "pieces/93-quadtree-shavuot-revelation/index.html",
+    "thumbnail": "pieces/93-quadtree-shavuot-revelation/thumbnail.svg",
+    "essay": "pieces/93-quadtree-shavuot-revelation/essay.md"
+  },
+  {
     "id": "93-wireworld-oral-torah",
     "title": "Moses Received and Transmitted",
     "tagline": "מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי — a Wireworld electron pulse fired at Sinai branches through five generations of the chain of tradition, splitting at each Y-junction as the Oral Torah split from one teacher into many",
