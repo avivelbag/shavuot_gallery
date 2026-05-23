@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First of All the Fruit of the Ground — Bikkurim Field</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1C1208; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 60%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .art-panel canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #overlay-canvas {
+      pointer-events: none;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2A1A08;
+      overflow-y: auto;
+      color: #C8AFA0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0E0802;
+      max-height: 100vh;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel {
+        position: relative;
+        height: 75vw;
+        min-height: 300px;
+        flex: none;
+      }
+      .essay-panel {
+        border-left: none;
+        border-top: 1px solid #2A1A08;
+        padding: 2rem 1.5rem;
+        max-height: none;
+      }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.45rem;
+      color: #D4A840;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.82rem;
+      color: #5A3A18;
+      margin: 0 0 2rem;
+      letter-spacing: 0.04em;
+    }
+    .essay-panel p {
+      font-size: 0.88rem;
+      line-height: 1.78;
+      margin: 0 0 1.1rem;
+    }
+    .essay-panel em {
+      color: #C8A060;
+      font-style: italic;
+    }
+    .hebrew-quote {
+      display: block;
+      direction: rtl;
+      font-family: 'Times New Roman', 'Noto Serif Hebrew', serif;
+      font-size: 1.1rem;
+      color: #D4A840;
+      line-height: 1.7;
+      margin: 0.8rem 0 0.8rem 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid #4A2A0A;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="field-canvas"></canvas>
+    <canvas id="overlay-canvas"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>First of All the Fruit of the Ground</h1>
+    <p class="subtitle">Bikkurim · Deuteronomy 26:1–11 · Poisson disk sampling (Bridson 2007)</p>
+
+    <p>The commandment arrives in Deuteronomy 26, in language of unusual directness. "When you come
+    into the land that the Lord your God is giving you as an inheritance and have taken possession
+    of it and live in it, you shall take from the first of all the fruit of the ground, which you
+    harvest from your land that the Lord your God is giving you, and you shall put it in a basket,
+    and you shall go to the place that the Lord your God will choose, to make his name dwell there."
+    And then: "you shall set it down before the Lord your God and bow down before the Lord your God."</p>
+
+    <p>What follows — verses 5 through 9 — is one of the most important liturgical passages in the
+    Hebrew Bible. The farmer, basket in hand, recites a compressed history of Israel from Egyptian
+    slavery through the Exodus and the entering of the land:</p>
+
+    <span class="hebrew-quote">אֲרַמִּי אֹבֵד אָבִי וַיֵּרֶד מִצְרַיְמָה</span>
+
+    <p>"My father was a wandering Aramean, and he went down into Egypt and sojourned there, few in
+    number, and there he became a nation, great, mighty, and populous. And the Egyptians treated us
+    harshly and humiliated us and laid on us hard labor." It is not a private declaration of thanks.
+    It is a national testimony, performed publicly, in the presence of the priest at the Temple,
+    while holding the basket.</p>
+
+    <p>The Mishnah tractate <em>Bikkurim</em> fills in what Deuteronomy 26 leaves spare. Pilgrims
+    from all surrounding towns formed caravans at the city gates. At the front walked an ox with
+    gilded horns and a wreath of olive leaves around its head — the animal to be sacrificed at the
+    Temple. A flute player led the procession. As the caravan approached Jerusalem, leaders of the
+    city came out to greet it. Craftsmen of Jerusalem set down their tools. The procession entered
+    the Temple Mount and each pilgrim presented the basket to the priest, reciting
+    Deuteronomy 26:5–10 in full.</p>
+
+    <p>The non-obvious truth embedded in this ritual is that Bikkurim is not a tithe. A tithe is a
+    fraction calculated after the harvest is in: you know what you have, and you give a tenth of it.
+    Bikkurim works differently. The farmer walks into the ripening field and ties a ribbon around the
+    first grain of wheat that shows color, the first cluster of grapes beginning to blush. That piece
+    is now sanctified — not because of its size or value, but because it came first. The gift is made
+    before the farmer knows whether the rest of the harvest will come at all. It is an act of faith
+    performed in anticipation, not gratitude for abundance already received.</p>
+
+    <p>This piece renders the Bikkurim field through Bridson's Poisson disk sampling (2007) — an
+    algorithm that places points with guaranteed minimum spacing (r = 18 px) while looking
+    organically random, the mathematical description of a cultivated field at maximum density
+    without crowding. The algorithm runs in real time, placing each grain as the active-list loop
+    accepts it. Each accepted point appears immediately as a wheat grain, a barley kernel, or a grape
+    circle — drawn as it arrives, growing the field one first fruit at a time. Every grain placed is
+    a gift from before the harvest is complete.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const fieldCanvas  = document.getElementById('field-canvas');
+  const overlayCanvas = document.getElementById('overlay-canvas');
+  const fc = fieldCanvas.getContext('2d');
+  const oc = overlayCanvas.getContext('2d');
+
+  /* Bridson's algorithm constants */
+  const R = 18;   /* minimum distance between points */
+  const K = 30;   /* candidates per active point */
+
+  /* Wind shimmer constants */
+  const WIND_INTERVAL_MS = 3000;
+  const WIND_COUNT       = 30;
+  const WIND_DURATION_MS = 800;
+
+  /* State */
+  let W, H;
+  let cell, cols, rows, grid, active;
+  let drawnPoints = [];   /* {x, y, type, angle} for every accepted point */
+  let phase = 'growing';  /* 'growing' | 'wind' */
+
+  let lastWindAt  = -Infinity;
+  let windGrains  = [];   /* {point, startTime} */
+  let overlayAlpha = 0;   /* 0..1 fade-in for Hebrew overlay */
+
+  let rafId = null;
+
+  /* ------------------------------------------------------------------ */
+  /* Deterministic glyph assignment — hash of (x, y) % 3                */
+  /* ------------------------------------------------------------------ */
+
+  function hashXY(x, y) {
+    let h = (Math.floor(x * 137.5) ^ Math.floor(y * 149.3)) & 0x7FFFFFFF;
+    h = (Math.imul(h ^ (h >>> 16), 0x45d9f3b)) | 0;
+    h = (Math.imul(h ^ (h >>> 16), 0x45d9f3b)) | 0;
+    return (h ^ (h >>> 16)) & 0xFFFF;
+  }
+
+  function glyphType(x, y)  { return hashXY(x, y) % 3; }
+  function glyphAngle(x, y) {
+    const h = (hashXY(x, y) >> 4) & 0xFF;
+    /* ±25 degrees from vertical */
+    return (h / 255 - 0.5) * (Math.PI * 50 / 180);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Glyph drawing: type 0=wheat, 1=barley, 2=grape                     */
+  /* ------------------------------------------------------------------ */
+
+  function drawGlyph(ctx, x, y, type, angle, scale) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    if (scale !== 1) ctx.scale(scale, scale);
+
+    if (type === 0) {
+      /* Wheat grain: ~8×14 px, oval with pointed tip and vein */
+      ctx.fillStyle = '#D4A840';
+      ctx.beginPath();
+      ctx.ellipse(0, -1, 4, 6, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(-2.5, 4);
+      ctx.lineTo(0, 8);
+      ctx.lineTo(2.5, 4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(220,180,80,0.55)';
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      ctx.moveTo(0, -7);
+      ctx.lineTo(0, 8);
+      ctx.stroke();
+    } else if (type === 1) {
+      /* Barley kernel: ~10×12 px, wider oval with awn stroke */
+      ctx.fillStyle = '#C8A020';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 5, 5, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#C8A020';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(0, -5);
+      ctx.lineTo(1.5, -12);
+      ctx.stroke();
+    } else {
+      /* Grape: r=5 filled circle with small stem */
+      ctx.fillStyle = '#6B2D8B';
+      ctx.beginPath();
+      ctx.arc(0, 0, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#8B4DAB';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, -5);
+      ctx.lineTo(1, -9);
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Bridson grid helpers                                                 */
+  /* ------------------------------------------------------------------ */
+
+  function tooClose(cx, cy, nx, ny) {
+    for (let dy = -2; dy <= 2; dy++) {
+      for (let dx = -2; dx <= 2; dx++) {
+        const gx = cx + dx, gy = cy + dy;
+        if (gx < 0 || gx >= cols || gy < 0 || gy >= rows) continue;
+        const nb = grid[gy * cols + gx];
+        if (nb && Math.hypot(nb[0] - nx, nb[1] - ny) < R) return true;
+      }
+    }
+    return false;
+  }
+
+  function addPoint(x, y) {
+    const cx = (x / cell) | 0;
+    const cy = (y / cell) | 0;
+    const p  = [x, y];
+    grid[cy * cols + cx] = p;
+    active.push(p);
+
+    const type  = glyphType(x, y);
+    const angle = glyphAngle(x, y);
+    drawnPoints.push({ x, y, type, angle });
+    drawGlyph(fc, x, y, type, angle, 1);
+  }
+
+  /* Run one outer iteration of Bridson's active-list loop. */
+  function stepBridson() {
+    if (active.length === 0) return;
+
+    const idx      = (Math.random() * active.length) | 0;
+    const [ox, oy] = active[idx];
+    let found      = false;
+
+    for (let i = 0; i < K; i++) {
+      const angle = Math.random() * 2 * Math.PI;
+      const dist  = R + Math.random() * R;
+      const nx    = ox + Math.cos(angle) * dist;
+      const ny    = oy + Math.sin(angle) * dist;
+
+      if (nx < 0 || nx >= W || ny < 0 || ny >= H) continue;
+
+      const cx = (nx / cell) | 0;
+      const cy = (ny / cell) | 0;
+
+      if (!tooClose(cx, cy, nx, ny)) {
+        addPoint(nx, ny);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) active.splice(idx, 1);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Overlay rendering (wind shimmer + Hebrew text)                      */
+  /* ------------------------------------------------------------------ */
+
+  function drawOverlayFrame(now) {
+    oc.clearRect(0, 0, W, H);
+
+    /* Wind shimmer: draw active grains at current scale on overlay */
+    for (const grain of windGrains) {
+      const t     = Math.min(1, (now - grain.startTime) / WIND_DURATION_MS);
+      /* sine envelope: peaks at 1.15× at t=0.5 */
+      const scale = 1 + 0.15 * Math.sin(t * Math.PI);
+      const { x, y, type, angle } = grain.point;
+      drawGlyph(oc, x, y, type, angle, scale);
+    }
+
+    /* Hebrew overlay: dark earth field except through the letterforms */
+    if (overlayAlpha > 0) {
+      /* Dark semi-transparent layer */
+      oc.save();
+      oc.globalAlpha = overlayAlpha * 0.65;
+      oc.fillStyle   = '#1C1208';
+      oc.fillRect(0, 0, W, H);
+      oc.restore();
+
+      /* Punch the Hebrew word out of the dark layer so field shows through */
+      oc.save();
+      oc.globalCompositeOperation = 'destination-out';
+      oc.globalAlpha              = overlayAlpha;
+      oc.font                     = 'bold 96px "Times New Roman", "Noto Serif Hebrew", serif';
+      oc.textAlign                = 'center';
+      oc.textBaseline             = 'middle';
+      oc.fillText('בִּכּוּרִים', W / 2, H / 2);
+      oc.restore();
+
+      /* Gold stroke outline of the text */
+      oc.save();
+      oc.globalAlpha              = overlayAlpha;
+      oc.font                     = 'bold 96px "Times New Roman", "Noto Serif Hebrew", serif';
+      oc.textAlign                = 'center';
+      oc.textBaseline             = 'middle';
+      oc.strokeStyle              = '#D4A840';
+      oc.lineWidth                = 1.5;
+      oc.strokeText('בִּכּוּרִים', W / 2, H / 2);
+      oc.restore();
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Field initialisation                                                 */
+  /* ------------------------------------------------------------------ */
+
+  function initField() {
+    drawnPoints  = [];
+    active       = [];
+    phase        = 'growing';
+    overlayAlpha = 0;
+    windGrains   = [];
+    lastWindAt   = -Infinity;
+
+    cell = R / Math.SQRT2;
+    cols = Math.ceil(W / cell);
+    rows = Math.ceil(H / cell);
+    grid = new Array(cols * rows).fill(null);
+
+    /* Dark earth background */
+    fc.fillStyle = '#1C1208';
+    fc.fillRect(0, 0, W, H);
+
+    /* Faint furrow grid — 60 px spacing */
+    fc.strokeStyle = '#2A1A08';
+    fc.lineWidth   = 0.5;
+    for (let x = 0; x <= W; x += 60) {
+      fc.beginPath(); fc.moveTo(x, 0); fc.lineTo(x, H); fc.stroke();
+    }
+    for (let y = 0; y <= H; y += 60) {
+      fc.beginPath(); fc.moveTo(0, y); fc.lineTo(W, y); fc.stroke();
+    }
+
+    /* Seed the algorithm near the centre */
+    const x0 = W / 2 + (Math.random() - 0.5) * R;
+    const y0 = H / 2 + (Math.random() - 0.5) * R;
+    addPoint(x0, y0);
+  }
+
+  function resize() {
+    const panel = fieldCanvas.parentElement;
+    const rect  = panel.getBoundingClientRect();
+    W = Math.max(1, Math.floor(rect.width));
+    H = Math.max(1, Math.floor(rect.height));
+
+    fieldCanvas.width    = W;
+    fieldCanvas.height   = H;
+    overlayCanvas.width  = W;
+    overlayCanvas.height = H;
+
+    if (rafId !== null) cancelAnimationFrame(rafId);
+    initField();
+    rafId = requestAnimationFrame(loop);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Main animation loop                                                  */
+  /* ------------------------------------------------------------------ */
+
+  function loop(now) {
+    if (phase === 'growing') {
+      stepBridson();
+
+      if (active.length === 0) {
+        phase = 'wind';
+        /* first wind starts 3 s after field fills */
+        lastWindAt = now;
+      }
+    } else {
+      /* Trigger a new wind shimmer every WIND_INTERVAL_MS ms */
+      if (now - lastWindAt >= WIND_INTERVAL_MS) {
+        lastWindAt = now;
+        windGrains = [];
+        const n       = Math.min(WIND_COUNT, drawnPoints.length);
+        const indices = new Set();
+        while (indices.size < n) {
+          indices.add((Math.random() * drawnPoints.length) | 0);
+        }
+        indices.forEach(i => windGrains.push({ point: drawnPoints[i], startTime: now }));
+      }
+
+      /* Fade in the Hebrew overlay */
+      if (overlayAlpha < 1) {
+        overlayAlpha = Math.min(1, overlayAlpha + 0.007);
+      }
+
+      drawOverlayFrame(now);
+    }
+
+    rafId = requestAnimationFrame(loop);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Bootstrap                                                            */
+  /* ------------------------------------------------------------------ */
+
+  const ro = new ResizeObserver(() => resize());
+  ro.observe(fieldCanvas.parentElement);
+
+  resize();
+}());
+</script>
+</body>
+</html>

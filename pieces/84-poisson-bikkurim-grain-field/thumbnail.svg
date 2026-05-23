@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#1C1208"/>
+
+  <!-- Faint furrow lines -->
+  <g stroke="#2A1A08" stroke-width="0.6" opacity="0.8">
+    <line x1="60" y1="0" x2="60" y2="400"/>
+    <line x1="120" y1="0" x2="120" y2="400"/>
+    <line x1="180" y1="0" x2="180" y2="400"/>
+    <line x1="240" y1="0" x2="240" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/>
+    <line x1="360" y1="0" x2="360" y2="400"/>
+    <line x1="0" y1="60" x2="400" y2="60"/>
+    <line x1="0" y1="120" x2="400" y2="120"/>
+    <line x1="0" y1="180" x2="400" y2="180"/>
+    <line x1="0" y1="240" x2="400" y2="240"/>
+    <line x1="0" y1="300" x2="400" y2="300"/>
+    <line x1="0" y1="360" x2="400" y2="360"/>
+  </g>
+
+  <!-- Row 0 y≈20 -->
+  <!-- wheat at (18,22) r=-25 -->
+  <g transform="translate(18,22) rotate(-25)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <!-- barley at (72,25) r=-12 -->
+  <g transform="translate(72,25) rotate(-12)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <!-- grape at (122,20) -->
+  <g transform="translate(122,20)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <!-- wheat at (178,23) r=14 -->
+  <g transform="translate(178,23) rotate(14)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <!-- barley at (228,18) r=-24 -->
+  <g transform="translate(228,18) rotate(-24)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <!-- grape at (268,22) -->
+  <g transform="translate(268,22)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <!-- wheat at (322,25) r=2 -->
+  <g transform="translate(322,25) rotate(2)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <!-- barley at (382,20) r=15 -->
+  <g transform="translate(382,20) rotate(15)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+
+  <!-- Row 1 y≈60 -->
+  <g transform="translate(32,58)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(78,62) rotate(-5)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(128,55) rotate(8)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(168,60)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(218,62) rotate(-17)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(282,58) rotate(-4)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(328,62)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(370,55) rotate(22)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+
+  <!-- Row 2 y≈100 -->
+  <g transform="translate(22,98) rotate(-11)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(68,102)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(118,100) rotate(15)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(182,95) rotate(-23)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(232,100)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(272,98) rotate(3)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(318,102) rotate(16)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(378,100)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+
+  <!-- Row 3 y≈140 -->
+  <g transform="translate(42,138) rotate(-4)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(88,142) rotate(9)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(130,138)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(172,140) rotate(-16)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(232,142) rotate(-3)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(278,138)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(335,140) rotate(23)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(385,142) rotate(-15)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+
+  <!-- Row 4 y≈180 (avoid center 170-230) -->
+  <g transform="translate(28,178)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(82,182) rotate(16)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(135,178) rotate(-22)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(285,182) rotate(17)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(325,178)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(372,182) rotate(-8)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+
+  <!-- Row 5 y≈220 (avoid center 170-230) -->
+  <g transform="translate(18,218) rotate(10)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(72,222)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(122,218) rotate(-15)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(278,222) rotate(24)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(332,218) rotate(-14)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(378,222)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+
+  <!-- Row 6 y≈260 -->
+  <g transform="translate(38,258) rotate(17)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(85,262) rotate(-21)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(125,258)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(178,260) rotate(5)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(222,258) rotate(18)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(272,262)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(328,258) rotate(-7)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(380,260) rotate(6)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+
+  <!-- Row 7 y≈300 -->
+  <g transform="translate(25,298)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(75,302) rotate(-14)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(128,298) rotate(-1)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(175,300)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(225,302) rotate(25)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(278,298) rotate(-13)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(322,302)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(375,298) rotate(13)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+
+  <!-- Row 8 y≈340 -->
+  <g transform="translate(20,338) rotate(-20)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(70,342)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(120,340) rotate(6)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(175,338) rotate(19)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(230,342)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(275,340) rotate(-6)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(328,338) rotate(7)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(382,342)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+
+  <!-- Row 9 y≈380 -->
+  <g transform="translate(30,378) rotate(-13)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(80,382) rotate(0)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(130,378)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(178,380) rotate(-25)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(225,382) rotate(-12)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+  <g transform="translate(272,378)"><circle cx="0" cy="0" r="5" fill="#6B2D8B"/><line x1="0" y1="-5" x2="1" y2="-9" stroke="#8B4DAB" stroke-width="1"/></g>
+  <g transform="translate(318,382) rotate(14)"><ellipse cx="0" cy="-1" rx="4" ry="6" fill="#D4A840"/><polygon points="-2.5,4 0,8 2.5,4" fill="#D4A840"/><line x1="0" y1="-7" x2="0" y2="8" stroke="rgba(220,180,80,0.5)" stroke-width="0.8"/></g>
+  <g transform="translate(375,380) rotate(-24)"><ellipse cx="0" cy="0" rx="5" ry="5" fill="#C8A020"/><line x1="0" y1="-5" x2="1.5" y2="-12" stroke="#C8A020" stroke-width="1.2"/></g>
+
+  <!-- Hebrew word בִּכּוּרִים faintly visible in outline at center -->
+  <text x="200" y="210" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Times New Roman', serif" font-size="72"
+        fill="none" stroke="#3A2010" stroke-width="1.5"
+        opacity="0.85">בִּכּוּרִים</text>
+</svg>

@@ -1408,6 +1408,17 @@
     "essay": "pieces/83-worley-noise-pomegranate/essay.md"
   },
   {
+    "id": "84-poisson-bikkurim-grain-field",
+    "title": "First of All the Fruit of the Ground",
+    "tagline": "each Poisson grain placed is a first fruit — the cultivated field grown by the algorithm itself",
+    "year": 2026,
+    "theme": "Bikkurim / first fruits / harvest",
+    "technique": "Poisson disk sampling (Bridson's algorithm)",
+    "path": "pieces/84-poisson-bikkurim-grain-field/index.html",
+    "thumbnail": "pieces/84-poisson-bikkurim-grain-field/thumbnail.svg",
+    "essay": "pieces/84-poisson-bikkurim-grain-field/essay.md"
+  },
+  {
     "id": "84-rossler-crown-of-torah",
     "title": "The Crown That Never Ceases Turning",
     "tagline": "800 particles trace the Rössler strange attractor — the crown that turns and turns, for everything is in it",
