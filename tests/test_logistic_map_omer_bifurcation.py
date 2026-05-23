@@ -1,18 +1,15 @@
 """
-Tests specific to piece 03-logistic-map-omer-bifurcation.
+Tests specific to piece 80-logistic-map-omer-bifurcation.
 
 Validates the piece's presence in pieces.json, file layout, content
 requirements from the acceptance criteria, and edge-case behaviour.
 """
 import json
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECES_JSON = os.path.join(GALLERY_ROOT, "pieces.json")
-PIECE_ID = "03-logistic-map-omer-bifurcation"
+PIECE_ID = "80-logistic-map-omer-bifurcation"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
 
 

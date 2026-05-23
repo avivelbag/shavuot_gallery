@@ -1296,5 +1296,16 @@
     "path": "pieces/79-wave-function-collapse-seven-species/index.html",
     "thumbnail": "pieces/79-wave-function-collapse-seven-species/thumbnail.svg",
     "essay": "pieces/79-wave-function-collapse-seven-species/essay.md"
+  },
+  {
+    "id": "80-logistic-map-omer-bifurcation",
+    "title": "Order Hidden Within the Count",
+    "tagline": "the logistic map bifurcation diagram — period-doubling chaos as Sefirat HaOmer",
+    "year": 2026,
+    "theme": "Sefirat HaOmer / the 49-day count",
+    "technique": "Logistic map bifurcation diagram / density-estimation rendering",
+    "path": "pieces/80-logistic-map-omer-bifurcation/index.html",
+    "thumbnail": "pieces/80-logistic-map-omer-bifurcation/thumbnail.svg",
+    "essay": "pieces/80-logistic-map-omer-bifurcation/essay.md"
   }
 ]
