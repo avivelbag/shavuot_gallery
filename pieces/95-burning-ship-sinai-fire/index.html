@@ -355,12 +355,12 @@
     /* smooth_iter = i + 1 - log2(log2(|z|))                           */
     '  float logZn = log(max(dot(ez, ez), 1e-10)) * 0.5;',
     '  float nu    = log(max(logZn / log(2.0), 1e-10)) / log(2.0);',
-    '  float smooth = max(0.0, escapeIter + 1.0 - nu);',
+    '  float smoothIter = max(0.0, escapeIter + 1.0 - nu);',
     '',
     /* sqrt-scale maps iteration count to fire palette:                 */
     /* low counts (far exterior) = dark ember; high counts (boundary)   */
     /* = white-hot                                                       */
-    '  float t = sqrt(clamp(smooth / float(MAX_ITER), 0.0, 1.0));',
+    '  float t = sqrt(clamp(smoothIter / float(MAX_ITER), 0.0, 1.0));',
     '  gl_FragColor = vec4(fireColor(t), 1.0);',
     '}'
   ].join('\n');
