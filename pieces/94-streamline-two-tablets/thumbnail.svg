@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background: dark stone -->
+  <rect width="400" height="400" fill="#1A1A2E"/>
+
+  <!-- Subtle radial glow between tablets -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#0D47A1" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1A1A2E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="200" cy="210" rx="120" ry="100" fill="url(#glow)"/>
+
+  <!-- Field lines: arcs between and around the two dipoles -->
+  <!-- Central arch arcs between dipoles -->
+  <path d="M 143 210 Q 200 130 257 210" stroke="#4FC3F7" stroke-width="1.2" fill="none" opacity="0.9"/>
+  <path d="M 143 210 Q 200 155 257 210" stroke="#00BCD4" stroke-width="1.0" fill="none" opacity="0.8"/>
+  <path d="M 143 210 Q 200 175 257 210" stroke="#0D47A1" stroke-width="0.9" fill="none" opacity="0.7"/>
+  <path d="M 143 210 Q 200 195 257 210" stroke="#0D47A1" stroke-width="0.8" fill="none" opacity="0.5"/>
+
+  <!-- Arcs below between dipoles -->
+  <path d="M 143 210 Q 200 290 257 210" stroke="#4FC3F7" stroke-width="1.2" fill="none" opacity="0.9"/>
+  <path d="M 143 210 Q 200 265 257 210" stroke="#00BCD4" stroke-width="1.0" fill="none" opacity="0.8"/>
+  <path d="M 143 210 Q 200 245 257 210" stroke="#0D47A1" stroke-width="0.9" fill="none" opacity="0.7"/>
+
+  <!-- Left outer field lines fanning away from left pole -->
+  <path d="M 143 210 Q 80 130 40 80" stroke="#00BCD4" stroke-width="1.0" fill="none" opacity="0.7"/>
+  <path d="M 143 210 Q 60 170 10 170" stroke="#0D47A1" stroke-width="0.9" fill="none" opacity="0.6"/>
+  <path d="M 143 210 Q 60 250 10 260" stroke="#0D47A1" stroke-width="0.9" fill="none" opacity="0.6"/>
+  <path d="M 143 210 Q 80 290 40 340" stroke="#00BCD4" stroke-width="1.0" fill="none" opacity="0.7"/>
+  <path d="M 143 210 Q 100 100 120 40" stroke="#4FC3F7" stroke-width="1.1" fill="none" opacity="0.75"/>
+  <path d="M 143 210 Q 100 320 120 370" stroke="#4FC3F7" stroke-width="1.1" fill="none" opacity="0.75"/>
+
+  <!-- Right outer field lines fanning away from right pole -->
+  <path d="M 257 210 Q 320 130 360 80" stroke="#00BCD4" stroke-width="1.0" fill="none" opacity="0.7"/>
+  <path d="M 257 210 Q 340 170 390 170" stroke="#0D47A1" stroke-width="0.9" fill="none" opacity="0.6"/>
+  <path d="M 257 210 Q 340 250 390 260" stroke="#0D47A1" stroke-width="0.9" fill="none" opacity="0.6"/>
+  <path d="M 257 210 Q 320 290 360 340" stroke="#00BCD4" stroke-width="1.0" fill="none" opacity="0.7"/>
+  <path d="M 257 210 Q 300 100 280 40" stroke="#4FC3F7" stroke-width="1.1" fill="none" opacity="0.75"/>
+  <path d="M 257 210 Q 300 320 280 370" stroke="#4FC3F7" stroke-width="1.1" fill="none" opacity="0.75"/>
+
+  <!-- Left tablet outline: rounded rectangle -->
+  <rect x="115" y="105" width="56" height="210" rx="14" ry="14"
+        fill="none" stroke="#757575" stroke-width="1.2"/>
+
+  <!-- Right tablet outline: rounded rectangle -->
+  <rect x="229" y="105" width="56" height="210" rx="14" ry="14"
+        fill="none" stroke="#757575" stroke-width="1.2"/>
+
+  <!-- Roman numerals on left tablet: I–V -->
+  <text x="143" y="143" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="11" fill="#F5F0DC" opacity="0.85">I</text>
+  <text x="143" y="175" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">II</text>
+  <text x="143" y="207" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">III</text>
+  <text x="143" y="239" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">IV</text>
+  <text x="143" y="271" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">V</text>
+
+  <!-- Roman numerals on right tablet: VI–X -->
+  <text x="257" y="143" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">VI</text>
+  <text x="257" y="175" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">VII</text>
+  <text x="257" y="207" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">VIII</text>
+  <text x="257" y="239" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">IX</text>
+  <text x="257" y="271" text-anchor="middle" font-family="Georgia,'Times New Roman',serif"
+        font-size="10" fill="#F5F0DC" opacity="0.85">X</text>
+
+  <!-- Title in Hebrew: לוּחוֹת הַבְּרִית -->
+  <text x="200" y="36" text-anchor="middle"
+        font-family="'David','Frank Ruehl','Noto Serif Hebrew','Times New Roman',serif"
+        font-size="18" fill="#D4A847" opacity="0.9"
+        direction="rtl" unicode-bidi="bidi-override">לוּחוֹת הַבְּרִית</text>
+
+  <!-- Subtitle in English -->
+  <text x="200" y="380" text-anchor="middle"
+        font-family="Georgia,'Times New Roman',serif"
+        font-size="11" fill="#4060a0" opacity="0.8">Magnetic Dipole Streamlines · RK4</text>
+</svg>

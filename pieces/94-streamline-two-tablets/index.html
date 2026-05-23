@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Between the Tablets, the Law Flows — Magnetic Dipole Streamlines</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #010B1E; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #010B1E;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100vh;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #0D2040;
+      overflow-y: auto;
+      color: #b8c8e8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #020D1C;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; }
+      .art-panel {
+        position: static;
+        height: auto;
+        flex: none;
+        padding: 1rem;
+        height: 60vw;
+      }
+      .essay-panel {
+        border-left: none;
+        border-top: 1px solid #0D2040;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #e8d8a0;
+      margin: 0 0 0.2rem;
+      font-weight: normal;
+      line-height: 1.3;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4060a0;
+      margin: 0 0 2rem;
+      font-style: italic;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #4FC3F7;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #9BD4F7; font-style: italic; }
+
+    .tanach-block {
+      margin: 1.4rem 0;
+      border-left: 3px solid #1a4a7a;
+      padding: 0.8rem 1rem 0.8rem 1.2rem;
+      background: #030F20;
+    }
+    .tanach-he {
+      font-family: 'David', 'Frank Ruehl', 'Noto Serif Hebrew', 'Times New Roman', serif;
+      font-size: 1.15rem;
+      color: #F5F0DC;
+      direction: rtl;
+      unicode-bidi: bidi-override;
+      line-height: 1.9;
+      margin-bottom: 0.5rem;
+    }
+    .tanach-en {
+      font-size: 0.88rem;
+      color: #7090b8;
+      font-style: italic;
+      line-height: 1.7;
+    }
+    .tanach-cite {
+      font-size: 0.8rem;
+      color: #304060;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+
+  <div class="essay-panel" lang="en">
+    <h1>Between the Tablets, the Law Flows</h1>
+    <p class="subtitle">לוּחוֹת הַבְּרִית — The Tablets of the Covenant</p>
+
+    <div class="tanach-block">
+      <div class="tanach-he">
+        וַיִּתֵּן אֶל-מֹשֶׁה, כְּכַלֹּתוֹ לְדַבֵּר אִתּוֹ בְּהַר סִינַי,
+        שְׁנֵי לֻחֹת הָעֵדֻת, לֻחֹת אֶבֶן—כְּתֻבִים בְּאֶצְבַּע אֱלֹהִים.
+      </div>
+      <div class="tanach-en">
+        "And He gave to Moses, when He had finished speaking with him on Mount Sinai,
+        the two tablets of the testimony, tablets of stone — written by the finger of God."
+      </div>
+      <div class="tanach-cite">Exodus 31:18 (שמות לא:יח)</div>
+    </div>
+
+    <p>Shavuot commemorates the giving of the Torah and, at its center, the
+    <em>luchot habrit</em> — the tablets of the covenant. Two slabs of stone
+    descended from Sinai bearing the Ten Commandments, one half of the
+    relationship between the human and the divine made literal and portable.</p>
+
+    <h2>Both Sets in the Ark</h2>
+
+    <p>The Talmud (Bava Batra 14a) records something remarkable: when Moses
+    descended from Sinai the second time carrying the replacement tablets
+    (Exodus 34:28), the fragments of the first — the ones he had shattered at
+    the sight of the golden calf — were placed inside the Ark alongside the
+    whole ones. Broken law and whole law, carried together.</p>
+
+    <div class="tanach-block">
+      <div class="tanach-he">
+        וַיְהִי, כַּאֲשֶׁר קָרַב אֶל-הַמַּחֲנֶה, וַיַּרְא אֶת-הָעֵגֶל
+        וּמְחֹלֹת; וַיִּחַר-אַף מֹשֶׁה, וַיַּשְׁלֵךְ מִיָּדָו אֶת-הַלֻּחֹת,
+        וַיְשַׁבֵּר אֹתָם תַּחַת הָהָר.
+      </div>
+      <div class="tanach-en">
+        "And it came to pass, as he drew near the camp, that he saw the calf and
+        the dancing; and Moses' anger burned hot, and he threw the tablets from his
+        hands, and broke them beneath the mountain."
+      </div>
+      <div class="tanach-cite">Exodus 32:19 (שמות לב:יט)</div>
+    </div>
+
+    <p>The Talmud Yerushalmi (Shekalim 6:1) draws the conclusion that the
+    Sages found in this act not a disaster but a teaching: <em>שברי לוחות
+    מונחים בארון</em> — "the fragments of the tablets rest in the Ark." Because
+    the fragments of something holy remain holy. The shattering was not a
+    failure; it was a beginning. The broken pieces belong.</p>
+
+    <h2>Five and Five</h2>
+
+    <p>The majority rabbinic view divides the commandments five to each tablet.
+    The first five govern the relationship between the human and the divine;
+    the second five govern the relationships among people. The two tablets are
+    not merely duplicates — they encode a topology. One half of the law faces
+    inward toward God, the other outward toward neighbor. They stand beside
+    each other as equal weight, which is why they are cut from stone of
+    identical size and shape.</p>
+
+    <p>The Zohar (II:85b) reads this division cosmically: the right side
+    (divine commandments) corresponds to the sefirah of Hesed — loving-kindness —
+    and the left side (interpersonal commandments) to Din — judgment. The tablets
+    together are the human body, heart and hand, soul and society.</p>
+
+    <h2>The Field Between</h2>
+
+    <p>The artwork renders the invisible structure of the space between and
+    around the two tablets using a precise mathematical model: two magnetic
+    dipoles, one at each stone, both oriented upward. The <em>field lines</em>
+    you see are not decoration — they are the solution to the differential
+    equation that describes how a vector field flows through space when two
+    equal sources generate it.</p>
+
+    <p>These lines have a fundamental property: they never cross. Two field
+    lines from different streamlines cannot intersect because at every point in
+    space there is exactly one field direction. The law, similarly, does not
+    contradict itself: the obligation toward God and the obligation toward
+    neighbor cannot cross or cancel, even though they arise from different
+    sources. The Sifra (Kedoshim 2:4) finds the same non-contradiction encoded
+    in Leviticus 19:18 — "love your neighbor as yourself: I am the Lord" — the
+    divine signature appended to the human commandment, as if to say they are
+    aspects of a single field.</p>
+
+    <p>The lines arch between the two poles in curves that recall the shape of
+    a Torah scroll crown (<em>keter Torah</em>), and fan outward in rays that
+    suggest the divine light descending on Sinai. The electric-blue palette —
+    intense near the sources, fading to near-black at the margins — maps field
+    strength to luminosity: the law is brightest at its source and dims only
+    at distance, never vanishing entirely.</p>
+
+    <h2>The Breathing</h2>
+
+    <p>The seed-point ring rotates two degrees per second, causing the
+    streamlines to grow, retract, and shift in an endless slow cycle — as if
+    the field is breathing, or as if the tablets are still alive with whatever
+    charged the air of Sinai. The Talmud (Shabbat 88a) says the mountain was
+    held suspended over Israel; the law itself remained suspended between
+    stone and air, between the written word and the space it creates around
+    itself. That breathing is what this animation holds.</p>
+
+    <p>The law is not contained in the stone. It lives in the space the
+    tablets create between them.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d");
+
+  let W, H, p1, p2;
+  let driftAngle = 0;
+  let lastTime = null;
+
+  function resize() {
+    const panel = canvas.parentElement;
+    const pw = panel.clientWidth;
+    const ph = panel.clientHeight;
+    const size = Math.min(pw, ph);
+    canvas.width = pw;
+    canvas.height = ph;
+    W = canvas.width;
+    H = canvas.height;
+    p1 = { x: W * 0.35, y: H * 0.5 };
+    p2 = { x: W * 0.65, y: H * 0.5 };
+  }
+
+  /**
+   * Compute 2D magnetic dipole field at (x,y) from a dipole at (px,py)
+   * with moment pointing in +y direction (m=1).
+   *
+   * The 2D dipole formula: Bx = 2*rx*ry/r^4, By = (ry*ry - rx*rx)/r^4
+   * where (rx,ry) = (x-px, y-py) and r = |(rx,ry)|.
+   */
+  function dipoleField(x, y, px, py) {
+    const rx = x - px;
+    const ry = y - py;
+    const r2 = rx * rx + ry * ry;
+    if (r2 < 1e-10) return { bx: 0, by: 0, mag: 0 };
+    const r4 = r2 * r2;
+    const bx = (2 * rx * ry) / r4;
+    const by = (ry * ry - rx * rx) / r4;
+    return { bx, by, mag: Math.sqrt(bx * bx + by * by) };
+  }
+
+  /**
+   * Total field (sum of both dipoles) at (x,y).
+   * Returns { bx, by, mag } — mag is the raw (unnormalised) field strength.
+   */
+  function totalField(x, y) {
+    const f1 = dipoleField(x, y, p1.x, p1.y);
+    const f2 = dipoleField(x, y, p2.x, p2.y);
+    const bx = f1.bx + f2.bx;
+    const by = f1.by + f2.by;
+    const mag = Math.sqrt(bx * bx + by * by);
+    return { bx, by, mag };
+  }
+
+  /**
+   * Normalised field direction at (x,y). Returns { ux, uy, mag }.
+   */
+  function unitField(x, y) {
+    const { bx, by, mag } = totalField(x, y);
+    const denom = Math.max(mag, 0.01);
+    return { ux: bx / denom, uy: by / denom, mag };
+  }
+
+  /**
+   * Clamp value v to [lo, hi].
+   */
+  function clamp(v, lo, hi) {
+    return v < lo ? lo : v > hi ? hi : v;
+  }
+
+  /**
+   * Single RK4 step at position (x,y) with adaptive step size.
+   * Returns the new position { x, y, mag } or null if singularity.
+   */
+  function rk4Step(x, y) {
+    const { ux: ux0, uy: uy0, mag: mag0 } = unitField(x, y);
+    const h = clamp(5 / Math.max(mag0, 0.01), 1, 20);
+
+    const k1x = h * ux0;
+    const k1y = h * uy0;
+
+    const { ux: ux1, uy: uy1 } = unitField(x + k1x * 0.5, y + k1y * 0.5);
+    const k2x = h * ux1;
+    const k2y = h * uy1;
+
+    const { ux: ux2, uy: uy2 } = unitField(x + k2x * 0.5, y + k2y * 0.5);
+    const k3x = h * ux2;
+    const k3y = h * uy2;
+
+    const { ux: ux3, uy: uy3 } = unitField(x + k3x, y + k3y);
+    const k4x = h * ux3;
+    const k4y = h * uy3;
+
+    const nx = x + (k1x + 2 * k2x + 2 * k3x + k4x) / 6;
+    const ny = y + (k1y + 2 * k2y + 2 * k3y + k4y) / 6;
+
+    const { mag } = totalField(nx, ny);
+    return { x: nx, y: ny, mag };
+  }
+
+  /**
+   * Integrate one streamline from seed point (sx, sy).
+   * Returns an array of {x, y, mag} up to maxSteps.
+   * Stops when a pole is within POLE_RADIUS px or the point exits the canvas.
+   */
+  function integrateStreamline(sx, sy) {
+    const POLE_RADIUS = 15;
+    const MAX_STEPS = 600;
+    const pts = [{ x: sx, y: sy, mag: totalField(sx, sy).mag }];
+
+    let x = sx;
+    let y = sy;
+
+    for (let i = 0; i < MAX_STEPS; i++) {
+      const next = rk4Step(x, y);
+      x = next.x;
+      y = next.y;
+
+      if (
+        x < -10 || x > W + 10 ||
+        y < -10 || y > H + 10
+      ) break;
+
+      const d1 = Math.hypot(x - p1.x, y - p1.y);
+      const d2 = Math.hypot(x - p2.x, y - p2.y);
+      if (d1 < POLE_RADIUS || d2 < POLE_RADIUS) break;
+
+      pts.push({ x, y, mag: next.mag });
+    }
+
+    return pts;
+  }
+
+  /**
+   * Map average field magnitude to a CSS colour string.
+   * Strong (near pole) → electric blue #4FC3F7
+   * Medium → cyan #00BCD4
+   * Weak → deep cobalt #0D47A1
+   * Very weak → near-black #010B1E
+   */
+  function magToColor(mag) {
+    const t = clamp(Math.log1p(mag * 200) / Math.log1p(200), 0, 1);
+    if (t > 0.7) {
+      const s = (t - 0.7) / 0.3;
+      const r = Math.round(13 + s * (79 - 13));
+      const g = Math.round(71 + s * (195 - 71));
+      const b = Math.round(161 + s * (247 - 161));
+      return `rgb(${r},${g},${b})`;
+    } else if (t > 0.25) {
+      const s = (t - 0.25) / 0.45;
+      const r = Math.round(1 + s * (13 - 1));
+      const g = Math.round(11 + s * (71 - 11));
+      const b = Math.round(30 + s * (161 - 30));
+      return `rgb(${r},${g},${b})`;
+    } else {
+      const s = t / 0.25;
+      const r = Math.round(1 + s * 0);
+      const g = Math.round(11 + s * 0);
+      const b = Math.round(30 * s + 1 * (1 - s));
+      return `rgb(${r},${g},${b})`;
+    }
+  }
+
+  /**
+   * Build all seed points: circles around each pole plus sparse far-field grid.
+   * driftAngle rotates the per-pole seed rings to animate the "breathing."
+   */
+  function buildSeeds(drift) {
+    const seeds = [];
+    const RING_SEEDS = 40;
+    const RING_R = 20;
+
+    for (const pole of [p1, p2]) {
+      for (let i = 0; i < RING_SEEDS; i++) {
+        const angle = drift + (2 * Math.PI * i) / RING_SEEDS;
+        seeds.push({
+          x: pole.x + RING_R * Math.cos(angle),
+          y: pole.y + RING_R * Math.sin(angle),
+        });
+      }
+    }
+
+    const GRID = 10;
+    const SKIP_R2 = (W * 0.1) ** 2;
+    for (let gi = 0; gi < GRID; gi++) {
+      for (let gj = 0; gj < GRID; gj++) {
+        const gx = (W * (gi + 0.5)) / GRID;
+        const gy = (H * (gj + 0.5)) / GRID;
+        const d1 = (gx - p1.x) ** 2 + (gy - p1.y) ** 2;
+        const d2 = (gx - p2.x) ** 2 + (gy - p2.y) ** 2;
+        if (d1 > SKIP_R2 && d2 > SKIP_R2) {
+          seeds.push({ x: gx, y: gy });
+        }
+      }
+    }
+
+    return seeds;
+  }
+
+  /**
+   * Draw the two tablet outlines as rounded rectangles in stone gray.
+   */
+  function drawTablets() {
+    const tw = W * 0.08;
+    const th = H * 0.35;
+
+    ctx.save();
+    ctx.strokeStyle = "#9E9E9E";
+    ctx.lineWidth = 1;
+    ctx.fillStyle = "transparent";
+
+    for (const pole of [p1, p2]) {
+      const x = pole.x - tw / 2;
+      const y = pole.y - th / 2;
+      const r = tw * 0.25;
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + tw - r, y);
+      ctx.arcTo(x + tw, y, x + tw, y + r, r);
+      ctx.lineTo(x + tw, y + th - r);
+      ctx.arcTo(x + tw, y + th, x + tw - r, y + th, r);
+      ctx.lineTo(x + r, y + th);
+      ctx.arcTo(x, y + th, x, y + th - r, r);
+      ctx.lineTo(x, y + r);
+      ctx.arcTo(x, y, x + r, y, r);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  /**
+   * Draw Roman numerals I–V on left tablet and VI–X on right tablet.
+   */
+  function drawNumerals() {
+    const th = H * 0.35;
+    const tw = W * 0.08;
+    const fontSize = Math.max(9, Math.min(14, H * 0.025));
+
+    ctx.save();
+    ctx.fillStyle = "#F5F0DC";
+    ctx.font = `${fontSize}px Georgia, 'Times New Roman', serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    const leftNumerals = ["I", "II", "III", "IV", "V"];
+    const rightNumerals = ["VI", "VII", "VIII", "IX", "X"];
+    const spacing = th / 6;
+
+    for (let i = 0; i < 5; i++) {
+      const cy = p1.y - th / 2 + spacing * (i + 1);
+      ctx.fillText(leftNumerals[i], p1.x, cy);
+    }
+    for (let i = 0; i < 5; i++) {
+      const cy = p2.y - th / 2 + spacing * (i + 1);
+      ctx.fillText(rightNumerals[i], p2.x, cy);
+    }
+    ctx.restore();
+  }
+
+  /**
+   * Render all streamlines from the given seed points.
+   */
+  function drawStreamlines(seeds) {
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.lineWidth = 1.2;
+
+    for (const seed of seeds) {
+      const pts = integrateStreamline(seed.x, seed.y);
+      if (pts.length < 3) continue;
+
+      let totalMag = 0;
+      for (const pt of pts) totalMag += pt.mag;
+      const avgMag = totalMag / pts.length;
+
+      ctx.strokeStyle = magToColor(avgMag);
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length; i++) {
+        ctx.lineTo(pts[i].x, pts[i].y);
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  /**
+   * Main animation loop — clear, draw tablets behind field lines,
+   * draw streamlines, then draw numerals in front.
+   */
+  function frame(ts) {
+    if (lastTime !== null) {
+      const dt = (ts - lastTime) / 1000;
+      // 2 degrees per second in radians
+      driftAngle += dt * (2 * Math.PI / 180);
+    }
+    lastTime = ts;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = "#010B1E";
+    ctx.fillRect(0, 0, W, H);
+
+    drawTablets();
+
+    const seeds = buildSeeds(driftAngle);
+    drawStreamlines(seeds);
+
+    drawNumerals();
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener("resize", () => {
+    resize();
+    lastTime = null;
+  });
+
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

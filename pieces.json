@@ -1692,5 +1692,16 @@
     "path": "pieces/94-cyclic-ca-seven-species/index.html",
     "thumbnail": "pieces/94-cyclic-ca-seven-species/thumbnail.svg",
     "essay": "pieces/94-cyclic-ca-seven-species/essay.md"
+  },
+  {
+    "id": "94-streamline-two-tablets",
+    "title": "Between the Tablets, the Law Flows",
+    "tagline": "two magnetic dipoles — one for each luchot — generate RK4-integrated field lines that arch between the tablets in the shape of a Torah crown, encoding the non-contradicting law in electric blue",
+    "year": 2026,
+    "theme": "Luchot habrit / Ten Commandments",
+    "technique": "Magnetic dipole vector field streamlines (RK4 integration)",
+    "path": "pieces/94-streamline-two-tablets/index.html",
+    "thumbnail": "pieces/94-streamline-two-tablets/thumbnail.svg",
+    "essay": "pieces/94-streamline-two-tablets/essay.md"
   }
 ]
