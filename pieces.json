@@ -1584,6 +1584,17 @@
     "essay": "pieces/90-vicsek-sinai-unity/essay.md"
   },
   {
+    "id": "91-spectre-monotile-aleph",
+    "title": "The Aleph That Contains Everything",
+    "tagline": "one 14-sided shape fills all space, never repeating — as the silent Aleph of Anochi contains the whole Torah and is literally identical to nothing",
+    "year": 2026,
+    "theme": "Matan Torah / the Aleph of Anochi",
+    "technique": "Spectre aperiodic monotile (substitution rules)",
+    "path": "pieces/91-spectre-monotile-aleph/index.html",
+    "thumbnail": "pieces/91-spectre-monotile-aleph/thumbnail.svg",
+    "essay": "pieces/91-spectre-monotile-aleph/essay.md"
+  },
+  {
     "id": "91-spherical-harmonics-voice-sinai",
     "title": "The Voice That Filled the World",
     "tagline": "the divine voice at Sinai split into seventy tongues and radiated to every nation — a sphere deformed by 25 real spherical harmonics, each direction hearing a different face of the same source",
