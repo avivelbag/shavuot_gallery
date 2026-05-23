@@ -1076,5 +1076,27 @@
     "path": "pieces/71-thin-film-iridescence-cloud/index.html",
     "thumbnail": "pieces/71-thin-film-iridescence-cloud/thumbnail.svg",
     "essay": "pieces/71-thin-film-iridescence-cloud/essay.md"
+  },
+  {
+    "id": "72-gosper-curve-naaseh-vnishma",
+    "title": "We Will Do and We Will Hear",
+    "tagline": "a Gosper-curve particle traces the flowsnake island — path as covenant, journey as understanding",
+    "year": 2026,
+    "theme": "The Crown of Torah / Naaseh v'Nishma",
+    "technique": "Gosper curve / L-system / animated path tracing",
+    "path": "pieces/72-gosper-curve-naaseh-vnishma/index.html",
+    "thumbnail": "pieces/72-gosper-curve-naaseh-vnishma/thumbnail.svg",
+    "essay": "pieces/72-gosper-curve-naaseh-vnishma/essay.md"
+  },
+  {
+    "id": "73-wallpaper-group-sinai-covenant",
+    "title": "The Pattern That Fills the Earth",
+    "tagline": "p6m — the most symmetric wallpaper group — tiles the covenant of Sinai across the plane",
+    "year": 2026,
+    "theme": "Matan Torah",
+    "technique": "p6m wallpaper group tiling / canvas symmetry operations",
+    "path": "pieces/73-wallpaper-group-sinai-covenant/index.html",
+    "thumbnail": "pieces/73-wallpaper-group-sinai-covenant/thumbnail.svg",
+    "essay": "pieces/73-wallpaper-group-sinai-covenant/essay.md"
   }
 ]
