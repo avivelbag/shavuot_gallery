@@ -8,8 +8,6 @@ and edge/failure cases.
 import json
 import math
 import os
-import re
-import sys
 import importlib.util
 
 import pytest
