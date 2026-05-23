@@ -7,9 +7,6 @@ essay content requirements, thumbnail SVG validity, and edge-case failures.
 import json
 import math
 import os
-import re
-
-import pytest
 
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "76-pendulum-wave-sefirat-haomer"
@@ -281,7 +278,6 @@ def test_pendulum_physics_resync_at_T1():
     N = 49
     T1 = 3.0
     theta0 = 0.3
-    g = 9.8
 
     for k in range(1, N + 1):
         omega = k * 2 * math.pi / T1
@@ -295,11 +291,9 @@ def test_pendulum_k_completes_k_oscillations():
     """Pendulum k must complete exactly k cycles in T1 seconds."""
     N = 49
     T1 = 3.0
-    g = 9.8
 
     for k in range(1, N + 1):
         omega = k * 2 * math.pi / T1
-        L = g / (omega ** 2)
         period = 2 * math.pi / omega
         cycles = T1 / period
         assert abs(cycles - k) < 1e-9, (

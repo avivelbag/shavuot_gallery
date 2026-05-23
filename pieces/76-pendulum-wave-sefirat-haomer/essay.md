@@ -30,6 +30,6 @@ This is what the Sefat Emet means by the personal obligation to count. Each day 
 
 ## This Piece
 
-The animation runs forty-nine pendulums across the canvas. Each pendulum is assigned a hue cycling from deep violet through amber-gold — the forty-nine days moving through the color spectrum as the Omer moves through the Sefirot. Each bob leaves a fading trail of its last hundred positions; as the ensemble fans out and returns, the trails form ribbons of light that expand and contract like breath.
+The animation runs forty-nine pendulums across the canvas. Each pendulum is assigned a hue cycling from deep violet through amber-gold — the forty-nine days moving through the color spectrum as the Omer moves through the Sefirot. Each bob leaves a fading trail of its last 120 positions; as the ensemble fans out and returns, the trails form ribbons of light that expand and contract like breath.
 
 The day counter at the top shows the current position in the Omer count. As the final pendulums converge on day forty-nine, the word שָׁבוּעוֹת — Shavuot — appears. It is not a reward appended to the end. It is what the count, fully completed, reveals.
