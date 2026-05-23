@@ -1089,6 +1089,17 @@
     "essay": "pieces/72-gosper-curve-naaseh-vnishma/essay.md"
   },
   {
+    "id": "73-girih-star-keter-torah",
+    "title": "The Crown Woven in Geometry",
+    "tagline": "a girih star tiling that tiles the plane forever — Keter Torah at the center",
+    "year": 2026,
+    "theme": "The Crown of Torah / Naaseh v'Nishma",
+    "technique": "girih star polygon tiling / canvas",
+    "path": "pieces/73-girih-star-keter-torah/index.html",
+    "thumbnail": "pieces/73-girih-star-keter-torah/thumbnail.svg",
+    "essay": "pieces/73-girih-star-keter-torah/essay.md"
+  },
+  {
     "id": "73-wallpaper-group-sinai-covenant",
     "title": "The Pattern That Fills the Earth",
     "tagline": "p6m — the most symmetric wallpaper group — tiles the covenant of Sinai across the plane",

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Crown Woven in Geometry — Girih Star / Keter Torah</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #0A0A1A; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0A0A1A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1A2870;
+      overflow-y: auto;
+      color: #c8b880;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #07070F;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1A2870; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #C8900A;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #2A3A5A;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #C8900A;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+    }
+    .essay-panel em { color: #d4c090; font-style: italic; }
+    .essay-panel strong { color: #C8900A; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #1A2870; margin: 2rem 0; }
+
+    .passage-block {
+      background: #040408;
+      border: 1px solid #1A2870;
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 0 0 1.8rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.4rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #C8900A;
+      line-height: 2.2;
+      margin: 0 0 0.9rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.88rem;
+      color: #5A7040;
+      font-style: italic;
+    }
+    .source-note {
+      font-size: 0.82rem;
+      color: #2A3A5A;
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #1A2870;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <canvas id="c" width="700" height="700"></canvas>
+  </div>
+
+  <div class="essay-panel">
+    <h1>The Crown Woven in Geometry</h1>
+    <p class="subtitle">Pirkei Avot 4:13 · Girih star polygon tiling · canvas animation</p>
+
+    <div class="passage-block">
+      <div class="hebrew-text">שְׁלֹשָׁה כְתָרִים הֵם: כֶּתֶר תּוֹרָה, וְכֶתֶר כְּהֻנָּה, וְכֶתֶר מַלְכוּת. וְכֶתֶר שֵׁם טוֹב עוֹלֶה עַל גַּבֵּיהֶן</div>
+      <div class="english-text">"Three crowns are there: the crown of Torah, the crown of priesthood, and the crown of royalty — and the crown of a good name surpasses them all." — Avot 4:13</div>
+    </div>
+
+    <p>Rabbi Shimon taught: there are three crowns — the crown of Torah, the crown of priesthood, and the crown of royalty. But the crown of a good name (<em>Keter Shem Tov</em>) surpasses them all.</p>
+
+    <p>The crown of royalty belongs to one dynasty. The crown of priesthood belongs to one tribe. But the crown of Torah, the Rabbis teach, is available to anyone who reaches out and takes it. And yet even Torah's crown is surpassed by the crown of a good name — because a good name is only earned through how one <em>uses</em> the Torah one has received.</p>
+
+    <h2>Keter Torah: The Tagin</h2>
+
+    <p>What is the crown of Torah, concretely? Look at a Torah scroll. The sofer — the scribe — does not merely copy letters. On certain letters, he draws <em>tagin</em>: tiny, three-pronged coronets that sit atop the letter like a miniature crown. These are not ornamental. They are commanded.</p>
+
+    <p>The Talmud (<em>Menachot</em> 29b) tells this story: when Moses ascended Mount Sinai to receive the Torah, he found the Holy One drawing these very crowns on the letters. Moses asked: "Master of the universe, who delays You?" God answered: "There is a man who will arise in many generations, Akiva ben Yosef by name, who will derive mountains of laws from each and every tag." Moses asked to see him. He was transported to Rabbi Akiva's study hall and sat in the back row, unable to follow the discussion. He grew faint. Then a student asked Rabbi Akiva: "From where do you derive this?" And Akiva answered: "<em>Halacha l'Moshe miSinai</em> — it is a law given to Moses at Sinai." And Moses was comforted.</p>
+
+    <p>Every crown drawn on every letter contains teaching that has not yet been unpacked. The Torah was given once; it is still being received.</p>
+
+    <h2>Geometry That Encodes the Infinite</h2>
+
+    <p>The girih star pattern works the same way. Medieval craftsmen — in the mosques and madrasas of Iran, Afghanistan, and Morocco, from the 11th century onward — produced intricate geometric tilings using decagonal star forms that fit together without gaps. The resulting patterns cover the plane in a way that never exactly repeats — they are <em>aperiodic</em>, what mathematicians today call a quasiperiodic tiling, structurally related to the Penrose tiling discovered in the West only in 1974.</p>
+
+    <p>The medieval craftsmen did not have this vocabulary. They discovered the geometry empirically, pattern by patient pattern, testing tile against tile by hand. Centuries later, mathematical physicists needed supercomputers to prove what those craftsmen had <em>found</em> — that a finite set of shapes encodes an infinite, non-repeating order.</p>
+
+    <p>This is the structure of the tagin. The crowns on the letters are finite marks. But Rabbi Akiva found infinite law hidden in each one. The letter <em>Shin</em> is three strokes. Its crown is three more. The pattern is simple; the meaning is inexhaustible.</p>
+
+    <h2>Shavuot and the Endless Crown</h2>
+
+    <p>Shavuot is when the Torah — crowns, tagin, and all — was given. The sages teach that at Sinai, God placed two crowns on the head of each Israelite: one for <em>naaseh</em> (we will do) and one for <em>nishma</em> (we will hear). The Torah was not given to a priesthood or a monarchy; it was given to a people who accepted it entirely, in advance, before understanding what they were accepting.</p>
+
+    <p>The central star of this piece — the bright gold decagon bearing the letter <em>כ</em>, Kaf, for <em>Keter</em> — is the crown at the center of an infinite pattern. Every surrounding star is the same star, repeated across a lattice that covers the plane without end. There is no true center in the mathematical tiling — any point can be the center, and the pattern looks the same from everywhere. But we place a crown at the center because that is what we do: we orient ourselves toward the Torah as toward a center, even as its meaning fans out in every direction forever.</p>
+
+    <p class="source-note"><em>Sources: Pirkei Avot 4:13; Babylonian Talmud, Menachot 29b; Rashi ad loc.; Peter J. Lu and Paul J. Steinhardt, "Decagonal and Quasi-Crystalline Tilings in Medieval Islamic Architecture," Science 315 (2007).</em></p>
+  </div>
+</div>
+
+<script>
+const W = 700, H = 700;
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+const CX = W / 2, CY = H / 2;
+
+const COL_BG     = '#F5EDD8';
+const COL_STROKE = '#0A0A20';
+const COL_STAR   = '#1A2870';
+const COL_BOW    = '#C8900A';
+const COL_CENTER = '#FFD040';
+const COL_LETTER = '#F5EDD8';
+
+// Radius of each decagon tile.
+const R = 58;
+
+// Tiling grid spacing: decagonal girih tiling uses a rectangular lattice
+// where the horizontal period is 2*R*cos(π/10) and vertical is R*(1+sin(π/10))*2.
+// These constants produce a clean interlocking pattern.
+const COS18 = Math.cos(Math.PI / 10);  // cos 18°
+const SIN18 = Math.sin(Math.PI / 10);  // sin 18°
+const TILE_W = 2 * R * COS18;
+const TILE_H = R * (1 + SIN18) * 2;
+
+/**
+ * Compute the 10 vertices of a regular decagon centered at (cx, cy) with
+ * circumradius r, with vertex 0 at the top (angle = -π/2).
+ */
+function decagonVerts(cx, cy, r) {
+  return Array.from({ length: 10 }, (_, i) => {
+    const a = (i * 2 * Math.PI / 10) - Math.PI / 2;
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+  });
+}
+
+/**
+ * Fill the interior regions of a girih decagon tile.
+ *
+ * For each pair of every-other vertices, we fill the triangular region formed
+ * by two adjacent even vertices and the center, producing alternating star
+ * wedges (blue) and the remaining bow-tie kite regions (gold).
+ *
+ * starFill: fill color for the 5 inner star triangles
+ * bowFill:  fill color for the 5 outer bow-tie regions
+ */
+function fillGirihStar(cx, cy, r, starFill, bowFill) {
+  const v = decagonVerts(cx, cy, r);
+
+  // Inner star: 5 isoceles triangles connecting even-indexed vertex pairs
+  // through the center.
+  ctx.fillStyle = starFill;
+  for (let i = 0; i < 10; i += 2) {
+    const [x0, y0] = v[i];
+    const [x1, y1] = v[(i + 2) % 10];
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(x0, y0);
+    ctx.lineTo(x1, y1);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  // Outer bow-tie / kite: 5 triangles connecting odd-indexed vertices
+  // through the center.
+  ctx.fillStyle = bowFill;
+  for (let i = 1; i < 10; i += 2) {
+    const [x0, y0] = v[i];
+    const [x1, y1] = v[(i + 2) % 10];
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(x0, y0);
+    ctx.lineTo(x1, y1);
+    ctx.closePath();
+    ctx.fill();
+  }
+}
+
+/**
+ * Stroke the structural lines of a girih decagon tile: the decagon outline
+ * plus the interior chords that form the star-and-bow-tie pattern.
+ *
+ * Lines drawn:
+ *  - The decagon perimeter (10 edges)
+ *  - Every-other-vertex chords across the interior (5-point star lines)
+ *  - Vertex-to-vertex+3 chords (interlocking girih lines)
+ */
+function strokeGirihStar(cx, cy, r) {
+  const v = decagonVerts(cx, cy, r);
+
+  // Decagon perimeter
+  ctx.beginPath();
+  ctx.moveTo(v[0][0], v[0][1]);
+  for (let i = 1; i < 10; i++) ctx.lineTo(v[i][0], v[i][1]);
+  ctx.closePath();
+  ctx.stroke();
+
+  // Interior star chords: connect v[i] to v[(i+4)%10] (skipping 3 vertices)
+  // This creates the classic 5-pointed star inside the decagon.
+  for (let i = 0; i < 10; i += 2) {
+    const [x1, y1] = v[i];
+    const [x2, y2] = v[(i + 4) % 10];
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+  }
+
+  // Girih interlocking chords: connect v[i] to v[(i+3)%10]
+  // These extend the pattern to adjacent tiles.
+  for (let i = 0; i < 10; i++) {
+    const [x1, y1] = v[i];
+    const [x2, y2] = v[(i + 3) % 10];
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+  }
+}
+
+/**
+ * Build the list of tile centers that cover the canvas with a margin.
+ * Uses a staggered rectangular grid so adjacent rows offset by half TILE_W,
+ * which produces the interlocking star pattern.
+ */
+function buildTileCenters() {
+  const margin = R * 2;
+  const centers = [];
+  const rows = Math.ceil((H + 2 * margin) / TILE_H) + 1;
+  const cols = Math.ceil((W + 2 * margin) / TILE_W) + 1;
+
+  for (let row = -1; row <= rows; row++) {
+    const cy = -margin + row * TILE_H;
+    // Alternate rows offset by half tile width for proper stagger
+    const xOffset = (row % 2 === 0) ? 0 : TILE_W / 2;
+    for (let col = -1; col <= cols; col++) {
+      const cx = -margin + col * TILE_W + xOffset;
+      centers.push([cx, cy]);
+    }
+  }
+  return centers;
+}
+
+const tileCenters = buildTileCenters();
+
+/**
+ * Draw the complete tiling at a given global rotation angle (radians).
+ *
+ * Rotates the entire pattern around the canvas center (CX, CY), clips to
+ * the canvas bounds, fills all tiles, then strokes all tiles.
+ */
+function drawTiling(angle) {
+  ctx.fillStyle = COL_BG;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.save();
+  ctx.translate(CX, CY);
+  ctx.rotate(angle);
+  ctx.translate(-CX, -CY);
+
+  // Clip to canvas so rotated tiles don't bleed outside
+  ctx.beginPath();
+  ctx.rect(0, 0, W, H);
+  ctx.clip();
+
+  // Fill pass first (no stroke yet) so colors don't overdraw lines
+  for (const [cx, cy] of tileCenters) {
+    const isCenterTile = (Math.abs(cx - CX) < TILE_W * 0.6 &&
+                          Math.abs(cy - CY) < TILE_H * 0.6);
+    const starFill = isCenterTile ? COL_CENTER : COL_STAR;
+    const bowFill  = isCenterTile ? COL_BOW    : COL_BOW;
+    fillGirihStar(cx, cy, R, starFill, bowFill);
+  }
+
+  // Stroke pass on top
+  ctx.strokeStyle = COL_STROKE;
+  ctx.lineWidth = 1;
+  ctx.lineJoin = 'round';
+  for (const [cx, cy] of tileCenters) {
+    strokeGirihStar(cx, cy, R);
+  }
+
+  ctx.restore();
+
+  // Hebrew letter כ at the canvas center, always upright (drawn after restore)
+  ctx.font = 'bold 44px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = COL_LETTER;
+  ctx.fillText('כ', CX, CY);
+}
+
+// Breathing animation: cycle fill opacity of star regions on a sine wave.
+// We implement "breathing" by varying the opacity of a gold overlay on the
+// center tile, cycling between 0.6 and 1.0 over 4 seconds.
+let startTime = null;
+
+// Rotation: 1 degree per 3 seconds = (π/180) / 3 radians per second
+const DEG_PER_SEC = 1 / 3;
+const RAD_PER_SEC = (DEG_PER_SEC * Math.PI) / 180;
+
+// For seamless looping, we need the pattern to look the same after a full
+// period of rotation. Since the decagonal tiling has 10-fold symmetry,
+// it repeats every 36 degrees (π/5 radians).
+const ROTATION_PERIOD = (Math.PI / 5) / RAD_PER_SEC; // seconds for one symmetry period
+
+function frame(ts) {
+  if (!startTime) startTime = ts;
+  const elapsed = (ts - startTime) / 1000; // seconds
+
+  // Modulo by the symmetry period so rotation loops seamlessly
+  const angle = (elapsed * RAD_PER_SEC) % (Math.PI / 5);
+
+  drawTiling(angle);
+
+  requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

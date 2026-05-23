@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F5EDD8"/>
+
+  <!-- Center tile (highlighted gold) at 200,200 r=58 -->
+  <!-- Inner star triangles (gold center) -->
+  <polygon points="200,142 248.5,161.8 200,200" fill="#FFD040"/>
+  <polygon points="248.5,161.8 248.5,238.2 200,200" fill="#FFD040"/>
+  <polygon points="248.5,238.2 200,258 200,200" fill="#FFD040"/>
+  <polygon points="200,258 151.5,238.2 200,200" fill="#FFD040"/>
+  <polygon points="151.5,238.2 151.5,161.8 200,200" fill="#FFD040"/>
+  <!-- Bow-tie regions (gold) -->
+  <polygon points="200,142 225.3,151.1 200,200" fill="#C8900A"/>
+  <polygon points="225.3,151.1 248.5,161.8 200,200" fill="#C8900A"/>
+  <polygon points="248.5,161.8 248.5,200 200,200" fill="#C8900A"/>
+  <polygon points="248.5,200 248.5,238.2 200,200" fill="#C8900A"/>
+  <polygon points="248.5,238.2 225.3,248.9 200,200" fill="#C8900A"/>
+  <polygon points="225.3,248.9 200,258 200,200" fill="#C8900A"/>
+  <polygon points="200,258 174.7,248.9 200,200" fill="#C8900A"/>
+  <polygon points="174.7,248.9 151.5,238.2 200,200" fill="#C8900A"/>
+  <polygon points="151.5,238.2 151.5,200 200,200" fill="#C8900A"/>
+  <polygon points="151.5,200 151.5,161.8 200,200" fill="#C8900A"/>
+  <polygon points="151.5,161.8 174.7,151.1 200,200" fill="#C8900A"/>
+  <polygon points="174.7,151.1 200,142 200,200" fill="#C8900A"/>
+
+  <!-- Surrounding tiles (blue) - 5 principal positions around center -->
+  <!-- Top tile at 200, 84 -->
+  <polygon points="200,26 248.5,45.8 200,84" fill="#1A2870"/>
+  <polygon points="248.5,45.8 248.5,122.2 200,84" fill="#1A2870"/>
+  <polygon points="248.5,122.2 200,142 200,84" fill="#1A2870"/>
+  <polygon points="200,142 151.5,122.2 200,84" fill="#1A2870"/>
+  <polygon points="151.5,122.2 151.5,45.8 200,84" fill="#1A2870"/>
+  <polygon points="200,26 225.3,35.1 200,84" fill="#C8900A"/>
+  <polygon points="225.3,35.1 248.5,45.8 200,84" fill="#C8900A"/>
+  <polygon points="248.5,45.8 248.5,84 200,84" fill="#C8900A"/>
+  <polygon points="248.5,84 248.5,122.2 200,84" fill="#C8900A"/>
+  <polygon points="248.5,122.2 225.3,132.9 200,84" fill="#C8900A"/>
+  <polygon points="225.3,132.9 200,142 200,84" fill="#C8900A"/>
+  <polygon points="200,142 174.7,132.9 200,84" fill="#C8900A"/>
+  <polygon points="174.7,132.9 151.5,122.2 200,84" fill="#C8900A"/>
+  <polygon points="151.5,122.2 151.5,84 200,84" fill="#C8900A"/>
+  <polygon points="151.5,84 151.5,45.8 200,84" fill="#C8900A"/>
+  <polygon points="151.5,45.8 174.7,35.1 200,84" fill="#C8900A"/>
+  <polygon points="174.7,35.1 200,26 200,84" fill="#C8900A"/>
+
+  <!-- Bottom tile at 200, 316 -->
+  <polygon points="200,258 248.5,277.8 200,316" fill="#1A2870"/>
+  <polygon points="248.5,277.8 248.5,354.2 200,316" fill="#1A2870"/>
+  <polygon points="248.5,354.2 200,374 200,316" fill="#1A2870"/>
+  <polygon points="200,374 151.5,354.2 200,316" fill="#1A2870"/>
+  <polygon points="151.5,354.2 151.5,277.8 200,316" fill="#1A2870"/>
+  <polygon points="200,258 225.3,267.1 200,316" fill="#C8900A"/>
+  <polygon points="225.3,267.1 248.5,277.8 200,316" fill="#C8900A"/>
+  <polygon points="248.5,277.8 248.5,316 200,316" fill="#C8900A"/>
+  <polygon points="248.5,316 248.5,354.2 200,316" fill="#C8900A"/>
+  <polygon points="248.5,354.2 225.3,364.9 200,316" fill="#C8900A"/>
+  <polygon points="225.3,364.9 200,374 200,316" fill="#C8900A"/>
+  <polygon points="200,374 174.7,364.9 200,316" fill="#C8900A"/>
+  <polygon points="174.7,364.9 151.5,354.2 200,316" fill="#C8900A"/>
+  <polygon points="151.5,354.2 151.5,316 200,316" fill="#C8900A"/>
+  <polygon points="151.5,316 151.5,277.8 200,316" fill="#C8900A"/>
+  <polygon points="151.5,277.8 174.7,267.1 200,316" fill="#C8900A"/>
+  <polygon points="174.7,267.1 200,258 200,316" fill="#C8900A"/>
+
+  <!-- Left tile at 103, 200 (offset by TILE_W≈110) -->
+  <polygon points="103,142 151.5,161.8 103,200" fill="#1A2870"/>
+  <polygon points="151.5,161.8 151.5,238.2 103,200" fill="#1A2870"/>
+  <polygon points="151.5,238.2 103,258 103,200" fill="#1A2870"/>
+  <polygon points="103,258 54.5,238.2 103,200" fill="#1A2870"/>
+  <polygon points="54.5,238.2 54.5,161.8 103,200" fill="#1A2870"/>
+  <polygon points="103,142 128.3,151.1 103,200" fill="#C8900A"/>
+  <polygon points="128.3,151.1 151.5,161.8 103,200" fill="#C8900A"/>
+  <polygon points="151.5,161.8 151.5,200 103,200" fill="#C8900A"/>
+  <polygon points="151.5,200 151.5,238.2 103,200" fill="#C8900A"/>
+  <polygon points="151.5,238.2 128.3,248.9 103,200" fill="#C8900A"/>
+  <polygon points="128.3,248.9 103,258 103,200" fill="#C8900A"/>
+  <polygon points="103,258 77.7,248.9 103,200" fill="#C8900A"/>
+  <polygon points="77.7,248.9 54.5,238.2 103,200" fill="#C8900A"/>
+  <polygon points="54.5,238.2 54.5,200 103,200" fill="#C8900A"/>
+  <polygon points="54.5,200 54.5,161.8 103,200" fill="#C8900A"/>
+  <polygon points="54.5,161.8 77.7,151.1 103,200" fill="#C8900A"/>
+  <polygon points="77.7,151.1 103,142 103,200" fill="#C8900A"/>
+
+  <!-- Right tile at 297, 200 -->
+  <polygon points="297,142 345.5,161.8 297,200" fill="#1A2870"/>
+  <polygon points="345.5,161.8 345.5,238.2 297,200" fill="#1A2870"/>
+  <polygon points="345.5,238.2 297,258 297,200" fill="#1A2870"/>
+  <polygon points="297,258 248.5,238.2 297,200" fill="#1A2870"/>
+  <polygon points="248.5,238.2 248.5,161.8 297,200" fill="#1A2870"/>
+  <polygon points="297,142 322.3,151.1 297,200" fill="#C8900A"/>
+  <polygon points="322.3,151.1 345.5,161.8 297,200" fill="#C8900A"/>
+  <polygon points="345.5,161.8 345.5,200 297,200" fill="#C8900A"/>
+  <polygon points="345.5,200 345.5,238.2 297,200" fill="#C8900A"/>
+  <polygon points="345.5,238.2 322.3,248.9 297,200" fill="#C8900A"/>
+  <polygon points="322.3,248.9 297,258 297,200" fill="#C8900A"/>
+  <polygon points="297,258 271.7,248.9 297,200" fill="#C8900A"/>
+  <polygon points="271.7,248.9 248.5,238.2 297,200" fill="#C8900A"/>
+  <polygon points="248.5,238.2 248.5,200 297,200" fill="#C8900A"/>
+  <polygon points="248.5,200 248.5,161.8 297,200" fill="#C8900A"/>
+  <polygon points="248.5,161.8 271.7,151.1 297,200" fill="#C8900A"/>
+  <polygon points="271.7,151.1 297,142 297,200" fill="#C8900A"/>
+
+  <!-- Stroke lines for center tile -->
+  <g stroke="#0A0A20" stroke-width="1" fill="none">
+    <polygon points="200,142 248.5,161.8 248.5,238.2 200,258 151.5,238.2 151.5,161.8"/>
+    <line x1="200" y1="142" x2="200" y2="258"/>
+    <line x1="248.5" y1="161.8" x2="151.5" y2="238.2"/>
+    <line x1="248.5" y1="238.2" x2="151.5" y2="161.8"/>
+    <line x1="200" y1="142" x2="248.5" y2="238.2"/>
+    <line x1="248.5" y1="161.8" x2="200" y2="258"/>
+    <line x1="200" y1="258" x2="151.5" y2="161.8"/>
+    <line x1="151.5" y1="238.2" x2="248.5" y2="161.8"/>
+  </g>
+
+  <!-- Stroke outlines for other tiles -->
+  <g stroke="#0A0A20" stroke-width="1" fill="none">
+    <polygon points="200,26 248.5,45.8 248.5,122.2 200,142 151.5,122.2 151.5,45.8"/>
+    <polygon points="200,258 248.5,277.8 248.5,354.2 200,374 151.5,354.2 151.5,277.8"/>
+    <polygon points="103,142 151.5,161.8 151.5,238.2 103,258 54.5,238.2 54.5,161.8"/>
+    <polygon points="297,142 345.5,161.8 345.5,238.2 297,258 248.5,238.2 248.5,161.8"/>
+  </g>
+
+  <!-- Hebrew letter כ centered at 200,200 -->
+  <text x="200" y="210" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif" font-size="44" font-weight="bold" fill="#F5EDD8">כ</text>
+</svg>
