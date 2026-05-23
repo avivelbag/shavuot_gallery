@@ -1230,5 +1230,16 @@
     "path": "pieces/77-thomas-attractor-tikkun-leil/index.html",
     "thumbnail": "pieces/77-thomas-attractor-tikkun-leil/thumbnail.svg",
     "essay": "pieces/77-thomas-attractor-tikkun-leil/essay.md"
+  },
+  {
+    "id": "78-turmites-talmud-torah",
+    "title": "The Highways of the Night",
+    "tagline": "five turmites trace highways from darkness — the all-night study session as multi-agent emergence",
+    "year": 2026,
+    "theme": "Tikkun Leil Shavuot",
+    "technique": "Turmites / multi-agent Langton's Ant",
+    "path": "pieces/78-turmites-talmud-torah/index.html",
+    "thumbnail": "pieces/78-turmites-talmud-torah/thumbnail.svg",
+    "essay": "pieces/78-turmites-talmud-torah/essay.md"
   }
 ]
