@@ -1428,5 +1428,27 @@
     "path": "pieces/84-rossler-crown-of-torah/index.html",
     "thumbnail": "pieces/84-rossler-crown-of-torah/thumbnail.svg",
     "essay": "pieces/84-rossler-crown-of-torah/essay.md"
+  },
+  {
+    "id": "85-poisson-bikkurim-grain-field",
+    "title": "First of All the Fruit of the Ground",
+    "tagline": "each Poisson grain placed is a first fruit — the cultivated field grown by the algorithm itself",
+    "year": 2026,
+    "theme": "Bikkurim / first fruits / harvest",
+    "technique": "Poisson disk sampling (Bridson's algorithm)",
+    "path": "pieces/85-poisson-bikkurim-grain-field/index.html",
+    "thumbnail": "pieces/85-poisson-bikkurim-grain-field/thumbnail.svg",
+    "essay": "pieces/85-poisson-bikkurim-grain-field/essay.md"
+  },
+  {
+    "id": "86-gyroid-milk-honey",
+    "title": "A Land Flowing: The Geometry of Milk and Honey",
+    "tagline": "the gyroid minimal surface IS the microstructure of honeycomb and milk fat — the promised land has a shape",
+    "year": 2026,
+    "theme": "Milk and honey / the promised land / seven species",
+    "technique": "Gyroid implicit surface cross-section",
+    "path": "pieces/86-gyroid-milk-honey/index.html",
+    "thumbnail": "pieces/86-gyroid-milk-honey/thumbnail.svg",
+    "essay": "pieces/86-gyroid-milk-honey/essay.md"
   }
 ]

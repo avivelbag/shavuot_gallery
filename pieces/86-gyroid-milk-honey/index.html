@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Land Flowing: The Geometry of Milk and Honey</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1a0f00; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0d0800;
+    }
+    #canvas-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+    #overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #4a2d00;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #130a00;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #4a2d00; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #e8c870; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #705030; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #c8a048; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #e8c870; font-style: normal; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <div id="canvas-container">
+      <canvas id="c"></canvas>
+      <canvas id="overlay"></canvas>
+    </div>
+  </div>
+  <div class="essay-panel">
+    <h1>A Land Flowing</h1>
+    <div class="subtitle">The Geometry of Milk and Honey — Gyroid Implicit Surface Cross-Section</div>
+
+    <p>"And I have come down to deliver them out of the hand of the Egyptians, and to bring them up out of that land to a good and broad land, a land flowing with milk and honey." (Exodus 3:8)</p>
+
+    <p>This phrase — <em>eretz zavat chalav u'dvash</em> — appears twenty times in the Torah, making it the most repeated geographical description in the Five Books. No mountain, no river, no city is named as often. The land is defined by what flows from it.</p>
+
+    <p>Deuteronomy 8:8 gives the seven species of that land: "A land of wheat and barley, of vines and fig trees and pomegranates, a land of olive trees and honey." Here the abundance is catalogued: seven distinct gifts, each with its growing season and its ritual. The milk and honey compress this whole ecology into two textures — pale white and warm viscous gold.</p>
+
+    <h2>The Non-Obvious Reading</h2>
+
+    <p>The phrase does not merely describe present abundance. Rabbinic literature (Ketubot 111b) says that at the time of the final redemption, the land itself will drip milk and honey — the promise will be fulfilled in the most literal sense, with trees burdened beyond bearing and the earth yielding more than it can hold. The phrase is eschatological as much as it is geographical.</p>
+
+    <p>More concretely, the Talmud (Megillah 6a) explains that the <em>dvash</em> — the honey — in this phrase refers not to bee honey but to date honey: the thick syrup pressed from the famous dates of the Jordan Valley, which in antiquity were exported throughout the ancient world for their exceptional sweetness. This means the phrase is agricultural rather than pastoral. Both components — milk from goats grazing the fragrant limestone slopes, date syrup from the valley floor — are products of a specific, real landscape. The promise is rooted in geography.</p>
+
+    <h2>The Shape of the Promise</h2>
+
+    <p>The gyroid is a triply-periodic minimal surface, discovered by NASA engineer Alan Schoen in 1970. Its implicit equation — <em>g = sin(x)cos(y) + sin(y)cos(z) + sin(z)cos(x)</em> — describes the dividing surface between two interpenetrating labyrinths in three-dimensional space.</p>
+
+    <p>This is not a metaphor for milk and honey. It is the geometry of those substances at the microscale. Honeycombs are optimized precisely by the minimal-surface principle: bees construct the structure that encloses the most volume with the least wax, and the gyroid is that structure. Milk fat globules in fresh milk form a cellular foam whose topology is identical to gyroid cross-sections. The land's abundance has a shape, and this is it.</p>
+
+    <p>What you see on the canvas is a 2D slice through this geometry, animated as the invisible z-coordinate advances — as though the eye were slowly moving through the microstructure of the Promised Land itself, frame by frame, watching cream and gold shift and breathe.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const SCALE = 8 * Math.PI;
+  const DT = 0.008;
+  const THRESHOLD = 0.12;
+  const TARGET_FPS = 60;
+  const FRAME_MS = 1000 / TARGET_FPS;
+
+  const artPanel = document.getElementById('art-panel');
+  const canvas = document.getElementById('c');
+  const overlay = document.getElementById('overlay');
+  const ctx = canvas.getContext('2d');
+  const octx = overlay.getContext('2d');
+
+  let W, H, img;
+  let t = 0;
+  let lastFrameTime = 0;
+
+  function resize() {
+    const rect = artPanel.getBoundingClientRect();
+    const cssW = rect.width || artPanel.offsetWidth;
+    const cssH = rect.height || artPanel.offsetHeight;
+
+    // Render at half resolution for performance; browser upscales via CSS
+    W = Math.floor(cssW / 2);
+    H = Math.floor(cssH / 2);
+    canvas.width = W;
+    canvas.height = H;
+    overlay.width = cssW;
+    overlay.height = cssH;
+
+    img = ctx.createImageData(W, H);
+  }
+
+  /**
+   * Map a gyroid sample value g ∈ [-1.5, 1.5] to RGBA bytes written at
+   * position i in the ImageData.data Uint8ClampedArray.
+   */
+  function writePixel(data, i, g) {
+    if (Math.abs(g) < THRESHOLD) {
+      // Gyroid surface wall: warm cream #FFF8E7
+      data[i]     = 255;
+      data[i + 1] = 248;
+      data[i + 2] = 231;
+      data[i + 3] = 255;
+    } else if (g > 0) {
+      // Positive plateau: honey amber #C8780A → deep gold #8B5500
+      const u = g / 1.5 < 1 ? g / 1.5 : 1;
+      data[i]     = (200 - u * 61) | 0;
+      data[i + 1] = (120 - u * 35) | 0;
+      data[i + 2] = 10;
+      data[i + 3] = 255;
+    } else {
+      // Negative plateau: soft ivory #F5E8C8 → light tan #D4B896
+      const u = (-g) / 1.5 < 1 ? (-g) / 1.5 : 1;
+      data[i]     = (245 - u * 57) | 0;
+      data[i + 1] = (232 - u * 56) | 0;
+      data[i + 2] = (200 - u * 52) | 0;
+      data[i + 3] = 255;
+    }
+  }
+
+  /**
+   * Render one frame of the gyroid cross-section into the pixel buffer
+   * and composite overlays (vignette + Hebrew text).
+   */
+  function frame(now) {
+    requestAnimationFrame(frame);
+
+    if (now - lastFrameTime < FRAME_MS) return;
+    lastFrameTime = now;
+
+    t += DT;
+
+    const data = img.data;
+    const sinZ = Math.sin(t);
+    const cosZ = Math.cos(t);
+
+    for (let py = 0; py < H; py++) {
+      const y = (py / H) * SCALE;
+      const sinY = Math.sin(y);
+      const cosY = Math.cos(y);
+      for (let px = 0; px < W; px++) {
+        const x = (px / W) * SCALE;
+        const g = Math.sin(x) * cosY + sinY * cosZ + sinZ * Math.cos(x);
+        writePixel(data, (py * W + px) * 4, g);
+      }
+    }
+
+    ctx.putImageData(img, 0, 0);
+    drawOverlays();
+  }
+
+  /**
+   * Draw the radial vignette and the floating Hebrew text onto the overlay canvas.
+   * The overlay canvas matches CSS pixel dimensions while the gyroid canvas is
+   * half-resolution, so these stay crisp regardless of the render scale.
+   */
+  function drawOverlays() {
+    const ow = overlay.width;
+    const oh = overlay.height;
+    octx.clearRect(0, 0, ow, oh);
+
+    // Radial vignette: center transparent → edge rgba(10,8,4,0.6)
+    const grad = octx.createRadialGradient(ow / 2, oh / 2, 0, ow / 2, oh / 2, Math.hypot(ow, oh) / 2);
+    grad.addColorStop(0, 'rgba(10,8,4,0)');
+    grad.addColorStop(1, 'rgba(10,8,4,0.6)');
+    octx.fillStyle = grad;
+    octx.fillRect(0, 0, ow, oh);
+
+    // Centered Hebrew text: דְּבַשׁ וְחָלָב
+    octx.font = '300 64px serif';
+    octx.fillStyle = 'rgba(255,248,230,0.25)';
+    octx.textAlign = 'center';
+    octx.textBaseline = 'middle';
+    octx.fillText('דְּבַשׁ וְחָלָב', ow / 2, oh / 2);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
