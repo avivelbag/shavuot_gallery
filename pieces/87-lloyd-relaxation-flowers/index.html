@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adorned with Roses: A Shavuot Garden</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1A2E1A; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #1A2E1A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #2d4a2d;
+      overflow-y: auto;
+      color: #c8d8b8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #111e11;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #2d4a2d; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #F4B8C1;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #4a7a4a;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #A8C4E0;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em { color: #fdf6b2; font-style: italic; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+  </div>
+  <div class="essay-panel">
+    <h1>Adorned with Roses: A Shavuot Garden</h1>
+    <p class="subtitle">Centroidal Voronoi Tessellation / Lloyd's Relaxation &middot; Greenery and Flowers / Matan Torah</p>
+
+    <h2>The Rama's Ruling</h2>
+    <p>The Rama — Rabbi Moshe Isserles — records in <em>Orach Chaim</em> 494:3: "The custom is to strew fragrant grasses in the synagogue and the home in honor of the festival." On Shavuot, synagogues across the Jewish world fill with cut flowers, fragrant herbs, and greenery. The custom is widespread enough that it has come to define the holiday's sensory texture alongside the dairy foods and the long night of learning. But why flowers? The Rama gestures to a reason — "in memory of Mount Sinai" — and the deeper source runs through the midrashim.</p>
+
+    <h2>The Mountain in Bloom</h2>
+    <p>Both <em>Shir HaShirim Rabbah</em> (1:2) and <em>Pirkei DeRabbi Eliezer</em> (ch. 41) record the same tradition: when the Holy One descended upon Har Sinai to give the Torah, the mountain burst into bloom. Flowers appeared at its foot at the very moment of revelation. The barren wilderness was transformed, however briefly, into a garden. The world itself blossomed in recognition of what was being transmitted.</p>
+    <p>The Talmud in <em>Shabbat</em> 88b adds another layer: at the moment Israel pronounced <em>naaseh v'nishma</em> — "we will do and we will hear" — the very angels descended to crown each Israelite with roses and myrtles. The people became a garden; the covenant was sealed in flowers.</p>
+
+    <h2>Re-Enactment, Not Decoration</h2>
+    <p>Here is the non-obvious insight: filling the synagogue with flowers on Shavuot is not decoration. It is a re-enactment. Each year, by filling the space of prayer with blooms, the community recreates the miraculous landscape of Sinai — making the moment of Torah-giving spatially present, generation by generation. The flowers do not merely adorn the room. They transform it into the mountain.</p>
+    <p>The custom thus carries the same logic as the Passover Seder, where one is commanded to see oneself as if personally leaving Egypt. On Shavuot, the synagogue becomes Sinai. The flowers prove it.</p>
+
+    <h2>The Algorithm as Analogy</h2>
+    <p>Lloyd's algorithm enacts the same principle. From scattered seed points — placed randomly like wildflowers across an unplanted field — Voronoi cells form and centroids are computed, iteration by iteration, until the entire plane self-organizes into a perfectly balanced floral tessellation. What begins as chaos converges to perfect order: each seed at the heart of its own territory, the wilderness become a garden.</p>
+    <p>The wilderness before Sinai was formless — a people without structure, without covenant. Revelation fell, and order emerged not by imposition but by convergence: each soul finding its place in the architecture of the divine word. The flowers do not merely fill the space. They organize it.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var W = 400, H = 266;
+  var N = 280;
+  var MAX_ITER = 60;
+  var CONVERGE_DIST = 0.5;
+  var ITER_INTERVAL = 250;
+
+  /* Grid acceleration: divide canvas into CELL_SIZE×CELL_SIZE cells. */
+  var CELL_SIZE = 20;
+  var GRID_W = Math.ceil(W / CELL_SIZE);
+  var GRID_H = Math.ceil(H / CELL_SIZE);
+
+  /* Five flower types: [petalR, petalG, petalB, centerR, centerG, centerB, petalCount] */
+  var FLOWER_TYPES = [
+    { p: [250, 250, 242], c: [255, 224, 102], n: 6 },
+    { p: [123, 94, 167],  c: [255, 215, 0],   n: 6 },
+    { p: [244, 184, 193], c: [192, 96, 128],  n: 8 },
+    { p: [245, 230, 66],  c: [200, 160, 0],   n: 7 },
+    { p: [168, 196, 224], c: [80, 128, 176],  n: 6 },
+  ];
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  canvas.width = W;
+  canvas.height = H;
+
+  /* Seeds stored as flat typed arrays for cache-efficient inner loops. */
+  var seedsX = new Float32Array(N);
+  var seedsY = new Float32Array(N);
+  var seedTypes = new Uint8Array(N);
+
+  for (var i = 0; i < N; i++) {
+    seedsX[i] = Math.random() * W;
+    seedsY[i] = Math.random() * H;
+    seedTypes[i] = Math.floor(Math.random() * 5);
+  }
+
+  var assignment = new Uint16Array(W * H);
+  var imgData = ctx.createImageData(W, H);
+  var cellAreas = new Float32Array(N);
+
+  /* Grid cells: each is a flat array of seed indices. */
+  var grid = [];
+  for (var g = 0; g < GRID_W * GRID_H; g++) grid.push([]);
+
+  var iteration = 0;
+  var phase = 'relaxing';
+  var bloomFrame = 0;
+  var lastIterTime = 0;
+
+  /**
+   * Rebuild the spatial grid from current seed positions.
+   * Called before each Voronoi computation so the grid stays current.
+   */
+  function buildGrid() {
+    for (var g = 0; g < grid.length; g++) grid[g].length = 0;
+    for (var i = 0; i < N; i++) {
+      var gx = Math.min(GRID_W - 1, Math.floor(seedsX[i] / CELL_SIZE));
+      var gy = Math.min(GRID_H - 1, Math.floor(seedsY[i] / CELL_SIZE));
+      grid[gy * GRID_W + gx].push(i);
+    }
+  }
+
+  /**
+   * Assign each pixel to its nearest seed using a 3×3 grid-cell neighbourhood
+   * search. Falls back to seed 0 for the rare pixel whose neighbourhood holds
+   * no seeds (negligible error for Lloyd's convergence at this density).
+   */
+  function computeAssignment() {
+    buildGrid();
+    for (var py = 0; py < H; py++) {
+      var pgy = Math.min(GRID_H - 1, Math.floor(py / CELL_SIZE));
+      for (var px = 0; px < W; px++) {
+        var pgx = Math.min(GRID_W - 1, Math.floor(px / CELL_SIZE));
+        var minD = 1e18, minI = 0;
+        for (var dgy = -1; dgy <= 1; dgy++) {
+          var gy2 = pgy + dgy;
+          if (gy2 < 0 || gy2 >= GRID_H) continue;
+          for (var dgx = -1; dgx <= 1; dgx++) {
+            var gx2 = pgx + dgx;
+            if (gx2 < 0 || gx2 >= GRID_W) continue;
+            var cell = grid[gy2 * GRID_W + gx2];
+            for (var k = 0; k < cell.length; k++) {
+              var si = cell[k];
+              var dx = px - seedsX[si];
+              var dy = py - seedsY[si];
+              var d = dx * dx + dy * dy;
+              if (d < minD) { minD = d; minI = si; }
+            }
+          }
+        }
+        assignment[py * W + px] = minI;
+      }
+    }
+  }
+
+  /**
+   * Move each seed to the centroid of its assigned pixels (one Lloyd step).
+   * Returns the maximum displacement across all seeds, used for convergence.
+   */
+  function computeCentroids() {
+    var sumX = new Float32Array(N);
+    var sumY = new Float32Array(N);
+    var cnt  = new Float32Array(N);
+    for (var py = 0; py < H; py++) {
+      for (var px = 0; px < W; px++) {
+        var k = assignment[py * W + px];
+        sumX[k] += px; sumY[k] += py; cnt[k]++;
+      }
+    }
+    var maxDisp = 0;
+    for (var i = 0; i < N; i++) {
+      cellAreas[i] = cnt[i];
+      if (cnt[i] > 0) {
+        var cx = sumX[i] / cnt[i];
+        var cy = sumY[i] / cnt[i];
+        var dx = cx - seedsX[i];
+        var dy = cy - seedsY[i];
+        var disp = Math.sqrt(dx * dx + dy * dy);
+        if (disp > maxDisp) maxDisp = disp;
+        seedsX[i] = cx;
+        seedsY[i] = cy;
+      }
+    }
+    return maxDisp;
+  }
+
+  /**
+   * Render all cells via ImageData using each seed's flower-type colour,
+   * blended toward gray by (1 - sat) to show reduced-saturation state during
+   * the relaxation phase.
+   */
+  function renderCells(sat) {
+    var d = imgData.data;
+    for (var p = 0; p < W * H; p++) {
+      var k = assignment[p];
+      var ft = FLOWER_TYPES[seedTypes[k]];
+      var r = ft.p[0], g2 = ft.p[1], b = ft.p[2];
+      var gray = r * 0.299 + g2 * 0.587 + b * 0.114;
+      var o = p * 4;
+      d[o]     = (gray + (r  - gray) * sat + 0.5) | 0;
+      d[o + 1] = (gray + (g2 - gray) * sat + 0.5) | 0;
+      d[o + 2] = (gray + (b  - gray) * sat + 0.5) | 0;
+      d[o + 3] = 255;
+    }
+    ctx.putImageData(imgData, 0, 0);
+  }
+
+  /**
+   * Overlay a stylised flower at canvas position (cx, cy).
+   * r is the approximate cell radius from sqrt(area/π).
+   * petalScale applies the breathing sine modulation (1 ± 0.05).
+   */
+  function drawFlower(cx, cy, r, type, petalScale) {
+    var ft = FLOWER_TYPES[type];
+    var pc = 'rgb(' + ft.p[0] + ',' + ft.p[1] + ',' + ft.p[2] + ')';
+    var cc = 'rgb(' + ft.c[0] + ',' + ft.c[1] + ',' + ft.c[2] + ')';
+    var nP = ft.n;
+    var rp = r * petalScale;
+
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = pc;
+    ctx.fillStyle = pc;
+    for (var i = 0; i < nP; i++) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate((i / nP) * Math.PI * 2);
+      ctx.beginPath();
+      ctx.ellipse(rp * 0.6, 0, rp * 0.35, rp * 0.18, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'transparent';
+
+    ctx.fillStyle = cc;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r * 0.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  /**
+   * Execute one Lloyd iteration: move seeds to centroids, recompute Voronoi,
+   * render the new tessellation, and advance the iteration counter.
+   * Transitions to 'blooming' on convergence.
+   */
+  function lloydStep() {
+    var maxDisp = computeCentroids();
+    computeAssignment();
+    iteration++;
+    renderCells(0.35);
+    if (iteration >= MAX_ITER || maxDisp < CONVERGE_DIST) {
+      phase = 'blooming';
+      bloomFrame = 0;
+    }
+  }
+
+  /**
+   * Main rAF loop: dispatches to the current phase's logic.
+   *
+   * 'relaxing'  — runs one Lloyd step every ITER_INTERVAL ms.
+   * 'blooming'  — lerps cell saturation from 0.35 to 1.0 over 60 frames.
+   * 'breathing' — full-saturation cells with petal overlay whose scale
+   *               breathes at ±5 % amplitude and 0.4 Hz frequency.
+   */
+  function frame(now) {
+    if (phase === 'relaxing') {
+      if (now - lastIterTime >= ITER_INTERVAL) {
+        lloydStep();
+        lastIterTime = now;
+      }
+    } else if (phase === 'blooming') {
+      bloomFrame++;
+      var sat = Math.min(1.0, 0.35 + (bloomFrame / 60) * 0.65);
+      renderCells(sat);
+      if (bloomFrame >= 60) phase = 'breathing';
+    } else {
+      var t = now / 1000;
+      var scale = 1 + 0.05 * Math.sin(t * 0.4 * 2 * Math.PI);
+      renderCells(1.0);
+      for (var i = 0; i < N; i++) {
+        var r = Math.min(22, Math.max(8, Math.sqrt(cellAreas[i] / Math.PI)));
+        drawFlower(seedsX[i], seedsY[i], r, seedTypes[i], scale);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  computeAssignment();
+  lastIterTime = performance.now();
+  renderCells(0.35);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

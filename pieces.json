@@ -1474,6 +1474,17 @@
     "essay": "pieces/87-double-pendulum-sinai-thunder/essay.md"
   },
   {
+    "id": "87-lloyd-relaxation-flowers",
+    "title": "Adorned with Roses: A Shavuot Garden",
+    "tagline": "280 seed points converge through Lloyd's relaxation into a floral tessellation — the wilderness of Sinai organized into a garden",
+    "year": 2026,
+    "theme": "Greenery and flowers / Matan Torah",
+    "technique": "Centroidal Voronoi Tessellation / Lloyd's relaxation",
+    "path": "pieces/87-lloyd-relaxation-flowers/index.html",
+    "thumbnail": "pieces/87-lloyd-relaxation-flowers/thumbnail.svg",
+    "essay": "pieces/87-lloyd-relaxation-flowers/essay.md"
+  },
+  {
     "id": "87-ulam-prime-spiral-omer",
     "title": "The Fifty Gates: A Prime Spiral",
     "tagline": "the Ulam spiral of primes — forty-nine in wheat gold, the fiftieth in white, found only by counting",
