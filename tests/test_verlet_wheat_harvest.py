@@ -7,8 +7,6 @@ requirements, and canvas animation correctness for this piece.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "74-verlet-wheat-harvest"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
@@ -243,7 +241,7 @@ def test_piece_id_unique_in_registry():
     assert len(matching) == 1, f"Expected 1 entry for {PIECE_ID}, found {len(matching)}"
 
 
-def test_essay_does_not_stub_placeholder(tmp_path):
+def test_essay_does_not_stub_placeholder():
     """Essay must not be a one-liner placeholder."""
     text = open(os.path.join(PIECE_DIR, "essay.md"), encoding="utf-8").read()
     lines = [ln for ln in text.splitlines() if ln.strip()]
