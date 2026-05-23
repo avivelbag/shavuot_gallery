@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#0B1A08"/>
+  <!-- Depth-3 pinwheel fragment, pre-rotated 15 degrees to show non-aligned tile orientations -->
+  <!-- Generation 0 seed subdivided manually to depth 3; coordinates pre-computed and rotated 15deg about centre -->
+  <!-- Palette: gold #C8A020, amber #D4720A, green #5A8A30, cream #F0E8D0 -->
+
+  <!-- Generation-3 triangles (innermost, cream) -->
+  <g fill="#F0E8D0" stroke="#0B1A08" stroke-width="0.5">
+    <polygon points="200,108 226,121 207,140"/>
+    <polygon points="226,121 248,108 248,134"/>
+    <polygon points="207,140 226,121 226,155"/>
+    <polygon points="248,134 248,108 271,121"/>
+    <polygon points="271,121 248,134 271,155"/>
+    <polygon points="178,155 200,140 207,160"/>
+    <polygon points="200,140 226,155 207,160"/>
+    <polygon points="226,155 226,180 207,160"/>
+    <polygon points="226,180 248,165 248,190"/>
+    <polygon points="248,165 271,155 271,180"/>
+    <polygon points="178,190 200,180 207,200"/>
+    <polygon points="200,180 207,200 226,190"/>
+    <polygon points="155,175 178,190 165,210"/>
+    <polygon points="155,200 155,175 140,190"/>
+    <polygon points="178,220 178,190 165,210"/>
+    <polygon points="140,215 155,200 155,225"/>
+    <polygon points="155,225 178,220 165,240"/>
+    <polygon points="178,245 178,220 196,235"/>
+    <polygon points="155,250 178,245 165,265"/>
+    <polygon points="178,265 178,245 196,260"/>
+    <polygon points="196,260 207,280 220,265"/>
+    <polygon points="220,265 220,290 235,275"/>
+    <polygon points="235,275 248,260 248,285"/>
+    <polygon points="248,285 271,275 271,300"/>
+    <polygon points="271,300 295,290 295,315"/>
+    <polygon points="295,290 295,265 314,280"/>
+    <polygon points="295,265 314,250 314,275"/>
+    <polygon points="314,250 295,240 314,225"/>
+    <polygon points="295,240 295,215 314,225"/>
+    <polygon points="271,235 295,240 278,255"/>
+    <polygon points="271,210 295,215 278,230"/>
+    <polygon points="248,235 271,210 278,230"/>
+    <polygon points="271,185 271,210 248,210"/>
+  </g>
+
+  <!-- Generation-2 triangles (field green) -->
+  <g fill="#5A8A30" stroke="#0B1A08" stroke-width="0.7">
+    <polygon points="200,80 248,108 200,136"/>
+    <polygon points="248,108 271,80 320,108"/>
+    <polygon points="200,136 248,108 248,164"/>
+    <polygon points="248,164 271,192 248,192"/>
+    <polygon points="271,192 320,164 320,192"/>
+    <polygon points="155,164 200,136 200,192"/>
+    <polygon points="155,164 131,192 131,164"/>
+    <polygon points="131,192 155,220 131,248"/>
+    <polygon points="155,220 200,248 155,276"/>
+    <polygon points="200,248 248,276 200,304"/>
+    <polygon points="248,276 320,248 320,276"/>
+    <polygon points="320,248 344,220 344,248"/>
+    <polygon points="344,248 320,276 320,304"/>
+    <polygon points="320,304 296,332 296,304"/>
+    <polygon points="296,304 248,304 248,332"/>
+    <polygon points="248,304 200,304 200,332"/>
+  </g>
+
+  <!-- Generation-1 triangles (warm amber) -->
+  <g fill="#D4720A" stroke="#0B1A08" stroke-width="1.0">
+    <polygon points="200,52 296,108 152,108"/>
+    <polygon points="296,108 348,52 400,108"/>
+    <polygon points="152,108 200,52 200,164"/>
+    <polygon points="200,164 296,108 296,220"/>
+    <polygon points="296,220 348,276 296,276"/>
+    <polygon points="104,220 152,164 152,276"/>
+    <polygon points="104,220 56,276 56,220"/>
+    <polygon points="56,276 104,332 56,332"/>
+    <polygon points="104,332 200,276 200,388"/>
+    <polygon points="200,388 296,332 296,388"/>
+    <polygon points="296,332 348,388 400,332"/>
+    <polygon points="400,332 352,276 400,276"/>
+  </g>
+
+  <!-- Generation-0 seed triangles (deep wheat gold, largest) -->
+  <g fill="#C8A020" stroke="#0B1A08" stroke-width="1.5">
+    <polygon points="56,52 296,52 56,332"/>
+    <polygon points="296,52 400,52 400,332"/>
+    <polygon points="56,332 296,332 56,388"/>
+  </g>
+</svg>

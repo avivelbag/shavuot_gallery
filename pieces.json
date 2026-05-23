@@ -1021,5 +1021,16 @@
     "path": "pieces/69-differential-growth-bikkurim/index.html",
     "thumbnail": "pieces/69-differential-growth-bikkurim/thumbnail.svg",
     "essay": "pieces/69-differential-growth-bikkurim/essay.md"
+  },
+  {
+    "id": "70-pinwheel-tiling-omer",
+    "title": "Forty-Nine Angles of the Count",
+    "tagline": "the only aperiodic tiling with all orientations — 49 tiles numbered for each day of the Omer",
+    "year": 2026,
+    "theme": "Sefirat HaOmer",
+    "technique": "pinwheel tiling / aperiodic substitution",
+    "path": "pieces/70-pinwheel-tiling-omer/index.html",
+    "thumbnail": "pieces/70-pinwheel-tiling-omer/thumbnail.svg",
+    "essay": "pieces/70-pinwheel-tiling-omer/essay.md"
   }
 ]

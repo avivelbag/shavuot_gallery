@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="he-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forty-Nine Angles of the Count — Pinwheel Tiling / Sefirat HaOmer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #0B1A08; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0B1A08;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #pinwheel-svg {
+      display: block;
+      width: 700px;
+      height: 700px;
+      max-width: 96vmin;
+      max-height: 96vmin;
+      transform-origin: 350px 350px;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1a3010;
+      overflow-y: auto;
+      color: #b8c0a0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #060c04;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 300px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1a3010; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #C8A020;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.88rem;
+      color: #3a4a20;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 0.95rem;
+      color: #C8A020;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.85;
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+    }
+    .essay-panel em { color: #d4c090; font-style: italic; }
+    .essay-panel strong { color: #C8A020; font-weight: normal; font-style: italic; }
+    .essay-panel hr { border: none; border-top: 1px solid #12200a; margin: 2rem 0; }
+
+    .passage-block {
+      background: #030704;
+      border: 1px solid #2a3a04;
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 0 0 1.8rem;
+    }
+    .passage-block .hebrew-text {
+      font-size: 1.1rem;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+      color: #C8A020;
+      line-height: 2.1;
+      margin: 0 0 0.9rem;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
+    .passage-block .english-text {
+      font-size: 0.88rem;
+      color: #708040;
+      font-style: italic;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .passage-block .source {
+      font-size: 0.78rem;
+      color: #3a4010;
+      margin: 0.5rem 0 0;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel">
+    <svg id="pinwheel-svg" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="700" fill="#0B1A08"/>
+      <g id="tiling-group"></g>
+      <g id="labels-group"></g>
+    </svg>
+  </div>
+  <div class="essay-panel">
+    <h1>Forty-Nine Angles of the Count</h1>
+    <p class="subtitle">pinwheel tiling / aperiodic substitution — Leviticus 23:15–16; Sefer HaChinuch mitzvah 306</p>
+
+    <h2>The Commandment to Count</h2>
+
+    <p>Leviticus 23:15–16 contains one of the Torah's most unusual commandments: "You shall count for yourselves from the day after the Sabbath, from the day you bring the Omer wave-offering, seven complete weeks shall there be; until the day after the seventh week you shall count fifty days." This is <em>Sefirat HaOmer</em> — the Counting of the Omer. Each evening after nightfall, from the second night of Passover through the eve of Shavuot, a Jew recites a blessing and announces the precise day: "Today is the N<sup>th</sup> day, which is X weeks and Y days of the Omer." The count is not merely arithmetic; the Talmud (Menachot 65b) derives from the word <em>tisperu</em> — "you shall count" — that each individual must personally count.</p>
+
+    <div class="passage-block">
+      <p class="hebrew-text">וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת, מִיּוֹם הֲבִיאֲכֶם אֶת-עֹמֶר הַתְּנוּפָה — שֶׁבַע שַׁבָּתוֹת תְּמִימֹת תִּהְיֶינָה.</p>
+      <p class="english-text">"You shall count for yourselves from the day after the Sabbath… seven complete weeks shall there be."</p>
+      <p class="source">— Leviticus 23:15–16</p>
+    </div>
+
+    <h2>The Kabbalistic Map</h2>
+
+    <p>Kabbalistic tradition, crystallized in the Zohar and systematized by the Ari (Rabbi Isaac Luria), overlays the count with a precise spiritual geometry. The seven weeks correspond to the seven lower <em>sefirot</em> — the divine attributes through which the Infinite interfaces with creation: <em>chesed</em> (loving-kindness), <em>gevurah</em> (strength), <em>tiferet</em> (harmony), <em>netzach</em> (endurance), <em>hod</em> (splendor), <em>yesod</em> (foundation), <em>malchut</em> (sovereignty). Each day within each week maps to the sub-sefirah of that week: day one is <em>chesed she-b'chesed</em>, the loving-kindness within loving-kindness; day forty-nine is <em>malchut she-b'malchut</em>, the sovereignty within sovereignty.</p>
+
+    <p>The result is a 7×7 grid of 49 spiritual coordinates — every combination of the soul's principal capacities — each a different "angle of approach" toward readiness to receive Torah. <em>Sefer HaChinuch</em> (mitzvah 306) states the reason: a slave newly freed from Egypt cannot receive the Torah immediately; the 49-day journey is the refinement, the preparation, the becoming worthy. No spiritual direction is skipped. No combination of inner faculties goes unaddressed. The count is exhaustive by design.</p>
+
+    <h2>The Pinwheel and Full Isotropy</h2>
+
+    <p>The pinwheel tiling, discovered by Charles Radin and John Conway in 1994, is constructed by recursively subdividing a 1-2-√5 right triangle into five congruent similar copies. What makes it unique among all known aperiodic tilings is its rotational behavior: tiles appear at infinitely many distinct orientations, and every angle occurs with equal statistical frequency. The tiling is statistically <em>isotropic</em> — no direction is privileged. Penrose tilings have fivefold symmetry but tiles still appear in only finitely many orientations. Wang tiles break translational periodicity but not angular variety. Only the pinwheel achieves what mathematicians call <em>full statistical circular symmetry</em>: the orientation distribution is uniform over the entire circle. This property cannot occur in any periodic tiling, which by definition has preferred directions fixed by its translation lattice.</p>
+
+    <h2>The Correspondence</h2>
+
+    <p>The Omer count traverses 49 specific combinations so that no dimension of the soul remains unexamined, no angle of inner life unaddressed. Just as the pinwheel's recursive subdivision eventually orients tiles in every direction — visiting the full circle of possibility — the 49-day count visits every combination of the seven soul-faculties, leaving no preparation angle unexplored. The slow rotation of this tiling makes the "all-angles" property visible in real time. Watch any fixed tile rotate slowly out of frame, and another — differently oriented — rotate into view. The tiling does not repeat. The count does not repeat. Both spiral outward toward a fiftieth: Shavuot, the day of Torah, the day the counting reaches beyond its own structure.</p>
+
+    <h2>This Piece</h2>
+
+    <p>The tiling is generated in JavaScript by recursive subdivision to depth 4 (625 triangles), each filled by generation depth using a harvest palette — deep wheat gold for the outermost generation, warm amber, field green, and cream for the innermost. The 49 largest tiles by area are highlighted with a luminosity boost and labeled with Hebrew ordinals <strong>א</strong> through <strong>מ״ט</strong>, marking the 49 days of the Omer. Each label is scaled to the tile's inscribed circle radius and rendered in deep blue. The entire tiling rotates continuously at 0.003 radians per frame, completing one full revolution in approximately 35 seconds.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const DEPTH = 4;
+  const CX = 350, CY = 350;
+  const SCALE = 280;
+
+  const DEPTH_COLORS = ['#C8A020', '#D4720A', '#5A8A30', '#F0E8D0', '#F0E8D0'];
+  const HIGHLIGHT_BOOST = 1.25;
+  const LABEL_COLOR = '#1A3080';
+
+  const HEBREW_ORDINALS = [
+    'א','ב','ג','ד','ה','ו','ז','ח','ט','י',
+    'יא','יב','יג','יד','טו','טז','יז','יח','יט','כ',
+    'כא','כב','כג','כד','כה','כו','כז','כח','כט','ל',
+    'לא','לב','לג','לד','לה','לו','לז','לח','לט','מ',
+    'מא','מב','מג','מד','מה','מו','מז','מח','מט'
+  ];
+
+  /**
+   * A triangle in the pinwheel tiling, stored as three 2D vertices.
+   * `flip` tracks reflection parity through subdivisions (unused for color,
+   * kept for correctness of the subdivision rule orientation).
+   * `depth` is the generation at which this triangle was born (0 = seed).
+   */
+  function tri(v0, v1, v2, flip, depth) {
+    return { v0, v1, v2, flip, depth };
+  }
+
+  function vec(x, y) { return { x, y }; }
+
+  function add(a, b) { return vec(a.x + b.x, a.y + b.y); }
+  function sub(a, b) { return vec(a.x - b.x, a.y - b.y); }
+  function scale(v, s) { return vec(v.x * s, v.y * s); }
+  function lerp(a, b, t) { return add(a, scale(sub(b, a), t)); }
+
+  /**
+   * Rotate vector v by angle theta (radians) about the origin.
+   */
+  function rot(v, theta) {
+    const c = Math.cos(theta), s = Math.sin(theta);
+    return vec(v.x * c - v.y * s, v.x * s + v.y * c);
+  }
+
+  /**
+   * Pinwheel substitution rule (Radin 1994).
+   *
+   * Input triangle has:
+   *   v0 = right-angle vertex (legs 1 and 2)
+   *   v1 = end of leg of length 1 (short leg)
+   *   v2 = end of leg of length 2 (long leg)
+   *
+   * The 5 child triangles are all similar to the parent (scale factor 1/√5).
+   * The subdivision uses a fixed geometric construction:
+   *   Let side v0→v1 have length a (=1 unit in normalised coords).
+   *   Let side v0→v2 have length 2a.
+   *   Hypotenuse v1→v2 has length √5 · a.
+   *
+   * Reference coordinates (per Radin / Wikipedia "Pinwheel tiling"):
+   *   P1 = v0 + (1/5)(v2 - v0)              along long leg, 1/5 from right-angle
+   *   P2 = v0 + (2/5)(v2 - v0)              along long leg, 2/5 from right-angle
+   *   P3 = v1 + (1/5)(v2 - v1)              along hypotenuse, 1/5 from short-leg tip
+   *   P4 = midpoint(v0, v1)                  midpoint of short leg
+   *   P5 = midpoint(v1, v2)                  midpoint of hypotenuse
+   *
+   * The 5 children (each a 1-2-√5 triangle) are:
+   *   T1: (v0,  P4,  P1)   flip  = !flip
+   *   T2: (P4,  v1,  P3)   flip  = flip
+   *   T3: (P4,  P3,  P1)   flip  = !flip
+   *   T4: (P1,  P3,  P2)   flip  = flip
+   *   T5: (P2,  P3,  v2)   flip  = !flip
+   */
+  function subdivide(t) {
+    const { v0, v1, v2, flip, depth } = t;
+    const d = depth + 1;
+
+    const P1 = lerp(v0, v2, 1 / 5);
+    const P2 = lerp(v0, v2, 2 / 5);
+    const P3 = lerp(v1, v2, 1 / 5);
+    const P4 = lerp(v0, v1, 1 / 2);
+
+    return [
+      tri(v0, P4, P1, !flip, d),
+      tri(P4, v1, P3, flip,  d),
+      tri(P4, P3, P1, !flip, d),
+      tri(P1, P3, P2, flip,  d),
+      tri(P2, P3, v2, !flip, d),
+    ];
+  }
+
+  /**
+   * Recursively subdivide a list of triangles `depth` times.
+   */
+  function buildTiling(seeds, depth) {
+    let current = seeds;
+    for (let i = 0; i < depth; i++) {
+      const next = [];
+      for (const t of current) next.push(...subdivide(t));
+      current = next;
+    }
+    return current;
+  }
+
+  /**
+   * Area of a triangle given its three vertices (absolute value of cross product).
+   */
+  function area(t) {
+    const ax = t.v1.x - t.v0.x, ay = t.v1.y - t.v0.y;
+    const bx = t.v2.x - t.v0.x, by = t.v2.y - t.v0.y;
+    return Math.abs(ax * by - ay * bx) * 0.5;
+  }
+
+  /**
+   * Centroid of a triangle.
+   */
+  function centroid(t) {
+    return vec(
+      (t.v0.x + t.v1.x + t.v2.x) / 3,
+      (t.v0.y + t.v1.y + t.v2.y) / 3
+    );
+  }
+
+  /**
+   * Inscribed circle radius of triangle given three vertices.
+   * r = Area / s  where s = semi-perimeter.
+   */
+  function inradius(t) {
+    const a = Math.hypot(t.v1.x - t.v2.x, t.v1.y - t.v2.y);
+    const b = Math.hypot(t.v0.x - t.v2.x, t.v0.y - t.v2.y);
+    const c = Math.hypot(t.v0.x - t.v1.x, t.v0.y - t.v1.y);
+    return area(t) / ((a + b + c) * 0.5);
+  }
+
+  /**
+   * Lighten a hex color by a multiplicative factor on each channel.
+   */
+  function lighten(hex, factor) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const clamp = v => Math.min(255, Math.round(v * factor));
+    return '#' +
+      clamp(r).toString(16).padStart(2, '0') +
+      clamp(g).toString(16).padStart(2, '0') +
+      clamp(b).toString(16).padStart(2, '0');
+  }
+
+  /**
+   * Convert a 2D point from tiling-local coordinates (centred at 0,0, unit scale)
+   * to SVG viewport coordinates (centred at CX,CY, scaled by SCALE).
+   */
+  function toSVG(v) {
+    return vec(CX + v.x * SCALE, CY + v.y * SCALE);
+  }
+
+  /**
+   * Return an SVG polygon points string for triangle t.
+   */
+  function polyPoints(t) {
+    const p0 = toSVG(t.v0), p1 = toSVG(t.v1), p2 = toSVG(t.v2);
+    return `${p0.x.toFixed(2)},${p0.y.toFixed(2)} ${p1.x.toFixed(2)},${p1.y.toFixed(2)} ${p2.x.toFixed(2)},${p2.y.toFixed(2)}`;
+  }
+
+  const svgNS = 'http://www.w3.org/2000/svg';
+
+  function makePoly(t, fill) {
+    const el = document.createElementNS(svgNS, 'polygon');
+    el.setAttribute('points', polyPoints(t));
+    el.setAttribute('fill', fill);
+    el.setAttribute('stroke', '#0B1A08');
+    el.setAttribute('stroke-width', '0.6');
+    return el;
+  }
+
+  function makeText(cx, cy, label, fontSize) {
+    const el = document.createElementNS(svgNS, 'text');
+    el.setAttribute('x', cx.toFixed(2));
+    el.setAttribute('y', cy.toFixed(2));
+    el.setAttribute('text-anchor', 'middle');
+    el.setAttribute('dominant-baseline', 'central');
+    el.setAttribute('font-family', "'Times New Roman', serif");
+    el.setAttribute('font-size', fontSize.toFixed(1));
+    el.setAttribute('fill', LABEL_COLOR);
+    el.setAttribute('pointer-events', 'none');
+    el.textContent = label;
+    return el;
+  }
+
+  function buildSVG() {
+    // Seed triangle: right angle at origin, short leg along +y, long leg along +x.
+    // Normalised so hypotenuse = 1 (legs 1/√5 and 2/√5).
+    const inv = 1 / Math.sqrt(5);
+    const seed = tri(
+      vec(0, 0),
+      vec(0, inv),        // short leg tip (length 1/√5)
+      vec(2 * inv, 0),    // long leg tip  (length 2/√5)
+      false,
+      0
+    );
+
+    const triangles = buildTiling([seed], DEPTH);
+
+    // Sort by area descending; top 49 get Omer labels.
+    const sorted = triangles.slice().sort((a, b) => area(b) - area(a));
+    const top49 = new Set(sorted.slice(0, 49));
+
+    const tilingGroup = document.getElementById('tiling-group');
+    const labelsGroup = document.getElementById('labels-group');
+
+    for (const t of triangles) {
+      const baseColor = DEPTH_COLORS[Math.min(t.depth, DEPTH_COLORS.length - 1)];
+      const fill = top49.has(t) ? lighten(baseColor, HIGHLIGHT_BOOST) : baseColor;
+      tilingGroup.appendChild(makePoly(t, fill));
+    }
+
+    let ommerIndex = 0;
+    for (const t of sorted.slice(0, 49)) {
+      const c = toSVG(centroid(t));
+      const r = inradius(t) * SCALE;
+      const fontSize = Math.max(8, r * 0.9);
+      labelsGroup.appendChild(makeText(c.x, c.y, HEBREW_ORDINALS[ommerIndex], fontSize));
+      ommerIndex++;
+    }
+  }
+
+  buildSVG();
+
+  // Continuous rotation at 0.003 rad/frame, capped at 60fps.
+  const svgEl = document.getElementById('pinwheel-svg');
+  let angle = 0;
+  let lastTime = null;
+  const RAD_PER_MS = 0.003 / (1000 / 60);
+
+  function tick(now) {
+    if (lastTime !== null) {
+      const dt = Math.min(now - lastTime, 50); // clamp to avoid jump on tab-switch
+      angle += RAD_PER_MS * dt;
+    }
+    lastTime = now;
+    svgEl.style.transform = `rotate(${angle}rad)`;
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
