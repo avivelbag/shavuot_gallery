@@ -1133,6 +1133,17 @@
     "essay": "pieces/74-heat-equation-engraved-freedom/essay.md"
   },
   {
+    "id": "74-stable-fluid-milk-honey",
+    "title": "A Land Flowing",
+    "tagline": "cream and honey swirl in a GPU Navier-Stokes field — eretz zavat chalav u’dvash",
+    "year": 2026,
+    "theme": "Milk and Honey / The Promised Land",
+    "technique": "WebGL stable fluids / Navier-Stokes pressure projection",
+    "path": "pieces/74-stable-fluid-milk-honey/index.html",
+    "thumbnail": "pieces/74-stable-fluid-milk-honey/thumbnail.svg",
+    "essay": "pieces/74-stable-fluid-milk-honey/essay.md"
+  },
+  {
     "id": "74-verlet-wheat-harvest",
     "title": "The Standing Grain",
     "tagline": "a field of wheat sways on the last day before harvest — Verlet chains, Perlin wind, Chag HaKatzir",

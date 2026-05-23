@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Land Flowing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0A0804; height: 100%; }
+    .layout { display: flex; flex-direction: row; min-height: 100vh; }
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0A0804;
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    #no-webgl {
+      display: none;
+      padding: 2rem;
+      color: #c8b89a;
+      font-family: Georgia, serif;
+      text-align: center;
+      margin-top: 30vh;
+    }
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #3a2800;
+      overflow-y: auto;
+      color: #c8b89a;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #0D0A06;
+    }
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: static; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #3a2800; padding: 2rem 1.5rem; }
+    }
+    .essay-panel h1 { font-size: 1.6rem; color: #e8c870; margin: 0 0 0.25rem; font-weight: normal; }
+    .essay-panel .subtitle { font-size: 0.9rem; color: #605030; margin: 0 0 2rem; }
+    .essay-panel h2 {
+      font-size: 1rem; color: #c8a048; margin: 2rem 0 0.6rem;
+      font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .essay-panel p { line-height: 1.8; margin: 0 0 1rem; font-size: 0.95rem; }
+    .essay-panel em { color: #e8c870; font-style: normal; }
+    .essay-panel blockquote {
+      border-left: 2px solid #604020; margin: 0 0 1rem 0;
+      padding: 0.4rem 1.2rem; color: #a09070; font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+    <div id="no-webgl">
+      <p>WebGL with floating-point textures is required.<br>Please try a modern desktop browser.</p>
+    </div>
+  </div>
+  <div class="essay-panel">
+    <h1>A Land Flowing</h1>
+    <div class="subtitle">WebGL stable fluids · Jos Stam 1999 · Shavuot 5786</div>
+
+    <h2>Eretz Zavat Chalav U'Dvash</h2>
+    <p>
+      "And I have come down to deliver them out of the hand of the Egyptians, and to bring them
+      up out of that land unto a good land and a large, unto a land flowing with milk and honey."
+      (Exodus 3:8)
+    </p>
+    <p>
+      The Hebrew phrase <em>eretz zavat chalav u'dvash</em> — a land flowing with milk and honey
+      — appears more than twenty times across the Torah, from Exodus through Leviticus, Numbers,
+      Deuteronomy, and Joshua. It is one of the defining images of the covenantal promise: not
+      merely a place to settle, but a living land, generous and overflowing.
+    </p>
+    <p>
+      God first speaks it to Moses at the burning bush (Exodus 3:8), before the plagues, before
+      the Exodus, when redemption is still only a word. It recurs as the Israelites stand at
+      the edge of the wilderness (Numbers 13–14), when the spies return carrying grapes too
+      heavy for one man and the people nearly turn back. It is spoken again in Deuteronomy as
+      Moses summarizes the whole forty-year journey — the phrase is the destination that
+      justified everything.
+    </p>
+
+    <h2>Shavuot and the First Fruits</h2>
+    <p>
+      Shavuot is <em>Chag HaBikkurim</em> — the festival of first fruits (Numbers 28:26) —
+      and <em>Chag HaKatzir</em> — the harvest festival (Exodus 23:16). It falls seven weeks
+      after Passover, at the height of the wheat harvest. The first fruits that pilgrims brought
+      to Jerusalem (Deuteronomy 26) were the seven species: wheat, barley, grapes, figs,
+      pomegranates, olives, and dates. Wheat was the most abundant, the centerpiece of early
+      summer's abundance.
+    </p>
+    <p>
+      Before handing over his basket the pilgrim recited the <em>mikra bikkurim</em> declaration
+      (Deuteronomy 26:5–10), beginning: <em>"Arami oved avi"</em> — "My father was a wandering
+      Aramean." The whole history of the people — slavery, exodus, redemption — was compressed
+      into this moment of offering. The first fruits were sweet precisely because they arrived
+      after bitterness. The land could not be taken for granted.
+    </p>
+
+    <h2>Why Dairy on Shavuot?</h2>
+    <p>
+      The Ashkenazic and Sephardic custom of eating dairy foods on Shavuot has its earliest
+      recorded sources in the medieval period. The Talmud (Pesachim 68b) mentions that Shavuot
+      calls for both physical and spiritual rejoicing, but the dairy custom appears later, and
+      several explanations have accumulated around it.
+    </p>
+    <p>
+      One account: the Torah was given on Shabbat, and the Israelites at Sinai had no time to
+      prepare kosher meat in accordance with the newly received laws, so they ate dairy instead.
+      Another, from the Song of Songs (4:11): <em>"Honey and milk are under your tongue"</em>
+      — the words of Torah are sweet as milk, nourishing as honey, and the foods enact the
+      metaphor.
+    </p>
+    <p>
+      A third, less commonly cited: milk and honey are the only two foods that come from living
+      creatures without killing them. Both flow from the animal or the comb without harm to the
+      source. The rabbis see in this an image of the covenant at its most generous: a relationship
+      that sustains without violence, that takes without destroying. On Shavuot, when we receive
+      the Torah — itself described as "a tree of life to those who grasp it" (Proverbs 3:18) —
+      we eat foods that embody this gentleness.
+    </p>
+
+    <h2>This Piece</h2>
+    <p>
+      This simulation implements Jos Stam's 1999 stable fluids algorithm entirely on the GPU:
+      semi-Lagrangian advection, implicit viscosity diffusion, Helmholtz-Hodge pressure
+      projection to enforce incompressibility. Two fluid streams — warm cream from the left,
+      amber honey from the right — are injected along a slow figure-eight Lissajous path,
+      their velocity impulses alternating direction every few seconds.
+    </p>
+    <p>
+      The two fluids swirl together but never fully merge. Cream and honey each hold their
+      character — one pale and light, one deep and amber — even as they interpenetrate. Like
+      the Written Torah and the Oral Torah, or like the land and its people: each distinct,
+      each incomplete without the other, each shaped by the encounter.
+    </p>
+    <p>
+      <em>Eretz zavat chalav u'dvash.</em> A land that flows. Not still, not settled —
+      always in motion, always overflowing, always arriving.
+    </p>
+  </div>
+</div>
+<script>
+(function () {
+'use strict';
+
+var SIM = 256;
+var DT = 1.0 / 60.0;
+var VISCOSITY = 1e-5;
+var DIFF_ITERS = 10;
+var PRES_ITERS = 20;
+var VEL_STRENGTH = 80.0;
+var VEL_RADIUS = 8.0 / SIM;
+var DYE_STRENGTH = 0.4;
+var DYE_RADIUS = 16.0 / SIM;
+var DISS_VEL = 0.9998;
+var DISS_DYE = 0.999;
+var TS_X = 1.0 / SIM;
+var TS_Y = 1.0 / SIM;
+
+var canvas = document.getElementById('c');
+var panel = document.getElementById('art-panel');
+var noWebgl = document.getElementById('no-webgl');
+
+var gl = canvas.getContext('webgl', { antialias: false, alpha: false });
+if (!gl) {
+  noWebgl.style.display = 'block';
+  canvas.style.display = 'none';
+  return;
+}
+
+var ext = gl.getExtension('OES_texture_float');
+if (!ext) {
+  noWebgl.style.display = 'block';
+  canvas.style.display = 'none';
+  return;
+}
+
+// Linear filtering for float textures (optional, improves advection quality)
+var linearExt = gl.getExtension('OES_texture_float_linear');
+var FILTER = linearExt ? gl.LINEAR : gl.NEAREST;
+
+// ---- Shader sources ----
+
+var VERT_SRC = [
+  'attribute vec2 a_pos;',
+  'varying vec2 v_uv;',
+  'void main() {',
+  '  v_uv = a_pos * 0.5 + 0.5;',
+  '  gl_Position = vec4(a_pos, 0.0, 1.0);',
+  '}'
+].join('\n');
+
+var ADVECT_SRC = [
+  'precision highp float;',
+  'varying vec2 v_uv;',
+  'uniform sampler2D u_vel;',
+  'uniform sampler2D u_src;',
+  'uniform vec2 u_ts;',
+  'uniform float u_dt;',
+  'uniform float u_diss;',
+  'void main() {',
+  '  vec2 vel = texture2D(u_vel, v_uv).xy;',
+  '  vec2 prev = v_uv - u_dt * vel * u_ts;',
+  '  prev = clamp(prev, u_ts, 1.0 - u_ts);',
+  '  gl_FragColor = u_diss * texture2D(u_src, prev);',
+  '}'
+].join('\n');
+
+var DIVERGENCE_SRC = [
+  'precision highp float;',
+  'varying vec2 v_uv;',
+  'uniform sampler2D u_vel;',
+  'uniform vec2 u_ts;',
+  'void main() {',
+  '  float L = texture2D(u_vel, v_uv - vec2(u_ts.x, 0.0)).x;',
+  '  float R = texture2D(u_vel, v_uv + vec2(u_ts.x, 0.0)).x;',
+  '  float B = texture2D(u_vel, v_uv - vec2(0.0, u_ts.y)).y;',
+  '  float T = texture2D(u_vel, v_uv + vec2(0.0, u_ts.y)).y;',
+  '  float div = 0.5 * (R - L + T - B);',
+  '  gl_FragColor = vec4(div, 0.0, 0.0, 1.0);',
+  '}'
+].join('\n');
+
+// Unified Jacobi solver for both pressure (alpha=-1, rBeta=0.25) and
+// viscosity diffusion (alpha=1/(nu*dt), rBeta=1/(4+alpha)).
+var JACOBI_SRC = [
+  'precision highp float;',
+  'varying vec2 v_uv;',
+  'uniform sampler2D u_x;',
+  'uniform sampler2D u_b;',
+  'uniform vec2 u_ts;',
+  'uniform float u_alpha;',
+  'uniform float u_rBeta;',
+  'void main() {',
+  '  vec4 xL = texture2D(u_x, v_uv - vec2(u_ts.x, 0.0));',
+  '  vec4 xR = texture2D(u_x, v_uv + vec2(u_ts.x, 0.0));',
+  '  vec4 xB = texture2D(u_x, v_uv - vec2(0.0, u_ts.y));',
+  '  vec4 xT = texture2D(u_x, v_uv + vec2(0.0, u_ts.y));',
+  '  vec4 bC = texture2D(u_b, v_uv);',
+  '  gl_FragColor = (xL + xR + xB + xT + u_alpha * bC) * u_rBeta;',
+  '}'
+].join('\n');
+
+var SUBTRACT_SRC = [
+  'precision highp float;',
+  'varying vec2 v_uv;',
+  'uniform sampler2D u_vel;',
+  'uniform sampler2D u_pres;',
+  'uniform vec2 u_ts;',
+  'void main() {',
+  '  float pL = texture2D(u_pres, v_uv - vec2(u_ts.x, 0.0)).x;',
+  '  float pR = texture2D(u_pres, v_uv + vec2(u_ts.x, 0.0)).x;',
+  '  float pB = texture2D(u_pres, v_uv - vec2(0.0, u_ts.y)).x;',
+  '  float pT = texture2D(u_pres, v_uv + vec2(0.0, u_ts.y)).x;',
+  '  vec2 vel = texture2D(u_vel, v_uv).xy;',
+  '  vel -= 0.5 * vec2(pR - pL, pT - pB);',
+  '  gl_FragColor = vec4(vel, 0.0, 1.0);',
+  '}'
+].join('\n');
+
+// Adds a Gaussian impulse at u_pt. Use u_val=(0,0,0,0) for a copy/blit.
+var SPLAT_SRC = [
+  'precision highp float;',
+  'varying vec2 v_uv;',
+  'uniform sampler2D u_src;',
+  'uniform vec2 u_pt;',
+  'uniform vec4 u_val;',
+  'uniform float u_rad;',
+  'void main() {',
+  '  vec2 d = v_uv - u_pt;',
+  '  float g = exp(-dot(d, d) / (u_rad * u_rad));',
+  '  gl_FragColor = texture2D(u_src, v_uv) + g * u_val;',
+  '}'
+].join('\n');
+
+// Maps two-channel dye (r=cream, g=honey) to a warm color gradient.
+// Background #0A0804 appears where both channels are near zero.
+var DISPLAY_SRC = [
+  'precision highp float;',
+  'varying vec2 v_uv;',
+  'uniform sampler2D u_dye;',
+  'void main() {',
+  '  vec2 d = clamp(texture2D(u_dye, v_uv).rg, 0.0, 1.0);',
+  '  float total = d.r + d.g;',
+  '  vec3 bg      = vec3(0.039, 0.031, 0.016);',  // #0A0804
+  '  vec3 cream   = vec3(1.000, 0.961, 0.863);',  // #FFF5DC
+  '  vec3 midAmb  = vec3(0.941, 0.698, 0.235);',  // warm amber mid
+  '  vec3 honey   = vec3(0.831, 0.510, 0.039);',  // #D4820A
+  '  vec3 deep    = vec3(0.784, 0.416, 0.000);',  // #C86A00
+  '  float t = (total > 0.001) ? (d.g / total) : 0.0;',
+  '  vec3 fluid;',
+  '  if (t < 0.5) {',
+  '    fluid = mix(cream, midAmb, t * 2.0);',
+  '  } else {',
+  '    float extra = clamp(d.g - 0.5, 0.0, 1.0);',
+  '    fluid = mix(midAmb, mix(honey, deep, extra), (t - 0.5) * 2.0);',
+  '  }',
+  '  float alpha = clamp(total * 3.0, 0.0, 1.0);',
+  '  gl_FragColor = vec4(mix(bg, fluid, alpha), 1.0);',
+  '}'
+].join('\n');
+
+// ---- Compile/link helpers ----
+
+function compileShader(type, src) {
+  var s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  return s;
+}
+
+function makeProgram(fragSrc) {
+  var p = gl.createProgram();
+  gl.attachShader(p, compileShader(gl.VERTEX_SHADER, VERT_SRC));
+  gl.attachShader(p, compileShader(gl.FRAGMENT_SHADER, fragSrc));
+  gl.linkProgram(p);
+  return p;
+}
+
+// ---- FBO / texture helpers ----
+
+function makeFBO() {
+  var tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, FILTER);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, FILTER);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, SIM, SIM, 0, gl.RGBA, gl.FLOAT, null);
+  var fbo = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  gl.bindTexture(gl.TEXTURE_2D, null);
+  return { tex: tex, fbo: fbo };
+}
+
+function clearFBO(f) {
+  gl.bindFramebuffer(gl.FRAMEBUFFER, f.fbo);
+  gl.clearColor(0, 0, 0, 0);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+}
+
+// ---- Draw helpers ----
+
+var quadBuf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+
+function bindQuad(prog) {
+  gl.useProgram(prog);
+  gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+  var loc = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+}
+
+function drawQuad() {
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+}
+
+function ul(prog, name) { return gl.getUniformLocation(prog, name); }
+function setTex(prog, name, unit, tex) {
+  gl.activeTexture(gl.TEXTURE0 + unit);
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.uniform1i(ul(prog, name), unit);
+}
+function setF(prog, name, v) { gl.uniform1f(ul(prog, name), v); }
+function set2(prog, name, x, y) { gl.uniform2f(ul(prog, name), x, y); }
+function set4(prog, name, x, y, z, w) { gl.uniform4f(ul(prog, name), x, y, z, w); }
+
+function toFBO(f) {
+  gl.bindFramebuffer(gl.FRAMEBUFFER, f.fbo);
+  gl.viewport(0, 0, SIM, SIM);
+}
+
+function toScreen() {
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  gl.viewport(0, 0, canvas.width, canvas.height);
+}
+
+// ---- Programs ----
+
+var advProg = makeProgram(ADVECT_SRC);
+var divProg = makeProgram(DIVERGENCE_SRC);
+var jacProg = makeProgram(JACOBI_SRC);
+var subProg = makeProgram(SUBTRACT_SRC);
+var splProg = makeProgram(SPLAT_SRC);
+var disProg = makeProgram(DISPLAY_SRC);
+
+// ---- Simulation buffers ----
+
+var vel  = [makeFBO(), makeFBO()];
+var velT = makeFBO();   // fixed source for diffusion Jacobi
+var dye  = [makeFBO(), makeFBO()];
+var pres = [makeFBO(), makeFBO()];
+var divF = makeFBO();
+
+// Clear all to zero
+[vel[0], vel[1], velT, dye[0], dye[1], pres[0], pres[1], divF].forEach(clearFBO);
+
+// ---- Simulation operations ----
+
+function advect(velTex, srcTex, dst, diss) {
+  toFBO(dst);
+  bindQuad(advProg);
+  setTex(advProg, 'u_vel', 0, velTex);
+  setTex(advProg, 'u_src', 1, srcTex);
+  set2(advProg, 'u_ts', TS_X, TS_Y);
+  setF(advProg, 'u_dt', DT);
+  setF(advProg, 'u_diss', diss);
+  drawQuad();
+}
+
+function divergence(velTex) {
+  toFBO(divF);
+  bindQuad(divProg);
+  setTex(divProg, 'u_vel', 0, velTex);
+  set2(divProg, 'u_ts', TS_X, TS_Y);
+  drawQuad();
+}
+
+function jacobi(xTex, bTex, dst, alpha, rBeta) {
+  toFBO(dst);
+  bindQuad(jacProg);
+  setTex(jacProg, 'u_x', 0, xTex);
+  setTex(jacProg, 'u_b', 1, bTex);
+  set2(jacProg, 'u_ts', TS_X, TS_Y);
+  setF(jacProg, 'u_alpha', alpha);
+  setF(jacProg, 'u_rBeta', rBeta);
+  drawQuad();
+}
+
+function subtract(velTex, presTex, dst) {
+  toFBO(dst);
+  bindQuad(subProg);
+  setTex(subProg, 'u_vel', 0, velTex);
+  setTex(subProg, 'u_pres', 1, presTex);
+  set2(subProg, 'u_ts', TS_X, TS_Y);
+  drawQuad();
+}
+
+// blit: copy srcTex to dst by splatting zero impulse
+function blit(srcTex, dst) {
+  toFBO(dst);
+  bindQuad(splProg);
+  setTex(splProg, 'u_src', 0, srcTex);
+  set2(splProg, 'u_pt', 0.0, 0.0);
+  set4(splProg, 'u_val', 0.0, 0.0, 0.0, 0.0);
+  setF(splProg, 'u_rad', 1.0);
+  drawQuad();
+}
+
+function splat(srcTex, dst, px, py, vx, vy, vz, vw, radius) {
+  toFBO(dst);
+  bindQuad(splProg);
+  setTex(splProg, 'u_src', 0, srcTex);
+  set2(splProg, 'u_pt', px, py);
+  set4(splProg, 'u_val', vx, vy, vz, vw);
+  setF(splProg, 'u_rad', radius);
+  drawQuad();
+}
+
+// ---- Injection state ----
+
+var injTime = 0.0;
+var simTime = 0.0;
+
+function inject() {
+  // Lissajous 1:2 path; x near left edge, y sweeps full height
+  var lissX = 0.08 + 0.04 * Math.sin(injTime * 0.3);
+  var lissY = 0.5  + 0.30 * Math.sin(injTime * 0.6);
+
+  // Alternate velocity direction every 3 seconds for perpetual motion
+  var dir = Math.sign(Math.sin(simTime * Math.PI / 3.0));
+  if (dir === 0) dir = 1.0;
+
+  var vx = VEL_STRENGTH * dir;
+
+  // Cream velocity impulse at left Lissajous point
+  splat(vel[0].tex, vel[1], lissX, lissY, vx, 0.0, 0.0, 0.0, VEL_RADIUS);
+  var tmp = vel[0]; vel[0] = vel[1]; vel[1] = tmp;
+
+  // Honey velocity impulse at mirrored right point (opposite direction)
+  splat(vel[0].tex, vel[1], 1.0 - lissX, 1.0 - lissY, -vx, 0.0, 0.0, 0.0, VEL_RADIUS);
+  tmp = vel[0]; vel[0] = vel[1]; vel[1] = tmp;
+
+  // Cream dye injection (R channel) at left Lissajous point
+  splat(dye[0].tex, dye[1], lissX, lissY, DYE_STRENGTH, 0.0, 0.0, 0.0, DYE_RADIUS);
+  tmp = dye[0]; dye[0] = dye[1]; dye[1] = tmp;
+
+  // Honey dye injection (G channel) at mirrored right point
+  splat(dye[0].tex, dye[1], 1.0 - lissX, 1.0 - lissY, 0.0, DYE_STRENGTH, 0.0, 0.0, DYE_RADIUS);
+  tmp = dye[0]; dye[0] = dye[1]; dye[1] = tmp;
+
+  injTime += DT;
+}
+
+// ---- Main simulation step ----
+
+function step() {
+  var alphaD = 1.0 / (VISCOSITY * DT);
+  var rBetaD = 1.0 / (4.0 + alphaD);
+  var i, src, dst, tmp;
+
+  // 1. Advect velocity (semi-Lagrangian back-trace)
+  advect(vel[0].tex, vel[0].tex, vel[1], DISS_VEL);
+  tmp = vel[0]; vel[0] = vel[1]; vel[1] = tmp;
+
+  // 2. Diffuse velocity via 10 Jacobi iterations (implicit viscosity, ν=1e-5).
+  //    velT holds the fixed rhs for the solve; alternating vel[0]/vel[1] as x.
+  blit(vel[0].tex, velT);
+  for (i = 0; i < DIFF_ITERS; i++) {
+    src = i % 2;
+    dst = 1 - src;
+    jacobi(vel[src].tex, velT.tex, vel[dst], alphaD, rBetaD);
+  }
+  // After DIFF_ITERS=10 iterations, last write was to vel[0] (10%2=0, dst=0).
+
+  // 3. Add velocity and dye impulses (Lissajous figure-eight pattern)
+  inject();
+
+  // 4. Compute velocity divergence
+  divergence(vel[0].tex);
+
+  // 5. Solve pressure via 20 Jacobi iterations (pressure Poisson: ∇²p = div)
+  //    alpha=-1, beta=4, rBeta=0.25
+  for (i = 0; i < PRES_ITERS; i++) {
+    src = i % 2;
+    dst = 1 - src;
+    jacobi(pres[src].tex, divF.tex, pres[dst], -1.0, 0.25);
+  }
+  // After PRES_ITERS=20 iterations, last write to pres[0] (20%2=0, dst=0).
+
+  // 6. Subtract pressure gradient to make velocity divergence-free
+  subtract(vel[0].tex, pres[0].tex, vel[1]);
+  tmp = vel[0]; vel[0] = vel[1]; vel[1] = tmp;
+
+  // 7. Advect dye using divergence-free velocity
+  advect(vel[0].tex, dye[0].tex, dye[1], DISS_DYE);
+  tmp = dye[0]; dye[0] = dye[1]; dye[1] = tmp;
+
+  // 8. Display: map two-channel dye to cream/honey color gradient
+  toScreen();
+  bindQuad(disProg);
+  setTex(disProg, 'u_dye', 0, dye[0].tex);
+  drawQuad();
+
+  simTime += DT;
+}
+
+// ---- Resize and loop ----
+
+function resize() {
+  canvas.width  = panel.clientWidth;
+  canvas.height = panel.clientHeight;
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+var lastTs = 0;
+function loop(ts) {
+  requestAnimationFrame(loop);
+  // Guard against large time jumps after tab becomes visible again
+  if (ts - lastTs > 200) lastTs = ts - 16;
+  lastTs = ts;
+  step();
+}
+
+requestAnimationFrame(loop);
+
+}());
+</script>
+</body>
+</html>

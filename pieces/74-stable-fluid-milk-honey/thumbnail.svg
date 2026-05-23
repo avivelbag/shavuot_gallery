@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1A1005"/>
+      <stop offset="100%" stop-color="#0A0804"/>
+    </radialGradient>
+    <!-- Cream swirl gradients -->
+    <radialGradient id="c1" cx="30%" cy="45%" r="40%">
+      <stop offset="0%" stop-color="#FFF5DC" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#F0E8C8" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FFF5DC" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="c2" cx="22%" cy="65%" r="30%">
+      <stop offset="0%" stop-color="#FFF5DC" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFF5DC" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Honey swirl gradients -->
+    <radialGradient id="h1" cx="70%" cy="55%" r="40%">
+      <stop offset="0%" stop-color="#D4820A" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#C86A00" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#D4820A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="h2" cx="78%" cy="35%" r="30%">
+      <stop offset="0%" stop-color="#E8950A" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#D4820A" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Amber mid-swirl -->
+    <radialGradient id="a1" cx="50%" cy="50%" r="35%">
+      <stop offset="0%" stop-color="#E8B030" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#E8B030" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+
+  <!-- Soft ambient glow layers (blurred) -->
+  <ellipse cx="130" cy="180" rx="160" ry="120" fill="url(#c1)" filter="url(#blur1)"/>
+  <ellipse cx="270" cy="220" rx="150" ry="110" fill="url(#h1)" filter="url(#blur1)"/>
+  <ellipse cx="200" cy="200" rx="100" ry="80"  fill="url(#a1)" filter="url(#blur1)"/>
+  <ellipse cx="90"  cy="260" rx="90"  ry="70"  fill="url(#c2)" filter="url(#blur2)"/>
+  <ellipse cx="310" cy="140" rx="90"  ry="70"  fill="url(#h2)" filter="url(#blur2)"/>
+
+  <!-- Cream swirl arms (left side) -->
+  <g filter="url(#blur2)" opacity="0.85">
+    <path d="M 50,200 C 80,140 160,120 200,160 C 240,200 230,260 180,280
+             C 130,300 80,280 60,240 C 40,200 70,160 110,170
+             C 150,180 170,220 150,240"
+          fill="none" stroke="#FFF5DC" stroke-width="18" stroke-linecap="round" opacity="0.6"/>
+    <path d="M 40,180 C 70,120 155,100 195,145"
+          fill="none" stroke="#F0E8C8" stroke-width="12" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- Honey swirl arms (right side) -->
+  <g filter="url(#blur2)" opacity="0.85">
+    <path d="M 350,200 C 320,260 240,280 200,240 C 160,200 170,140 220,120
+             C 270,100 320,120 340,160 C 360,200 330,240 290,230
+             C 250,220 230,180 250,160"
+          fill="none" stroke="#D4820A" stroke-width="18" stroke-linecap="round" opacity="0.6"/>
+    <path d="M 360,220 C 330,280 245,300 205,255"
+          fill="none" stroke="#C86A00" stroke-width="12" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- Central interaction zone: amber blend -->
+  <g filter="url(#blur1)" opacity="0.6">
+    <ellipse cx="200" cy="195" rx="55" ry="45" fill="#E8A820"/>
+    <ellipse cx="195" cy="205" rx="35" ry="28" fill="#D4920A"/>
+  </g>
+
+  <!-- Fine cream wisps (no blur, crisp) -->
+  <path d="M 75,155 C 105,135 150,138 175,158 C 200,178 195,205 170,210"
+        fill="none" stroke="#FFF5DC" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 55,230 C 85,215 120,222 140,245"
+        fill="none" stroke="#F0E8C8" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Fine honey wisps -->
+  <path d="M 325,245 C 295,265 250,262 225,242 C 200,222 205,195 230,190"
+        fill="none" stroke="#D4820A" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 345,170 C 315,155 280,162 260,185"
+        fill="none" stroke="#C86A00" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Subtle vignette -->
+  <radialGradient id="vign" cx="50%" cy="50%" r="70%">
+    <stop offset="50%" stop-color="#0A0804" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#0A0804" stop-opacity="0.6"/>
+  </radialGradient>
+  <rect width="400" height="400" fill="url(#vign)"/>
+</svg>
