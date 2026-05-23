@@ -1208,5 +1208,16 @@
     "path": "pieces/77-caustics-sapphire-pavement/index.html",
     "thumbnail": "pieces/77-caustics-sapphire-pavement/thumbnail.svg",
     "essay": "pieces/77-caustics-sapphire-pavement/essay.md"
+  },
+  {
+    "id": "77-game-of-life-living-letters",
+    "title": "Letters That Give Life",
+    "tagline": "the word Anochi seeds Conway's Game of Life — sacred text becomes living system",
+    "year": 2026,
+    "theme": "Matan Torah",
+    "technique": "Conway's Game of Life / pixel Hebrew letter seeding",
+    "path": "pieces/77-game-of-life-living-letters/index.html",
+    "thumbnail": "pieces/77-game-of-life-living-letters/thumbnail.svg",
+    "essay": "pieces/77-game-of-life-living-letters/essay.md"
   }
 ]

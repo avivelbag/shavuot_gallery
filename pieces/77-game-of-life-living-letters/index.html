@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letters That Give Life — Matan Torah</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #070502; height: 100%; }
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .art-panel {
+      flex: 0 0 58%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #070502;
+      position: relative;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    #anochi-overlay {
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.8rem;
+      color: #F5F0E0;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      pointer-events: none;
+      font-family: 'Times New Roman', Georgia, serif;
+      direction: rtl;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+
+    .essay-panel {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      border-left: 1px solid #1e1e2e;
+      overflow-y: auto;
+      color: #c8bca8;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #080810;
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .art-panel { position: relative; height: 60vw; min-height: 280px; flex: none; }
+      .essay-panel { border-left: none; border-top: 1px solid #1e1e2e; padding: 2rem 1.5rem; }
+    }
+
+    .essay-panel h1 {
+      font-size: 1.6rem;
+      color: #F5F0E0;
+      margin: 0 0 0.25rem;
+      font-weight: normal;
+    }
+    .essay-panel .subtitle {
+      font-size: 0.9rem;
+      color: #505060;
+      margin: 0 0 2rem;
+    }
+    .essay-panel h2 {
+      font-size: 1rem;
+      color: #E8C438;
+      margin: 2rem 0 0.6rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .essay-panel p {
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+    }
+    .essay-panel em {
+      color: #E8C438;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <div class="art-panel" id="art-panel">
+    <canvas id="c"></canvas>
+    <div id="anochi-overlay">אָנֹכִי</div>
+  </div>
+  <div class="essay-panel">
+    <h1>Letters That Give Life</h1>
+    <p class="subtitle">Matan Torah / Conway's Game of Life</p>
+
+    <h2>The Word at Sinai</h2>
+    <p><em>"אָנֹכִי יְהוָה אֱלֹהֶיךָ אֲשֶׁר הוֹצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם"</em> — "I am the LORD your God who brought you out of the land of Egypt." (Exodus 20:2)</p>
+    <p>This is the first sentence spoken at Sinai. Not a commandment — an introduction. The Ten Commandments do not begin with a law but with a name. <em>Anochi</em>. I am.</p>
+
+    <h2>The Letter as Creative Force</h2>
+    <p>The Rabbis were not merely poetic when they described the Hebrew letters as the building blocks of creation. The Talmud (Menachot 29b) records that God looked into the Torah and created the world from it — Torah was not a law given <em>after</em> creation but the blueprint <em>of</em> creation. Sefer Yetzirah, the earliest kabbalistic text, makes this explicit: the twenty-two letters and ten sefirot are the thirty-two paths by which God "engraved, carved, weighed, permuted, and transposed" all that exists and all that will exist (Yetzirah 2:2). The letters are not signs pointing to things; they are the things themselves, operating at a more fundamental level of description.</p>
+    <p>This is not mysticism at odds with reason. It is a proto-formal claim: that reality is, at some deep level, <em>computable</em> from a finite alphabet of primitives. The Torah is the program; the universe is its output.</p>
+    <p>The connection to Shavuot is direct. At Sinai the people received not only a moral code but a generative grammar — the same twenty-two-letter alphabet that God used to form the world was now being placed in human hands. What began as the language of creation became the language of obligation and covenant.</p>
+
+    <h2>Turing-Complete Creation</h2>
+    <p>Conway's Game of Life is governed by exactly four rules: a live cell with two or three neighbors survives; a dead cell with exactly three neighbors becomes alive; all others die or remain dead. From this minimal rule set emerge gliders that cross the infinite grid, oscillators that pulse forever, and configurations that can simulate entire computers. The Game of Life is Turing-complete — any computation possible in any programming language is encodable in its cells. The universe of all possible computation fits inside four rules.</p>
+    <p>The Kabbalists made the same structural claim about Hebrew. The twenty-two letters, properly combined, encode every thing that is. Both systems assert the same deep principle: irreducible complexity arises from a small, elegant generative rule set. Completeness requires no more than the alphabet; richness requires only time.</p>
+
+    <h2>This Piece</h2>
+    <p>The word <em>Anochi</em> — אנכי, the first utterance at Sinai — is seeded into the grid as hand-crafted pixel-art letterforms. Then the rules begin. The letters dissolve: some cells stabilize into still-life islands, others become oscillators that blink in pairs, gliders detach and wander across the toroidal field forever. What began as a declaration of divine identity becomes a living, spreading system.</p>
+    <p>This is what the giving of Torah at Sinai looked like from the inside. Not the delivery of a fixed object but the release of a generative force. The carved letters of the first word do not disappear — they transform. They become the life they always were.</p>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var W = 300, H = 200;
+
+  var curr = new Uint8Array(W * H);
+  var next = new Uint8Array(W * H);
+
+  /*
+   * 7×9 pixel-art Hebrew letter bitmasks.
+   * Bit 6 = leftmost column, bit 0 = rightmost column.
+   * Letters are rendered in visual right-to-left order:
+   * index 0 = Yod (leftmost on screen), 3 = Aleph (rightmost on screen).
+   * This produces the natural Hebrew reading direction: א נ כ י right-to-left.
+   */
+  var ALEPH = [
+    0b0001000,
+    0b0011000,
+    0b0110100,
+    0b1100100,
+    0b1000110,
+    0b0001111,
+    0b0001000,
+    0b0011000,
+    0b0110000
+  ];
+
+  var NUN = [
+    0b1111110,
+    0b0000010,
+    0b0000010,
+    0b0000010,
+    0b0000010,
+    0b0000110,
+    0b0000000,
+    0b0000000,
+    0b0000000
+  ];
+
+  var KAF = [
+    0b1111110,
+    0b1000000,
+    0b1000000,
+    0b1000000,
+    0b1000000,
+    0b1000000,
+    0b1111100,
+    0b0000000,
+    0b0000000
+  ];
+
+  var YOD = [
+    0b0011100,
+    0b0011000,
+    0b0110000,
+    0b0100000,
+    0b0000000,
+    0b0000000,
+    0b0000000,
+    0b0000000,
+    0b0000000
+  ];
+
+  /* Left-to-right screen order: Yod, Kaf, Nun, Aleph (visually right-to-left Hebrew) */
+  var LETTERS = [YOD, KAF, NUN, ALEPH];
+
+  var FONT_SCALE = 2;
+  var LETTER_W = 7 * FONT_SCALE;
+  var LETTER_H = 9 * FONT_SCALE;
+  var GAP = 2 * FONT_SCALE;
+
+  function seedLetters() {
+    var wordW = LETTERS.length * LETTER_W + (LETTERS.length - 1) * GAP;
+    var startX = Math.floor((W - wordW) / 2);
+    var startY = Math.floor((H - LETTER_H) / 2);
+
+    for (var li = 0; li < LETTERS.length; li++) {
+      var letter = LETTERS[li];
+      var lx = startX + li * (LETTER_W + GAP);
+      for (var r = 0; r < 9; r++) {
+        var row = letter[r];
+        for (var c = 0; c < 7; c++) {
+          if ((row >> (6 - c)) & 1) {
+            for (var sy = 0; sy < FONT_SCALE; sy++) {
+              for (var sx = 0; sx < FONT_SCALE; sx++) {
+                var gx = lx + c * FONT_SCALE + sx;
+                var gy = startY + r * FONT_SCALE + sy;
+                if (gx >= 0 && gx < W && gy >= 0 && gy < H) {
+                  curr[gy * W + gx] = 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function golStep() {
+    for (var y = 0; y < H; y++) {
+      for (var x = 0; x < W; x++) {
+        var i = y * W + x;
+        var n = 0;
+        for (var dy = -1; dy <= 1; dy++) {
+          for (var dx = -1; dx <= 1; dx++) {
+            if (dy === 0 && dx === 0) continue;
+            n += curr[((y + dy + H) % H) * W + ((x + dx + W) % W)];
+          }
+        }
+        var alive = curr[i];
+        next[i] = (alive ? (n === 2 || n === 3) : n === 3) ? 1 : 0;
+      }
+    }
+    var tmp = curr;
+    curr = next;
+    next = tmp;
+  }
+
+  var offscreen = document.createElement('canvas');
+  offscreen.width = W;
+  offscreen.height = H;
+  var offCtx = offscreen.getContext('2d');
+  var imgData = offCtx.createImageData(W, H);
+  var pixels = imgData.data;
+
+  function renderFrame(ctx, cw, ch) {
+    for (var i = 0; i < W * H; i++) {
+      var p = i * 4;
+      if (curr[i]) {
+        pixels[p]     = 232;
+        pixels[p + 1] = 196;
+        pixels[p + 2] = 56;
+      } else {
+        pixels[p]     = 7;
+        pixels[p + 1] = 5;
+        pixels[p + 2] = 2;
+      }
+      pixels[p + 3] = 255;
+    }
+    offCtx.putImageData(imgData, 0, 0);
+    ctx.drawImage(offscreen, 0, 0, cw, ch);
+  }
+
+  var canvas = document.getElementById('c');
+  var ctx = canvas.getContext('2d');
+  var overlay = document.getElementById('anochi-overlay');
+  var frame = 0;
+
+  function resize() {
+    var panel = document.getElementById('art-panel');
+    canvas.width = panel.clientWidth || window.innerWidth * 0.58;
+    canvas.height = panel.clientHeight || window.innerHeight;
+  }
+
+  seedLetters();
+  resize();
+
+  function animate() {
+    renderFrame(ctx, canvas.width, canvas.height);
+
+    if (frame === 600) {
+      overlay.style.opacity = '0.5';
+    } else if (frame === 780) {
+      overlay.style.opacity = '0';
+    }
+
+    frame++;
+    golStep();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', resize);
+  requestAnimationFrame(animate);
+}());
+</script>
+</body>
+</html>
