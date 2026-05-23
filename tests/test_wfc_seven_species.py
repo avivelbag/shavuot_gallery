@@ -6,8 +6,6 @@ Covers happy-path acceptance criteria, edge cases, and explicit failure modes.
 import json
 import os
 
-import pytest
-
 GALLERY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIECE_ID = "79-wave-function-collapse-seven-species"
 PIECE_DIR = os.path.join(GALLERY_ROOT, "pieces", PIECE_ID)
