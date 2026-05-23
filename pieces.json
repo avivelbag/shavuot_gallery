@@ -1043,5 +1043,16 @@
     "path": "pieces/70-pinwheel-tiling-omer/index.html",
     "thumbnail": "pieces/70-pinwheel-tiling-omer/thumbnail.svg",
     "essay": "pieces/70-pinwheel-tiling-omer/essay.md"
+  },
+  {
+    "id": "71-circle-packing-chag-hakatzir",
+    "title": "The Abundance of First Fruits",
+    "tagline": "600 growing circles fill the canvas in the seven species of the Promised Land — a dense harvest mosaic",
+    "year": 2026,
+    "theme": "Bikkurim / First Fruits",
+    "technique": "iterative circle packing / canvas",
+    "path": "pieces/71-circle-packing-chag-hakatzir/index.html",
+    "thumbnail": "pieces/71-circle-packing-chag-hakatzir/thumbnail.svg",
+    "essay": "pieces/71-circle-packing-chag-hakatzir/essay.md"
   }
 ]
